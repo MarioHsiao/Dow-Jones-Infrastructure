@@ -1,0 +1,102 @@
+﻿.dj_DiscoveryGraph {
+  .dj_widget_slimView {
+    width: 290px;
+    .scrollable {
+      width: 230px; }
+    a {
+      &.prev.disabled {
+        background-position: -0px -60px; }
+      &.next.disabled {
+        background-position: -0px -81px; } 
+		&.up {
+      background-position: 0px -42px;
+       }
+    &.down {
+      background-position: 0px -99px;
+       }} }
+  .dj_widget_fullView {
+    .dj_discoveryGraph_item_wrap {
+      > .page-item {
+        float: left; } }
+    a {
+      &.prev.disabled {
+        background-position: -18px -121px; }
+      &.next.disabled {
+        background-position: -18px -18px; } 
+		&.right {
+      background-position: 0 -18px;
+      clear: right;
+      margin-right: 0px; }
+    &.left {
+      margin-left: 0px;
+      background-position: 0 -121px; }} 
+		}
+  a {
+    &.browse {
+      float: left;
+      margin: 50px 10px; }
+    
+    &.up, &.down {
+      margin: 10px 100px; }
+     }
+  .page-item {
+    width: 250px; }
+  a.browse {
+    background: url(img/sprite_carousel-buttons.png) no-repeat;
+    display: block;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    font-size: 1px; }
+  .scrollable {
+    .active {
+      border: 2px solid #000;
+      position: relative;
+      cursor: default; }
+    &.horizontal {
+      float: left;
+      /* required settings */
+      position: relative;
+      overflow: hidden;
+      width: 732px;
+      height: 200px;
+      .items {
+        /* this cannot be too large */
+        width: 20000em;
+        position: absolute;
+        clear: both; } }
+    &.vertical {
+      /* required settings */
+      position: relative;
+      overflow: hidden;
+      height: 365px;
+      .items {
+        /* this cannot be too large */
+        height: 20000em;
+        position: absolute; } } }
+  .items {
+    .page {
+      float: left;
+      width: 980px; }
+    .page-item {
+      float: left; } }
+  .ui-sortable h3 {
+    border: 1px solid #CCC;
+    background: #ddd;
+    /* for non-css3 browsers */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#cfcfcf');
+    /* for IE */
+    background: -webkit-gradient(linear, left top, left bottom, from(white), to(#cfcfcf));
+    /* for webkit browsers */
+    background: -moz-linear-gradient(top, white, #cfcfcf);
+    /* for firefox 3.6+ */
+    font-size: 14px;
+    padding: 4px;
+    color: #808080;
+    text-shadow: 1px 1px 1px white;
+    outline: none;
+    cursor: hand;
+    cursor: pointer;
+    &:before {
+      content: "\2021";
+      padding-right: 4px; } } }

@@ -1,0 +1,96 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+	<head>
+		<title>Twitter Experts</title>
+	</head>
+	<body>
+	    <div class="twitter-experts">
+
+        </div>
+    </body>
+    
+        <script type="text/javascript" src="../../../DowJones.Web.Mvc/Resources/js/core.js"></script>
+        <script type="text/javascript" src="../../../DowJones.Web.Mvc/Resources/js/core/underscore.js"></script>
+  <!--      <script type="text/javascript" src="../../../DowJones.Web.Mvc/Resources/js/core/jquery.js"></script>
+        <script type="text/javascript" src="../../../DowJones.Web.Mvc/Resources/js/core/require.js"></script>
+        <script type="text/javascript" src="../../../DowJones.Web.Mvc/Resources/js/core/common.js"></script>
+-->
+        <script type="text/javascript" src="https://raw.github.com/olado/doT/master/doT.js"></script>
+        <!--<script type="text/javascript" src="../../../DowJones.Web.Mvc/Resources/js/jquery-ui.core.js"></script>
+        <script type="text/javascript" src="../../../DowJones.Web.Mvc/Resources/js/jquery-ui.interactions.js"></script>
+-->
+         <script type="text/javascript" src="ExpertsMockFeedData.js"></script> 
+        <script type="text/javascript" src="../../../DowJones.Web.Mvc.UI.Components/TwitterExperts/TwitterExperts.js" />
+       
+     
+<script type="text/template" id="templ">
+<div class="stream-items">
+    <%  var tweetId, userId, screenName, reTweetId, fullName, profileUrl, profileHashUrl, profileImageUrl, tweetText, tweetTimeStamp, tweetTimeStampRaw,
+            tweets = self.tweets, options = self.options;
+        
+        for (var i = 0, len = Math.min(tweets.length, options.maxTweetsToShow); i < len; i++) { 
+            t = tweets[i]; 
+            tweetId = t.id; 
+            tweetText = t.text; 
+            reTweetId = t.reTweetId;
+            userId = t.user.id; 
+            screenName = t.user.screen_name; 
+            fullName = t.user.name; 
+            profileImageUrl = t.user.profile_image_url;
+            profileUrl = 'http://twitter.com/' + screenName; 
+            profileHashUrl = '/#!/' + screenName;
+            statusHashUrl = profileHashUrl + '/status/' + screenName;
+            
+    %>
+    <div data-tweet-id="<%= tweetId %>" class="stream-item">
+        <div data-user-id="<%= userId %>" data-screen-name="<%= screenName %>" data-retweet-id="<%= reTweetId %>"
+            data-tweet-id="<%= tweetId %>" class="stream-item-content tweet stream-tweet ">
+            <div class="tweet-dogear ">
+            </div>
+            <div class="tweet-image">
+                <img width="48" height="48" data-user-id="<%= userId %>" class="user-profile-link"
+                    alt="<%= fullName %>" src="<%= profileImageUrl %>">
+            </div>
+            <div class="tweet-content">
+                <div class="tweet-row">
+                    <span class="tweet-user-name"><a title="<%= fullName %>" href="<%= profileHashUrl %>"
+                        data-user-id="<%= userId %>" class="tweet-screen-name user-profile-link">
+                        <%= screenName %></a> <span class="tweet-full-name">
+                            <%= fullName %></span> </span>
+                </div>
+             </div>
+        </div>
+    </div>
+    <% } %>
+</div>
+
+</script>
+
+<script type="text/javascript">
+    doT.templateSettings = {
+        evaluate: /<%([\s\S]+?)%>/g,
+        interpolate: /<%=([\s\S]+?)%>/g,
+        encode: /<%!([\s\S]+?)%>/g,
+        use: /<%#([\s\S]+?)%>/g,
+        define: /<%##\s*([\w\.$]+)\s*(\:|=)([\s\S]+?)#%>/g,
+        varname: 'self',
+        strip: true,
+        append: true
+    };
+</script>
+<script type="text/javascript">
+    $(function () {
+        var expertsTemplate = $('#temp1').html();
+        console.log($('#temp1').html());
+        //                var anyonymous_self_function = doT.template(expertsTemplate);
+        //                var htmldata = anyonymous_self_function({ experts: mockExperts.data, options: 10 });
+
+        //                $("twitter_experts").html(htmldata);
+        //                $("twitter_experts").dj_TwitterExperts();
+        //$.extend(DJ.UI.TwitterExperts.prototype.templates, { topexperts: doT.template(expertsTemplate) });
+        // $('div.twitter_experts').dj_TwitterExperts({ experts: mockExperts.data, options: 10 });
+
+    }); 
+</script>
+	
+</html>

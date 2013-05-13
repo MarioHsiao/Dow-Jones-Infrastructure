@@ -1,0 +1,10 @@
+﻿@model GaugeModel
+@ClientPlugin dj_Gauge
+@ScriptResource RelativeResourceName=Gauge.js, DependsOn=highcharts-more
+@ClientTemplate RelativeResourceName=ClientTemplates.error.htm, TemplateId=error
+@ClientTemplate RelativeResourceName=ClientTemplates.noData.htm, TemplateId=noData
+@ClientTemplate RelativeResourceName=ClientTemplates.layout.htm, TemplateId=layout
+@{ 
+    CssClass = "dj_Gauge";
+}
+

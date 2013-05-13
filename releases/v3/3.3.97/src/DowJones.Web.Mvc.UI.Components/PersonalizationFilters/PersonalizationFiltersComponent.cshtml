@@ -1,0 +1,18 @@
+﻿@using DowJones.Web.Mvc.Extensions;
+@using DowJones.Web.Mvc.UI.Components.AutoSuggest
+@using DowJones.Web.Mvc.UI.Components.TaxonomySearchBrowse
+@using DowJones.Web.Mvc.UI.Components.PersonalizationFilters
+@model PersonalizationFiltersModel
+@ClientPlugin dj_PersonalizationFilters
+@ClientTemplate RelativeResourceName=ClientTemplates.main.htm, TemplateId=main
+@ClientTemplate RelativeResourceName=ClientTemplates.modalDialog.htm, TemplateId=modalDialog
+@ClientTemplate RelativeResourceName=ClientTemplates.filterPill.htm, TemplateId=filterPill
+@ScriptResource RelativeResourceName=PersonalizationFilters.js
+@{ 
+    CssClass = "dj_PersonalizationFilters";
+    DJ.ScriptRegistry().WithJQueryUIWidgets().WithServiceProxy();
+    DJ.AutoSuggest();
+}
+<div style="display: none;">
+    @(CreateChildControl<TaxonomySearchBrowseComponent>(Model.TaxonomySearch))
+</div>

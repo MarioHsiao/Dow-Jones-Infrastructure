@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>Corda.Embedder</id>
+        <version>7.0.0</version>
+        <title>Corda .NET Embedder Charting Library</title>
+        <description>Corda .NET Embedder Charting Library</description>
+        <authors>Corda (package managed by Dow Jones Platform Integration Team)</authors>
+        <tags>DowJones</tags>
+        <language>en-US</language>
+        <projectUrl>http://www.corda.com</projectUrl>
+        <licenseUrl>http://wiki.corda.com/confluence/display/CT73/Legal+Notices</licenseUrl>
+    </metadata>
+    <files>
+        <file src="CordaNetEmbedder.dll" target="lib"/>
+    </files>
+</package>
