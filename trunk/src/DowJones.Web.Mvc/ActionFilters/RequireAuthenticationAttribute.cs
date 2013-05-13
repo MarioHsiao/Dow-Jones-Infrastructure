@@ -9,9 +9,21 @@ namespace DowJones.Web.Mvc.ActionFilters
     public class RequireAuthenticationAttribute : FilterAttribute, IAuthorizationFilter
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof (RequireAuthenticationAttribute));
+        private IUserSession _session;
 
         [Inject("Constructor injection not available in Action Filter Attributes")]
-        public IUserSession Session { get; set; }
+        public IUserSession Session
+        {
+            get { return _session; }
+
+            set
+            {
+                if (_session == null)
+                {
+                    _session = value;
+                }
+            }
+        }
 
         public void OnAuthorization(AuthorizationContext filterContext)
         {
