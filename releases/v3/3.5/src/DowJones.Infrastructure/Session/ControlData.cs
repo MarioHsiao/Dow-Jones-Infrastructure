@@ -153,7 +153,8 @@ namespace DowJones.Session
         /// Gets or sets User password associated with the setting.
         /// </summary>
         public string UserPassword { get; set; }
-
+        
+        public bool? KeepSessionAlive { get; set; }
 
         public ControlData()
         {
