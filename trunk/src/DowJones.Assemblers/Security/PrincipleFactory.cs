@@ -1,14 +1,12 @@
 ﻿using System;
-using DowJones.Exceptions;
 using DowJones.Extensions;
-using log4net;
 using DowJones.Infrastructure;
 using DowJones.Security;
 using DowJones.Security.Interfaces;
 using DowJones.Session;
+using log4net;
 using Factiva.Gateway.Messages.Membership.Authorization.V1_0;
 using Factiva.Gateway.V1_0;
-using ControlData = Factiva.Gateway.Utils.V1_0.ControlData;
 
 namespace DowJones.Assemblers.Security
 {
@@ -35,7 +33,7 @@ namespace DowJones.Assemblers.Security
                     var tempControlData = ControlDataManager.Convert(ControlDataManager.Clone(_controlData));
                     tempControlData.ProxyUserID = null;
                     tempControlData.ProxyUserNamespace = null;
-                    var request = new GetUserAuthorizationsNoCacheRequest()
+                    var request = new GetUserAuthorizationsNoCacheRequest
                                       {
                                         userId = _controlData.ProxyUserId, 
                                         productId = _controlData.ProxyProductId,
