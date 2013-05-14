@@ -13,7 +13,7 @@ namespace DowJones.Ajax.PortalHeadlineList
     [DataContract(Name = "portalHeadlineListDataResult", Namespace = "")]
     public class PortalHeadlineListDataResult : IListDataResult
     {
-        private PortalHeadlineListResultSet resultSet;
+        private PortalHeadlineListResultSet _resultSet;
         
         [DataMember(Name = "hitCount")]
         [JsonProperty("hitCount")]
@@ -25,12 +25,12 @@ namespace DowJones.Ajax.PortalHeadlineList
         {
             get
             {
-                return resultSet ?? (resultSet = new PortalHeadlineListResultSet());
+                return _resultSet ?? (_resultSet = new PortalHeadlineListResultSet());
             }
 
             set
             {
-                resultSet = value;
+                _resultSet = value;
             }
         }
 

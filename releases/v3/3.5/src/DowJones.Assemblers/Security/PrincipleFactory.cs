@@ -1,5 +1,6 @@
 ﻿using System;
 using DowJones.Exceptions;
+using DowJones.Extensions;
 using log4net;
 using DowJones.Infrastructure;
 using DowJones.Security;
@@ -13,28 +14,44 @@ namespace DowJones.Assemblers.Security
 {
     public class PrincipleFactory : Factory<IPrinciple>
     {
-        private static readonly ILog _logger = LogManager.GetLogger(typeof(PrincipleFactory));
-        
-        private readonly ControlData _controlData;
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(PrincipleFactory));
+
+        private readonly IControlData _controlData;
 
         public PrincipleFactory(IControlData controlData)
         {
-            _controlData = ControlDataManager.Convert(controlData);
+            _controlData = controlData;
         }
 
         public override IPrinciple Create()
         {
-            var request = new GetUserAuthorizationsRequest();
             ServiceResponse response = null;
-            GetUserAuthorizationsResponse getUserAuthorizationsResponse = null;
+            GetUserAuthorizationsResponse getUserAuthorizationsResponse;
             object obj = null;
             try
             {
-                response = Factiva.Gateway.Services.V1_0.MembershipService.GetUserAuthorizations(_controlData, request);
+                if (_controlData.ProxyUserId.IsNotEmpty() && _controlData.ProxyProductId.IsNotEmpty())
+                {
+                    var tempControlData = ControlDataManager.Convert(ControlDataManager.Clone(_controlData));
+                    tempControlData.ProxyUserID = null;
+                    tempControlData.ProxyUserNamespace = null;
+                    var request = new GetUserAuthorizationsNoCacheRequest()
+                                      {
+                                        userId = _controlData.ProxyUserId, 
+                                        productId = _controlData.ProxyProductId,
+                                      };
+
+                    response = Factiva.Gateway.Services.V1_0.MembershipService.GetUserAuthorizationsNoCache(tempControlData, request);
+                }
+                else
+                {
+                    var request = new GetUserAuthorizationsRequest();
+                    response = Factiva.Gateway.Services.V1_0.MembershipService.GetUserAuthorizations(ControlDataManager.Convert(ControlDataManager.Clone(_controlData)), request);
+                }
             }
             catch (Exception ex)
             {
-                _logger.Warn("Entitlements :: GetUserAuthorizations : Error in retrieving user authorization", ex);
+                Logger.Warn("Entitlements :: GetUserAuthorizations : Error in retrieving user authorization", ex);
             }
 
             if (response != null && response.rc == 0)
@@ -54,7 +71,7 @@ namespace DowJones.Assemblers.Security
                 {
                     message += response.rc;
                 }
-                _logger.Warn(message);
+                Logger.Warn(message);
                 
                 return new UninitializedPrinciple();
             }

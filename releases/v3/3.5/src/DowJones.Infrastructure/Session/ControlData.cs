@@ -171,7 +171,7 @@ namespace DowJones.Session
                 || (ProxyUserId.HasValue() && ProxyProductId.HasValue());
         }
 
-        internal virtual bool IsNotValid()
+        public virtual bool IsNotValid()
         {
             return IsValid() == false;
         }
