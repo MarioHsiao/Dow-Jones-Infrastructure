@@ -29,7 +29,7 @@
 
         <Move SourceFiles="$(MvcAssembly)" DestinationFiles="$(TempMvcAssembly)" ContinueOnError="true" />
         
-        <Exec Command="&quot;$(ILMergeExe)&quot; /targetplatform:v4 /out:&quot;$(MvcAssembly)&quot; &quot;$(TempMvcAssembly)&quot; &quot;$(NinjectMvcAssembly)&quot;"/>
+        <Exec Command="&quot;$(ILMergeExe)&quot; /targetplatform:&quot;v4,C:\Program Files\Reference Assemblies\Microsoft\Framework\v4.0&quot;&quot;v4,C:\Program Files\Reference Assemblies\Microsoft\Framework\v4.0&quot; /out:&quot;$(MvcAssembly)&quot; &quot;$(TempMvcAssembly)&quot; &quot;$(NinjectMvcAssembly)&quot;"/>
 
         <Delete Files="$(TempMvcAssembly)" ContinueOnError="true" />
     </Target>
