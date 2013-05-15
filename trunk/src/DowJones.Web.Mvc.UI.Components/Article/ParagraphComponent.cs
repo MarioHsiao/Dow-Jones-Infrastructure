@@ -23,7 +23,7 @@ namespace DowJones.Web.Mvc.UI.Components.Article
     using Ajax.Article;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 05/15/2013 09:13 AM
+    // Last Generated Timestamp: 05/15/2013 09:19 AM
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
     public class ParagraphComponent : DowJones.Web.Mvc.UI.ViewComponentBase<Article.ParagraphModel>
     {
@@ -231,19 +231,18 @@ WriteLiteral("</div>");
                 }
             }
             else
-	        {
-                elinkItemText = renderItem.ItemText;
+	        {                elinkItemText = renderItem.ItemText;
             }
 
-WriteLiteral("<a class=\"dj_article_elink\" href=\"javascript:void(0)\" data-href=\"");
+WriteLiteral("            <a class=\"dj_article_elink\" href=\"javascript:void(0)\" data-href=\"");
 
 
-                                                            Write(renderItem.ItemValue.EscapeForHtml());
+                                                                        Write(renderItem.ItemValue.EscapeForHtml());
 
 WriteLiteral("\">");
 
 
-                                                                                                   Write(elinkItemText);
+                                                                                                               Write(elinkItemText);
 
 WriteLiteral("</a>\r\n");
 

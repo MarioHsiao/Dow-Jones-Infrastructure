@@ -63,10 +63,9 @@
                 }
             }
             else
-	        {
-                elinkItemText = renderItem.ItemText;
+	        {                elinkItemText = renderItem.ItemText;
             }
-<a class="dj_article_elink" href="javascript:void(0)" data-href="@renderItem.ItemValue.EscapeForHtml()">@elinkItemText</a>
+            <a class="dj_article_elink" href="javascript:void(0)" data-href="@renderItem.ItemValue.EscapeForHtml()">@elinkItemText</a>
             break;
 case MarkUpType.Plain:{<span class="dj_article_plain">@(renderItem.ItemText)</span>}
             break;
