@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>PageFlakeWidget</title>
+    <script id="{0}" type="text/javascript" src="http://dacostad2.dev.us.factiva.com/WidgetManagerApplication_2007Q4/syndication/subscriber/widgetManager_orig.js"></script>
+    <script type="text/javascript">
+                    function Load_test(id) {
+	                    var _instance = null;
+	                    var _id = id;
+	                    this.load = function(instance) {
+	                        _instance = instance;
+	                        var divObjId = _id + "_2_div";
+	                        var divObj = document.getElementById(divObjId);
+	                        window.setTimeout("FACTIVA_WIDGET_MGR.loadJSLibrary('http://dacostad2.dev.us.factiva.com/WidgetManagerApplication_2007Q4/syndication/subscriber/factivaWidgetRenderManager_orig.js','" + new Date().getTime() + "');",1);
+                            window.setTimeout("FACTIVA_WIDGET_MGR.insertAlertWidget('http://dacostad2.dev.us.factiva.com/WidgetManagerApplication_2007Q4/du/render.aspx?tkn=OBZWrt9ETIj1J3JBOSlWUWiPCiMTTLN603w%2beEEZt%2f2cM1AsF%2bgLvnTEcH1fkZ4ew16l%2bB5jnhXhniY2uy0e2g%3d%3d%7c2&typ=0&lng=en&fnc=FACTIVA_WIDGET_MGR.processAlertWidgetNoTitle&prm=','" + divObjId + "')",1);    
+                        }
+                    }
+    </script>
+
+    <script id="FACTIVA_PAGEFLAKES_Instance" type="text/javascript">
+                    var FACTIVA_PAGEFLAKES_ = new Load_test('FACTIVA_PAGEFLAKES_');
+                    FACTIVA_PAGEFLAKES_.load("sdfsa");
+    </script>
+
+</head>
+<body>
+    <div align="left" id="FACTIVA_PAGEFLAKES__2_div">
+        Loading...
+    </div>
+    <!-- Tracking png may go here -->
+</body>
+</html>

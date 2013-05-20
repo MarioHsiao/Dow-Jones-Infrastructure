@@ -1,0 +1,72 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="EMG.widgets.ui.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Cyclone_Redirection_URL" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://global.int.factiva.com/redir/default.aspx</Value>
+    </Setting>
+    <Setting Name="IF_BaseUrl_AlertHeadlineWidget" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://preview.int.factiva.com/du/alerts.aspx</Value>
+    </Setting>
+    <Setting Name="FC_BaseUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://fce.int.factiva.com</Value>
+    </Setting>
+    <Setting Name="MarketingFlashMovie_Source" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://www.factiva.com/fitch/widgets.swf </Value>
+    </Setting>
+    <Setting Name="MarketingFlashMovie_TargetVersion" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">9</Value>
+    </Setting>
+    <Setting Name="ReadSpeaker_Base_Redirection_Url" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://asp2.readspeaker.net/cgi-bin/dowjonesrsone/{0}.mp3</Value>
+    </Setting>
+    <Setting Name="ReadSpeaker_ContentHandler" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">~/syndication/podcast/content.ashx</Value>
+    </Setting>
+    <Setting Name="ReadSpeaker_Type" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="ReadSpeaker_CustomerId" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">188</Value>
+    </Setting>
+    <Setting Name="MarketingFlashMovie_Height" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">432</Value>
+    </Setting>
+    <Setting Name="MarketingFlashMovie_Width" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">550</Value>
+    </Setting>
+    <Setting Name="IN_BaseUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://insight.int.factiva.com/pages/dashboard.aspx</Value>
+    </Setting>
+    <Setting Name="BaseUrl_ManualNewsletterWorkspaceWidget" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://nevada.dev.us.factiva.com/web32/newsletter/default.aspx?sa_from={0}&amp;napc=2&amp;doneURL={1}</Value>
+    </Setting>
+    <Setting Name="BaseUrl_AutomaticWorkspaceWidget" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://nevada.dev.us.factiva.com/web32/workspace/default.aspx?sa_from={0}&amp;napc={1}&amp;doneURL={2}</Value>
+    </Setting>
+    <Setting Name="GL_BaseUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://global.int.factiva.com</Value>
+    </Setting>
+    <Setting Name="IF_BaseUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://preview.int.factiva.com</Value>
+    </Setting>
+    <Setting Name="GL_BaseUrl_AlertHeadlineWidget" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://global.int.factiva.com/du/folderview.aspx</Value>
+    </Setting>
+    <Setting Name="ChartingFlashImage_TargetVersion" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">9</Value>
+    </Setting>
+    <Setting Name="IN_BasreUrl_AlertHeadlineWidget" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://global.int.factiva.com/du/folderview.aspx?sa_from={0}&amp;napc={1}</Value>
+    </Setting>
+    <Setting Name="OmnitureAccount" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">djfactivatesting</Value>
+    </Setting>
+    <Setting Name="EnableOmnitureLogging" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="SkipOmnitureAccounts" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
+</SettingsFile>
