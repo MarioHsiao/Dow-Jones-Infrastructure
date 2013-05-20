@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -917,30 +918,30 @@ namespace FactivaRssManager_2_0
                         var getNewsLetterIdResponse = (GetNewsletterByIdResponse) getNewsletterByIdResp;
 
                         Log(Logger.Level.INFO, string.Format("_getEditionByIdRequest Response [9934993] {0}", getNewsLetterIdResponse.newsletter.id));
-                        var strEditionID = getNewsLetterIdResponse.newsletter.properties.latestPublishedEditionForRSS.editionId.ToString();
-                        Log(Logger.Level.INFO, string.Format("Edition ID [9934993-2939399] {0}", strEditionID));
+                        var strEditionId = getNewsLetterIdResponse.newsletter.properties.latestPublishedEditionForRSS.editionId.ToString(CultureInfo.InvariantCulture);
+                        Log(Logger.Level.INFO, string.Format("Edition ID [9934993-2939399] {0}", strEditionId));
 
 
                         var getEditionRequest = new Factiva.Gateway.Messages.Assets.Editions.V2_0.GetEditionByIdRequest
                                                     {
-                                                        Id = long.Parse(strEditionID),
+                                                        Id = long.Parse(strEditionId),
                                                         ReturnEditionSections = true
                                                     };
+
                         serviceResponse = Factiva.Gateway.Services.V2_0.EditionService.GetEditionById(cloneControlData(_controlData), getEditionRequest);
                         object getEditionByIdResp;
                         serviceResponse.GetResponse(ServiceResponse.ResponseFormat.Object, out getEditionByIdResp);
                         var getEditionIdResponse = (Factiva.Gateway.Messages.Assets.Editions.V2_0.GetEditionByIdResponse) getEditionByIdResp;
-                        var workspaceID = getEditionIdResponse.Edition.Properties.ParentWorkspaceId.ToString();
+                        var workspaceId = getEditionIdResponse.Edition.Properties.ParentWorkspaceId.ToString(CultureInfo.InvariantCulture);
 
                         var workspaceManager = new WorkspaceManager(cloneControlData(_controlData), "en");
-                        var manualWorkspace = workspaceManager.GetManualWorkspaceById(long.Parse(workspaceID));
+                        var manualWorkspace = workspaceManager.GetManualWorkspaceById(long.Parse(workspaceId));
                        
                         var workspaceAudience = manualWorkspace.Properties.Audience;
                         var audienceObject = serialize(workspaceAudience);
                         inputData.data.Add("audience", audienceObject);
                         inputData.data.Add("newsletterID", manualWorkspace.Id.ToString());
                         inputData.data.Add("newsletterName", manualWorkspace.Properties.Name);
-
 
                         var factivaItems = GetEditionItems(cloneControlData(_controlData), getEditionIdResponse.Edition);
 
@@ -1007,7 +1008,7 @@ namespace FactivaRssManager_2_0
                         response =
                             AddCacheData(
                                 MyxmlParser(configData, response),
-                                "NLID_" + strEditionID + "_en", 4); // cache to database
+                                "NLID_" + strEditionId + "_en", 4); // cache to database
                         Log(Logger.Level.INFO,
                             "getNewsLetter [XML RESPONSE](828832-399495) :: " + response);
                         
@@ -1385,7 +1386,7 @@ namespace FactivaRssManager_2_0
                                      SortBy = SortBy.LIFO
                                  };
 
-            SearchCollectionCollection searchCollections = new SearchCollectionCollection
+            var searchCollections = new SearchCollectionCollection
                                                                {
                                                                    SearchCollection.Blogs,
                                                                    SearchCollection.Boards,
@@ -1535,12 +1536,12 @@ namespace FactivaRssManager_2_0
                 }
                 foreach (var subSection in section.SubSectionCollection)
                 {
-                    foreach (var SubItem in subSection.ItemCollection)
+                    foreach (var subItem in subSection.ItemCollection)
                     {
-                        var SubArticleItem = SubItem as Common_V2.ArticleItem;
-                        if (SubArticleItem != null && !accessionNos.Contains(SubArticleItem.AccessionNumber))
+                        var subArticleItem = subItem as Common_V2.ArticleItem;
+                        if (subArticleItem != null && !accessionNos.Contains(subArticleItem.AccessionNumber))
                         {
-                            accessionNos.Add(SubArticleItem.AccessionNumber);
+                            accessionNos.Add(subArticleItem.AccessionNumber);
                         }
                     }
                 }
@@ -1563,12 +1564,12 @@ namespace FactivaRssManager_2_0
                 }
                 foreach (var subSection in section.SubSectionCollection)
                 {
-                    foreach (var SubItem in subSection.ItemCollection)
+                    foreach (var subItem in subSection.ItemCollection)
                     {
-                        var SubArticleItem = SubItem as Common_V2.ArticleItem;
-                        if (SubArticleItem != null && !accessionNos.Contains(SubArticleItem.AccessionNumber))
+                        var subArticleItem = subItem as Common_V2.ArticleItem;
+                        if (subArticleItem != null && !accessionNos.Contains(subArticleItem.AccessionNumber))
                         {
-                            accessionNos.Add(SubArticleItem.AccessionNumber);
+                            accessionNos.Add(subArticleItem.AccessionNumber);
                         }
                     }
                 }
@@ -1582,19 +1583,19 @@ namespace FactivaRssManager_2_0
 
             var response = "";
 
-            var _controlData = new ControlData();
+            var controlData = new ControlData();
 
             try
             {
-                _controlData.IPAddress = _remoteHost;
-                _controlData.ProxyUserID = inputData.getItem("userid");
-                _controlData.ProxyUserNamespace = inputData.getItem("ns");
-                _controlData.UserID = configData.getItem("//transactionParams/lwUserID");
-                _controlData.UserPassword = configData.getItem("//transactionParams/lwPassword");
-                _controlData.ProductID = configData.getItem("//transactionParams/lwNameSpace");
-                _controlData.AccessPointCode = configData.getItem("//transactionParams/AccessPointCode");
+                controlData.IPAddress = _remoteHost;
+                controlData.ProxyUserID = inputData.getItem("userid");
+                controlData.ProxyUserNamespace = inputData.getItem("ns");
+                controlData.UserID = configData.getItem("//transactionParams/lwUserID");
+                controlData.UserPassword = configData.getItem("//transactionParams/lwPassword");
+                controlData.ProductID = configData.getItem("//transactionParams/lwNameSpace");
+                controlData.AccessPointCode = configData.getItem("//transactionParams/AccessPointCode");
 
-                var workspaceManager = new WorkspaceManager(_controlData, "en");
+                var workspaceManager = new WorkspaceManager(controlData, "en");
                 var manualWorkspace = workspaceManager.GetManualWorkspaceById(long.Parse(inputData.getItem("WSID")));
 
                 var workspaceAudience = manualWorkspace.Properties.Audience;
@@ -1616,7 +1617,7 @@ namespace FactivaRssManager_2_0
                 }
                 else
                 {
-                    var factivaItems = GetManualNewsletterWorkspaceItems(_controlData,manualWorkspace);
+                    var factivaItems = GetManualNewsletterWorkspaceItems(controlData,manualWorkspace);
                     var headlineInfo = new HeadlineInfo();
                     var documentCollection = new documentCollection();
 
