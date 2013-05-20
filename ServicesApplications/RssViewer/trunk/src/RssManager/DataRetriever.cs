@@ -981,7 +981,11 @@ namespace FactivaRssManager_2_0
                                                         {
                                                             headline = linkItem.Title,
                                                             snippet = (linkItem.Type == LinkType.RssHeadlineUrl) ? string.Empty : linkItem.Description,
-                                                            uri = linkItem.Uri
+                                                            publicationDate = linkItem.PublicationDate.ToUniversalTime(),
+                                                            language = linkItem.language,
+                                                            sourceName = linkItem.sourceName,
+                                                            uri = linkItem.Uri,
+                                                            position = linkItem.Position,
                                                         };
 
                                     documentCollection.Add(document);
@@ -1638,7 +1642,6 @@ namespace FactivaRssManager_2_0
                         }
                     }
 
-
                     // Non Article Items - Link Item , Insight Chart Item
                     if (inputData.getItem("from").ToLower() != "nl2pcast")
                     {
@@ -1655,6 +1658,9 @@ namespace FactivaRssManager_2_0
                                                            {
                                                                headline = linkItem.Title,
                                                                snippet = (linkItem.Type == LinkType.RssHeadlineUrl) ? string.Empty : linkItem.Description,
+                                                               publicationDate = linkItem.PublicationDate.ToUniversalTime(),
+                                                               language = linkItem.language,
+                                                               sourceName = linkItem.sourceName,
                                                                uri = linkItem.Uri,
                                                                position = linkItem.Position
                                                            });
@@ -1683,6 +1689,9 @@ namespace FactivaRssManager_2_0
                                         {
                                             headline = linkItem.Title,
                                             snippet = (linkItem.Type == LinkType.RssHeadlineUrl) ? string.Empty : linkItem.Description,
+                                            publicationDate = linkItem.PublicationDate.ToUniversalTime(),
+                                            language = linkItem.language,
+                                            sourceName = linkItem.sourceName,
                                             uri = linkItem.Uri,
                                             position = linkItem.Position
                                         });
