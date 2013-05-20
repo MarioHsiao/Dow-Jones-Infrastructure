@@ -1,0 +1,20 @@
+﻿<CreateDeliverySettingsResponse>
+  <Status value="1"/>
+  <userid>gateway05</userid>
+  <productid>16</productid>
+  <Resultset count="1">
+    <Result DeliveryID="123456">
+      <ErrorCode>2</ErrorCode>
+      <StatusDetails>
+        <ContentList>
+          <Content ContentID="300019066">
+            <ContentType>FOLDER</ContentType>
+          </Content>
+          <Content ContentID="300020001">
+            <ContentType>COLLECTION</ContentType>
+          </Content>
+          </ContentList>
+</StatusDetails>
+    </Result>
+  </Resultset>
+</CreateDeliverySettingsResponse>

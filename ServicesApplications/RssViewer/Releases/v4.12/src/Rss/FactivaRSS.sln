@@ -1,0 +1,119 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSS_WebApp", "..\..\..\EMG_2009_Bucket2\RSS_WebApp\RSS_WebApp.csproj", "{04B31DEE-FB21-44D7-BCF0-004B665433A5}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FactivaRssManager", "..\RssManager\FactivaRssManager.csproj", "{91880552-D382-490A-80E2-4C5E85FE7CD7}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FactivaBusinessLayerLogic", "..\..\..\Search Two Dev Projects\Search Two Dev 2009 Bucket 3\IWorks_2009_Q3Soln\FactivaBusinessLayerLogic\FactivaBusinessLayerLogic.csproj", "{BD00C5CA-E1A1-4AA3-9BB9-91445B2A6C12}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SourceCodeControl) = preSolution
+		SccNumberOfProjects = 4
+		SccLocalPath0 = .
+		CanCheckoutShared = false
+		SccProjectUniqueName1 = ..\\..\\..\\EMG_2009_Bucket2\\RSS_WebApp\\RSS_WebApp.csproj
+		SccProjectName1 = \u0022$/EMG\u0020RSS\u0020Q3\u00202009/EMGRSS/RSS_WebApp\u0022,\u0020OFQFBAAA
+		SccLocalPath1 = ..\\..\\..\\EMG_2009_Bucket2\\RSS_WebApp
+		CanCheckoutShared = false
+		SccProjectUniqueName2 = ..\\RssManager\\FactivaRssManager.csproj
+		SccProjectName2 = \u0022$/EMG\u0020RSS\u0020Q3\u00202009/EMGRSS/RssManager\u0022,\u0020TBLFBAAA
+		SccLocalPath2 = ..\\RssManager
+		CanCheckoutShared = false
+		SccProjectUniqueName3 = ..\\..\\..\\Search\u0020Two\u0020Dev\u0020Projects\\Search\u0020Two\u0020Dev\u00202009\u0020Bucket\u00203\\IWorks_2009_Q3Soln\\FactivaBusinessLayerLogic\\FactivaBusinessLayerLogic.csproj
+		SccProjectName3 = \u0022$/Search\u0020Two\u0020Dev\u0020Projects/Search\u0020Two\u0020Dev\u00202009\u0020Bucket\u00203/IWorks_2009_Q3Soln/FactivaBusinessLayerLogic\u0022,\u0020YVDLBAAA
+		SccLocalPath3 = ..\\..\\..\\Search\u0020Two\u0020Dev\u0020Projects\\Search\u0020Two\u0020Dev\u00202009\u0020Bucket\u00203\\IWorks_2009_Q3Soln\\FactivaBusinessLayerLogic
+		CanCheckoutShared = false
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|.NET = Debug|.NET
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		REALEASE_FULL|.NET = REALEASE_FULL|.NET
+		REALEASE_FULL|Any CPU = REALEASE_FULL|Any CPU
+		REALEASE_FULL|Mixed Platforms = REALEASE_FULL|Mixed Platforms
+		Release|.NET = Release|.NET
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		UnitTest|.NET = UnitTest|.NET
+		UnitTest|Any CPU = UnitTest|Any CPU
+		UnitTest|Mixed Platforms = UnitTest|Mixed Platforms
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{04B31DEE-FB21-44D7-BCF0-004B665433A5}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{04B31DEE-FB21-44D7-BCF0-004B665433A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04B31DEE-FB21-44D7-BCF0-004B665433A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04B31DEE-FB21-44D7-BCF0-004B665433A5}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{04B31DEE-FB21-44D7-BCF0-004B665433A5}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{04B31DEE-FB21-44D7-BCF0-004B665433A5}.REALEASE_FULL|.NET.ActiveCfg = Release|Any CPU
+		{04B31DEE-FB21-44D7-BCF0-004B665433A5}.REALEASE_FULL|Any CPU.ActiveCfg = Release|Any CPU
+		{04B31DEE-FB21-44D7-BCF0-004B665433A5}.REALEASE_FULL|Any CPU.Build.0 = Release|Any CPU
+		{04B31DEE-FB21-44D7-BCF0-004B665433A5}.REALEASE_FULL|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{04B31DEE-FB21-44D7-BCF0-004B665433A5}.REALEASE_FULL|Mixed Platforms.Build.0 = Release|Any CPU
+		{04B31DEE-FB21-44D7-BCF0-004B665433A5}.Release|.NET.ActiveCfg = Release|Any CPU
+		{04B31DEE-FB21-44D7-BCF0-004B665433A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04B31DEE-FB21-44D7-BCF0-004B665433A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04B31DEE-FB21-44D7-BCF0-004B665433A5}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{04B31DEE-FB21-44D7-BCF0-004B665433A5}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{04B31DEE-FB21-44D7-BCF0-004B665433A5}.UnitTest|.NET.ActiveCfg = Release|Any CPU
+		{04B31DEE-FB21-44D7-BCF0-004B665433A5}.UnitTest|Any CPU.ActiveCfg = Release|Any CPU
+		{04B31DEE-FB21-44D7-BCF0-004B665433A5}.UnitTest|Any CPU.Build.0 = Release|Any CPU
+		{04B31DEE-FB21-44D7-BCF0-004B665433A5}.UnitTest|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{04B31DEE-FB21-44D7-BCF0-004B665433A5}.UnitTest|Mixed Platforms.Build.0 = Release|Any CPU
+		{91880552-D382-490A-80E2-4C5E85FE7CD7}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{91880552-D382-490A-80E2-4C5E85FE7CD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91880552-D382-490A-80E2-4C5E85FE7CD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91880552-D382-490A-80E2-4C5E85FE7CD7}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{91880552-D382-490A-80E2-4C5E85FE7CD7}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{91880552-D382-490A-80E2-4C5E85FE7CD7}.REALEASE_FULL|.NET.ActiveCfg = Release|Any CPU
+		{91880552-D382-490A-80E2-4C5E85FE7CD7}.REALEASE_FULL|Any CPU.ActiveCfg = Release|Any CPU
+		{91880552-D382-490A-80E2-4C5E85FE7CD7}.REALEASE_FULL|Any CPU.Build.0 = Release|Any CPU
+		{91880552-D382-490A-80E2-4C5E85FE7CD7}.REALEASE_FULL|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{91880552-D382-490A-80E2-4C5E85FE7CD7}.REALEASE_FULL|Mixed Platforms.Build.0 = Release|Any CPU
+		{91880552-D382-490A-80E2-4C5E85FE7CD7}.Release|.NET.ActiveCfg = Release|Any CPU
+		{91880552-D382-490A-80E2-4C5E85FE7CD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91880552-D382-490A-80E2-4C5E85FE7CD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91880552-D382-490A-80E2-4C5E85FE7CD7}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{91880552-D382-490A-80E2-4C5E85FE7CD7}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{91880552-D382-490A-80E2-4C5E85FE7CD7}.UnitTest|.NET.ActiveCfg = Release|Any CPU
+		{91880552-D382-490A-80E2-4C5E85FE7CD7}.UnitTest|Any CPU.ActiveCfg = Release|Any CPU
+		{91880552-D382-490A-80E2-4C5E85FE7CD7}.UnitTest|Any CPU.Build.0 = Release|Any CPU
+		{91880552-D382-490A-80E2-4C5E85FE7CD7}.UnitTest|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{91880552-D382-490A-80E2-4C5E85FE7CD7}.UnitTest|Mixed Platforms.Build.0 = Release|Any CPU
+		{BD00C5CA-E1A1-4AA3-9BB9-91445B2A6C12}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{BD00C5CA-E1A1-4AA3-9BB9-91445B2A6C12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD00C5CA-E1A1-4AA3-9BB9-91445B2A6C12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD00C5CA-E1A1-4AA3-9BB9-91445B2A6C12}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{BD00C5CA-E1A1-4AA3-9BB9-91445B2A6C12}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{BD00C5CA-E1A1-4AA3-9BB9-91445B2A6C12}.REALEASE_FULL|.NET.ActiveCfg = REALEASE_FULL|Any CPU
+		{BD00C5CA-E1A1-4AA3-9BB9-91445B2A6C12}.REALEASE_FULL|Any CPU.ActiveCfg = REALEASE_FULL|Any CPU
+		{BD00C5CA-E1A1-4AA3-9BB9-91445B2A6C12}.REALEASE_FULL|Any CPU.Build.0 = REALEASE_FULL|Any CPU
+		{BD00C5CA-E1A1-4AA3-9BB9-91445B2A6C12}.REALEASE_FULL|Mixed Platforms.ActiveCfg = REALEASE_FULL|Any CPU
+		{BD00C5CA-E1A1-4AA3-9BB9-91445B2A6C12}.REALEASE_FULL|Mixed Platforms.Build.0 = REALEASE_FULL|Any CPU
+		{BD00C5CA-E1A1-4AA3-9BB9-91445B2A6C12}.Release|.NET.ActiveCfg = Release|Any CPU
+		{BD00C5CA-E1A1-4AA3-9BB9-91445B2A6C12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD00C5CA-E1A1-4AA3-9BB9-91445B2A6C12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD00C5CA-E1A1-4AA3-9BB9-91445B2A6C12}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{BD00C5CA-E1A1-4AA3-9BB9-91445B2A6C12}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{BD00C5CA-E1A1-4AA3-9BB9-91445B2A6C12}.UnitTest|.NET.ActiveCfg = UnitTest|Any CPU
+		{BD00C5CA-E1A1-4AA3-9BB9-91445B2A6C12}.UnitTest|Any CPU.ActiveCfg = UnitTest|Any CPU
+		{BD00C5CA-E1A1-4AA3-9BB9-91445B2A6C12}.UnitTest|Any CPU.Build.0 = UnitTest|Any CPU
+		{BD00C5CA-E1A1-4AA3-9BB9-91445B2A6C12}.UnitTest|Mixed Platforms.ActiveCfg = UnitTest|Any CPU
+		{BD00C5CA-E1A1-4AA3-9BB9-91445B2A6C12}.UnitTest|Mixed Platforms.Build.0 = UnitTest|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+  <SOAP-ENV:Body>
+    <GetRadarViewRequest xmlns="urn:factiva:assets:screening:v1_0">
+      <viewID>123</viewID>
+      <includeRadarViewQuery>true</includeRadarViewQuery>
+    </GetRadarViewRequest>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
