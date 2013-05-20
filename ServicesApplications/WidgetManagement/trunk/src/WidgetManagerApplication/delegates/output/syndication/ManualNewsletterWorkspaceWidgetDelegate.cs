@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Web.Script.Serialization;
 using System.Xml.Serialization;
 using Argotic.Syndication;
 using EMG.Utility.Exceptions;
-using EMG.Utility.Managers.Search;
 using EMG.Utility.Managers.Search.Requests;
 using EMG.Utility.Managers.Search.Responses;
 using EMG.Utility.OperationalData.AssetActivity;
@@ -28,15 +28,11 @@ using Factiva.Gateway.Messages.Assets.Common.V2_0;
 using Factiva.Gateway.Messages.Assets.Web.Widgets.V2_0;
 using Factiva.Gateway.Messages.Assets.Workspaces.V2_0;
 using Factiva.Gateway.Messages.Search.V2_0;
-using Factiva.Gateway.Utils.V1_0;
 using factiva.nextgen;
 using log4net;
-using Encryption = FactivaEncryption.encryption;
 using BaseUrlBuilder = EMG.Utility.Uri.UrlBuilder;
-using SearchServiceV2_0 = Factiva.Gateway.Services.V2_0;
 using SearchManager = EMG.Utility.Managers.Search.SearchManager;
 using SortBy=EMG.Utility.Managers.Search.Requests.SortBy;
-using WorkspaceItem=Factiva.Gateway.Messages.Assets.Web.Widgets.V2_0.WorkspaceItem;
 
 namespace EMG.widgets.ui.delegates.output.syndication
 {
@@ -45,7 +41,7 @@ namespace EMG.widgets.ui.delegates.output.syndication
     /// </summary>
     public class ManualNewsletterWorkspaceWidgetDelegate : AbstractWidgetDelegate, IWidgetPreviewDelegate
     {
-        private static readonly ILog m_Log = LogManager.GetLogger(typeof (ManualNewsletterWorkspaceWidgetDelegate));
+        private static readonly ILog Log = LogManager.GetLogger(typeof (ManualNewsletterWorkspaceWidgetDelegate));
 
         /// <summary>
         /// Data container of the headline Widget Delegate.
@@ -62,11 +58,10 @@ namespace EMG.widgets.ui.delegates.output.syndication
         /// </summary>
         public ManualNewsletterWorkspaceWidgetLiterals Literals;
 
-        private SearchManager m_SearchManager;
-        private SessionData m_SessionData;
-        private string m_Token;
-        private WidgetTokenProperties m_TokenProperties;
-        private WorkspaceManager m_WorkspaceManager;
+        private SearchManager _searchManager;
+        private SessionData _sessionData;
+        private WidgetTokenProperties _tokenProperties;
+        private WorkspaceManager _workspaceManager;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AutomaticWorkspaceWidgetDelegate"/> class.
@@ -75,7 +70,7 @@ namespace EMG.widgets.ui.delegates.output.syndication
         {
             if (SessionData.Instance() != null)
             {
-                m_SessionData = SessionData.Instance();
+                _sessionData = SessionData.Instance();
             }
         }
 
@@ -87,8 +82,8 @@ namespace EMG.widgets.ui.delegates.output.syndication
         [ScriptIgnore]
         public SessionData SessionData
         {
-            get { return m_SessionData; }
-            set { m_SessionData = value; }
+            get { return _sessionData; }
+            set { _sessionData = value; }
         }
 
         #region IWidgetPreviewDelegate Members
@@ -99,11 +94,11 @@ namespace EMG.widgets.ui.delegates.output.syndication
         /// <param name="assetIds">The asset ids.</param>
         public void FillPreview(List<int> assetIds)
         {
-            using (var logger = new TransactionLogger(m_Log, MethodBase.GetCurrentMethod()))
+            using (var logger = new TransactionLogger(Log, MethodBase.GetCurrentMethod()))
             {
-                m_WidgetManager = new WidgetManager(m_SessionData.SessionBasedControlDataEx, m_SessionData.InterfaceLanguage);
-                m_WorkspaceManager = new WorkspaceManager(SessionData.SessionBasedControlDataEx, SessionData.InterfaceLanguage);
-                m_SearchManager = new SearchManager(SessionData.SessionBasedControlDataEx, SessionData.InterfaceLanguage);
+                m_WidgetManager = new WidgetManager(_sessionData.SessionBasedControlDataEx, _sessionData.InterfaceLanguage);
+                _workspaceManager = new WorkspaceManager(SessionData.SessionBasedControlDataEx, SessionData.InterfaceLanguage);
+                _searchManager = new SearchManager(SessionData.SessionBasedControlDataEx, SessionData.InterfaceLanguage);
                 Definition = new ManualNewsletterWorkspaceWidgetDefinition();
                 PopulateLiterals();
 
@@ -143,7 +138,7 @@ namespace EMG.widgets.ui.delegates.output.syndication
                     Data = null;
                     Definition = null;
                     ReturnCode = fex.ReturnCodeFromFactivaService;
-                    StatusMessage = ResourceText.GetErrorMessage(ReturnCode.ToString());
+                    StatusMessage = ResourceText.GetErrorMessage(ReturnCode.ToString(CultureInfo.InvariantCulture));
                     ElapsedTime = logger.LogTimeSinceInvocation();
                 }
                 catch (EmgUtilitiesException emgex)
@@ -151,7 +146,7 @@ namespace EMG.widgets.ui.delegates.output.syndication
                     Data = null;
                     Definition = null;
                     ReturnCode = emgex.ReturnCode;
-                    StatusMessage = ResourceText.GetErrorMessage(ReturnCode.ToString());
+                    StatusMessage = ResourceText.GetErrorMessage(ReturnCode.ToString(CultureInfo.InvariantCulture));
                     ElapsedTime = logger.LogTimeSinceInvocation();
                 }
                 catch (Exception ex)
@@ -161,7 +156,7 @@ namespace EMG.widgets.ui.delegates.output.syndication
                     Data = null;
                     Definition = null;
                     ReturnCode = -1;
-                    StatusMessage = ResourceText.GetErrorMessage(ReturnCode.ToString());
+                    StatusMessage = ResourceText.GetErrorMessage(ReturnCode.ToString(CultureInfo.InvariantCulture));
                     ElapsedTime = logger.LogTimeSinceInvocation();
                 }
             }
@@ -173,11 +168,11 @@ namespace EMG.widgets.ui.delegates.output.syndication
         /// <param name="widgetId">The widget id.</param>
         public void FillPreview(string widgetId)
         {
-            using (var logger = new TransactionLogger(m_Log, MethodBase.GetCurrentMethod()))
+            using (var logger = new TransactionLogger(Log, MethodBase.GetCurrentMethod()))
             {
-                m_WidgetManager = new WidgetManager(m_SessionData.SessionBasedControlDataEx, m_SessionData.InterfaceLanguage);
-                m_WorkspaceManager = new WorkspaceManager(SessionData.SessionBasedControlDataEx, SessionData.InterfaceLanguage);
-                m_SearchManager = new SearchManager(SessionData.SessionBasedControlDataEx, SessionData.InterfaceLanguage);
+                m_WidgetManager = new WidgetManager(_sessionData.SessionBasedControlDataEx, _sessionData.InterfaceLanguage);
+                _workspaceManager = new WorkspaceManager(SessionData.SessionBasedControlDataEx, SessionData.InterfaceLanguage);
+                _searchManager = new SearchManager(SessionData.SessionBasedControlDataEx, SessionData.InterfaceLanguage);
 
                 try
                 {
@@ -190,7 +185,7 @@ namespace EMG.widgets.ui.delegates.output.syndication
                             PopulateLiterals();
 
                             // Populate with ManualWorkspaceWidget
-                            PopulateDefinition(manualWorkspaceWidget, m_SessionData.InterfaceLanguage);
+                            PopulateDefinition(manualWorkspaceWidget, _sessionData.InterfaceLanguage);
 
                             // Get a list of ids out of the definition
                             if (manualWorkspaceWidget.Component != null &&
@@ -223,7 +218,7 @@ namespace EMG.widgets.ui.delegates.output.syndication
                     Data = null;
                     Definition = null;
                     ReturnCode = fex.ReturnCodeFromFactivaService;
-                    StatusMessage = ResourceText.GetErrorMessage(ReturnCode.ToString());
+                    StatusMessage = ResourceText.GetErrorMessage(ReturnCode.ToString(CultureInfo.InvariantCulture));
                     ElapsedTime = logger.LogTimeSinceInvocation();
                 }
                 catch (EmgUtilitiesException emgex)
@@ -231,7 +226,7 @@ namespace EMG.widgets.ui.delegates.output.syndication
                     Data = null;
                     Definition = null;
                     ReturnCode = emgex.ReturnCode;
-                    StatusMessage = ResourceText.GetErrorMessage(ReturnCode.ToString());
+                    StatusMessage = ResourceText.GetErrorMessage(ReturnCode.ToString(CultureInfo.InvariantCulture));
                     ElapsedTime = logger.LogTimeSinceInvocation();
                 }
                 catch (Exception ex)
@@ -241,7 +236,7 @@ namespace EMG.widgets.ui.delegates.output.syndication
                     Data = null;
                     Definition = null;
                     ReturnCode = -1;
-                    StatusMessage = ResourceText.GetErrorMessage(ReturnCode.ToString());
+                    StatusMessage = ResourceText.GetErrorMessage(ReturnCode.ToString(CultureInfo.InvariantCulture));
                     ElapsedTime = logger.LogTimeSinceInvocation();
                 }
             }
@@ -299,7 +294,7 @@ namespace EMG.widgets.ui.delegates.output.syndication
         /// <param name="assetId">The asset id.</param>
         private void ProcessAssetInfo(int assetId)
         {
-            var workspace = m_WorkspaceManager.GetCachedWorkspaceById(assetId);
+            var workspace = _workspaceManager.GetCachedWorkspaceById(assetId);
             if (workspace == null) return;
             var manualWorkspace = workspace as ManualWorkspace;
             ProcessAssetInfo(assetId, manualWorkspace);
@@ -312,12 +307,12 @@ namespace EMG.widgets.ui.delegates.output.syndication
         /// <param name="checkIfIsWorkspaceIdAssociatedWithDissemenatedWidget">if set to <c>true</c> [check if is workspace id associated with dissemenated widget].</param>
         private void ProcessAssetInfo(int assetId, bool checkIfIsWorkspaceIdAssociatedWithDissemenatedWidget)
         {
-            if (checkIfIsWorkspaceIdAssociatedWithDissemenatedWidget && m_WorkspaceManager.IsWorkspaceIdAssociatedWithDissemenatedWidget(assetId))
+            if (checkIfIsWorkspaceIdAssociatedWithDissemenatedWidget && _workspaceManager.IsWorkspaceIdAssociatedWithDissemenatedWidget(assetId))
             {
                 throw new EmgWidgetsUIException(EmgWidgetsUIException.WORKSPACE_HAS_BEEN_DISSEMINATED);
             }
 
-            ManualWorkspace manualWorkspace = m_WorkspaceManager.GetManualWorkspaceById(assetId);
+            ManualWorkspace manualWorkspace = _workspaceManager.GetManualWorkspaceById(assetId);
             ProcessAssetInfo(assetId, manualWorkspace);
         }
 
@@ -328,24 +323,29 @@ namespace EMG.widgets.ui.delegates.output.syndication
         /// <param name="manualWorkspace">The manual workspace.</param>
         private void ProcessAssetInfo(int assetId, ManualWorkspace manualWorkspace)
         {
-            if (manualWorkspace != null)
+            if (manualWorkspace == null)
             {
-                Definition.Name = manualWorkspace.Properties.Name;
-                Definition.ManualWorkspaceId = assetId;
+                return;
+            }
 
-                // Update the audience Options
-                UpdateWidgetDefinitionAudience(manualWorkspace.Properties.Audience, Definition);
+            Definition.Name = manualWorkspace.Properties.Name;
+            Definition.ManualWorkspaceId = assetId;
 
-                Data = new ManualNewsletterWorkspaceWidgetData();
+            // Update the audience Options
+            UpdateWidgetDefinitionAudience(manualWorkspace.Properties.Audience, Definition);
+
+            Data = new ManualNewsletterWorkspaceWidgetData();
+            // Fill with temp data
+
+            // Check to see if feeds are on
+            if (manualWorkspace.Properties.WidgetFeedsActive)
+            {
                 // Fill with temp data
-
-                // Check to see if feeds are on
-                if (manualWorkspace.Properties.AreFeedsActive)
-                {
-                    // Fill with temp data
-                    Data.ManualNewsletterWorkspaceInfo = GetManualNewsletterWorkspaceData(manualWorkspace);
-                }
-                else
+                Data.ManualNewsletterWorkspaceInfo = GetManualNewsletterWorkspaceData(manualWorkspace);
+            }
+            else
+            {
+                if (!manualWorkspace.Properties.WidgetFeedsActive)
                 {
                     throw new EmgWidgetsUIException(EmgWidgetsUIException.WIDGET_ARE_FEEDS_ACTIVE_SET_TO_OFF);
                 }
@@ -369,7 +369,6 @@ namespace EMG.widgets.ui.delegates.output.syndication
             {
                 Definition.Language = overridenInterfaceLanguage;
             }
-            return;
         }
 
 
@@ -380,20 +379,22 @@ namespace EMG.widgets.ui.delegates.output.syndication
         /// <returns></returns>
         private ManualNewsletterWorkspaceInfo GetManualNewsletterWorkspaceData(ManualWorkspace manualWorkspace)
         {
-            var workspaceInfo = new ManualNewsletterWorkspaceInfo();
-            workspaceInfo.Id = manualWorkspace.Id;
-            workspaceInfo.Name = manualWorkspace.Properties.Name;
+            var workspaceInfo = new ManualNewsletterWorkspaceInfo
+                                    {
+                                        Id = manualWorkspace.Id, 
+                                        Name = manualWorkspace.Properties.Name
+                                    };
             try
             {
                 var sectionCollection = new List<ManualNewsletterWorkspaceSection>();
                 if (manualWorkspace.SectionCollection.Count > 0)
                 {
-                    var headlineUtility = new HeadlineUtility(m_SessionData, ResourceText);
+                    var headlineUtility = new HeadlineUtility(_sessionData, ResourceText);
                     var contentHeadlineStruct = new ContentHeadlineStruct
                                                     {
                                                         distributionType = Definition.DistributionType,
-                                                        accountId = m_SessionData.AccountId,
-                                                        accountNamespace = m_SessionData.ProductId
+                                                        accountId = _sessionData.AccountId,
+                                                        accountNamespace = _sessionData.ProductId
                                                     };
 
                     Dictionary<string, AccessionNumberBasedContentItem> dict = GetManualNewsletterWorkspaceItems(manualWorkspace);
@@ -410,14 +411,14 @@ namespace EMG.widgets.ui.delegates.output.syndication
             catch (FactivaBusinessLogicException fbe)
             {
                 ReturnCode = fbe.ReturnCodeFromFactivaService;
-                StatusMessage = ResourceText.GetErrorMessage(fbe.ReturnCodeFromFactivaService.ToString());
+                StatusMessage = ResourceText.GetErrorMessage(fbe.ReturnCodeFromFactivaService.ToString(CultureInfo.InvariantCulture));
             }
             catch (Exception ex)
             {
                 // Instantiate FactivaBusinessLogicException to write messages to log.
                 var fbe = new FactivaBusinessLogicException(ex, -1);
                 ReturnCode = fbe.ReturnCodeFromFactivaService;
-                StatusMessage = ResourceText.GetErrorMessage(fbe.ReturnCodeFromFactivaService.ToString());
+                StatusMessage = ResourceText.GetErrorMessage(fbe.ReturnCodeFromFactivaService.ToString(CultureInfo.InvariantCulture));
             }
 
             return workspaceInfo;
@@ -425,10 +426,15 @@ namespace EMG.widgets.ui.delegates.output.syndication
 
         private ManualNewsletterWorkspaceSection ProcessNewsletterSections(Section section, ref HeadlineUtility headlineUtility, ref ContentHeadlineStruct contentHeadlineStruct, ref Dictionary<string, AccessionNumberBasedContentItem> dict, SectionType type)
         {
-            var manualNewsletterWorkspaceSection = new ManualNewsletterWorkspaceSection();
-            manualNewsletterWorkspaceSection.Id = section.Id;
+            var manualNewsletterWorkspaceSection = new ManualNewsletterWorkspaceSection
+                                                       {
+                                                           Id = section.Id
+                                                       };
             if (string.IsNullOrEmpty(section.Name))
+            {
                 section.Name = string.Empty;
+            }
+
             manualNewsletterWorkspaceSection.Name = section.Name;
             var headlineInfos = new List<HeadlineInfo>();
             foreach (var item in section.ItemCollection)
@@ -501,11 +507,13 @@ namespace EMG.widgets.ui.delegates.output.syndication
         /// <returns></returns>
         private Dictionary<string, AccessionNumberBasedContentItem> GetManualNewsletterWorkspaceItems(ManualWorkspace manualWorkspace)
         {
-            Dictionary<string, AccessionNumberBasedContentItem> dictOfAccessionBasedContentItems = new Dictionary<string, AccessionNumberBasedContentItem>();
+            var dictOfAccessionBasedContentItems = new Dictionary<string, AccessionNumberBasedContentItem>();
 
-            AccessionNumberSearchRequestDTO requestDTO = new AccessionNumberSearchRequestDTO();
-            requestDTO.AccessionNumbers = GetAccessionNumbers(manualWorkspace).ToArray();
-            requestDTO.SortBy = SortBy.LIFO;
+            var requestDTO = new AccessionNumberSearchRequestDTO
+                                 {
+                                     AccessionNumbers = GetAccessionNumbers(manualWorkspace).ToArray(), 
+                                     SortBy = SortBy.LIFO
+                                 };
             requestDTO.SearchCollectionCollection.Add(SearchCollection.Internal);
             requestDTO.SearchCollectionCollection.Add(SearchCollection.CustomerDoc);
             requestDTO.SearchCollectionCollection.Add(SearchCollection.Blogs);
@@ -513,19 +521,16 @@ namespace EMG.widgets.ui.delegates.output.syndication
 
             if (requestDTO.IsValid())
             {
-                AccessionNumberSearchResponse searchResponse = m_SearchManager.PerformAccessionNumberSearch(requestDTO);
+                var searchResponse = _searchManager.PerformAccessionNumberSearch(requestDTO);
 
                 if (searchResponse != null && searchResponse.AccessionNumberBasedContentItemSet != null &&
                     searchResponse.AccessionNumberBasedContentItemSet.AccessionNumberBasedContentItemCollection != null &&
                     searchResponse.AccessionNumberBasedContentItemSet.AccessionNumberBasedContentItemCollection.Count > 0)
                 {
                     // add items
-                    foreach (AccessionNumberBasedContentItem item in searchResponse.AccessionNumberBasedContentItemSet.AccessionNumberBasedContentItemCollection)
+                    foreach (var item in searchResponse.AccessionNumberBasedContentItemSet.AccessionNumberBasedContentItemCollection.Where(item => !dictOfAccessionBasedContentItems.ContainsKey(item.AccessionNumber)))
                     {
-                        if (!dictOfAccessionBasedContentItems.ContainsKey(item.AccessionNumber))
-                        {
-                            dictOfAccessionBasedContentItems.Add(item.AccessionNumber, item);
-                        }
+                        dictOfAccessionBasedContentItems.Add(item.AccessionNumber, item);
                     }
                 }
             }
@@ -535,28 +540,17 @@ namespace EMG.widgets.ui.delegates.output.syndication
 
         private static List<string> GetAccessionNumbers(ManualWorkspace manaualWorkspace)
         {
-            List<string> accessionNos = new List<string>();
-            foreach (Section section in manaualWorkspace.SectionCollection)
+            var accessionNos = new List<string>();
+            foreach (var section in manaualWorkspace.SectionCollection)
             {
-                foreach (Item item in section.ItemCollection)
+                foreach (var articleItem in section.ItemCollection.OfType<ArticleItem>().Where(articleItem => !accessionNos.Contains(articleItem.AccessionNumber)))
                 {
-                    ArticleItem articleItem = item as ArticleItem;
-                    if (articleItem != null && !accessionNos.Contains(articleItem.AccessionNumber))
-                    {
-                        accessionNos.Add(articleItem.AccessionNumber);
-                    }
+                    accessionNos.Add(articleItem.AccessionNumber);
                 }
 
-                foreach (SubSection subSection in section.SubSectionCollection)
+                foreach (var articleItem in section.SubSectionCollection.SelectMany(subSection => subSection.ItemCollection, (subSection, item) => item as ArticleItem).Where(articleItem => articleItem != null && !accessionNos.Contains(articleItem.AccessionNumber)))
                 {
-                    foreach (Item item in subSection.ItemCollection)
-                    {
-                        ArticleItem articleItem = item as ArticleItem;
-                        if (articleItem != null && !accessionNos.Contains(articleItem.AccessionNumber))
-                        {
-                            accessionNos.Add(articleItem.AccessionNumber);
-                        }
-                    }
+                    accessionNos.Add(articleItem.AccessionNumber);
                 }
             }
             return accessionNos;
@@ -642,24 +636,28 @@ namespace EMG.widgets.ui.delegates.output.syndication
                 return string.Empty;
             }
 
-            RssFeed rssFeed = new RssFeed();
-            rssFeed.Channel = new RssChannel();
-            rssFeed.Channel.Title = Definition.Name;
-            rssFeed.Channel.Copyright = Literals.CopyRight;
-            rssFeed.Channel.PublicationDate = DateTime.Now;
-            rssFeed.Channel.TimeToLive = TIME_TO_LIVE_RSS;
+            var rssFeed = new RssFeed
+                              {
+                                  Channel = new RssChannel
+                                                {
+                                                    Title = Definition.Name,
+                                                    Copyright = Literals.CopyRight,
+                                                    PublicationDate = DateTime.Now, TimeToLive = TIME_TO_LIVE_RSS
+                                                }
+                              };
 
             if (Data != null && Data.ManualNewsletterWorkspaceInfo != null)
             {
                 foreach (ManualNewsletterWorkspaceSection section in Data.ManualNewsletterWorkspaceInfo.Sections)
                 {
-                    RssCategory category = new RssCategory(section.Name);
-                    foreach (HeadlineInfo headline in section.Headlines)
+                    var category = new RssCategory(section.Name);
+                    foreach (var item in section.Headlines.Select(headline => new RssItem
+                                                                                  {
+                                                                                      Title = headline.Text, 
+                                                                                      Description = headline.Snippet, 
+                                                                                      Link = new EscapedUri(headline.Url)
+                                                                                  }))
                     {
-                        RssItem item = new RssItem();
-                        item.Title = headline.Text;
-                        item.Description = headline.Snippet;
-                        item.Link = new EscapedUri(headline.Url);
                         item.Categories.Add(category);
                         rssFeed.Channel.AddItem(item);
                     }
@@ -678,27 +676,31 @@ namespace EMG.widgets.ui.delegates.output.syndication
             {
                 return string.Empty;
             }
-            AtomFeed atomFeed = new AtomFeed();
-            atomFeed.Title = new AtomTextConstruct(Definition.Name);
-            atomFeed.UpdatedOn = DateTime.Now;
-            atomFeed.Rights = new AtomTextConstruct(Literals.CopyRight);
+            var atomFeed = new AtomFeed
+                               {
+                                   Title = new AtomTextConstruct(Definition.Name), 
+                                   UpdatedOn = DateTime.Now, 
+                                   Rights = new AtomTextConstruct(Literals.CopyRight)
+                               };
             atomFeed.UpdatedOn = DateTime.Now;
 
             if (Data != null && Data.ManualNewsletterWorkspaceInfo != null)
             {
                 foreach (ManualNewsletterWorkspaceSection section in Data.ManualNewsletterWorkspaceInfo.Sections)
                 {
-                    AtomCategory category = new AtomCategory(section.Name);
+                    var category = new AtomCategory(section.Name);
                     atomFeed.Categories.Add(category);
-                    foreach (HeadlineInfo headline in section.Headlines)
+                    foreach (var headline in section.Headlines)
                     {
-                        EscapedUri link = new EscapedUri(headline.Url);
-                        AtomEntry item = new AtomEntry(new AtomId(link), new AtomTextConstruct(headline.Text), DateTime.Now);
+                        var link = new EscapedUri(headline.Url);
+                        var item = new AtomEntry(new AtomId(link), new AtomTextConstruct(headline.Text), DateTime.Now);
                         item.Categories.Add(category);
-                        AtomLink aLink = new AtomLink(link);
-                        aLink.ContentType = "text/html";
-                        aLink.Language = MapLanguageToCultureInfo(headline.ContentLanguage);
-                        aLink.Relation = "Alternate";
+                        var aLink = new AtomLink(link)
+                                        {
+                                            ContentType = "text/html", 
+                                            Language = MapLanguageToCultureInfo(headline.ContentLanguage), 
+                                            Relation = "Alternate"
+                                        };
                         item.Links.Add(aLink);
                         item.Summary = new AtomTextConstruct(headline.Snippet);
                         item.PublishedOn = headline.PublicationDateTime;
@@ -716,35 +718,33 @@ namespace EMG.widgets.ui.delegates.output.syndication
         /// <param name="integrationTarget">The integration target.</param>
         public override void Fill(string token, IntegrationTarget integrationTarget)
         {
-            using (TransactionLogger logger = new TransactionLogger(m_Log, MethodBase.GetCurrentMethod()))
+            using (var logger = new TransactionLogger(Log, MethodBase.GetCurrentMethod()))
             {
-                m_Token = token;
-                m_TokenProperties = new WidgetTokenProperties(token);
-                ControlData userControlData = ControlDataManager.AddProxyCredentialsToControlData(ControlDataManagerEx.GetRssFeed1LightWeightUser(), m_TokenProperties.UserId, m_TokenProperties.NameSpace);
+                _tokenProperties = new WidgetTokenProperties(token);
+                var userControlData = ControlDataManager.AddProxyCredentialsToControlData(ControlDataManagerEx.GetRssFeed1LightWeightUser(), _tokenProperties.UserId, _tokenProperties.NameSpace);
                 m_WidgetManager = new WidgetManager(userControlData, SessionData.Instance().InterfaceLanguage);
-                m_WorkspaceManager = new WorkspaceManager(userControlData, SessionData.Instance().InterfaceLanguage);
-                m_SearchManager = new SearchManager(userControlData, SessionData.Instance().InterfaceLanguage);
+                _workspaceManager = new WorkspaceManager(userControlData, SessionData.Instance().InterfaceLanguage);
+                _searchManager = new SearchManager(userControlData, SessionData.Instance().InterfaceLanguage);
 
                 try
                 {
                     // Get the widget Definition
-                    Widget widget = m_WidgetManager.GetCachedWidgetById(m_TokenProperties.WidgetId);
+                    var widget = m_WidgetManager.GetCachedWidgetById(_tokenProperties.WidgetId);
                     if (widget != null)
                     {
-                        if (widget is ManualWorkspaceWidget)
+                        var workspaceWidget = widget as ManualWorkspaceWidget;
+                        if (workspaceWidget != null)
                         {
-                            ManualWorkspaceWidget manualWorkspaceWidget = (ManualWorkspaceWidget)widget;
+                            var manualWorkspaceWidget = workspaceWidget;
                             // Pull out the interfacelanguage
                             string interfaceLanguage = manualWorkspaceWidget.Properties.Language;
 
                             // Check cache to see if widget exists
                             // See if widget is in Factia cache
                             string cachedData;
-                            if (m_WidgetManager.IsWidgetInFactivaCache(m_TokenProperties.WidgetId, interfaceLanguage, out cachedData))
+                            if (m_WidgetManager.IsWidgetInFactivaCache(_tokenProperties.WidgetId, interfaceLanguage, out cachedData))
                             {
-                                ManualNewsletterWorkspaceWidgetDelegate cachedDelegate =
-                                    (ManualNewsletterWorkspaceWidgetDelegate)
-                                    Factiva.BusinessLayerLogic.Delegates.Utility.Deserialize(cachedData, GetType());
+                                var cachedDelegate = (ManualNewsletterWorkspaceWidgetDelegate) Factiva.BusinessLayerLogic.Delegates.Utility.Deserialize(cachedData, GetType());
                                 // Make sure a valid item was saved in cache
                                 if (cachedDelegate != null)
                                 {
@@ -756,7 +756,7 @@ namespace EMG.widgets.ui.delegates.output.syndication
                                     //Literals = cachedDelegate.Literals;
                                     PopulateLiterals();
                                     // Update Urls based ResponseFormat()
-                                    UpdateUrls(m_TokenProperties, integrationTarget, interfaceLanguage);
+                                    UpdateUrls(_tokenProperties, integrationTarget, interfaceLanguage);
                                     FireMetricsEnvelope(GetOperationData(integrationTarget));
                                     NullOutAuthenticationCredentials();
                                     ElapsedTime = logger.LogTimeSinceInvocation();
@@ -765,7 +765,7 @@ namespace EMG.widgets.ui.delegates.output.syndication
                             }
 
                             // Set the ui culture on the thread.
-                            m_SessionData = new SessionData("b", interfaceLanguage, 0, false);
+                            _sessionData = new SessionData("b", interfaceLanguage, 0, false);
 
                             // Populate Literals
                             PopulateLiterals();
@@ -774,16 +774,16 @@ namespace EMG.widgets.ui.delegates.output.syndication
                             PopulateDefinition(manualWorkspaceWidget, null);
 
                             // Populate with valid Data
-                            PopulateHeadlineWidgetData(manualWorkspaceWidget, m_TokenProperties.AccountId, m_TokenProperties.UserId, m_TokenProperties.NameSpace);
+                            PopulateHeadlineWidgetData(manualWorkspaceWidget, _tokenProperties.AccountId, _tokenProperties.UserId, _tokenProperties.NameSpace);
 
                             // Perform Validation
                             Validate();
 
                             // Put the object into cache
-                            SerializeWidgetToCache(m_TokenProperties.WidgetId, interfaceLanguage);
+                            SerializeWidgetToCache(_tokenProperties.WidgetId, interfaceLanguage);
 
                             // Update Urls 
-                            UpdateUrls(m_TokenProperties, integrationTarget, interfaceLanguage);
+                            UpdateUrls(_tokenProperties, integrationTarget, interfaceLanguage);
 
                             // Update ODS and Metrics data
                             FireMetricsEnvelope(GetOperationData(integrationTarget));
@@ -805,7 +805,7 @@ namespace EMG.widgets.ui.delegates.output.syndication
                     Data = null;
                     Definition = null;
                     ReturnCode = fex.ReturnCodeFromFactivaService;
-                    StatusMessage = ResourceText.GetErrorMessage(ReturnCode.ToString());
+                    StatusMessage = ResourceText.GetErrorMessage(ReturnCode.ToString(CultureInfo.InvariantCulture));
                     ElapsedTime = logger.LogTimeSinceInvocation();
                 }
                 catch (Exception ex)
@@ -815,7 +815,7 @@ namespace EMG.widgets.ui.delegates.output.syndication
                     Data = null;
                     Definition = null;
                     ReturnCode = -1;
-                    StatusMessage = ResourceText.GetErrorMessage(ReturnCode.ToString());
+                    StatusMessage = ResourceText.GetErrorMessage(ReturnCode.ToString(CultureInfo.InvariantCulture));
                     ElapsedTime = logger.LogTimeSinceInvocation();
                 }
             }
@@ -827,9 +827,11 @@ namespace EMG.widgets.ui.delegates.output.syndication
         /// <returns></returns>
         private WidgetViewOperationalData GetOperationData(IntegrationTarget integrationTarget)
         {
-            WidgetViewOperationalData operationalData = new WidgetViewOperationalData();
-            operationalData.AssetId = m_TokenProperties.WidgetId;
-            operationalData.PublishingDomain = HeadlineUtility.GetHttpReferer(integrationTarget);
+            var operationalData = new WidgetViewOperationalData
+                                      {
+                                          AssetId = _tokenProperties.WidgetId, 
+                                          PublishingDomain = HeadlineUtility.GetHttpReferer(integrationTarget)
+                                      };
 
             return operationalData;
         }
@@ -842,7 +844,7 @@ namespace EMG.widgets.ui.delegates.output.syndication
         /// <param name="proxyNamespace">The proxy namespace.</param>
         protected override void PopulateHeadlineWidgetData(Widget widget, string accountId, string proxyUserId, string proxyNamespace)
         {
-            ManualWorkspaceWidget workspaceWidget = widget as ManualWorkspaceWidget;
+            var workspaceWidget = widget as ManualWorkspaceWidget;
 
             if (Definition == null) return;
             Data = new ManualNewsletterWorkspaceWidgetData();

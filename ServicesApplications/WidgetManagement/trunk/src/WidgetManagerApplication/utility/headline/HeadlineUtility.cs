@@ -196,11 +196,11 @@ namespace EMG.widgets.ui.utility.headline
         /// </summary>
         /// <param name="headlineInfo">The headline info.</param>
         /// <param name="item">The item.</param>
-        protected static void Convert(HeadlineInfo headlineInfo, LinkItem item)
+        protected void Convert(HeadlineInfo headlineInfo, LinkItem item)
         {
-            headlineInfo.PublicationDateTime = item.PublicationDate.ToUniversalTime;
+            headlineInfo.PublicationDateTime = item.PublicationDate.ToUniversalTime();
             headlineInfo.ByLine = item.Author;
-            headlineInfo.PubDateTime = dateTimeFormatter.FormatLongDate(headlineInfo.PublicationDateTime);
+            headlineInfo.PubDateTime = _dateTimeFormatter.FormatLongDate(headlineInfo.PublicationDateTime);
             headlineInfo.Text = item.Title;
             headlineInfo.Comment = item.Comment;
             headlineInfo.Importance = item.Importance;

@@ -63,7 +63,6 @@ namespace EMG.widgets.ui.exception
         /// Unable to retrieve content headlines resultset error.
         /// </summary>
         public const int WIDGET_ARE_FEEDS_ACTIVE_SET_TO_OFF = BASELINE_ERROR + 13;
-
         
         /// <summary>
         /// Initializes a new instance of the <see cref="EmgWidgetsUIException"/> class.
