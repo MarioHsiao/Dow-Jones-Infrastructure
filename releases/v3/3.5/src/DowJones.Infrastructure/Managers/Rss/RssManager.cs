@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using DowJones.Configuration;
 using DowJones.DependencyInjection;
 using DowJones.Properties;
 using Factiva.Gateway.Messages.Assets.Item.V1_0;
@@ -11,6 +12,7 @@ using Factiva.Gateway.Messages.PCM.Syndication.V1_0;
 using Factiva.Gateway.Services.V1_0;
 using log4net;
 using CategoryCollection = Factiva.Gateway.Messages.Assets.Item.V1_0.CategoryCollection;
+using DowJones.Session;
 
 namespace DowJones.Managers.Rss
 {
@@ -19,16 +21,18 @@ namespace DowJones.Managers.Rss
         [Inject("Injecting ControlData")]
         private Factiva.Gateway.Utils.V1_0.ControlData ControlData { get; set; }
 
-        // If we ask for more, the service will throw error
-        private readonly int MAX_ITEMS_TO_GET = Convert.ToInt32(ConfigurationManager.AppSettings["RSS_FEEDS_MAX_LIMIT"] ?? "240");
-
         public CreateSyndicationItemExResponse CreateSyndicationItem(RssItem rssItem)
+        {
+            return CreateSyndicationItem(rssItem, ControlData);
+        }
+
+        public CreateSyndicationItemExResponse CreateSyndicationItem(RssItem rssItem, Factiva.Gateway.Utils.V1_0.ControlData controlData)
         {
             if (rssItem == null) return null;
             CategoryCollection categoryCollection = null;
-            if(!string.IsNullOrEmpty(rssItem.Category))
+            if (!string.IsNullOrEmpty(rssItem.Category))
             {
-                categoryCollection = new CategoryCollection {rssItem.Category};
+                categoryCollection = new CategoryCollection { rssItem.Category };
             }
             var itemEx = new SyndicationItemEx()
             {
@@ -54,7 +58,7 @@ namespace DowJones.Managers.Rss
                 SyndicationItemEx = itemEx
             };
 
-            return SyndicationAggregationService.CreateSyndicationItemEx(ControlData, request);
+            return SyndicationAggregationService.CreateSyndicationItemEx(controlData, request);
         }
 
         public void CreateSyndicationItems(List<RssItem> lstRssItem)
