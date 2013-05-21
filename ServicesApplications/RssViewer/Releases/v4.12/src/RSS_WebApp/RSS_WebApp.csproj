@@ -201,11 +201,11 @@
     <Content Include="GatewayResources\config\TrackService.config" />
     <Content Include="GatewayResources\config\Triggers.config" />
     <Content Include="GatewayResources\config\UserEventRecorderService.config" />
-    <None Include="Web.config_prod" />
+    <Content Include="Web.config_prod" />
     <None Include="dev_cache.not_on_this_server" />
     <None Include="eid1.aspx.cs.exclude" />
     <None Include="eid1.aspx.exclude" />
-    <None Include="int_rss.not_on_this_server" />
+    <Content Include="int_rss.not_on_this_server" />
     <Content Include="GatewayResources\ReleaseNotes.txt" />
     <Content Include="GatewayResources\stubs\Analyze\Response\AnalyzeAsynchResponse.xml" />
     <Content Include="GatewayResources\stubs\Analyze\Response\AnalyzeSynchResponse.xml" />
@@ -988,10 +988,10 @@
     <Content Include="Log4Net_beta.config" />
     <Content Include="Log4Net_development.config" />
     <Content Include="Log4Net_integration.config" />
-    <None Include="prod_rss.not_on_this_server" />
+    <Content Include="prod_rss.not_on_this_server" />
     <Content Include="cmd\rename_FactivaRss_int.bat" />
-    <None Include="rss.not_on_this_server" />
-    <None Include="Web.config_int" />
+    <Content Include="rss.not_on_this_server" />
+    <Content Include="Web.config_int" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="decrypt.aspx.resx">
