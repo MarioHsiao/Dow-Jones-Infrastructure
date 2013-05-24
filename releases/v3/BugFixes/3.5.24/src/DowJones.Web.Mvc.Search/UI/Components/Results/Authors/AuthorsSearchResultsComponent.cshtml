@@ -1,0 +1,29 @@
+﻿@using System.Web.Mvc
+@using System.Web.Mvc.Html
+
+@model AuthorsSearchResults
+@ScriptResource RelativeResourceName=AuthorsSearchResults.js
+@ClientPlugin dj_AuthorsSearchResults
+
+<input type="hidden" id="author-list-pageSize" name="EntityNavigator.pageSize" />
+<input type="hidden" id="author-list-firstIndex" name="EntityNavigator.firstIndex" />
+<input type="hidden" id="author-list-sortBy" name="EntityNavigator.sortBy" />
+<input type="hidden" id="author-list-sortOrder" name="EntityNavigator.sortOrder" />
+<input type="hidden" id="author-list-selectedEntityIds" name="EntityNavigator.selectedEntityIds" />
+<div class="columns clearfix">
+	<div style="height:650px;overflow:auto;">
+	@if (Model.RelatedConcepts != null && Model.HideRelatedConcepts == false)
+	{
+		<div class="dj_related-concepts ui-component clearfix">
+			<div class="list-wrap">
+				<h2>@DJ.Token( "relatedConcepts" )</h2>
+				@DJ.Render( Model.RelatedConcepts )
+			</div>
+			<span class="dj_icon dj_close-section dj_icon-close-dark-gray"></span>        
+		</div>
+	}
+	
+	@Html.Hidden("hideRelatedConcepts", Model.HideRelatedConcepts.ToString().ToLower())
+	@Html.DJ().Render( Model.Authors )
+	</div>
+</div>

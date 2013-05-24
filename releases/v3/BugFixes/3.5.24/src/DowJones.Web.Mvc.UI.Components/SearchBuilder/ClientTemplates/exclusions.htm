@@ -1,0 +1,15 @@
+﻿<h5><%= Token("exclusionsListDesc") %></h5>
+<ul>
+    <%  var value, name, id,
+            exclusions = self.exclusions;
+        for(var i = 0;i < exclusions.length;i++){ 
+            code = exclusions[i].code;
+            desc = exclusions[i].desc;
+            id = self.idPrefix + "_" + code;
+    %>
+            <li>
+                <input type="checkbox" id="<%= id %>" value="<%= code %>" />
+                <label for="<%= id %>"><%= desc %></label>
+            </li>
+    <% } %>
+</ul>

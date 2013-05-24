@@ -1,0 +1,14 @@
+﻿<% var hideLoadMore = this.options.maxPagesInHistory >= 0 ? '' : 'hide',
+       hideToTop = this.options.maxPagesInHistory >= 0 ? 'hide' : ''  ;
+        %>
+<div class="dj_more-tweets dj_new-tweets hide" style="z-index: 15;">
+	<span></span>
+</div>
+<ul class="dj_twitter-recent-tweets">
+</ul>
+<div class="dj_more-tweets dj_old-tweets <%= hideLoadMore %> " style="z-index: 15;">
+	<span><%= Token("loadMoreTweets") %></span></div>
+<div class="dj_to-top-wrap  <%= hideToTop %> ">
+	<span class="dj_bird-label"></span><span class="dj_to-top"><%= Token("backToTopTweet") %>
+		↑ </span>
+</div>

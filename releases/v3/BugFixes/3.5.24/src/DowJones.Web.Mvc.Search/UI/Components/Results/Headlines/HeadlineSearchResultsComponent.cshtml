@@ -1,0 +1,108 @@
+﻿@using DowJones.Web.Mvc.UI.Components.PostProcessing
+@using DowJones.Web.Mvc.Search.Results
+@using System.Web.Mvc
+@using System.Web.Mvc.Html
+@model HeadlineSearchResults
+@ScriptResource RelativeResourceName=resources.js
+@ScriptResource RelativeResourceName=HeadlineSearchResults.js
+@ClientPlugin dj_HeadlineSearchResults
+@{
+    Html.DJ().ScriptRegistry()
+        .WithJQueryUIWidgets();
+}
+
+@*<input type='hidden' name='start' value='@Model.FirstResultIndex' />
+
+<input type='hidden' name='pageSize' value='@Model.PageSize' />
+<input type='hidden' name='showDuplicates' value='@Model.ShowDuplicates.ToString().ToLower()' />
+<input type='hidden' name='Sort' value='@Model.HeadlineSort' />
+*@
+<input type='hidden' name="articleDisplayOption" value='@Model.ArticleDisplayOption' />
+<input type='hidden' name='HighlightString' value='@Model.CanonicalQueryString' />
+<input type='hidden' name='pictureSize' value='@Model.PictureSize' />
+
+@*<input type='hidden' name='Server' value='@Model.Server' />
+<input type='hidden' name='ContextId' value='@Model.ContextId' />*@
+
+<input type='hidden' name='StartIndexReference' value='@String.Join(",", Model.FirstResultIndexReference)' />
+<input type='hidden' name='previousIndex' value='@Model.PreviousResultIndex' />
+<input type='hidden' name='nextIndex' value='@Model.NextResultIndex' />
+
+<div class="columns clearfix">
+				
+	<div class="column headlines">	
+	<!-- RELATED CONCEPTS COMPONENT -->
+	@if(!Model.HideRelatedConcepts && Model.RelatedConcepts != null )
+ {
+	    <div class="dj_related-concepts ui-component clearfix">
+		    <div class="list-wrap">
+			    <h2>@DJ.Token( "relatedConcepts" )</h2>
+			    @DJ.Render( Model.RelatedConcepts )
+		    </div>
+		    <span class="dj_icon dj_close-section dj_icon-close-dark-gray"></span>        
+	    </div>
+     
+ }
+	@if (!Model.HideNewsVolume && Model.NewsVolume != null)
+ {
+		<div class="dj_DateNavigator ui-component">
+			<span class="dj_icon dj_close-section dj_icon-close-dark-gray"></span>
+			<h2>@DJ.Token("newsVolumeByDate")</h2>
+			@DJ.Render(Model.NewsVolume)
+		</div>
+        
+ }
+    @Html.Hidden("hideRelatedConcepts", Model.HideRelatedConcepts.ToString().ToLower())
+    @Html.Hidden("hideNewsVolume", Model.HideNewsVolume.ToString().ToLower())
+
+	@Html.DJ().Render(Model.Headlines)
+
+    </div><!-- end: .column headlines -->
+				
+    <div class="column articles">
+
+	    <div class="dj_ArticleOptionsContainer dj_search-article-options">
+	        <div class="controls">
+                <div class="back-to-headlines">
+    		        <a class="returnToHeadlines" href="javascript:void(0);">@Html.DJ().Token("returnToHeadlines")</a>
+        	    </div><!-- end: .back-to-headlines -->
+
+		        <div class="drop-down-button sort">
+			        <div class="selected-option">
+				        <span class="">@Html.DJ().Token("options")</span> 
+                        <span class="dj_icon dj_icon-d-arrow-g"></span>
+
+				        <div class="options sort-options dj_options">
+					        <label class="select-prompt">@Html.DJ().Token("selectOne"):</label>
+					        @Html.RadioButtonList("articleDisplayOptions", Model.ArticleDisplayOptions, HtmlHelpers.ListType.Ordered, "select-options part")
+                            <input class="button dj_optionsOk" type="button" value="@Html.DJ().Token("ok")">
+				        </div><!-- end: .sort-options -->
+
+			        </div><!-- end: .selected-option -->
+		        </div><!-- end: .drop-down-button -->
+		    </div><!-- end: .controls --> 
+	    </div><!-- end: .dj_search-article-options -->
+
+	    <div class="dj_ArticleContainer dj_search-article-main"></div>
+
+    </div><!-- end: .column articles -->
+				
+</div><!-- end: .columns -->
+
+<!-- start: modals -->
+<div class="dj_modal simplemodal-container dj_entity-info" style="width:480px;height:207px;">
+	<div class="dj_modal-header">
+		<h3 class="dj_modal-title"><span class="dj_entity-category"></span></h3>
+		<p class="dj_modal-close" onclick="$().overlay.hide('#'+$(this).closest('.dj_modal').attr('id'));">
+			<a href="javascript:void(0);"></a>
+		</p>
+	</div>
+	<div class="dj_modal-content" style="height:156px">
+		<div class="dj_modal-content-wrap">
+			<div class="modal-content">
+				<h4 class="dj_enity-name"></h4>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- end: modals -->

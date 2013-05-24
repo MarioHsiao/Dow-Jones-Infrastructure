@@ -1,0 +1,268 @@
+/*
+
+	-- -- -- -- -- -- --
+	Description: Styles for various buttons used within modules
+	Version: 0.1
+	Last Update: 11/12/2010
+	Author: Ron Edgecomb II, Philippe Arcand, and Pete McGrath
+	Company: Dow Jones & Company Inc.
+	Copyright 2010 Dow Jones & Company Inc.
+
+	
+	Dependencies
+	 - css/reset.css
+	 - css/global.css
+	-- -- -- -- -- -- --
+	
+*/
+
+/* =Dashboard Controls >> Global Style Rules
+----------------------------------------------------------------------------------------------------*/
+
+.dc_list {
+	height: 18px;
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	vertical-align: middle;
+	line-height: 18px;
+}
+	.dc_list-fl {
+		float: left;
+	}
+	.dc_list-fr {
+		float: right;
+	}
+
+.dc_list .dc_item {
+	height: 18px;
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	vertical-align: top;
+	float: left;
+	position:relative;
+	margin:0 8px 0 0;
+	cursor:pointer;
+}
+	.dc_list-fr .dc_item {
+		margin:0 0 0 8px;
+	}
+	
+	.dc_list .dc_item.hide {
+		display: none;
+	}
+
+.dc_list .dc_item .dashboard-control {
+	height: 18px;
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	vertical-align: top;
+	color: #a3a3a3;
+	font-size: 85%; /* 11px */
+	line-height: 18px;
+	text-decoration: none;
+}
+
+/* =Dashboard Controls >> larger verion
+----------------------------------------------------------------------------------------------------*/
+.dc_list-lg {
+	height: 24px;
+	line-height: 24px;
+}
+
+.dc_list-lg .dc_item {
+	height: 24px;
+}
+
+.dc_list-lg .dc_item .dashboard-control {
+	height: 24px;
+	color: #a3a3a3;
+	font-size: 108%; /* 14px */
+	line-height: 24px;
+}
+
+/* =Dashboard Controls >> Button styles
+----------------------------------------------------------------------------------------------------*/
+/*Button Default*/
+.dc_list .dc_item .dc_btn {
+    width: auto;
+	padding: 0 12px;
+    margin: 0;
+	color: #fff;
+    overflow: visible;
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	border: 0;
+	border-radius: 9px;
+	-moz-border-radius: 9px;
+	-webkit-border-radius: 9px;
+}
+	
+	/*IE*/
+	.ie6 .dc_list .dc_item input.dc_btn,
+	.ie7 .dc_list .dc_item .dc_btn,
+	.ie8 .dc_list .dc_item .dc_btn {
+		height:16px; /*IE buttons have borders.. need to subtract 2 pixels from height*/
+		line-height:16px; /*IE buttons have borders.. need to subtract 2 pixels from line-height*/
+	}
+	
+/* =Dashboard Controls >> larger button verion
+----------------------------------------------------------------------------------------------------*/
+.dc_list-lg .dc_item .dc_btn {
+	border-radius: 11px;
+	-moz-border-radius: 11px;
+	-webkit-border-radius: 11px;
+}
+
+	/*IE*/
+	.ie6 .dc_list-lg .dc_item input.dc_btn,
+	.ie7 .dc_list-lg .dc_item .dc_btn,
+	.ie8 .dc_list-lg .dc_item .dc_btn {
+		height:22px; /*IE buttons have borders.. need to subtract 2 pixels from height*/
+		line-height:22px; /*IE buttons have borders.. need to subtract 2 pixels from line-height*/
+	}
+
+/* =Dashboard Controls >> add a module button version
+----------------------------------------------------------------------------------------------------*/
+.dc_add-module .dc_item .dc_btn {
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+
+	/*IE*/
+	.ie6 .dc_add-module .dc_item input.dc_btn,
+	.ie7 .dc_add-module .dc_item .dc_btn,
+	.ie8 .dc_add-module .dc_item .dc_btn {
+		height:48px; /*IE buttons have borders.. need to subtract 2 pixels from height*/
+		line-height:48px; /*IE buttons have borders.. need to subtract 2 pixels from line-height*/
+	}
+	
+/* =button versions	 >> Green Button styles
+----------------------------------------------------------------------------------------------------*/
+
+.dc_list .dc_item .dc_btn-1 {
+	background:#93be4e;
+}
+	
+	/*IE*/
+	.ie6 .dc_list .dc_item .dc_btn-1,
+	.ie7 .dc_list .dc_item .dc_btn-1,
+	.ie8 .dc_list .dc_item .dc_btn-1 {
+		border:1px solid #7aac31;
+	}
+	
+/*Green Button Hover*/
+.dc_list .dc_item .dc_btn-1:hover {
+	background:#7aac31;
+}
+	
+/* =button versions	 >> Blue Button styles
+----------------------------------------------------------------------------------------------------*/
+
+.dc_list .dc_item .dc_btn-2 {
+	background:#02a2db;
+	background: -webkit-gradient(linear, left top, left bottom, from(#5aabc9), to(#4397bb));
+	background: -moz-linear-gradient(top,  #5aabc9,  #4397bb);
+}
+	
+	/*IE*/
+	.ie6 .dc_list .dc_item .dc_btn-2,
+	.ie7 .dc_list .dc_item .dc_btn-2,
+	.ie8 .dc_list .dc_item .dc_btn-2 {
+		border:1px solid #4397bb;
+	}
+	
+/*Green Button Hover*/
+.dc_list .dc_item .dc_btn-2:hover {
+	background:#4397bb;
+}
+	
+/* =button versions	 >> Gray Button styles
+----------------------------------------------------------------------------------------------------*/
+
+.dc_list .dc_item .dc_btn-3 {
+	color:#FFF;
+	background-color:#cccccc;
+}
+	
+	/*IE*/
+	.ie6 .dc_list .dc_item .dc_btn-3,
+	.ie7 .dc_list .dc_item .dc_btn-3,
+	.ie8 .dc_list .dc_item .dc_btn-3 {
+		border:1px solid #ccc;
+	}
+	
+/*Gray Button Hover*/
+.dc_list .dc_item .dc_btn-3:hover {
+	background:#999;
+}
+
+/* =button versions	 >> Red Button styles
+----------------------------------------------------------------------------------------------------*/
+
+.dc_list .dc_item .dc_btn-5 {
+	color: #fff;
+	background-color: #cc3e33;
+}
+	
+	/*IE*/
+	.ie6 .dc_list .dc_item .dc_btn-5,
+	.ie7 .dc_list .dc_item .dc_btn-5,
+	.ie8 .dc_list .dc_item .dc_btn-5 {
+		border: 1px solid #cc3e33;
+	}
+	
+/*Gray Button Hover*/
+.dc_list .dc_item .dc_btn-5:hover {
+	background: #b9382e;
+}
+
+
+
+/* =Add a module Button
+----------------------------------------------------------------------------------------------------*/
+.dc_add-module {
+	height: 50px;
+	line-height: 50px;
+}
+
+.dc_add-module .dc_item {
+	height: 50px;
+	position:relative;
+}
+
+.dc_add-module .dc_item .dashboard-control {
+	height: 48px;
+	color:#999;
+	font-size: 123.1%; /* 16px */
+	font-weight:500;
+	line-height: 48px;
+	background-color:#3e3e3e;
+	background: -webkit-gradient(linear, left top, left bottom, from(#3e3e3e), to(#2c2c2c));
+	background: -moz-linear-gradient(top,  #3e3e3e,  #2c2c2c);
+	border-top:1px solid #696969;
+	border-right:1px solid #222;
+	border-bottom:1px solid #121212;
+	border-left:1px solid #222;
+	padding-right: 40px;
+}
+
+	/*IE*/
+	.ie6 .dc_list .dc_item .dc_btn-3,
+	.ie7 .dc_list .dc_item .dc_btn-3,
+	.ie8 .dc_list .dc_item .dc_btn-3 {
+		border:1px solid #222; /*IE gets a uniform color border */
+	}
+	
+/*black Button Hover*/
+.dc_list .dc_item .dc_btn-4:hover {
+	background:#2c2c2c;
+}
+
+.dc_add-module .dc_item .fi {
+	position:absolute;
+	top:17px; right:14px;
+}
+
+
+

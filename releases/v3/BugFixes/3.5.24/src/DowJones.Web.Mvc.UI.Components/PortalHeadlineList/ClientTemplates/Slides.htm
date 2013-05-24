@@ -1,0 +1,22 @@
+﻿<%  var title, x, headlineUrl,
+        headlines = self.headlines, options = self.options,
+        headlinesCount = options.allowPagination ? headlines.length : Math.min(headlines.length, options.maxNumHeadlinesToShow),
+        thumbSource, thumbClass;
+%>
+<div class="carouselContainer gallery">
+    <div class="article-list">
+        <% 
+        for (var i = 0; i < headlinesCount; i++) { 
+        x = headlines[i]; 
+        title = (options.showTruncatedTitle && $.trim(x.truncatedTitle)) || x.title;
+        headlineUrl = (x.headlineUrl && $.trim(x.headlineUrl)) || "javascript:void(0)";
+        thumbSource =  x.thumbnailImage ? x.thumbnailImage.uri : "";
+        thumbClass = i < options.leaders ? "thumb-large" :"thumb-small";
+        %>
+        <div class="thumbnail <%= thumbClass %>">
+            <a href="<%= headlineUrl %>" class="article-view-trigger">
+                <img src="<%= thumbSource %>" alt="<%= title %>"></a>
+        </div>
+        <% } %>
+    </div>
+</div>
