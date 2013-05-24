@@ -132,8 +132,7 @@
             window.setTimeout(function () {
                 $("body").unbind('mousedown.popup-balloon').bind('mousedown.popup-balloon', function (e) {
                     if (!$(e.target).data("popbox")) {
-                        $('.popup-balloon').remove();
-                        $("body").unbind('mousedown.popup-balloon');
+                        self._removeOldPopups();
                     }
                     e.stopPropagation();
                 });
@@ -337,7 +336,7 @@
             }
 
             //Hide previously opened popups
-            $('.popup-balloon').remove();
+            self._removeOldPopups();
 
             $('body').append(popbox);
 
@@ -1190,6 +1189,16 @@
             }
             return { x: x, y: y };
 
+        },
+
+        _removeOldPopups: function () {
+            $('.popup-balloon').each(function () {
+                var $controller = $(this).data('controller');
+                if ($controller.length) {
+                    $controller.data("popbox", null);
+                }
+                $(this).remove();
+            });
         }
 
     });
