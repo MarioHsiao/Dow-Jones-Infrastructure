@@ -109,6 +109,14 @@ namespace DowJones.Globalization
             var tokenPrefix = isLocalUser ? "errorForDev" : "errorForUser";
             var token = tokenPrefix + errorNumber.Replace("-", "Minus");
             var errorMessage = GetString(token);
+
+            if (!isLocalUser
+                && (string.Format("${{{0}}}", token).Equals(errorMessage, StringComparison.OrdinalIgnoreCase)))
+            {
+                token = tokenPrefix + "Minus1";
+                errorMessage = GetString(token);
+            }
+
             return errorMessage;
         }
 
