@@ -432,10 +432,10 @@
             var $selector = el.data("popbox");
 
             if (hideAll) {
-                var $selector = $('.popup-balloon');
+                $selector = $('.popup-balloon');
             }
 
-            if ($selector.length) {
+            if ($selector && $selector.length) {
 
                 // Remove all menu instances
                 if (o.animateHideEnabled && !hideAll) {
@@ -1192,12 +1192,14 @@
         },
 
         _removeOldPopups: function () {
+            var self = this;
             $('.popup-balloon').each(function () {
                 var $controller = $(this).data('controller');
                 if ($controller.length) {
-                    $controller.data("popbox", null);
+                    $controller.removeData("popbox");
                 }
                 $(this).remove();
+                self.visible = false;
             });
         }
 
