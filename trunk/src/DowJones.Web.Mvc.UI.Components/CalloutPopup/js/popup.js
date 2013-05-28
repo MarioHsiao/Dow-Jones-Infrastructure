@@ -41,7 +41,7 @@ $.extend(DJ.$dj, {
     },
 
     isCalloutVisible: function () {
-        return ($(this.selector.ele).popupBalloon("isVisible") == true);
+        return $('.popup-balloon:last').is(':visible') == true;
     },
 
     setCalloutHeight: function (height) {
