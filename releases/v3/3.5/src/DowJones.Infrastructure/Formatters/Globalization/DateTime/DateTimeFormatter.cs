@@ -1393,7 +1393,7 @@ namespace DowJones.Formatters.Globalization.DateTime
             return temp.ToString(_regionalCulture.DayMonthPattern, _cultureInfo);
         }
 
-        public string FormatMMDDYY(System.DateTime dt, bool usePreference)
+        public string FormatMMDDYYYY(System.DateTime dt, bool usePreference)
         {
             var temp = ConvertToUtc(dt);
             if (TimeZoneBuilder.ConvertToLocalTime && usePreference)
