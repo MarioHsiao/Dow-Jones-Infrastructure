@@ -1,0 +1,212 @@
+/*
+
+	-- -- -- -- -- -- --
+	Description: Popup Content & Framework Rules
+	Version: 0.1
+	Last Update: 1/5/2011
+	Authors: Ryan Schoch, Blago Dachev
+	Company: Dow Jones & Company Inc.
+	Copyright 2010 Dow Jones & Company Inc.
+	
+	Dependencies
+	 - css/reset.css
+	 - css/lib/modules.css
+	 - css/dashboard.article-group.css
+	 - css/dashboard.controls.css
+	-- -- -- -- -- -- --
+	
+*/
+
+/* General Popup Content Rules
+----------------------------------------------------------------------------------------------------*/
+
+#popup-wrap {
+	display: none;
+}
+
+.popup-header-wrap {
+	margin-bottom: 10px;
+}
+
+.popup-news-event-wrap {
+	height: auto;
+}
+
+.popup-news-event-heading {
+	width: 100%;
+	display: block;
+	border-bottom: 1px solid #CCCCCC;
+	margin-bottom: 5px;
+}
+
+.popup-news-event-heading, .popup-person-job-title {
+	font-weight: bold;
+	font-size: 77%;
+	color: #999999;
+	display: inline-block;
+	text-transform: uppercase;
+}
+
+.popup-news-event li a {
+	color: #2F90B3;
+    font-size: 131%;
+    font-weight: bold;
+}
+
+.popup-article-list {
+	margin-top: 15px;
+}
+
+.popup-article-source {
+	text-transform: uppercase;
+}
+
+.popup-article-meta {
+	font-size: 77%;
+	color: #000000;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+
+/* Trend Popup Content Rules
+----------------------------------------------------------------------------------------------------*/
+
+.popup-trend-content-title {
+	color: #000000;
+	font-size: 116%;
+	font-weight: bold;
+}
+
+.popup-trend-status {
+	color: #000000;
+	font-size: 77%;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.popup-trend-icon {
+	width: 31px;
+	height: 31px;
+	float: left;
+	background-image: url(i/icon_trend-arrows.png);
+	margin-right: 10px;
+}
+
+.ie6 .popup-trend-icon {
+	background-image: url(i/ie6/icon_trend-arrows.gif);
+}
+
+.popup-trend-icon-down {
+	background-position: 0 -50px;
+}
+
+.popup-trend-icon-up {
+	background-position: 0 0;
+}
+
+
+/* Person Popup Content Rules
+----------------------------------------------------------------------------------------------------*/
+
+.popup-person-details-box {
+	width: 295px;
+	float: right;
+}
+
+.popup-profile-img {
+	width: 44px;
+	height: 44px;
+	float: left;
+	margin: 15px 10px 0 0;
+}
+
+.popup-person-company-name a {
+	color: #2F90B3;
+	font-size: 116%;
+	font-weight: bold;
+}
+
+.popup-person-address {
+	font-size: 93%;
+}
+
+
+/* Subject Popup Content Rules
+----------------------------------------------------------------------------------------------------*/
+
+.popup-subject-related-companies {
+	line-height: 25px;
+	margin: 5px 0 0 10px;
+}
+
+.popup-subject-related-companies li a {
+	color: #2F90B3;
+    font-size: 116%;
+    font-weight: bold;
+}
+
+
+/* Keyword Popup Content Rules
+----------------------------------------------------------------------------------------------------*/
+
+.popup-keyword-heading {
+	color: #000000;
+    font-size: 131%;
+    font-weight: bold;
+	margin-bottom: 15px;
+}
+
+.popup-keyword-indicator-data-box {
+	float: left;
+	padding: 5px 0 0 10px;
+}
+
+.popup-keyword-indicator-data {
+	font-size: 100%;
+	font-weight: bold;
+	color: #000000;
+	display: block;
+}
+
+.popup-keyword-indicator-data-btm {
+	margin-top: 7px;
+}
+
+.popup-keyword-indicator-bar-box {
+	width: 190px;
+	height: 41px;
+	border-left: 1px solid #CCCCCC;
+	float: right;
+	padding: 5px 0 0 1px;
+}
+
+.popup-keyword-indicator-bar-solid {
+	width: 130px;
+	height: 18px;
+	background-color: #4b9dc8;
+}
+
+.popup-keyword-indicator-bar-crosshatch {
+	width: 70px;
+	height: 18px;
+	background-image: url(../images/bar-graph-diagonal.png);
+	margin-top: 5px;
+}
+
+
+/* Author Popup Content Rules
+----------------------------------------------------------------------------------------------------*/
+
+.popup-author-publication-list li a {
+	color: #2F90B3;
+	font-size: 116%;
+	font-weight: bold;
+}
+
+.popup-author-contact-details {
+	font-weight: bold;
+	font-size: 77%;
+	color: #999999;
+	display: inline-block;
+}

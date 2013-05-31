@@ -1,0 +1,19 @@
+﻿@{
+
+   
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+
+    @Html.DJ().ScriptRegistry().RenderHead()
+    @Html.DJ().StylesheetRegistry().RenderHead()
+</head>
+<body>
+    @RenderBody()
+           
+    @Html.DJ().StylesheetRegistry().Render()
+    @Html.DJ().ScriptRegistry().Render()
+</body>
+</html>

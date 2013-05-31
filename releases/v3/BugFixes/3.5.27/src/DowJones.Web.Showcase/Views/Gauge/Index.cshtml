@@ -1,0 +1,29 @@
+﻿@model GaugeViewModel
+@{
+    Layout = "~/Views/Shared/_SignalR.cshtml";
+    ViewBag.Title = "Gauge";
+    Html.DJ().StylesheetRegistry()
+            .Include("~/styles/css/stockkiosk.css");
+}
+
+<div id="speedometer">
+    <h3>Speedometer</h3>
+    <div class="top">@Html.DJ().Render( Model.Speedometer, new { id = "speedometer"} )</div>
+</div>
+<input id="speedometerUpdateVal" type="text" value="@Model.Speedometer.Data"><button onclick="updateData()" value="">Update Speedometer</button>
+
+
+<div id="meter">
+    <h3>Meter</h3>
+    <div class="top">@Html.DJ().Render( Model.Meter, new { id = "meter"} )</div>
+</div>
+
+
+
+<script type="text/javascript">
+    
+    function updateData() {
+        DJ.jQuery('#speedometer').findComponent(DJ.UI.Gauge).setData(parseInt(DJ.jQuery('#speedometerUpdateVal').val()));
+    }
+
+</script>

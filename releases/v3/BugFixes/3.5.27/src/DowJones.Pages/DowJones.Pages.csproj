@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{60BFCFAB-61ED-4AB5-9803-D8AAAF1184E4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DowJones.Pages</RootNamespace>
+    <AssemblyName>DowJones.Pages</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\src\</SolutionDir>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="factiva.gateway.messages, Version=7.5.0.130, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.130\lib\factiva.gateway.messages.dll</HintPath>
+    </Reference>
+    <Reference Include="FactivaGateway, Version=1.6.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.130\lib\FactivaGateway.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.FCMLib">
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.130\lib\Interop.FCMLib.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.1.2.99\lib\2.0\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.4.5.10\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.2.2.1.4\lib\net40-Full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\SolutionInfo.cs">
+      <Link>Properties\SolutionInfo.cs</Link>
+    </Compile>
+    <Compile Include="Caching\Properties\Settings.cs" />
+    <Compile Include="Common\AbstractShareAssets.cs" />
+    <Compile Include="Common\AlertShareAssets.cs" />
+    <Compile Include="Common\AssetType.cs" />
+    <Compile Include="Common\ChartItemShareAssets.cs" />
+    <Compile Include="Common\IShareAssets.cs" />
+    <Compile Include="Common\SavedSearchShareAssets.cs" />
+    <Compile Include="Common\SortBy.cs" />
+    <Compile Include="Common\SortOrder.cs" />
+    <Compile Include="Mappers\AssetTypeMapper.cs" />
+    <Compile Include="Common\FilterType.cs" />
+    <Compile Include="Mappers\FilterTypeMapper.cs" />
+    <Compile Include="Common\QueryFilterSet.cs" />
+    <Compile Include="Common\EntityType.cs" />
+    <Compile Include="Common\QueryFilter.cs" />
+    <Compile Include="Common\QueryFilters.cs" />
+    <Compile Include="Mappers\GatewayModuleMapper.cs" />
+    <Compile Include="Mappers\PageMapperBase.cs" />
+    <Compile Include="Mappers\PageListInfoMapper.cs" />
+    <Compile Include="Mappers\PublishStatusScopeAccessControlScopeMapper.cs" />
+    <Compile Include="Mappers\ShareScopeTypeMapper.cs" />
+    <Compile Include="Mappers\ShareTypeMapper.cs" />
+    <Compile Include="Modules\Caching\AbstractModuleCacheKey.cs" />
+    <Compile Include="Common\AbstractTag.cs" />
+    <Compile Include="Common\AccessQualifier.cs" />
+    <Compile Include="Common\ShareType.cs" />
+    <Compile Include="Common\CacheState.cs" />
+    <Compile Include="Common\CategoryInfo.cs" />
+    <Compile Include="Common\DeduplicationType.cs" />
+    <Compile Include="Common\DiscoveryDataResult.cs" />
+    <Compile Include="Common\FeedType.cs" />
+    <Compile Include="Common\IAudit.cs" />
+    <Compile Include="Common\IRTCodeAttribute.cs" />
+    <Compile Include="Common\MetaData.cs" />
+    <Compile Include="Common\MetaDataType.cs" />
+    <Compile Include="Mappers\AccessQualifierMapper.cs" />
+    <Compile Include="Caching\PageRef.cs" />
+    <Compile Include="Caching\PageListCacheKey.cs" />
+    <Compile Include="Modules\ScriptModule.cs" />
+    <Compile Include="Modules\Templates\IScriptModuleTemplateManager.cs" />
+    <Compile Include="Modules\Templates\ScriptModuleTemplate.cs" />
+    <Compile Include="Modules\Templates\ScriptModuleTemplateOption.cs" />
+    <Compile Include="Pages\Adapters\PageAssetManagerPageSubscriptionManagerAdapter.cs" />
+    <Compile Include="Pages\Adapters\PageAssetsRepositoryPageRepositoryAdapter.cs" />
+    <Compile Include="Pages\IPageRepository.cs" />
+    <Compile Include="Pages\IPageSubscriptionManager.cs" />
+    <Compile Include="Pages\Layout\ZoneLayout.cs" />
+    <Compile Include="Pages\PageAssetsManager.cs" />
+    <Compile Include="Pages\PageAssetsManagerFactory.cs" />
+    <Compile Include="Pages\PageDefaultBy.cs" />
+    <Compile Include="Pages\PageCollection.cs" />
+    <Compile Include="Charting\AxisLabel.cs" />
+    <Compile Include="Charting\Frequency.cs" />
+    <Compile Include="Charting\NewsLink.cs" />
+    <Compile Include="Charting\PricePoint.cs" />
+    <Compile Include="Charting\RegionType.cs" />
+    <Compile Include="Charting\Session.cs" />
+    <Compile Include="Charting\SessionInfo.cs" />
+    <Compile Include="Charting\SessionUnit.cs" />
+    <Compile Include="Charting\TimePeriod.cs" />
+    <Compile Include="Charting\TradingRegion.cs" />
+    <Compile Include="Charting\XAxisDataMembers.cs" />
+    <Compile Include="Charting\XAxisLabelInfo.cs" />
+    <Compile Include="Executive\Executive.cs" />
+    <Compile Include="Executive\ExecutiveCollection.cs" />
+    <Compile Include="Pages\Page.cs" />
+    <Compile Include="Pages\Layout\PageLayout.cs" />
+    <Compile Include="Pages\PageMetadataUtility.cs" />
+    <Compile Include="Pages\PagePosition.cs" />
+    <Compile Include="Modules\Module.cs" />
+    <Compile Include="Multimedia\MediaContent.cs" />
+    <Compile Include="Multimedia\MediaContents.cs" />
+    <Compile Include="Multimedia\MustPlayFromSource.cs" />
+    <Compile Include="Modules\ModuleIdByMetadata.cs" />
+    <Compile Include="Modules\ModuleProperties.cs" />
+    <Compile Include="Modules\ModuleState.cs" />
+    <Compile Include="Modules\ModuleType.cs" />
+    <Compile Include="Pages\IPageAssetsManager.cs" />
+    <Compile Include="Pages\IPageAssetsManagerFactory.cs" />
+    <Compile Include="Common\Property.cs" />
+    <Compile Include="Pages\PageReference.cs" />
+    <Compile Include="Pages\QueryFilterCodesUtility.cs" />
+    <Compile Include="Pages\ShareScope.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Common\PublishStatusScope.cs" />
+    <Compile Include="Common\Query.cs" />
+    <Compile Include="Common\QueryCollection.cs" />
+    <Compile Include="Common\QueryEntity.cs" />
+    <Compile Include="Common\ResultSortOrder.cs" />
+    <Compile Include="Common\SearchMode.cs" />
+    <Compile Include="Common\Tag.cs" />
+    <Compile Include="Common\TagCollection.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.cs">
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DowJones.Infrastructure\DowJones.Infrastructure.csproj">
+      <Project>{095DE252-E183-4AE6-824A-B4504AE737C1}</Project>
+      <Name>DowJones.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="DowJones.Pages.nuspec" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>DowJones.Pages</CustomToolNamespace>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
