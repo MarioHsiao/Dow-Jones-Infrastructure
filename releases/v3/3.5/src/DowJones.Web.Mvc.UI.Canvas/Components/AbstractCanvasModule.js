@@ -236,8 +236,8 @@ DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
     },
 
     showContentArea: function () {
-        this.hideEditArea();
         this.hideLoadingArea();
+        this.hideEditArea();
         this.$contentArea.show.apply(this.$contentArea, arguments);
     },
     
@@ -338,9 +338,9 @@ DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
     },
 
     showLoadingArea: function () {
-        this.$loadingArea.show();
         this.hideEditArea();
         this.hideMessageArea();
+        this.$loadingArea.show();
     },
 
 
