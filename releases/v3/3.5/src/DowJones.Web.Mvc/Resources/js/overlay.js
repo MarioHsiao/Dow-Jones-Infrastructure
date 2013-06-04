@@ -109,7 +109,7 @@ $.fn.overlay._position = function (selector) {
 
     $('#' + options.overlayIds.overlay).css(css);
 
-    if (options.background && $('#' + options.overlayIds.background).length > 0) {
+    if (options.background) {
         $('#' + options.overlayIds[options.bgcolor == 'transparent' ? "tBackground" : "background"]).css({ 'height': ($(document).height() - 1), 'width': $(window).width() });
     }
 };
