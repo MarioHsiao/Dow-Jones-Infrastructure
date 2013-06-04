@@ -18,7 +18,12 @@ $.fn.overlay = function (options) {
     options.overlayIds = overlayIds;
 
     if (options.background === true) {
-        if ($('#' + overlayIds.background).length === 0) {
+        if (options.bgcolor == 'transparent') {
+            if ($('#' + overlayIds.tBackground).length === 0) {
+                $(document.body).append($('<div id="' + overlayIds.tBackground + '"></div>').css({ 'background': '#fff', 'opacity': '0', 'position': 'absolute', 'top': '0px', 'left': '0px', 'display': 'none' }));
+            }
+        }
+        else if ($('#' + overlayIds.background).length === 0) {
             $(document.body).append('<div id="' + overlayIds.background + '"></div>');
             $('#' + overlayIds.background).css({ 'position': 'absolute', 'top': '0px', 'left': '0px', 'display': 'none' });
         }
@@ -59,6 +64,7 @@ $.fn.overlay._getIds = function (selector) {
         }
 
         ids.background = '__djBackground';
+        ids.tBackground = '__djTBackground';
         ids.overlay = selectorId + '__djoverlay';
         return ids;
     }
@@ -104,7 +110,7 @@ $.fn.overlay._position = function (selector) {
     $('#' + options.overlayIds.overlay).css(css);
 
     if (options.background && $('#' + options.overlayIds.background).length > 0) {
-        $('#' + options.overlayIds.background).css({ 'height': ($(document).height() - 1), 'width': $(window).width() });
+        $('#' + options.overlayIds[options.bgcolor == 'transparent' ? "tBackground" : "background"]).css({ 'height': ($(document).height() - 1), 'width': $(window).width() });
     }
 };
 $.fn.overlay.hide = function (selector, callback) {
@@ -122,12 +128,14 @@ $.fn.overlay.hide = function (selector, callback) {
     });
 
     $.fn.overlay._activeOverlays = $.grep($.fn.overlay._activeOverlays, function (val) { return val !== selector; });
+    if (options.bgcolor == 'transparent') {
+        $('#' + options.overlayIds.tBackground).hide();
+    }
     if ($.fn.overlay._activeOverlays.length > 0) {
         var prevOverlay = $.fn.overlay._activeOverlays[$.fn.overlay._activeOverlays.length - 1];
         $().overlay.show(prevOverlay, true);
     }
     else {
-
         if ($('#' + options.overlayIds.background).length > 0) {
             $('#' + options.overlayIds.background).fadeOut(options.fadeOutTime, function () {
                 //Show all the hidden select dropdowns
@@ -153,14 +161,7 @@ $.fn.overlay.show = function (selector, retainBackground) {
     var options = $(selector).data("overlayoptions");
 
     if (options.background) {
-        if ($.fn.overlay._activeOverlays.length > 0) {
-            if (options.bgcolor !== 'transparent') {
-                $('#' + options.overlayIds.background).css('z-index', ++$dj.maxZIndex);
-            }
-        }
-        else {
-            $('#' + options.overlayIds.background).css('z-index', ++$dj.maxZIndex);
-        }
+        $('#' + options.overlayIds[options.bgcolor == 'transparent' ? "tBackground" : "background"]).css('z-index', ++$dj.maxZIndex);
     }
 
     $('#' + options.overlayIds.overlay).css('z-index', ++$dj.maxZIndex);
@@ -171,34 +172,16 @@ $.fn.overlay.show = function (selector, retainBackground) {
         $('#' + options.overlayIds.overlay).find("select").css("visibility", "visible");
     }
 
-    if (!retainBackground) {
-        if (options.background) {
-            if ($.fn.overlay._activeOverlays.length > 0) {
-                if (options.bgcolor !== 'transparent') {
-                    $('#' + options.overlayIds.background).css({ 'background': options.bgcolor, 'opacity': '0.5' }).fadeIn(options.fadeInTime);
-                }
-            }
-            else {
-                if (options.bgcolor !== 'transparent') {
-                    $('#' + options.overlayIds.background).css({ 'background': options.bgcolor, 'opacity': '0.5' }).fadeIn(options.fadeInTime);
-                }
-                else {
-                    $('#' + options.overlayIds.background).css({ 'background': '#fff', 'opacity': '0', 'display': 'block' });
-                }
-            }
+    if (options.background) {
+        if (options.bgcolor == 'transparent') {
+            $('#' + options.overlayIds.tBackground).show();
         }
-
-        $('#' + options.overlayIds.overlay).fadeIn(options.fadeInTime, options.onShow);
+        else {
+            $('#' + options.overlayIds.background).css({ 'background': options.bgcolor, 'opacity': '0.5' }).fadeIn(options.fadeInTime);
+        }
     }
-    else {
-        if (options.background) {
-            if (options.bgcolor !== 'transparent') {
-                $('#' + options.overlayIds.background).css({ 'background': options.bgcolor, 'opacity': '0.5' }).fadeIn(options.fadeInTime);
-            }
-            else {
-                $('#' + options.overlayIds.background).css({ 'background': '#fff', 'opacity': '0', 'display': 'block' });
-            }
-        }
+    if (!retainBackground) {
+        $('#' + options.overlayIds.overlay).fadeIn(options.fadeInTime, options.onShow);
     }
 
     $.fn.overlay._position(selector);
@@ -229,7 +212,7 @@ $.fn.overlay.show = function (selector, retainBackground) {
     }
 
     if ($.fn.overlay._activeOverlays.length === 0 && !options.background && $('#' + options.overlayIds.background).length > 0) {
-        $('#' + options.overlayIds.background).hide();
+        $('#' + options.overlayIds[options.bgcolor == 'transparent' ? "tBackground" : "background"]).hide();
     }
 
     $('#' + options.overlayIds.overlay).focus();
