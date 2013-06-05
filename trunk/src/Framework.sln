@@ -51,11 +51,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Web.Mvc.UI.Canvas.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Web.Mvc.UI.Canvas.RavenDb.Tests", "DowJones.Web.Mvc.UI.Canvas.RavenDb.Tests\DowJones.Web.Mvc.UI.Canvas.RavenDb.Tests.csproj", "{C1045E7A-593D-4615-9854-EA90074DA51C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D98821D6-DE94-45DA-8096-34252A98523E}"
+	ProjectSection(SolutionItems) = preProject
+		Framework2.vsmdi = Framework2.vsmdi
+		Local.testsettings = Local.testsettings
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
 		SccNumberOfProjects = 19
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = http://sbknwstfs1:8080/tfs/defaultcollection
+		SccTeamFoundationServer = http://tfs2012.dowjones.net:8080/tfs/defaultcollection
 		SccLocalPath0 = .
 		SccProjectUniqueName1 = DowJones.Web.Mvc.Diagnostics\\DowJones.Web.Mvc.Diagnostics.csproj
 		SccProjectTopLevelParentUniqueName1 = Framework.sln
@@ -129,6 +135,9 @@ Global
 		SccProjectTopLevelParentUniqueName18 = Framework.sln
 		SccProjectName18 = DowJones.Web.Mvc.UI.Canvas.RavenDb
 		SccLocalPath18 = DowJones.Web.Mvc.UI.Canvas.RavenDb
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = Framework2.vsmdi
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Control n Showcase|Any CPU = Control n Showcase|Any CPU
