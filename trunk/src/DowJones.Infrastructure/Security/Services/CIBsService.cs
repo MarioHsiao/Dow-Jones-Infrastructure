@@ -94,25 +94,33 @@ namespace DowJones.Security.Services
         /// <c>true</c> if this instance has access to other users usage reports; otherwise, <c>false</c>.
         /// </value>
         public bool HasAccessToOtherUsersUsageReports { get; private set; }
+
+        public bool IsReaderXUser { get; private set; }
         
         #endregion
 
         internal override sealed void Initialize()
         {
             if (_matrixCibsService != null)
+            {
+                if (_matrixCibsService.ac1 != null &&
+                    _matrixCibsService.ac1.Count > 0)
                 {
-                    if (_matrixCibsService.ac1 != null &&
-                        _matrixCibsService.ac1.Count > 0)
-                    {
-                        HasAccessToUsageReports = !_matrixCibsService.ac1.ContainsAtAnyIndex("N");
-                    }
-
-                    if (_matrixCibsService.ac2 != null &&
-                        _matrixCibsService.ac2.Count > 0)
-                    {
-                        HasAccessToOtherUsersUsageReports = _matrixCibsService.ac2.ContainsAtAnyIndex("Y");
-                    }
+                    HasAccessToUsageReports = !_matrixCibsService.ac1.ContainsAtAnyIndex("N");
                 }
+
+                if (_matrixCibsService.ac2 != null &&
+                    _matrixCibsService.ac2.Count > 0)
+                {
+                    HasAccessToOtherUsersUsageReports = _matrixCibsService.ac2.ContainsAtAnyIndex("Y");
+                }
+
+                if (_matrixCibsService.ac3 != null && _matrixCibsService.ac3.Count > 0)
+                {
+                    IsReaderXUser = _matrixCibsService.ac3.ContainsAtAnyIndex("RM")
+                        || _matrixCibsService.ac3.ContainsAtAnyIndex("XM");
+                }
+            }
         }
     }
 }
