@@ -21,6 +21,6 @@ namespace DowJones.Security.Interfaces
         /// <summary>
         /// Gets a values indicating whether the current user is limited in terms of reading articles or not.
         /// </summary>
-        bool IsReaderXUser { get; }
+        bool IsUserMetered { get; }
     }
 }

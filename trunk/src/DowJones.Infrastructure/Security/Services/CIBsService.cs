@@ -95,7 +95,7 @@ namespace DowJones.Security.Services
         /// </value>
         public bool HasAccessToOtherUsersUsageReports { get; private set; }
 
-        public bool IsReaderXUser { get; private set; }
+        public bool IsUserMetered { get; private set; }
         
         #endregion
 
@@ -117,7 +117,7 @@ namespace DowJones.Security.Services
 
                 if (_matrixCibsService.ac3 != null && _matrixCibsService.ac3.Count > 0)
                 {
-                    IsReaderXUser = _matrixCibsService.ac3.ContainsAtAnyIndex("RM")
+                    IsUserMetered = _matrixCibsService.ac3.ContainsAtAnyIndex("RM")
                         || _matrixCibsService.ac3.ContainsAtAnyIndex("XM");
                 }
             }

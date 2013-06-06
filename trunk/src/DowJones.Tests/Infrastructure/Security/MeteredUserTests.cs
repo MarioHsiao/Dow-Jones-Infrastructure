@@ -10,10 +10,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace DowJones.Infrastructure.Security
 {
     [TestClass]
-    public class ReaderXTest
+    public class MeteredUserTests
     {
         private ControlData m_ControlData = new ControlData { UserID = "JimS", UserPassword = "password", ProductID = "16" };
-        // block0441 & User0026: do not pass
         private IPreferences m_preferences = new DowJones.Preferences.Preferences("en");
         
         [TestMethod]
@@ -49,7 +48,7 @@ namespace DowJones.Infrastructure.Security
             }
 
             EntitlementsPrinciple entitlementsPrinciple = new EntitlementsPrinciple(getUserAuthorizationsResponse);
-            Assert.IsTrue(entitlementsPrinciple.CoreServices.CIBsService.IsReaderXUser, "IsReaderXUser should be true");
+            Assert.IsTrue(entitlementsPrinciple.CoreServices.CIBsService.IsUserMetered, "IsUserMetered should be true");
         }
 
         [TestMethod]
@@ -86,7 +85,7 @@ namespace DowJones.Infrastructure.Security
             }
 
             EntitlementsPrinciple entitlementsPrinciple = new EntitlementsPrinciple(getUserAuthorizationsResponse);
-            Assert.IsFalse(entitlementsPrinciple.CoreServices.CIBsService.IsReaderXUser, "IsReaderXUser should be false");
+            Assert.IsFalse(entitlementsPrinciple.CoreServices.CIBsService.IsUserMetered, "IsUserMetered should be false");
         }
     }
 }

@@ -148,7 +148,7 @@
     <Compile Include="Infrastructure\Search\SearchManagerTests.cs" />
     <Compile Include="Infrastructure\Security\CIBSServiceTests.cs" />
     <Compile Include="Infrastructure\Security\EntitlementsTests.cs" />
-    <Compile Include="Infrastructure\Security\ReaderXTest.cs" />
+    <Compile Include="Infrastructure\Security\MeteredUserTests.cs" />
     <Compile Include="Infrastructure\Session\ControlDataManagerTests.cs" />
     <Compile Include="Infrastructure\Tokens\TokenRegistryTests.cs" />
     <Compile Include="Infrastructure\Web\ClientResources\EmbeddedClientResourceTests.cs" />
