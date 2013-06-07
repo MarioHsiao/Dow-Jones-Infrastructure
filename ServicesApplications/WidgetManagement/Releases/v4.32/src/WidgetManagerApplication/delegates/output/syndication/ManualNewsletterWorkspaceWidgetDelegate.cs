@@ -514,10 +514,13 @@ namespace EMG.widgets.ui.delegates.output.syndication
                                      AccessionNumbers = GetAccessionNumbers(manualWorkspace).ToArray(), 
                                      SortBy = SortBy.LIFO
                                  };
-            requestDTO.SearchCollectionCollection.Add(SearchCollection.Internal);
+           /* requestDTO.SearchCollectionCollection.Add(SearchCollection.Internal);
             requestDTO.SearchCollectionCollection.Add(SearchCollection.CustomerDoc);
             requestDTO.SearchCollectionCollection.Add(SearchCollection.Blogs);
-            requestDTO.SearchCollectionCollection.Add(SearchCollection.Boards);
+            requestDTO.SearchCollectionCollection.Add(SearchCollection.Boards);*/
+
+            requestDTO.SearchCollectionCollection.Clear();
+            requestDTO.SearchCollectionCollection.AddRange(Enum.GetValues(typeof(SearchCollection)).Cast<SearchCollection>()); 
 
             if (requestDTO.IsValid())
             {

@@ -39,7 +39,7 @@
       <Value Profile="(Default)">http://insight.int.factiva.com/pages/dashboard.aspx</Value>
     </Setting>
     <Setting Name="BaseUrl_ManualNewsletterWorkspaceWidget" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">http://nevada.dev.us.factiva.com/web32/newsletter/default.aspx?sa_from={0}&amp;napc=2&amp;doneURL={1}</Value>
+      <Value Profile="(Default)">http://montana.dev.us.factiva.com/nlbuilder/du/?sa_from={0}&amp;napc=2&amp;doneURL={1}</Value>
     </Setting>
     <Setting Name="BaseUrl_AutomaticWorkspaceWidget" Type="System.String" Scope="Application">
       <Value Profile="(Default)">http://nevada.dev.us.factiva.com/web32/workspace/default.aspx?sa_from={0}&amp;napc={1}&amp;doneURL={2}</Value>

@@ -27,7 +27,7 @@ namespace EMG.widgets.ui.controls.gallery
         /// <returns></returns>
         private static Control GetTitleControl()
         {
-            HtmlGenericControl designTitle = new HtmlGenericControl("div");
+            var designTitle = new HtmlGenericControl("div");
             designTitle.Attributes.Add("class", "galleryItemTitle");
             designTitle.InnerText = ResourceText.GetInstance.GetString("newsletterWidget");
             return designTitle;
@@ -39,7 +39,7 @@ namespace EMG.widgets.ui.controls.gallery
         /// <returns></returns>
         private static Control GetDescription()
         {
-            HtmlGenericControl designTitle = new HtmlGenericControl("div");
+            var designTitle = new HtmlGenericControl("div");
             designTitle.Attributes.Add("class", "galleryItemDescription");
             designTitle.InnerText = ResourceText.GetInstance.GetString("newsletterWidgetDescription");
             return designTitle;
@@ -51,7 +51,7 @@ namespace EMG.widgets.ui.controls.gallery
         /// <returns></returns>
         private Control GetButton()
         {
-            string hRef = "javascript:void(0)";
+            var hRef = "javascript:void(0)";
             if (m_WidgetManagementDTO.IsValid())
             {
                 if (!string.IsNullOrEmpty(m_WidgetManagementDTO.doneUrl) && !string.IsNullOrEmpty(m_WidgetManagementDTO.doneUrl.Trim()))
@@ -60,7 +60,7 @@ namespace EMG.widgets.ui.controls.gallery
                 }
             }
 
-            WidgetLinkButtonControl control = new WidgetLinkButtonControl();
+            var control = new WidgetLinkButtonControl();
             control.Attributes.Add("class", "galleryItemButton");
             control.HRef = hRef;
             control.AltTag = string.Format("{0}", ResourceText.GetInstance.GetString("publishNewsletter"));
@@ -73,11 +73,13 @@ namespace EMG.widgets.ui.controls.gallery
         /// <returns></returns>
         private static Control GetImage()
         {
-            HtmlGenericControl imageContainer = new HtmlGenericControl("div");
-            imageContainer.InnerHtml = "&nbsp;";
+            var imageContainer = new HtmlGenericControl("div")
+                                     {
+                                         InnerHtml = "&nbsp;"
+                                     };
             imageContainer.Attributes.Add("class", "galleryItemImageContainer");
 
-            HtmlImage imageControl = new HtmlImage();
+            var imageControl = new HtmlImage();
             imageControl.Attributes.Add("class", "galleryItemImage");
             imageControl.Src = "../img/widgets/newsletter_widget_samp.png";
 
