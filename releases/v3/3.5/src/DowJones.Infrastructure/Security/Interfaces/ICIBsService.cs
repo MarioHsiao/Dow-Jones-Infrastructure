@@ -17,5 +17,10 @@ namespace DowJones.Security.Interfaces
         /// <c>true</c> if this instance has access to other users usage reports; otherwise, <c>false</c>.
         /// </value>
         bool HasAccessToOtherUsersUsageReports { get; }
+
+        /// <summary>
+        /// Gets a values indicating whether the current user is limited in terms of reading articles or not.
+        /// </summary>
+        bool IsUserMetered { get; }
     }
 }
