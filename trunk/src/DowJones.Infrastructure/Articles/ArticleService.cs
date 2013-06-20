@@ -57,9 +57,9 @@ namespace DowJones.Articles
             }
 
             var response = GetArticles(articleRequest);
-            if (response != null && response.count > 0)
+            if (response != null && response.articleResponseSet != null && response.articleResponseSet.count > 0)
             {
-                return response.article.FirstOrDefault();
+                return response.articleResponseSet.article.FirstOrDefault();
             }
             return null;
         }
@@ -79,7 +79,7 @@ namespace DowJones.Articles
             return Mapper.Map<Article>(response.DocumentResultSet.DocumentCollection.First());
         }
 
-        public ArticleResponseSet GetArticles(GetArticleRequest request)
+        public GetArticleWithLimitResponse GetArticles(GetArticleRequest request)
         {
             return GetArticlesWithLimit(request);
         }
@@ -181,10 +181,10 @@ namespace DowJones.Articles
                                 canonicalSearchString = request.CanonicalSearchString
                             };
 
-                ArticleResponseSet ar = GetArticles(a);
-                if (ar != null && ar.article != null)
+                var ar = GetArticles(a);
+                if (ar != null && ar.articleResponseSet != null && ar.articleResponseSet.article != null)
                 {
-                    response.Articles = ar.article;
+                    response.Articles = ar.articleResponseSet.article;
                 }
             }
             #endregion
@@ -304,7 +304,7 @@ namespace DowJones.Articles
             return Process<GetArticleWithLimitResponse>(request);
         }
 
-        private ArticleResponseSet GetArticlesWithLimit(GetArticleRequest request)
+        private GetArticleWithLimitResponse GetArticlesWithLimit(GetArticleRequest request)
         {
             var limitRequest = Map(request);
             var response = GetArticlesWithLimit(limitRequest);
@@ -312,6 +312,7 @@ namespace DowJones.Articles
             {
                 return null;
             }
+
             var continuationContext = response.continuationContext;
                    
             var articles = new List<Article>();
@@ -331,7 +332,8 @@ namespace DowJones.Articles
                 count = articles.Count,
                 article = articles.ToArray()
             };
-            return response.articleResponseSet;
+
+            return response;
         }
 
         private static GetArticleWithLimitRequest Map(GetArticleRequest request)
@@ -344,7 +346,8 @@ namespace DowJones.Articles
                 progressiveDisclosure = request.progressiveDisclosure,
                 responseDataSet = request.responseDataSet,
                 segmentIDs = request.segmentIDs,
-                usageAggregator = request.usageAggregator
+                usageAggregator = request.usageAggregator,
+                returnMeteringInfo = request.returnMeteringInfo
             };
             return limitRequest;
         }
