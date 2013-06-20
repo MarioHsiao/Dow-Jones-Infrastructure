@@ -439,9 +439,8 @@ namespace DowJones.Web.Showcase.Controllers
         public ActionResult Articles(string ans)
         {
             string[] ids = ans.Split(',');
-
             var articleResponse = _articleService.GetArticles(new GetArticleRequest { accessionNumbers = ids });
-            var articlesModel = new ArticlesModel(articleResponse, _articleConversionManager)
+            var articlesModel = new ArticlesModel(articleResponse.articleResponseSet, _articleConversionManager)
             {
                 ShowPostProcessing = false,
                 ShowSocialButtons = false,

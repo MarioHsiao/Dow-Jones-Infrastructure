@@ -12,7 +12,7 @@ namespace DowJones.Articles
 
         string GetMultiMediaArticleUrl(string accessionNumber);
 
-        ArticleResponseSet GetArticles(GetArticleRequest request);
+        GetArticleWithLimitResponse GetArticles(GetArticleRequest request);
 
         ArticleResponseSet GetArticles(MixedContentArticleRequest request);
 

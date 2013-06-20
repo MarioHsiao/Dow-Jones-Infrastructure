@@ -118,6 +118,8 @@ namespace DowJones.Web.Mvc.UI.Components.PortalArticle
 
 		public bool RenderWordCount { get { return Result.WordCount > 0 && !Result.Html.IsNullOrEmpty(); } }
 
+        public Factiva.Gateway.Messages.Archive.V2_0.MeteringInfo MeteringInfo { get; set; }
+
 		ITokenRegistry _tokenRegistry;
 		public PortalArticleModel(ITokenRegistry tokenRegistry)
 		{

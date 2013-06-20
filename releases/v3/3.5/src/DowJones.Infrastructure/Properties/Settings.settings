@@ -161,5 +161,8 @@
     <Setting Name="MAX_PARALLEL_TASKS_TO_CREATE_SYNDICATION_ITEMS" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">-1</Value>
     </Setting>
+    <Setting Name="DISABLE_METERING" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

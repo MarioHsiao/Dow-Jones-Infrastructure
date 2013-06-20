@@ -202,16 +202,16 @@ DJ.UI.NewsRadar = DJ.UI.Component.extend({
         return false;
     },
 
-    bindOnSuccess: function (response, params) {
+    bindOnSuccess: function (response) {
         //this.publish(this.events.dataReceived, response);
         var self = this;
         
-        if (!this.validateResponse(response)) {
+        if (!self.validateResponse(response)) {
             return;
         }
 
         // After parsing out the necessary data, this is the object we will use to render the widget..remove("highlightCurrent")
-        var FinalResults = {
+        var finalResults = {
             RadarCategories: [],
             RadarItems: []
         };
@@ -222,37 +222,37 @@ DJ.UI.NewsRadar = DJ.UI.Component.extend({
         for (var k in items) {
             var code = items[k].radarSearchQuery.searchString && items[k].radarSearchQuery.searchString;
             categoryName = items[k].radarSearchQuery.name;
-            FinalResults.RadarCategories.push({ fcode: code, name: categoryName });
+            finalResults.RadarCategories.push({ fcode: code, name: categoryName });
         }
 
         // Add the 'All News' category to the list
-        FinalResults.RadarCategories.push({ fcode: 'ALLNEWS', name: 'All News' });
+        finalResults.RadarCategories.push({ fcode: 'ALLNEWS', name: 'All News' });
 
         // Loop through each company and add the needed companies info into the FinalResults object 
         for (var p = 0; p < response.length; p++) {
             var company = response[p];
-            company.newsEntities = this.setNewsData(response[p]);
+            company.newsEntities = self.setNewsData(response[p]);
 
-            FinalResults.RadarItems.push(company);
+            finalResults.RadarItems.push(company);
         }
         
-        this.radar = FinalResults;
-        this.publish(this.events.dataTransformed, FinalResults);
-        this.renderCategories(FinalResults);
-        this.showErrors = false;
-        this.renderContent(this.radar.RadarItems);
+        self.radar = finalResults;
+        self.publish(self.events.dataTransformed, finalResults);
+        self.renderCategories(finalResults);
+        self.showErrors = false;
+        self.renderContent(self.radar.RadarItems);
         
         // update the window viewport (windowsize * 15) + (windowsize -1)
-        this._setScrollable();
-        var scrollSize = this.scrollSize;
-        var windowSize = this.options.windowSize || this.defaults.windowSize;
+        self._setScrollable();
+        var scrollSize = self.scrollSize;
+        var windowSize = self.options.windowSize || self.defaults.windowSize;
         
-        if (scrollSize > 0 && windowSize < FinalResults.RadarItems.length) {
-            $(".djWidgetContentList", this.$element).height((windowSize * this.defaults.chipHeight) + (windowSize - 1));
+        if (scrollSize > 0 && windowSize < finalResults.RadarItems.length) {
+            $(".djWidgetContentList", self.$element).height((windowSize * self.defaults.chipHeight) + (windowSize - 1));
         }
         else {
-            $(".djWidgetContentList", this.$element).height(((FinalResults.RadarItems.length) * this.defaults.chipHeight) + (FinalResults.RadarItems.length - 1));
-            $(".djActions", this.$element).hide();
+            $(".djWidgetContentList", self.$element).height(((finalResults.RadarItems.length) * self.defaults.chipHeight) + (finalResults.RadarItems.length - 1));
+            $(".djActions", self.$element).hide();
         }
         
     },
@@ -397,10 +397,9 @@ DJ.UI.NewsRadar = DJ.UI.Component.extend({
 
         var $items = $('.djWidgetItems', this.$element);
         var self = this;
-        var radarTemplate = self.templates.radar;
         var html = [];
         for (var i in data) {
-            html[html.length] = this.templates.success({ propName: i, item: data[i], f: { getTicker: self.getTicker} });
+            html[html.length] = self.templates.success({ propName: i, item: data[i], f: { getTicker: self.getTicker} });
         }
 
 
