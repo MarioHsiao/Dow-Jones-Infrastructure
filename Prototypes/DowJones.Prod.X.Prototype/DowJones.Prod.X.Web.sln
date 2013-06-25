@@ -1,0 +1,65 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Prod.X.Web", "DowJones.Prod.X.Web\DowJones.Prod.X.Web.csproj", "{A3EBC571-0A8A-4CE0-AF68-CD80156A36C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Prod.X.Web.Tests", "DowJones.Prod.X.Web.Tests\DowJones.Prod.X.Web.Tests.csproj", "{E3FF55C3-E592-4983-A929-3BC6577D9931}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Prod.X.Common", "DowJones.Prod.X.Common\DowJones.Prod.X.Common.csproj", "{7130546E-9B7D-4FF4-8D0A-AD90D4A0F414}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Prod.X.Components", "DowJones.Prod.X.Components\DowJones.Prod.X.Components.csproj", "{E9CD07D2-055D-42F7-994B-5B89F510EE60}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Prod.X.Models", "DowJones.Prod.X.Models\DowJones.Prod.X.Models.csproj", "{669CF0B6-16F0-41A9-B0D9-858DDB7FA7D3}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 6
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://tfs2012.dowjones.net:8080/tfs/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = DowJones.Prod.X.Web.Tests\\DowJones.Prod.X.Web.Tests.csproj
+		SccProjectName1 = DowJones.Prod.X.Web.Tests
+		SccLocalPath1 = DowJones.Prod.X.Web.Tests
+		SccProjectUniqueName2 = DowJones.Prod.X.Web\\DowJones.Prod.X.Web.csproj
+		SccProjectName2 = DowJones.Prod.X.Web
+		SccLocalPath2 = DowJones.Prod.X.Web
+		SccProjectUniqueName3 = DowJones.Prod.X.Common\\DowJones.Prod.X.Common.csproj
+		SccProjectName3 = DowJones.Prod.X.Common
+		SccLocalPath3 = DowJones.Prod.X.Common
+		SccProjectUniqueName4 = DowJones.Prod.X.Components\\DowJones.Prod.X.Components.csproj
+		SccProjectName4 = DowJones.Prod.X.Components
+		SccLocalPath4 = DowJones.Prod.X.Components
+		SccProjectUniqueName5 = DowJones.Prod.X.Models\\DowJones.Prod.X.Models.csproj
+		SccProjectName5 = DowJones.Prod.X.Models
+		SccLocalPath5 = DowJones.Prod.X.Models
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A3EBC571-0A8A-4CE0-AF68-CD80156A36C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3EBC571-0A8A-4CE0-AF68-CD80156A36C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3EBC571-0A8A-4CE0-AF68-CD80156A36C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3EBC571-0A8A-4CE0-AF68-CD80156A36C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3FF55C3-E592-4983-A929-3BC6577D9931}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3FF55C3-E592-4983-A929-3BC6577D9931}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3FF55C3-E592-4983-A929-3BC6577D9931}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3FF55C3-E592-4983-A929-3BC6577D9931}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7130546E-9B7D-4FF4-8D0A-AD90D4A0F414}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7130546E-9B7D-4FF4-8D0A-AD90D4A0F414}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7130546E-9B7D-4FF4-8D0A-AD90D4A0F414}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7130546E-9B7D-4FF4-8D0A-AD90D4A0F414}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9CD07D2-055D-42F7-994B-5B89F510EE60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9CD07D2-055D-42F7-994B-5B89F510EE60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9CD07D2-055D-42F7-994B-5B89F510EE60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9CD07D2-055D-42F7-994B-5B89F510EE60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{669CF0B6-16F0-41A9-B0D9-858DDB7FA7D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{669CF0B6-16F0-41A9-B0D9-858DDB7FA7D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{669CF0B6-16F0-41A9-B0D9-858DDB7FA7D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{669CF0B6-16F0-41A9-B0D9-858DDB7FA7D3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
