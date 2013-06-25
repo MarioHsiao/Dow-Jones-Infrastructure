@@ -11,9 +11,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Prod.X.Components"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Prod.X.Models", "DowJones.Prod.X.Models\DowJones.Prod.X.Models.csproj", "{669CF0B6-16F0-41A9-B0D9-858DDB7FA7D3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{7BA84AEA-702A-4888-A916-2B5289243324}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Prod.X.Core", "DowJones.Prod.X.Core\DowJones.Prod.X.Core.csproj", "{6D799B01-113A-4BB6-9346-24CC72965413}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Prod.X.DataAccess", "DowJones.Prod.X.DataAccess\DowJones.Prod.X.DataAccess.csproj", "{A17441BC-F88A-4505-A4DE-C6572F253F91}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 6
+		SccNumberOfProjects = 8
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = http://tfs2012.dowjones.net:8080/tfs/defaultcollection
 		SccLocalPath0 = .
@@ -32,6 +41,12 @@ Global
 		SccProjectUniqueName5 = DowJones.Prod.X.Models\\DowJones.Prod.X.Models.csproj
 		SccProjectName5 = DowJones.Prod.X.Models
 		SccLocalPath5 = DowJones.Prod.X.Models
+		SccProjectUniqueName6 = DowJones.Prod.X.Core\\DowJones.Prod.X.Core.csproj
+		SccProjectName6 = DowJones.Prod.X.Core
+		SccLocalPath6 = DowJones.Prod.X.Core
+		SccProjectUniqueName7 = DowJones.Prod.X.DataAccess\\DowJones.Prod.X.DataAccess.csproj
+		SccProjectName7 = DowJones.Prod.X.DataAccess
+		SccLocalPath7 = DowJones.Prod.X.DataAccess
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,6 +73,14 @@ Global
 		{669CF0B6-16F0-41A9-B0D9-858DDB7FA7D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{669CF0B6-16F0-41A9-B0D9-858DDB7FA7D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{669CF0B6-16F0-41A9-B0D9-858DDB7FA7D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D799B01-113A-4BB6-9346-24CC72965413}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D799B01-113A-4BB6-9346-24CC72965413}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D799B01-113A-4BB6-9346-24CC72965413}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D799B01-113A-4BB6-9346-24CC72965413}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A17441BC-F88A-4505-A4DE-C6572F253F91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A17441BC-F88A-4505-A4DE-C6572F253F91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A17441BC-F88A-4505-A4DE-C6572F253F91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A17441BC-F88A-4505-A4DE-C6572F253F91}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,32 +1,75 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using DowJones.Assemblers.Headlines;
+using DowJones.Managers.Search;
+using DowJones.Web.Mvc.UI.Components.Common;
+using DowJones.Web.Mvc.UI.Components.PortalHeadlineList;
+using Factiva.Gateway.Messages.Search.V2_0;
+using PerformContentSearchRequest = Factiva.Gateway.Messages.Search.FreeSearch.V1_0.PerformContentSearchRequest;
+using PerformContentSearchResponse = Factiva.Gateway.Messages.Search.FreeSearch.V1_0.PerformContentSearchResponse;
 
 namespace DowJones.Prod.X.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : DowJones.Web.Mvc.ControllerBase
     {
+
+		private readonly HeadlineListConversionManager _headlineListManager;
+        private readonly SearchManager _searchManager;
+
+        public HomeController(HeadlineListConversionManager headlineListManager, SearchManager searchManger)
+        {
+            _headlineListManager = headlineListManager;
+            _searchManager = searchManger;
+        }
+
         public ActionResult Index()
         {
-            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
-
-            return View();
+            return View("Index");
         }
 
-        public ActionResult About()
+        public ActionResult Search(string query = "obama and sc=j", int count = 10)
         {
-            ViewBag.Message = "Your app description page.";
-
-            return View();
+            var model = GetPortalHeadlineListSection(query, count);
+            return View("Search", model);
         }
 
-        public ActionResult Contact()
+        private PortalHeadlineListModel GetPortalHeadlineListSection(string query, int count)
         {
-            ViewBag.Message = "Your contact page.";
+            var request = new PerformContentSearchRequest();
+            request.StructuredSearch.Query.SearchStringCollection.Add(new SearchString
+            {
+                Mode = SearchMode.Traditional,
+                Value = query,
+            });
+            request.StructuredSearch.Formatting.ExtendedFields = true;
+            request.StructuredSearch.Formatting.MarkupType = MarkupType.Highlight;
+            request.StructuredSearch.Formatting.SortOrder = ResultSortOrder.PublicationDateReverseChronological;
+            request.StructuredSearch.Formatting.SnippetType = SnippetType.Fixed;
+            request.StructuredSearch.Formatting.FeaturedContentControl.ReturnFeaturedHeadlines = false;
+            request.StructuredSearch.Version = "2.10";
+            request.NavigationControl.ReturnHeadlineCoding = true;
+            request.MaxResults = count;
+            request.FirstResult = 0;
 
-            return View();
+            var results = _searchManager.PerformContentSearch<PerformContentSearchResponse>(request);
+            var headlineListDataResult = _headlineListManager.Process(results);
+            var portalHeadlineListDataResult = PortalHeadlineConversionManager.Convert(headlineListDataResult);
+
+            return new PortalHeadlineListModel
+            {
+                MaxNumHeadlinesToShow = 5,
+                Result = portalHeadlineListDataResult,
+                ShowAuthor = true,
+                ShowSource = true,
+                ShowPublicationDateTime = true,
+                ShowTruncatedTitle = false,
+                AuthorClickable = true,
+                SourceClickable = true,
+                DisplaySnippets = SnippetDisplayType.Hover,
+                Layout = PortalHeadlineListLayout.HeadlineLayout,
+                AllowPagination = false,
+                PagePrevSelector = ".prev",
+                PageNextSelector = ".next"
+            };
         }
     }
 }

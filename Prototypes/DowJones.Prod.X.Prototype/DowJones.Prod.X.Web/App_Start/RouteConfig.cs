@@ -16,7 +16,7 @@ namespace DowJones.Prod.X.Web
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "OrigHome", action = "Index", id = UrlParameter.Optional }
             );
         }
     }
