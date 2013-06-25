@@ -82,6 +82,15 @@
     <Reference Include="FactivaGateway">
       <HintPath>..\packages\Factiva.Gateway.7.5.0.138\lib\FactivaGateway.dll</HintPath>
     </Reference>
+    <Reference Include="Glimpse.AspNet">
+      <HintPath>..\packages\Glimpse.AspNet.1.3.0\lib\net45\Glimpse.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Glimpse.Core">
+      <HintPath>..\packages\Glimpse.1.4.2\lib\net45\Glimpse.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Glimpse.Mvc4">
+      <HintPath>..\packages\Glimpse.Mvc4.1.3.2\lib\net40\Glimpse.Mvc4.dll</HintPath>
+    </Reference>
     <Reference Include="Hammock">
       <HintPath>..\packages\Hammock.1.2.9\lib\4.0\Hammock.dll</HintPath>
     </Reference>
@@ -191,17 +200,45 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="BootstrapperTasks\GlobalFilterRegistrationTask.cs" />
     <Compile Include="BootstrapperTasks\RouteRegistrationTask.cs" />
+    <Compile Include="Controllers\Base\BaseApiController.cs" />
+    <Compile Include="Controllers\Base\BaseController.cs" />
+    <Compile Include="Controllers\Base\IContentController.cs" />
     <Compile Include="Controllers\OrigHomeController.cs" />
     <Compile Include="Dependencies.cs" />
+    <Compile Include="Filters\ExcludeFilterAttribute .cs" />
+    <Compile Include="Filters\ExcludeFilterProvider.cs" />
+    <Compile Include="Filters\HandleErrorAttribute.cs" />
+    <Compile Include="Filters\JsonBinderAttribute.cs" />
+    <Compile Include="Filters\RequireAuthenticationAttribute.cs" />
+    <Compile Include="Filters\SessionTimeoutExceptionFilter.cs" />
+    <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.generated.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AbstractBasicSiteViewModel.cs" />
+    <Compile Include="Models\Api\ApiDataPacketResult.cs" />
+    <Compile Include="Models\Api\IApiResultModel.cs" />
+    <Compile Include="Models\Api\BasicApiResult.cs" />
+    <Compile Include="Models\BasicSiteRequestDto.cs" />
+    <Compile Include="Models\Error\ErrorViewModel.cs" />
+    <Compile Include="Models\GenericActionProperties.cs" />
+    <Compile Include="Models\GenericSiteUrls.cs" />
+    <Compile Include="Models\Interfaces\IBasicSiteRequestDto.cs" />
+    <Compile Include="Models\UsageTrackingProperties.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Extended.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\css\foundation.min.css" />
+    <Content Include="Content\css\normalize.css" />
     <Content Include="Content\js\global.js" />
     <Content Include="Content\styles\global.css" />
     <Content Include="favicon.ico" />
@@ -719,16 +756,40 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
+    <Content Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </Content>
     <None Include="Views\Home\Search.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Filters\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DowJones.Prod.X.Common\DowJones.Prod.X.Common.csproj">
+      <Project>{7130546e-9b7d-4ff4-8d0a-ad90d4a0f414}</Project>
+      <Name>DowJones.Prod.X.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DowJones.Prod.X.Components\DowJones.Prod.X.Components.csproj">
+      <Project>{e9cd07d2-055d-42f7-994b-5b89f510ee60}</Project>
+      <Name>DowJones.Prod.X.Components</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DowJones.Prod.X.Core\DowJones.Prod.X.Core.csproj">
+      <Project>{6d799b01-113a-4bb6-9346-24cc72965413}</Project>
+      <Name>DowJones.Prod.X.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DowJones.Prod.X.DataAccess\DowJones.Prod.X.DataAccess.csproj">
+      <Project>{a17441bc-f88a-4505-a4de-c6572f253f91}</Project>
+      <Name>DowJones.Prod.X.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DowJones.Prod.X.Models\DowJones.Prod.X.Models.csproj">
+      <Project>{669cf0b6-16f0-41a9-b0d9-858ddb7fa7d3}</Project>
+      <Name>DowJones.Prod.X.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
