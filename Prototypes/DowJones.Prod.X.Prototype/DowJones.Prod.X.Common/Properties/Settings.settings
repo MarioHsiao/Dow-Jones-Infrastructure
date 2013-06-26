@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="BaseDotComHost" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">global.factiva.com</Value>
+      <Value Profile="(Default)">global.int.factiva.com</Value>
     </Setting>
   </Settings>
 </SettingsFile>

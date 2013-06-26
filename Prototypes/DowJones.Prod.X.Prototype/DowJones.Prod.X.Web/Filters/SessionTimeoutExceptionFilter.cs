@@ -77,7 +77,7 @@ namespace DowJones.Prod.X.Web.Filters
             {
                 return data.ReturnUrl;
             }*/
-            return string.Format("{0}{1}", (filterContext.HttpContext != null && filterContext.HttpContext.Request != null && filterContext.HttpContext.Request.Url != null) ? String.Format("{0}://", filterContext.HttpContext.Request.Url.Scheme) : "//", Common.Properties.Settings.Default.BaseDotComHost);
+            return string.Format("{0}{1}", (filterContext.HttpContext != null && filterContext.HttpContext.Request != null && filterContext.HttpContext.Request.Url != null) ? String.Format("{0}://", filterContext.HttpContext.Request.Url.Scheme) : "//", X.Common.Properties.Settings.Default.BaseDotComHost);
         }
 
         public static string GetErrorNumber(Exception exception)

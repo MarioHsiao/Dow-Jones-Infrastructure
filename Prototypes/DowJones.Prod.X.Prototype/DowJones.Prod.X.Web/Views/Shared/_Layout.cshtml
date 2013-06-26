@@ -1,8 +1,11 @@
-﻿@{
+﻿@using Glimpse.Mvc.Html
+@{
     DJ.StylesheetRegistry()
-        .Include("~/content/css/normalize.css", ClientResourceDependencyLevel.Global)
-        .Include("~/content/css/foundation.min.css", ClientResourceDependencyLevel.Global)
-        .Include("~/content/styles/global.css", ClientResourceDependencyLevel.Global);
+      .Include("~/content/css/normalize.css", ClientResourceDependencyLevel.Global)
+      .Include("~/content/css/foundation.min.css", ClientResourceDependencyLevel.Global);
+
+    DJ.StylesheetRegistry()
+      .Include("~/content/style/foundation.min.css", ClientResourceDependencyLevel.Global);
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -31,8 +34,6 @@
                     <nav>
                         <ul id="menu">
                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("About", "About", "Home")</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                         </ul>
                     </nav>
                 </div>
@@ -53,6 +54,7 @@
         </footer>
 
         @DJ.StylesheetRegistry().Render() 
-        @DJ.ScriptRegistry().Render()
+        @DJ.ScriptRegistry().Render()   
+        @Html.GlimpseClient()  
     </body>
 </html>

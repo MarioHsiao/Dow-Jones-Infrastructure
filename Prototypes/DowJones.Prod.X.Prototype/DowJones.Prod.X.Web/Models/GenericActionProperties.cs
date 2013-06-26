@@ -1,9 +1,10 @@
 ﻿using DowJones.Extensions;
 using DowJones.Preferences;
+using DowJones.Prod.X.Models.Site;
 
 namespace DowJones.Prod.X.Web.Models
 {
-    public class GenericActionProperties
+    public class GenericActionProperties : IActionProperties
     {
         private readonly IPreferences _preferences;
         private string _bodyClassName;

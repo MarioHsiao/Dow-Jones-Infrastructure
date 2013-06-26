@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using DowJones.Preferences;
+﻿using DowJones.Preferences;
 using DowJones.Prod.X.Models.Site;
+using DowJones.Prod.X.Web.Models.Interfaces;
 using DowJones.Security.Interfaces;
 
 namespace DowJones.Prod.X.Web.Models
 {
-    public class BasicSiteRequestDto
+    public class BasicSiteRequestDto: IBasicSiteRequestDto
     {
         public BasicSiteRequestDto(IPreferences preferences, IPrinciple principle, IGenericSiteUrls genericSiteUrls, IActionProperties properties, IUsageTrackingProperties usageTrackingProperties)
         {

@@ -12,7 +12,7 @@ namespace DowJones.Prod.X.Web.Models
         private static readonly Lazy<string> YouTubeUrl = new Lazy<string>(() => Properties.Settings.Default.YouTubeUrl);
         private static readonly Lazy<string> FacebookUrl = new Lazy<string>(() => Properties.Settings.Default.FacebookUrl);
         private static readonly Lazy<string> TwitterUrl = new Lazy<string>(() => Properties.Settings.Default.TwitterUrl);
-        private static readonly Lazy<string> BaseSiteHost = new Lazy<string>(() => Common.Properties.Settings.Default.BaseDotComHost);
+        private static readonly Lazy<string> BaseSiteHost = new Lazy<string>(() => X.Common.Properties.Settings.Default.BaseDotComHost);
         private static readonly Lazy<string> MarketingSiteUrl = new Lazy<string>(() => Properties.Settings.Default.MarketingSiteUrl);
 
         public GenericSiteUrls(IUserSession userSession, HttpContextBase httpContextBase, UrlHelper urlHelper)

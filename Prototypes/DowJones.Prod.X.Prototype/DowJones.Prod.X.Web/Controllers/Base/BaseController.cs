@@ -8,6 +8,7 @@ using ControllerBase = DowJones.Web.Mvc.ControllerBase;
 
 namespace DowJones.Prod.X.Web.Controllers.Base
 {
+    
     [SessionState(SessionStateBehavior.Disabled)]
     [RequireAuthentication(Order = 0)]
     [SessionTimeoutExceptionFilter(Order = 1)]

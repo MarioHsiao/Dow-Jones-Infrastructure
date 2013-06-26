@@ -1,6 +1,8 @@
 using System.Web.Mvc;
 using DowJones.Assemblers.Headlines;
 using DowJones.Managers.Search;
+using DowJones.Prod.X.Web.Controllers.Base;
+using DowJones.Prod.X.Web.Filters;
 using DowJones.Web.Mvc.UI.Components.Common;
 using DowJones.Web.Mvc.UI.Components.PortalHeadlineList;
 using Factiva.Gateway.Messages.Search.V2_0;
@@ -9,9 +11,9 @@ using PerformContentSearchResponse = Factiva.Gateway.Messages.Search.FreeSearch.
 
 namespace DowJones.Prod.X.Web.Controllers
 {
-    public class HomeController : DowJones.Web.Mvc.ControllerBase
+    [RequireAuthentication(Order = 0)]
+    public class HomeController : BaseController
     {
-
 		private readonly HeadlineListConversionManager _headlineListManager;
         private readonly SearchManager _searchManager;
 
@@ -21,7 +23,7 @@ namespace DowJones.Prod.X.Web.Controllers
             _searchManager = searchManger;
         }
 
-        public ActionResult Index()
+        public ActionResult IndexAsync()
         {
             return View("Index");
         }
@@ -71,5 +73,6 @@ namespace DowJones.Prod.X.Web.Controllers
                 PageNextSelector = ".next"
             };
         }
+
     }
 }

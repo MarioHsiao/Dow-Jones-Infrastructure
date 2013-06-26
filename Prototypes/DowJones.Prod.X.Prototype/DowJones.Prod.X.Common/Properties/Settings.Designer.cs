@@ -25,7 +25,7 @@ namespace DowJones.Prod.X.Common.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("global.factiva.com")]
+        [global::System.Configuration.DefaultSettingValueAttribute("global.int.factiva.com")]
         public string BaseDotComHost {
             get {
                 return ((string)(this["BaseDotComHost"]));
