@@ -23,7 +23,7 @@ namespace DowJones.Prod.X.Web.Controllers
             _searchManager = searchManger;
         }
 
-        public ActionResult IndexAsync()
+        public ActionResult Index()
         {
             return View("Index");
         }

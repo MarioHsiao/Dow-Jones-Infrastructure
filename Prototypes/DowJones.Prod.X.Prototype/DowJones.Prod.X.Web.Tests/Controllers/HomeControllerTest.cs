@@ -12,7 +12,7 @@ namespace DowJones.Prod.X.Web.Tests.Controllers
     [TestClass]
     public class HomeControllerTest
     {
-        [TestMethod]
+        /*[TestMethod]
         public void Index()
         {
             // Arrange
@@ -49,6 +49,6 @@ namespace DowJones.Prod.X.Web.Tests.Controllers
 
             // Assert
             Assert.IsNotNull(result);
-        }
+        }*/
     }
 }

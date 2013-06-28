@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using DowJones.Prod.X.Web.App_Start;
 using log4net;
 
 namespace DowJones.Prod.X.Web

@@ -202,10 +202,10 @@
     <Compile Include="BootstrapperTasks\GlobalFilterRegistrationTask.cs" />
     <Compile Include="BootstrapperTasks\RouteRegistrationTask.cs" />
     <Compile Include="Common\ReferringProductFactory.cs" />
+    <Content Include="Content\font\index.html" />
     <Compile Include="Controllers\Base\BaseApiController.cs" />
     <Compile Include="Controllers\Base\BaseController.cs" />
     <Compile Include="Controllers\Base\IContentController.cs" />
-    <Compile Include="Controllers\OrigHomeController.cs" />
     <Compile Include="Dependencies.cs" />
     <Compile Include="Filters\ExcludeFilterAttribute .cs" />
     <Compile Include="Filters\ExcludeFilterProvider.cs" />
@@ -237,12 +237,35 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Properties\Settings.Extended.cs" />
+    <Content Include="Content\images\avatar.png" />
+    <Content Include="Content\images\checkbox.png" />
+    <Content Include="Content\images\cloud.png" />
+    <Content Include="Content\images\linen-gray.png" />
+    <Content Include="Content\images\linen-light.png" />
+    <Content Include="Content\images\linen-lighter.png" />
+    <Content Include="Content\images\photos\photo_60x60.jpg" />
+    <Content Include="Content\stylesheets\application.css" />
+    <Content Include="Content\stylesheets\bootstrap-responsive.css" />
+    <Content Include="Content\stylesheets\bootstrap-responsive.min.css" />
+    <Content Include="Content\stylesheets\bootstrap.css" />
+    <Content Include="Content\stylesheets\bootstrap.min.css" />
+    <Content Include="Content\stylesheets\font-awesome-ie7.css" />
+    <Content Include="Content\stylesheets\font-awesome-ie7.min.css" />
+    <Content Include="Content\stylesheets\font-awesome.css" />
+    <Content Include="Content\stylesheets\font-awesome.min.css" />
+    <Content Include="Content\stylesheets\prettify.css" />
+    <Content Include="Content\stylesheets\study-one.css" />
+    <Content Include="Content\font\fontawesome-webfont.svg" />
+    <Content Include="Content\img\glyphicons-halflings-white.png" />
+    <Content Include="Content\img\glyphicons-halflings.png" />
+    <Content Include="Content\js\bootstrap.js" />
+    <Content Include="Content\js\bootstrap.min.js" />
+    <Content Include="Scripts\abstract.canvas.js" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\css\foundation.min.css" />
-    <Content Include="Content\css\normalize.css" />
+    <Content Include="Content\stylesheets\foundation.min.css" />
+    <Content Include="Content\stylesheets\normalize.css" />
     <Content Include="Content\js\global.js" />
-    <Content Include="Content\styles\global.css" />
     <Content Include="favicon.ico" />
     <Content Include="GatewayResources\ReleaseNotes.txt" />
     <Content Include="GatewayResources\xslt\archive\CreateBillingRecord_Response.xslt" />
@@ -731,6 +754,14 @@
     <Content Include="GatewayResources\config\ArchiveService.config" />
     <Content Include="GatewayResources\config\Analyze.config" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Content Include="Scripts\common.js" />
+    <Content Include="Scripts\dj.productx.core.js" />
+    <Content Include="Scripts\DJGlobal.js" />
+    <Content Include="Scripts\highcharts-more.src.js" />
+    <Content Include="Scripts\highcharts.src.js" />
+    <Content Include="Scripts\jquery-ui.min.js" />
+    <Content Include="Scripts\json2.min.js" />
+    <Content Include="Scripts\modernizr.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -752,9 +783,6 @@
     <Content Include="Content\images\orderedList8.png" />
     <Content Include="Content\images\orderedList9.png" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\OrigHome\About.cshtml" />
-    <Content Include="Views\OrigHome\Contact.cshtml" />
-    <Content Include="Views\OrigHome\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
@@ -762,6 +790,10 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </Content>
+    <Content Include="Content\font\fontawesome-webfont.eot" />
+    <Content Include="Content\font\fontawesome-webfont.ttf" />
+    <Content Include="Content\font\fontawesome-webfont.woff" />
+    <Content Include="Content\font\FontAwesome.otf" />
     <None Include="Views\Home\Search.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
   </ItemGroup>

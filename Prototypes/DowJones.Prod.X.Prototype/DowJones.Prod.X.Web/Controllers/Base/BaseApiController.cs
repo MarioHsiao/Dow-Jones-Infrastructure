@@ -52,13 +52,13 @@ namespace DowJones.Prod.X.Web.Controllers.Base
             catch (COMException comEx)
             {
                 var t = new DowJonesUtilitiesException(comEx, comEx.ErrorCode);
-                packetResult.ReturnCode = comEx.ErrorCode;
+                packetResult.ReturnCode = t.ReturnCode;
             }
             catch (WebException webEx)
             {
                 // Note this error may be hit as a result of a base PageProxyUrl...  This will cause some issues.
                 var t = new DowJonesUtilitiesException(webEx, ApplicationExceptionConstants.GeneralWebException);
-                packetResult.ReturnCode = ApplicationExceptionConstants.GeneralWebException;
+                packetResult.ReturnCode = t.ReturnCode;
             }
             catch (Exception ex)
             {
@@ -78,17 +78,18 @@ namespace DowJones.Prod.X.Web.Controllers.Base
             // just extract the first non-aggregate exception
             // return it if it is DowJonesUtilitiesException
             // or return generic -1 exception
-            // TODO: maybe go down the innerexceptions tree to find first DowJonesUtilitiesException to return
             foreach (var exception in aggregateException.InnerExceptions)
             {
-                if (exception is AggregateException)
+                var exception1 = exception as AggregateException;
+                if (exception1 != null)
                 {
-                    return ExtractAggregateException((AggregateException)exception);
+                    return ExtractAggregateException(exception1);
                 }
 
-                if (exception is DowJonesUtilitiesException)
+                var utilitiesException = exception as DowJonesUtilitiesException;
+                if (utilitiesException != null)
                 {
-                    return (DowJonesUtilitiesException)exception;
+                    return utilitiesException;
                 }
             }
 

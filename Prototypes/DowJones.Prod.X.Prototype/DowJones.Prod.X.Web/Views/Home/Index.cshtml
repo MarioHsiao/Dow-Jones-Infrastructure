@@ -1,138 +1,111 @@
 ﻿@{
     ViewBag.Title = "Home Page";
+    StylesheetRegistry
+        .Include("~/content/stylesheets/study-one.css");
+
+
+    DJ.ScriptRegistry()
+     .OnDocumentReady("dj.productx.core.iDashboard.init();");
 }
 
-<h1>Welcome to your new Dow Jones website!</h1>
 
-<section id="">
-	<h2>Gateway Example</h2>
-</section>
+<div id="columns" class="container-fluid">
+    <div class="row-fluid">
+        
+        <ul id="column1" class="span6 column">
+            <li class="widget color-green" id="intro">
+                <div class="widget-head">
+                    <h3 class="pull-left">Breaking News::.. [Non-Editable]</h3>
+                </div>
+                <div class="widget-content">
+                    <blockquote>
+							<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
+							<p class="cite">
+								<cite>John Smith</cite>
+							</p>
+						</blockquote>
+                </div>
+            </li>
+            <li class="widget color-red">  
+                <div class="widget-head">
+                    <h3 class="pull-left">Random Information</h3>
+                </div>
+                <div class="widget-content">
+                    <p><img src="~/content/images/photos/photo_60x60.jpg" alt="photo9" />Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam magna sem, fringilla in, commodo a, rutrum ut, massa. Donec id nibh eu dui auctor tempor. Morbi laoreet eleifend dolor. Suspendisse pede odio, accumsan vitae, auctor non, suscipit at, ipsum. Cras varius sapien vel lectus. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+                    <ul>
+                        <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam magna sem, fringilla in, commodo a, rutrum ut, massa.</li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
 
-<section id="validation">
-    <style>
-        .testing { background-color: orange; font-style: italic; }
-        .passed { background-color: greenyellow; }
-        .timeout, .failed, .error  { background-color: red; font-weight: bold; }
-    
-        #validation-steps li {
-            padding: 5px;
-        }
-    </style>
-
-    <h2>Validation</h2>
-    <div class="loading">Validating that everything was installed and configured properly...</div>
-    <ol id="validation-steps"></ol>
-
-    <script type="text/javascript">
-        var DJ = window['DJ'];
-        if (!(DJ && DJ.config)) {
-            DJ = {};
-        }
-
-        DJ.config.debug = true;
-
-        var TIMEOUT = 5000;
-        var container, tests;
-
-        function validate(description, test) {
-            var _result;
-
-            var statusEl = document.createElement("li");
-            statusEl.innerText = description;
-            container.appendChild(statusEl);
-
-            var setStatus = function (val, text) {
-                statusEl.className = val;
-
-                if (text)
-                    console.log(description, ": ", text);
-            };
-
-            var evalResult = function (result) {
-                _result = result;
-
-                if (_result === 'timeout') {
-                    setStatus("timeout");
-                } else if (_result) {
-                    setStatus("passed");
-                } else {
-                    setStatus("failed");
-                }
-            };
-
-            var timeout = function () {
-                if (_result) return;
-                evalResult('timeout');
-            };
-
-            setStatus("testing");
-
-            try {
-                setTimeout(timeout, TIMEOUT);
-                test(evalResult);
-            } catch (e) {
-                setStatus("error", e);
-            }
-        }
-
-        window.onload = function () {
-            container = document.getElementById("validation-steps");
-
-            validate("DJ exists", function (callback) {
-                callback(DJ !== undefined);
-            });
-
-            validate("DJ.config exists", function (callback) {
-                callback(DJ.config !== undefined);
-            });
-
-            validate("DJ.jQuery exists", function (callback) {
-                callback(DJ.jQuery !== undefined);
-            });
-
-            validate("DJ.UI.Component exists", function (callback) {
-                callback(DJ.UI.Component !== undefined);
-            });
-
-            validate("require('JSON')", function (callback) {
-                DJ.$dj.require(['JSON'], function (JSON) {
-                    callback(JSON !== undefined);
-                });
-            });
-
-            validate("Can create PortalHeadlineList via DJ.add()", function (callback) {
-                $('<div id="phlContainer" />').hide().appendTo($('body'));
-                DJ.add('PortalHeadlineList', { container: 'phlContainer' })
-                  .then(callback);
-            });
-
-            validate("Can create PortalHeadlineList via plugin", function (callback) {
-                DJ.$dj.require(['$', '$dj', 'DJ.UI.PortalHeadlineList'], function ($, $dj) {
-                    callback($('<div>').dj_PortalHeadlineList({}));
-                });
-            });
-        };
-    </script>
-</section>
-
-<section id="next-steps">
-    <h2>Next Steps</h2>
-    <p>Here are a few suggestions for what you might want to do next:</p>
-    <ol>
-        <li>Customize your dependency injection bindings in the <strong>Dependencies</strong> class in the root of your website.</li>
-        <li>Click @Html.ActionLink("here", "search", new
-                      {
-                          userid = "apichecker", 
-                          password = "integration",
-                          productId= "16"
-                      }) to check the connectivity with Factiva Platform by running a search and display the results in a portalHeadlineComponent.
-            <ul>
-                <li>The search uses the platform Infrastructure (RTS) locally to do this by default.</li>
-                <li>If you do not have the platform infrastructure on your machine, then you will have to change FactivaGateway.config file in the GatewayResources\config folder and modify the xml node "preferedTransport" to "HTTP".</li>
-            </ul>
-        </li>
-        <li>Install Dowjones.Web.Mvc.Website.DJReady package to configure Login, Log4Net settings and other resources to start developing Dowjones application.</li>
-        <li>Execute the <em>Update-Tokens [Token Product Name]</em> script in the Package Manager Console to generate tokens for your application.</li>
-        <li>Install the <em>DowJones.Web.Mvc.UI.Canvas.Modules</em> NuGet package create a Canvas/Dashboard application.</li>
-    </ol>
-</section>
+        <ul id="column2" class="span3 column">
+            <li class="widget color-blue" id="instructions">  
+                <div class="widget-head">
+                    <h3 class="pull-left">Instructions</h3>
+                </div>
+                <div class="widget-content">
+                    <ul>
+                        <li>To move a widget just hold your mouse down over the top coloured bar of the widget and then move it to where you want.</li>
+                        <li>You can also close a widget by clicking the 'X' on the top right of any widget. Collapsing a widget is just as easy; click the down/up arrow on the top left of each widget.</li>
+                        <li>To edit the color of a widget or it's title just click the 'edit' button.</li>
+                    </ul>
+                </div>
+            </li>
+            <li class="widget color-yellow">  
+                <div class="widget-head">
+                    <h3 class="pull-left">Extra Info</h3>
+                </div>
+                <div class="widget-content">
+                    <p>Try clicking the 'X' in the top right of this widget... Just watch how cool the animaton is! :D</p>
+                    <ul>
+                        <li>Since this is just a demo your settings will NOT be saved anywhere when you leave the page.</li>
+                        <li>This demo has been tested successfully on a Windows XP PC in the following browsers: Firefox 2, Firefox 3, Chrome, Safari 3, Opera 9.5, IE6, IE7</li>
+                    </ul>
+                </div>
+            </li>
+            <li class="widget color-green">  
+                <div class="widget-head">
+                    <h3 class="pull-left">Some Random Title</h3>
+                </div>
+                <div class="widget-content">
+                    <ul>
+                        <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam magna sem, fringilla in, commodo a, rutrum ut, massa. Donec id nibh eu dui auctor tempor. Morbi laoreet eleifend dolor. Suspendisse pede odio, accumsan vitae, auctor non, suscipit at, ipsum. Cras varius sapien vel lectus.</li>  
+                    </ul>
+                </div>
+            </li>
+        </ul>
+        
+        <ul id="column3" class="span3 column">
+            <li class="widget color-orange">  
+                <div class="widget-head">
+                    <h3 class="pull-left">Some Random Title</h3>
+                </div>
+                <div class="widget-content">
+                    <ul>
+                        <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam magna sem, fringilla in, commodo a, rutrum ut, massa. Donec id nibh eu dui auctor tempor. Morbi laoreet eleifend dolor. Suspendisse pede odio, accumsan vitae, auctor non, suscipit at, ipsum. Cras varius sapien vel lectus.</li>  
+                    </ul>
+                </div>
+            </li>
+            <li class="widget color-white" id="gallery">  
+                <div class="widget-head">
+                    <h3 class="pull-left">The Gallery</h3>
+                </div>
+                <div class="widget-content">
+                    <p>NOTE: This widget can only be switched between three different colours (via 'edit').</p>
+                    
+                    <ul class="images">
+                        <li><img src="~/content/images/photos/photo_60x60.jpg" alt="photo1" /></li>
+                        <li><img src="~/content/images/photos/photo_60x60.jpg" alt="photo2" /></li>
+                        <li><img src="~/content/images/photos/photo_60x60.jpg" alt="photo3" /></li>
+                        <li><img src="~/content/images/photos/photo_60x60.jpg" alt="photo4" /></li>
+                        <li><img src="~/content/images/photos/photo_60x60.jpg" alt="photo5" /></li>
+                        <li><img src="~/content/images/photos/photo_60x60.jpg" alt="photo6" /></li>
+                    </ul>
+                </div>
+            </li>
+            
+        </ul>
+        
+    </div>
+</div>

@@ -1,6 +1,7 @@
 using System.Web.Mvc;
 using DowJones.Infrastructure;
 using DowJones.Web.Mvc.ActionFilters;
+using HandleErrorAttribute = DowJones.Prod.X.Web.Filters.HandleErrorAttribute;
 
 namespace DowJones.Prod.X.Web.BootstrapperTasks
 {
@@ -14,7 +15,7 @@ namespace DowJones.Prod.X.Web.BootstrapperTasks
         internal void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new SetThreadCultureToInterfaceLanguageFilter());
-            filters.Add(new HandleErrorAttribute());
+            //filters.Add(new HandleErrorAttribute());
         }
     }
 }

@@ -1,58 +1,247 @@
-﻿@using Glimpse.Mvc.Html
+﻿@model DowJones.Prod.X.Models.Site.IBasicSiteModel
+@using Glimpse.Mvc.Html
 @{
-    DJ.StylesheetRegistry()
-      .Include("~/content/css/normalize.css", ClientResourceDependencyLevel.Global)
-      .Include("~/content/css/foundation.min.css", ClientResourceDependencyLevel.Global);
 
-    DJ.StylesheetRegistry()
-      .Include("~/content/style/foundation.min.css", ClientResourceDependencyLevel.Global);
+    DJ.ScriptRegistry()
+      .Include("~/Scripts/modernizr.js", ClientResourceDependencyLevel.Global)
+      .Include("~/Scripts/jquery-ui.min.js", ClientResourceDependencyLevel.Global)
+      .Include("~/Scripts/DJGlobal.js", ClientResourceDependencyLevel.Global)
+      .Include("~/Scripts/common.js", ClientResourceDependencyLevel.Global)
+      .Include("~/Scripts/dj.productx.core.js", ClientResourceDependencyLevel.Global)
+      .OnDocumentReady("common.init(); dj.productx.core.init()");
+      //.WithJQueryUI();
+      /*
+      .Include("~/Content/javascripts/plugins.js", ClientResourceDependencyLevel.Global)
+      .Include("~/Content/javascripts/application.js", ClientResourceDependencyLevel.Component);*/
 }
+<!DOCTYPE html>
+<!--[if IEMobile 7]><html class="no-js iem7 oldie"><![endif]-->
+<!--[if lt IE 7]><html class="no-js lt-ie7 oldie" lang="en"><![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie8 oldie" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9 oldie" lang="en"><![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)]><html class="no-js lt-ie10" lang="en"><![endif]-->
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        
+        <meta charset="utf-8">
+      <!-- Always force latest IE rendering engine or request Chrome Frame -->
+      <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+      <title>Product X :: Statistics</title>
+
+      <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0">
         <meta charset="utf-8" />
-        <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+        <title>@ViewBag.Title - Site Study</title>
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <meta name="viewport" content="width=device-width" />
         <script type="text/javascript">
             var DJ = { config: { debug: true } };
+            window.dj = window.dj || {};
+            dj.productx = window.dj.productx || {};
         </script>
     
         @DJ.ScriptRegistry().RenderHead()
+
+        <link href="~/content/stylesheets/normalize.css" rel="stylesheet"/>
+        <link href="~/content/stylesheets/application.css" rel="stylesheet"/>
+      
         @DJ.StylesheetRegistry().RenderHead()
+        
+         <!--[if lt IE 9]>
+                    <script src="../../javascripts/html5shiv.js" type="text/javascript"></script><script src="../../javascripts/excanvas.js" type="text/javascript"></script><script src="../../javascripts/iefix.js" type="text/javascript"></script><link href="../../stylesheets/iefix.css" media="screen" rel="stylesheet" type="text/css" /><![endif]-->
     </head>
     <body>
-        <header>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p class="site-title">@Html.ActionLink("your logo here", "Index", "Home")</p>
-                </div>
-                <div class="float-right">
-                    <section id="login">
-                       
-                    </section>
-                    <nav>
-                        <ul id="menu">
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                        </ul>
-                    </nav>
+        <div id="modal" class="black-box modal hide fade">
+            <div class="modal-header tab-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <span>Some modal title</span>
+            </div>
+            <div class="modal-body separator">
+                <h4>Text in a modal</h4>
+                <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem.</p>
+            </div>
+            <div class="modal-footer">
+                <div class="inner-well">
+                    <a class="button mini rounded light-gray" data-dismiss="modal">Close</a>
+                    <a class="button mini rounded blue">Save changes</a>
                 </div>
             </div>
-        </header>
-        <div id="body">
-            @RenderSection("featured", required: false)
-            <section class="content-wrapper main-content clear-fix">
-                @RenderBody()
-            </section>
         </div>
-        <footer>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
+        
+        <div id="modal-gallery" class="black-box modal modal-gallery hide fade">
+  <div class="modal-header tab-header">
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    <span class="modal-title"></span>
+  </div>
+  <div class="modal-body"><div class="modal-image"></div></div>
+  <div class="modal-footer">
+    <div class="pull-left">
+      You can also change the images<br/> by scrolling the mouse wheel!
+    </div>
+    <div class="pull-right">
+      <a class="button blue modal-next">Next <i class="icon-arrow-right icon-white"></i></a>
+      <a class="button gray modal-prev"><i class="icon-arrow-left icon-white"></i> Previous</a>
+      <a class="button green modal-play modal-slideshow" data-slideshow="5000"><i class="icon-play icon-white"></i> Slideshow</a>
+      <a class="button black" target="_blank"><i class="icon-download"></i> Download</a>
+    </div>
+  </div>
+</div>
+        <nav id="primary" class="main-nav">
+            <ul>
+                <li class="">
+                    <a href="javascript:void(0)">
+                        <i class="icon-home"></i> Home
+                    </a>
+                </li>
+
+                <li class="active">
+                    <a href="javascript:void(0)">
+                        <i class="icon-dashboard"></i> Dashboards
+                    </a>
+                </li>
+
+                <li class="">
+                    <a href="javascript:void(0)">
+                        <i class="icon-list-alt"></i> News
+                    </a>
+                </li>
+
+                <li class="">
+                    <a href="javascript:void(0)">
+                        <i class="icon-beaker"></i> Realtime
+                    </a>
+                </li>
+
+                <li class="">
+                    <a href="javascript:void(0)">
+                        <i class="icon-plus-sign"></i> Search
+                    </a>
+                </li>
+
+                <li class="">
+                    <a href="javascript:void(0)">
+                        <i class="icon-cog"></i> Preferences
+                    </a>
+                </li>
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown"><i class="icon-share-alt"></i>More <span class="caret"></span></a>
+
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="../error_404.html">
+                                <i class="icon-warning-sign"></i> Error 404
+                            </a>
+                        </li>
+
+        
+                        <li class="divider"></li>
+                        <li>
+                            <a href="../login/login.html">
+                                <i class="icon-off"></i> Log out (login page)
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+        </nav>
+        
+        <nav id="secondary" class="main-nav">
+
+            <div class="profile-menu">
+
+                <div class="pull-left">
+                    <div class="avatar">pl
+                        <img src="~/content/images/avatar.png" alt="avatar"/>
+                    </div>
+                </div>
+
+                <div class="pull-left">
+                    <div class="title">
+                        Product-X
+                    </div>
+                    <div class="btn-group">
+                        <button class="button mini inset black"><i class="icon-search"></i></button>
+                        <button class="button mini inset black">Projects</button>
+                        <button class="button mini inset black dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i></button>
+                        <ul class="dropdown-menu black-box-dropdown">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="pull-right profile-menu-nav-collapse">
+                    <button class="button black"><i class="icon-reorder"></i></button>
+                </div>
+
+            </div>
+
+            <ul class="secondary-nav-menu">
+                <li class="active">
+                    <a href="stats.html">
+                        <i class="icon-dashboard"></i> Stats
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" id="modal-link">
+                        <i class="icon-random"></i> Open Modal
+                    </a>
+                </li>
+
+                <li id="notification-full-image">
+                    <a href="#">
+                        <i class="icon-list-alt"></i> Notification #1
+                    </a>
+                </li>
+
+                <li id="notification-small-image">
+                    <a href="#">
+                        <i class="icon-table"></i> Notification #2
+                    </a>
+                </li>
+            </ul>
+
+        </nav>
+
+        <section id="main">
+        <div class="top-nav">
+            <div class="container-fluid">
+                <div class="row-fluid search-button-bar-container">
+                    <div class="span12">
+                        <ul class="breadcrumb">
+                            <li><a href="#"><i class="icon-home"></i> Some</a></li>
+                            <li><a href="#">Nice</a></li>
+                            <li><a href="#">Breadcrumbs</a></li>
+                            <li class="active"><a href="#">Here</a></li>
+                        </ul>
+                        <a class="search-button-trigger" href="#"><i class="icon-search"></i></a>
+                    </div>
+                </div>
+
+                <div class="row-fluid search-bar-nav">
+                    <div class="span12">
+                        <form>
+                            <input type="text" class="search" placeholder="Search...">
+                        </form>
+                    </div>
                 </div>
             </div>
-        </footer>
+        </div>
 
+
+
+ 
+        @RenderBody()
+            
+        </section>
+ 
+              
         @DJ.StylesheetRegistry().Render() 
         @DJ.ScriptRegistry().Render()   
         @Html.GlimpseClient()  

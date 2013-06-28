@@ -1,4 +1,5 @@
 ﻿using DowJones.Preferences;
+using DowJones.Web.Mvc.UI.Components.AutoSuggest;
 
 namespace DowJones.Prod.X.Models.Site
 {
@@ -8,5 +9,6 @@ namespace DowJones.Prod.X.Models.Site
         IActionProperties Properties { get; }
         IGenericSiteUrls GenericSiteUrls { get; }
         IUsageTrackingProperties UsageTrackingProperties { get; }
+        AutoSuggestModel AutoSuggest { get; }
     }
 }

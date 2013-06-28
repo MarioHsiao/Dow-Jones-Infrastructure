@@ -102,6 +102,16 @@
                 return ((string)this["CustomerPortalUrl"]);
             }
         }
-       
+
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://suggest.int.dowjones.com/Search/1.0")]
+        public string SuggestServiceUrl
+        {
+            get
+            {
+                return ((string)this["SuggestServiceUrl"]);
+            }
+        }
     }
 }
