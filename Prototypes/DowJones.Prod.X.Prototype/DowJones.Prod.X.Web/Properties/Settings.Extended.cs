@@ -113,5 +113,16 @@
                 return ((string)this["SuggestServiceUrl"]);
             }
         }
+
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("75a6c4404d9ffa80a63")]
+        public string FlowPlayerKey
+        {
+            get
+            {
+                return ((string)(this["FlowPlayerKey"]));
+            }
+        }
     }
 }

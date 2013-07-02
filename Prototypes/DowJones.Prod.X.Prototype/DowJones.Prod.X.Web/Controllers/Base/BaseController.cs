@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using System.Web.SessionState;
 using DowJones.DependencyInjection;
+using DowJones.Preferences;
 using DowJones.Prod.X.Web.Filters;
 using DowJones.Prod.X.Web.Models.Interfaces;
 using ControllerBase = DowJones.Web.Mvc.ControllerBase;

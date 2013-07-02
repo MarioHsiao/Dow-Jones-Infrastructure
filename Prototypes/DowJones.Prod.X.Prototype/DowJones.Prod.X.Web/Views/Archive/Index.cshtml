@@ -1,0 +1,60 @@
+﻿@model DowJones.Prod.X.Web.Models.ArchiveIndexViewModel
+@using DowJones.Web.Mvc.UI.Components.PortalHeadlineList
+
+@{
+    ViewBag.Title = "Home Page";
+    StylesheetRegistry
+        .Include("~/content/stylesheets/study-one.css");
+}
+
+<div id="columns" class="container-fluid">
+    <div class="row-fluid">
+        
+       <div class="column article-view span7">
+                @if (Model.BaseActionModel.ArticleModel != null)
+                {
+                    @Html.DJ().Render(Model.BaseActionModel.ArticleModel);
+                }
+                else if (Model.BaseActionModel.MultiMediaPlayerModel != null)
+                {             
+                    <div class="multimediaPlayer">
+                        <div class="player">
+                            @(Html.DJ().Render(Model.BaseActionModel.MultiMediaPlayerModel))
+                        </div>            
+                        <ul class="article-list">
+                            <li class="dj_entry">
+                                <div class="article-wrap">
+                                    <h4 class="article-headline">
+                                        <span class="article-view-trigger">@(Model.BaseActionModel.Headline.Title)</span>
+                                    </h4>                                       
+                                    <div class="article-meta">
+                                        <span class="media-icon @(Model.BaseActionModel.Headline.ContentSubCategoryDescriptor)-player"></span>
+                                        <span class="media-length">[@(Model.BaseActionModel.Headline.MediaLength)]</span>
+                                    </div>  
+                                </div>
+                            </li>
+                        </ul>     
+                    </div>                                  
+                }
+                else { 
+                    <div class="dj_Article ArticleControl" id="ArticleComponent-0">
+                        <div class="dj_article-container dj_article_display_Full dj_article_lang_en" data-ref="">
+                            <h4 class="article-error">@(Token("articleNoLongerAvailable"))</h4>
+                        </div>
+                    </div>
+                }
+
+                @if (!Model.BaseActionModel.ExternalItemUri.IsNullOrEmpty())
+                {
+                    <div class="message">@(Token("youHaveLandedOnWebLnk")) <a href="@(Model.BaseActionModel.ExternalItemUri)" target="_blank">@(Token("clickHereToOpen"))</a></div>
+                    
+                    @DJ.ScriptRegistry().OnDocumentReady("djNewsletter.fireExternalUrl('" + Model.BaseActionModel.ExternalItemUri + "');");
+                }
+               
+            </div><!-- end: .article-view -->
+            <div class="column toc span5">
+                <aside>
+                </aside>
+            </div>
+    </div>
+</div>

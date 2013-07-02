@@ -1,7 +1,7 @@
-﻿a {color:white;}
+﻿a {color:#000;}
 
 /* Colors */
-.color-yellow {background:#f2bc00;}
+/*.color-yellow {background:#f2bc00;}
 .color-red    {background:#dd0000;}
 .color-blue   {background:#148ea4;}
 .color-white  {background:#dfdfdf;}
@@ -20,7 +20,7 @@
 .color-red a,
 .color-blue a,
 .color-orange a
-	{color:#FFF;}
+	{color:#FFF;}*/
 /* End Colors */
 
 
@@ -36,6 +36,7 @@
     width: 100%;
     height: 30px;
     line-height: 30px;
+    border-bottom: 1px solid #666;
 }
 #columns .widget .widget-head h3 {
     font-size: 1.4em;
@@ -44,9 +45,10 @@
     margin-left: 5px;
 }
 #columns .widget .widget-content {
-    background: #333 url(img/widget-content-bg.png) repeat-x;
+    /*background: #3C454F url(img/widget-content-bg.png) repeat-x;*/
     padding: 0 5px;
-    color: #DDD;
+    padding-bottom: 5px;
+    color: #000;
     -moz-border-radius-bottomleft: 2px;
     -moz-border-radius-bottomright: 2px;
     -webkit-border-bottom-left-radius: 2px;
@@ -56,7 +58,6 @@
 }
 #columns .widget .widget-content p {
     padding: 0.8em 0;
-    border-bottom: 1px solid #666;
 }
 #columns .widget .widget-content img {
     float: right;
@@ -92,6 +93,14 @@
 
 /* JS-Enabled CSS */
 
+.widget a.dj_action{
+    visibility: hidden;
+}
+
+.dj_displayActions  a.dj_action{
+    visibility: visible;
+}
+
 .widget-head a.remove  {
 }
 
@@ -106,7 +115,7 @@
 
 .edit-box {
     overflow: hidden;
-    background: #333 url(img/widget-content-bg.png) repeat-x;
+    background: #3C454F url(img/widget-content-bg.png) repeat-x;
     margin-bottom: 2px;
     padding: 10px 0;
 }

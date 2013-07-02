@@ -34,11 +34,35 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Argotic.Common">
+      <HintPath>..\packages\Argotic.Common.2008.0.2.0\lib\Net35\Argotic.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Argotic.Core">
+      <HintPath>..\packages\Argotic.Core.2008.0.2.0\lib\Net35\Argotic.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Argotic.Extensions">
+      <HintPath>..\packages\Argotic.Extensions.2008.0.2.0\lib\Net35\Argotic.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Argotic.Web">
+      <HintPath>..\packages\Argotic.Web.2008.0.2.0\lib\Net35\Argotic.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="DowJones.Assemblers">
+      <HintPath>..\packages\DowJones.Assemblers.3.5.34\lib\DowJones.Assemblers.dll</HintPath>
+    </Reference>
     <Reference Include="DowJones.Infrastructure">
       <HintPath>..\packages\DowJones.Infrastructure.3.5.34\lib\DowJones.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Parallel">
       <HintPath>..\packages\DowJones.Parallel.1.0.0\lib\DowJones.Parallel.dll</HintPath>
+    </Reference>
+    <Reference Include="DowJones.Web.Mvc">
+      <HintPath>..\packages\DowJones.Web.Mvc.3.5.34\lib\DowJones.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="DowJones.Web.Mvc.UI.Components">
+      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.3.5.34\lib\DowJones.Web.Mvc.UI.Components.dll</HintPath>
+    </Reference>
+    <Reference Include="DowJones.Web.Mvc.UI.Components.Models">
+      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.Models.3.5.34\lib\DowJones.Web.Mvc.UI.Components.Models.dll</HintPath>
     </Reference>
     <Reference Include="factiva.gateway.messages">
       <HintPath>..\packages\Factiva.Gateway.7.5.0.138\lib\factiva.gateway.messages.dll</HintPath>
@@ -74,12 +98,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataTransferObjects\SearchServiceDTO.cs" />
+    <Compile Include="Interfaces\IArticleRetrivalService.cs" />
+    <Compile Include="Interfaces\IHeadlineUtilityService.cs" />
     <Compile Include="Interfaces\IMembershipService.cs" />
+    <Compile Include="Interfaces\ISearchService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Archive\ArticleRetrivalService.cs" />
+    <Compile Include="Services\Archive\ConvertionOptions.cs" />
+    <Compile Include="Services\Archive\Expando.cs" />
     <Compile Include="Services\MembershipService.cs" />
+    <Compile Include="Services\Search\SearchService.cs" />
+    <Compile Include="Services\Search\SearchServiceUtility.cs" />
+    <Compile Include="Services\Utilities\HeadlineUtilityService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DowJones.Prod.X.Common\DowJones.Prod.X.Common.csproj">
+      <Project>{7130546e-9b7d-4ff4-8d0a-ad90d4a0f414}</Project>
+      <Name>DowJones.Prod.X.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DowJones.Prod.X.Models\DowJones.Prod.X.Models.csproj">
+      <Project>{669cf0b6-16f0-41a9-b0d9-858ddb7fa7d3}</Project>
+      <Name>DowJones.Prod.X.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

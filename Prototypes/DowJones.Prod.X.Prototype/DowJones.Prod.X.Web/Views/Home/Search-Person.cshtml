@@ -1,0 +1,28 @@
+﻿@model DowJones.Prod.X.Web.Models.HomeSearchViewModel
+@using DowJones.Prod.X.Models.Components.MarketTiles
+@{
+    ViewBag.Title = "Home Page";
+    StylesheetRegistry
+        .Include("~/content/stylesheets/study-one.css");
+
+
+    DJ.ScriptRegistry()
+     .OnDocumentReady("dj.productx.core.iDashboard.init();");
+}
+
+<div id="columns" class="container-fluid">
+    <div class="row-fluid">
+        
+        <ul id="column1" class="span6 column largeColumn">
+            <li class="widget color-green" id="intro">
+                <div class="widget-head">
+                    <h3 class="pull-left">Search Headlines</h3>
+                </div>
+                <div class="widget-content">
+                    <p>@Html.DJ().Render(Model.BaseActionModel.Headlines)</p>
+                </div>
+            </li>
+            
+        </ul>
+    </div>
+</div>

@@ -104,7 +104,19 @@
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.1.2.99\lib\2.0\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.1.1.2\lib\net40\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Owin.1.1.2\lib\net45\Microsoft.AspNet.SignalR.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.1.1.2\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.1.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Web.Mvc.FixedDisplayModes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.1\lib\net40\Microsoft.Web.Mvc.FixedDisplayModes.dll</HintPath>
@@ -115,6 +127,9 @@
     </Reference>
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.2.2.1.4\lib\net40-Full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
@@ -203,6 +218,7 @@
     <Compile Include="BootstrapperTasks\RouteRegistrationTask.cs" />
     <Compile Include="Common\ReferringProductFactory.cs" />
     <Content Include="Content\font\index.html" />
+    <Compile Include="Controllers\ArchiveController.cs" />
     <Compile Include="Controllers\Base\BaseApiController.cs" />
     <Compile Include="Controllers\Base\BaseController.cs" />
     <Compile Include="Controllers\Base\IContentController.cs" />
@@ -224,11 +240,15 @@
     <Compile Include="Models\Api\ApiDataPacketResult.cs" />
     <Compile Include="Models\Api\IApiResultModel.cs" />
     <Compile Include="Models\Api\BasicApiResult.cs" />
+    <Compile Include="Models\ArchiveIndexViewModel.cs" />
     <Compile Include="Models\BasicSiteRequestDto.cs" />
+    <Compile Include="Models\HomeSearchViewModel.cs" />
     <Compile Include="Models\Error\ErrorViewModel.cs" />
     <Compile Include="Models\GenericActionProperties.cs" />
     <Compile Include="Models\GenericSiteUrls.cs" />
+    <Compile Include="Models\HomeIndexViewModel.cs" />
     <Compile Include="Models\Interfaces\IBasicSiteRequestDto.cs" />
+    <Compile Include="Models\ManiNavMenuProvider.cs" />
     <Compile Include="Models\UsageTrackingProperties.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -260,12 +280,15 @@
     <Content Include="Content\img\glyphicons-halflings.png" />
     <Content Include="Content\js\bootstrap.js" />
     <Content Include="Content\js\bootstrap.min.js" />
+    <Content Include="Content\swf\flowplayer.audio-3.2.2.swf" />
+    <Content Include="Content\swf\flowplayer.controls-3.2.5.swf" />
+    <Content Include="Content\swf\flowplayer.rtmp-3.2.3.swf" />
+    <Content Include="Content\swf\flowplayer.unlimited-3.2.7.swf" />
     <Content Include="Scripts\abstract.canvas.js" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\stylesheets\foundation.min.css" />
     <Content Include="Content\stylesheets\normalize.css" />
-    <Content Include="Content\js\global.js" />
     <Content Include="favicon.ico" />
     <Content Include="GatewayResources\ReleaseNotes.txt" />
     <Content Include="GatewayResources\xslt\archive\CreateBillingRecord_Response.xslt" />
@@ -757,9 +780,9 @@
     <Content Include="Scripts\common.js" />
     <Content Include="Scripts\dj.productx.core.js" />
     <Content Include="Scripts\DJGlobal.js" />
-    <Content Include="Scripts\highcharts-more.src.js" />
-    <Content Include="Scripts\highcharts.src.js" />
     <Content Include="Scripts\jquery-ui.min.js" />
+    <Content Include="Scripts\jquery.signalR-1.1.2.js" />
+    <Content Include="Scripts\jquery.signalR-1.1.2.min.js" />
     <Content Include="Scripts\json2.min.js" />
     <Content Include="Scripts\modernizr.js" />
     <Content Include="Web.config" />
@@ -794,8 +817,13 @@
     <Content Include="Content\font\fontawesome-webfont.ttf" />
     <Content Include="Content\font\fontawesome-webfont.woff" />
     <Content Include="Content\font\FontAwesome.otf" />
+    <Content Include="Views\Home\Search-Company.cshtml" />
+    <Content Include="Views\Home\Search-Person.cshtml" />
+    <Content Include="Views\Home\Search-Keyword.cshtml" />
+    <Content Include="Views\Archive\Index.cshtml" />
     <None Include="Views\Home\Search.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\PrimaryNavigation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -8,7 +8,7 @@ namespace DowJones.Prod.X.Common
 {
     public static class CommonRequestParameterNames
     {
-        public const string AccessionNumberParamName = "an";
+        public const string AccessionNumberParamName = "accessionNumber";
         public const string AccessPointCodeParamName = "napc";
         public const string ProductPrefix = "SA_FROM";
     }

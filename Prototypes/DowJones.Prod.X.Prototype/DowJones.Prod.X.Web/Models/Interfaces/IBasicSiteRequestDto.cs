@@ -15,5 +15,7 @@ namespace DowJones.Prod.X.Web.Models.Interfaces
         IPrinciple Principle { get; }
 
         IUsageTrackingProperties UsageTrackingProperties { get; }
+
+        IMainNavMenuProvider MainNavMenuProvider { get; }
     }
 }

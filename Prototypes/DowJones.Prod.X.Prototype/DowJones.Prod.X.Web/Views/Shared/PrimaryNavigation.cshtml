@@ -1,0 +1,12 @@
+﻿@model DowJones.Prod.X.Models.Site.IBasicSiteModel
+
+<nav id="primary" class="main-nav">
+    <ul>
+        @foreach (var menuItem in Model.MainMenuItems)
+        {
+            var active = menuItem.Active ? "active" : string.Empty;
+            var url = menuItem.Url.IsNullOrEmpty() ? "javascript:void(0)" : menuItem.Url;
+            <li class="@active"><a href="@url"><i class="@menuItem.IconClass"></i>@menuItem.Text</a></li>
+        }
+    </ul>
+</nav>

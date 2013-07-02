@@ -40,6 +40,15 @@
     <Reference Include="DowJones.Parallel">
       <HintPath>..\packages\DowJones.Parallel.1.0.0\lib\DowJones.Parallel.dll</HintPath>
     </Reference>
+    <Reference Include="DowJones.Web.Mvc">
+      <HintPath>..\packages\DowJones.Web.Mvc.3.5.34\lib\DowJones.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="DowJones.Web.Mvc.UI.Components">
+      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.3.5.34\lib\DowJones.Web.Mvc.UI.Components.dll</HintPath>
+    </Reference>
+    <Reference Include="DowJones.Web.Mvc.UI.Components.Models">
+      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.Models.3.5.34\lib\DowJones.Web.Mvc.UI.Components.Models.dll</HintPath>
+    </Reference>
     <Reference Include="factiva.gateway.messages">
       <HintPath>..\packages\Factiva.Gateway.7.5.0.138\lib\factiva.gateway.messages.dll</HintPath>
     </Reference>
@@ -68,6 +77,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -75,10 +86,55 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EmbededResources\JavaScript\Resources.cs" />
+    <Compile Include="Extentions\ScriptRegistryBuilderExtentions.cs" />
+    <Compile Include="MarketTiles\MarketTilesViewComponent.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MarketTilesViewComponent.cshtml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="MarketTiles\MarketTilesViewComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>MarketTilesViewComponent.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DowJones.Prod.X.Models\DowJones.Prod.X.Models.csproj">
+      <Project>{669cf0b6-16f0-41a9-b0d9-858ddb7fa7d3}</Project>
+      <Name>DowJones.Prod.X.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="EmbededResources\JavaScript\Bootstrap\bootstrap-datepicker.js" />
+    <EmbeddedResource Include="EmbededResources\JavaScript\Bootstrap\bootstrap-modal.js" />
+    <EmbeddedResource Include="EmbededResources\JavaScript\Bootstrap\bootstrap-tooltip.js" />
+    <EmbeddedResource Include="EmbededResources\JavaScript\Bootstrap\bootstrap.js" />
+    <EmbeddedResource Include="EmbededResources\JavaScript\response.min.js" />
+    <EmbeddedResource Include="EmbededResources\JavaScript\response.js" />
+    <EmbeddedResource Include="MarketTiles\ClientTemplates\NoData.htm" />
+    <EmbeddedResource Include="MarketTiles\ClientTemplates\Error.htm" />
+    <EmbeddedResource Include="MarketTiles\ClientTemplates\Success-Medium.htm" />
+    <EmbeddedResource Include="MarketTiles\ClientTemplates\Success-Large.htm" />
+    <EmbeddedResource Include="MarketTiles\ClientTemplates\Success-Small.htm" />
+    <EmbeddedResource Include="MarketTiles\MarketTiles.js" />
+    <EmbeddedResource Include="EmbededResources\JavaScript\Highcharts\exporting.src.js" />
+    <EmbeddedResource Include="EmbededResources\JavaScript\Highcharts\highcharts-more.src.js" />
+    <EmbeddedResource Include="EmbededResources\JavaScript\Highcharts\highcharts.src.js" />
+    <EmbeddedResource Include="EmbededResources\JavaScript\jquery.mjs.nestedSortable.js" />
+    <EmbeddedResource Include="EmbededResources\JavaScript\jquery.sortElements.js" />
+    <EmbeddedResource Include="EmbededResources\JavaScript\jQueryUI\jquery-ui.js" />
+    <EmbeddedResource Include="EmbededResources\JavaScript\jQueryUI\jquery-ui.min.js" />
+    <Content Include="EmbededResources\JavaScript\Omniture\omniture.js" />
+    <EmbeddedResource Include="EmbededResources\JavaScript\parsley.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Headlines\Pictures\" />
+    <Folder Include="Headlines\Standard\" />
+    <Folder Include="Headlines\Videos\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

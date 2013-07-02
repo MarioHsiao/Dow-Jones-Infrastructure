@@ -1,6 +1,71 @@
 ﻿dj.productx.core = dj.productx.core || {};
 
+dj.productx.core.autoSuggestHandler = function (data) {
+    var searchUrl = dj.productx.core.config.baseAppUrl;
+    switch (data.controlType.toLowerCase()) {
+        case 'company':
+            searchUrl += "company/search?query=fds:" + data.code;
+            break;
+        case 'industry':
+            searchUrl += "industry/search?query=in:" + data.code;
+            break;
+        case 'executive':
+            searchUrl += "executive/search?query=pe:" + data.code;
+            break;
+        case 'author':
+            searchUrl += "author/search?query=au:" + data.code;
+            break;
+        case 'newssubject':
+            searchUrl += "newssubject/search?query=ns:" + data.code;
+            break;
+        case 'region_all':
+            searchUrl += "region/search?query=re:" + data.code;
+            break;
+        case 'keyword':
+        default:
+            searchUrl += "keyword/search?query=" + data.word;
+            break;
+    }
+    window.location = searchUrl;
+};
+
 dj.productx.core.init = function () {
+    var searchUrlInt = "http://suggest.int.factiva.com/Search/1.0";
+
+    // add the autosuggest control
+    var categorySuggest = {
+        url: searchUrlInt,
+        controlId: "autosuggestSearchbox",
+        controlClassName: "djAutoComplete",
+        autocompletionType: "Categories",
+        useSessionId: DJ.config.credentials.token,
+        onItemSelect: dj.productx.core.autoSuggestHandler,
+        fillInputOnKeyUpDown: "true",
+        selectFirst: false,
+        tokens: { 'region_allTkn': 'Regions', 'company_allTkn': 'Companies' },
+        options: { "maxResults": 3, "interfaceLanguage": "en", "categories": "company|executive|industry|newssubject|region_all|keyword", "companyFilterSet": "newsCodedAbt", "executiveFilterSet": "newsCoded" }
+    };
+    djV3.web.widgets.autocomplete(categorySuggest);
+
+    $(function () {
+        return $(".search-button-trigger").click(function () {
+            return $(".search-bar-nav").toggleClass("open");
+        });
+    });
+    
+    $(function () {
+        return $(".search-button-trigger").click(function () {
+            return $(".search-bar-nav").toggleClass("open");
+        });
+    });
+
+    $(function () {
+        return $('#searchForm').submit(function (e) {
+            var query = $('#autosuggestSearchbox').val();
+            dj.productx.core.autoSuggestHandler({ 'controlType': 'keyword', 'word': query });
+            return false;
+        });
+    });
 };
 
 
@@ -52,7 +117,7 @@ dj.productx.core.iDashboard = {
         $(settings.widgetSelector, $(settings.columns)).each(function () {
             var thisWidgetSettings = iNettuts.getWidgetSettings(this.id);
             if (thisWidgetSettings.removable) {
-                $('<a href="javascript:void()" class="remove pull-right"><i class="icon-remove"></i></a>').mousedown(function (e) {
+                $('<a href="javascript:void()" class="remove pull-right dj_action"><i class="icon-remove"></i></a>').mousedown(function (e) {
                     e.stopPropagation();
                 }).click(function () {
                     if (confirm('This widget will be removed, ok?')) {
@@ -70,7 +135,7 @@ dj.productx.core.iDashboard = {
 
             if (thisWidgetSettings.editable) {
                 
-                $('<a href="javascript:void()" class="edit pull-right"><i class="icon-cog"></i></a>').mousedown(function (e) {
+                $('<a href="javascript:void()" class="edit pull-right dj_action"><i class="icon-cog"></i></a>').mousedown(function (e) {
                     e.stopPropagation();
                 }).toggle(function () {
                     $(this)
@@ -91,19 +156,19 @@ dj.productx.core.iDashboard = {
                 }).appendTo($(settings.handleSelector, this));
                 $('<div class="edit-box" style="display:none;"/>')
                     .append('<ul><li class="item"><label>Change the title?</label><input value="' + $('h3', this).text() + '"/></li>')
-                    .append((function () {
+                    /*.append((function () {
                         var colorList = '<li class="item"><label>Available colors:</label><ul class="colors">';
                         $(thisWidgetSettings.colorClasses).each(function () {
                             colorList += '<li class="' + this + '"/>';
                         });
                         return colorList + '</ul>';
-                    })())
+                    })())*/
                     .append('</ul>')
                     .insertAfter($(settings.handleSelector, this));
             }
 
             if (thisWidgetSettings.collapsible) {
-                $('<a href="javascript:void()" class="chevron pull-left"><i class="icon-chevron-down"></i></a>').mousedown(function (e) {
+                $('<a href="javascript:void()" class="chevron pull-left dj_action"><i class="icon-chevron-down"></i></a>').mousedown(function (e) {
                     e.stopPropagation();
                 }).toggle(function () {
                     $(this)
@@ -178,6 +243,10 @@ dj.productx.core.iDashboard = {
             } else {
                 $(settings.columns).sortable('disable');
             }
+        }).mouseover(function () {
+            $(this).parent().addClass("dj_displayActions");
+        }).mouseout(function () {
+            $(this).parent().removeClass("dj_displayActions");
         });
 
         $(settings.columns).sortable({
@@ -196,6 +265,9 @@ dj.productx.core.iDashboard = {
             stop: function (e, ui) {
                 $(ui.item).css({ width: '' }).removeClass('dragging');
                 $(settings.columns).sortable('enable');
+            },
+            update: function (e, ui) {
+                DJ.publish("dj.productx.core.widgetSorted", ui);
             }
         });
     }

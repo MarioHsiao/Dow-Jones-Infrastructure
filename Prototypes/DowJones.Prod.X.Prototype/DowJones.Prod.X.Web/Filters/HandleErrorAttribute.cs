@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Web;
 using System.Web.Mvc;
 using DowJones.DependencyInjection;
+using DowJones.Prod.X.Models.Site;
 using DowJones.Prod.X.Web.Controllers.Base;
 using DowJones.Prod.X.Web.Models.Error;
 using DowJones.Prod.X.Web.Models.Interfaces;
@@ -113,7 +114,7 @@ namespace DowJones.Prod.X.Web.Filters
                 return;
             }
 
-            var model = new ErrorViewModel(contentController.BasicSiteRequestDto)
+            var model = new ErrorViewModel(contentController.BasicSiteRequestDto, null, MainNavigationCategory.Unspecified)
                             {
                                 BaseActionModel = new HandleErrorInfo(filterContext.Exception, controllerName, actionName)
                             };

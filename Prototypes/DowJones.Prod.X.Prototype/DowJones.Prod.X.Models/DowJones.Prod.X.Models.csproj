@@ -81,7 +81,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Archive\MultiMediaItemModel.cs" />
+    <Compile Include="Components\MarketTiles\MarketTilesModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Search\DeduplicationLevel.cs" />
+    <Compile Include="Search\DeduplicationMode.cs" />
+    <Compile Include="Search\SearchDateRange.cs" />
+    <Compile Include="Search\SearchDateRangeExpando.cs" />
+    <Compile Include="Search\SearchMode.cs" />
+    <Compile Include="Search\SortOrder.cs" />
+    <Compile Include="Site\Archive\ArchiveModel.cs" />
+    <Compile Include="Site\Home\IndexModel.cs" />
+    <Compile Include="Site\Home\SearchModel.cs" />
     <Compile Include="Site\IActionProperties.cs" />
     <Compile Include="Site\IBasicSiteModel.cs" />
     <Compile Include="Site\IGenericSiteUrls.cs" />
@@ -89,6 +100,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Site\Site\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

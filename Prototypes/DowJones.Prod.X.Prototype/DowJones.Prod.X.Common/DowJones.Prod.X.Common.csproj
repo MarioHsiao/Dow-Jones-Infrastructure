@@ -68,6 +68,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
@@ -78,7 +79,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommonRequestParameterNames.cs" />
+    <Compile Include="Extentions\SerializationExtentions.cs" />
     <Compile Include="Extentions\UrlExtentions.cs" />
+    <Compile Include="Http\BrowserDetectionService.cs" />
+    <Compile Include="Http\DeviceType.cs" />
+    <Compile Include="Http\IBrowserDetectionService.cs" />
     <Compile Include="UsageTrackingUtility.cs" />
     <Compile Include="Exceptions\ApplicationExceptionConstants.cs" />
     <Compile Include="Extentions\PrincipleExtentions.cs" />
@@ -96,6 +101,9 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Model\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

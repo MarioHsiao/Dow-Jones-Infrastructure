@@ -27,6 +27,9 @@ namespace DowJones.Prod.X.Web.BootstrapperTasks
                 "{controller}/{action}/{id}", // URL with parameters
                 new {controller = "Home", action = "Index", id = UrlParameter.Optional} // Parameter defaults
             );
+
+            //  Mapping the Hubs connection
+            _routes.MapHubs();
         }
     }
 }
