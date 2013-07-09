@@ -45,7 +45,9 @@ dj.productx.core.init = function () {
         tokens: { 'region_allTkn': 'Regions', 'company_allTkn': 'Companies' },
         options: { "maxResults": 3, "interfaceLanguage": "en", "categories": "company|executive|industry|newssubject|region_all|keyword", "companyFilterSet": "newsCodedAbt", "executiveFilterSet": "newsCoded" }
     };
-    djV3.web.widgets.autocomplete(categorySuggest);
+    if (window.djV3) {
+        window.djV3.web.widgets.autocomplete(categorySuggest);
+    }
 
     $(function () {
         return $(".search-button-trigger").click(function () {
@@ -92,6 +94,30 @@ dj.productx.core.iDashboard = {
                 collapsible: false,
                 editable: false
             },
+            companyExplainer: {
+                movable: false,
+                removable: false,
+                collapsible: false,
+                editable: false
+            },
+            topStories: {
+                movable: false,
+                removable: false,
+                collapsible: false,
+                editable: false
+            },
+            liveNews: {
+                movable: false,
+                removable: true,
+                collapsible: false,
+                editable: true
+            },
+            filters: {
+                movable: false,
+                removable: false,
+                collapsible: false,
+                editable: false
+            },
             gallery: {
                 colorClasses: ['color-yellow', 'color-red', 'color-white']
             }
@@ -110,12 +136,12 @@ dj.productx.core.iDashboard = {
     },
 
     addWidgetControls: function () {
-        var iNettuts = this,
+        var djGrid = this,
             $ = this.jQuery,
             settings = this.settings;
 
-        $(settings.widgetSelector, $(settings.columns)).each(function () {
-            var thisWidgetSettings = iNettuts.getWidgetSettings(this.id);
+        $(settings.widgetSelector).each(function () {
+            var thisWidgetSettings = djGrid.getWidgetSettings(this.id);
             if (thisWidgetSettings.removable) {
                 $('<a href="javascript:void()" class="remove pull-right dj_action"><i class="icon-remove"></i></a>').mousedown(function (e) {
                     e.stopPropagation();
@@ -187,6 +213,7 @@ dj.productx.core.iDashboard = {
                     $("i", this)
                        .removeClass('icon-chevron-up')
                        .addClass('icon-chevron-down');
+                        DJ.publish("dj.productx.core.collapseFired");
                     return false;
                 }).prependTo($(settings.handleSelector, this));
             }
@@ -212,22 +239,28 @@ dj.productx.core.iDashboard = {
 
     },
 
-
     makeSortable: function () {
-        var iNettuts = this,
+        var djGrid = this,
             $ = this.jQuery,
             settings = this.settings,
+            $widgetItems = (function() {
+                return $(settings.widgetSelector);
+            })(),
             $sortableItems = (function () {
                 var notSortable = '';
                 $(settings.widgetSelector, $(settings.columns)).each(function (i) {
-                    if (!iNettuts.getWidgetSettings(this.id).movable) {
+                    if (!djGrid.getWidgetSettings(this.id).movable) {
                         if (!this.id) {
                             this.id = 'widget-no-id-' + i;
                         }
                         notSortable += '#' + this.id + ',';
                     }
                 });
-                return $('> li:not(' + notSortable + ')', settings.columns);
+
+                if (notSortable.length > 0) {
+                    return $('> li:not(' + notSortable + ')', settings.columns);
+                }
+                return $('> li', settings.columns);
             })();
 
         $sortableItems.find(settings.handleSelector).css({
@@ -243,12 +276,14 @@ dj.productx.core.iDashboard = {
             } else {
                 $(settings.columns).sortable('disable');
             }
-        }).mouseover(function () {
+        });
+        
+        $widgetItems.find(settings.handleSelector).mouseover(function () {
             $(this).parent().addClass("dj_displayActions");
         }).mouseout(function () {
             $(this).parent().removeClass("dj_displayActions");
         });
-
+        
         $(settings.columns).sortable({
             items: $sortableItems,
             connectWith: $(settings.columns),
@@ -258,7 +293,7 @@ dj.productx.core.iDashboard = {
             revert: 300,
             delay: 100,
             opacity: 0.8,
-            containment: 'document',
+            containment: false,
             start: function (e, ui) {
                 $(ui.helper).addClass('dragging');
             },

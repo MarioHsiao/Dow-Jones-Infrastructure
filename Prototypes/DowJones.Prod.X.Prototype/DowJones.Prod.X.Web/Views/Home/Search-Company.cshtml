@@ -1,5 +1,8 @@
 ﻿@model DowJones.Prod.X.Web.Models.HomeSearchViewModel
-@using DowJones.Prod.X.Models.Components.MarketTiles
+@using DowJones.Prod.X.Models.Components.Earnings
+@using DowJones.Prod.X.Models.Components.Signals
+@using DowJones.Web.Mvc.UI.Components.PortalHeadlineList
+
 @{
     ViewBag.Title = "Home Page";
     StylesheetRegistry
@@ -9,20 +12,101 @@
     DJ.ScriptRegistry()
      .OnDocumentReady("dj.productx.core.iDashboard.init();");
 }
-
 <div id="columns" class="container-fluid">
     <div class="row-fluid">
-        
-        <ul id="column1" class="span6 column largeColumn">
-            <li class="widget color-green" id="intro">
+        <ul id="column1" class="span12 xColumn largeColumn">
+            <li class="widget color-green" id="companyExplainer">
                 <div class="widget-head">
-                    <h3 class="pull-left">Search Headlines</h3>
+                    <h3 class="pull-left">Company Explainer</h3>
                 </div>
                 <div class="widget-content">
-                    <p>@Html.DJ().Render(Model.BaseActionModel.Headlines)</p>
+                    <p></p>
                 </div>
             </li>
-            
         </ul>
+    </div>
+    <div class="row-fluid">
+        <ul id="column2" class="span2 xColumn mediumColumn">
+            <li class="widget color-green" id="filters">
+                <div class="widget-head">
+                    <h3 class="pull-left">Filters</h3>
+                </div>
+                <div class="widget-content">
+                </div>
+            </li>
+        </ul>
+        <ul id="column3" class="span4 xColumn mediumColumn">
+            <li class="widget color-green" id="liveNews">
+                <div class="widget-head">
+                    <h3 class="pull-left">Live News</h3>
+                </div>
+                <div class="widget-content">
+                </div>
+            </li>
+            <li class="widget color-green" id="topStories">
+                <div class="widget-head">
+                    <h3 class="pull-left">Top Stories</h3>
+                </div>
+                <div class="widget-content">
+                    @Html.DJ().Render(Model.BaseActionModel.Headlines)
+                </div>
+            </li>
+        </ul>
+        <div class="span6">
+            <div class="row-fluid">
+                <ul id="column4" class="span12 column largeColumn">
+                    <li class="widget color-green" id="sanctions">
+                        <div class="widget-head">
+                            <h3 class="pull-left">Signals</h3>
+                        </div>
+                        <div class="widget-content">
+                            @Html.DJ().Render(new SignalsComponentModel())
+                        </div>
+                    </li>
+                    <li class="widget color-green" id="none">
+                        <div class="widget-head">
+                            <h3 class="pull-left">Investments</h3>
+                        </div>
+                        <div class="widget-content">
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="row-fluid">
+                <ul id="column5" class="span6 column smallColumn">
+                    <li class="widget color-green" id="marketNews">
+                        <div class="widget-head">
+                            <h3 class="pull-left">Market News</h3>
+                        </div>
+                        <div class="widget-content">
+                        </div>
+                    </li>
+                    <li class="widget color-green" id="Earnings">
+                        <div class="widget-head">
+                            <h3 class="pull-left">Earnings</h3>
+                        </div>
+                        <div class="widget-content">
+                            @Html.DJ().Render(new EarningsComponentModel())
+                        </div>
+                    </li>
+                </ul>
+                <ul id="column6" class="span6 column smallColumn">
+                    <li class="widget color-green" id="marketNews">
+                        <div class="widget-head">
+                            <h3 class="pull-left">Market News</h3>
+                        </div>
+                        <div class="widget-content">
+                        </div>
+                    </li>
+                    <li class="widget color-green" id="Earnings">
+                        <div class="widget-head">
+                            <h3 class="pull-left">Signals</h3>
+                        </div>
+                        <div class="widget-content">
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>

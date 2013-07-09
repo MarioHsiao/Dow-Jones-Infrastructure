@@ -27,7 +27,7 @@ namespace DowJones.Prod.X.Components.MarketTiles
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 06/28/2013 01:50 PM
+    // Last Generated Timestamp: 07/03/2013 11:29 AM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Prod.X.Components.MarketTiles.MarketTiles.js", DependsOn=new string[] {
             "bootstrap",
             "responseJs",
@@ -38,7 +38,7 @@ namespace DowJones.Prod.X.Components.MarketTiles
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Prod.X.Components.MarketTiles.ClientTemplates.Success-Medium.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="successMedium", DeclaringType=typeof(DowJones.Prod.X.Components.MarketTiles.MarketTilesViewComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Prod.X.Components.MarketTiles.ClientTemplates.Success-Large.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="successLarge", DeclaringType=typeof(DowJones.Prod.X.Components.MarketTiles.MarketTilesViewComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
-    public class MarketTilesViewComponent : DowJones.Web.Mvc.UI.ViewComponentBase<DowJones.Prod.X.Models.Components.MarketTiles.MarketTilesModel>
+    public class MarketTilesViewComponent : DowJones.Web.Mvc.UI.ViewComponentBase<DowJones.Prod.X.Models.Components.MarketTiles.MarketTilesComponentModel>
     {
 #line hidden
 

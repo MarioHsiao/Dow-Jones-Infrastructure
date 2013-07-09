@@ -82,7 +82,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Archive\MultiMediaItemModel.cs" />
-    <Compile Include="Components\MarketTiles\MarketTilesModel.cs" />
+    <Compile Include="Components\CompanyExplainer\CompanyExplainerComponentModel.cs" />
+    <Compile Include="Components\Earnings\EarningsComponentModel.cs" />
+    <Compile Include="Components\MarketTiles\MarketTilesComponentModel.cs" />
+    <Compile Include="Components\Signals\SignalsComponentModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Search\DeduplicationLevel.cs" />
     <Compile Include="Search\DeduplicationMode.cs" />

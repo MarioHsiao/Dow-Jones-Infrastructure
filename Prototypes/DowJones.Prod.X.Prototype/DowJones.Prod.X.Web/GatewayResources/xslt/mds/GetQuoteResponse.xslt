@@ -151,7 +151,7 @@ xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:user="user" extension-element
 					<xsl:apply-templates select="Sample/Num[@fid='DiffInAssetValue']"/>
 					<xsl:apply-templates select="Sample/Num[@fid='Dividend']"/>
 					<xsl:apply-templates select="Sample/Date[@fid='DividendDate']"/>
-					<xsl:apply-templates select="Sample/Num[@fid='Earnings']"/>
+					<xsl:apply-templates select="Sample/Num[@fid='EarningsComponentModel']"/>
 					<xsl:apply-templates select="Sample/Date[@fid='exDividendDate']"/>
 					<xsl:apply-templates select="Sample/FreqInterestPayment"/>
 					<xsl:apply-templates select="Sample/Date[@fid='IssueDate']"/>
@@ -467,7 +467,7 @@ xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:user="user" extension-element
 		</xsl:if>
 	</xsl:template>
 
-	<xsl:template match="Sample/Num[@fid='Earnings']">
+	<xsl:template match="Sample/Num[@fid='EarningsComponentModel']">
 		<xsl:if test="string(number(@value))!='NaN'">
 			<xsl:if test="string-length(normalize-space(@value)) &gt; 0">
 				<earningsPerShare>

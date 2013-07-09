@@ -86,6 +86,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CompanyExplainer\CompanyExplainerViewComponent.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CompanyExplainerViewComponent.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="Earnings\EarningsViewComponent.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EarningsViewComponent.cshtml</DependentUpon>
+    </Compile>
     <Compile Include="EmbededResources\JavaScript\Resources.cs" />
     <Compile Include="Extentions\ScriptRegistryBuilderExtentions.cs" />
     <Compile Include="MarketTiles\MarketTilesViewComponent.cs">
@@ -94,13 +104,30 @@
       <DependentUpon>MarketTilesViewComponent.cshtml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Signals\SignalsViewComponent.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SignalsViewComponent.cshtml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="CompanyExplainer\CompanyExplainerViewComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>CompanyExplainerViewComponent.cs</LastGenOutput>
+    </None>
+    <None Include="Earnings\EarningsViewComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>EarningsViewComponent.cs</LastGenOutput>
+    </None>
     <None Include="MarketTiles\MarketTilesViewComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>MarketTilesViewComponent.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
+    <None Include="Signals\SignalsViewComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>SignalsViewComponent.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DowJones.Prod.X.Models\DowJones.Prod.X.Models.csproj">
@@ -109,6 +136,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Signals\Signals.js" />
+    <EmbeddedResource Include="Signals\ClientTemplates\Success-Small.htm" />
+    <EmbeddedResource Include="Signals\ClientTemplates\Success-Medium.htm" />
+    <EmbeddedResource Include="Signals\ClientTemplates\Success-Large.htm" />
+    <EmbeddedResource Include="Signals\ClientTemplates\NoData.htm" />
+    <EmbeddedResource Include="Signals\ClientTemplates\Error.htm" />
     <EmbeddedResource Include="EmbededResources\JavaScript\Bootstrap\bootstrap-datepicker.js" />
     <EmbeddedResource Include="EmbededResources\JavaScript\Bootstrap\bootstrap-modal.js" />
     <EmbeddedResource Include="EmbededResources\JavaScript\Bootstrap\bootstrap-tooltip.js" />
@@ -128,6 +161,18 @@
     <EmbeddedResource Include="EmbededResources\JavaScript\jquery.sortElements.js" />
     <EmbeddedResource Include="EmbededResources\JavaScript\jQueryUI\jquery-ui.js" />
     <EmbeddedResource Include="EmbededResources\JavaScript\jQueryUI\jquery-ui.min.js" />
+    <EmbeddedResource Include="CompanyExplainer\CompanyExplainer.js" />
+    <EmbeddedResource Include="CompanyExplainer\ClientTemplates\Error.htm" />
+    <EmbeddedResource Include="CompanyExplainer\ClientTemplates\NoData.htm" />
+    <EmbeddedResource Include="CompanyExplainer\ClientTemplates\Success-Large.htm" />
+    <EmbeddedResource Include="CompanyExplainer\ClientTemplates\Success-Medium.htm" />
+    <EmbeddedResource Include="CompanyExplainer\ClientTemplates\Success-Small.htm" />
+    <EmbeddedResource Include="Earnings\Earnings.js" />
+    <EmbeddedResource Include="Earnings\ClientTemplates\Error.htm" />
+    <EmbeddedResource Include="Earnings\ClientTemplates\NoData.htm" />
+    <EmbeddedResource Include="Earnings\ClientTemplates\Success-Large.htm" />
+    <EmbeddedResource Include="Earnings\ClientTemplates\Success-Medium.htm" />
+    <EmbeddedResource Include="Earnings\ClientTemplates\Success-Small.htm" />
     <Content Include="EmbededResources\JavaScript\Omniture\omniture.js" />
     <EmbeddedResource Include="EmbededResources\JavaScript\parsley.js" />
   </ItemGroup>

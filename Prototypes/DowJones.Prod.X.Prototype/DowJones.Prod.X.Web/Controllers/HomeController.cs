@@ -72,7 +72,15 @@ namespace DowJones.Prod.X.Web.Controllers
                                                       }
                             };
 
-            return View("Search", model);
+            switch (searchType)
+            {
+                case SearchType.Company:
+                    return View("Search-Company", model);
+                default:
+                    return View("Search", model);
+            }
+
+            
         }
 
         private PortalHeadlineListModel GetPortalHeadlineListSection(string query, int firstResult, int maxResults)

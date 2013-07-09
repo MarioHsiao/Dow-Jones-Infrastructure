@@ -7,8 +7,6 @@
         init: function (element, meta) {
             // Call the base constructor
             this._super(element, $.extend({ name: "MarketTiles" }, meta));
-            
-            console.log(this.$element);
             this._resize();
         },
 
@@ -26,10 +24,7 @@
         },
 
         _initializeEventHandlers: function () {
-            // TODO:  Wire up events to delegates
-            // e.g.  this._headlines.click(this._delegates.OnHeadlineClick);
             DJ.subscribe('dj.productx.core.widgetSorted', $dj.delegate(this, this._resize));
-
             Response.resize($dj.delegate(this, this._resize));
         },
         
@@ -54,31 +49,34 @@
             }
             
             return 'Small';
-                
         },
         
         _processTemplate: function (type, data) {
-            if (this.currentView === type) {
+            if (this._currentView === type) {
                 return;
             }
             
             switch(type) {
                 case 'Large Large':
+                case 'Large Medium':
                     this.$element.html(this.templates.successLarge(data));
-                    this._addChartLargeChart('.chartContainer');
-                    this.currentView = type;
+                    this._addChartLargeChart('.dj_chartContainer');
+                    this._currentView = type;
                     break;
                 case 'Medium Large':
                 case 'Medium Medium':
+                case 'Small Large':
                     this.$element.html(this.templates.successMedium(data));
-                    this._addChartMediumChart('.chartContainer', 'Medium');
-                    this.currentView = type;
+                    this._addChartMediumChart('.dj_chartContainer', 'Medium');
+                    this._currentView = type;
                     break;
                 case 'Large Small':
                 case 'Medium Small':
+                case 'Small Medium':
+                case 'Small Small':
                     this.$element.html(this.templates.successSmall(data));
-                    this._addChartMediumChart('.chartContainer', 'Small');
-                    this.currentView = type;
+                    this._addChartMediumChart('.dj_chartContainer', 'Small');
+                    this._currentView = type;
                     break;
             }
         },

@@ -19,7 +19,7 @@ namespace DowJones.Prod.X.Web.Common
         public override ReferringProduct Create()
         {
 
-            var productPrefix = _request[CommonRequestParameterNames.ProductPrefix].GetValueOrDefault("GL");
+            var productPrefix = _request[CommonRequestParameterNames.ProductPrefix].GetValueOrDefault("FP");
 
             var tReferringProduct = new ReferringProduct
             {

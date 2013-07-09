@@ -161,7 +161,7 @@ xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:user="user" extension-element
             <xsl:apply-templates select="Sample/Num[@fid='DiffInAssetValue']"/>
             <xsl:apply-templates select="Sample/Num[@fid='Dividend']"/>
             <xsl:apply-templates select="Sample/Date[@fid='DividendDate']"/>
-            <xsl:apply-templates select="Sample/Num[@fid='Earnings']"/>
+            <xsl:apply-templates select="Sample/Num[@fid='EarningsComponentModel']"/>
             <xsl:apply-templates select="Sample/Date[@fid='exDividendDate']"/>
             <xsl:apply-templates select="Sample/FreqInterestPayment"/>
             <xsl:apply-templates select="Sample/Date[@fid='IssueDate']"/>
@@ -203,7 +203,7 @@ xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:user="user" extension-element
             <xsl:apply-templates select="Fundamentals/DilutedEPSExcludingExtraordinaryItems"/>
             <xsl:apply-templates select="Fundamentals/DividendPayoutPerShare"/>
             <xsl:apply-templates select="Fundamentals/DividendYield"/>
-            <xsl:apply-templates select="Fundamentals/ForwardPriceToEarningsRatio"/>
+            <xsl:apply-templates select="Fundamentals/ForwardPriceToEarningsComponentModelRatio"/>
             <xsl:apply-templates select="Fundamentals/MarketCapitalization"/>
             <xsl:apply-templates select="Fundamentals/PeIncludingExtraordinaryItems"/>
             <xsl:apply-templates select="Fundamentals/PriceToDilutedEps"/>
@@ -212,7 +212,7 @@ xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:user="user" extension-element
             <xsl:apply-templates select="Fundamentals/SharesOutstandingPreferredStockPrimaryIssue"/>
             <xsl:apply-templates select="Fundamentals/SharesOutstanding"/>
             <xsl:apply-templates select="Fundamentals/SharesOwnedByInstitutions"/>
-            <xsl:apply-templates select="Fundamentals/SharesUsedToCalculateDilutedEarningsPerShare"/>
+            <xsl:apply-templates select="Fundamentals/SharesUsedToCalculateDilutedEarningsComponentModelPerShare"/>
           </fundamentals>
         </quoteResult>
       </xsl:otherwise>
@@ -302,12 +302,12 @@ xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:user="user" extension-element
       </xsl:if>
     </xsl:if>
   </xsl:template>
-  <xsl:template match="Fundamentals/ForwardPriceToEarningsRatio">
+  <xsl:template match="Fundamentals/ForwardPriceToEarningsComponentModelRatio">
     <xsl:if test="string(number(.))!='NaN'">
       <xsl:if test="string-length(normalize-space(.)) &gt; 0">
-        <ForwardPriceToEarningsRatio>
+        <ForwardPriceToEarningsComponentModelRatio>
           <xsl:value-of select="normalize-space(.)"/>
-        </ForwardPriceToEarningsRatio>
+        </ForwardPriceToEarningsComponentModelRatio>
       </xsl:if>
     </xsl:if>
   </xsl:template>
@@ -383,12 +383,12 @@ xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:user="user" extension-element
       </xsl:if>
     </xsl:if>
   </xsl:template>
-  <xsl:template match="Fundamentals/SharesUsedToCalculateDilutedEarningsPerShare">
+  <xsl:template match="Fundamentals/SharesUsedToCalculateDilutedEarningsComponentModelPerShare">
     <xsl:if test="string(number(.))!='NaN'">
       <xsl:if test="string-length(normalize-space(.)) &gt; 0">
-        <SharesUsedToCalculateDilutedEarningsPerShare>
+        <SharesUsedToCalculateDilutedEarningsComponentModelPerShare>
           <xsl:value-of select="normalize-space(.)"/>
-        </SharesUsedToCalculateDilutedEarningsPerShare>
+        </SharesUsedToCalculateDilutedEarningsComponentModelPerShare>
       </xsl:if>
     </xsl:if>
   </xsl:template>
@@ -652,7 +652,7 @@ xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:user="user" extension-element
     </xsl:if>
   </xsl:template>
 
-  <xsl:template match="Sample/Num[@fid='Earnings']">
+  <xsl:template match="Sample/Num[@fid='EarningsComponentModel']">
     <xsl:if test="string(number(@value))!='NaN'">
       <xsl:if test="string-length(normalize-space(@value)) &gt; 0">
         <earningsPerShare>

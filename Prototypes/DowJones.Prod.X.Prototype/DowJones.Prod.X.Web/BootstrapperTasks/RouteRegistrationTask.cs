@@ -15,7 +15,9 @@ namespace DowJones.Prod.X.Web.BootstrapperTasks
 
         public void Execute()
         {
+            _routes.IgnoreRoute("content/{resource}.axd/{*pathInfo}");
             _routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            _routes.IgnoreRoute("{resource}.ashx/{*pathInfo}");
             _routes.IgnoreRoute("{resource}.asmx/{*pathInfo}");
             _routes.IgnoreRoute("{resource}.svc/{*pathInfo}");
             _routes.IgnoreRoute("{resource}.ashx/{*pathInfo}");

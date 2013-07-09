@@ -1,9 +1,10 @@
-﻿@model DowJones.Prod.X.Models.Components.MarketTiles.MarketTilesComponentModel
-@ClientPlugin dj_MarketTiles
-@ScriptResource RelativeResourceName=MarketTiles.js, DependsOn=bootstrap;responseJs;highchartsNew
+﻿@model Models.Components.Signals.SignalsComponentModel
+@ClientPlugin dj_Signals
+@ScriptResource RelativeResourceName=Signals.js, DependsOn=bootstrap;responseJs;highchartsNew
 @ClientTemplate RelativeResourceName=ClientTemplates.Error.htm, TemplateId=error
 @ClientTemplate RelativeResourceName=ClientTemplates.NoData.htm, TemplateId=noData
 @ClientTemplate RelativeResourceName=ClientTemplates.Success-Small.htm, TemplateId=successSmall
 @ClientTemplate RelativeResourceName=ClientTemplates.Success-Medium.htm, TemplateId=successMedium
 @ClientTemplate RelativeResourceName=ClientTemplates.Success-Large.htm, TemplateId=successLarge
-@{ CssClass = "dj_MarketTiles"; }
+@{ CssClass = "dj_Signals"; }
+

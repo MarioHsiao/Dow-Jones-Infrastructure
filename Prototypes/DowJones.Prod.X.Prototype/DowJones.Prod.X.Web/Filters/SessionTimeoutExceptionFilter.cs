@@ -38,27 +38,10 @@ namespace DowJones.Prod.X.Web.Filters
                 _validateSessionService = value;
             }
         }
-/*
-        [Inject("Constructor injection not available in Action Filter Attributes")]
-        public IClientStateCacheService ClientStateCacheService
-        {
-            get { return _clientStateCacheService; }
-
-            set
-            {
-                _clientStateCacheService = value;
-            }
-        }*/
 
         public override void OnException(ExceptionContext filterContext)
         {
             var errorCode = GetErrorNumber(filterContext.Exception);
-            //var dowJonesException = filterContext.Exception as DowJonesUtilitiesException;
-
-            //if (dowJonesException == null)
-            //{
-            //    return;
-            //}
 
             if (IsValidSession(ref errorCode))
             {
@@ -69,15 +52,12 @@ namespace DowJones.Prod.X.Web.Filters
             filterContext.ExceptionHandled = true;
         }
 
-        public string GetReturnToProductUrl(ExceptionContext filterContext)
+        public virtual string GetReturnToProductUrl(ExceptionContext filterContext)
         {
-            //Get the return url from the client state cache
-            /*var data = _clientStateCacheService.GetItem();
-            if(data != null && !String.IsNullOrEmpty(data.ReturnUrl))
-            {
-                return data.ReturnUrl;
-            }*/
-            return string.Format("{0}{1}", (filterContext.HttpContext != null && filterContext.HttpContext.Request != null && filterContext.HttpContext.Request.Url != null) ? String.Format("{0}://", filterContext.HttpContext.Request.Url.Scheme) : "//", X.Common.Properties.Settings.Default.BaseDotComHost);
+            return string.Format("{0}{1}", (filterContext.HttpContext != null && filterContext.HttpContext.Request != null && filterContext.HttpContext.Request.Url != null) 
+                ? String.Format("{0}://", filterContext.HttpContext.Request.Url.Scheme) 
+                : "//", 
+                X.Common.Properties.Settings.Default.BaseDotComHost);
         }
 
         public static string GetErrorNumber(Exception exception)
