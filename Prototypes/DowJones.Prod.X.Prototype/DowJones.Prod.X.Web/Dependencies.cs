@@ -7,6 +7,7 @@ using DowJones.Prod.X.Core.Services.Archive;
 using DowJones.Prod.X.Core.Services.Search;
 using DowJones.Prod.X.Core.Services.Utilities;
 using DowJones.Prod.X.Models.Site;
+using DowJones.Prod.X.Web.Common;
 using DowJones.Prod.X.Web.Models;
 using DowJones.Prod.X.Web.Models.Interfaces;
 using DowJones.Security.Interfaces;
@@ -30,7 +31,7 @@ namespace DowJones.Prod.X.Web
 
             Unbind<IPreferences>();
 
-            BindToFactory<IControlData, ControlDataFactory>().InRequestScope();
+            BindToFactory<IControlData, EnhancedControlDataFactory>().InRequestScope();
             BindToFactory<IUserSession, UserSessionFactory>().InRequestScope();/*
             BindToFactory<IPreferences, PreferencesFactory>().InRequestScope();
             BindToFactory<INewsletterPreferences, NewslettersPreferencesFactory>().InRequestScope();*/

@@ -79,6 +79,7 @@
                             <h3 class="pull-left">Market News</h3>
                         </div>
                         <div class="widget-content">
+                             @*@Html.DJ().Render(Model.BaseActionModel.StockKiosk)*@
                         </div>
                     </li>
                     <li class="widget color-green" id="Earnings">
@@ -96,6 +97,7 @@
                             <h3 class="pull-left">Market News</h3>
                         </div>
                         <div class="widget-content">
+                            @Html.DJ().Render(new SignalsComponentModel())
                         </div>
                     </li>
                     <li class="widget color-green" id="Earnings">

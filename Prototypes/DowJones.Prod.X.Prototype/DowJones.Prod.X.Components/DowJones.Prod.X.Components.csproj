@@ -34,20 +34,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DowJones.Infrastructure">
-      <HintPath>..\packages\DowJones.Infrastructure.3.5.34\lib\DowJones.Infrastructure.dll</HintPath>
+    <Reference Include="DowJones.Infrastructure, Version=3.5.35.43809, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DowJones.Infrastructure.3.5.35\lib\DowJones.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Parallel">
       <HintPath>..\packages\DowJones.Parallel.1.0.0\lib\DowJones.Parallel.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Web.Mvc">
-      <HintPath>..\packages\DowJones.Web.Mvc.3.5.34\lib\DowJones.Web.Mvc.dll</HintPath>
+    <Reference Include="DowJones.Web.Mvc, Version=3.5.35.43809, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DowJones.Web.Mvc.3.5.35\lib\DowJones.Web.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Web.Mvc.UI.Components">
-      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.3.5.34\lib\DowJones.Web.Mvc.UI.Components.dll</HintPath>
+    <Reference Include="DowJones.Web.Mvc.UI.Components, Version=3.5.35.43809, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.3.5.35\lib\DowJones.Web.Mvc.UI.Components.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Web.Mvc.UI.Components.Models">
-      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.Models.3.5.34\lib\DowJones.Web.Mvc.UI.Components.Models.dll</HintPath>
+    <Reference Include="DowJones.Web.Mvc.UI.Components.Models, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.Models.3.5.35\lib\DowJones.Web.Mvc.UI.Components.Models.dll</HintPath>
     </Reference>
     <Reference Include="factiva.gateway.messages">
       <HintPath>..\packages\Factiva.Gateway.7.5.0.138\lib\factiva.gateway.messages.dll</HintPath>
@@ -91,6 +95,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CompanyExplainerViewComponent.cshtml</DependentUpon>
     </Compile>
+    <Compile Include="CompanyKeyFinancials\CompanyKeyFinancialsViewComponent.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CompanyKeyFinancialsViewComponent.cshtml</DependentUpon>
+    </Compile>
     <Compile Include="Earnings\EarningsViewComponent.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -114,6 +123,10 @@
     <None Include="CompanyExplainer\CompanyExplainerViewComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>CompanyExplainerViewComponent.cs</LastGenOutput>
+    </None>
+    <None Include="CompanyKeyFinancials\CompanyKeyFinancialsViewComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>CompanyKeyFinancialsViewComponent.cs</LastGenOutput>
     </None>
     <None Include="Earnings\EarningsViewComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
@@ -173,6 +186,7 @@
     <EmbeddedResource Include="Earnings\ClientTemplates\Success-Large.htm" />
     <EmbeddedResource Include="Earnings\ClientTemplates\Success-Medium.htm" />
     <EmbeddedResource Include="Earnings\ClientTemplates\Success-Small.htm" />
+    <EmbeddedResource Include="CompanyKeyFinancials\CompanyKeyFinancials.js" />
     <Content Include="EmbededResources\JavaScript\Omniture\omniture.js" />
     <EmbeddedResource Include="EmbededResources\JavaScript\parsley.js" />
   </ItemGroup>

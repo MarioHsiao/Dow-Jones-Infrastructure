@@ -27,7 +27,7 @@ namespace DowJones.Prod.X.Components.Signals
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 07/08/2013 10:20 AM
+    // Last Generated Timestamp: 07/10/2013 10:03 AM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Prod.X.Components.Signals.Signals.js", DependsOn=new string[] {
             "bootstrap",
             "responseJs",

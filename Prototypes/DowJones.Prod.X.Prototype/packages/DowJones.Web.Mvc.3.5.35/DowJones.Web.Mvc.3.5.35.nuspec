@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>DowJones.Web.Mvc</id>
+    <version>3.5.35</version>
+    <title>Dow Jones ASP.NET MVC extensions</title>
+    <authors>Dow Jones Platform Integration Team</authors>
+    <owners>Dow Jones Platform Integration Team</owners>
+    <licenseUrl>http://dowjones.com</licenseUrl>
+    <projectUrl>http://dowjones.com</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Dow Jones ASP.NET MVC extensions</description>
+    <language>en-US</language>
+    <tags>DowJones</tags>
+    <dependencies>
+      <dependency id="DowJones.Infrastructure" version="3.5.35" />
+    </dependencies>
+  </metadata>
+</package>

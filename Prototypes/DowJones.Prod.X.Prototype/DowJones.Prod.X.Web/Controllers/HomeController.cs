@@ -1,11 +1,14 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.Routing;
 using DowJones.Ajax;
+using DowJones.Assemblers.Charting.MarketData;
 using DowJones.Assemblers.Headlines;
 using DowJones.DTO.Web.Request;
 using DowJones.Extensions;
 using DowJones.Infrastructure;
+using DowJones.Managers.Charting.MarketData;
 using DowJones.Prod.X.Common;
 using DowJones.Prod.X.Core.DataTransferObjects;
 using DowJones.Prod.X.Core.Services.Search;
@@ -18,6 +21,7 @@ using DowJones.Url;
 using DowJones.Web.Mvc.Routing;
 using DowJones.Web.Mvc.UI.Components.Common;
 using DowJones.Web.Mvc.UI.Components.PortalHeadlineList;
+using DowJones.Web.Mvc.UI.Components.StockKiosk;
 using Factiva.Gateway.Messages.Search.V2_0;
 using PerformContentSearchRequest = Factiva.Gateway.Messages.Search.FreeSearch.V1_0.PerformContentSearchRequest;
 using PerformContentSearchResponse = Factiva.Gateway.Messages.Search.FreeSearch.V1_0.PerformContentSearchResponse;
@@ -43,12 +47,14 @@ namespace DowJones.Prod.X.Web.Controllers
         private readonly SearchService _searchService;
         private readonly UrlHelper _urlHelper;
         public const string DefaultFileHandlerUrl = "~/DowJones.Web.Handlers.Article.ContentHandler.ashx";
+        private readonly MarketDataInstrumentIntradayResultSetAssembler _marketDataInstrumentIntradayResultSetAssembler;
 
-        public HomeController(HeadlineListConversionManager headlineListManager, SearchService searchService, UrlHelper urlHelper)
+        public HomeController(HeadlineListConversionManager headlineListManager, SearchService searchService, UrlHelper urlHelper, MarketDataInstrumentIntradayResultSetAssembler marketDataInstrumentIntradayResultSetAssembler)
         {
             _headlineListManager = headlineListManager;
             _searchService = searchService;
             _urlHelper = urlHelper;
+            _marketDataInstrumentIntradayResultSetAssembler = marketDataInstrumentIntradayResultSetAssembler;
         }
 
         public ActionResult Index()
@@ -68,7 +74,8 @@ namespace DowJones.Prod.X.Web.Controllers
                             {
                                 BaseActionModel = new SearchModel
                                                       {
-                                                          Headlines = GetPortalHeadlineListSection(query, firstResult, maxResults)
+                                                          Headlines = GetPortalHeadlineListSection(query, firstResult, maxResults),
+                                                          StockKiosk = GetStockKioskModel() 
                                                       }
                             };
 
@@ -81,6 +88,28 @@ namespace DowJones.Prod.X.Web.Controllers
             }
 
             
+        }
+
+        private StockKioskModel GetStockKioskModel(IEnumerable<string> syms, SymbolType symbolType = SymbolType.FCode, Frequency frequency = Frequency.FifteenMinutes, int pageSize = 10)
+        {
+            var kioskModel = new StockKioskModel();
+            var response = MarketDataChartingManager.GetMarketChartData(syms.ToArray(), symbolType, TimePeriod.OneDay, frequency);
+            if (response.PartResults == null || !response.PartResults.Any())
+            {
+                return null;
+            }
+            var data = _marketDataInstrumentIntradayResultSetAssembler.Convert(response.PartResults);
+            kioskModel.Data = data;
+            kioskModel.PageSize = pageSize;
+            if (kioskModel.PageSize > 8) kioskModel.PageSize = 8; //min as per the design to fit in
+
+            return kioskModel;
+        }
+
+        private StockKioskModel GetStockKioskModel()
+        {
+            var syms = new List<string>(new[] { "ibm", "mcrost", "goog", "reggr", "carsvc", "cmdbnn", "rgrc", "stgtec", "precos", "comasc" });
+            return GetStockKioskModel(syms);
         }
 
         private PortalHeadlineListModel GetPortalHeadlineListSection(string query, int firstResult, int maxResults)

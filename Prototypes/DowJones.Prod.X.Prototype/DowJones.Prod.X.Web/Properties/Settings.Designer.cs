@@ -22,5 +22,15 @@ namespace DowJones.Prod.X.Web.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("S00ZGF91tNqYWRyMTZyMTMpN9AsODUvOHmm5DN9RcF0WEbBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQU" +
+            "FBQUFBQUFBQUFB")]
+        public string EncryptedToken {
+            get {
+                return ((string)(this["EncryptedToken"]));
+            }
+        }
     }
 }

@@ -285,6 +285,7 @@ dj.productx.core.iDashboard = {
         });
         
         $(settings.columns).sortable({
+            axis: false,
             items: $sortableItems,
             connectWith: $(settings.columns),
             handle: settings.handleSelector,
@@ -303,7 +304,8 @@ dj.productx.core.iDashboard = {
             },
             update: function (e, ui) {
                 DJ.publish("dj.productx.core.widgetSorted", ui);
-            }
+            },
+            scroll: true
         });
     }
 

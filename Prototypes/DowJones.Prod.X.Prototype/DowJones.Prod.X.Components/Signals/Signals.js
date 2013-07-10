@@ -27,14 +27,14 @@ DJ.UI.Signals = DJ.UI.Component.extend({
     },
         
     _resize: function () {
-        var band = this._getBand();
+        var band = this._getDevice();
         var column = this._findColumn();
         var type = band + " " + column;
         console.log(type);
         this._processTemplate(type, this._getData());
     },
         
-    _getBand: function () {
+    _getDevice: function () {
         if (Response.band(1200)) {
             return "Large";
         }
@@ -85,7 +85,6 @@ DJ.UI.Signals = DJ.UI.Component.extend({
             case 'Small Medium':
             case 'Small Small':
                 this.$element.html(this.templates.successSmall(data));
-                this._insertChart('.dj_chartContainer', data);
                 this._currentView = type;
                 break;
         }
@@ -207,9 +206,10 @@ DJ.UI.Signals = DJ.UI.Component.extend({
         return {'signalsData': signalsData, 'typesData': typesData };
     },
         
+    
     _insertChart: function (selector, data) {
         // Create the chart
-        $(selector).highcharts({
+        $(selector, this.$element).highcharts({
             chart: {
                 type: 'pie'
             },

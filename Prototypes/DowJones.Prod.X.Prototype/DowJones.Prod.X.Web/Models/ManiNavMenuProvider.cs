@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Web;
+using System.Web.Mvc;
 using DowJones.Prod.X.Models.Site;
 
 namespace DowJones.Prod.X.Web.Models
@@ -12,8 +14,21 @@ namespace DowJones.Prod.X.Web.Models
     public class MainNavMenuProvider : IMainNavMenuProvider
     {
         private readonly List<MenuItem<MainNavigationCategory>> _items = new List<MenuItem<MainNavigationCategory>>();
+        private readonly UrlHelper _urlHelper;
 
-        public MainNavMenuProvider()
+        public MainNavMenuProvider(UrlHelper urlHelper)
+        {
+            _urlHelper = urlHelper;
+            InitializeList();
+           
+        }
+
+        public List<MenuItem<MainNavigationCategory>> GetMenuItems()
+        {
+            return _items;
+        }
+
+        private void InitializeList()
         {
             _items.AddRange(new[]
                                 {
@@ -23,6 +38,7 @@ namespace DowJones.Prod.X.Web.Models
                                             IconClass = "icon-home",
                                             Text = "Home",
                                             NavigationCategory = MainNavigationCategory.Home,
+                                            Url = _urlHelper.Content("~/")
                                         },
                                     new MenuItem<MainNavigationCategory>
                                         {
@@ -67,11 +83,6 @@ namespace DowJones.Prod.X.Web.Models
                                             NavigationCategory = MainNavigationCategory.Labs,
                                         },
                                 });
-        }
-
-        public List<MenuItem<MainNavigationCategory>> GetMenuItems()
-        {
-            return _items;
         }
     }
 }

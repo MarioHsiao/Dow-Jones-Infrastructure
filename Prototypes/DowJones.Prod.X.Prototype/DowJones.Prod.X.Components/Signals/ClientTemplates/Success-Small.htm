@@ -1,3 +1,14 @@
-﻿<div>
-    <div class="dj_chartContainer" style="height:400px;"></div>
+﻿<%
+    var data = self,
+        options = this.options;
+%>
+
+<div>
+    <% 
+        if (data.signalsData) {
+            for (var i = 0; i < data.signalsData.length; i++) { %>    
+                <div><%=data.signalsData[i].name%> [ <%=data.signalsData[i].y%> ]</div>
+        <%  }
+        } 
+    %>
 </div>

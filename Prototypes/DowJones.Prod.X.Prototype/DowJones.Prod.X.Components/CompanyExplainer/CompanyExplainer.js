@@ -22,8 +22,20 @@
             Response.resize($dj.delegate(this, this._resize));
         },
         
+        _getDevice: function () {
+            if (Response.band(1200)) {
+                return "Desktop";
+            }
+
+            if (Response.band(481)) {
+                return "Tablet";
+            }
+
+            return "Mobile";
+        },
+        
         _resize: function () {
-            var band = this._getBand();
+            var band = this._getDevice();
             var column = this._findColumn();
             var type = band + " " + column;
             this._processTemplate(type, null);
@@ -51,31 +63,29 @@
             }
 
             switch (type) {
-                case 'Large Large':
-                case 'Large Medium':
+                case 'Desktop Large':
+                case 'Desktop Medium':
                     this.$element.html(this.templates.successLarge(data));
                     this._addChartLargeChart('.dj_chartContainer');
                     this._currentView = type;
                     break;
-                case 'Medium Large':
-                case 'Medium Medium':
-                case 'Small Large':
+                case 'Tablet Large':
+                case 'Tablet Medium':
+                case 'Mobile Large':
                     this.$element.html(this.templates.successMedium(data));
                     this._addChartMediumChart('.dj_chartContainer', 'Medium');
                     this._currentView = type;
                     break;
-                case 'Large Small':
-                case 'Medium Small':
-                case 'Small Medium':
-                case 'Small Small':
+                case 'Desktop Small':
+                case 'Tablet Small':
+                case 'Mobile Medium':
+                case 'Mobile Small':
                     this.$element.html(this.templates.successSmall(data));
                     this._addChartMediumChart('.dj_chartContainer', 'Small');
                     this._currentView = type;
                     break;
             }
         },
-        
-
         
         newsStockChartOptions: function (chartContainer, graphLineConfig) {
             var self = this,
