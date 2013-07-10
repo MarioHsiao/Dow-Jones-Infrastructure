@@ -1154,3 +1154,187 @@ Release Version 7.5.0.93
 07/26/2012 Pramod: Added new PCM service for RealtTimeSearcDiscovery
 07/27/2012 Pramod: Removed new CustoremType "L" LisghtWeight for Membership added in the last release until further confirmaion is recieved to suport this.. 
 07/31/2012 Himmat: Added Deserialization for RT search's PerformContentSearchRequest class.
+Release Version 7.5.0.94
+=============================================================================================================================
+8/3/2012 Divya: Added preferences DefaultRegistrationTypePreferenceItem and  AuthenticationTypePreferenceItem.
+8/8/2013 Divya: Updated Search 2.0 with FeatureHeadlines.
+9/13/2013 Pramod: Updated RecentSimpleSearche preference item(classid:70) to support the new datastructure.
+Release Version 7.5.0.95
+=============================================================================================================================
+09/24/2012 Divya: Email JobId change for Edition Asset.
+
+Release Version 7.5.0.96
+=============================================================================================================================
+10/14/2012 Pramod: Added rootParent element to taxonomyCode type.
+10/16/2012 Himmat: Updated user auths to return the generic dictionary collections.
+
+Release Version 7.5.0.98
+=============================================================================================================================
+10/29/2012 Divya: Updated NewsPages asset to add assignedLists to shareproperties.
+11/01/2012 Himmat: Fixed issues with GetNestedGroupInfoRequest and Response.
+11/05/2012 Divya: Added new transaction GetBinaryInternal in Archive V2_0
+
+Release Version 7.5.0.99
+=============================================================================================================================
+11/10/2012 Himmat: Added FactivaExpertSearchGroupingPreferenceItem.
+Release Version 7.5.0.100
+=============================================================================================================================
+11/20/2012 Divya: Added new transactions GetDocument and GetDocumentWithDelayedBilling in Archive V2_0
+11/23/2012 Divya: Added NewsstandSourcesNewspageModule to Pages asset.
+11/23/2012 Divya: Added ModuleShareProperties and UpdateModule in SetPageSharePropertiesRequest.
+Release Version 7.5.0.101
+=============================================================================================================================
+11/26/2012 Pramod: Added IBinaryRequest and IBinaryResponse interface and derived GetBinary and GetBinaryInternal messages from interface.
+Release Version 7.5.0.102
+=============================================================================================================================
+11/27/2012 Pramod: Fix for GetGroupInfoResponse.xslt for items not being populated correctly.
+11/27/2012 Pramod: Modified NewstandSourceCollection to SourceCollection in NewsstandSourcesNewspageModule in pages Asset
+11/28/2012 Pramod: Modified FactivaExperSearchGroupingPreferenceItem with the new schema.
+12/7/2012 Pramod: Fixed the deserilization issue for PreferenceService.GetAccountGroupItems transaction.
+Release Version 7.5.0.103
+=============================================================================================================================
+11/27/2012 Pramod: Added excludes for UserData NewsFilter class in Track.
+Release Version 7.5.0.104
+=============================================================================================================================
+12/12/2012 Pramod: Added country code and state code for SendEmailToUserRequest and ValidateTokenResponse under the 
+					namespace Factiva.Gateway.Messages.Membership.ExternalReader.V1_0
+Release Version 7.5.0.105
+=============================================================================================================================
+12/17/2012 Pramod: Added AddItemToGroup and RemoveItemFromGroup transctions under Factiva.Gateway.Messages.Preferences.V1_0
+Release Version 7.5.0.106
+=============================================================================================================================
+12/27/2012 Pramod: Enahancements to PAM Assets
+					Item Asset:
+					•	Created new item types NLSyndicationItem and BookmarkItem
+					Workspace Asset:
+					•	Added new field “FreeText” in NewsletterProperties 
+					Edition Asset:
+					•	Added new field “FreeText” in EditionProperties 
+
+Release Version 7.5.0.107
+=============================================================================================================================
+1/4/2013   Pramod: Changed countryCode to isoCountryCode in SendEmailToUser and ValidateToken External reader transactions
+
+Release Version 7.5.0.108
+=============================================================================================================================
+1/14/2013 Pramod: Changed the type of id from int to long for Editions, templates, workspace and other pam assets.
+1/14/2013 Pramod: Added new syndicationaggreagationservice transactions - CreateSyndicationItemEx, UpdateSyndicationItemEx, DeleteSyndicationItemEx, GetSyndicationItemExById
+					GetSyndicationItemExList
+Release Version 7.5.0.109
+=============================================================================================================================
+
+1/21/2013 Divya: Implemented the new ChartsNewspageModule change in Newspages in Page Asset
+1/21/2013 Divya: Enahancement in PAM Assets				 
+				 Item Asset: Created new item type ChartItem
+1/24/2013 Pramod: Added RssHeadlineUrl to Pam Asset Common.LinkType
+Release Version 7.5.0.110
+=============================================================================================================================
+1/25/2013 Divya: Added new transaction GetSubscribableItems in Asset Item Service
+1/25/2013 Divya: Added new enum value to DisseminatedAssetSortBy in ASsets Common-Workspace
+Release Version 7.5.0.111
+=============================================================================================================================
+1/29/2013 Divya: Added new aggregate transaction GetSubscribableSyndicationItemsEx in PCMSyndicationService.
+Release Version 7.5.0.112
+=============================================================================================================================
+2/4/2013 Pramod: Fix for PCMSyndicationService masteritem creation bug.
+Release Version 7.5.0.114
+=============================================================================================================================
+2/06/2013 Pramod: Workaround at the gateway side for ValidateTokenResponse for the invalid "ZZ" state and country code passed from membership.
+2/12/2013 Pramod: Added allowMMContent flag to Track UserData
+2/13/2013 Divya: Added new objects Asset common and Workspaces
+Release Version 7.5.0.115
+=============================================================================================================================
+2/18/2013 Divya: Updated GenerateODE to remove 'NL' from ContentTypeForContentByID enumeration and appending new item in ContentByID
+2/22/2013 Divya: Enahancements in PAM Asset - Workspace
+			     Modfied ManualWorkspace and related objects according th new schema. 
+				 Added new trasactions (Create, Update, Get & Delete) for NewsletterDelivery 
+
+Release Version 7.5.0.116
+=============================================================================================================================
+2/26/2013 Himmat: Updated  StartDay, DateInterval, DatePeriod enums with None enum value. 
+03/01/2013 Divya: Added subject to DeliveryInfo Object in Workspaces asset.
+
+Release Version 7.5.0.118
+=============================================================================================================================
+3/4/2013 Himmat: Added TopSources and  TopNewsSubjects enum in metric type for media analytic charts. 
+
+Release Version 7.5.0.119
+=============================================================================================================================
+3/7/2013 Pramod: Added Bug fix for ReviseSubscribeFolderReqeust deliverytimes.
+3/8/2013 Nam: Added HomePageRedirectPreferenceItem
+3/11/2013 Divya: Added EmailCommand to ContentByData class in ODE v2.
+Release Version 7.5.0.120
+=============================================================================================================================
+3/13/2013 Divya: Added includeSnippet to NewsletterWorkspaceProperties and EditionProperties in Edition and wrokspace asset
+3/13/2013 Divya: Added createdByNamespace and createdByAccountId elements to ItemProperties in Item asset
+Release Version 7.5.0.121
+=============================================================================================================================
+3/18/2013 Divya: Added bugfix for includesnippet propertry in Edition and Workspace property complex types.
+
+Release Version 7.5.0.122
+=============================================================================================================================
+3/20/2013 Divya: Added new boolean field to NavigationControl object in search service.
+
+3/25/2013 Divya: Added new trasactions (SubscribeWorkspace, GetSubscribableWorkspaces, SetAssignedWorkspaceStatus, SetWorkspaceShareProperties & UnSubscribeWorkspace) in Workspaces asset.
+				 Removed using Factiva.Gateway.Messages.Assets.Common.V2_0 and added using SortOrder = Factiva.Gateway.Messages.Assets.Common.V2_0.SortOrder 
+				 in NewsPagesModule.cs, Pages.cs to fix ambiguity issues
+
+3/27/2013 Divya: Added missing request fields to SubscribeFolder transaction request in track service
+
+Release Version 7.5.0.123
+=============================================================================================================================
+4/08/2013 Divya: Added shareProperties to WorkspacePropertiesItem in Workspace asset
+4/15/2013 Divya: Added new transaction ShareTemplate to Templates asset
+				 Added new transaction GetEditionFromNewsletter in EDitions asset
+			     Modfied the DeliveryINfo object to add new items to it.
+
+Release Version 7.5.0.125
+=============================================================================================================================
+4/18/2013 Divya: Added new transactions AddSubItemsToItem and DeleteSubItemsOnItem in Asset Item.
+
+Release Version 7.5.0.126
+=============================================================================================================================
+4/22/2013 Divya: In workspaces assests, changed the namespace declaration of items to CommonDeclarations that are refering from Common assets.
+4/23/2013 Divya: Implemented changes in SyndicationNewspageModule object to change the type of syndicationFeedID
+4/25/2013 Divya: Modified xslt and the Core.cs to include userSessions, idleTimeout and maxSessions in GetUserAuthorizationsResponse.
+				 Added new singleItem preference DismissRSSImportMessagewith iD 185
+				 Implemented the changes for Kahuna emails in ODE V2
+
+Release Version 7.5.0.128
+=============================================================================================================================
+05/05/2013 Divya: Factiva.Gateway.Messages.Preferences.GroupAdmin.V1_0.AddGroupsResponse and AddGroupResponse.xslt updated to return GroupCollection object	
+
+Release Version 7.5.0.129
+=============================================================================================================================
+05/09/2013 Divya: Added new elements to DeliveryInfo,WorkspaceProperties, NewsletterWorkspaceProperties and GetWorkspacesPropertiesList in Workspace asset.
+				  Added new ShareProperties object to NL Template, replaced shareScope with ShareProperties in Template object.
+				  
+Release Version 7.5.0.131
+=============================================================================================================================
+05/20/2013 Divya: Added new element publicaionDate to WorkspacePropertiesItem, changed datatype ofdate fields from string to Datetime.
+
+Release Version 7.5.0.132
+=============================================================================================================================
+05/21/2013 Divya: Added/Modified preference enum values of DeliveryContentType , PreferenceSetHomePage , PreferenceSearchFormatCategory 
+05/22/2013 Divya: Added new preference item class SrchSummaryExport and updated PreferenceClassID enum “182” with new class 
+05/24/2013 Divya: Removed UTC date fields that added for WidgetSentDate,RssSentDate,EmailSentDate in Workspace asset
+
+Release Version 7.5.0.135
+=============================================================================================================================
+06/04/2013 Divya: Added new request parameter ReturnMeteringInfo and response parameter MeteringInfo for the Archive transactions GetArticle,GetArticleWithLimit and GetBinary
+06/08/2013 Himmat: Added new PCM aggregaion transaction "CreateMultipleSyndicationItemEx" and Item Service transaction "CreateItemIfNotExistsEx" to create Syndication items.
+
+Release Version 7.5.0.136
+=============================================================================================================================
+06/13/2013 Divya: Created new service CIBSService and new transaction GetOnlineMeter
+06/14/2013 Divya: Modified GetOnlineMeter to derive from XMLMessage instead of SOAPMessage and changed enum name CIBSCheck to MeteringType
+
+Release Version 7.5.0.137
+=============================================================================================================================
+06/14/2013 Divya: Modified GetOnlineMeter to replace enum graceElig with he boolean GracePeriod in CIBS. 
+06/14/2013 Divya: Aded new item DocCount to MeteringInfo object in Archive_V2_0
+
+Release Version 7.5.0.139
+=============================================================================================================================
+06/28/2013 Divya: Modified GetOnlineMeter to replace enum values, Changed TimePeriod in Archive to enum, added meteringInfo to GetBinary as well
+06/28/2013 Divya: Created new customer service transactions in PreferenceService and 2 new preferences SalesMessageInfo and SalesMessageLastDisplayed 

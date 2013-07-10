@@ -9,25 +9,27 @@
         <xsl:choose >
           <xsl:when test="local-name() = 'ITEM'">
             <xsl:element name="Item">
-              <xsl:choose >
-                <xsl:when test="local-name() = 'Subscribed'">
-                  <xsl:element name="Subscribed">
-                    <xsl:choose>
-                      <xsl:when test ="Subscribed = 'Y'">true</xsl:when>
-                      <xsl:otherwise>false</xsl:otherwise>
-                    </xsl:choose>
-                  </xsl:element>
-                </xsl:when>
-                <xsl:otherwise>
-                  <xsl:copy-of select ="."/>
-                </xsl:otherwise>
-              </xsl:choose>
+              <xsl:for-each select="child::*">
+                <xsl:choose>
+                  <xsl:when test="local-name() = 'Subscribable'">
+                    <xsl:element name="Subscribable">
+                      <xsl:choose>
+                        <xsl:when test ="(.)[text()] = 'Y'">true</xsl:when>
+                        <xsl:otherwise>false</xsl:otherwise>
+                      </xsl:choose>
+                    </xsl:element>
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <xsl:copy-of select ="."/>
+                  </xsl:otherwise>
+                </xsl:choose>
+              </xsl:for-each>
             </xsl:element>
           </xsl:when>
           <xsl:when test="local-name() = 'Exists'">
             <xsl:element name="Exists">
               <xsl:choose>
-                <xsl:when test ="Exists = 'Y'">true</xsl:when>
+                <xsl:when test ="(.)[text()] = 'Y'">true</xsl:when>
                 <xsl:otherwise>false</xsl:otherwise>
               </xsl:choose>
             </xsl:element>

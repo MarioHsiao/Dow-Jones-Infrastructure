@@ -222,7 +222,7 @@
         </fsInterface>
       </xsl:if>
       <xsl:if test="boolean(AUTH_MATRIX/PMKTS)">
-          <pmkts>
+        <pmkts>
           <xsl:apply-templates select="AUTH_MATRIX/PMKTS/*" />
         </pmkts>
       </xsl:if>
@@ -243,9 +243,9 @@
       </xsl:if>
       <xsl:if test="boolean(AUTH_MATRIX/MADE)">
         <communicator>
-            <xsl:apply-templates select="AUTH_MATRIX/MADE/*" />
-          </communicator>
-        </xsl:if>
+          <xsl:apply-templates select="AUTH_MATRIX/MADE/*" />
+        </communicator>
+      </xsl:if>
       <xsl:if test="boolean(AUTH_MATRIX/OASEARCH)">
         <oaSearch>
           <xsl:apply-templates select="AUTH_MATRIX/OASEARCH/*" />
@@ -256,6 +256,25 @@
           <xsl:apply-templates select="AUTH_MATRIX/OPENACCESS/*" />
         </openAccess>
       </xsl:if>
+
+      <xsl:for-each select="AUTH_MATRIX/*">
+        <authMatrixService>
+          <serviceName>
+            <xsl:value-of select="name(.)"/>
+          </serviceName>
+          <xsl:apply-templates select="."/>
+          <xsl:for-each select="./*">
+            <nvp>
+              <Key>
+                <xsl:value-of select="name(.)"/>
+              </Key>
+              <Value>
+                <xsl:value-of select="."/>
+              </Value>
+            </nvp>
+          </xsl:for-each>
+        </authMatrixService>
+      </xsl:for-each>
     </authorizationMatrix>
 
     <emailLoginConversionAllowed>
@@ -290,6 +309,17 @@
       </xsl:choose>
     </externalReaderFlag>
 
+    <idleTimeout>
+      <xsl:value-of select="IDLE_TIMEOUT"/>
+    </idleTimeout>
+
+    <maxSessions>
+      <xsl:value-of select="MAX_SESSIONS"/>
+    </maxSessions>
+
+    <usedSessions>
+      <xsl:value-of select="USED_SESSIONS"/>
+    </usedSessions>
   </xsl:template>
 
   <xsl:template match="AC1">

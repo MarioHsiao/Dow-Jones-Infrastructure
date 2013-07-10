@@ -55,6 +55,7 @@
       <xsl:apply-templates select="Status"/>
       <xsl:apply-templates select="ResultSet"/>
       <xsl:apply-templates select="ContinuationContext" />
+      <xsl:apply-templates select="Metering"/>
     </GetArticleWithLimitResponse>
   </xsl:template>
 
@@ -75,6 +76,21 @@
     <rawData>
       <xsl:value-of select="normalize-space(.)"/>
     </rawData>
+  </xsl:template>
+
+  <xsl:template match="Metering">
+    <xsl:element name="meteringInfo">
+      <xsl:copy-of select="Limit"/>
+      <xsl:copy-of select="TimePeriod"/>
+      <xsl:element name="GracePeriod">
+        <xsl:choose>
+          <xsl:when test="GracePeriod ='Y' or GracePeriod= 'Yes'">true</xsl:when>
+          <xsl:otherwise>false</xsl:otherwise>
+        </xsl:choose>
+      </xsl:element>
+      <xsl:copy-of select="Email"/>
+      <xsl:copy-of select="DocCount"/>
+    </xsl:element>
   </xsl:template>
 
   <xsl:template match="//Result">
@@ -1353,7 +1369,7 @@
         <xsl:value-of select="normalize-space(string(@value))"/>
       </url>
     </xsl:if>
-  </xsl:template>  
+  </xsl:template>
   <xsl:template match="property[@group='docdata' and @name='url']">
     <xsl:if test="string-length(normalize-space(@value)) &gt; 0">
       <url>
@@ -2170,7 +2186,7 @@
               <xsl:attribute name="reference">
                 <xsl:value-of select="@ref"/>
               </xsl:attribute>
-              <text>  
+              <text>
                 <xsl:value-of select="."/>
               </text>
               <xsl:call-template name="articleContentElink"></xsl:call-template>
@@ -2213,7 +2229,7 @@
                 <xsl:value-of select="@ref"/>
               </xsl:attribute>
               <xsl:call-template name="articleContent"/>
-            <xsl:call-template name="articleContentElink" />
+              <xsl:call-template name="articleContentElink" />
             </eLink>
           </xsl:if>
         </xsl:when>
@@ -2226,7 +2242,7 @@
                   <xsl:value-of select="."/>
                 </xsl:when>
                 <xsl:otherwise>
-                  <text>  
+                  <text>
                     <xsl:copy-of select="@*"/>
                     <xsl:value-of select="."/>
                   </text>
@@ -2264,7 +2280,7 @@
           </entityRef>
         </xsl:when>
         <xsl:when test="(local-name()='ev' or local-name()='Ev')">
-           <xsl:apply-templates select="."/>
+          <xsl:apply-templates select="."/>
         </xsl:when>
         <xsl:otherwise>
           <text>
@@ -2279,13 +2295,13 @@
       <xsl:choose>
         <xsl:when test="((local-name()='hlt1') or (local-name()='hlt'))">
           <hlt>
-            <text>  
+            <text>
               <xsl:value-of select="."/>
             </text>
           </hlt>
         </xsl:when>
         <xsl:otherwise>
-          <partText>  
+          <partText>
             <xsl:value-of select="."/>
           </partText>
         </xsl:otherwise>

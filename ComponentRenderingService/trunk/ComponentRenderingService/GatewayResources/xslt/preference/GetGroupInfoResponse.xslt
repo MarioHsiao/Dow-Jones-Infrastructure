@@ -19,15 +19,15 @@
       </xsl:for-each>       
       <xsl:for-each select="ResultSet/Result/GROUP_ITEM_LIST">
         <GroupItems>
-          <itemID>
+          <ITEM_ID>
             <xsl:value-of select="ITEM_ID"/>
-          </itemID>
-          <itemClassID>
+          </ITEM_ID>
+          <ITEM_CLASS>
             <xsl:value-of select="ITEM_CLASS"/>
-          </itemClassID>
-          <itemName>
+          </ITEM_CLASS>
+          <ITEM_INSTANCE_NAME>
             <xsl:value-of select="ITEM_INSTANCE_NAME"/>
-          </itemName>
+          </ITEM_INSTANCE_NAME>
         </GroupItems>
       </xsl:for-each>
       <xsl:for-each select="ResultSet/Result/GROUP_USER_LIST">
