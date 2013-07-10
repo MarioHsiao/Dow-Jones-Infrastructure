@@ -290,6 +290,9 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Resources\js\highcharts.min.js.map">
+      <DependentUpon>highcharts.js</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Mobile\Extensions\" />

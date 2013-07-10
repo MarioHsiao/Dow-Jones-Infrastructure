@@ -15,10 +15,9 @@ namespace DowJones.Web.Mvc.Infrastructure
 	public class CoreJsHandler : ClientResourceHandler
 	{
 		private static readonly string[] JQueryAndRequire = new[] { "jquery", "require" };
-
-		private static readonly string[] CoreLibraries = new[] {
-                "underscore", "common", "dj-jquery-ext", "jquery-json",
-                "pubsub", "composite-component", "jquery-ui", "jquery-ui-interactions", "tmpload"
+        private static readonly string[] CoreLibraries = new[] {
+                "underscore", "common", "pubsub", "composite-component", "dj-jquery-ext", "jquery-json",
+                  "jquery-ui", "jquery-ui-interactions", "tmpload"
             };
 
         /// <summary>
@@ -36,6 +35,7 @@ namespace DowJones.Web.Mvc.Infrastructure
 			}
 
 			context.Response.Clear();
+
 			context.Response.Buffer = true;
 
 			RenderJQueryAndRequire(context, culture);

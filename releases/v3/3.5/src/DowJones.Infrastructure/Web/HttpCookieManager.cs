@@ -77,20 +77,26 @@ namespace DowJones.Web
         public string GetCookieValue(string key, string subKey)
         {
             if (!RequestCookieExists(key))
-                return null;
-
-            HttpCookie cookie = RequestCookies[key];
-            
-            if (cookie.Values[subKey] != null)
-                return cookie.Values[subKey];
-
-            if (cookie.Values[subKey.Replace("_", "%5F")] != null) //Read iis5.0 cookies!
             {
-                string value = cookie.Values[subKey.Replace("_", "%5F")];
-                return HttpUtility.UrlDecode(value, Encoding.Default);
+                return null;
             }
 
-            return null;
+            var cookie = RequestCookies[key];
+
+            if (cookie != null)
+            {
+                if (cookie.Values[subKey] != null) {
+                    return cookie.Values[subKey];
+                }
+
+                if (cookie.Values[subKey.Replace("_", "%5F")] != null) //Read iis5.0 cookies!
+                {
+                    var value = cookie.Values[subKey.Replace("_", "%5F")];
+                    return HttpUtility.UrlDecode(value, Encoding.Default);
+                }
+            }
+
+           return null;
         }
 
         public bool RequestCookieExists(string key)
@@ -122,8 +128,8 @@ namespace DowJones.Web
 
             if (key == GLOBAL_PERM_COOKIE_KEY || key == LOCAL_PERM_COOKIE_KEY)
             {
-                DateTime dt = DateTime.Now;
-                TimeSpan ts = new TimeSpan(3650, 0, 0, 0, 0);
+                var dt = DateTime.Now;
+                var ts = new TimeSpan(3650, 0, 0, 0, 0);
                 cookie.Expires = dt.Add(ts);
             }
 
@@ -143,7 +149,7 @@ namespace DowJones.Web
 
         public static void SetSubValue(HttpCookie cookie, string key, string value)
         {
-            if (cookie.HasKeys && key.IndexOf("_") != -1 && cookie.Values[key.Replace("_", "%5F")] != null)
+            if (cookie.HasKeys && key.IndexOf("_", StringComparison.Ordinal) != -1 && cookie.Values[key.Replace("_", "%5F")] != null)
             {
                 key = key.Replace("_", "%5F");
             }
@@ -155,26 +161,26 @@ namespace DowJones.Web
             return (GetCookieValue(LOGIN_PERM_COOKIE_KEY, "cdp") == "y");
         }
 
-        public static void DeleteGlobalCookies(string Key, string SubKey)
+        public static void DeleteGlobalCookies(string key, string subKey)
         {
-            HttpRequest request = HttpContext.Current.Request;
-            if (Key == null || SubKey == null)
+            var request = HttpContext.Current.Request;
+            if (key == null || subKey == null)
                 return;
-            HttpCookie cookie = request.Cookies[Key];
+            var cookie = request.Cookies[key];
             if (cookie == null)
             {
                 return;
             }
-            if (cookie.HasKeys && SubKey.IndexOf("_") != -1 && cookie.Values[SubKey.Replace("_", "%5F")] != null)
+            if (cookie.HasKeys && subKey.IndexOf("_", StringComparison.Ordinal) != -1 && cookie.Values[subKey.Replace("_", "%5F")] != null)
             {
-                SubKey = SubKey.Replace("_", "%5F");
+                subKey = subKey.Replace("_", "%5F");
             }
-            cookie.Values.Remove(SubKey);
+            cookie.Values.Remove(subKey);
             cookie.Path = "/";
-            if (Key == GLOBAL_PERM_COOKIE_KEY)
+            if (key == GLOBAL_PERM_COOKIE_KEY)
             {
-                DateTime dt = DateTime.Now;
-                TimeSpan ts = new TimeSpan(3650, 0, 0, 0, 0);
+                var dt = DateTime.Now;
+                var ts = new TimeSpan(3650, 0, 0, 0, 0);
                 cookie.Expires = dt.Add(ts);
             }
             cookie.Domain = GetDefaultCookieDomain();
@@ -185,8 +191,8 @@ namespace DowJones.Web
         {
             if (key == null)
                 return;
-            HttpRequest request = HttpContext.Current.Request;
-            HttpCookie cookie = request.Cookies[key];
+            var request = HttpContext.Current.Request;
+            var cookie = request.Cookies[key];
             if (cookie == null)
                 return;
             cookie.Expires = DateTime.Now.AddYears(-2);
@@ -197,9 +203,9 @@ namespace DowJones.Web
 
         private static string GetDefaultCookieDomain()
         {
-            string hostname = HttpContext.Current.Request.ServerVariables["HTTP_HOST"];
-            string[] parts = hostname.Split('.');
-            int length = parts.Length;
+            var hostname = HttpContext.Current.Request.ServerVariables["HTTP_HOST"];
+            var parts = hostname.Split('.');
+            var length = parts.Length;
             if (length > 2)
             {
                 return "." + parts[length - 2] + "." + parts[length - 1];

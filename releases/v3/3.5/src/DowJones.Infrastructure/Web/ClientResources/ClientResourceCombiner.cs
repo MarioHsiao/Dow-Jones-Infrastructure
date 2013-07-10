@@ -11,15 +11,13 @@ namespace DowJones.Web
     {
         private readonly IClientResourceManager _clientResourceManager;
         private readonly CultureInfo _culture;
-
-
+        
         public ClientResourceCombiner(IClientResourceManager clientResourceManager, CultureInfo culture)
         {
             _clientResourceManager = clientResourceManager;
             _culture = culture;
         }
-
-
+        
         public IEnumerable<string> GenerateCombinedResourceUrls(IEnumerable<ClientResource> resourcesToCombine)
         {
             if (!Settings.Default.ClientResourceCombiningEnabled)
@@ -51,10 +49,14 @@ namespace DowJones.Web
                     .ToArray();
 
             if (!dependencyLevelResources.Any())
+            {
                 return null;
+            }
 
             foreach (var resource in dependencyLevelResources)
+            {
                 resources.Remove(resource);
+            }
 
             return _clientResourceManager.GenerateUrl(dependencyLevelResources, _culture);
         }
