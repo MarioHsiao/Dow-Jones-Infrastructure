@@ -1288,7 +1288,7 @@ pathAnim = {
 			$(el).stop();
 		}
 	});
-}(win.jQuery));
+}(win.jQuery || DJ.jQuery));
 
 
 // check for a custom HighchartsAdapter defined prior to this file

@@ -143,7 +143,11 @@ namespace DowJones.Security
                 for (var i = 0; i < values.Length - 1; i++)
                 {
                     var nv = values[i].Split('#');
-                    nameValueCollection.Add(nv[0], nv[1]);
+                    // make sure we have two parts
+                    if (nv.Length > 0 && nv.Length == 2)
+                    {
+                        nameValueCollection.Add(nv[0], nv[1]);
+                    }
                 }
             }
 

@@ -18,6 +18,7 @@ namespace DowJones.Web
             get { return applicationPath ?? HttpContext.Request.ApplicationPath; }
             set { applicationPath = value; }
         }
+
         private static string applicationPath;
 
 

@@ -1,7 +1,6 @@
 /*!  PubSub Manager */
 
 (function ($, $dj, _) {
-
     DJ.PubSubManager = function () {
         var _pubSubCache = {};
 
