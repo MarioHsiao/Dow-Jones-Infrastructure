@@ -256,7 +256,7 @@
     <Compile Include="Models\GenericSiteUrls.cs" />
     <Compile Include="Models\HomeIndexViewModel.cs" />
     <Compile Include="Models\Interfaces\IBasicSiteRequestDto.cs" />
-    <Compile Include="Models\ManiNavMenuProvider.cs" />
+    <Compile Include="Models\MainNavMenuProvider.cs" />
     <Compile Include="Models\UsageTrackingProperties.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -793,7 +793,9 @@
     <Content Include="Scripts\jquery.signalR-1.1.2.min.js" />
     <Content Include="Scripts\json2.min.js" />
     <Content Include="Scripts\modernizr.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -816,7 +818,9 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

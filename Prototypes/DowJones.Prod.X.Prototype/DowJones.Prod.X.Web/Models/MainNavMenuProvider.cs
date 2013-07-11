@@ -40,7 +40,7 @@ namespace DowJones.Prod.X.Web.Models
                                             NavigationCategory = MainNavigationCategory.Home,
                                             Url = _urlHelper.Content("~/")
                                         },
-                                    new MenuItem<MainNavigationCategory>
+                                    /*new MenuItem<MainNavigationCategory>
                                         {
                                             Id = "Dashboards",
                                             IconClass = "icon-dashboard",
@@ -81,7 +81,7 @@ namespace DowJones.Prod.X.Web.Models
                                             IconClass = "icon-beaker",
                                             Text = "Labs",
                                             NavigationCategory = MainNavigationCategory.Labs,
-                                        },
+                                        },*/
                                 });
         }
     }

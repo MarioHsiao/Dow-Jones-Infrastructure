@@ -11,8 +11,8 @@ namespace DowJones.Prod.X.Web.Controllers.Base
 {
     
     [SessionState(SessionStateBehavior.Disabled)]
-    [RequireAuthentication(Order = 0)]
-    [SessionTimeoutExceptionFilter(Order = 1)]
+    //[RequireAuthentication(Order = 0)]
+    //[SessionTimeoutExceptionFilter(Order = 1)]
     [Filters.HandleError(Order = 2, ExceptionType = typeof(Exception), View = "Error")]
     public abstract class BaseController : ControllerBase, IContentController
     {

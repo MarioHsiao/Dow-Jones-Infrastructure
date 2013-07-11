@@ -16,10 +16,8 @@ namespace DowJones.Prod.X.Web.Common
         {
             var controlData = base.Create();
 
-            if (!controlData.IsValid())
-            {
-                controlData.EncryptedToken = Settings.Default.EncryptedToken;
-            }
+            controlData.SessionID = null;
+            controlData.EncryptedToken = Settings.Default.EncryptedToken;
 
             return controlData;
         }

@@ -40,7 +40,7 @@ namespace DowJones.Prod.X.Web.Controllers
         Keyword,
     }
 
-    [RequireAuthentication(Order = 0)]
+    //[RequireAuthentication(Order = 0)]
     public class HomeController : BaseController
     {
         private readonly HeadlineListConversionManager _headlineListManager;
@@ -75,7 +75,7 @@ namespace DowJones.Prod.X.Web.Controllers
                                 BaseActionModel = new SearchModel
                                                       {
                                                           Headlines = GetPortalHeadlineListSection(query, firstResult, maxResults),
-                                                          StockKiosk = GetStockKioskModel() 
+                                                          //StockKiosk = GetStockKioskModel() 
                                                       }
                             };
 

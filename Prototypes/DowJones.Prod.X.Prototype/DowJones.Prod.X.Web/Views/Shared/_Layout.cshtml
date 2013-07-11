@@ -1,10 +1,13 @@
 ﻿@model DowJones.Prod.X.Models.Site.IBasicSiteModel
 @using Glimpse.Mvc.Html
+@using DowJones.Prod.X.Components.Extentions
 @{
 
     DJ.ScriptRegistry()
       .Include("~/Scripts/modernizr.js", ClientResourceDependencyLevel.Global)
       .Include("~/Scripts/jquery-ui.min.js", ClientResourceDependencyLevel.Global)
+      .WithBootstrap(ClientResourceDependencyLevel.Global)
+      .WithBootstrapModal(ClientResourceDependencyLevel.Global)
       .Include("~/Scripts/DJGlobal.js", ClientResourceDependencyLevel.Global)
       .Include("~/Scripts/common.js", ClientResourceDependencyLevel.Global)
       .Include("~/Scripts/dj.productx.core.js", ClientResourceDependencyLevel.Global)
@@ -94,8 +97,8 @@
             </div>
         </div>
     </div>
-    @Html.Partial("PrimaryNavigation", Model)
-
+    @*@Html.Partial("PrimaryNavigation", Model)
+*@
     <nav id="secondary" class="main-nav">
 
         <div class="profile-menu">
@@ -112,12 +115,12 @@
                 </div>
                 <div class="btn-group">
                     <button class="button mini inset black"><i class="icon-search"></i></button>
-                    <button class="button mini inset black">Projects</button>
-                    <button class="button mini inset black dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i></button>
+                    <button class="button mini inset black dropdown-toggle" data-toggle="dropdown">Workspaces</button>
+                    <button class="button mini inset black"><i class="icon-cog"></i></button>
                     <ul class="dropdown-menu black-box-dropdown">
-                        <li><a href="javascript:void(0)">Action</a></li>
-                        <li><a href="javascript:void(0)">Another action</a></li>
-                        <li><a href="javascript:void(0)">Something else here</a></li>
+                        <li><a href="javascript:void(0)">Workspace-1</a></li>
+                        <li><a href="javascript:void(0)">Workspace-2</a></li>
+                        <li><a href="javascript:void(0)">Workspace-3</a></li>
                         <li class="divider"></li>
                         <li><a href="javascript:void(0)">Separated link</a></li>
                     </ul>
@@ -131,7 +134,7 @@
         </div>
 
         <ul class="secondary-nav-menu">
-            <li class="active">
+            @*<li class="active">
                 <a href="javascript:void(0)">
                     <i class="icon-dashboard"></i>Stats
                 </a>
@@ -153,7 +156,7 @@
                 <a href="javascript:void(0)">
                     <i class="icon-table"></i>Notification #2
                 </a>
-            </li>
+            </li>*@
         </ul>
 
     </nav>

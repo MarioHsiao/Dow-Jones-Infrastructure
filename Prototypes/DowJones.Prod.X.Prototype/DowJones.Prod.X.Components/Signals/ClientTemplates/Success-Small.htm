@@ -5,10 +5,12 @@
 
 <div>
     <% 
-        if (data.signalsData) {
-            for (var i = 0; i < data.signalsData.length; i++) { %>    
-                <div><%=data.signalsData[i].name%> [ <%=data.signalsData[i].y%> ]</div>
-        <%  }
-        } 
+        if (data.signalsData && data.signalsData.length > 0) { %>
+            <ul>
+         <% for (var i = 0, l = data.signalsData.length; i < l; i++) { %>    
+                <li><a href="javascript:void(0)"><%=data.signalsData[i].name%> [ <%=data.signalsData[i].y%> ]</a></li>
+         <% } %>
+            </ul>    
+     <% } 
     %>
 </div>

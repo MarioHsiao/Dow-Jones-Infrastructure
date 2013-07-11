@@ -31,7 +31,7 @@ using PerformContentSearchResponse = Factiva.Gateway.Messages.Search.FreeSearch.
 
 namespace DowJones.Prod.X.Web.Controllers
 {
-    [RequireAuthentication(Order = 0)]
+    //[RequireAuthentication(Order = 0)]
     public class ArchiveController : BaseController
     {
         private readonly IArticleRetrivalService _archiveRetrivalService;

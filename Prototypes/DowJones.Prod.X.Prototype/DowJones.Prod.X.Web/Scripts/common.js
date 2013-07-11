@@ -63,5 +63,5 @@ else {
 }
 
 common.init = function () {
-    console.log("common.init");
+    $('#secondary ul dropdown-menu').dropdown();
 }

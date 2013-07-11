@@ -38,13 +38,19 @@ dj.productx.core.init = function () {
         controlId: "autosuggestSearchbox",
         controlClassName: "djAutoComplete",
         autocompletionType: "Categories",
-        useSessionId: DJ.config.credentials.token,
         onItemSelect: dj.productx.core.autoSuggestHandler,
         fillInputOnKeyUpDown: "true",
         selectFirst: false,
         tokens: { 'region_allTkn': 'Regions', 'company_allTkn': 'Companies' },
         options: { "maxResults": 3, "interfaceLanguage": "en", "categories": "company|executive|industry|newssubject|region_all|keyword", "companyFilterSet": "newsCodedAbt", "executiveFilterSet": "newsCoded" }
     };
+    
+    if (DJ.config.credentials.credentialType && DJ.config.credentials.credentialType === 1) {
+        categorySuggest.useEncryptedKey = DJ.config.credentials.token;
+    } else {
+        categorySuggest.useSessionId = DJ.config.credentials.token;
+    }
+
     if (window.djV3) {
         window.djV3.web.widgets.autocomplete(categorySuggest);
     }
