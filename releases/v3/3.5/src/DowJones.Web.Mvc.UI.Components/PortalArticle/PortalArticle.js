@@ -144,7 +144,7 @@ DJ.UI.PortalArticle = DJ.UI.Component.extend({
             return;
         }
 
-        if (data.status !== 0) {
+        if (data.status && data.status !== 0) {
             this.bindOnError(data);
             return;
         }
