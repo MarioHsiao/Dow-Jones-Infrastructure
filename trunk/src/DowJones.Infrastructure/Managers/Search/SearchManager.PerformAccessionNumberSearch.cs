@@ -7,6 +7,7 @@ using DowJones.Managers.Search.Comparers;
 using DowJones.Managers.Search.Requests;
 using DowJones.Managers.Search.Responses;
 using DowJones.Search.Core;
+using DowJones.Session;
 using Factiva.Gateway.Messages.Search;
 using Factiva.Gateway.Messages.Search.V2_0;
 
@@ -14,7 +15,11 @@ namespace DowJones.Managers.Search
 {
     public partial class SearchManager
     {
-        public AccessionNumberSearchResponse PerformAccessionNumberSearch<TIPerformSearchRequest, TIPerformSearchResponse>(AccessionNumberSearchRequestDTO dto) where TIPerformSearchRequest : IPerformContentSearchRequest, new() where TIPerformSearchResponse : IPerformContentSearchResponse, new()
+        public AccessionNumberSearchResponse PerformAccessionNumberSearch<TIPerformSearchRequest, TIPerformSearchResponse>(
+            AccessionNumberSearchRequestDTO dto,
+            IControlData controlData = null)
+            where TIPerformSearchRequest : IPerformContentSearchRequest, new()
+            where TIPerformSearchResponse : IPerformContentSearchResponse, new()
         {
             if (dto.IsValid())
             {
@@ -22,7 +27,7 @@ namespace DowJones.Managers.Search
                 var output = new AccessionNumberSearchResponse();
 
                 // perform the search based on the Accession Number Search DTO [Data Transfer Object]
-                var response = GetPerformContentSearchResponse<TIPerformSearchRequest, TIPerformSearchResponse>(dto);
+                var response = GetPerformContentSearchResponse<TIPerformSearchRequest, TIPerformSearchResponse>(dto, controlData);
 
                 // run the search against 1 yr index
                 if (response != null)
