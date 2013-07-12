@@ -1,8 +1,0 @@
-<soap-env:Envelope xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/">
-  <soap-env:Body>
-    <ValidateSyndicationFeed xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-      <url>http://www.dowjones.com</url>
-      <syndicationId>1111</syndicationId>
-    </ValidateSyndicationFeed>
-  </soap-env:Body>
-</soap-env:Envelope>

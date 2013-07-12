@@ -1,16 +1,16 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Web.ComponentRenderingService", "ComponentRenderingService\DowJones.Web.ComponentRenderingService.csproj", "{73B9F0A1-509E-4343-B372-48C35211C8C0}"
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
 		SccNumberOfProjects = 1
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = http://sbknwstfs1:8080/tfs/defaultcollection
+		SccTeamFoundationServer = http://tfs2012.dowjones.net:8080/tfs/defaultcollection
 		SccProjectUniqueName0 = ComponentRenderingService\\DowJones.Web.ComponentRenderingService.csproj
 		SccProjectName0 = ComponentRenderingService
-		SccAuxPath0 = http://sbknwstfs1:8080/tfs/defaultcollection
+		SccAuxPath0 = http://tfs2012.dowjones.net:8080/tfs/defaultcollection
 		SccLocalPath0 = ComponentRenderingService
 		SccProvider0 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 	EndGlobalSection
