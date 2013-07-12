@@ -19,10 +19,19 @@ using PerformMetadataSearchResponse = Factiva.Gateway.Messages.Search.FreeSearch
 
 namespace DowJones.Managers.Multimedia
 {
+    public interface IMultimediaManager
+    {
+        MultimediaResponse GetMultiMediaResult(MultimediaRequest objRequest);
+        MultimediaResponse GetMultiMediaResult(string accessionNumber, bool flashOnly);
+        MultimediaResponse GetMultiMediaResult(string accessionNumber, bool flashOnly, List<string> mustPlayFromSourceList);
+        MultimediaResponse GetMultiMediaResult(string episodeId, string sourceCode, bool flashOnly);
+        MultimediaResponse GetMultiMediaResult(string episodeId, string sourceCode, bool flashOnly, List<string> mustPlayFromSourceList);
+    }
+
     /// <summary>
     /// MultiMedia Manager class for getting 
     /// </summary>
-    public class MultimediaManager : AbstractAggregationManager
+    public class MultimediaManager : AbstractAggregationManager, IMultimediaManager
     {
         #region Private variables
 
@@ -41,6 +50,7 @@ namespace DowJones.Managers.Multimedia
         /// Constructor for 
         /// </summary>
         /// <param name="controlData"></param>
+        /// <param name="transactionTimer"></param>
         public MultimediaManager(IControlData controlData, ITransactionTimer transactionTimer)
             : base(controlData, transactionTimer)
         {

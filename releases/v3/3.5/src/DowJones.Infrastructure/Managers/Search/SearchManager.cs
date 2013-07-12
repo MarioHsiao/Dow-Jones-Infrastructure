@@ -101,12 +101,12 @@ namespace DowJones.Managers.Search
             return baseSrchStr;
         }
 
-        internal IPerformContentSearchResponse GetPerformContentSearchResponse<TIPerformContentSearchRequest, TIPerformContentSearchResponse>(ISearchRequest searchRequest)
+        internal IPerformContentSearchResponse GetPerformContentSearchResponse<TIPerformContentSearchRequest, TIPerformContentSearchResponse>(ISearchRequest searchRequest, IControlData controlData = null)
             where TIPerformContentSearchRequest : IPerformContentSearchRequest, new()
         {
             try
             {
-                var sr = Invoke<TIPerformContentSearchResponse>(searchRequest.GetPerformContentSearchRequest<TIPerformContentSearchRequest>());
+                var sr = Invoke<TIPerformContentSearchResponse>(searchRequest.GetPerformContentSearchRequest<TIPerformContentSearchRequest>(), controlData);
                 if (sr != null)
                 {
                     return (IPerformContentSearchResponse)sr.ObjectResponse;
