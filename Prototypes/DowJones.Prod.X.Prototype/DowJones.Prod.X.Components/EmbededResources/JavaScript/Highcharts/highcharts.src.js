@@ -1422,7 +1422,7 @@ pathAnim = {
 			$(el).stop();
 		}
 	});
-}(win.jQuery));
+}(win.jQuery || DJ.jQuery));
 
 
 // check for a custom HighchartsAdapter defined prior to this file
@@ -6703,8 +6703,8 @@ Axis.prototype = {
 	},	
 	
 	/**
-     * Remove the axis from the chart
-     */
+	 * Remove the axis from the chart
+	 */
 	remove: function (redraw) {
 		var chart = this.chart,
 			key = this.xOrY + 'Axis'; // xAxis or yAxis
@@ -10509,10 +10509,10 @@ Chart.prototype = {
 	},
 
 	/**
-     * Add an axis to the chart
-     * @param {Object} options The axis option
-     * @param {Boolean} isX Whether it is an X axis or a value axis
-     */
+	 * Add an axis to the chart
+	 * @param {Object} options The axis option
+	 * @param {Boolean} isX Whether it is an X axis or a value axis
+	 */
 	addAxis: function (options, isX, redraw, animation) {
 		var key = isX ? 'xAxis' : 'yAxis',
 			chartOptions = this.options,

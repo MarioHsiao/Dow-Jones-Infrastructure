@@ -12,10 +12,10 @@ using DowJones.Managers.Charting.MarketData;
 using DowJones.Prod.X.Common;
 using DowJones.Prod.X.Core.DataTransferObjects;
 using DowJones.Prod.X.Core.Services.Search;
+using DowJones.Prod.X.Models.Search;
 using DowJones.Prod.X.Models.Site;
 using DowJones.Prod.X.Models.Site.Home;
 using DowJones.Prod.X.Web.Controllers.Base;
-using DowJones.Prod.X.Web.Filters;
 using DowJones.Prod.X.Web.Models;
 using DowJones.Url;
 using DowJones.Web.Mvc.Routing;
@@ -74,8 +74,8 @@ namespace DowJones.Prod.X.Web.Controllers
                             {
                                 BaseActionModel = new SearchModel
                                                       {
+                                                          Realtime = GetPortalHeadlineListSection(query + " rst:SFDJNW", firstResult, maxResults, PortalHeadlineListLayout.TimelineLayout),
                                                           Headlines = GetPortalHeadlineListSection(query, firstResult, maxResults),
-                                                          //StockKiosk = GetStockKioskModel() 
                                                       }
                             };
 
@@ -89,6 +89,14 @@ namespace DowJones.Prod.X.Web.Controllers
 
             
         }
+        
+        public ActionResult Hud()
+        {
+            var model = new HomeHudViewModel(BasicSiteRequestDto, ControlData, MainNavigationCategory.Search);
+
+            return View("Hud", model);
+        }
+
 
         private StockKioskModel GetStockKioskModel(IEnumerable<string> syms, SymbolType symbolType = SymbolType.FCode, Frequency frequency = Frequency.FifteenMinutes, int pageSize = 10)
         {
@@ -112,7 +120,7 @@ namespace DowJones.Prod.X.Web.Controllers
             return GetStockKioskModel(syms);
         }
 
-        private PortalHeadlineListModel GetPortalHeadlineListSection(string query, int firstResult, int maxResults)
+        private PortalHeadlineListModel GetPortalHeadlineListSection(string query, int firstResult, int maxResults, PortalHeadlineListLayout layout = PortalHeadlineListLayout.HeadlineLayout)
         {
             var dto = new SearchServiceDTO
                           {
@@ -120,6 +128,7 @@ namespace DowJones.Prod.X.Web.Controllers
                               FirstResult = firstResult,
                               MaxResults = maxResults,
                               SearchMode = SearchMode.Simple,
+                              SortOrder = SortOrder.RelevanceHighFreshness,
                           };
 
             var request = _searchService.BuildPerformContentSearchRequest<PerformContentSearchRequest>(dto);
@@ -138,7 +147,7 @@ namespace DowJones.Prod.X.Web.Controllers
                            AuthorClickable = true,
                            SourceClickable = true,
                            DisplaySnippets = SnippetDisplayType.Hover,
-                           Layout = PortalHeadlineListLayout.HeadlineLayout,
+                           Layout = layout,
                            AllowPagination = false,
                            PagePrevSelector = ".prev",
                            PageNextSelector = ".next"
@@ -168,7 +177,7 @@ namespace DowJones.Prod.X.Web.Controllers
                                  item.Type.Trim().IsNotEmpty() &&
                                  item.Type.ToLower() == "webpage")))
                     {
-                        return _urlHelper.Action("Index", "Archive", GenerateEditionArticleRouteValueDictionary(contentHeadline));
+                        return item.Ref; //_urlHelper.Action("Index", "Archive", GenerateEditionArticleRouteValueDictionary(contentHeadline));
                     }
                     break;
                 case ContentCategory.Blog:
@@ -177,7 +186,7 @@ namespace DowJones.Prod.X.Web.Controllers
                 case ContentCategory.Internal:
                     foreach (var item in contentHeadline.ContentItems.ItemCollection.Where(item => item.Type.ToLower() == "webpage"))
                     {
-                        return _urlHelper.Action("Index", "Archive", GenerateEditionArticleRouteValueDictionary(contentHeadline));
+                        return item.Ref;
                     }
                     break;
                 case ContentCategory.Multimedia:

@@ -42,19 +42,20 @@
         },
 
         _findColumn: function () {
-            var selector = 'ul.column';
-            var column = this.$element.closest(selector);
+            var largeColumnSelector = 'ul.largeColumn';
+            var mediumColumnSelector = 'ul.mediumColumn';
 
-            if (column.hasClass('largeColumn')) {
-                return 'Large';
+            var largeColumn = this.$element.closest(largeColumnSelector);
+            if (largeColumn) {
+                return "Large";
             }
 
-            if (column.hasClass('mediumColumn')) {
+            var mediumColumn = this.$element.closest(mediumColumnSelector);
+            if (mediumColumn) {
                 return 'Medium';
             }
 
             return 'Small';
-
         },
 
         _processTemplate: function (type, data) {

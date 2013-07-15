@@ -264,14 +264,14 @@ if (!window["djHeadlineHandler"]) {
                     break;
                 case "external":
                     if (headline.headlineUrl) {
-                        window.open(headline.headlineUrl, "_self");
-                        //DJGlobal.NewWindow({ url: headline.headlineUrl, windowName: "webArticleWin" });
+                        //window.open(headline.headlineUrl, "_self");
+                        DJGlobal.NewWindow({ url: headline.headlineUrl, windowName: "webArticleWin" });
                     }
                     break;
                 case "link":
                     if (headline.headlineUrl) {
-                        window.open(headline.headlineUrl, "_self");
-                        //DJGlobal.NewWindow({ url: headline.headlineUrl, windowName: "webArticleWin" });
+                        //window.open(headline.headlineUrl, "_self");
+                        DJGlobal.NewWindow({ url: headline.headlineUrl, windowName: "webArticleWin" });
                     }
                     else if (headline.reference.ref) {
                         window.open(headline.reference.ref, "_self");
@@ -282,8 +282,8 @@ if (!window["djHeadlineHandler"]) {
                 case "website":
                 case "webpage":
                     if (headline.headlineUrl) {
-                        window.open(headline.headlineUrl, "_self");
-                        //DJGlobal.NewWindow({ url: headline.headlineUrl, windowName: "webArticleWin" });
+                        //window.open(headline.headlineUrl, "_self");
+                        DJGlobal.NewWindow({ url: headline.headlineUrl, windowName: "webArticleWin" });
                     }
                     else if (headline.reference.ref) {
                         window.open(headline.reference.ref, "_self");

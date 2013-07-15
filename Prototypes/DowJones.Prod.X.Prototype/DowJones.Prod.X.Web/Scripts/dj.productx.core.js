@@ -87,6 +87,7 @@ dj.productx.core.iDashboard = {
         handleSelector: '.widget-head',
         contentSelector: '.widget-content',
         widgetDefault: {
+            popup: true,
             movable: true,
             removable: true,
             collapsible: true,
@@ -95,35 +96,76 @@ dj.productx.core.iDashboard = {
         },
         widgetIndividual: {
             intro: {
+                popup: false,
                 movable: false,
                 removable: false,
                 collapsible: false,
+                editable: false
+            },
+            marketNews: {
+                popup: false,
+                movable: false,
+                removable: false,
+                collapsible: true,
+                editable: false
+            },
+            signals: {
+                popup: true,
+                movable: false,
+                removable: false,
+                collapsible: true,
                 editable: false
             },
             companyExplainer: {
+                popup: false,
                 movable: false,
                 removable: false,
                 collapsible: false,
                 editable: false
             },
+            earnings: {
+                popup: true,
+                movable: false,
+                removable: false,
+                collapsible: true,
+                editable: false
+            },
+            investments: {
+                popup: true,
+                movable: false,
+                removable: false,
+                collapsible: true,
+                editable: false
+            },
+            riskCompliance: {
+                popup: true,
+                movable: false,
+                removable: false,
+                collapsible: true,
+                editable: false
+            },
             topStories: {
+                popup: false,
                 movable: false,
                 removable: false,
                 collapsible: false,
                 editable: false
             },
             liveNews: {
+                popup: false,
                 movable: false,
                 removable: true,
                 collapsible: false,
                 editable: true
             },
             filters: {
+                popup: false,
                 movable: false,
                 removable: false,
                 collapsible: false,
                 editable: false
             },
+
             gallery: {
                 colorClasses: ['color-yellow', 'color-red', 'color-white']
             }
@@ -148,8 +190,9 @@ dj.productx.core.iDashboard = {
 
         $(settings.widgetSelector).each(function () {
             var thisWidgetSettings = djGrid.getWidgetSettings(this.id);
+
             if (thisWidgetSettings.removable) {
-                $('<a href="javascript:void()" class="remove pull-right dj_action"><i class="icon-remove"></i></a>').mousedown(function (e) {
+                $('<a href="javascript:void(0)" class="remove pull-right dj_action"><i class="icon-remove"></i></a>').mousedown(function (e) {
                     e.stopPropagation();
                 }).click(function () {
                     if (confirm('This widget will be removed, ok?')) {
@@ -164,10 +207,10 @@ dj.productx.core.iDashboard = {
                     return false;
                 }).appendTo($(settings.handleSelector, this));
             }
-
+            
             if (thisWidgetSettings.editable) {
                 
-                $('<a href="javascript:void()" class="edit pull-right dj_action"><i class="icon-cog"></i></a>').mousedown(function (e) {
+                $('<a href="javascript:void(0)" class="edit pull-right dj_action"><i class="icon-cog"></i></a>').mousedown(function (e) {
                     e.stopPropagation();
                 }).toggle(function () {
                     $(this)
@@ -199,8 +242,19 @@ dj.productx.core.iDashboard = {
                     .insertAfter($(settings.handleSelector, this));
             }
 
+            if (thisWidgetSettings.popup) {
+                $('<a href="javascript:void(0)" class="popup pull-right dj_action"><i class="icon-external-link"></i></a>').mousedown(function (e) {
+                    e.stopPropagation();
+                }).click(function () {
+                    if (confirm('This widget will be poped-up into a new window, ok?')) {
+                        // logic to pop out here
+                    }
+                    return false;
+                }).appendTo($(settings.handleSelector, this));
+            }
+
             if (thisWidgetSettings.collapsible) {
-                $('<a href="javascript:void()" class="chevron pull-left dj_action"><i class="icon-chevron-down"></i></a>').mousedown(function (e) {
+                $('<a href="javascript:void(0)" class="chevron pull-left dj_action"><i class="icon-chevron-down"></i></a>').mousedown(function (e) {
                     e.stopPropagation();
                 }).toggle(function () {
                     $(this)
@@ -223,6 +277,7 @@ dj.productx.core.iDashboard = {
                     return false;
                 }).prependTo($(settings.handleSelector, this));
             }
+
         });
 
         $('.edit-box').each(function () {

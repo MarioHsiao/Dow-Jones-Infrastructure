@@ -11,6 +11,7 @@ namespace DowJones.Prod.X.Models.Site.Home
     public class SearchModel
     {
         public PortalHeadlineListModel Headlines { get; set; }
+        public PortalHeadlineListModel Realtime { get; set; }
         public PortalHeadlineListModel Pictures { get; set; }
         public PortalHeadlineListModel Videos { get; set; }
         public StockKioskModel StockKiosk { get; set; }

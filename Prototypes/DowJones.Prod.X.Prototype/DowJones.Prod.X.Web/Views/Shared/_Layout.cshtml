@@ -47,6 +47,7 @@
     </script>
     
     <link rel="stylesheet" href="~/Content/stylesheets/application.css"/>
+    <link rel="stylesheet" href="~/Content/stylesheets/hud-one.css"/>
     @DJ.StylesheetRegistry().RenderHead()
     @DJ.ScriptRegistry().RenderHead()
 
@@ -176,13 +177,9 @@
                 </div>
             </div>
         </div>
-
-
-
-
         @RenderBody()
-
     </section>
+    @Html.Partial("Hud", Model)
 
     <script type="text/javascript" src="http://fdevweb3.win.dowjones.net/emgutilityhandlers/emg.tools.web.widgets.autosuggest.ashx?version=3.0"></script>
 

@@ -250,6 +250,7 @@
     <Compile Include="Models\Api\BasicApiResult.cs" />
     <Compile Include="Models\ArchiveIndexViewModel.cs" />
     <Compile Include="Models\BasicSiteRequestDto.cs" />
+    <Compile Include="Models\HomeHudViewModel.cs" />
     <Compile Include="Models\HomeSearchViewModel.cs" />
     <Compile Include="Models\Error\ErrorViewModel.cs" />
     <Compile Include="Models\GenericActionProperties.cs" />
@@ -272,15 +273,18 @@
     <Content Include="Content\images\linen-light.png" />
     <Content Include="Content\images\linen-lighter.png" />
     <Content Include="Content\images\photos\photo_60x60.jpg" />
+    <Content Include="Content\img\djnc-footer-new.png" />
     <Content Include="Content\stylesheets\application.css" />
     <Content Include="Content\stylesheets\bootstrap-responsive.css" />
     <Content Include="Content\stylesheets\bootstrap-responsive.min.css" />
     <Content Include="Content\stylesheets\bootstrap.css" />
     <Content Include="Content\stylesheets\bootstrap.min.css" />
+    <Content Include="Content\stylesheets\chat.css" />
     <Content Include="Content\stylesheets\font-awesome-ie7.css" />
     <Content Include="Content\stylesheets\font-awesome-ie7.min.css" />
     <Content Include="Content\stylesheets\font-awesome.css" />
     <Content Include="Content\stylesheets\font-awesome.min.css" />
+    <Content Include="Content\stylesheets\hud-one.css" />
     <Content Include="Content\stylesheets\prettify.css" />
     <Content Include="Content\stylesheets\study-one.css" />
     <Content Include="Content\font\fontawesome-webfont.svg" />
@@ -837,6 +841,7 @@
     <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\PrimaryNavigation.cshtml" />
+    <Content Include="Views\Shared\Hud.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
