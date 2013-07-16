@@ -97,11 +97,13 @@
     padding: 5px 0 5px 20px;
     list-style: disc;
 }
-#columns .widget .widget-content div {
-    padding: 5px 0;
+#columns .widget .widget-content div:first-child {
+    margin: 5px 0;
     background-color: transparent;
 }
+
 #columns .widget .widget-content ul li {padding: 3px 0;}
+
 #columns .widget .widget-content ul.images {
     padding: 7px 0 0 0;
     list-style: none;

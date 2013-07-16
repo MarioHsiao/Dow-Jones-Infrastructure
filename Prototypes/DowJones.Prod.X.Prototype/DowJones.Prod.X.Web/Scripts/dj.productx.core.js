@@ -10,7 +10,7 @@ dj.productx.core.autoSuggestHandler = function (data) {
             searchUrl += "industry/search?query=in:" + data.code;
             break;
         case 'executive':
-            searchUrl += "executive/search?query=pe:" + data.code;
+            searchUrl += "executive/search?query=fds:" + data.coFcode + " " + data.completeName;
             break;
         case 'author':
             searchUrl += "author/search?query=au:" + data.code;

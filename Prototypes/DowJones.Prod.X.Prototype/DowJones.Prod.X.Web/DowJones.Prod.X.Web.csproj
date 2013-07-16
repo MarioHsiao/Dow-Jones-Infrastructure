@@ -837,6 +837,7 @@
     <Content Include="Views\Home\Search-Person.cshtml" />
     <Content Include="Views\Home\Search-Keyword.cshtml" />
     <Content Include="Views\Archive\Index.cshtml" />
+    <Content Include="Log4Net.config" />
     <None Include="Properties\PublishProfiles\Debug.pubxml" />
     <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />

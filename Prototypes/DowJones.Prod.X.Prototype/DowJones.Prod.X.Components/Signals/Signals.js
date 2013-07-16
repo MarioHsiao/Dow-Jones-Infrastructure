@@ -47,19 +47,26 @@ DJ.UI.Signals = DJ.UI.Component.extend({
     },
 
     _findColumn: function () {
-        var largeColumnSelector = 'ul.largeColumn';
-        var mediumColumnSelector = 'ul.mediumColumn';
-       
-        var largeColumn = this.$element.closest(largeColumnSelector);
-        if (largeColumn) {
-            return "Large";
-        }
+        var activeColumnSelector = 'ul.column';
+        var inactiveColumnSelector = 'ul.xColumn';
+        var column = this.$element.closest(activeColumnSelector); 
 
-        var mediumColumn = this.$element.closest(mediumColumnSelector);
-        if (mediumColumn) {
-            return 'Medium';
+        if (column.length == 0) {
+            column = this.$element.closest(inactiveColumnSelector);
         }
         
+        if (column) {
+            if (column.hasClass('largeColumn')) {
+                return 'Large';
+            }
+
+            if (column.hasClass('mediumColumn')) {
+                return 'Medium';
+            }
+
+            return 'Small';
+        }
+
         return 'Small';
     },
 

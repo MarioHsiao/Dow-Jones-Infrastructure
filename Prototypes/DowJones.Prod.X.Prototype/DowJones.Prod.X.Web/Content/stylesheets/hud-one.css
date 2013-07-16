@@ -406,9 +406,6 @@ text-overflow: ellipsis;
 border-bottom: 1px solid #e9e7e4;
 border-top: 1px solid #e9e7e4;
 }
-.dj-chat ul, .dj-chat ol, .dj-chat li {
-list-style: none outside none;
-}
 
 
 .chats-container .status-image-container {
@@ -448,4 +445,5 @@ overflow: hidden;
     height: 30px;
     width: 30px;
     cursor: pointer;
+
 }

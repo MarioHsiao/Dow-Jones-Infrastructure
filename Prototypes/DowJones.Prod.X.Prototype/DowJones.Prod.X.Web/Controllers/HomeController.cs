@@ -1,13 +1,18 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.Routing;
 using DowJones.Ajax;
 using DowJones.Assemblers.Charting.MarketData;
 using DowJones.Assemblers.Headlines;
 using DowJones.DTO.Web.Request;
+using DowJones.Exceptions;
 using DowJones.Extensions;
 using DowJones.Infrastructure;
+using DowJones.Loggers;
 using DowJones.Managers.Charting.MarketData;
 using DowJones.Prod.X.Common;
 using DowJones.Prod.X.Core.DataTransferObjects;
@@ -18,11 +23,14 @@ using DowJones.Prod.X.Models.Site.Home;
 using DowJones.Prod.X.Web.Controllers.Base;
 using DowJones.Prod.X.Web.Models;
 using DowJones.Url;
+using DowJones.Utilities;
 using DowJones.Web.Mvc.Routing;
 using DowJones.Web.Mvc.UI.Components.Common;
 using DowJones.Web.Mvc.UI.Components.PortalHeadlineList;
 using DowJones.Web.Mvc.UI.Components.StockKiosk;
+using Factiva.Gateway.Messages.Search;
 using Factiva.Gateway.Messages.Search.V2_0;
+using log4net;
 using PerformContentSearchRequest = Factiva.Gateway.Messages.Search.FreeSearch.V1_0.PerformContentSearchRequest;
 using PerformContentSearchResponse = Factiva.Gateway.Messages.Search.FreeSearch.V1_0.PerformContentSearchResponse;
 using SearchMode = DowJones.Prod.X.Models.Search.SearchMode;
@@ -48,6 +56,7 @@ namespace DowJones.Prod.X.Web.Controllers
         private readonly UrlHelper _urlHelper;
         public const string DefaultFileHandlerUrl = "~/DowJones.Web.Handlers.Article.ContentHandler.ashx";
         private readonly MarketDataInstrumentIntradayResultSetAssembler _marketDataInstrumentIntradayResultSetAssembler;
+        private readonly ILog _log = LogManager.GetLogger(typeof (HomeController));
 
         public HomeController(HeadlineListConversionManager headlineListManager, SearchService searchService, UrlHelper urlHelper, MarketDataInstrumentIntradayResultSetAssembler marketDataInstrumentIntradayResultSetAssembler)
         {
@@ -72,11 +81,7 @@ namespace DowJones.Prod.X.Web.Controllers
         {
             var model = new HomeSearchViewModel(BasicSiteRequestDto, ControlData, MainNavigationCategory.Search)
                             {
-                                BaseActionModel = new SearchModel
-                                                      {
-                                                          Realtime = GetPortalHeadlineListSection(query + " rst:SFDJNW", firstResult, maxResults, PortalHeadlineListLayout.TimelineLayout),
-                                                          Headlines = GetPortalHeadlineListSection(query, firstResult, maxResults),
-                                                      }
+                                BaseActionModel = GetNewsletterInformation(query, firstResult, maxResults)
                             };
 
             switch (searchType)
@@ -120,7 +125,7 @@ namespace DowJones.Prod.X.Web.Controllers
             return GetStockKioskModel(syms);
         }
 
-        private PortalHeadlineListModel GetPortalHeadlineListSection(string query, int firstResult, int maxResults, PortalHeadlineListLayout layout = PortalHeadlineListLayout.HeadlineLayout)
+        private IPerformContentSearchResponse GetPortalHeadlineListSection(string query, int firstResult, int maxResults)
         {
             var dto = new SearchServiceDTO
                           {
@@ -132,26 +137,30 @@ namespace DowJones.Prod.X.Web.Controllers
                           };
 
             var request = _searchService.BuildPerformContentSearchRequest<PerformContentSearchRequest>(dto);
-            var results = _searchService.PerformSearch<PerformContentSearchRequest, PerformContentSearchResponse>(request);
-            var headlineListDataResult = _headlineListManager.Process(results, GenerateUrl);
+            return _searchService.PerformSearch<PerformContentSearchRequest, PerformContentSearchResponse>(request);
+        }
+
+        private PortalHeadlineListModel GetPortalHeadlinesListModel(IPerformContentSearchResponse response, PortalHeadlineListLayout layout = PortalHeadlineListLayout.HeadlineLayout)
+        {
+            var headlineListDataResult = _headlineListManager.Process(response, GenerateUrl);
             var portalHeadlineListDataResult = PortalHeadlineConversionManager.Convert(headlineListDataResult);
 
             return new PortalHeadlineListModel
-                       {
-                           MaxNumHeadlinesToShow = 5,
-                           Result = portalHeadlineListDataResult,
-                           ShowAuthor = true,
-                           ShowSource = true,
-                           ShowPublicationDateTime = true,
-                           ShowTruncatedTitle = false,
-                           AuthorClickable = true,
-                           SourceClickable = true,
-                           DisplaySnippets = SnippetDisplayType.Hover,
-                           Layout = layout,
-                           AllowPagination = false,
-                           PagePrevSelector = ".prev",
-                           PageNextSelector = ".next"
-                       };
+            {
+                MaxNumHeadlinesToShow = 5,
+                Result = portalHeadlineListDataResult,
+                ShowAuthor = true,
+                ShowSource = true,
+                ShowPublicationDateTime = true,
+                ShowTruncatedTitle = false,
+                AuthorClickable = true,
+                SourceClickable = true,
+                DisplaySnippets = SnippetDisplayType.Hover,
+                Layout = layout,
+                AllowPagination = false,
+                PagePrevSelector = ".prev",
+                PageNextSelector = ".next"
+            };
         }
 
         private string GenerateUrl(ContentHeadline contentHeadline, bool isDuplicate)
@@ -346,5 +355,36 @@ namespace DowJones.Prod.X.Web.Controllers
                     return "tnail";
             }
         }
+
+        private SearchModel GetNewsletterInformation(string query, int firstResult = 0, int maxResult = 10)
+        {
+            try
+            {
+                using (new TransactionLogger(_log, MethodBase.GetCurrentMethod()))
+                {
+                    var taskFactory = TaskFactoryManager.Instance.GetDefaultTaskFactory();
+                    var getRealtimeHeadlinesTask = taskFactory.StartNew(() => GetPortalHeadlineListSection(query + " rst:SFDJNW", firstResult, 5));
+                    var getMainHeadlinesTask = taskFactory.StartNew(() => GetPortalHeadlineListSection(query, firstResult, 20));
+
+                    Task.WaitAll(getRealtimeHeadlinesTask, getMainHeadlinesTask);
+
+                    return new SearchModel
+                               {
+                                   Realtime = GetPortalHeadlinesListModel(getRealtimeHeadlinesTask.Result, PortalHeadlineListLayout.TimelineLayout),
+                                   Headlines =  GetPortalHeadlinesListModel(getMainHeadlinesTask.Result)
+                               };
+                }
+            }
+            catch (AggregateException exception)
+            {
+                foreach (var ex in exception.InnerExceptions)
+                {
+                    throw ex;
+                }
+            }
+
+            throw new DowJonesUtilitiesException();
+        }
+        
     }
 }
