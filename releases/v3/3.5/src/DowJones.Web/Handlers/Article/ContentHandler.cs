@@ -233,7 +233,8 @@ namespace DowJones.Web.Handlers.Article
                                                                                accessionNumber = accessionNo,
                                                                                reference = reference,
                                                                                mimeType = mimeType,
-                                                                               imageType = imageType
+                                                                               imageType = imageType,
+                                                                               returnMeteringInfo = true
                                                                            },
                                                                        context,
                                                                        retrieveBlobItem,
