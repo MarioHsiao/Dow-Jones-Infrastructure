@@ -48,7 +48,7 @@ namespace DowJones.Web.UI
         protected override StylesheetResourceImageUrlResolver CreateUnitUnderTest()
         {
             var unitUnderTest = new StylesheetResourceImageUrlResolver();
-            unitUnderTest.ApplicationPath = @"\";
+            unitUnderTest.ApplicationPath = @"";
             return unitUnderTest;
         }
     }
