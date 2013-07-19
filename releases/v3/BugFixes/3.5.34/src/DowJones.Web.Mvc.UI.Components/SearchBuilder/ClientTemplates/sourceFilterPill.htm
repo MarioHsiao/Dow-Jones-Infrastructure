@@ -1,0 +1,20 @@
+﻿<%  var filter = self.filter;
+    var f = filter[0] || filter, code = f.code, code1 = '', cdesc = (f.cdesc || f.desc), type = f.type, extInfo = '';
+    extInfo = ((f.type == "SN" || f.type == "RST" || f.type == "LIST") ? '':' data-desc="' + f.desc + '" ');
+    if(filter.length > 1){
+        extInfo += ' data-code="' + code + '" ';
+
+        f = filter[1];
+        code1 = f.code;
+        extInfo += ' data-code1="' + code1 + '" ';
+        extInfo += ' data-type1="' + f.type + '" ';
+        if(f.type != "BY"){
+            extInfo += ' data-desc1="' + f.desc + '" ';
+        }
+    }
+%>
+<li class="dj_pill" code="<%= code + code1  %>" data-type="<%= type %>" <%= extInfo %>>
+	<span class="filter"><%= cdesc %></span>
+	<span class="remove" title="<%= Token("removeFilter")%>">&nbsp;</span>
+</li>
+

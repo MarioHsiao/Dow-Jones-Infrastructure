@@ -1,0 +1,172 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <title>Tweet Lines Mock with Template Databinding</title>
+    <link href="../../DowJones.Web.Showcase/styles/css/reset.css" type="text/css"
+        rel="stylesheet"/>
+    <link href="../../DowJones.Web.Showcase/styles/css/global.css" type="text/css"
+        rel="stylesheet"/>
+   
+        <style type="text/css">
+            .expert-list-cnt
+            {
+                
+                width:100%;
+           }
+           ul.expert-list
+            {
+                float: left;
+                width :50%;
+                
+            }
+          
+            li.top_expert-data
+            {
+                padding-top :20px; 
+            }
+            
+            li.top_expert-data div{
+              display: inline-block;
+              letter-spacing: normal;
+              vertical-align: top;
+              word-spacing: normal;
+            }
+
+          
+        </style>
+</head>
+<body>
+    <div class="experts-container">
+        <div class="experts">
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../DowJones.Web.Mvc/Resources/js/jquery.js"></script>
+<script type="text/javascript" src="../../DowJones.Web.Mvc/Resources/js/underscore.js"></script>
+<script type="text/javascript" src="../../DowJones.Web.Mvc/Resources/js/jquery-ui.core.js"></script>
+<script type="text/javascript" src="../../DowJones.Web.Mvc/Resources/js/jquery-ui.interactions.js"></script>
+<script type="text/javascript" src="../../DowJones.Web.Mvc/Resources/js/common.js"></script>
+<script type="text/javascript" src="../../DowJones.Web.Mvc.UI.Components/TwitterExperts/TwitterExperts.js"></script>
+<script type="text/template" id="templ">
+<% 
+    var expertsCount = experts.length;
+    var isViewAll = options.viewAll;
+    var rowCount = !isViewAll && expertsCount > 1 ? Math.ceil(expertsCount/2):0;
+    var count = 0;
+%>
+<div class="expert-list-cnt clearfix">
+   <ul class="expert-list column_one">
+   <% _.each(experts, function(expert) { 
+       if(rowCount > 0 &&  count == rowCount){%>
+             </ul><ul class="expert-list column_two">
+     <% }%>
+     <li class="top_expert-data" data-user-id="<%= expert.id%>" data-screen-name="<%= expert.screenName%>">
+        <div class="avatar">
+            <img width="32" height="32" class="expert-profile-link" alt="<%= expert.Name%>" src="<%= expert.profileImageUrl %>"/>
+        </div> 
+        <div class="expert_info">
+            <span class="expert-full-name"><a title="<%= expert.Name%>" href="javascript:void(0)" class="expert-profile-link"><%= expert.fullName%></a></span>
+            <% if (expert.verified){%>
+                <span class="verified-icon" title="verified"></span>
+            <%} %><br/>
+            <span class="expert-screen-name">@<%= expert.screenName%></span>
+        </div>
+     </li>
+   <% count++  });%>
+  </ul>
+</div>
+</script>
+
+<script type="text/javascript">
+    var tp = {
+        "topExperts": [
+        {
+            "fullName": "Scott Hanselman",
+            "screenName": "shanselman",
+            "profileImageUrl": "http://a2.twimg.com/profile_images/1425619283/image_normal.jpg",
+            "verified": true,
+            "id": "5676102"
+        },
+       {
+           "fullName": "Scott Hanselman",
+           "screenName": "shanselman",
+           "profileImageUrl": "http://a2.twimg.com/profile_images/1425619283/image_normal.jpg",
+           "verified": true,
+           "id": "5676102"
+       },
+       {
+           "fullName": "Scott Hanselman",
+           "screenName": "shanselman",
+           "profileImageUrl": "http://a2.twimg.com/profile_images/1425619283/image_normal.jpg",
+           "verified": true,
+           "id": "5676102"
+       },
+       {
+           "fullName": "Scott Hanselman",
+           "screenName": "shanselman",
+           "profileImageUrl": "http://a2.twimg.com/profile_images/1425619283/image_normal.jpg",
+           "verified": true,
+           "id": "5676102"
+       },
+       {
+           "fullName": "Scott Hanselman",
+           "screenName": "shanselman",
+           "profileImageUrl": "http://a2.twimg.com/profile_images/1425619283/image_normal.jpg",
+           "verified": true,
+           "id": "5676102"
+       },
+       {
+           "fullName": "Scott Hanselman",
+           "screenName": "shanselman",
+           "profileImageUrl": "http://a2.twimg.com/profile_images/1425619283/image_normal.jpg",
+           "verified": true,
+           "id": "5676102"
+       },
+       {
+           "fullName": "Scott Hanselman",
+           "screenName": "shanselman",
+           "profileImageUrl": "http://a2.twimg.com/profile_images/1425619283/image_normal.jpg",
+           "verified": true,
+           "id": "5676102"
+       },
+       {
+           "fullName": "Scott Hanselman",
+           "screenName": "shanselman",
+           "profileImageUrl": "http://a2.twimg.com/profile_images/1425619283/image_normal.jpg",
+           "verified": true,
+           "id": "5676102"
+       },
+       {
+           "fullName": "Scott Hanselman",
+           "screenName": "shanselman",
+           "profileImageUrl": "http://a2.twimg.com/profile_images/1425619283/image_normal.jpg",
+           "verified": true,
+           "id": "5676102"
+       },
+       {
+           "fullName": "Scott Hanselman",
+           "screenName": "shanselman",
+           "profileImageUrl": "http://a2.twimg.com/profile_images/1425619283/image_normal.jpg",
+           "verified": true,
+           "id": "5676102"
+       },
+       {
+           "fullName": "Scott Hanselman",
+           "screenName": "shanselman",
+           "profileImageUrl": "http://a2.twimg.com/profile_images/1425619283/image_normal.jpg",
+           "verified": true,
+           "id": "5676102"
+       }]
+   };
+
+   $(document).ready(function () {
+      
+       var templ = _.template($('#templ').html());
+      
+       var html = templ({ experts: tp.topExperts, options: { viewAll: false} });
+       $('div.experts').html(html);
+       
+   });
+   
+</script>
+</html>

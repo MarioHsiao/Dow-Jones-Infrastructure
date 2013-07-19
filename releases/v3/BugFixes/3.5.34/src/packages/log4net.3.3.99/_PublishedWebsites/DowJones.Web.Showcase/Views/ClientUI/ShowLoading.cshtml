@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "ShowLoading";
+}
+<script type="text/javascript">
+    $(function () {
+        var targetDiv = $('#target');
+
+        $('.showLoading').click(function () { targetDiv.showLoading(); });
+        $('.hideLoading').click(function () { targetDiv.hideLoading(); });
+    });
+</script>
+
+<h2>Show Loading</h2>
+
+
+<div id="target" style="position: relative">
+    <h3>Example Div</h3>
+    <p>
+        The contents of this div should be hidden during loading.
+    </p>
+</div>
+
+
+<div>
+    <input type="button" class="showLoading" value="Show Loading" />
+    <input type="button" class="hideLoading" value="Hide Loading" />
+</div>
+

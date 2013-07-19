@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DiscoveryClientResultsFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Results>
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://fdevweb3.win.dowjones.net/PALService?xsd=xsd7" filename="PALService.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="http://fdevweb3.win.dowjones.net/PALService?wsdl=wsdl1" filename="PALService.wsdl" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="http://fdevweb3.win.dowjones.net/PALService?wsdl=wsdl0" filename="PALService0.wsdl" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://fdevweb3.win.dowjones.net/PALService?xsd=xsd5" filename="PALService0.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://fdevweb3.win.dowjones.net/PALService?xsd=xsd2" filename="PALService1.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="http://fdevweb3.win.dowjones.net/PALService?wsdl" filename="FunctionDispatcher.wsdl" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://fdevweb3.win.dowjones.net/PALService?xsd=xsd0" filename="PALService2.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://fdevweb3.win.dowjones.net/PALService?xsd=xsd6" filename="PALService3.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://fdevweb3.win.dowjones.net/PALService?xsd=xsd3" filename="PALService4.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://fdevweb3.win.dowjones.net/PALService?xsd=xsd4" filename="PALService5.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://fdevweb3.win.dowjones.net/PALService?xsd=xsd1" filename="PALService6.xsd" />
+  </Results>
+</DiscoveryClientResultsFile>

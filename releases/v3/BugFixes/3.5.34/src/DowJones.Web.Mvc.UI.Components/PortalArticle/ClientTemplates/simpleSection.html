@@ -1,0 +1,15 @@
+﻿<% 
+    var model = self;
+    var options = this.options;
+    var hasData = model.item;
+%>
+<% if(hasData) { 
+    if (options.showIndexing) { %>
+        <div class="dj_article_index"><%= model.indexCode.toUpperCase() %></div>
+    <% } %>  
+    <div class="dj_article_<%= model.indexCode.toLowerCase() %> dj_article_section">
+        <p class="dj_article_paragraph">
+            <%= model.item %>
+        </p>
+    </div>
+<% } %>

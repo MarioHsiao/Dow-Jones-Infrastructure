@@ -1,0 +1,67 @@
+﻿@using Common
+@using DowJones.Extensions
+@using DowJones.Web.Mvc.Extensions
+@using DowJones.Web.Mvc.UI.Components.HeadlineList
+@using System.Collections.ObjectModel
+@model HeadlineListCarouselModel
+@ClientPlugin dj_HeadlineListCarousel
+@ScriptResource RelativeResourceName=HeadlineListCarousel.js
+@StylesheetResource RelativeResourceName=HeadlineListCarousel.css
+@{ 
+    CssClass = "dj_HeadlineListCarousel";
+    DJ.ScriptRegistry()
+            .WithJQueryTools(); 
+}
+@if (Model != null && Model.HeadlineList != null && Model.HeadlineList.Headlines != null && Model.HeadlineList.Headlines.Count()>0)
+{
+    int i = 0;
+    int pagesize = Model.NumberOfHeadlinesToScrollBy;
+    int j = 0;
+  <div class="CarouselButtons">
+	<a class="prev browse"><span>Previous</span></a>
+</div>
+   
+    <div class="scrollable" id = "scroller">
+        <!-- root element for the items -->
+         <div class="items" id="carouselItemListID" data-pageSize="@Model.NumberOfHeadlinesToScrollBy" data-scrollSpeed="@Model.AutoScrollSpeed">
+            @foreach (HeadlineModel headline in Model.HeadlineList.Headlines)
+            {
+                if (i == 0 || i % pagesize == 0)
+                {
+
+                    if (i != 0)
+                    {             
+                @("</div>")
+                    }
+                @("<div>")
+                }
+                <div class="carouselItem@((Model.SelectedAccessionNo.Equals(headline.AccessionNumber, StringComparison.CurrentCultureIgnoreCase)) ? " Selected" : "")" data-headlineInfo="@(headline.HeadlineInfo.ToJson().EscapeForHtml())" data-index="@i">
+                    @if (Model.HeadlineList.IsThumbnailVisible(i, headline))
+                    {
+                            <div class="articleImage">
+                                <img src="@headline.ThumbnailUrl" alt="@headline.TruncatedTitle" />
+                            </div>
+                    }
+                    <a class="title" href="javascript:void(0)" rel="@headline.ExternalUrl" title="@Model.HeadlineList.GetHoverSnippet(headline.Snippet, i)">@headline.Title</a>
+                    <div class="meta">                   
+                        <span class="source @(headline.IsLocked ? "locked" : "unlocked")" data-source="@headline.SourceCode">@headline.Source</span>
+                        <span class="date-stamp">@(string.Join(", ", new[] { headline.PublicationDateDisplay, headline.WordCount, headline.Language }.Where(s => !string.IsNullOrWhiteSpace(s))))</span>
+                    </div>
+               
+                @if (Model.HeadlineList.DisplaySnippets == SnippetDisplayType.Inline ||
+                (i == 0 && Model.HeadlineList.DisplaySnippets == SnippetDisplayType.Hybrid))
+                {
+                    <p class="snippet">
+                        @headline.Snippet
+                    </p>
+                }
+             </div>
+                i++;
+            }
+            @("</div>")
+        </div>
+    </div>
+ <div class="CarouselButtons">
+	<a class="next browse"><span>Next</span></a>
+</div>
+}
