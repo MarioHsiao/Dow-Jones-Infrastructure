@@ -127,6 +127,7 @@ namespace DowJones.Security.Services
                 IsTimeToLiveToken = !string.IsNullOrEmpty(NewsletterDA) && (NewsletterDA.Trim().ToUpper() == "TTLT" || NewsletterDA.Trim().ToUpper() == "TTLTOVER") ? true : false;
                 IsNewsViewsRenderOn = NewsViewsPermissions();
                 IsNewsViewsAdministratorOn = IsNewsViewsRenderOn && (_matrixMembershipService.gripAdmin != null  && _matrixMembershipService.gripAdmin.Trim().ToUpper() == "Y");
+                MaxSourceList = GetPreferenceClassMaxItems(PreferenceClassID.SearchSourceGroup);
             }
         }
 
@@ -181,6 +182,8 @@ namespace DowJones.Security.Services
             return bFlag;
         }
         #endregion
+
+        public int MaxSourceList { get; private set; }
     }
 
     /// <summary>
