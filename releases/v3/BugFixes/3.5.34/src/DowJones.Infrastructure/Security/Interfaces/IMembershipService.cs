@@ -12,5 +12,11 @@ namespace DowJones.Security.Interfaces
         bool IsTimeToLiveToken { get; }
         bool IsNewsViewsRenderOn { get; }
         bool IsNewsViewsAdministratorOn { get; }
+        int MaxSourceList { get; }
     }
+    //    public interface IMembershipAssetLimit
+    //    {
+    //        int MaxSourceList { get; }
+    //    }
+
 }
