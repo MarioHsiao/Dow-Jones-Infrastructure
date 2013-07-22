@@ -66,16 +66,19 @@
 
         },
 
-        initializeGraphOptions: function (divToRender, graphDataModel, isfullSizeGraph) {
+        initializeGraphOptions: function (DivToRender, graphDataModel, isfullSizeGraph) {
             var seriesConfig = this.fetchSeriesConfig(graphDataModel, isfullSizeGraph);
 
-            return (!isfullSizeGraph) ? this.summaryChartOptions(divToRender, seriesConfig, false)
-                                    : this.newsStockChartOptions(divToRender, seriesConfig, true);
+            return (!isfullSizeGraph) ? this.summaryChartOptions(DivToRender, seriesConfig, false)
+                                    : this.newsStockChartOptions(DivToRender, seriesConfig, true);
         },
 
-        summaryChartOptions: function (chartContainer, graphLineConfig) {
+        summaryChartOptions: function (chartContainer, graphLineConfig, isfullSizeGraph) {
+            var _highChartDateFormat = '%B %e, %Y';
             var self = this,
-                optionBag = self.options;
+                _optionBag = self.options,
+                el = $(self.element);
+            var _dateformat = this.options.summaryGraphDateFormat || '%l%p';
             var marketIndexChartOptions = {
                 chart: {
                     renderTo: chartContainer,
@@ -96,12 +99,8 @@
                     }
 
                 },
-                
-                exporting: {
-                    enabled: false
-                },
-                
-                colors: [(optionBag.stockSeriesColor || '#5ea9c3')],
+
+                colors: [(_optionBag.stockSeriesColor || '#5ea9c3')],
 
                 loading: {
                     hideDuration: 250,
@@ -196,11 +195,12 @@
             return marketIndexChartOptions;
         },
 
-        newsStockChartOptions: function (chartContainer, graphLineConfig) {
+        newsStockChartOptions: function (chartContainer, graphLineConfig, isfullSizeGraph) {
             var self = this,
-                optionBag = self.options,
+                _optionBag = self.options,
                 el = $(self.element);
-            var highChartDateFormat = '%B %e, %Y';
+            var _dateformat = this.options.FullChartDisplayDateFormat || '%b. %d';
+            var _highChartDateFormat = '%B %e, %Y';
             var minDate, maxDate;
 
             var newsStockChartOption = {
@@ -223,16 +223,16 @@
                     events: {
                         selection: function (event) {
                             if (event.xAxis) {
-                                minDate = Highcharts.dateFormat(highChartDateFormat, event.xAxis[0].min);
-                                maxDate = Highcharts.dateFormat(highChartDateFormat, event.xAxis[0].max);
+                                minDate = Highcharts.dateFormat(_highChartDateFormat, event.xAxis[0].min);
+                                maxDate = Highcharts.dateFormat(_highChartDateFormat, event.xAxis[0].max);
                                 el.triggerHandler(self.events.zoom, {
                                     sender: self,
                                     "startDate": minDate,
                                     "endDate": maxDate
                                 });
                             } else {
-                                minDate = Highcharts.dateFormat(highChartDateFormat, this.series[0].data[0].x);
-                                maxDate = Highcharts.dateFormat(highChartDateFormat, this.series[0].data[this.series[0].data.length - 1].x);
+                                minDate = Highcharts.dateFormat(_highChartDateFormat, this.series[0].data[0].x);
+                                maxDate = Highcharts.dateFormat(_highChartDateFormat, this.series[0].data[this.series[0].data.length - 1].x);
                                 el.triggerHandler(self.events.zoomReset, {
                                     sender: self,
                                     "startDate": minDate,
@@ -243,18 +243,14 @@
                     }
                 },
 
-                exporting: {
-                    enabled: false
-                },
-                
                 loading: {
                     hideDuration: 250,
                     showDuration: 250
                 },
 
                 colors: [
-                    optionBag.newsSeriesColor || '#5ea9c3',
-                    optionBag.stockSeriesColor || '#ffad33'
+                    _optionBag.newsSeriesColor || '#5ea9c3',
+                    _optionBag.stockSeriesColor || '#ffad33'
                 ],
 
                 credits: false,
@@ -301,7 +297,7 @@
 
                 yAxis: [{
                     title: {
-                        text: optionBag.newsSeriesTitle || null,
+                        text: _optionBag.newsSeriesTitle || null,
                         style: {
                             color: '#cccccc',
                             fontSize: '11px'
@@ -380,7 +376,7 @@
 
                         if (this.points.length > 1) s += this.points[0].series.name + ': <b>' + this.points[0].y + " <%= Token('articlesLabel') %></b>";
                         else {
-                            if (this.points[0].series.name == optionBag.newsSeriesTitle) s += this.points[0].series.name + ': <b>' + this.points[0].y + " <%= Token('articlesLabel') %></b>";
+                            if (this.points[0].series.name == _optionBag.newsSeriesTitle) s += this.points[0].series.name + ': <b>' + this.points[0].y + " <%= Token('articlesLabel') %></b>";
                             else
                                 s += 'Price: <b>' + Highcharts.numberFormat(this.points[0].y) + '</b>';
                         }
@@ -404,7 +400,7 @@
                                         sender: self,
                                         "xVal": this.x,
                                         "yVal": this.y,
-                                        "formattedXVal": Highcharts.dateFormat(highChartDateFormat, this.x),
+                                        "formattedXVal": Highcharts.dateFormat(_highChartDateFormat, this.x),
                                         "seriesName": this.series.name,
                                         "dateDisplay": this.dateDisplay
                                     });
@@ -491,16 +487,15 @@
                 sourcesLabel = "<%= Token('sourcesLabel') %>";
 
             if (self.data) {
-                var isFullSizeGraph = o.isFullChart
-                    , graphDataModel
-                    , chartContainer
-                    , chartOptions;
-                
+                var isFullSizeGraph = o.isFullChart;
+
                 if (!isFullSizeGraph) {
                     self.$element.html(this.templates.marketindex({ data: self.data.stockDataResult }));
-                    graphDataModel = self.trasformNewsDataResult(null, indexSeries);
-                    chartContainer = el.find('.dj_market_index-chart');
-                    var indexSeries = self.data.stockDataResult;
+
+                    var indexSeries = self.data.stockDataResult,
+                        graphDataModel = self.trasformNewsDataResult(null, indexSeries),
+                        chartContainer = el.find('.dj_market_index-chart'),
+                        chartOptions;
 
 
                     if (graphDataModel.objStockSeries.length == 0) {
@@ -532,17 +527,19 @@
                 else {
 
                     self.$element.html(this.templates.newsvolume());
-                    graphDataModel = self.trasformNewsDataResult(newsSeries, stockSeries);
-                    chartContainer = el.find('.dj_module-company-chart');
-                    var newsSeries = self.data.newsDataResult,
-                        stockSeries = self.data.stockDataResult,
-                        newsSeriesTitle = "<%= Token('newsVolume') %>",
-                        stockSeriesTitle = "<%= Token('stockPriceToken') %>";
+
+                    var NewsSeries = self.data.newsDataResult,
+                        StockSeries = self.data.stockDataResult,
+                        NewsSeriesTitle = "<%= Token('newsVolume') %>",
+                        StockSeriesTitle = "<%= Token('stockPriceToken') %>",
+                        graphDataModel = self.trasformNewsDataResult(NewsSeries, StockSeries),
+                        chartContainer = el.find('.dj_module-company-chart'),
+                        chartOptions;
                     var newsVolumeToggler = el.find(".news-volume"),
                         stockVolumeToggler = el.find(".stock-price");
 
-                    newsVolumeToggler.html(newsSeriesTitle);
-                    stockVolumeToggler.html(stockSeriesTitle);
+                    newsVolumeToggler.html(NewsSeriesTitle);
+                    stockVolumeToggler.html(StockSeriesTitle);
 
                     if (graphDataModel.objNewsSeries.length == 0 && graphDataModel.objStockSeries.length == 0) {
                         newsVolumeToggler.css("cursor", "default").after("<span>,&nbsp;</span>");
@@ -630,7 +627,7 @@
                 if (this.data && this.options.isFullChart) {
                     var newsSeries = this.data.newsDataResult,
                         stockSeries = this.data.stockDataResult,
-                        newsStart = {}, stockStart = {}, newsEnd = {}, stockEnd = {}, start, end;
+                        newsStart, stockStart, newsEnd, stockEnd, start, end;
 
                     if (newsSeries && newsSeries.dataPoints && newsSeries.dataPoints.length > 0) {
                         newsStart = newsSeries.dataPoints[0];
@@ -642,7 +639,7 @@
                         stockEnd = stockSeries.dataPoints[stockSeries.dataPoints.length - 1];
                     }
 
-                    if (newsStart.date && stockStart.date && stockEnd.date) {
+                    if (newsStart && stockStart) {
                         start = newsStart;
                         if (newsStart.date > stockStart.date)
                             start = stockStart;
@@ -659,8 +656,7 @@
                     return { start: start.dateDisplay, end: end.dateDisplay };
                 }
             }
-            catch (e) {}
-            return null;
+            catch (e) { }
         },
 
         onChartLoad: function () {
@@ -691,15 +687,15 @@
 
                     self.$element.html(this.templates.newsvolume());
 
-                    var newsSeriesTitle = "<%= Token('newsVolume') %>",
-                        stockSeriesTitle = "<%= Token('stockPriceToken') %>",
+                    var NewsSeriesTitle = "<%= Token('newsVolume') %>",
+                        StockSeriesTitle = "<%= Token('stockPriceToken') %>",
                         chartContainer = el.find('.dj_module-company-chart');
 
                     var newsVolumeToggler = el.find(".news-volume"),
                         stockVolumeToggler = el.find(".stock-price");
 
-                    newsVolumeToggler.html(newsSeriesTitle);
-                    stockVolumeToggler.html(stockSeriesTitle);
+                    newsVolumeToggler.html(NewsSeriesTitle);
+                    stockVolumeToggler.html(StockSeriesTitle);
                     el.find("p.dj_module-company-chart-date-range").hide();
                     newsVolumeToggler.css("cursor", "default").after("<span>,&nbsp;</span>");
                     stockVolumeToggler.css("cursor", "default");

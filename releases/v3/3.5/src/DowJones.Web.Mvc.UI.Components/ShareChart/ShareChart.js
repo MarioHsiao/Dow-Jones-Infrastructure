@@ -121,9 +121,6 @@ DJ.UI.ShareChart = DJ.UI.Component.extend({
                     plotShadow: false,
                     spacingLeft: 50
                 },
-                esporting: {
-                    enabled: true
-                },
                 title: {
                     text: data.chartTitle || ''
                 },
