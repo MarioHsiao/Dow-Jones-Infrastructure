@@ -86,7 +86,12 @@ namespace DowJones.Web
             combinedPath = combinedPath.Replace('\\', '/');
 
             var relativePath = VirtualPathUtility.ToAbsolute(combinedPath, ApplicationPath);
-            relativePath = string.Concat(ApplicationPath, relativePath);
+
+            // Check for an application path
+            if (ApplicationPath.Length > 1 && ApplicationPath != "/")
+            {
+                relativePath = string.Concat(ApplicationPath, relativePath);
+            }
 
             return string.Format("url('{0}')", relativePath);
         }

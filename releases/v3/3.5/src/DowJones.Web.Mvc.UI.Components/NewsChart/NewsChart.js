@@ -100,6 +100,10 @@
 
                 },
 
+                exporting: {
+                    enabled: false
+                },
+
                 colors: [(_optionBag.stockSeriesColor || '#5ea9c3')],
 
                 loading: {
