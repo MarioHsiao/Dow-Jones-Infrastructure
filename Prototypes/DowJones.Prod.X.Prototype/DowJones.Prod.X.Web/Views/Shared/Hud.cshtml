@@ -1,8 +1,8 @@
 ﻿@model DowJones.Prod.X.Models.Site.IBasicSiteModel
 <div class="djProdx-hud-one">
     <div class="djProdx-hud">
-        <div class="djProdx-hud-section djProdx-hud-section-http" style="border-color: #e2875e">
-            <label class="djProdx-hud-title" for="djProdx-hud-section-input-http">Chat</label><input type="checkbox" class="djProdx-hud-section-input" id="djProdx-hud-section-input-http"><div class="djProdx-hud-section-inner">
+        <div class="djProdx-hud-section djProdx-hud-section-chat" style="border-color: #e2875e">
+            <label class="djProdx-hud-title" for="djProdx-hud-section-input-chat">Chat</label><input type="checkbox" class="djProdx-hud-section-input" id="djProdx-hud-section-input-chat"><div class="djProdx-hud-section-inner">
                 <div class="djProdx-hud-detail djProdx-hud-detail-large djProdx-hud-detail-top djProdx-hud-detail-left" title="">
                     <div class="djProdx-hud-header">Status</div>
                     <div class="djProdx-hud-value"><span class="djProdx-hud-data">Online</span><span class="djProdx-hud-postfix"></span></div>
@@ -49,7 +49,7 @@
                         <li id="fb3f3db2-9420-4a96-a23d-904190680273-dj-barker-dowjones-com" class="contact single">
                             <div class="roster-contact">
                                 <div class="status-image-container">
-                                    <img class="profile-thumb" src="https://hrweb.dowjones.net/OPWEB/Data/Images/1246592985.jpg" alt="">
+                                    <img class="profile-thumb" src="chats://hrweb.dowjones.net/OPWEB/Data/Images/1246592985.jpg" alt="">
                                 </div>
                                 <div class="roster-info-container"><span class="presence-indicator offline"></span>
                                     <div class="roster-name"><span id="rosterName" class="roster-name-text">Jim Snyder</span>             <span id="typingNotification" class="roster-name-text"></span></div>
@@ -66,7 +66,7 @@
                         <li id="71e433fb-3465-44c0-9192-d6c4b1c13c53-dj-barker-dowjones-com" class="contact single">
                             <div class="roster-contact">
                                 <div class="status-image-container">
-                                    <img class="profile-thumb" src="https://hrweb.dowjones.net/OPWEB/Data/Images/1246628423.jpg" alt="">
+                                    <img class="profile-thumb" src="chats://hrweb.dowjones.net/OPWEB/Data/Images/1246628423.jpg" alt="">
                                 </div>
                                 <div class="roster-info-container"><span class="presence-indicator offline"></span>
                                     <div class="roster-name"><span id="rosterName" class="roster-name-text">Hrusikesh Panda</span>             <span id="typingNotification" class="roster-name-text"></span></div>
@@ -85,13 +85,13 @@
                 </div>
             </div>
         </div>
-        <div class="djProdx-hud-section djProdx-hud-section-host" style="border-color: #6161e0">
-            <label class="djProdx-hud-title" for="djProdx-hud-section-input-host">Tools</label><input type="checkbox" class="djProdx-hud-section-input" id="djProdx-hud-section-input-host"><div class="djProdx-hud-section-inner">
-                <div class="djProdx-hud-detail djProdx-hud-detail-large djProdx-hud-detail-top djProdx-hud-detail-left" title="How long root Action took to execute">
+        <div class="djProdx-hud-section djProdx-hud-section-tools" style="border-color: #6161e0">
+            <label class="djProdx-hud-title" for="djProdx-hud-section-input-tools">Tools</label><input type="checkbox" class="djProdx-hud-section-input" id="djProdx-hud-section-input-tools"><div class="djProdx-hud-section-inner">
+                <div class="djProdx-hud-detail djProdx-hud-detail-large djProdx-hud-detail-top djProdx-hud-detail-left" title="">
                     <div class="djProdx-hud-header">Customer Service</div>
                     <div class="djProdx-hud-value"><span class="djProdx-hud-data">2</span><span class="djProdx-hud-postfix">notifications</span></div>
                 </div>
-                <div class="djProdx-hud-detail djProdx-hud-detail-normal djProdx-hud-detail-top djProdx-hud-detail-left" title="Name of the root Controller and Action">
+                <div class="djProdx-hud-detail djProdx-hud-detail-normal djProdx-hud-detail-top djProdx-hud-detail-left" title="">
                     <div class="djProdx-hud-header">What's New</div>
                     <div class="djProdx-hud-value"><span class="djProdx-hud-data">2</span><span class="djProdx-hud-postfix">features</span></div>
                 </div>
@@ -110,11 +110,11 @@
         </div>
         <div class="djProdx-hud-section djProdx-hud-section-alerts" style="border-color: #559fdf">
             <label class="djProdx-hud-title" for="djProdx-hud-section-input-alerts">Alerts</label><input type="checkbox" class="djProdx-hud-section-input" id="djProdx-hud-section-input-alerts"><div class="djProdx-hud-section-inner">
-                <div class="djProdx-hud-detail djProdx-hud-detail-large djProdx-hud-detail-top djProdx-hud-detail-left djProdx-data-alerts-count" title="Total Ajax requests detected on this page">
+                <div class="djProdx-hud-detail djProdx-hud-detail-large djProdx-hud-detail-top djProdx-hud-detail-left djProdx-data-alerts-count" title="">
                     <div class="djProdx-hud-header">New Articles</div>
                     <div class="djProdx-hud-value"><span class="djProdx-hud-data">41</span></div>
                 </div>
-                <div class="djProdx-hud-detail djProdx-hud-detail-normal djProdx-hud-detail-top djProdx-hud-detail-left" title="Name of the root Controller and Action">
+                <div class="djProdx-hud-detail djProdx-hud-detail-normal djProdx-hud-detail-top djProdx-hud-detail-left" title="">
                     <div class="djProdx-hud-header">Healthcare</div>
                     <div class="djProdx-hud-value"><span class="djProdx-hud-data">15</span><span class="djProdx-hud-postfix"></span></div>
                 </div>
@@ -125,6 +125,25 @@
                     <div class="djProdx-hud-popup-header">Healthcare <span class="djProdx-hud-data">15</span></div>
                     <div class="djProdx-hud-popup-header">2016 Election <span class="djProdx-hud-data">11</span></div>
                     <div class="djProdx-hud-popup-header">My Company<span class="djProdx-hud-data">15</span></div>
+                    <div class="djProdx-hud-popup-clear"></div>
+                </div>
+            </div>
+        </div> 
+        <div class="djProdx-hud-section djProdx-hud-section-clips" style="border-color: #A4D53A">
+            <label class="djProdx-hud-title" for="djProdx-hud-section-input-clips">Clips</label><input type="checkbox" class="djProdx-hud-section-input" id="djProdx-hud-section-input-clips"><div class="djProdx-hud-section-inner">
+                <div class="djProdx-hud-detail djProdx-hud-detail-large djProdx-hud-detail-top djProdx-hud-detail-left djProdx-data-clips-count" title="">
+                    <div class="djProdx-hud-header">Modules</div>
+                    <div class="djProdx-hud-value"><span class="djProdx-hud-data dj-clip-module-data">0</span></div>
+                </div>
+                <div class="djProdx-hud-detail djProdx-hud-detail-normal djProdx-hud-detail-top djProdx-hud-detail-left" title="">
+                    <div class="djProdx-hud-header">Articles</div>
+                    <div class="djProdx-hud-value"><span class="djProdx-hud-data">0</span>@*<span class="djProdx-hud-postfix"></span>*@</div>
+                </div>
+            </div>
+            <div class="djProdx-hud-popup" style="border-color: #A4D53A;">
+                <div class="djProdx-hud-title">Clips</div>
+                <div class="djProdx-hud-popup-inner">
+                    <div class="djProdx-hud-popup-header">Healthcare <span class="djProdx-hud-data">15</span></div>
                     <div class="djProdx-hud-popup-clear"></div>
                 </div>
             </div>

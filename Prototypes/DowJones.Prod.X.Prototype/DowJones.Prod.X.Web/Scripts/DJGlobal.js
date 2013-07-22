@@ -176,7 +176,7 @@ if (!window["djHeadlineHandler"]) {
             DJ.subscribe("eLinkClick.dj.Article", this.eLinkClickHandler);
             DJ.subscribe("headlineLinkClick.dj.article", this.articleClickHandler);
             DJ.subscribe("headlineClick.dj.PortalHeadlineList", this.headlineHandler);
-            DJ.subscribe("headlineEntryClick.dj.PortalHeadlineList", this.headlineHandler);
+            //DJ.subscribe("headlineEntryClick.dj.PortalHeadlineList", this.headlineHandler);
             //this.addEvents();
         },
         eLinkClickHandler: function (data) {
@@ -221,39 +221,10 @@ if (!window["djHeadlineHandler"]) {
                             if ($(headline).hasClass("article")) {
                                 $(title).prepend("<span class=\"media-icon article\"></span>");
                             }
-
-                            if ($(headline).hasClass("blog")) {
-                                $(title).prepend("<span class=\"media-icon blog\"></span>");
-                            }
-
-                            if ($(headline).hasClass("webpage")) {
-                                $(title).prepend("<span class=\"media-icon webpage\"></span>");
-                            }
-
-                            if ($(headline).hasClass("audio")) {
-                                $(title).prepend("<span class=\"media-icon audio\"></span>");
-                            }
-
-                            if ($(headline).hasClass("video")) {
-                                $(title).prepend("<span class=\"media-icon video\"></span>");
-                            }
-
-                            if ($(headline).hasClass("link")) {
-                                $(title).prepend("<span class=\"media-icon link\"></span>");
-                            }
-
-                            if ($(headline).hasClass("pdf")) {
-                                $(title).prepend("<span class=\"media-icon pdf\"></span>");
-                            }
-
-                            if ($(headline).hasClass("html")) {
-                                $(title).prepend("<span class=\"media-icon html\"></span>");
-                            }
                         }
                     });
                 }
             });
-
         },
 
         headlineHandler: function (data) {

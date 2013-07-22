@@ -56,13 +56,13 @@ dj.productx.core.init = function () {
     }
 
     $(function () {
-        return $(".search-button-trigger").click(function () {
+        return $(".search-button-trigger").on('click', function () {
             return $(".search-bar-nav").toggleClass("open");
         });
     });
     
     $(function () {
-        return $(".search-button-trigger").click(function () {
+        return $(".search-button-trigger").on('click', function () {
             return $(".search-bar-nav").toggleClass("open");
         });
     });
@@ -92,78 +92,89 @@ dj.productx.core.iDashboard = {
             removable: true,
             collapsible: true,
             editable: true,
+            clipable: true,
             colorClasses: ['color-yellow', 'color-red', 'color-blue', 'color-white', 'color-orange', 'color-green']
         },
         widgetIndividual: {
             intro: {
-                popup: false,
+                popup: true,
                 movable: false,
                 removable: false,
                 collapsible: false,
-                editable: false
+                editable: false,
+                clipable: true
             },
             marketNews: {
-                popup: false,
+                popup: true,
                 movable: false,
                 removable: false,
                 collapsible: true,
-                editable: false
+                editable: false,
+                clipable: true
             },
             signals: {
                 popup: true,
                 movable: false,
                 removable: false,
                 collapsible: true,
-                editable: false
+                editable: false,
+                clipable: true
             },
             companyExplainer: {
-                popup: false,
+                popup: true,
                 movable: false,
                 removable: false,
                 collapsible: false,
-                editable: false
+                editable: false,
+                clipable: true
             },
             earnings: {
                 popup: true,
                 movable: false,
                 removable: false,
                 collapsible: true,
-                editable: false
+                editable: false,
+                clipable: true
             },
             investments: {
                 popup: true,
                 movable: false,
                 removable: false,
                 collapsible: true,
-                editable: false
+                editable: false,
+                clipable: true
             },
             riskCompliance: {
                 popup: true,
                 movable: false,
                 removable: false,
                 collapsible: true,
-                editable: false
+                editable: false,
+                clipable: true
             },
             topStories: {
-                popup: false,
+                popup: true,
                 movable: false,
                 removable: false,
                 collapsible: false,
-                editable: false
+                editable: false,
+                clipable: true
             },
             liveNews: {
-                popup: false,
+                popup: true,
                 movable: false,
-                removable: true,
-                collapsible: false,
-                editable: true
+                removable: false,
+                collapsible: true,
+                editable: false,
+                clipable: true
             },
             filters: {
                 popup: false,
                 movable: false,
                 removable: false,
                 collapsible: false,
-                editable: false
+                editable: false,
+                clipable: true
             },
 
             gallery: {
@@ -182,7 +193,7 @@ dj.productx.core.iDashboard = {
             settings = this.settings;
         return (id && settings.widgetIndividual[id]) ? $.extend({}, settings.widgetDefault, settings.widgetIndividual[id]) : settings.widgetDefault;
     },
-
+    
     addWidgetControls: function () {
         var djGrid = this,
             $ = this.jQuery,
@@ -194,7 +205,7 @@ dj.productx.core.iDashboard = {
             if (thisWidgetSettings.removable) {
                 $('<a href="javascript:void(0)" class="remove pull-right dj_action"><i class="icon-remove"></i></a>').mousedown(function (e) {
                     e.stopPropagation();
-                }).click(function () {
+                }).on('click', function () {
                     if (confirm('This widget will be removed, ok?')) {
                         $(this).parents(settings.widgetSelector).animate({
                             opacity: 0
@@ -241,18 +252,50 @@ dj.productx.core.iDashboard = {
                     .append('</ul>')
                     .insertAfter($(settings.handleSelector, this));
             }
+            
+            if (thisWidgetSettings.clipable) {
+                var $clip = $('<a href="javascript:void(0)" class="clip chevron pull-right dj_action"><i class="icon-paper-clip"></i></a>');
+                $clip.on("click", function(e) {
+                    var $this = $(this);
+                    if (!$this.hasClass('inactive')) {
+                        var offset = $this.offset(),
+                            $window = $(window),
+                            top = offset.top + 'px',
+                            left = offset.left  + 'px',
+                            destTop = $window.height() + 'px',
+                            destLeft = $window.width()-50 + 'px';
+
+                        var $ghostClip = $('<a href="javascript:void(0)" class="ghostClip chevron pull-right dj_action"><i class="icon-paper-clip"></i></a>');
+                        $('body').append($ghostClip);
+                        $clip.addClass('inactive');
+                        $ghostClip
+                            .css({ position: 'absolute', left: left, top: top })
+                            .animate({ top: destTop, left: destLeft },
+                                500,
+                                'linear',
+                                function(e) {
+                                   $ghostClip.remove();
+                                   DJ.publish("dj.productx.core.addClip", { moduleId: 123, type: 'module' });
+                                }
+                            );
+
+                        return false;
+                    }
+                }).appendTo($(settings.handleSelector, this));
+                
+            }
 
             if (thisWidgetSettings.popup) {
                 $('<a href="javascript:void(0)" class="popup pull-right dj_action"><i class="icon-external-link"></i></a>').mousedown(function (e) {
                     e.stopPropagation();
-                }).click(function () {
+                }).on('click', function () {
                     if (confirm('This widget will be poped-up into a new window, ok?')) {
                         // logic to pop out here
                     }
                     return false;
                 }).appendTo($(settings.handleSelector, this));
             }
-
+            
             if (thisWidgetSettings.collapsible) {
                 $('<a href="javascript:void(0)" class="chevron pull-left dj_action"><i class="icon-chevron-down"></i></a>').mousedown(function (e) {
                     e.stopPropagation();
@@ -369,5 +412,4 @@ dj.productx.core.iDashboard = {
             scroll: true
         });
     }
-
 };

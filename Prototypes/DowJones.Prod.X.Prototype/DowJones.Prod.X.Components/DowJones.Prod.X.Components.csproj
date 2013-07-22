@@ -34,24 +34,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DowJones.Infrastructure, Version=3.5.35.43809, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Infrastructure, Version=3.5.45.26710, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Infrastructure.3.5.35\lib\DowJones.Infrastructure.dll</HintPath>
+      <HintPath>..\packages\DowJones.Infrastructure.3.5.45\lib\DowJones.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Parallel">
       <HintPath>..\packages\DowJones.Parallel.1.0.0\lib\DowJones.Parallel.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Web.Mvc, Version=3.5.35.43809, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Web.Mvc, Version=3.5.45.26710, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Web.Mvc.3.5.35\lib\DowJones.Web.Mvc.dll</HintPath>
+      <HintPath>..\packages\DowJones.Web.Mvc.3.5.45\lib\DowJones.Web.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Web.Mvc.UI.Components, Version=3.5.35.43809, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Web.Mvc.UI.Components, Version=3.5.45.26710, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.3.5.35\lib\DowJones.Web.Mvc.UI.Components.dll</HintPath>
+      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.3.5.45\lib\DowJones.Web.Mvc.UI.Components.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Web.Mvc.UI.Components.Models, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.Models.3.5.35\lib\DowJones.Web.Mvc.UI.Components.Models.dll</HintPath>
+      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.Models.3.5.45\lib\DowJones.Web.Mvc.UI.Components.Models.dll</HintPath>
     </Reference>
     <Reference Include="factiva.gateway.messages">
       <HintPath>..\packages\Factiva.Gateway.7.5.0.138\lib\factiva.gateway.messages.dll</HintPath>
@@ -107,6 +107,16 @@
     </Compile>
     <Compile Include="EmbededResources\JavaScript\Resources.cs" />
     <Compile Include="Extentions\ScriptRegistryBuilderExtentions.cs" />
+    <Compile Include="Hud\HudViewComponent.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HudViewComponent.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="MarketNews\MarketNewsViewComponent.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MarketNewsViewComponent.cshtml</DependentUpon>
+    </Compile>
     <Compile Include="MarketTiles\MarketTilesViewComponent.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -132,6 +142,14 @@
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>EarningsViewComponent.cs</LastGenOutput>
     </None>
+    <None Include="Hud\HudViewComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>HudViewComponent.cs</LastGenOutput>
+    </None>
+    <None Include="MarketNews\MarketNewsViewComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>MarketNewsViewComponent.cs</LastGenOutput>
+    </None>
     <None Include="MarketTiles\MarketTilesViewComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>MarketTilesViewComponent.cs</LastGenOutput>
@@ -149,6 +167,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Hud\ClientTemplates\ClipContainer.htm" />
+    <EmbeddedResource Include="Hud\ClientTemplates\Success.htm" />
+    <EmbeddedResource Include="Hud\Hud.min.css">
+      <DependentUpon>Hud.css</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hud\Hud.css" />
+    <EmbeddedResource Include="Hud\Hud.js" />
+    <EmbeddedResource Include="MarketNews\MarketNews.js" />
     <EmbeddedResource Include="Signals\Signals.js" />
     <EmbeddedResource Include="Signals\ClientTemplates\Success-Small.htm" />
     <EmbeddedResource Include="Signals\ClientTemplates\Success-Medium.htm" />
@@ -187,6 +213,9 @@
     <EmbeddedResource Include="Earnings\ClientTemplates\Success-Medium.htm" />
     <EmbeddedResource Include="Earnings\ClientTemplates\Success-Small.htm" />
     <EmbeddedResource Include="CompanyKeyFinancials\CompanyKeyFinancials.js" />
+    <EmbeddedResource Include="CompanyKeyFinancials\ClientTemplates\Success-Large.htm" />
+    <EmbeddedResource Include="CompanyKeyFinancials\ClientTemplates\Success-Medium.htm" />
+    <EmbeddedResource Include="CompanyKeyFinancials\ClientTemplates\Success-Small.htm" />
     <Content Include="EmbededResources\JavaScript\Omniture\omniture.js" />
     <EmbeddedResource Include="EmbededResources\JavaScript\parsley.js" />
   </ItemGroup>

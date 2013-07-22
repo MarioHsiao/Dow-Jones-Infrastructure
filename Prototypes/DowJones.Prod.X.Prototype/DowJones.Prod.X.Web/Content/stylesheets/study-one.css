@@ -13,14 +13,14 @@
 .color-yellow a,
 .color-white a,
 .color-green a
-	{color:#000;}
+    {color:#000;}
 .color-red h3,
 .color-blue h3,
 .color-orange h3,
 .color-red a,
 .color-blue a,
 .color-orange a
-	{color:#FFF;}*/
+    {color:#FFF;}*/
 /* End Colors */
 
 .widget.move-inactive {
@@ -54,6 +54,7 @@
     -webkit-border-radius: 4px;
     margin-bottom: 10px;
 }
+
 #columns .widget .widget-head {
     color: #000;
     overflow: hidden;
@@ -62,12 +63,14 @@
     line-height: 30px;
     border-bottom: 1px solid #666;
 }
+
 #columns .widget .widget-head h3 {
     font-size: 1.4em;
     line-height: 30px;
     margin: 0;
     margin-left: 5px;
 }
+
 #columns .widget .widget-content {
     /*background: #3C454F url(img/widget-content-bg.png) repeat-x;*/
     padding: 0 1px;
@@ -77,6 +80,8 @@
     -moz-border-radius-bottomright: 2px;
     -webkit-border-bottom-left-radius: 2px;
     -webkit-border-bottom-right-radius: 2px;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
     line-height: 1.2em;
     overflow: hidden;
 }
@@ -139,8 +144,10 @@ li.dj_displayActions  a.dj_action {
     border-bottom: 1px solid #f2bc00;
 }
 
-.widget-placeholder { border: 1px dashed #8dc100;}
-.widget-placeholder { margin-bottom: 10px; }
+.widget-placeholder { 
+    border: 1px dashed #8dc100;
+    margin-bottom: 10px; 
+}
 
 .edit-box {
     overflow: hidden;
@@ -157,6 +164,15 @@ li.dj_displayActions  a.dj_action {
     clear: both;
 }
 
+a.ghostClip:hover, a.ghostClip:link, a.ghostClip:active {
+    display: block;
+    background-color: #000;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    color: #fff;
+    padding: 3px 6px;
+}
 
 .edit-box label {
     float: left;
@@ -174,6 +190,3 @@ li.dj_displayActions  a.dj_action {
     margin: 0 5px 0 0;
     cursor: pointer;
 }
-
-
-

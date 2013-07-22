@@ -1,6 +1,10 @@
 ﻿@model Models.Components.CompanyKeyFinancials.CompanyKeyFinancialsComponentModel
 @ClientPlugin dj_CompanyKeyFinancials
 @ScriptResource RelativeResourceName=CompanyKeyFinancials.js
+
+@ClientTemplate RelativeResourceName=ClientTemplates.Success-Small.htm, TemplateId=successSmall
+@ClientTemplate RelativeResourceName=ClientTemplates.Success-Medium.htm, TemplateId=successMedium
+@ClientTemplate RelativeResourceName=ClientTemplates.Success-Large.htm, TemplateId=successLarge
 @StylesheetResource RelativeResourceName=CompanyKeyFinancials.css
 @{ CssClass = "dj_CompanyKeyFinancials"; }
 

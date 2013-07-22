@@ -34,45 +34,52 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DowJones.Infrastructure, Version=3.5.35.43809, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Infrastructure, Version=3.5.45.26710, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Infrastructure.3.5.35\lib\DowJones.Infrastructure.dll</HintPath>
+      <HintPath>..\packages\DowJones.Infrastructure.3.5.45\lib\DowJones.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Parallel">
+    <Reference Include="DowJones.Parallel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\DowJones.Parallel.1.0.0\lib\DowJones.Parallel.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Web.Mvc, Version=3.5.35.43809, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Web.Mvc, Version=3.5.45.26710, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Web.Mvc.3.5.35\lib\DowJones.Web.Mvc.dll</HintPath>
+      <HintPath>..\packages\DowJones.Web.Mvc.3.5.45\lib\DowJones.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Web.Mvc.UI.Components.Models, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.Models.3.5.35\lib\DowJones.Web.Mvc.UI.Components.Models.dll</HintPath>
+      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.Models.3.5.45\lib\DowJones.Web.Mvc.UI.Components.Models.dll</HintPath>
     </Reference>
-    <Reference Include="factiva.gateway.messages">
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.138\lib\factiva.gateway.messages.dll</HintPath>
+    <Reference Include="factiva.gateway.messages, Version=7.5.0.140, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.141\lib\factiva.gateway.messages.dll</HintPath>
     </Reference>
-    <Reference Include="FactivaGateway">
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.138\lib\FactivaGateway.dll</HintPath>
+    <Reference Include="FactivaGateway, Version=1.6.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.141\lib\FactivaGateway.dll</HintPath>
     </Reference>
-    <Reference Include="Hammock">
+    <Reference Include="Hammock, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c148cfba29ed1a4d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Hammock.1.2.9\lib\4.0\Hammock.dll</HintPath>
     </Reference>
-    <Reference Include="Hammock.ClientProfile">
+    <Reference Include="Hammock.ClientProfile, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c148cfba29ed1a4d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Hammock.1.2.9\lib\4.0\Hammock.ClientProfile.dll</HintPath>
     </Reference>
     <Reference Include="Interop.FCMLib">
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.138\lib\Interop.FCMLib.dll</HintPath>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.141\lib\Interop.FCMLib.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
-    <Reference Include="log4net">
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\log4net.1.2.99\lib\2.0\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Ninject">
+    <Reference Include="Ninject, Version=2.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Ninject.2.2.1.4\lib\net40-Full\Ninject.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -88,6 +95,8 @@
     <Compile Include="Components\CompanyExplainer\CompanyExplainerComponentModel.cs" />
     <Compile Include="Components\CompanyKeyFinancials\CompanyKeyFinancialsComponentModel.cs" />
     <Compile Include="Components\Earnings\EarningsComponentModel.cs" />
+    <Compile Include="Components\Hud\HudComponentModel.cs" />
+    <Compile Include="Components\MarketNews\MarketNewsComponentModel.cs" />
     <Compile Include="Components\MarketTiles\MarketTilesComponentModel.cs" />
     <Compile Include="Components\Signals\SignalsComponentModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -106,10 +115,10 @@
     <Compile Include="Site\IUsageTrackingProperties.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <Folder Include="Site\Site\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Site\Site\" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

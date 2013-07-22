@@ -6179,23 +6179,23 @@ table.dataTable thead .sorting_desc_disabled {
 
 /* line 37, dataTables/jquery.dataTables.bootstrap.css.scss */
 table.dataTable thead .sorting {
-  background: url('../images/dataTables/sort_both.png') no-repeat center right; }
+  background: url('content/images/dataTables/sort_both.png') no-repeat center right; }
 
 /* line 38, dataTables/jquery.dataTables.bootstrap.css.scss */
 table.dataTable thead .sorting_asc {
-  background: url('../images/dataTables/sort_asc.png') no-repeat center right; }
+  background: url('content/images/dataTables/sort_asc.png') no-repeat center right; }
 
 /* line 39, dataTables/jquery.dataTables.bootstrap.css.scss */
 table.dataTable thead .sorting_desc {
-  background: url('../images/dataTables/sort_desc.png') no-repeat center right; }
+  background: url('content/images/dataTables/sort_desc.png') no-repeat center right; }
 
 /* line 41, dataTables/jquery.dataTables.bootstrap.css.scss */
 table.dataTable thead .sorting_asc_disabled {
-  background: url('../images/dataTables/sort_asc_disabled.png') no-repeat center right; }
+  background: url('content/images/dataTables/sort_asc_disabled.png') no-repeat center right; }
 
 /* line 42, dataTables/jquery.dataTables.bootstrap.css.scss */
 table.dataTable thead .sorting_desc_disabled {
-  background: url('../images/dataTables/sort_desc_disabled.png') no-repeat center right; }
+  background: url('content/images/dataTables/sort_desc_disabled.png') no-repeat center right; }
 
 /* line 44, dataTables/jquery.dataTables.bootstrap.css.scss */
 table.dataTable th:active {
@@ -7478,7 +7478,7 @@ div.dataTables_paginate {
       float: left;
       height: 22px;
       width: 32px;
-      background: url('../images/icons/calendar_left.png') center center no-repeat;
+      background: url('../images/icons/calendar_left.png') url('content/images/icons/calendar_left.png')center center no-repeat;
       margin-left: 5px; }
       /* line 33, widgets/datepicker.css.scss */
       .ui-datepicker .ui-datepicker-header a.ui-datepicker-prev span {
@@ -7604,7 +7604,7 @@ div.dataTables_paginate {
 
 /* line 25, widgets/login.css.scss */
 body.login {
-  background: url('../images/linen-light.png') repeat;
+  background: url('content/images/linen-light.png') repeat;
   overflow: auto; }
 
 /* line 30, widgets/login.css.scss */
@@ -7708,7 +7708,7 @@ body.login {
 
 /* line 4, modals.css.scss */
 .modal.black-box {
-  background: url('../images/linen-light.png');
+  background: url('content/images/linen-light.png');
   color: #fff;
   text-shadow: 0 1px rgba(0, 0, 0, 0.5); }
   /* line 9, modals.css.scss */
@@ -9189,13 +9189,13 @@ label.checky {
     -moz-transition: margin-left 0.3s;
     -o-transition: margin-left 0.3s;
     transition: margin-left 0.3s;
-    background: url('../images/checkbox.png') no-repeat;
+    background: url('content/images/checkbox.png') no-repeat;
     display: block;
     height: 100%;
     margin-left: -30px; }
   /* line 31, checkboxes.css.scss */
   label.checky.green span {
-    background: url('../images/checkbox_green.png') no-repeat; }
+    background: url('content/images/checkbox_green.png') no-repeat; }
 
 /* line 36, checkboxes.css.scss */
 .checky-label-left {
@@ -10487,7 +10487,7 @@ table.box {
 
 /* line 63, bootstrap_image_gallery.css.scss */
 .modal-loading .modal-image {
-  background: url('../images/loading.gif') center no-repeat; }
+  background: url('content/images/loading.gif')center no-repeat; }
 
 /* line 66, bootstrap_image_gallery.css.scss */
 .modal-gallery.fade .modal-image {
