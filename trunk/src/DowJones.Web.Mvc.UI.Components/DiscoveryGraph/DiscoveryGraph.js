@@ -66,7 +66,7 @@ DJ.UI.DiscoveryGraph = DJ.UI.Component.extend({
     //Function to Set Data
     setData: function (discoveryData) {
         this.data = discoveryData;
-        this.bindOnSuccess(discoveryData.discovery || discoveryData);
+        this.bindOnSuccess(discoveryData.discovery);
     },
 
     //Initialize Scrollable
