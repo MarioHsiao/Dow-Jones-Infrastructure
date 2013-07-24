@@ -49,9 +49,9 @@
     <Reference Include="DowJones.Charting">
       <HintPath>..\..\..\releases\v3\3.4\src\DowJones.Charting\bin\Release\DowJones.Charting.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Infrastructure, Version=3.5.38.45652, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Infrastructure, Version=3.5.47.37399, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Infrastructure.3.5.38\lib\DowJones.Infrastructure.dll</HintPath>
+      <HintPath>..\packages\DowJones.Infrastructure.3.5.47\lib\DowJones.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Parallel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -60,24 +60,24 @@
     <Reference Include="DowJones.Web">
       <HintPath>..\..\..\trunk\src\DowJones.Web\bin\Debug\DowJones.Web.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Web.Mvc, Version=3.5.38.45652, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Web.Mvc, Version=3.5.47.37399, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Web.Mvc.3.5.38\lib\DowJones.Web.Mvc.dll</HintPath>
+      <HintPath>..\packages\DowJones.Web.Mvc.3.5.47\lib\DowJones.Web.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Web.Mvc.UI.Components, Version=3.5.38.45652, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Web.Mvc.UI.Components, Version=3.5.47.37399, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.3.5.38\lib\DowJones.Web.Mvc.UI.Components.dll</HintPath>
+      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.3.5.47\lib\DowJones.Web.Mvc.UI.Components.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Web.Mvc.UI.Components.Models, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.Models.3.5.38\lib\DowJones.Web.Mvc.UI.Components.Models.dll</HintPath>
+      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.Models.3.5.47\lib\DowJones.Web.Mvc.UI.Components.Models.dll</HintPath>
     </Reference>
-    <Reference Include="factiva.gateway.messages">
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.139\lib\factiva.gateway.messages.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="factiva.gateway.messages, Version=7.5.0.142, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.142\lib\factiva.gateway.messages.dll</HintPath>
     </Reference>
     <Reference Include="FactivaGateway">
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.139\lib\FactivaGateway.dll</HintPath>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.142\lib\FactivaGateway.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Hammock">
@@ -86,10 +86,9 @@
     <Reference Include="Hammock.ClientProfile">
       <HintPath>..\packages\Hammock.1.2.9\lib\4.0\Hammock.ClientProfile.dll</HintPath>
     </Reference>
-    <Reference Include="Interop.FCMLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <EmbedInteropTypes>True</EmbedInteropTypes>
+    <Reference Include="Interop.FCMLib">
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.142\lib\Interop.FCMLib.dll</HintPath>
       <Private>True</Private>
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.139\lib\Interop.FCMLib.dll</HintPath>
     </Reference>
     <Reference Include="itextsharp">
       <HintPath>..\..\..\releases\v3\3.4\src\DowJones.Charting\bin\Release\itextsharp.dll</HintPath>
@@ -99,7 +98,7 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.2.2.1.4\lib\net40-Full\Ninject.dll</HintPath>
@@ -409,6 +408,13 @@
     <Content Include="GatewayResources\xslt\preference\AddItemsToCategoryResponse.xslt" />
     <Content Include="GatewayResources\xslt\preference\AddMapResponse.xslt" />
     <Content Include="GatewayResources\xslt\preference\AddUsersToGroupsResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\CSAddItemRequest.xslt" />
+    <Content Include="GatewayResources\xslt\preference\CSAddItemResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\CSDeleteItemRequest.xslt" />
+    <Content Include="GatewayResources\xslt\preference\CSGetItemRequest.xslt" />
+    <Content Include="GatewayResources\xslt\preference\CSGetItemResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\CSItemRequest.xslt" />
+    <Content Include="GatewayResources\xslt\preference\CSUpdateItemRequest.xslt" />
     <Content Include="GatewayResources\xslt\preference\DeleteCategoryResponse.xslt" />
     <Content Include="GatewayResources\xslt\preference\DeleteGroupFolderAccountResponse.xslt" />
     <Content Include="GatewayResources\xslt\preference\DeleteGroupsResponse.xslt" />
@@ -579,12 +585,15 @@
     <Content Include="TopStoriesResources.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>

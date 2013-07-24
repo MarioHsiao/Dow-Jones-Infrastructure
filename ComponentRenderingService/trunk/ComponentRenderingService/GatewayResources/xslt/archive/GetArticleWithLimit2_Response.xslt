@@ -90,6 +90,9 @@
       </xsl:element>
       <xsl:copy-of select="Email"/>
       <xsl:copy-of select="DocCount"/>
+      <xsl:element name="CreditLimit">
+        <xsl:value-of select="CREDIT_LIMIT"/>
+      </xsl:element>
     </xsl:element>
   </xsl:template>
 
@@ -255,6 +258,14 @@
         </xsl:if>
         <xsl:apply-templates select="./ReplyItem"></xsl:apply-templates>
       </xsl:if>
+
+      <xsl:if test="count(PropertySet[@group='pubdata']) > 0 or count(PropertySet[@group='docdata']) > 0">
+        <xsl:element name="properties">
+          <xsl:apply-templates select="PropertySet" mode="entire"></xsl:apply-templates>
+        </xsl:element>
+      </xsl:if>
+      <xsl:apply-templates select="CodeSet" mode="entire"></xsl:apply-templates>
+
     </article>
 
   </xsl:template>
@@ -1053,7 +1064,37 @@
         <xsl:apply-templates select="./property[@group='docdata' and @name='snippet']/Snippet"/>
       </xsl:when>
     </xsl:choose>
+    
   </xsl:template>
+
+  <xsl:template match="PropertySet" mode="entire">
+    <xsl:if test ="@group='pubdata'or @group='docdata'">
+      <xsl:variable name ="groupName">
+        <xsl:value-of select="@group"/>
+      </xsl:variable>
+      <xsl:element name="propertySet">
+        <xsl:attribute name="group">
+          <xsl:value-of select="$groupName"/>
+        </xsl:attribute>
+        <xsl:apply-templates select="Property" mode="entire" ></xsl:apply-templates>
+      </xsl:element>
+    </xsl:if>
+  </xsl:template>
+
+
+  <xsl:template match="Property" mode="entire">
+    <xsl:element name="property">
+      <xsl:attribute name="name">
+        <xsl:value-of select="@name"/>
+      </xsl:attribute>
+
+      <xsl:attribute name="value">
+        <xsl:value-of select="@value"/>
+      </xsl:attribute>
+    </xsl:element>
+  </xsl:template>
+
+
   <xsl:template match="Fields">
     <xsl:if test="string-length(normalize-space(.)) &gt; 0">
       <fields>
@@ -1923,7 +1964,7 @@
         <xsl:value-of select="@subCat"/>
       </xsl:attribute>
       <xsl:apply-templates select="CodeD"/>
-      <xsl:apply-templates select="CodeI"/>
+      <xsl:apply-templates select="CodeI"/>      
     </code>
   </xsl:template>
   <xsl:template match="CodeD">
@@ -1946,8 +1987,36 @@
       <codeDJNCode>
         <xsl:value-of select="@value"/>
       </codeDJNCode>
-    </xsl:if>
+    </xsl:if>       
   </xsl:template>
+
+  <xsl:template match="CodeSet" mode ="entire">
+    <xsl:element name="codeSet">
+      <xsl:attribute name="codeCategory">
+        <xsl:value-of select="@codeCat"/>
+      </xsl:attribute>
+      <xsl:apply-templates select="Code" mode="entire"></xsl:apply-templates>
+    </xsl:element>
+  </xsl:template>
+
+  <xsl:template match="Code" mode="entire">
+    <xsl:element name="code">
+      <xsl:attribute name="value">
+        <xsl:value-of select="@value"/>
+      </xsl:attribute>
+      <xsl:attribute name="cat">
+        <xsl:value-of select="@subCat"/>
+      </xsl:attribute>
+      <xsl:apply-templates select ="CodeImportLvl" mode="entire"></xsl:apply-templates>
+    </xsl:element>
+  </xsl:template>
+
+  <xsl:template match="CodeImportLvl" mode="entire">
+    <xsl:element name="codeImportLvl">
+      <xsl:value-of  select="." />
+    </xsl:element>
+  </xsl:template>
+  
   <xsl:template match="ColumnName">
     <xsl:if test="string-length(normalize-space(.)) &gt; 0">
       <columnName>
