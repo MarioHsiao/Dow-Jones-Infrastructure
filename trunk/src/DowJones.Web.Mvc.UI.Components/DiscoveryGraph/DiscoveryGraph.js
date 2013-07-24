@@ -66,7 +66,7 @@ DJ.UI.DiscoveryGraph = DJ.UI.Component.extend({
     //Function to Set Data
     setData: function (discoveryData) {
         this.data = discoveryData;
-        this.bindOnSuccess(discoveryData);
+        this.bindOnSuccess(discoveryData.discovery || discoveryData);
     },
 
     //Initialize Scrollable
@@ -146,6 +146,7 @@ DJ.UI.DiscoveryGraph = DJ.UI.Component.extend({
 
         // resets styles and plugins attached
     reset: function () {
+
         var hasScrollable = this.$element.data('hasScrollable'),
             hasSortable = this.$element.data('hasSortable');
 
@@ -153,8 +154,8 @@ DJ.UI.DiscoveryGraph = DJ.UI.Component.extend({
             this.$element
                 .removeData('hasScrollable')
                 .find('.page-item')
-                .unwrap()           /* break out of items div */
-                .unwrap()           /* break out of scrollable div */
+                //.unwrap()           /* break out of items div */
+                //.unwrap()           /* break out of scrollable div */
                 .siblings('.scrollableArtifact').remove();      /* remove previous next links */
         }
         else if (hasSortable) {
