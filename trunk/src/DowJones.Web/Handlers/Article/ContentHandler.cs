@@ -76,8 +76,8 @@ namespace DowJones.Web.Handlers.Article
 
     public class BaseContentHandler : BaseHttpHandler
     {
-        private const int ErrorImageWidth = 150;
-        private const int ErrorImageHeight = 150;
+        private const int ErrorImageWidth = 250;
+        private const int ErrorImageHeight = 250;
         private const string Keyformat = "{0}::{1}";
         private const int SlidingCache = 12;
         private readonly string _contentMimeType;
