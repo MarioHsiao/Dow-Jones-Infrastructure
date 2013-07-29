@@ -310,11 +310,19 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
         var labelItem = $(evt.target).parent();
         self.publish(self.events.itemClick, { "data": labelItem.data("entity") });
     },
-    
+
     _onItemCountClicked: function (evt) {
         var self = this;
         var countItem = $(evt.target);
         self.publish(self.events.itemClick, { "data": countItem.data("entity") });
+    },
+
+    _encodeApostrophes: function (data) {
+        for (var prop in data) {
+            if (data.hasOwnProperty(prop) && data[prop] && (data[prop].constructor === String)) {
+                data[prop] = data[prop].replace('\'', '&#39;').replace('"', '&#34;');
+            }
+        }
     },
 
     //Get Discovery Filter Config
@@ -346,7 +354,8 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
                             if (self.options.enableTooltip) {
                                 dataLabelTooltip = label;
                             }
-                            return "<div class='dj_discoveryFilters-dataLabel' data-entity='" + JSON.stringify(this.value) + "'>" + exludeItemHTML + "<span class='dj_df-label ellipsis' title='" + dataLabelTooltip + "'>" + label + "</span></div>";
+                            var strData = JSON.stringify(this.value).replace('\'', '&#39;');
+                            return "<div class='dj_discoveryFilters-dataLabel' data-entity='" + strData + "'>" + exludeItemHTML + "<span class='dj_df-label ellipsis' title='" + dataLabelTooltip.replace('\'', '&#39;') + "'>" + label + "</span></div>";
                         } else {
                             var truncatedLabel = label;
                             if (self.options.truncationLength > 0 && label.length > self.options.truncationLength) {
