@@ -30,9 +30,9 @@ namespace DowJones.Web.Mvc.UI.Components.Article
     using PostProcessingOptions = PostProcessing.PostProcessingOptions;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 07.12.2013 11:34 
+    // Last Generated Timestamp: 07 29 2013 03:29 
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.Article.Article.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.Article.ArticleComponent))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.27108")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "0.0.0.30158")]
     public class ArticleComponent : DowJones.Web.Mvc.UI.ViewComponentBase<ArticleModel>
     {
 #line hidden
@@ -505,6 +505,36 @@ WriteLiteral("                                        <span>, </span>\r\n");
 
                                     }
                                 }
+                                
+                                if (Model.ArticleDataSet.ByLine.Count > 0)
+                                { 
+
+WriteLiteral("                                    <br />\r\n");
+
+
+
+WriteLiteral("                                    <span class=\"dj_article_index\">By</span>\r\n");
+
+
+                                    foreach (var renderItem in Model.ArticleDataSet.ByLine)
+                                    {
+                                        var highlight = renderItem.ItemMarkUp == MarkUpType.ArticleHighlight ? " highlight" : "";
+
+WriteLiteral("                                        <span class=\"value dj_article_index\" data" +
+"-dd-type=\"author\">");
+
+
+                                                                                              Write(renderItem.ItemText.Trim());
+
+WriteLiteral("</span>");
+
+
+
+WriteLiteral("<span class=\"dj_article_comma\">, </span>  \r\n");
+
+
+                                    }
+                                }
 
                             }
                             else
@@ -598,13 +628,13 @@ WriteLiteral("\r\n                        <div class=\"date-stamp dj_article_pd 
                             Write(string.Format("{0}", Model.ArticleDataSet.PublicationDate));
 
                                                                                              
-                            if (!string.IsNullOrEmpty(Model.ArticleDataSet.PublicationTime))
-                            {
+                                if (!string.IsNullOrEmpty(Model.ArticleDataSet.PublicationTime))
+                                {
                                     
                                 Write(string.Format(" {0}", Model.ArticleDataSet.PublicationTime));
 
                                                                                                   
-                            }
+                                }
                             }
 WriteLiteral("<span class=\"dj_article_comma\">, </span>\r\n                        </div>\r\n\r\n");
 

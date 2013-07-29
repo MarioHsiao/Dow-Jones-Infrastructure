@@ -214,6 +214,17 @@
                                         <span>, </span>
                                     }
                                 }
+                                
+                                if (Model.ArticleDataSet.ByLine.Count > 0)
+                                { 
+                                    <br />
+                                    <span class="dj_article_index">By</span>
+                                    foreach (var renderItem in Model.ArticleDataSet.ByLine)
+                                    {
+                                        var highlight = renderItem.ItemMarkUp == MarkUpType.ArticleHighlight ? " highlight" : "";
+                                        <span class="value dj_article_index" data-dd-type="author">@renderItem.ItemText.Trim()</span><span class="dj_article_comma">, </span>  
+                                    }
+                                }
 
                             }
                             else
@@ -252,10 +263,10 @@
                             @if (!string.IsNullOrEmpty(Model.ArticleDataSet.PublicationDate))
                             {
                                 @(string.Format("{0}", Model.ArticleDataSet.PublicationDate))
-                            if (!string.IsNullOrEmpty(Model.ArticleDataSet.PublicationTime))
-                            {
+                                if (!string.IsNullOrEmpty(Model.ArticleDataSet.PublicationTime))
+                                {
                                     @(string.Format(" {0}", Model.ArticleDataSet.PublicationTime))
-                            }
+                                }
                             }<span class="dj_article_comma">, </span>
                         </div>
 
