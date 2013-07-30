@@ -17,7 +17,7 @@
     {
     <div class="dj_article-container dj_article_display_@(Model.ArticleDisplayOptions.ToString()) dj_article_lang_@(Model.ArticleDataSet.LanguageCode.ToLower())" data-ref="@Model.ArticleRef.ToJson().EscapeForHtml()">
         
-        @if (Model != null && Model.VideoPlayer != null)
+        @if (Model != null && Model.VideoPlayer != null) 
         {
              <div class="multimediaPlayer">
                 <div class="player">
@@ -203,11 +203,27 @@
                                  !Model.ArticleDataSet.Authors.IsNullOrEmpty() &&
                                  Model.PostProcessing == DowJones.Infrastructure.PostProcessing.UnSpecified)
                             {
-                                foreach (var renderItem in Model.ArticleDataSet.Authors)
+                                for (int idx=0; idx < Model.ArticleDataSet.Authors.Count; idx++)
                                 {
+                                    DowJones.Ajax.Article.RenderItem renderItem = Model.ArticleDataSet.Authors[idx];
                                     <span class="value author drop-down-button" data-dd-type="author">
                                         <span class="dj_article_author" data-entity="@renderItem.ItemEntityData.ToJson().EscapeForHtml()">@renderItem.ItemEntityData.Name</span>
                                     </span>
+                                    if (renderItem.ItemEntityData.Name!=null && renderItem.ItemEntityData.Name.Trim() != string.Empty && idx != Model.ArticleDataSet.Authors.Count-1)
+                                    {
+                                        <span>, </span>
+                                    }
+                                }
+
+                                if (Model.ArticleDataSet.ByLine.Count > 0)
+                                { 
+                                    <br />
+                                    <span class="dj_article_index">By</span>
+                                    foreach (var renderItem in Model.ArticleDataSet.ByLine)
+                                    {
+                                        var highlight = renderItem.ItemMarkUp == MarkUpType.ArticleHighlight ? " highlight" : "";
+                                        <span class="value dj_article_index" data-dd-type="author">@renderItem.ItemText.Trim()</span><span class="dj_article_comma">, </span>  
+                                    }
                                 }
 
                             }
@@ -381,16 +397,16 @@
 <div class="dj_article_article_body">
 @if (!Model.ArticleDataSet.Correction.IsNullOrEmpty())
 {
-foreach (KeyValuePair<string, List<RenderItem>> kvc in Model.ArticleDataSet.Correction.SelectMany(dci => dci))
-{@(kvc.Key.Equals("pre") ? CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(kvc.Value, "pre", "dj_article_paragraph"))
+    foreach (KeyValuePair<string, List<RenderItem>> kvc in Model.ArticleDataSet.Correction.SelectMany(dci => dci))
+    {@(kvc.Key.Equals("pre") ? CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(kvc.Value, "pre", "dj_article_paragraph"))
                                 : CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(kvc.Value, "p", "dj_article_paragraph")))}
 }
 @if (!Model.ArticleDataSet.LeadParagraph.IsNullOrEmpty())
 {
-if (showIndexing)
-{
+    if (showIndexing)
+    {
 <div class="dj_article_index">LP</div>
-}                    
+    }                    
 <div class="dj_article_lp dj_article_section">
     @if (!Model.ArticleDataSet.LeadParagraph.IsNullOrEmpty())
     {
@@ -402,10 +418,10 @@ if (showIndexing)
 }
 @if (!Model.ArticleDataSet.TailParagraphs.IsNullOrEmpty() && Model.ArticleDisplayOptions != DisplayOptions.Headline)
 {
-if (showIndexing)
-{
+    if (showIndexing)
+    {
 <div class="dj_article_index">TD</div>
-}
+    }
 <div class="dj_article_td dj_article_section">
     @foreach (var kvc in Model.ArticleDataSet.TailParagraphs.SelectMany(dci => dci))
     {@(kvc.Key.Equals("pre") ? CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(kvc.Value, "pre", "dj_article_paragraph"))
