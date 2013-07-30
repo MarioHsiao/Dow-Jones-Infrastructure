@@ -188,6 +188,11 @@ namespace DowJones.Web.Mvc.UI.Components.PortalHeadlineList
         [ClientProperty("extraCssClass")]
         public string ExtraCssClass { get; set; }
 
+        /// <summary>
+        /// Gets or Sets a value indicating whether 'Source' should be rendered.
+        /// </summary>
+        [ClientProperty("showWordCount")]
+        public bool ShowWordCount { get; set; }
         #endregion
 
 
@@ -246,6 +251,7 @@ namespace DowJones.Web.Mvc.UI.Components.PortalHeadlineList
             AuthorClickable = true;
             DisplaySnippets = SnippetDisplayType.Hover;
             ExtraCssClass = "";
+            ShowWordCount = false;
         }
 
         public PortalHeadlineListModel()
