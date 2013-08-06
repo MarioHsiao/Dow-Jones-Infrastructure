@@ -914,17 +914,17 @@ namespace DowJones.Assemblers.Articles
         {
             var tempararyPublicationDate = publicationDate;
             if (publicationTimeSpecified)
+            {
                 tempararyPublicationDate = DateTimeFormatter.Merge(publicationDate, publicationTime);
-
-            return _dateTimeFormatter.FormatStandardDate(tempararyPublicationDate, true);
+                return _dateTimeFormatter.FormatStandardDate(tempararyPublicationDate, true);
+            }
+            return _dateTimeFormatter.FormatStandardDate(tempararyPublicationDate, false);
         }
 
         private string GetTime(DateTime publicationDate, DateTime publicationTime)
         {
             return _dateTimeFormatter.FormatTime(DateTimeFormatter.Merge(publicationDate, publicationTime));
         }
-
-
 
         /// <summary>
         ///   The get image url.
