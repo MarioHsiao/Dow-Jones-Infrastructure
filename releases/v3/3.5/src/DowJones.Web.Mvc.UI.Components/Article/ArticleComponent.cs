@@ -30,7 +30,7 @@ namespace DowJones.Web.Mvc.UI.Components.Article
     using PostProcessingOptions = PostProcessing.PostProcessingOptions;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 07 29 2013 02:39 
+    // Last Generated Timestamp: 07 29 2013 03:29 
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.Article.Article.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.Article.ArticleComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "0.0.0.30158")]
     public class ArticleComponent : DowJones.Web.Mvc.UI.ViewComponentBase<ArticleModel>
@@ -88,7 +88,7 @@ WriteLiteral("\" data-ref=\"");
 WriteLiteral("\">\r\n        \r\n");
 
 
-         if (Model != null && Model.VideoPlayer != null) 
+         if (Model != null && Model.VideoPlayer != null)
         {
 
 WriteLiteral("             <div class=\"multimediaPlayer\">\r\n                <div class=\"player\">" +
@@ -628,13 +628,13 @@ WriteLiteral("\r\n                        <div class=\"date-stamp dj_article_pd 
                             Write(string.Format("{0}", Model.ArticleDataSet.PublicationDate));
 
                                                                                              
-                                if (!string.IsNullOrEmpty(Model.ArticleDataSet.PublicationTime))
-                                {
+                            if (!string.IsNullOrEmpty(Model.ArticleDataSet.PublicationTime))
+                            {
                                     
                                 Write(string.Format(" {0}", Model.ArticleDataSet.PublicationTime));
 
                                                                                                   
-                                }
+                            }
                             }
 WriteLiteral("<span class=\"dj_article_comma\">, </span>\r\n                        </div>\r\n\r\n");
 

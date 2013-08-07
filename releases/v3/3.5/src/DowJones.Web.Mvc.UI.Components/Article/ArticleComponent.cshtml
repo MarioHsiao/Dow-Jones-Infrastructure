@@ -214,6 +214,17 @@
                                         <span>, </span>
                                     }
                                 }
+                                
+                                if (Model.ArticleDataSet.ByLine.Count > 0)
+                                { 
+                                    <br />
+                                    <span class="dj_article_index">By</span>
+                                    foreach (var renderItem in Model.ArticleDataSet.ByLine)
+                                    {
+                                        var highlight = renderItem.ItemMarkUp == MarkUpType.ArticleHighlight ? " highlight" : "";
+                                        <span class="value dj_article_index" data-dd-type="author">@renderItem.ItemText.Trim()</span><span class="dj_article_comma">, </span>  
+                                    }
+                                }
 
                                 if (Model.ArticleDataSet.ByLine.Count > 0)
                                 { 
