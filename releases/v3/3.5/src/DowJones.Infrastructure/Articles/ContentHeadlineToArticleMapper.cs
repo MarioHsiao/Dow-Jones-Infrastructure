@@ -97,6 +97,10 @@ namespace DowJones.Articles
 
         private static Paragraph[] MapAny(IEnumerable<XmlNode> any)
         {
+            if (any == null)
+            {
+                return null;
+            }
             return any.Select(MapEachElement).WhereNotNull().ToArray();
         }
 
