@@ -96,6 +96,8 @@
     <Compile Include="CompanyInfo\CompanyInfoModel.cs" />
     <Compile Include="CompositeAuthor\CompositeAuthorModel.cs" />
     <Compile Include="CompositeOutlet\CompositeOutletModel.cs" />
+    <Compile Include="TemplateComponent\TemplateComponentData.cs" />
+    <Compile Include="TemplateComponent\TemplateComponentModel.cs" />
     <Compile Include="TreeView\TreeViewModel.cs" />
     <Compile Include="DiscoveryFilters\DiscoveryFiltersModel.cs" />
     <Compile Include="Gauge\GaugeModel.cs" />

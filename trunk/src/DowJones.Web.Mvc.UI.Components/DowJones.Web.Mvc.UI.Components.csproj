@@ -310,6 +310,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TaxonomySearchBrowseComponent.cshtml</DependentUpon>
     </Compile>
+    <Compile Include="TemplateComponent\TemplateComponent.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TemplateComponent.cshtml</DependentUpon>
+    </Compile>
     <Compile Include="TopicEditor\TopicEditorComponent.cs">
       <DependentUpon>TopicEditorComponent.cshtml</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -690,6 +695,10 @@
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>HeadlinePostProcessingComponent.cs</LastGenOutput>
     </None>
+    <None Include="TemplateComponent\TemplateComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>TemplateComponent.cs</LastGenOutput>
+    </None>
     <None Include="TopicEditor\TopicEditorComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>TopicEditorComponent.cs</LastGenOutput>
@@ -972,6 +981,14 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="CompanyInfo\ClientTemplates\ReportHeadlineEntry.htm" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TemplateComponent\TemplateComponent.js" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="TemplateComponent\ClientTemplates\Error.html" />
+    <EmbeddedResource Include="TemplateComponent\ClientTemplates\Success.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
