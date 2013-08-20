@@ -8,7 +8,7 @@ DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
     defaults: {
         cssClass: 'canvas-module'
     },
-    
+
     _canvas: null,
 
     //baseline module objects
@@ -105,10 +105,10 @@ DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
             var childId = '#' + childComponents[i].id;
             try {
                 this.$element.find(childId).findComponent().setOwner(this);
-            } catch(e) {
+            } catch (e) {
                 $dj.error(this.name, '>>Error setting owner on child component', childId, ':', e);
-                if(e.stack) $dj.debug(e.stack);
-            } 
+                if (e.stack) $dj.debug(e.stack);
+            }
         }
     },
 
@@ -240,12 +240,12 @@ DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
         this.hideEditArea();
         this.$contentArea.show.apply(this.$contentArea, arguments);
     },
-    
+
     showContentAreaHideMsgArea: function () {
         this.hideMessageArea();
         this.showContentArea();
     },
-    
+
     showEditArea: function () {
         if (!this.hasEditor) { return; }
 
@@ -264,11 +264,12 @@ DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
             this._delegates.fireOnEditShown();
         }
         else {
-            $(this.$editArea).animate({ // show edit panel
-                height: 'toggle'
-            }, {
-                complete: this._delegates.fireOnEditShown
-            });
+//            $(this.$editArea).animate({ // show edit panel
+//                height: 'toggle'
+//            }, {
+//                complete: this._delegates.fireOnEditShown
+            //            });
+            $(this.$editArea).slideDown('fast', this._delegates.fireOnEditShown);
         }
         $(this._editMenuTrigger).hide(); // hide gear while edit panel is open
     },
@@ -291,9 +292,10 @@ DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
 
         // only hide if not hidden already. prevent the flickr effect when showXXXArea is called
         if (this.$editArea.is(':visible')) {
-            $(this.$editArea).animate({ // hide the edit panel
-                height: 'toggle'
-            });
+            //            $(this.$editArea).animate({ // hide the edit panel
+            //                height: 'toggle'
+            //            });
+            $(this.$editArea).slideUp('fast');
         }
 
         $(this._editMenuTrigger).show(); // show gear
@@ -494,7 +496,7 @@ DJ.UI.AbstractCanvasModule = DJ.UI.CompositeComponent.extend({
             canvasId: this.get_Canvas().get_canvasId()
         };
     },
-    
+
     _saveProperties: function (callback) {
         if (this._editor) {
             var props = this._editor.buildProperties();
