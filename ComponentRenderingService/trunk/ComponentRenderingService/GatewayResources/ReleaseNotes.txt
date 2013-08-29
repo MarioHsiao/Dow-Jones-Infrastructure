@@ -1352,5 +1352,12 @@ Release Version 7.5.0.141
 07/19/2013 Divya: Added 2 new transactions GetMeterCreditHistory and SetMeteringCredits to CIBSService
 07/19/2013 Divya: Added creditLimit to MeteringInfo in CIBS and aRchive. Modfied archive xslts as well.
 07/22/2013 Divya: Added new objects codeImportLvl and properties GetArticle and GetArticleWithLimit responses .
+Release Version 7.5.0.143
+=============================================================================================================================
+07/24/2013 Divya: Modifed GetArticle and GetArticleWithLimit responses to populate CodeSet and PropertySet details based on custom and non-custon responses .
+07/25/2013 Divya: Added RequestedBy field to GetMeterCreditHistory and SetMeteringCredits in CIBSService
 
+Release Version 7.5.0.144
+=============================================================================================================================
 
+07/31/2013 Divya: Added MeteringCount to MeteringInfo object GetArticle and GetArticleWithLimit responses in Archive service

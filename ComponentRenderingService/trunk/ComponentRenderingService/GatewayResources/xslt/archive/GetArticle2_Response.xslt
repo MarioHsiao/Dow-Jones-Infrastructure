@@ -76,7 +76,7 @@
       <xsl:apply-templates select="./Result"/>
     </articleResponseSet>
   </xsl:template>
-   <xsl:template match="Metering">
+  <xsl:template match="Metering">
     <xsl:element name="meteringInfo">
       <xsl:copy-of select="Limit"/>
       <xsl:copy-of select="TimePeriod"/>
@@ -88,8 +88,9 @@
       </xsl:element>
       <xsl:copy-of select="Email"/>
       <xsl:copy-of select="DocCount"/>
-      <xsl:element name="CreditLimit">
-        <xsl:value-of select="CREDIT_LIMIT"/>
+      <xsl:copy-of select="CreditLimit"/>
+      <xsl:element name="MeteringCount">
+        <xsl:value-of select="MeteredCount"/>
       </xsl:element>
     </xsl:element>
   </xsl:template>
@@ -171,10 +172,15 @@
           <xsl:variable name="CodeSetCount">
             <xsl:value-of select="count(./CodeSets/CSet)"/>
           </xsl:variable>
-          <xsl:if test="number($CSetCount)>0 or number($CodeSetCount)>0">
+
+          <xsl:variable name="DirectCodeSetCountValue">
+            <xsl:value-of select="count(CodeSet)"/>
+          </xsl:variable>
+
+          <xsl:if test="number($CSetCount)>0 or number($CodeSetCount)>0 or number($DirectCodeSetCountValue)">
             <indexingCodeSets>
               <xsl:attribute name="count">
-                <xsl:value-of select="$CSetCount + $CodeSetCount"/>
+                <xsl:value-of select="$CSetCount + $CodeSetCount + $DirectCodeSetCountValue"/>
               </xsl:attribute>
               <xsl:if test="count(./Codes/CodeSet) > 0">
                 <xsl:apply-templates select="./Codes/CodeSet"/>
@@ -182,8 +188,12 @@
               <xsl:if test="count(./CodeSets/CSet) > 0">
                 <xsl:apply-templates select="./CodeSets/CSet"/>
               </xsl:if>
+              <xsl:if test="count(CodeSet) > 0">
+                <xsl:apply-templates select="CodeSet" mode="entire"/>
+              </xsl:if>
             </indexingCodeSets>
           </xsl:if>
+
           <xsl:apply-templates select="./ColumnName"/>
           <xsl:apply-templates select="./Contact"/>
           <xsl:apply-templates select="./Copyright"/>
@@ -240,14 +250,24 @@
             <xsl:apply-templates select="./Properties"/>
           </xsl:if>
           <xsl:apply-templates select="./ReplyItem"/>
-          <xsl:if test="count(PropertySet[@group='pubdata']) > 0 or count(PropertySet[@group='docdata']) > 0">
-            <xsl:element name="properties">
-              <xsl:apply-templates select="PropertySet" mode="entire"></xsl:apply-templates>
-            </xsl:element>
-          </xsl:if>
 
-          <xsl:apply-templates select="CodeSet" mode="entire"></xsl:apply-templates>
-          
+          <xsl:choose>
+            <xsl:when test="count(PropertySet) >0">
+              <xsl:if test="count(PropertySet[@group='pubdata']) > 0 or count(PropertySet[@group='docdata']) > 0">
+                <xsl:element name="properties">
+                  <xsl:apply-templates select="PropertySet" mode="entire"></xsl:apply-templates>
+                </xsl:element>
+              </xsl:if>
+            </xsl:when>
+            <xsl:when test="count(Properties) >0">
+              <xsl:if test="count(Properties/PropertySet[@group='pubdata']) > 0 or count(Properties/PropertySet[@group='docdata']) > 0">
+                <xsl:element name="properties">
+                  <xsl:apply-templates select="Properties/PropertySet" mode="entire"></xsl:apply-templates>
+                </xsl:element>
+              </xsl:if>
+            </xsl:when>
+          </xsl:choose>
+
         </xsl:when>
         <xsl:otherwise>
           <accessionNo>
@@ -319,7 +339,7 @@
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='circulation']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='webhits']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='firstdate']"/>
-  <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='regionoforigin']"/>
+    <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='regionoforigin']"/>
     <xsl:choose>
       <xsl:when test="./PropertySet[@group='pubdata']/Property[@name='logoimage']">
         <sourceLogo>
@@ -582,8 +602,8 @@
         <xsl:apply-templates select="./DocData"/>
         <xsl:apply-templates select="./PubData"/>
       </xsl:otherwise>
-    </xsl:choose>    
-    
+    </xsl:choose>
+
   </xsl:template>
   <xsl:template match="MetadataPT">
     <xsl:apply-templates select="./Art"/>
@@ -683,8 +703,8 @@
         <xsl:apply-templates select="./DocData"/>
         <xsl:apply-templates select="./PubData"/>
       </xsl:otherwise>
-    </xsl:choose>  
-    
+    </xsl:choose>
+
   </xsl:template>
   <xsl:template match="Properties">
     <xsl:choose>
@@ -1017,8 +1037,8 @@
         <xsl:apply-templates select="./property[@group='docdata' and @name='snippet']/Snippet"/>
       </xsl:when>
     </xsl:choose>
-   
-    
+
+
   </xsl:template>
 
   <xsl:template match="PropertySet" mode="entire">
@@ -1026,15 +1046,15 @@
       <xsl:variable name ="groupName">
         <xsl:value-of select="@group"/>
       </xsl:variable>
-      <xsl:element name="propertySet">        
+      <xsl:element name="propertySet">
         <xsl:attribute name="group">
           <xsl:value-of select="$groupName"/>
         </xsl:attribute>
-        <xsl:apply-templates select="Property" mode="entire" ></xsl:apply-templates>       
+        <xsl:apply-templates select="Property" mode="entire" ></xsl:apply-templates>
       </xsl:element>
-    </xsl:if>  
+    </xsl:if>
   </xsl:template>
-  
+
 
   <xsl:template match="Property" mode="entire">
     <xsl:element name="property">
@@ -1047,8 +1067,8 @@
       </xsl:attribute>
     </xsl:element>
   </xsl:template>
-  
-  
+
+
   <xsl:template match="Fields">
     <xsl:if test="string-length(normalize-space(.)) &gt; 0">
       <fields>
@@ -1918,7 +1938,8 @@
         <xsl:value-of select="@subCat"/>
       </xsl:attribute>
       <xsl:apply-templates select="CodeD"/>
-      <xsl:apply-templates select="CodeI"/>      
+      <xsl:apply-templates select="CodeI"/>
+      <xsl:apply-templates select ="CodeImportLvl" mode="entire"></xsl:apply-templates>
     </code>
   </xsl:template>
 
@@ -1936,11 +1957,11 @@
       <xsl:attribute name="value">
         <xsl:value-of select="@value"/>
       </xsl:attribute>
-    <xsl:attribute name="cat">
-      <xsl:value-of select="@subCat"/>
-    </xsl:attribute>
+      <xsl:attribute name="cat">
+        <xsl:value-of select="@subCat"/>
+      </xsl:attribute>
       <xsl:apply-templates select ="CodeImportLvl" mode="entire"></xsl:apply-templates>
-    </xsl:element>    
+    </xsl:element>
   </xsl:template>
 
   <xsl:template match="CodeImportLvl" mode="entire">
@@ -1948,7 +1969,7 @@
       <xsl:value-of  select="." />
     </xsl:element>
   </xsl:template>
-  
+
   <xsl:template match="CodeD">
     <xsl:if test="string-length(normalize-space(.)) &gt; 0">
       <codeDescription>
@@ -1971,8 +1992,8 @@
       </codeDJNCode>
     </xsl:if>
   </xsl:template>
-   
-  
+
+
   <xsl:template match="ColumnName">
     <xsl:if test="string-length(normalize-space(.)) &gt; 0">
       <columnName>
@@ -2414,6 +2435,6 @@
     </xsl:attribute>
   </xsl:template>
 
-  
-  
+
+
 </xsl:stylesheet>
