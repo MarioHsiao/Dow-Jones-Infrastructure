@@ -5,9 +5,9 @@
 /// <reference path="require.js" />
 /// <reference path="underscore.js" />
 
-// Get local instances of require() and define()
-var dj_define = define;
-var dj_require = require;
+// Get scoped instances of require() and define()
+var dj_define = _djRequire.define;
+var dj_require = _djRequire.require;
 
 
 // Initialize global DJ object
@@ -17,7 +17,7 @@ if (!window['DJ']) {
             debug: false
         }
     };
-}
+} 
 
 // Define DJ
 var DJ = window['DJ'];

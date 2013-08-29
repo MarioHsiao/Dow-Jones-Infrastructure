@@ -293,6 +293,9 @@
     <None Include="Resources\js\highcharts.min.js.map">
       <DependentUpon>highcharts.js</DependentUpon>
     </None>
+    <None Include="Resources\js\require.min.js.map">
+      <DependentUpon>require.js</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Mobile\Extensions\" />
