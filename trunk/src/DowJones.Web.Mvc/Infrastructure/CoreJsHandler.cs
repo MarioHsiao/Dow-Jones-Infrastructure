@@ -9,21 +9,21 @@ using DowJones.Web.Configuration;
 
 namespace DowJones.Web.Mvc.Infrastructure
 {
-    /// <summary>
-    /// 
-    /// </summary>
+	/// <summary>
+	/// 
+	/// </summary>
 	public class CoreJsHandler : ClientResourceHandler
 	{
-		private static readonly string[] JQueryAndRequire = new[] { "jquery", "require" };
-        private static readonly string[] CoreLibraries = new[] {
+		//private static readonly string[] JQueryAndRequire = new[] { "jquery", "require" };
+		private static readonly string[] CoreLibraries = new[] {
                 "underscore", "common", "pubsub", "composite-component", "dj-jquery-ext", "jquery-json",
                   "jquery-ui", "jquery-ui-interactions", "tmpload"
             };
 
-        /// <summary>
-        /// Called when [process request].
-        /// </summary>
-        /// <param name="context">The context.</param>
+		/// <summary>
+		/// Called when [process request].
+		/// </summary>
+		/// <param name="context">The context.</param>
 		public override void OnProcessRequest(HttpContextBase context)
 		{
 			var culture = SetRequestLanguage(context.Request["lang"]);
@@ -53,11 +53,22 @@ namespace DowJones.Web.Mvc.Infrastructure
 		private void RenderJQueryAndRequire(HttpContextBase context, CultureInfo culture)
 		{
 			// render scripts
-			RenderClientResources(context, JQueryAndRequire, culture);
-			
+			RenderClientResources(context, "jquery", culture);
+
+			RenderScopedRequire(context, culture);
+
+		}
+
+		private void RenderScopedRequire(HttpContextBase context, CultureInfo culture)
+		{
+			context.Response.Write("var _djRequire = (function () {\n  ");
 			// render config object
 			var config = new RequireJsConfiguration { BaseUrl = GenerateRequireJsBaseUrl() };
-			config.WriteTo(context.Response.Output);
+			config.WriteVariableTo(context.Response.Output);
+
+			RenderClientResources(context, "require", culture);
+
+			context.Response.Write("\n  return { require: require, define: define};\n  }());\n");
 		}
 
 		private static bool ResourceHasNotBeenModified(HttpContextBase context)
@@ -90,14 +101,14 @@ namespace DowJones.Web.Mvc.Infrastructure
 				Preferences = new ClientPreferences { InterfaceLanguage = language },
 			};
 
-            if (sessionId.IsNotEmpty())
-            {
-                clientConfiguration.Credentials = new ClientCredentials {Token = sessionId, CredentialType = CredentialType.Session};
-            }
-            else if(encrytedToken.IsNotEmpty())
-            {
-                clientConfiguration.Credentials = new ClientCredentials { Token = encrytedToken, CredentialType = CredentialType.EncryptedToken };
-            }
+			if (sessionId.IsNotEmpty())
+			{
+				clientConfiguration.Credentials = new ClientCredentials { Token = sessionId, CredentialType = CredentialType.Session };
+			}
+			else if (encrytedToken.IsNotEmpty())
+			{
+				clientConfiguration.Credentials = new ClientCredentials { Token = encrytedToken, CredentialType = CredentialType.EncryptedToken };
+			}
 
 			clientConfiguration.WriteTo(context.Response.Output);
 		}
