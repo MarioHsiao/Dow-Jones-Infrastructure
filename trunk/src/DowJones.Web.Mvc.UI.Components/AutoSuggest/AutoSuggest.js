@@ -40,37 +40,38 @@
         // Localization/Templating tokens
         tokens: {
             // name: Data     // add more defaults here separated by comma
-            companyTkn: "<%= Token("companyTkn") %>",
-            executiveTkn: "<%= Token("executiveTkn") %>",
-            industryTkn: "<%= Token("industryTkn") %>",
-            sourceTkn: "<%= Token("sourceTkn") %>",
-            keywordTkn: "<%= Token("keywordTkn") %>",
-            privateMarketCompanyHeaderTkn: "<%= Token("privateMarketCompanyHeaderTkn") %>",
-            privateMarketIndustryHeaderTkn: "<%= Token("privateMarketIndustryHeaderTkn") %>",
-            privateMarketRegionHeaderTkn: "<%= Token("privateMarketRegionHeaderTkn") %>",
-            region_allTkn: "<%= Token("region_allTkn") %>",
-            region_countryTkn: "<%= Token("region_countryTkn") %>",
-            region_stateOrProvinceTkn: "<%= Token("region_stateOrProvinceTkn") %>",
-            region_metropolitanAreaTkn: "<%= Token("region_metropolitanAreaTkn") %>",
-            region_subNationalRegionTkn: "<%= Token("region_subNationalRegionTkn") %>",
-            region_supranationalRegionTkn: "<%= Token("region_supranationalRegionTkn") %>",
-            newsSubjectTkn: "<%= Token("newsSubjectTkn") %>",
-            infoTitleTknPre: "<%= Token("infoTitleTknPre") %>",
-            infoTitleTknPost: "<%= Token("infoTitleTknPost") %>",
-            promoteTitleTkn: "<%= Token("promoteTitleTkn") %>",
-            notTitleTkn: "<%= Token("notTitleTkn") %>",
-            sourcefamilyTkn: "<%= Token("sourcefamilyTkn") %>",
-            publicationTkn: "<%= Token("publicationTkn") %>",
-            webpageTkn: "<%= Token("webpageTkn") %>",
-            multimediaTkn: "<%= Token("multimediaTkn") %>",
-            pictureTkn: "<%= Token("pictureTkn") %>",
-            blogTkn: "<%= Token("blogTkn") %>",
-            disContTkn: "<%= Token("disContTkn") %>",
-            viewAllTkn: "<%= Token("viewAllTkn") %>",
-            helpLabelTkn: "<%= Token("helpLabelTkn") %>",
-            privateMarketCompanyViewMoreTkn: "<%= Token("privateMarketCompanyViewMoreTkn") %>",
-            privateMarketIndustryViewMoreTkn: "<%= Token("privateMarketIndustryViewMoreTkn") %>",
-            privateMarketRegionViewMoreTkn: "<%= Token("privateMarketRegionViewMoreTkn") %>"
+            companyTkn: "${companyTkn}",
+            executiveTkn: "${executiveTkn}",
+            industryTkn: "${industryTkn}",
+            sourceTkn: "${sourceTkn}",
+            keywordTkn: "${keywordTkn}",
+            privateMarketCompanyHeaderTkn: "${privateMarketCompanyHeaderTkn}",
+            privateMarketIndustryHeaderTkn: "${privateMarketIndustryHeaderTkn}",
+            privateMarketRegionHeaderTkn: "${privateMarketRegionHeaderTkn}",
+            region_allTkn: "${region_allTkn}",
+            region_countryTkn: "${region_countryTkn}",
+            region_stateOrProvinceTkn: "${region_stateOrProvinceTkn}",
+            region_metropolitanAreaTkn: "${region_metropolitanAreaTkn}",
+            region_subNationalRegionTkn: "${region_subNationalRegionTkn}",
+            region_supranationalRegionTkn: "${region_supranationalRegionTkn}",
+            newssubjectTkn: "${newsSubjectTkn}",
+            infoTitleTknPre: "${infoTitleTknPre}",
+            infoTitleTknPost: "${infoTitleTknPost}",
+            promoteTitleTkn: "${promoteTitleTkn}",
+            notTitleTkn: "${notTitleTkn}",
+            sourcefamilyTkn: "${sourcefamilyTkn}",
+            symbolTkn: "${symbolTkn}",
+            publicationTkn: "${publicationTkn}",
+            webpageTkn: "${webpageTkn}",
+            multimediaTkn: "${multimediaTkn}",
+            pictureTkn: "${pictureTkn}",
+            blogTkn: "${blogTkn}",
+            disContTkn: "${disContTkn}",
+            viewAllTkn: "${viewAllTkn}",
+            helpLabelTkn: "${helpLabelTkn}",
+            privateMarketCompanyViewMoreTkn: "${privateMarketCompanyViewMoreTkn}",
+            privateMarketIndustryViewMoreTkn: "${privateMarketIndustryViewMoreTkn}",
+            privateMarketRegionViewMoreTkn: "${privateMarketRegionViewMoreTkn}"
         },
 
         /*
@@ -95,9 +96,9 @@
                             autocompletionType: this.options.autocompletionType,
                             authType: this.options.authType,
                             authTypeValue: this.options.authTypeValue,
-                            options: $.parseJSON(this.options.serviceOptions),
+                            options: typeof(this.options.serviceOptions)==="object" ? this.options.serviceOptions: $.parseJSON(this.options.serviceOptions),
                             columns: this.options.columns,
-                            tokens: $.parseJSON(this.options.tokens),
+                            tokens: typeof(this.options.tokens)==="object" ? this.options.tokens: $.parseJSON(this.options.tokens),
                             fillInputOnKeyUpDown: this.options.fillInputOnKeyUpDown,                            
                             selectFirst: this.options.selectFirst,
                             showViewAll: this.options.showViewAll,
@@ -131,31 +132,31 @@
         * Private methods
         */
         //Return an object which gives Data depending on autosuggestion type
-        _getValueByAutoSuggestType : function (){
+        _getValueByAutoSuggestType : function () {
             return {
-            author: "formalName",
-            outlet: "formalName",
-            publishercity: "formalName",
-            publishermetadata: "name",
-            executive: "completeName",
-            company: "Data",
-            privatemarketcompany: "companyName",
-            privatemarketindustry: "industryName",
-            privatemarketregion: "regionName",
-            region: "descriptor",
-            newssubject: "descriptor",
-            industry: "descriptor",
-            source: "formalName",
-            keyword: "word",
-            region_all: "descriptor",
-            region_country: "descriptor",
-            region_stateorprovince: "descriptor",
-            region_metropolitanarea: "descriptor",
-            region_subnationalregion: "descriptor",
-            region_supranationalregion: "descriptor",
-            calendarkeyword: "word",
-            calendarcompany: "companyName"
-            }
+                author: "formalName",
+                outlet: "formalName",
+                executive: "completeName",
+                company: "value",
+                privatemarketcompany: "companyName",
+                privatemarketindustry: "industryName",
+                privatemarketregion: "regionName",
+                region: "descriptor",
+                publishercity: "formalName",
+                publishermetadata: "name",
+                newssubject: "descriptor",
+                industry: "descriptor",
+                source: "formalName",
+                keyword: "word",
+                region_all: "descriptor",
+                region_country: "descriptor",
+                region_stateorprovince: "descriptor",
+                region_metropolitanarea: "descriptor",
+                region_subnationalregion: "descriptor",
+                region_supranationalregion: "descriptor",
+                calendarkeyword: "word",
+                symbol: "ticker"
+            };
         },
                 
         //Object which gives name depending on autosuggestion type
@@ -163,11 +164,11 @@
         return{
             author: "author",
             outlet: "outlet",
-            publishercity: "publisherCity",
-            publishermetadata: "publisherData",
             executive: "executive",
             company: "company",
             region: "region",
+            publishercity: "publisherCity",
+            publishermetadata: "publisherData",
             newssubject: "newsSubject",
             industry: "industry",
             source: "source",
@@ -179,8 +180,9 @@
             region_subnationalregion: "region",
             region_supranationalregion: "region",
             calendarkeyword: "keyword",
-            calendarcompany: "calendarCompany"
-            }
+            calendarcompany: "calendarCompany",
+            symbol: "symbol"
+            };
         },
 
         //Build parameters
@@ -194,7 +196,7 @@
                     return $("#" + settings.controlId).val();
                 },
                 showViewAllPrivateMarkets: $.isFunction(settings.onViewMorePrivateMarketsClick)
-            }
+            };
             if (settings.tokens === undefined || settings.tokens === null) {
                 settings.tokens = {};
             }
@@ -205,10 +207,18 @@
          //Set CSS Default Classes
         _SetCssDefaults : function (settings) {
             if (settings.resultsClass == undefined) { settings.resultsClass = "dj_emg_autosuggest_results"; }
-            if (settings.resultsEvenClass == undefined) { settings.resultsEvenClass = "dj_emg_autosuggest_even" }
-            if (settings.resultsOddClass == undefined) { settings.resultsOddClass = "dj_emg_autosuggest_odd" }
-            if (settings.resultsOverClass == undefined) { settings.resultsOverClass = "dj_emg_autosuggest_over" }
-            if (settings.viewAllClass == undefined) { settings.viewAllClass = "dj_emg_autosuggest_viewall" }
+            if (settings.resultsEvenClass == undefined) {
+                settings.resultsEvenClass = "dj_emg_autosuggest_even";
+            }
+            if (settings.resultsOddClass == undefined) {
+                settings.resultsOddClass = "dj_emg_autosuggest_odd";
+            }
+            if (settings.resultsOverClass == undefined) {
+                settings.resultsOverClass = "dj_emg_autosuggest_over";
+            }
+            if (settings.viewAllClass == undefined) {
+                settings.viewAllClass = "dj_emg_autosuggest_viewall";
+            }
         },
 
         //Function to get Autosuggest List Item
@@ -328,7 +338,13 @@
                     if (row.status.toLowerCase() === "discont") {
                         t[t.length] = "<a href=\"javascript:void(0)\" class=\"ac_discont\" title=\"" + tokens.disContTkn + "\">discontinued</a>";
                     }
+				}
+                if (settings.autocompletionType.toLowerCase() === "author") {
+                    if (!row.isActive) {
+                        t[t.length] = "<a href=\"javascript:void(0)\" class=\"ac_discont\" title=\"" + tokens.disContTkn + "\">discontinued</a>";
+                    }
                 }
+				
 
                 t[t.length] = "</td>";
             }
@@ -368,7 +384,25 @@
             var t = [];
              var getValueByAutoSuggestType = this._getValueByAutoSuggestType();
             var rowValue = row[getValueByAutoSuggestType[row.controlType.toLowerCase()]];
-            t[t.length] = "<td>" + rowValue + "</td>";
+            t[t.length] = "<td><div class=\"ac_descriptor\">";
+            t[t.length] = rowValue;
+            switch (row.controlType.toLowerCase()) {
+                case "executive":
+                    if (row.companyName && row.companyName.length > 0) {
+                        t[t.length] = " <span class=\"ac_executiveCompany\">(";
+                        t[t.length] = row.companyName;
+                        t[t.length] = ")</span>";
+                    }
+                    break;
+                case "symbol":
+                    if (row.company && row.company.length > 0) {
+                        t[t.length] = " <span class=\"ac_\" >&nbsp;&nbsp;&nbsp;";
+                        t[t.length] = row.company;
+                        t[t.length] = "</span>";
+                    }
+                    break;
+            }
+            t[t.length] = "</div></td>";
             return t.join("");
         },
 
@@ -431,8 +465,16 @@
             data = data.category;
             var getValueByAutoSuggestType = this._getValueByAutoSuggestType();
             var getNameByAutoSuggestType = this._getNameByAutoSuggestType();
+            //            if (settings.options.categories.indexOf("symbol") < 1)
+            //                settings.options.categories = settings.options.categories.replace("company|", "company|symbol|");
+            var catArr = settings.options.categories.split("|");
+            if ($.inArray("symbol", catArr) > -1) {
+                var symbol = data.splice(data.length - 1, 1);
+                data.splice($.inArray("symbol", catArr), 0, symbol[0]);
+            }
+            //settings["styleData"] = {};
             for (var dtCat = 0; dtCat < data.length; dtCat++) {
-                var catArr = settings.options.categories.split("|");
+               
                 var acName = getNameByAutoSuggestType[catArr[dtCat].toLowerCase()];
                 var acValue = getValueByAutoSuggestType[catArr[dtCat].toLowerCase()];
                 var catData = data[dtCat][acName];
@@ -536,6 +578,11 @@
                         }
                     }
                     else {
+                        if ($.isFunction(settings.getCount)) {
+                            if (data && (data.count > -1)) {
+                                settings.getCount(data.count);
+                            }
+                        }
                         var rows = [];
                         return self._getParsedRows(settings.autocompletionType, data, rows, settings);
                     }
@@ -553,7 +600,7 @@
                 viewAllClass: settings.viewAllClass,
                 showViewAll: settings.showViewAll,
                 viewAllText: settings.tokens.viewAllTkn,
-                highlight: settings.highlight,                
+                highlight: settings.highlight,
                 showHelp: settings.showHelp,
                 helpLabelText: settings.tokens.helpLabelTkn,
                 selectFirst: settings.selectFirst,
@@ -570,6 +617,14 @@
                 e.stopPropagation();
                 return false;
             });
+
+            if ($.isFunction(settings.onFreeTextEnter)) {
+                $("#" + settings.controlId)._djFreeText(function (e) {
+                    window.globalSettingsObj.onFreeTextEnter(arguments[1]);
+                    e.stopPropagation();
+                    return false;
+                });
+            }
 
             //onViewAll EventHandler
             $("#" + settings.controlId)._djViewAll(function(e, result) {
