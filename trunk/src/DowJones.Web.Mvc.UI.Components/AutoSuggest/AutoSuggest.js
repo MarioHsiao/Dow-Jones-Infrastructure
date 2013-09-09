@@ -100,6 +100,7 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
             columns: this.options.columns,
             tokens: typeof(this.options.tokens) === "object" ? this.options.tokens : $.parseJSON(this.options.tokens),
             fillInputOnKeyUpDown: this.options.fillInputOnKeyUpDown,
+            eraseInputOnItemSelect: this.options.eraseInputOnItemSelect,
             selectFirst: this.options.selectFirst,
             showViewAll: this.options.showViewAll,
             showHelp: this.options.showHelp
@@ -313,7 +314,8 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
                 t[t.length] = ")</span>";
             }
 
-            if (settings.autocompletionType.toLowerCase() === "executive" && row.companyName && row.companyName.length > 0) {
+            if (settings.autocompletionType.toLowerCase() === "executive" && row.companyName
+                && row.companyName.length > 0 && row.completeName.toLowerCase().indexOf(row.companyName.toLowerCase()) < 0) {
                 t[t.length] = " <span class=\"ac_diasambiguityOutlet\">(";
                 t[t.length] = row.companyName;
                 t[t.length] = ")</span>";
@@ -388,11 +390,11 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
         t[t.length] = rowValue;
         switch (row.controlType.toLowerCase()) {
             case "executive":
-                if (row.companyName && row.companyName.length > 0) {
+                if (row.companyName && row.companyName.length > 0 && row.completeName.toLowerCase().indexOf(row.companyName.toLowerCase())<0) {
                     t[t.length] = " <span class=\"ac_executiveCompany\">(";
-                    t[t.length] = row.companyName;
-                    t[t.length] = ")</span>";
-                }
+                   t[t.length] = row.companyName;
+                   t[t.length] = ")</span>";
+               }
                 break;
             case "symbol":
                 if (row.company && row.company.length > 0) {
@@ -604,6 +606,7 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
             showHelp: settings.showHelp,
             helpLabelText: settings.tokens.helpLabelTkn,
             selectFirst: settings.selectFirst,
+            eraseInputOnItemSelect: settings.eraseInputOnItemSelect,
             fillInputOnKeyUpDown: settings.fillInputOnKeyUpDown,
             autoFill: ((settings.autocompletionType.toLowerCase() === 'keyword' || settings.autocompletionType.toLowerCase() === 'calendarkeyword') && settings.autoFill) ? true : false
         });

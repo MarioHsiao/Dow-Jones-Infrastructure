@@ -277,8 +277,11 @@
                 }
                 v += options.multipleSeparator;
             }
-
-            $input.val(v);
+            if (!options.eraseInputOnItemSelect)
+                $input.val(v);
+            else {
+                 $input.val("");
+            }
             hideResultsNow();
             $input.trigger("result", [selected.data, selected.value]);
             return true;
@@ -623,6 +626,7 @@
         extraParams: {},
         selectFirst: true,
         fillInputOnKeyUpDown: false,
+        eraseInputOnItemSelect:false,
         formatItem: function(row) { return row[0]; },
         formatMatch: null,
         autoFill: false,
