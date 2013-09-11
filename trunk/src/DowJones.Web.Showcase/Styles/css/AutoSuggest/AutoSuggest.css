@@ -1,7 +1,8 @@
 /***  AutoSuggestComponent  ***/
 
  .AutoSuggestComponent{padding:10px;}
-.dj_AutoSuggest{width:300px;}
+.dj_AutoSuggest{}
+.ac_input{ width: 300px;}
 .dj_emg_autosuggest_results { border: 1px solid #CCCCCC; padding: 0px; background-color: white; overflow: hidden; z-index: 99999; -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); }
 .dj_emg_autosuggest_results table { width: 100%; padding: 0; margin: 0; border-collapse: collapse; }
 .dj_emg_autosuggest_results table td { padding: 5px; margin: 0; border-style: none !important; font: 11px "Lucida Grande" , "Verdana"; }
