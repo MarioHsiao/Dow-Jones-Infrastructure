@@ -101,6 +101,7 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
             tokens: typeof(this.options.tokens) === "object" ? this.options.tokens : $.parseJSON(this.options.tokens),
             fillInputOnKeyUpDown: this.options.fillInputOnKeyUpDown,
             eraseInputOnItemSelect: this.options.eraseInputOnItemSelect,
+            inputClass:this.options.controlClassName,
             selectFirst: this.options.selectFirst,
             showViewAll: this.options.showViewAll,
             showHelp: this.options.showHelp
@@ -606,6 +607,7 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
             showHelp: settings.showHelp,
             helpLabelText: settings.tokens.helpLabelTkn,
             selectFirst: settings.selectFirst,
+            inputClass:  settings.inputClass,
             eraseInputOnItemSelect: settings.eraseInputOnItemSelect,
             fillInputOnKeyUpDown: settings.fillInputOnKeyUpDown,
             autoFill: ((settings.autocompletionType.toLowerCase() === 'keyword' || settings.autocompletionType.toLowerCase() === 'calendarkeyword') && settings.autoFill) ? true : false
