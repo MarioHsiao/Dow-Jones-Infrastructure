@@ -343,5 +343,7 @@ namespace DowJones.Security.Interfaces
 
 
         bool IsCommunicator { get; }
+
+        bool IsDJX { get; }
     }
 }

@@ -71,6 +71,7 @@ namespace DowJones.Security
 
             IsMigrationCoreServiceOn = false;  //Why and where this flag is used! 46 is for Communicator
             IsCommunicator = IsOffsetOn(46);
+            IsDJX = IsOffsetOn(150);
         }
 
         public bool IsSearchModulesOn { get; private set; }
@@ -419,6 +420,8 @@ namespace DowJones.Security
         /// Communicator product (MADE)
         /// </summary>
         public bool IsCommunicator { get; private set; }
+
+        public bool IsDJX { get; private set; }
 
         /// <summary>
         /// </summary>
