@@ -1361,3 +1361,23 @@ Release Version 7.5.0.144
 =============================================================================================================================
 
 07/31/2013 Divya: Added MeteringCount to MeteringInfo object GetArticle and GetArticleWithLimit responses in Archive service
+
+Release Version 7.5.0.145
+============================================================================================================================
+07/31/2013 Divya: Added Paging to GetItemsDetailsListRequest object in Item Asset.
+
+Release Version 7.5.0.147
+============================================================================================================================
+08/28/2013 Himmat: Added Paging to GetItemsDetailsListRequest object in Item Asset.
+
+Release Version 7.5.0.148
+============================================================================================================================
+09/10/2013 Divya: Added new fields AllowChat, AccountLevelAllowChat, AllowPasswordChange, EmailLanguage to GetUserProfileResponse object 
+				  and fields AllowPasswordChange, EmailLanguage to UpdateUserProfileRequest 
+
+Release Version 7.5.0.149
+============================================================================================================================
+09/12/2013 Sudhakar: Updated new fields AllowChat, AccountLevelAllowChat, AllowPasswordChange in GetUserProfileResponse object to
+				  return default values when not returned from backend 
+09/17/2013 Divya: Added new boolean fields EmailFromFactiva, EmailFromDJProducts ,EmailFromThirdParty  ,PrivacyPolicyAccepted to SendEmailToUserRequest
+				  im Membership service

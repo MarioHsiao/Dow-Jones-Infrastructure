@@ -49,9 +49,9 @@
     <Reference Include="DowJones.Charting">
       <HintPath>..\..\..\releases\v3\3.4\src\DowJones.Charting\bin\Release\DowJones.Charting.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Infrastructure, Version=3.5.56.40337, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Infrastructure.3.5.56\lib\DowJones.Infrastructure.dll</HintPath>
+    <Reference Include="DowJones.Infrastructure">
+      <HintPath>..\packages\DowJones.Infrastructure.3.5.57\lib\DowJones.Infrastructure.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="DowJones.Parallel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -60,25 +60,23 @@
     <Reference Include="DowJones.Web">
       <HintPath>..\..\..\trunk\src\DowJones.Web\bin\Debug\DowJones.Web.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Web.Mvc, Version=3.5.56.40337, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Web.Mvc.3.5.56\lib\DowJones.Web.Mvc.dll</HintPath>
+    <Reference Include="DowJones.Web.Mvc">
+      <HintPath>..\packages\DowJones.Web.Mvc.3.5.57\lib\DowJones.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="DowJones.Web.Mvc.UI.Components, Version=3.5.56.40337, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.3.5.56\lib\DowJones.Web.Mvc.UI.Components.dll</HintPath>
+    <Reference Include="DowJones.Web.Mvc.UI.Components">
+      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.3.5.57\lib\DowJones.Web.Mvc.UI.Components.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Web.Mvc.UI.Components.Models, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.Models.3.5.56\lib\DowJones.Web.Mvc.UI.Components.Models.dll</HintPath>
+    <Reference Include="DowJones.Web.Mvc.UI.Components.Models">
+      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.Models.3.5.57\lib\DowJones.Web.Mvc.UI.Components.Models.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="factiva.gateway.messages, Version=7.5.0.145, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.145\lib\factiva.gateway.messages.dll</HintPath>
+    <Reference Include="factiva.gateway.messages">
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.149\lib\factiva.gateway.messages.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="FactivaGateway, Version=1.6.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.145\lib\FactivaGateway.dll</HintPath>
+    <Reference Include="FactivaGateway">
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.149\lib\FactivaGateway.dll</HintPath>
     </Reference>
     <Reference Include="Hammock">
       <HintPath>..\packages\Hammock.1.2.9\lib\4.0\Hammock.dll</HintPath>
@@ -86,10 +84,9 @@
     <Reference Include="Hammock.ClientProfile">
       <HintPath>..\packages\Hammock.1.2.9\lib\4.0\Hammock.ClientProfile.dll</HintPath>
     </Reference>
-    <Reference Include="Interop.FCMLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Interop.FCMLib">
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.149\lib\Interop.FCMLib.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
-      <Private>True</Private>
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.145\lib\Interop.FCMLib.dll</HintPath>
     </Reference>
     <Reference Include="itextsharp">
       <HintPath>..\..\..\releases\v3\3.4\src\DowJones.Charting\bin\Release\itextsharp.dll</HintPath>
@@ -97,9 +94,9 @@
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.1.2.99\lib\2.0\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net40\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.2.2.1.4\lib\net40-Full\Ninject.dll</HintPath>
@@ -601,6 +598,7 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="GatewayResources\config\CIBSService.config" />
     <Content Include="GatewayResources\config\UserEventRecorderService.config" />
     <Content Include="GatewayResources\config\Triggers.config" />
     <Content Include="GatewayResources\config\TrackService.config" />
@@ -660,7 +658,6 @@
     <Content Include="GatewayResources\config\DJComm.Author.config" />
     <Content Include="GatewayResources\config\DJComm.Activity.config" />
     <Content Include="GatewayResources\config\CVDService.config" />
-    <Content Include="GatewayResources\config\CIBSService.config" />
     <Content Include="GatewayResources\config\Brokers.Query.config" />
     <Content Include="GatewayResources\config\Brokers.Job.config" />
     <Content Include="GatewayResources\config\Brokers.CompliantWorkspace.config" />

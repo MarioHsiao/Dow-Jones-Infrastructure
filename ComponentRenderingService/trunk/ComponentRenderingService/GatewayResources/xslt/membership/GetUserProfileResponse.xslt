@@ -54,6 +54,10 @@
     <xsl:apply-templates select="//emailLogin"/>
     <xsl:apply-templates select="//BetaProjectCode"/>
     <xsl:apply-templates select="//BillingPackage"/>
+    <xsl:apply-templates select="//AllowChat" />
+    <xsl:apply-templates select="//AccountLevelAllowChat" />
+    <xsl:apply-templates select="//AllowPasswordChange" />
+    <xsl:apply-templates select="//EmailLanguage" />
   </xsl:template>
   <xsl:template match="//BillingPackage">
     <billingPackage>
@@ -264,5 +268,47 @@
     <serviceTier>
       <xsl:value-of select="."/>
     </serviceTier>
+  </xsl:template>
+  <xsl:template match="//AllowChat">
+    <allowChat>
+      <xsl:choose>
+        <xsl:when test=".='Y'">
+          <xsl:value-of select="'true'"/> </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="'false'"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </allowChat>
+  </xsl:template>
+  <xsl:template match="//AccountLevelAllowChat">
+    <accountLevelAllowChat>
+      <xsl:choose>
+        <xsl:when test="normalize-space(.) = ''">
+          <xsl:value-of select="'Y'"/></xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="."/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </accountLevelAllowChat>
+  </xsl:template>
+  <xsl:template match="//AllowPasswordChange">
+    <allowPasswordChange>
+      <xsl:choose>
+        <xsl:when test=".='Y'">
+          <xsl:value-of select="'true'"/>
+        </xsl:when>
+        <xsl:when test=".='N'">
+          <xsl:value-of select="'false'"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="'true'"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </allowPasswordChange>
+  </xsl:template>
+  <xsl:template match="//EmailLanguage">
+    <emailLanguage>
+      <xsl:value-of select="."/>
+    </emailLanguage>
   </xsl:template>
 </xsl:stylesheet>
