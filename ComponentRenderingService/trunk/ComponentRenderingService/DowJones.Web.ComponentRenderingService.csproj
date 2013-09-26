@@ -43,19 +43,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CordaNetEmbedder">
-      <HintPath>..\..\..\releases\v3\3.4\src\DowJones.Charting\bin\Release\CordaNetEmbedder.dll</HintPath>
-    </Reference>
-    <Reference Include="DowJones.Charting">
-      <HintPath>..\..\..\releases\v3\3.4\src\DowJones.Charting\bin\Release\DowJones.Charting.dll</HintPath>
-    </Reference>
     <Reference Include="DowJones.Infrastructure">
       <HintPath>..\packages\DowJones.Infrastructure.3.5.57\lib\DowJones.Infrastructure.dll</HintPath>
       <Private>True</Private>
-    </Reference>
-    <Reference Include="DowJones.Parallel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\releases\v3\3.4\src\DowJones.Charting\bin\Release\DowJones.Parallel.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Web">
       <HintPath>..\..\..\trunk\src\DowJones.Web\bin\Debug\DowJones.Web.dll</HintPath>
@@ -88,9 +78,6 @@
       <HintPath>..\packages\Factiva.Gateway.7.5.0.149\lib\Interop.FCMLib.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
-    <Reference Include="itextsharp">
-      <HintPath>..\..\..\releases\v3\3.4\src\DowJones.Charting\bin\Release\itextsharp.dll</HintPath>
-    </Reference>
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.1.2.99\lib\2.0\log4net.dll</HintPath>
     </Reference>
@@ -100,9 +87,6 @@
     </Reference>
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.2.2.1.4\lib\net40-Full\Ninject.dll</HintPath>
-    </Reference>
-    <Reference Include="Svg">
-      <HintPath>..\..\..\releases\v3\3.4\src\DowJones.Charting\bin\Release\Svg.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.Entity" />
     <Reference Include="Microsoft.CSharp" />
