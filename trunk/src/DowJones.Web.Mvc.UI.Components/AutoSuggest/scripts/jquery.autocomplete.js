@@ -46,7 +46,7 @@
         },
         _djSetOptions: function(options) {
             return this.trigger("setOptions", [options]);
-        },
+        },   
         _djUnautocomplete: function() {
             return this.trigger("unautocomplete");
         },
@@ -75,7 +75,9 @@
 
         // Create $ object for input element
         var $input = $(input).attr("autocomplete", "off").addClass(options.inputClass);
-
+        $('#' + options.eraseBtnId).on("click", function(){ $input.val(""); $(this).fadeOut("fast");});
+        if((options.searchBtnId.length>0) && $('#' + options.searchBtnId))
+            $('#' + options.searchBtnId).on("click", function() { $input.trigger(jQuery.Event('keydown', {which: 13, keyCode: 13 })); });
         var timeout;
         var previousValue = "";
         var cache = $.DJAutocompleter.Cache(options);
@@ -222,7 +224,18 @@
             select.unbind();
             $input.unbind();
             $(input.form).unbind(".autocomplete");
+        }).bind("paste", function(){
+            clearTimeout(timeout);
+            timeout = setTimeout(onChange, options.delay);
+    
         });
+        
+        function showOrHideResetButton() {
+            var io =  $input.val().length ? 1 : 0 ;
+			$('#' + options.eraseBtnId).stop().fadeTo(300,io);
+//            if ((e.keyCode != 13 || e.which != 13) && $('#' + options.eraseBtnId).is(":hidden"))
+//				$('#' + options.eraseBtnId).fadeIn("fast");
+        }
 
        function freetextSearch() {
             var d = {};
@@ -277,7 +290,7 @@
                 }
                 v += options.multipleSeparator;
             }
-            if (!options.eraseInputOnItemSelect)
+             if ((!options.eraseInputOnItemSelect) || selected.data.controlType=='keyword')
                 $input.val(v);
             else {
                  $input.val("");
@@ -292,7 +305,7 @@
                 select.hide();
                 return;
             }
-
+            showOrHideResetButton();
             var currentValue = $input.val();
 
             if (!skipPrevCheck && currentValue == previousValue)
@@ -353,11 +366,13 @@
         };
 
         function hideResults() {
+            showOrHideResetButton();
             clearTimeout(timeout);
             timeout = setTimeout(hideResultsNow, 200);
         };
 
         function hideResultsNow() {
+            showOrHideResetButton();
             var wasVisible = select.visible();
             select.hide();
             clearTimeout(timeout);
@@ -459,8 +474,9 @@
                                 if (symbols != null && symbols.error == null)
                                     data.category.push(symbols);
                                 var parsed = options.parse && options.parse(data, term) || parse(data, term);
+                               if(term.length<$input.val().length) stopLoading();
                                 //cache.add(term, parsed);
-                                success(term, parsed);
+                                else success(term, parsed);
                             }
                         })
                         .fail(function() {
@@ -473,8 +489,9 @@
                     $.when(requestSuggestService(options, extraParams, extraParams, input))
                         .done(function(data) {
                             var parsed = options.parse && options.parse(data, term) || parse(data, term);
-                            //cache.add(term, parsed);
-                            success(term, parsed);
+                            if(term.length<$input.val().length) stopLoading();
+                                //cache.add(term, parsed);
+                                else success(term, parsed);
                         })
                         .fail(function() {
                             stopLoading();
@@ -612,7 +629,9 @@
         resultsOverClass: "dj_emg_autosuggest_over",
         viewAllClass: "dj_emg_autosuggest_viewall",
         viewAllText: "View All",
-        mwProdURL: "http://data.dowjones.com/autocomplete/data",
+        eraseBtnId:"icon_reset",
+        searchBtnId:"",
+        mwProdURL: "//data.dowjones.com/autocomplete/data",
         showHelp: false,
         helpLabelText: "press enter to search full-text",
         minChars: 1,
@@ -856,7 +875,7 @@
         function moveSelect(step) {
             //Skip the headings
             if (step > 0) {
-                if ($(listItems[active]).next().hasClass("ac_cat_head")) {
+                if ($(listItems[active]).next().hasClass("ac_cat_head") ) {
                     step += 1;
                 }
             } else {
@@ -867,6 +886,8 @@
 
             listItems.slice(active, active + 1).removeClass(CLASSES.ACTIVE);
             movePosition(step);
+            if($(listItems[active]).hasClass("ac_cat_head"))
+                movePosition(step<0?-1:1);
             var activeItem = listItems.slice(active, active + 1).addClass(CLASSES.ACTIVE);
             if (options.scroll && activeItem.length > 0) {
                 var offset = 0;
