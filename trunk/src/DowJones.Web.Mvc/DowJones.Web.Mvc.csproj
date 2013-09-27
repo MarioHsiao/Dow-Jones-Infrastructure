@@ -447,11 +447,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\js\require.min.js">
-      <DependentUpon>require.js</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Resources\js\underscore.min.js">
       <DependentUpon>underscore.js</DependentUpon>
     </EmbeddedResource>
