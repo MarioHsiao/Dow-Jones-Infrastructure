@@ -73,6 +73,7 @@ namespace DowJones.Web.Mvc.UI
         public virtual void Render(IScriptRegistry scriptRegistry, TextWriter writer)
         {
             WriteScriptIncludes(scriptRegistry, writer);
+            //
             WriteScriptStatements(scriptRegistry, writer);
         }
 
@@ -199,6 +200,7 @@ namespace DowJones.Web.Mvc.UI
                 htmlWriter.CloseScriptBlock();
         }
 
+        
 
         protected virtual void WriteOnDocumentReadyFunctionStart(IScriptRegistry scriptRegistry, TextWriter writer)
         {
