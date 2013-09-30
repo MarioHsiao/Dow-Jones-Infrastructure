@@ -3,7 +3,7 @@
  .AutoSuggestComponent{padding:10px; position:relative;}
 .dj_AutoSuggest{padding-right:17px;}
 .ac_input{ width: 300px;}
-span.icon_clear{ position:relative; right:10px; display:none; cursor:pointer; font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;color:#38468F;  }span.icon_clear:hover{ color: white; background-color: grey}
+span.icon_clear{ position:absolute;vertical-align:middle;padding-top: 3px; right:5px; display:none; cursor:pointer; font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;color:#38468F;  }span.icon_clear:hover{ color: white; background-color: grey}
  span.icon_close {border: none; height: 28px; width: 16px; background: transparent url(images/murdochSprites.png) -70px -198px  no-repeat; cursor: pointer; position: relative; right: 25px;top: auto; display: none;}
 .dj_emg_autosuggest_results { border: 1px solid #CCCCCC; padding: 0px; background-color: white; overflow: hidden; z-index: 99999; -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); }
 .dj_emg_autosuggest_results table { width: 100%; padding: 0; margin: 0; border-collapse: collapse; }
