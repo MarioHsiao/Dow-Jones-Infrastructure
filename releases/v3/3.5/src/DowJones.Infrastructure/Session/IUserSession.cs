@@ -24,6 +24,8 @@ namespace DowJones.Session
         string SessionId { get; }
         
         string UserId { get; }
+
+        string EncryptedUserId { get; }
         
         bool IsValid();
 
