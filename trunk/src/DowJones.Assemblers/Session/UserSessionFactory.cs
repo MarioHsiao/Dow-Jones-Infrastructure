@@ -134,6 +134,7 @@ namespace DowJones.Assemblers.Session
                 Session.UserId = CookieManager.GetPermanentValue(ProductPrefix + "_U");
                 Session.ProxyUserId = CookieManager.GetPermanentValue(ProductPrefix + "_PU");
                 Session.ProxyNamespace = CookieManager.GetPermanentValue(ProductPrefix + "_PN");
+                Session.EncryptedUserId = CookieManager.GetPermanentValue(ProductPrefix + "_EU");
             }
 
             SetDebug();
