@@ -76,7 +76,7 @@
         // Create $ object for input element
         var $input = $(input).attr("autocomplete", "off").addClass(options.inputClass);
         $('#' + options.eraseBtnId).on("click", function(){ $input.val(""); $(this).fadeOut("fast");});
-        if((options.searchBtnId.length>0) && $('#' + options.searchBtnId))
+        if((options.searchBtnId.length>0) && $('#' + options.searchBtnId) && 'freeTextEnter' in options)
             $('#' + options.searchBtnId).on("click", function() { $input.trigger(jQuery.Event('keydown', {which: 13, keyCode: 13 })); });
         var timeout;
         var previousValue = "";
@@ -236,13 +236,19 @@
 //            if ((e.keyCode != 13 || e.which != 13) && $('#' + options.eraseBtnId).is(":hidden"))
 //				$('#' + options.eraseBtnId).fadeIn("fast");
         }
+        
+
 
        function freetextSearch() {
+           if($input.val().length<1)
+                return;
             var d = {};
             d.controlType = "freetext";
             d.text = $input.val();
+           
             $input.trigger("freetext", [d, $input.val()]);
-        }
+           return;
+       }
 
         function selectCurrent() {
             var selected = select.selected();
@@ -630,7 +636,6 @@
         viewAllClass: "dj_emg_autosuggest_viewall",
         viewAllText: "View All",
         eraseBtnId:"icon_reset",
-        searchBtnId:"",
         mwProdURL: "//data.dowjones.com/autocomplete/data",
         showHelp: false,
         helpLabelText: "press enter to search full-text",

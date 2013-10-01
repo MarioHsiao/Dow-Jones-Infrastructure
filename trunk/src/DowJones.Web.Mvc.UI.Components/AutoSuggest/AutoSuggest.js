@@ -627,20 +627,29 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
 
         if ($.isFunction(settings.onItemSelect)) {
             $("#" + settings.controlId)._djResult(function (e) {
-                self.globalSettingsObj.onItemSelect(arguments[1]);
+                    self.globalSettingsObj.onItemSelect(arguments[1]);
+                e.stopPropagation();
+                return false;
+            });
+        }
+        
+
+        //OnFreeText EventHandler
+        if ($.isFunction(settings.onFreeTextEnter)) {
+            $("#" + settings.controlId)._djFreeText(function (e) {
+                    self.globalSettingsObj.onFreeTextEnter(arguments[1]);
                 e.stopPropagation();
                 return false;
             });
         }
 
-        //OnFreeText EventHandler
-        if ($.isFunction(settings.onFreeTextEnter)) {
-            $("#" + settings.controlId)._djFreeText(function (e) {
-                self.globalSettingsObj.onFreeTextEnter(arguments[1]);
-                e.stopPropagation();
-                return false;
+        if ((settings.searchBtnId.length > 0) && $('#' + settings.searchBtnId) && $.isFunction(settings.onFreeTextEnter)) {
+            $('#' + settings.searchBtnId).on("click", function () {
+                suggestControl.trigger(jQuery.Event('keydown', { which: 13, keyCode: 13 }));
             });
         }
+        
+
 //        //onViewAll EventHandler
 //        $("#" + settings.controlId)._djViewAll(function (e, result) {
 //            if (result) {
