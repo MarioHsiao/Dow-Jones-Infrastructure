@@ -76,8 +76,7 @@
         // Create $ object for input element
         var $input = $(input).attr("autocomplete", "off").addClass(options.inputClass);
         $('#' + options.eraseBtnId).on("click", function(){ $input.val(""); $(this).fadeOut("fast");});
-        if((options.searchBtnId.length>0) && $('#' + options.searchBtnId) && 'freeTextEnter' in options)
-            $('#' + options.searchBtnId).on("click", function() { $input.trigger(jQuery.Event('keydown', {which: 13, keyCode: 13 })); });
+
         var timeout;
         var previousValue = "";
         var cache = $.DJAutocompleter.Cache(options);
