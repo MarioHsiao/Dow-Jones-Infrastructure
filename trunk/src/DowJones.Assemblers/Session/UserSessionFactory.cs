@@ -116,6 +116,7 @@ namespace DowJones.Assemblers.Session
                     ProductPrefix = ProductPrefix,
                     SessionId = DecodeSessionId(CookieManager.GetSessionValue(ProductPrefix + "_S")),
                     UserId = DecodeUserId(CookieManager.GetSessionValue(ProductPrefix + "_U")),
+                    EncryptedUserId = CookieManager.GetSessionValue(ProductPrefix + "_EU"),
                 };
 
             var language = HttpContext.Request[LanguageKey];
@@ -133,8 +134,7 @@ namespace DowJones.Assemblers.Session
                 Session.ProductId = CookieManager.GetPermanentValue(ProductPrefix + "_N");
                 Session.UserId = CookieManager.GetPermanentValue(ProductPrefix + "_U");
                 Session.ProxyUserId = CookieManager.GetPermanentValue(ProductPrefix + "_PU");
-                Session.ProxyNamespace = CookieManager.GetPermanentValue(ProductPrefix + "_PN");
-                Session.EncryptedUserId = CookieManager.GetPermanentValue(ProductPrefix + "_EU");
+                Session.ProxyNamespace = CookieManager.GetPermanentValue(ProductPrefix + "_PN");                
             }
 
             SetDebug();
