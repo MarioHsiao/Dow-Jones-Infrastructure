@@ -23,9 +23,9 @@ namespace DowJones.Assemblers.Headlines
 {
     public abstract class AbstractHeadlineListDataResultSetConverter : IListDataResultConverter
     {
-        private readonly DateTimeFormatter dateTimeFormatter;
-        private readonly NumberFormatter numberFormatter;
-        private readonly IResourceTextManager resources;
+        private readonly DateTimeFormatter _dateTimeFormatter;
+        private readonly NumberFormatter _numberFormatter;
+        private readonly IResourceTextManager _resources;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AbstractHeadlineListDataResultSetConverter"/> class.
@@ -46,26 +46,26 @@ namespace DowJones.Assemblers.Headlines
 
         protected AbstractHeadlineListDataResultSetConverter(DateTimeFormatter dateTimeFormatter, NumberFormatter numberFormatter, IResourceTextManager resource)
         {
-            this.dateTimeFormatter = dateTimeFormatter ?? new DateTimeFormatter("en");
-            this.numberFormatter = numberFormatter ?? new NumberFormatter();
-            this.resources = resources ?? ServiceLocator.Resolve<IResourceTextManager>();
+            _dateTimeFormatter = dateTimeFormatter ?? new DateTimeFormatter("en");
+            _numberFormatter = numberFormatter ?? new NumberFormatter();
+            _resources = resource ?? ServiceLocator.Resolve<IResourceTextManager>();
         }
 
         #region Properties
 
         public DateTimeFormatter DateTimeFormatter
         {
-            get { return dateTimeFormatter; }
+            get { return _dateTimeFormatter; }
         }
 
         public NumberFormatter NumberFormatter
         {
-            get { return numberFormatter; }
+            get { return _numberFormatter; }
         }
 
         public IResourceTextManager ResourceText
         {
-            get { return resources; }
+            get { return _resources; }
         }
         
         public bool EnableContentItemsMapping { get; set; }
@@ -117,13 +117,10 @@ namespace DowJones.Assemblers.Headlines
             // update source information
             headlineInfo.sourceReference = contentHeadline.SourceCode;
             headlineInfo.sourceDescriptor = contentHeadline.SourceName;
-
             headlineInfo.documentVector = contentHeadline.DocumentVector;
-
             
             // update publication date/time information
             headlineInfo.publicationDateTime = contentHeadline.PublicationDate;
-            
             headlineInfo.modificationDateTime = DateTimeFormatter.Merge(contentHeadline.ModificationDate, contentHeadline.ModificationTime);
             headlineInfo.modificationDateTimeDescriptor = DateTimeFormatter.FormatLongDateTime(headlineInfo.modificationDateTime);
             headlineInfo.modificationDateDescriptor = DateTimeFormatter.FormatLongDate(headlineInfo.modificationDateTime);
@@ -141,8 +138,8 @@ namespace DowJones.Assemblers.Headlines
             {
                 headlineInfo.publicationDateTimeDescriptor = DateTimeFormatter.FormatLongDate(headlineInfo.publicationDateTime);
             }
-            headlineInfo.publicationDateDescriptor = DateTimeFormatter.FormatLongDate(headlineInfo.publicationDateTime);
 
+            headlineInfo.publicationDateDescriptor = DateTimeFormatter.FormatLongDate(headlineInfo.publicationDateTime);
             headlineInfo.wordCount = contentHeadline.WordCount;
             headlineInfo.wordCountDescriptor = string.Format(
                 "{0} {1}",

@@ -293,9 +293,6 @@
     <None Include="Resources\js\highcharts.min.js.map">
       <DependentUpon>highcharts.js</DependentUpon>
     </None>
-    <None Include="Resources\js\require.min.js.map">
-      <DependentUpon>require.js</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Mobile\Extensions\" />
@@ -447,11 +444,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\js\jquery.popupballoon.min.js">
       <DependentUpon>jquery.popupballoon.js</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\js\require.min.js">
-      <DependentUpon>require.js</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

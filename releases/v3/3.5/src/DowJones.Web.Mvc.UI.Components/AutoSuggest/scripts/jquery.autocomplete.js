@@ -14,7 +14,7 @@
 ;(function($) {
     $.fn.extend({
         _djAutocomplete: function(urlOrData, options) {
-            var isUrl = typeof urlOrData === "string";
+            var isUrl = typeof urlOrData == "string";
             options = $.extend({}, $.DJAutocompleter.defaults, {
                 url: isUrl ? urlOrData : null,
                 data: isUrl ? null : urlOrData,
@@ -35,6 +35,9 @@
         _djResult: function(handler) {
             return this.unbind("result").bind("result", handler);
         },
+        _djFreeText: function(handler) {
+            return this.unbind("freetext").bind("freetext", handler);
+        },
         _djSearch: function(handler) {
             return this.trigger("search", [handler]);
         },
@@ -43,7 +46,7 @@
         },
         _djSetOptions: function(options) {
             return this.trigger("setOptions", [options]);
-        },
+        },   
         _djUnautocomplete: function() {
             return this.trigger("unautocomplete");
         },
@@ -72,6 +75,7 @@
 
         // Create $ object for input element
         var $input = $(input).attr("autocomplete", "off").addClass(options.inputClass);
+        $('#' + options.eraseBtnId).on("click", function(){ $input.val(""); $(this).fadeOut("fast");});
 
         var timeout;
         var previousValue = "";
@@ -156,6 +160,12 @@
                         blockSubmit = true;
                         return false;
                     }
+                    else if (!selectCurrent()) {
+                        freetextSearch();
+                        event.preventDefault();
+                        blockSubmit = true;
+                        return false;
+                    }
                     select.hide();
                     break;
 
@@ -199,7 +209,8 @@
                 else $input.trigger("result", result && [result.data, result.value]);
             }
             $.each(trimWords($input.val()), function(i, value) {
-                request(value, findValueCallback, findValueCallback);
+                //request(value, findValueCallback, findValueCallback);
+                deferredRequest(value, findValueCallback, findValueCallback);
             });
         }).bind("flushCache", function() {
             cache.flush();
@@ -212,8 +223,31 @@
             select.unbind();
             $input.unbind();
             $(input.form).unbind(".autocomplete");
+        }).bind("paste", function(){
+            clearTimeout(timeout);
+            timeout = setTimeout(onChange, options.delay);
+    
         });
+        
+        function showOrHideResetButton() {
+            var io =  $input.val().length ? 1 : 0 ;
+            $('#' + options.eraseBtnId).stop().fadeTo(300,io);
+//            if ((e.keyCode != 13 || e.which != 13) && $('#' + options.eraseBtnId).is(":hidden"))
+//				$('#' + options.eraseBtnId).fadeIn("fast");
+        }
+        
 
+
+       function freetextSearch() {
+           if($input.val().length<1)
+                return;
+            var d = {};
+            d.controlType = "freetext";
+            d.text = $input.val();
+           
+            $input.trigger("freetext", [d, $input.val()]);
+           return;
+       }
 
         function selectCurrent() {
             var selected = select.selected();
@@ -261,8 +295,11 @@
                 }
                 v += options.multipleSeparator;
             }
-
-            $input.val(v);
+             if ((!options.eraseInputOnItemSelect) || selected.data.controlType=='keyword')
+                $input.val(v);
+            else {
+                 $input.val("");
+            }
             hideResultsNow();
             $input.trigger("result", [selected.data, selected.value]);
             return true;
@@ -273,7 +310,7 @@
                 select.hide();
                 return;
             }
-
+            showOrHideResetButton();
             var currentValue = $input.val();
 
             if (!skipPrevCheck && currentValue == previousValue)
@@ -286,12 +323,13 @@
                 $input.addClass(options.loadingClass);
                 if (!options.matchCase)
                     currentValue = currentValue.toLowerCase();
-                request(currentValue, receiveData, hideResultsNow);
+                //request(currentValue, receiveData, hideResultsNow);
+                deferredRequest(currentValue, receiveData, hideResultsNow);
             } else {
                 stopLoading();
                 select.hide();
             }
-        }
+        };
 
         function trimWords(value) {
             if (!value)
@@ -330,14 +368,16 @@
                 // select the portion of the Data not typed by the user (so the next character will erase)
                 $(input).selection(previousValue.length, previousValue.length + sValue.length);
             }
-        }
+        };
 
         function hideResults() {
+            showOrHideResetButton();
             clearTimeout(timeout);
             timeout = setTimeout(hideResultsNow, 200);
-        }
+        };
 
         function hideResultsNow() {
+            showOrHideResetButton();
             var wasVisible = select.visible();
             select.hide();
             clearTimeout(timeout);
@@ -345,26 +385,26 @@
             if (options.mustMatch) {
                 // call search and run callback
                 $input.search(
-				function(result) {
-				    // if no Data found, clear the input box
-				    if (!result) {
-				        if (options.multiple) {
-				            var words = trimWords($input.val()).slice(0, -1);
-				            $input.val(words.join(options.multipleSeparator) + (words.length ? options.multipleSeparator : ""));
-				        }
-				        else {
-				            $input.val("");
-				            $input.trigger("result", null);
-				        }
-				    }
-				}
-			);
+                function(result) {
+                    // if no Data found, clear the input box
+                    if (!result) {
+                        if (options.multiple) {
+                            var words = trimWords($input.val()).slice(0, -1);
+                            $input.val(words.join(options.multipleSeparator) + (words.length ? options.multipleSeparator : ""));
+                        }
+                        else {
+                            $input.val("");
+                            $input.trigger("result", null);
+                        }
+                    }
+                }
+            );
             }
-        }
+        };
 
         function receiveData(q, data) {
             // even if data is null, but options.showViewAll is true, we show the drop down
-            if ((data || options.showViewAll) && hasFocus) {
+            if ((data || options.showViewAll) && hasFocus && data.length > 0) {
                 stopLoading();
                 select.display(data, q);
                 if (data && data.length) {
@@ -374,8 +414,136 @@
             } else {
                 hideResultsNow();
             }
-        }
+        };
+        
+        function requestSuggestService(options, extraParams, input) {
+            var dfd = new $.Deferred();
+            var params = extraParams;
+            if (extraParams.autocompletionType == "Categories") {
+                var catArr = extraParams.categories.split("|");
+                catArr.splice($.inArray("symbol", catArr), 1);
+                params.categories = catArr.join("|");
+                if (catArr.length == 0) {
+                    var data = { category: [], host: "", httpStatus: 200, version: "1.0" };
+                    return dfd.resolve(data);
+                }
+            }
+            DJ.crossDomain({
+                // try to leverage ajaxQueue plugin to abort previous requests
+                mode: "abort",
+                cache: false,
+                // limit abortion to this input
+                port: "autocomplete" + input.name,
+                dataType: options.dataType,
+                callbackParameter: "callback",
+                url: options.url,
+                data: params,
+                success: function(data) {
+                    dfd.resolve(data);
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    dfd.reject(jqXHR);
 
+                }
+            });
+            return dfd.promise();
+        }
+        function deferredRequest(term, success, failure) {
+            if (!options.matchCase)
+                term = term.toLowerCase();
+            var data = cache.load(term);
+            // recieve the cached data
+            if (data && data.length) {
+                success(term, data);
+                // if an AJAX url has been supplied, try loading the data now
+            } else if ((typeof options.url == "string") && (options.url.length > 0)) {
+
+                var extraParams = {
+                    timestamp: +new Date()
+                };
+                $.each(options.extraParams, function(key, param) {
+                    extraParams[key] = typeof param == "function" ? param() : param;
+                });
+                if (extraParams.autocompletionType == "Categories") {
+                    //                    if (term == "") {
+                    //                        term = "a";
+                    //                        extraParams.searchText = "a";
+                    //                    }
+
+                    $.when(requestSuggestService(options, extraParams, input), requestMarketWatch(term, extraParams))
+                        .done(function(data, symbols) {
+                            if (data.error != undefined) {
+                                //Stop loading
+                                stopLoading();
+                            } else {
+                                if (symbols != null && symbols.error == null)
+                                    data.category.push(symbols);
+                                var parsed = options.parse && options.parse(data, term) || parse(data, term);
+                               if(term.length<$input.val().length) stopLoading();
+                                //cache.add(term, parsed);
+                                else success(term, parsed);
+                            }
+                        })
+                        .fail(function() {
+                            stopLoading();
+                            var data = { error: "Could not make jsonp call." };
+                            success(term, options.parse && options.parse(data) || parse(data));
+                        });
+
+                } else {
+                    $.when(requestSuggestService(options, extraParams, extraParams, input))
+                        .done(function(data) {
+                            var parsed = options.parse && options.parse(data, term) || parse(data, term);
+                            if(term.length<$input.val().length) stopLoading();
+                                //cache.add(term, parsed);
+                                else success(term, parsed);
+                        })
+                        .fail(function() {
+                            stopLoading();
+                            var data = { error: "Could not make jsonp call." };
+                            success(term, options.parse && options.parse(data) || parse(data));
+                        });
+
+                }
+
+            } else {
+                // if we have a failure, we need to empty the list -- this prevents the the [TAB] key from selecting the last successful match
+                select.emptyList();
+                failure(term);
+            }
+        };
+
+
+
+
+        function requestMarketWatch(term,extraParams) {
+            var dfd = new $.Deferred();
+            if (options.extraParams.categories.toLowerCase().indexOf("symbol") < 0)
+                return dfd.resolve(null);
+            var _url = options.mwProdURL + "?q=" + term;
+            _url += "&count=" + options.extraParams.maxResults + "&need=symbol";
+            if (options.extraParams.it)
+                _url += "&it=" + options.extraParams.it;
+            DJ.crossDomain({
+                mode: "abort",
+                cache: false,
+                    // limit abortion to this input
+                port: "autocomplete" + input.name,
+                url: _url,
+                callbackParameter: "callback",
+                timeout: 800,
+                dataType: options.dataType,
+                data: extraParams,
+                success: function(resp) {
+                    var symbolRow = { __type: "instrumentResponse:#DJSuggestRestService", httpStatus: 0, symbol: resp["symbols"] };
+                    dfd.resolve(symbolRow);
+                },
+                error: function(resp) {
+                    dfd.reject(resp);
+                }
+            });
+            return dfd.promise();
+        }
         function request(term, success, failure) {
             if (!options.matchCase)
                 term = term.toLowerCase();
@@ -431,27 +599,29 @@
 
         function parse(data) {
             if (!data.error) {
-                var parsed = [];
-                var rows = data.split("\n");
-                for (var i = 0; i < rows.length; i++) {
-                    var row = $.trim(rows[i]);
-                    if (row) {
-                        row = row.split("|");
-                        parsed[parsed.length] = {
-                            data: row,
-                            value: row[0],
-                            result: options.formatResult && options.formatResult(row, row[0]) || row[0]
-                        };
+                if (data.count > 0) {
+                    var parsed = [];
+                    var rows = data.split("\n");
+                    for (var i = 0; i < rows.length; i++) {
+                        var row = $.trim(rows[i]);
+                        if (row) {
+                            row = row.split("|");
+                            parsed[parsed.length] = {
+                                data: row,
+                                value: row[0],
+                                result: options.formatResult && options.formatResult(row, row[0]) || row[0]
+                            };
+                        }
                     }
                 }
                 return parsed;
             }
             return data;
-        }
+        };
 
         function stopLoading() {
             $input.removeClass(options.loadingClass);
-        }
+        };
 
     };
 
@@ -464,6 +634,8 @@
         resultsOverClass: "dj_emg_autosuggest_over",
         viewAllClass: "dj_emg_autosuggest_viewall",
         viewAllText: "View All",
+        eraseBtnId:"icon_reset",
+        mwProdURL: "//data.dowjones.com/autocomplete/data",
         showHelp: false,
         helpLabelText: "press enter to search full-text",
         minChars: 1,
@@ -477,6 +649,7 @@
         extraParams: {},
         selectFirst: true,
         fillInputOnKeyUpDown: false,
+        eraseInputOnItemSelect:false,
         formatItem: function(row) { return row[0]; },
         formatMatch: null,
         autoFill: false,
@@ -512,8 +685,8 @@
                 i = s.toLowerCase().search("\\b" + sub.toLowerCase());
             }
             if (i == -1) return false;
-            return i === 0 || options.matchContains;
-        }
+            return i == 0 || options.matchContains;
+        };
 
         function add(q, value) {
             if (length > options.cacheLength) {
@@ -529,7 +702,7 @@
             if (!options.data) return false;
             // track the matches
             var stMatchSets = {},
-			nullData = 0;
+            nullData = 0;
 
             // no url was specified, we need to adjust the cache length to make sure it fits the local data store
             if (!options.url) options.cacheLength = 1;
@@ -566,7 +739,7 @@
                 if (nullData++ < options.max) {
                     stMatchSets[""].push(row);
                 }
-            }
+            };
 
             // add the data items to the cache
             $.each(stMatchSets, function(i, value) {
@@ -644,22 +817,22 @@
         };
 
         var listItems,
-		active = -1,
-		data,
-		term = "",
-		needsInit = true,
-		element,
-		list;
+        active = -1,
+        data,
+        term = "",
+        needsInit = true,
+        element,
+        list;
 
         // Create results
         function init() {
             if (!needsInit)
                 return;
             element = $("<div/>")
-		        .hide()
-		        .addClass(options.resultsClass)
-		        .css("position", "absolute")
-		        .appendTo(document.body);
+                .hide()
+                .addClass(options.resultsClass)
+                .css("position", "absolute")
+                .appendTo(document.body);
 
             list = $("<table/>").appendTo(element).mouseover(function(event) {
                 if (target(event).nodeName && target(event).nodeName.toUpperCase() == 'TR') {
@@ -704,8 +877,21 @@
         }
 
         function moveSelect(step) {
+            //Skip the headings
+            if (step > 0) {
+                if ($(listItems[active]).next().hasClass("ac_cat_head") ) {
+                    step += 1;
+                }
+            } else {
+                if ($(listItems[active]).prev().hasClass("ac_cat_head")) {
+                    step -= 1;
+                }
+            }
+
             listItems.slice(active, active + 1).removeClass(CLASSES.ACTIVE);
             movePosition(step);
+            if($(listItems[active]).hasClass("ac_cat_head"))
+                movePosition(step<0?-1:1);
             var activeItem = listItems.slice(active, active + 1).addClass(CLASSES.ACTIVE);
             if (options.scroll && activeItem.length > 0) {
                 var offset = 0;
@@ -718,7 +904,7 @@
                     list.scrollTop(offset);
                 }
             }
-        }
+        };
 
         function movePosition(step) {
             active += step;
@@ -747,7 +933,7 @@
                     var formatted = options.formatItem(data[i].data, i + 1, max, data[i].value, term);
                     if (formatted === false)
                         continue;
-                    var tr = $("<tr/>").html(options.highlight(formatted, term, data[i].data.controlType)).addClass(i % 2 === 0 ? options.resultsEvenClass : options.resultsOddClass).appendTo(list)[0];
+                    var tr = $("<tr/>").html(options.highlight(formatted, term, data[i].data.controlType)).addClass(i % 2 == 0 ? options.resultsEvenClass : options.resultsOddClass).appendTo(list)[0];
 
                     if (data[i].data.isCategory === true) {
                         //Append the header
@@ -780,8 +966,8 @@
             if (options.showHelp) {
                 var inputVal = $(input).val();
                 var tr = $("<tr/>").addClass("ac_helpRow")
-							                   .addClass(i % 2 === 0 ? options.resultsEvenClass : options.resultsOddClass)
-							                   .append($("<td>").html("<span class='ac_helpResult'>" + inputVal + "</span><span class='ac_helpText'>" + options.helpLabelText + "</span>"))
+                                               .addClass(i % 2 == 0 ? options.resultsEvenClass : options.resultsOddClass)
+                                               .append($("<td>").html("<span class='ac_helpResult'>" + inputVal + "</span><span class='ac_helpText'>" + options.helpLabelText + "</span>"))
                                                .prependTo(list)[0];
                 $.data(tr, "ac_data", { value: inputVal, isHelpRowEnabled: true });
             }
@@ -789,10 +975,10 @@
             //Show viewAll row based on the settings
             if (options.showViewAll) {
                 var tr = $("<tr/>")
-							.addClass(options.viewAllClass)
-							.addClass(i % 2 === 0 ? options.resultsEvenClass : options.resultsOddClass)
-							.append($("<td>").html(options.viewAllText))
-							.appendTo(list)[0];
+                            .addClass(options.viewAllClass)
+                            .addClass(i % 2 == 0 ? options.resultsEvenClass : options.resultsOddClass)
+                            .append($("<td>").html(options.viewAllText))
+                            .appendTo(list)[0];
                 $.data(tr, "ac_data", { isViewAll: true });
             }
 
@@ -820,7 +1006,7 @@
                 moveSelect(-1);
             },
             pageUp: function() {
-                if (active !== 0 && active - 8 < 0) {
+                if (active != 0 && active - 8 < 0) {
                     moveSelect(-active);
                 } else {
                     moveSelect(-8);
@@ -916,9 +1102,9 @@
         var field = this[0];
         if (field.createTextRange) {
             var range = document.selection.createRange(),
-			orig = field.value,
-			teststring = "<->",
-			textLength = range.text.length;
+            orig = field.value,
+            teststring = "<->",
+            textLength = range.text.length;
             range.text = teststring;
             var caretAt = field.value.indexOf(teststring);
             field.value = orig;

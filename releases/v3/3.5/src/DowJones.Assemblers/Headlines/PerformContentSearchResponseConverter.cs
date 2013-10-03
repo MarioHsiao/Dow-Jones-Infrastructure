@@ -19,9 +19,9 @@ namespace DowJones.Assemblers.Headlines
     internal class PerformContentSearchResponseConverter : AbstractHeadlineListDataResultSetConverter, IExtendedListDataResultConverter
     {
         protected static readonly ILog Log = LogManager.GetLogger( typeof( PerformContentSearchResponseConverter ) );
-        private readonly IPerformContentSearchResponse response;
-        private readonly int startIndex;
-        private readonly HeadlineListDataResult result = new HeadlineListDataResult();
+        private readonly IPerformContentSearchResponse _response;
+        private readonly int _startIndex;
+        private readonly HeadlineListDataResult _result = new HeadlineListDataResult();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PerformContentSearchResponseConverter"/> class.
@@ -32,8 +32,8 @@ namespace DowJones.Assemblers.Headlines
         public PerformContentSearchResponseConverter( IPerformContentSearchResponse response, int startIndex, string interfaceLanguage )
             : base( interfaceLanguage )
         {
-            this.response = response;
-            this.startIndex = startIndex;
+            _response = response;
+            _startIndex = startIndex;
         }
 
         /// <summary>
@@ -59,8 +59,8 @@ namespace DowJones.Assemblers.Headlines
         public PerformContentSearchResponseConverter( IPerformContentSearchResponse response, int startIndex, DateTimeFormatter dateTimeFormatter )
             : base( dateTimeFormatter )
         {
-            this.response = response;
-            this.startIndex = startIndex;
+            _response = response;
+            _startIndex = startIndex;
         }
 
         public override IListDataResult Process()
@@ -84,50 +84,50 @@ namespace DowJones.Assemblers.Headlines
             GenerateExternalUrlForHeadlineInfo = generateExternalUrl;
             GenerateSnippetThumbnailForHeadlineInfo = generateSnippetThumbnail;
 
-            if( response == null || response.ContentSearchResult == null || response.ContentSearchResult.ContentHeadlineResultSet == null || response.ContentSearchResult.HitCount <= 0 )
+            if( _response == null || _response.ContentSearchResult == null || _response.ContentSearchResult.ContentHeadlineResultSet == null || _response.ContentSearchResult.HitCount <= 0 )
             {
                 // Add the HitCount to the result set
-                result.hitCount = new WholeNumber( 0 );
+                _result.hitCount = new WholeNumber( 0 );
 
-                result.resultSet.first = result.hitCount;
-                result.resultSet.count = result.hitCount;
-                result.resultSet.duplicateCount = result.hitCount;
-                return result;
+                _result.resultSet.first = _result.hitCount;
+                _result.resultSet.count = _result.hitCount;
+                _result.resultSet.duplicateCount = _result.hitCount;
+                return _result;
             }
 
             // Add the HitCount to the result set
-            result.hitCount = new WholeNumber( response.ContentSearchResult.HitCount );
+            _result.hitCount = new WholeNumber( _response.ContentSearchResult.HitCount );
 
-            var resultSet = response.ContentSearchResult.ContentHeadlineResultSet;
-            result.resultSet.first = new WholeNumber( resultSet.First );
+            var resultSet = _response.ContentSearchResult.ContentHeadlineResultSet;
+            _result.resultSet.first = new WholeNumber( resultSet.First );
 
             if( resultSet.Count <= 0 )
             {
-                return result;
+                return _result;
             }
 
-            if( response.ContentSearchResult.DeduplicatedHeadlineSet != null && response.ContentSearchResult.DeduplicatedHeadlineSet.Count > 0 )
+            if( _response.ContentSearchResult.DeduplicatedHeadlineSet != null && _response.ContentSearchResult.DeduplicatedHeadlineSet.Count > 0 )
             {
-                result.resultSet.count = new WholeNumber( response.ContentSearchResult.DeduplicatedHeadlineSet.Count );
-                result.resultSet.duplicateCount = new WholeNumber( resultSet.Count - response.ContentSearchResult.DeduplicatedHeadlineSet.Count );
+                _result.resultSet.count = new WholeNumber( _response.ContentSearchResult.DeduplicatedHeadlineSet.Count );
+                _result.resultSet.duplicateCount = new WholeNumber( resultSet.Count - _response.ContentSearchResult.DeduplicatedHeadlineSet.Count );
 
                 // Format
-                ProcessDeduplicatedHeadlines( resultSet, response.ContentSearchResult.DeduplicatedHeadlineSet );
+                ProcessDeduplicatedHeadlines( resultSet, _response.ContentSearchResult.DeduplicatedHeadlineSet );
             }
             else
             {
-                result.resultSet.count = new WholeNumber( resultSet.Count );
-                result.resultSet.duplicateCount = new WholeNumber( 0 );
+                _result.resultSet.count = new WholeNumber( resultSet.Count );
+                _result.resultSet.duplicateCount = new WholeNumber( 0 );
                 ProcessContentHeadlines( resultSet );
             }
 
-            return result;
+            return _result;
         }
 
         private void ProcessDeduplicatedHeadlines( ContentHeadlineResultSet contentHeadlineResultSet, DeduplicatedHeadlineSet deduplicatedHeadlineSet )
         {
             var headlineDictionary = contentHeadlineResultSet.ContentHeadlineCollection.ToDictionary( headline => headline.AccessionNo );
-            var i = ( startIndex > 0 ) ? startIndex : contentHeadlineResultSet.First;
+            var i = ( _startIndex > 0 ) ? _startIndex : contentHeadlineResultSet.First;
 
             foreach( var reference in deduplicatedHeadlineSet.HeadlineRefCollection )
             {
@@ -149,18 +149,18 @@ namespace DowJones.Assemblers.Headlines
                     }
                 }
 
-                result.resultSet.headlines.Add( curHeadlineInfo );
+                _result.resultSet.headlines.Add( curHeadlineInfo );
             }
         }
 
         private void ProcessContentHeadlines( ContentHeadlineResultSet contentHeadlineResultSet )
         {
-            var i = ( startIndex > 0 ) ? startIndex : contentHeadlineResultSet.First;
+            var i = ( _startIndex > 0 ) ? _startIndex : contentHeadlineResultSet.First;
             foreach( var headline in contentHeadlineResultSet.ContentHeadlineCollection )
             {
                 var headlineInfo = new HeadlineInfo();
                 Convert( headlineInfo, headline, false, ++i );
-                result.resultSet.headlines.Add( headlineInfo );
+                _result.resultSet.headlines.Add( headlineInfo );
             }
         }
     }
