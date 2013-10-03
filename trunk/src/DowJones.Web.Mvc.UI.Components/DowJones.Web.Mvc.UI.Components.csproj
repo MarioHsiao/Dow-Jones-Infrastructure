@@ -749,9 +749,7 @@
     <EmbeddedResource Include="HeadlineList\HeadlineList.js" />
     <EmbeddedResource Include="Discovery\ClientTemplates\Success.htm" />
     <EmbeddedResource Include="AutoSuggest\AutoSuggest.js" />
-    <EmbeddedResource Include="AutoSuggest\scripts\jquery.autocomplete.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    <EmbeddedResource Include="AutoSuggest\scripts\jquery.autocomplete.js" />
     <EmbeddedResource Include="CalendarEventList\ClientTemplates\Container.htm" />
     <EmbeddedResource Include="CalendarEventList\ClientTemplates\Success.htm" />
     <EmbeddedResource Include="DateSlider\ClientTemplates\Container.htm" />

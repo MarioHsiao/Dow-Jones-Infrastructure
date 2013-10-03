@@ -231,7 +231,7 @@
         
         function showOrHideResetButton() {
             var io =  $input.val().length ? 1 : 0 ;
-			$('#' + options.eraseBtnId).stop().fadeTo(300,io);
+            $('#' + options.eraseBtnId).stop().fadeTo(300,io);
 //            if ((e.keyCode != 13 || e.which != 13) && $('#' + options.eraseBtnId).is(":hidden"))
 //				$('#' + options.eraseBtnId).fadeIn("fast");
         }
@@ -385,20 +385,20 @@
             if (options.mustMatch) {
                 // call search and run callback
                 $input.search(
-				function(result) {
-				    // if no Data found, clear the input box
-				    if (!result) {
-				        if (options.multiple) {
-				            var words = trimWords($input.val()).slice(0, -1);
-				            $input.val(words.join(options.multipleSeparator) + (words.length ? options.multipleSeparator : ""));
-				        }
-				        else {
-				            $input.val("");
-				            $input.trigger("result", null);
-				        }
-				    }
-				}
-			);
+                function(result) {
+                    // if no Data found, clear the input box
+                    if (!result) {
+                        if (options.multiple) {
+                            var words = trimWords($input.val()).slice(0, -1);
+                            $input.val(words.join(options.multipleSeparator) + (words.length ? options.multipleSeparator : ""));
+                        }
+                        else {
+                            $input.val("");
+                            $input.trigger("result", null);
+                        }
+                    }
+                }
+            );
             }
         };
 
@@ -415,8 +415,8 @@
                 hideResultsNow();
             }
         };
-		
-		function requestSuggestService(options, extraParams, input) {
+        
+        function requestSuggestService(options, extraParams, input) {
             var dfd = new $.Deferred();
             var params = extraParams;
             if (extraParams.autocompletionType == "Categories") {
@@ -702,7 +702,7 @@
             if (!options.data) return false;
             // track the matches
             var stMatchSets = {},
-			nullData = 0;
+            nullData = 0;
 
             // no url was specified, we need to adjust the cache length to make sure it fits the local data store
             if (!options.url) options.cacheLength = 1;
@@ -817,22 +817,22 @@
         };
 
         var listItems,
-		active = -1,
-		data,
-		term = "",
-		needsInit = true,
-		element,
-		list;
+        active = -1,
+        data,
+        term = "",
+        needsInit = true,
+        element,
+        list;
 
         // Create results
         function init() {
             if (!needsInit)
                 return;
             element = $("<div/>")
-		        .hide()
-		        .addClass(options.resultsClass)
-		        .css("position", "absolute")
-		        .appendTo(document.body);
+                .hide()
+                .addClass(options.resultsClass)
+                .css("position", "absolute")
+                .appendTo(document.body);
 
             list = $("<table/>").appendTo(element).mouseover(function(event) {
                 if (target(event).nodeName && target(event).nodeName.toUpperCase() == 'TR') {
@@ -966,8 +966,8 @@
             if (options.showHelp) {
                 var inputVal = $(input).val();
                 var tr = $("<tr/>").addClass("ac_helpRow")
-							                   .addClass(i % 2 == 0 ? options.resultsEvenClass : options.resultsOddClass)
-							                   .append($("<td>").html("<span class='ac_helpResult'>" + inputVal + "</span><span class='ac_helpText'>" + options.helpLabelText + "</span>"))
+                                               .addClass(i % 2 == 0 ? options.resultsEvenClass : options.resultsOddClass)
+                                               .append($("<td>").html("<span class='ac_helpResult'>" + inputVal + "</span><span class='ac_helpText'>" + options.helpLabelText + "</span>"))
                                                .prependTo(list)[0];
                 $.data(tr, "ac_data", { value: inputVal, isHelpRowEnabled: true });
             }
@@ -975,10 +975,10 @@
             //Show viewAll row based on the settings
             if (options.showViewAll) {
                 var tr = $("<tr/>")
-							.addClass(options.viewAllClass)
-							.addClass(i % 2 == 0 ? options.resultsEvenClass : options.resultsOddClass)
-							.append($("<td>").html(options.viewAllText))
-							.appendTo(list)[0];
+                            .addClass(options.viewAllClass)
+                            .addClass(i % 2 == 0 ? options.resultsEvenClass : options.resultsOddClass)
+                            .append($("<td>").html(options.viewAllText))
+                            .appendTo(list)[0];
                 $.data(tr, "ac_data", { isViewAll: true });
             }
 
@@ -1102,9 +1102,9 @@
         var field = this[0];
         if (field.createTextRange) {
             var range = document.selection.createRange(),
-			orig = field.value,
-			teststring = "<->",
-			textLength = range.text.length;
+            orig = field.value,
+            teststring = "<->",
+            textLength = range.text.length;
             range.text = teststring;
             var caretAt = field.value.indexOf(teststring);
             field.value = orig;

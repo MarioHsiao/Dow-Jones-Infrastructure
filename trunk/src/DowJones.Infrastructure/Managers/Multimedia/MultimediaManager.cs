@@ -12,7 +12,6 @@ using DowJones.Properties;
 using DowJones.Session;
 using Factiva.Gateway.Messages.Archive.V2_0;
 using Factiva.Gateway.Messages.Search.V2_0;
-using Factiva.Gateway.Messages.Sources.V1_0;
 using log4net;
 using PerformMetadataSearchRequest = Factiva.Gateway.Messages.Search.FreeSearch.V1_0.PerformMetadataSearchRequest;
 using PerformMetadataSearchResponse = Factiva.Gateway.Messages.Search.FreeSearch.V1_0.PerformMetadataSearchResponse;
@@ -120,7 +119,7 @@ namespace DowJones.Managers.Multimedia
                     return response;
                 }
 
-                var node = ProcessEpisodeID(episodeId);
+                var node = ProcessEpisodeId(episodeId);
                 if (node.Attributes != null && node.Attributes["html-url"] != null)
                 {
                     mustPlay.Url = node.GetAttribute("html-url");
@@ -146,7 +145,7 @@ namespace DowJones.Managers.Multimedia
                         }
                         else if (!flashOnly)
                         {
-                            var nodes = ProcessGUID(guid);
+                            var nodes = ProcessGuid(guid);
                             if (nodes.Count == 0)
                             {
                                 response.MultimediaResult = new MultimediaPackage
@@ -254,7 +253,7 @@ namespace DowJones.Managers.Multimedia
 
         internal string GetEpisodeId(string accessionNo)
         {
-            string episodeID;
+            string episodeId;
             var multimediaArticleUrlRequest = new GetMultimediaArticleUrlRequest
                 {
                     accessionNumbers = new[] {accessionNo}
@@ -266,7 +265,7 @@ namespace DowJones.Managers.Multimedia
             if (multimediaArticle.status == 0)
             {
                 if (string.Equals(CheckDocType(multimediaArticle.properties).value.Trim(), "multimedia", StringComparison.InvariantCultureIgnoreCase))
-                    episodeID = FindEpisodeID(multimediaArticle.properties).value;
+                    episodeId = FindEpisodeId(multimediaArticle.properties).value;
                 else
                     throw new DowJonesUtilitiesException(DowJonesUtilitiesException.INVALID_MULTIMEDIA_ARTICLE);
             }
@@ -275,10 +274,10 @@ namespace DowJones.Managers.Multimedia
                 throw new DowJonesUtilitiesException(multimediaArticle.status);
             }
 
-            return episodeID;
+            return episodeId;
         }
 
-        internal static ArticleProperty FindEpisodeID(ICollection<ArticleProperty> collection)
+        internal static ArticleProperty FindEpisodeId(ICollection<ArticleProperty> collection)
         {
             if (collection == null || collection.Count <= 0)
             {
@@ -298,9 +297,9 @@ namespace DowJones.Managers.Multimedia
             return collection.FirstOrDefault(articleProperty => articleProperty.name == "doctype");
         }
 
-        internal XmlNode ProcessEpisodeID(string episodeID)
+        internal XmlNode ProcessEpisodeId(string episodeId)
         {
-            var ramUri = new Uri(_rampUri + episodeID);
+            var ramUri = new Uri(_rampUri + episodeId);
             var rampResponse = GetHttpWebResponse(ramUri, DowJonesUtilitiesException.MULTIMEDIA_RAMP_FAILED);
             var stream = rampResponse.GetResponseStream();
             var doc = new XmlDocument();
@@ -328,7 +327,7 @@ namespace DowJones.Managers.Multimedia
             return response;
         }
 
-        internal XmlNodeList ProcessGUID(string guid)
+        internal XmlNodeList ProcessGuid(string guid)
         {
             var uri = new Uri(_marketWatchUri + guid);
             var response = GetHttpWebResponse(uri, DowJonesUtilitiesException.MULTIMEDIA_MARKET_WATCH_FAILED);

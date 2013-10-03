@@ -59,8 +59,10 @@ namespace DowJones.Assemblers.Headlines
         /// <returns>A HeadlineListDataResult object</returns>
         public HeadlineListDataResult Process(IPerformContentSearchResponse response, int startIndex, GenerateExternalUrlForHeadlineInfo generateExternalUrlForHeadlineInfo = null, GenerateSnippetThumbnailForHeadlineInfo generateSnippetThumbnailForHeadlineInfo = null)
         {
-            var converter = new PerformContentSearchResponseConverter(response, startIndex, _datetimeFormatter);
-            converter.EnableContentItemsMapping = EnableContentItemsMapping;
+            var converter = new PerformContentSearchResponseConverter(response, startIndex, _datetimeFormatter)
+                                {
+                                    EnableContentItemsMapping = EnableContentItemsMapping
+                                };
             return (HeadlineListDataResult)converter.Process(generateExternalUrlForHeadlineInfo, generateSnippetThumbnailForHeadlineInfo);
         }
 
@@ -73,8 +75,10 @@ namespace DowJones.Assemblers.Headlines
         /// <returns>A HeadlineListDataResult object</returns>
         public HeadlineListDataResult Process(IPerformContentSearchResponse response, GenerateExternalUrlForHeadlineInfo generateExternalUrlForHeadlineInfo = null, GenerateSnippetThumbnailForHeadlineInfo generateSnippetThumbnailForHeadlineInfo = null)
         {
-            var converter = new PerformContentSearchResponseConverter(response, -1, _datetimeFormatter);
-            converter.EnableContentItemsMapping = EnableContentItemsMapping;
+            var converter = new PerformContentSearchResponseConverter(response, -1, _datetimeFormatter)
+                                {
+                                    EnableContentItemsMapping = EnableContentItemsMapping
+                                };
             return (HeadlineListDataResult)converter.Process(generateExternalUrlForHeadlineInfo, generateSnippetThumbnailForHeadlineInfo);
         }
 
@@ -92,9 +96,9 @@ namespace DowJones.Assemblers.Headlines
         {
             var converter = new AccessionNumberSearchResponseConverter(response, _datetimeFormatter)
                                 {
-                                    IncludeInvalidHeadlines = includeInvalidHeadlines,
+                                    IncludeInvalidHeadlines = includeInvalidHeadlines, 
+                                    EnableContentItemsMapping = EnableContentItemsMapping,
                                 };
-            converter.EnableContentItemsMapping = EnableContentItemsMapping;
             return (HeadlineListDataResult)converter.Process(generateExternalUrlForHeadlineInfo, generateSnippetThumbnailForHeadlineInfo);
         }
 
@@ -112,9 +116,9 @@ namespace DowJones.Assemblers.Headlines
         {
             var converter = new PCMAccessionNumberSearchResponseConverter(response, _datetimeFormatter)
                                 {
-                                    IncludeInvalidHeadlines = includeInvalidHeadlines
+                                    IncludeInvalidHeadlines = includeInvalidHeadlines, 
+                                    EnableContentItemsMapping = EnableContentItemsMapping
                                 };
-            converter.EnableContentItemsMapping = EnableContentItemsMapping;
             return (HeadlineListDataResult)converter.Process(generateExternalUrlForHeadlineInfo, generateSnippetThumbnailForHeadlineInfo);
         }
 
@@ -271,8 +275,10 @@ namespace DowJones.Assemblers.Headlines
         /// <returns>A HeadlineListDataResult object</returns>
         public HeadlineListDataResult Process(TriggerDetailResponse response, GenerateExternalUrlForHeadlineInfo generateExternalUrlForHeadlineInfo)
         {
-            var converter = new GetTriggerDetailsResultConverter(response, _datetimeFormatter);
-            converter.EnableContentItemsMapping = EnableContentItemsMapping;
+            var converter = new GetTriggerDetailsResultConverter(response, _datetimeFormatter)
+                                {
+                                    EnableContentItemsMapping = EnableContentItemsMapping
+                                };
             return (HeadlineListDataResult)converter.Process(generateExternalUrlForHeadlineInfo);
         }
         
