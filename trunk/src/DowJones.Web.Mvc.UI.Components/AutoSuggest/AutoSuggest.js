@@ -102,7 +102,7 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
             fillInputOnKeyUpDown: this.options.fillInputOnKeyUpDown,
             eraseInputOnItemSelect: this.options.eraseInputOnItemSelect,
             inputClass: this.options.controlClassName,
-            searchBtnId: this.options.searchBtnId,
+            searchBtnId: ('searchBtnId' in this.options) ? this.options.searchBtnId : "",
             selectFirst: this.options.selectFirst,
             showViewAll: this.options.showViewAll,
             showHelp: this.options.showHelp
@@ -643,7 +643,7 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
             });
         }
 
-        if ((settings.searchBtnId.length > 0) && $('#' + settings.searchBtnId) && $.isFunction(settings.onFreeTextEnter)) {
+        if (('searchBtnId' in settings) && (settings.searchBtnId.length > 0) && $('#' + settings.searchBtnId) && $.isFunction(settings.onFreeTextEnter)) {
             $('#' + settings.searchBtnId).on("click", function () {
                 suggestControl.trigger(jQuery.Event('keydown', { which: 13, keyCode: 13 }));
             });
