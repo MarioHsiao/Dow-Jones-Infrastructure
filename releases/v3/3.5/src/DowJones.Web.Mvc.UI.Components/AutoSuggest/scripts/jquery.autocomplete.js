@@ -464,7 +464,7 @@
                 $.each(options.extraParams, function(key, param) {
                     extraParams[key] = typeof param == "function" ? param() : param;
                 });
-                if (extraParams.autocompletionType == "Categories") {
+                if (extraParams.autocompletionType == "Categories" &&   (options.extraParams.categories.toLowerCase().indexOf("symbol") > 0)) {
                     //                    if (term == "") {
                     //                        term = "a";
                     //                        extraParams.searchText = "a";
@@ -535,7 +535,7 @@
                 dataType: options.dataType,
                 data: extraParams,
                 success: function(resp) {
-                    var symbolRow = { __type: "instrumentResponse:#DJSuggestRestService", httpStatus: 0, symbol: resp["symbols"] };
+                    var symbolRow = { __type: "instrumentResponse:#DJSuggestRestService", httpStatus: 200, symbol: resp["symbols"] };
                     dfd.resolve(symbolRow);
                 },
                 error: function(resp) {
