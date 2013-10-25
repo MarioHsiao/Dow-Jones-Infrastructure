@@ -103,6 +103,7 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
             eraseInputOnItemSelect: this.options.eraseInputOnItemSelect,
             inputClass: this.options.controlClassName,
             searchBtnId: ('searchBtnId' in this.options) ? this.options.searchBtnId : "",
+            resultContainer: ('resultContainer' in this.options) ? this.options.resultContainer : "",
             selectFirst: this.options.selectFirst,
             showViewAll: this.options.showViewAll,
             showHelp: this.options.showHelp
@@ -607,6 +608,7 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
             highlight: settings.highlight,
             showHelp: settings.showHelp,
             searchBtnId: settings.searchBtnId,
+            resultsContainerId:settings.resultsContainerId,
             helpLabelText: settings.tokens.helpLabelTkn,
             selectFirst: settings.selectFirst,
             inputClass:  settings.inputClass,

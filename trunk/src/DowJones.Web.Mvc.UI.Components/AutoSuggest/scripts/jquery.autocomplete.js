@@ -479,7 +479,7 @@
                                 if (symbols != null && symbols.error == null)
                                     data.category.push(symbols);
                                 var parsed = options.parse && options.parse(data, term) || parse(data, term);
-                               if(term.length<$input.val().length) stopLoading();
+                               if(term.length!=$input.val().length) stopLoading();
                                 //cache.add(term, parsed);
                                 else success(term, parsed);
                             }
@@ -634,6 +634,7 @@
         resultsOverClass: "dj_emg_autosuggest_over",
         viewAllClass: "dj_emg_autosuggest_viewall",
         viewAllText: "View All",
+        resultsContainerId: "",
         eraseBtnId:"icon_reset",
         mwProdURL: "//data.dowjones.com/autocomplete/data",
         showHelp: false,
@@ -828,11 +829,13 @@
         function init() {
             if (!needsInit)
                 return;
+            var targetElement = $('#' + options.resultsContainerId)[0];
+            if(!targetElement || targetElement.nodeType != 1) targetElement=document.body;
             element = $("<div/>")
                 .hide()
                 .addClass(options.resultsClass)
                 .css("position", "absolute")
-                .appendTo(document.body);
+                .appendTo(targetElement);
 
             list = $("<table/>").appendTo(element).mouseover(function(event) {
                 if (target(event).nodeName && target(event).nodeName.toUpperCase() == 'TR') {
