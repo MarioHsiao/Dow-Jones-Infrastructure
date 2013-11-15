@@ -209,7 +209,7 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
     },
 
     //Set CSS Default Classes
-    _SetCssDefaults: function (settings) {
+    _setCssDefaults: function (settings) {
         if (settings.resultsClass == undefined) { settings.resultsClass = "dj_emg_autosuggest_results"; }
         if (settings.resultsEvenClass == undefined) {
             settings.resultsEvenClass = "dj_emg_autosuggest_even";
@@ -436,7 +436,7 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
                 $.crossDomain({
                     url: authenticationUrl,
                     callbackParameter: "callback",
-                    success: function (data, textStatus) {
+                    success: function (data) {
                         if (data.error != undefined) {
                             if ($.isFunction(settings.onError)) {
                                 settings.onError(data.error);
@@ -454,10 +454,11 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
 
     //Function to decode a URL (This should be moved to common js file)
     _URLDecode: function (encodedString) {
-        var output = encodedString;
-        var binVal, thisString;
-        var myregexp = /(%[^%]{2})/;
-        while (((match = myregexp.exec(output)) !== null) && (match.length > 1) && (match[1] !== '')) {
+        var output = encodedString,
+            myregexp = /(%[^%]{2})/;
+        var binVal, thisString, match;
+        
+        while (((match = myregexp.exec(output))) && (match.length > 1) && (match[1] !== '')) {
             binVal = parseInt(match[1].substr(1), 16);
             thisString = String.fromCharCode(binVal);
             output = output.replace(match[1], thisString);
@@ -468,11 +469,12 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
     //Function to get parsed category rows
     _processCategories: function (data, settings, rows) {
         data = data.category;
-        var getValueByAutoSuggestType = this._getValueByAutoSuggestType();
-        var getNameByAutoSuggestType = this._getNameByAutoSuggestType();
+        var getValueByAutoSuggestType = this._getValueByAutoSuggestType(),
+            getNameByAutoSuggestType = this._getNameByAutoSuggestType(),
+            catArr = settings.options.categories.split("|");
         //            if (settings.options.categories.indexOf("symbol") < 1)
         //                settings.options.categories = settings.options.categories.replace("company|", "company|symbol|");
-        var catArr = settings.options.categories.split("|");
+        
         if ($.inArray("symbol", catArr) > -1) {
             var symbol = data.splice(data.length - 1, 1);
             data.splice($.inArray("symbol", catArr), 0, symbol[0]);
@@ -480,9 +482,9 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
         //settings["styleData"] = {};
         for (var dtCat = 0; dtCat < data.length; dtCat++) {
 
-            var acName = getNameByAutoSuggestType[catArr[dtCat].toLowerCase()];
-            var acValue = getValueByAutoSuggestType[catArr[dtCat].toLowerCase()];
-            var catData = data[dtCat][acName];
+            var acName = getNameByAutoSuggestType[catArr[dtCat].toLowerCase()],
+                acValue = getValueByAutoSuggestType[catArr[dtCat].toLowerCase()],
+                catData = data[dtCat][acName];
             for (var m = 0; m < catData.length; m++) {
                 var t = catData[m];
                 t.controlType = catArr[dtCat];
@@ -498,13 +500,13 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
     //Function to get parsed privatemarkets rows
     _processPrivateMarkets: function (data, settings, rows) {
         var getValueByAutoSuggestType = this._getValueByAutoSuggestType();
-        var category_types = settings.options["types"].split("|");
-        for (var cattype = 0; cattype < category_types.length; cattype++) {
-            var category_type = category_types[cattype].toLowerCase();
+        var categoryTypes = settings.options["types"].split("|");
+        for (var cattype = 0; cattype < categoryTypes.length; cattype++) {
+            var categoryType = categoryTypes[cattype].toLowerCase();
             for (var pmCount = 0; pmCount < data.privateMarket.length; pmCount++) {
-                if (data.privateMarket[pmCount]["__type"].toLowerCase().indexOf(category_type) > -1) {
+                if (data.privateMarket[pmCount]["__type"].toLowerCase().indexOf(categoryType) > -1) {
                     //populate the rows
-                    var pmType = "privateMarket" + category_type.charAt(0).toUpperCase() + category_type.substring(1);
+                    var pmType = "privateMarket" + categoryType.charAt(0).toUpperCase() + categoryType.substring(1);
                     var headerTkn = pmType + "HeaderTkn";
                     var footerLinkTkn = pmType + "ViewMoreTkn";
                     var privateMarketItemsByTypeCount = data.privateMarket[pmCount][pmType].length;
@@ -537,7 +539,7 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
                 this._processCategories(data, settings, rows);
                 break;
             case "privatemarkets":
-                this._processPrivateMarkets(data, settings, rows)
+                this._processPrivateMarkets(data, settings, rows);
                 break;
             default:
                 var acName = getNameByAutoSuggestType[autoCompletionType.toLowerCase()];
@@ -572,7 +574,7 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
     _processRequest: function (settings) {
         var self = this;
         //Set Default CSS Classes
-        self._SetCssDefaults(settings);
+        self._setCssDefaults(settings);
         $("#" + settings.controlId)._djAutocomplete(settings.url + "/" + settings.autocompletionType + "", {
             dataType: 'jsonp',
             parse: function (data) {
@@ -592,10 +594,11 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
                     return self._getParsedRows(settings.autocompletionType, data, rows, settings);
                 }
             },
-            formatItem: function (row, i, n) {
+            formatItem: function (row) { //  parameters are  (row, i, n )
                 if (row) {
                     return self._getFormattedItem(settings.autocompletionType, settings, row);
                 }
+                return self._getFormattedItem(settings.autocompletionType, settings, row);
             },
             extraParams: self._setExtraParams(settings),
             resultsClass: settings.resultsClass,
@@ -680,7 +683,7 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
         //OnViewMorePrivateMarketsClick EventHandler
         if ($.isFunction(settings.onViewMorePrivateMarketsClick)) {
             if (this.prototypeObj.events["viewMorePrivateMarketsEventRegistered "] === false) {
-                $('a.ac_viewMore').live('click', function (e) {
+                $('a.ac_viewMore').on('click', function (e) {
                     var parentTrTag = $(this).closest("tr").get(0);
                     var parentContainerDiv = $(this).closest("div." + self.globalSettingsObj.resultsClass).get(0);
                     var data = $(parentTrTag).data("ac_cat_data");
@@ -697,7 +700,7 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
         //OnInfoClick EventHandler
         if ($.isFunction(settings.onInfoClick)) {
             if (this.prototypeObj.events["infoEventRegistered "] === false) {
-                $('a.ac_info').live('click', function (e) {
+                $('a.ac_info').on('click', function (e) {
                     var parentTrTag = $(this).closest("tr").get(0);
                     var parentContainerDiv = $(this).closest("div." + self.globalSettingsObj.resultsClass).get(0);
                     var data = $(parentTrTag).data("ac_data").data;
@@ -714,7 +717,7 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
         //OnPromoteClick EventHandler
         if ($.isFunction(settings.onPromoteClick)) {
             if (this.prototypeObj.events["promoteEventRegistered "] === false) {
-                $('a.ac_promote').live('click', function (e) {
+                $('a.ac_promote').on('click', function (e) {
                     var parentTrTag = $(this).closest("tr").get(0);
                     var parentContainerDiv = $(this).closest("div." + self.globalSettingsObj.resultsClass).get(0);
                     var data = $(parentTrTag).data("ac_data").data;
@@ -731,7 +734,7 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
         //OnNotClick EventHandler
         if ($.isFunction(settings.onNotClick)) {
             if (this.prototypeObj.events["notEventRegistered "] === false) {
-                $('a.ac_not').live('click', function (e) {
+                $('a.ac_not').on('click', function (e) {
                     var parentTrTag = $(this).closest("tr").get(0);
                     var parentContainerDiv = $(this).closest("div." + self.globalSettingsObj.resultsClass).get(0);
                     var data = $(parentTrTag).data("ac_data").data;
@@ -748,7 +751,7 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
         //OnDiscontClick EventHandler
         if ($.isFunction(settings.onDiscontClick)) {
             if (this.prototypeObj.events["discontEventRegistered "] === false) {
-                $('a.ac_discont').live('click', function (e) {
+                $('a.ac_discont').on('click', function (e) {
                     var parentTrTag = $(this).closest("tr").get(0);
                     var parentContainerDiv = $(this).closest("div." + self.globalSettingsObj.resultsClass).get(0);
                     var data = $(parentTrTag).data("ac_data").data;
@@ -774,26 +777,26 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
     },
 
     //Initialize Autocomplete
-    _initAutoComplete: function (jSONobject) {
-        if (jSONobject) {
+    _initAutoComplete: function (jsonObj) {
+        if (jsonObj) {
             // We can use jQuery 1.4.2+ here
             var autosuggestPrototype = this.prototypeObj;
             var suggestContext;
-            if (jSONobject.authType.toLowerCase() === "suggestcontext") {
-                suggestContext = jSONobject.authTypeValue;
+            if (jsonObj.authType.toLowerCase() === "suggestcontext") {
+                suggestContext = jsonObj.authTypeValue;
             }
             if (suggestContext === undefined || $.trim(suggestContext).length === 0) {
                 if (autosuggestPrototype.suggestContextObj.callInitiated != true) {
-                    this._getSuggestContextAndProcessRequest(jSONobject);
+                    this._getSuggestContextAndProcessRequest(jsonObj);
                 }
                 else if (autosuggestPrototype.suggestContextObj.authToken != null) {
-                    jSONobject.authTypeValue = this._URLDecode(autosuggestPrototype.suggestContextObj.authToken);
-                    this._processRequest.call(this, jSONobject);
+                    jsonObj.authTypeValue = this._URLDecode(autosuggestPrototype.suggestContextObj.authToken);
+                    this._processRequest.call(this, jsonObj);
                 }
             }
             else {
-                jSONobject.authTypeValue = this._URLDecode(suggestContext);
-                this._processRequest.call(this, jSONobject);
+                jsonObj.authTypeValue = this._URLDecode(suggestContext);
+                this._processRequest.call(this, jsonObj);
             }
         }
     }
