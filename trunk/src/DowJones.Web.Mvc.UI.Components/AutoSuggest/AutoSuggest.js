@@ -583,6 +583,7 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
                     if ($.isFunction(settings.onError)) {
                         settings.onError(data.error);
                     }
+                    return null;
                 }
                 else {
                     if ($.isFunction(settings.getCount)) {
@@ -593,12 +594,13 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
                     var rows = [];
                     return self._getParsedRows(settings.autocompletionType, data, rows, settings);
                 }
+ 
             },
             formatItem: function (row) { //  parameters are  (row, i, n )
                 if (row) {
                     return self._getFormattedItem(settings.autocompletionType, settings, row);
                 }
-                return self._getFormattedItem(settings.autocompletionType, settings, row);
+                return null;                
             },
             extraParams: self._setExtraParams(settings),
             resultsClass: settings.resultsClass,
