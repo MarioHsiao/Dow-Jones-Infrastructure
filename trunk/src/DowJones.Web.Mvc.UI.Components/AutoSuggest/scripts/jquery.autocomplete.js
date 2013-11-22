@@ -95,7 +95,9 @@
                 blockSubmit = false;
                 return false;
             }
+            return true;
         });
+        
         $input.unbind(($.browser.opera ? "keypress" : "keydown") + ".autocomplete");
         // only opera doesn't trigger keydown multiple times while pressed, others don't work with keypress at all
         $input.bind(($.browser.opera ? "keypress" : "keydown") + ".autocomplete", function(event) {
@@ -182,7 +184,7 @@
             // track whether the field has focus, we shouldn't process any
             // results if the field no longer has focus
             hasFocus++;
-        }).blur(function(e) {
+        }).blur(function() {
             hasFocus = 0;
             if (!config.mouseDownOnSelect) {
                 hideResults();
@@ -193,10 +195,9 @@
                 onChange(0, true);
             }
         }).bind("search", function() {
-            // TODO why not just specifying both arguments?
             var fn = (arguments.length > 1) ? arguments[1] : null;
             function findValueCallback(q, data) {
-                var result;
+                var result = null;
                 if (data && data.length) {
                     for (var i = 0; i < data.length; i++) {
                         if (data[i].result.toLowerCase() == q.toLowerCase()) {
@@ -235,10 +236,8 @@
 //            if ((e.keyCode != 13 || e.which != 13) && $('#' + options.eraseBtnId).is(":hidden"))
 //				$('#' + options.eraseBtnId).fadeIn("fast");
         }
-        
 
-
-       function freetextSearch() {
+        function freetextSearch() {
            if($input.val().length<1)
                 return;
             var d = {};
@@ -247,7 +246,7 @@
            
             $input.trigger("freetext", [d, $input.val()]);
            return;
-       }
+        }
 
         function selectCurrent() {
             var selected = select.selected();
@@ -513,9 +512,6 @@
             }
         };
 
-
-
-
         function requestMarketWatch(term,extraParams) {
             var dfd = new $.Deferred();
             if (options.extraParams.categories.toLowerCase().indexOf("symbol") < 0)
@@ -598,20 +594,18 @@
         }
 
         function parse(data) {
-            if (!data.error) {
-                if (data.count > 0) {
-                    var parsed = [];
-                    var rows = data.split("\n");
-                    for (var i = 0; i < rows.length; i++) {
-                        var row = $.trim(rows[i]);
-                        if (row) {
-                            row = row.split("|");
-                            parsed[parsed.length] = {
-                                data: row,
-                                value: row[0],
-                                result: options.formatResult && options.formatResult(row, row[0]) || row[0]
-                            };
-                        }
+            var parsed = [];
+            if (!data.error && data.count > 0) {
+                var rows = data.split("\n");
+                for (var i = 0; i < rows.length; i++) {
+                    var row = $.trim(rows[i]);
+                    if (row) {
+                        row = row.split("|");
+                        parsed[parsed.length] = {
+                            data: row,
+                            value: row[0],
+                            result: options.formatResult && options.formatResult(row, row[0]) || row[0]
+                        };
                     }
                 }
                 return parsed;
@@ -634,6 +628,8 @@
         resultsOverClass: "dj_emg_autosuggest_over",
         viewAllClass: "dj_emg_autosuggest_viewall",
         viewAllText: "View All",
+        viewAllTextPre: "",
+        viewAllTextPost: "",
         resultsContainerId: "",
         eraseBtnId:"icon_reset",
         mwProdURL: "//data.dowjones.com/autocomplete/data",
@@ -770,6 +766,7 @@
                 * if dealing w/local data and matchContains than we must make sure
                 * to loop through all the data collections looking for matches
                 */
+                var c;
                 if (!options.url && options.matchContains) {
                     // track all matches
                     var csub = [];
@@ -778,7 +775,7 @@
                         // don't search through the stMatchSets[""] (minChars: 0) cache
                         // this prevents duplicates
                         if (k.length > 0) {
-                            var c = data[k];
+                            c = data[k];
                             $.each(c, function(i, x) {
                                 // if we've got a match, add it to the array
                                 if (matchSubset(x.value, q)) {
@@ -795,7 +792,7 @@
                 } else
                     if (options.matchSubset) {
                     for (var i = q.length - 1; i >= options.minChars; i--) {
-                        var c = data[q.substr(0, i)];
+                        c = data[q.substr(0, i)];
                         if (c) {
                             var csub = [];
                             $.each(c, function(i, x) {
@@ -854,7 +851,7 @@
                     event.stopPropagation();
                     return false;
                 }
-
+                return true;
             })
             .mousedown(function(e) {
                 config.mouseDownOnSelect = true;
@@ -870,13 +867,14 @@
         }
 
         function target(event) {
-            var element = event.target;
-            while (element && element.tagName != "TR")
-                element = element.parentNode;
+            var el = event.target;
+            while (el && el.tagName != "TR") {
+                el = el.parentNode;
+            }
             // more fun with IE, sometimes event.target is empty, just ignore it then
-            if (!element)
+            if (!el)
                 return [];
-            return element;
+            return el;
         }
 
         function moveSelect(step) {
@@ -924,9 +922,9 @@
 
         function fillList() {
             list.empty();
-            var acType = options.extraParams.autocompletionType.toLowerCase();
-            var i = 0;
-            var maxResults;
+            var i = 0,
+                tr;
+            
             if (data) {
                 var max = limitNumberOfItems(data.length);
                 options.maxResults = max;
@@ -936,8 +934,7 @@
                     var formatted = options.formatItem(data[i].data, i + 1, max, data[i].value, term);
                     if (formatted === false)
                         continue;
-                    var tr = $("<tr/>").html(options.highlight(formatted, term, data[i].data.controlType)).addClass(i % 2 == 0 ? options.resultsEvenClass : options.resultsOddClass).appendTo(list)[0];
-
+                    tr = $("<tr/>").html(options.highlight(formatted, term, data[i].data.controlType)).addClass(i % 2 == 0 ? options.resultsEvenClass : options.resultsOddClass).appendTo(list)[0];
                     if (data[i].data.isCategory === true) {
                         //Append the header
                         if ($("tbody", element).find('tr.ac_cat_head_' + data[i].data.controlType.toLowerCase()).get(0) === undefined) {
@@ -948,11 +945,11 @@
                         if (data[i].data.isLastInCategory && options.extraParams.showViewAllPrivateMarkets) {
                             var catFootHtml = "<tr class=\"ac_cat_foot ac_cat_foot_" + data[i].data.controlType.toLowerCase() + "\"><td><a class=\"ac_viewMore ac_cat_foot_link\">" + data[i].data.groupFooterLinkText + "</a></td></tr>";
                             $('tbody>tr:last', element).after(catFootHtml);
-                            var footerTR = $('tr.ac_cat_foot_' + data[i].data.controlType.toLowerCase(), element);
+                            var footerTr = $('tr.ac_cat_foot_' + data[i].data.controlType.toLowerCase(), element);
                             var dataObj = {
                                 type: data[i].data.controlType
                             };
-                            $(footerTR).data("ac_cat_data", dataObj);
+                            $(footerTr).data("ac_cat_data", dataObj);
                         }
                     }
                     $.data(tr, "ac_data", data[i]);
@@ -968,23 +965,29 @@
             //Show help row based on the settings
             if (options.showHelp) {
                 var inputVal = $(input).val();
-                var tr = $("<tr/>").addClass("ac_helpRow")
-                                               .addClass(i % 2 == 0 ? options.resultsEvenClass : options.resultsOddClass)
-                                               .append($("<td>").html("<span class='ac_helpResult'>" + inputVal + "</span><span class='ac_helpText'>" + options.helpLabelText + "</span>"))
-                                               .prependTo(list)[0];
+                tr = $("<tr/>").addClass("ac_helpRow")
+                    .addClass(i % 2 == 0 ? options.resultsEvenClass : options.resultsOddClass)
+                    .append($("<td>").html("<span class='ac_helpResult'>" + inputVal + "</span><span class='ac_helpText'>" + options.helpLabelText + "</span>"))
+                    .prependTo(list)[0];
                 $.data(tr, "ac_data", { value: inputVal, isHelpRowEnabled: true });
             }
 
             //Show viewAll row based on the settings
             if (options.showViewAll) {
-                var tr = $("<tr/>")
-                            .addClass(options.viewAllClass)
-                            .addClass(i % 2 == 0 ? options.resultsEvenClass : options.resultsOddClass)
-                            .append($("<td>").html(options.viewAllText))
-                            .appendTo(list)[0];
+                var inputVal = $(input).val();
+                var html = (options.showSearchText) ?
+                    options.viewAllTextPre + "<span class='ac_search'>" + inputVal + "</span>" + options.viewAllTextPost :
+                    options.viewAll;
+
+                tr = $("<tr/>")
+                    .addClass(options.viewAllClass)
+                    .addClass(i % 2 == 0 ? options.resultsEvenClass : options.resultsOddClass)
+                    .append($("<td>").html(html))
+                    .appendTo(list)[0];
+                
                 $.data(tr, "ac_data", { isViewAll: true });
             }
-
+            
             listItems = list.find("tr");
             if (options.selectFirst) {
                 listItems.slice(0, 1).addClass(CLASSES.ACTIVE);
@@ -1064,9 +1067,10 @@
             },
             selected: function() {
                 var selected = listItems && listItems.filter("." + CLASSES.ACTIVE).removeClass(CLASSES.ACTIVE);
-                if (selected && selected.length) {
+                if (selected && selected.length && selected.length > 0) {
                     return ($.data(selected[0], "ac_data")) ? (selected && selected.length && $.data(selected[0], "ac_data")) : (selected && selected.length && "");
                 }
+                return false;
             },
             reset: function() {
                 listItems.slice(active, active + 1).addClass(CLASSES.ACTIVE);
@@ -1122,6 +1126,7 @@
                 end: field.selectionEnd
             };
         }
+        return { start: 0, end: 0 };
     };
 
 })(jQuery);

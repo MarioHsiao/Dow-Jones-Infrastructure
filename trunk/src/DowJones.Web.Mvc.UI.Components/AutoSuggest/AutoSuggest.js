@@ -128,7 +128,6 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
 
             //Initialize Autosuggest
             this._initAutoComplete.call(this, settings);
-
         }
     },
 
@@ -201,6 +200,7 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
             },
             showViewAllPrivateMarkets: $.isFunction(settings.onViewMorePrivateMarketsClick)
         };
+        
         if (settings.tokens === undefined || settings.tokens === null) {
             settings.tokens = {};
         }
@@ -210,16 +210,22 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
 
     //Set CSS Default Classes
     _setCssDefaults: function (settings) {
-        if (settings.resultsClass == undefined) { settings.resultsClass = "dj_emg_autosuggest_results"; }
+        if (settings.resultsClass == undefined) {
+             settings.resultsClass = "dj_emg_autosuggest_results";
+        }
+        
         if (settings.resultsEvenClass == undefined) {
             settings.resultsEvenClass = "dj_emg_autosuggest_even";
         }
+
         if (settings.resultsOddClass == undefined) {
             settings.resultsOddClass = "dj_emg_autosuggest_odd";
         }
+
         if (settings.resultsOverClass == undefined) {
             settings.resultsOverClass = "dj_emg_autosuggest_over";
         }
+
         if (settings.viewAllClass == undefined) {
             settings.viewAllClass = "dj_emg_autosuggest_viewall";
         }
@@ -497,7 +503,7 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
         }
     },
 
-    //Function to get parsed privatemarkets rows
+    //Function to get parsed private markets rows
     _processPrivateMarkets: function (data, settings, rows) {
         var getValueByAutoSuggestType = this._getValueByAutoSuggestType();
         var categoryTypes = settings.options["types"].split("|");
