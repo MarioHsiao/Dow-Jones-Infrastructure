@@ -68,6 +68,8 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
         blogTkn: "${blogTkn}",
         disContTkn: "${disContTkn}",
         viewAllTkn: "${viewAllTkn}",
+        viewAllPreTkn: "${viewAllPreTkn}",
+        viewAllPostTkn: "${viewAllPostTkn}",
         helpLabelTkn: "${helpLabelTkn}",
         privateMarketCompanyViewMoreTkn: "${privateMarketCompanyViewMoreTkn}",
         privateMarketIndustryViewMoreTkn: "${privateMarketIndustryViewMoreTkn}",
@@ -106,6 +108,7 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
             resultContainer: ('resultContainer' in this.options) ? this.options.resultContainer : "",
             selectFirst: this.options.selectFirst,
             showViewAll: this.options.showViewAll,
+            showSearchText: this.options.showSearchText,
             showHelp: this.options.showHelp
         }, this.options);
 
@@ -615,7 +618,10 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
             resultsOverClass: settings.resultsOverClass,
             viewAllClass: settings.viewAllClass,
             showViewAll: settings.showViewAll,
+            showSearchText: settings.showSearchText,
             viewAllText: settings.tokens.viewAllTkn,
+            viewAllTextPre: settings.tokens.viewAllTknPre,
+            viewAllTextPost: settings.tokens.viewAllTknPost,
             highlight: settings.highlight,
             showHelp: settings.showHelp,
             searchBtnId: settings.searchBtnId,

@@ -290,6 +290,9 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Resources\js\crossdomain.min.js.map">
+      <DependentUpon>crossdomain.js</DependentUpon>
+    </None>
     <None Include="Resources\js\highcharts.min.js.map">
       <DependentUpon>highcharts.js</DependentUpon>
     </None>
