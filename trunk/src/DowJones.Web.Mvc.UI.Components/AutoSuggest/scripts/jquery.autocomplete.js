@@ -977,7 +977,7 @@
                 var inputVal = $(input).val();
                 var html = (options.showSearchText) ?
                     options.viewAllTextPre + "<span class='ac_search'>" + inputVal + "</span>" + options.viewAllTextPost :
-                    options.viewAll;
+                    options.viewAllText;
 
                 tr = $("<tr/>")
                     .addClass(options.viewAllClass)
