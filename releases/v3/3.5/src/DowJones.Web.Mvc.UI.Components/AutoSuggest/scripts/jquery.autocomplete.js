@@ -403,7 +403,7 @@
 
         function receiveData(q, data) {
             // even if data is null, but options.showViewAll is true, we show the drop down
-            if ((data || options.showViewAll) && hasFocus && data.length > 0) {
+            if ((data || options.showViewAll) && hasFocus) {
                 stopLoading();
                 select.display(data, q);
                 if (data && data.length) {
@@ -820,6 +820,7 @@
         term = "",
         needsInit = true,
         element,
+        isIE,
         list;
 
         // Create results
@@ -919,7 +920,20 @@
         function limitNumberOfItems(available) {
             return options.max && options.max < available? options.max: available;
         }
+        
+        function isInternetExplorer() {
+            //Test for Internet Explorer <= 8 for
+            if (/MSIE\s([\d.]+)/.test(navigator.userAgent)) {
+                //Get the IE version.  This will be 6 for IE6, 7 for IE7, etc...
+                var version = parseInt(RegExp.$1, 10);
 
+                if (version <= 8) {
+                    return true;
+                }
+            }
+            return false;
+        }
+        
         function fillList() {
             list.empty();
             var i = 0,
@@ -1050,7 +1064,7 @@
                         overflow: 'auto'
                     });
 
-                    if ($.browser.msie && typeof document.body.style.maxHeight === "undefined") {
+                    if (isInternetExplorer() && typeof document.body.style.maxHeight === "undefined") {
                         var listHeight = 0;
                         listItems.each(function() {
                             listHeight += this.offsetHeight;

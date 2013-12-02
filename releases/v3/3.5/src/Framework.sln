@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Web.Mvc", "DowJones.Web.Mvc\DowJones.Web.Mvc.csproj", "{3E440D53-ACA6-422A-8FC8-778D505AD1E9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Web.Mvc.Diagnostics", "DowJones.Web.Mvc.Diagnostics\DowJones.Web.Mvc.Diagnostics.csproj", "{DC6F4246-50E5-4E2E-A90B-70E4BECA1EB6}"
@@ -45,8 +45,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Web.Showcase", "Do
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Web.Mvc.Search", "DowJones.Web.Mvc.Search\DowJones.Web.Mvc.Search.csproj", "{1E5B6A24-ED92-4ABE-AD3B-9889E16CB01F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Web.Mvc.UI.Canvas.Showcase", "DowJones.Web.Mvc.UI.Canvas.Showcase\DowJones.Web.Mvc.UI.Canvas.Showcase.csproj", "{3C53FDA9-3B22-4207-A9CC-3EBBC7D8BA7A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Web.Mvc.UI.Canvas.RavenDb", "DowJones.Web.Mvc.UI.Canvas.RavenDb\DowJones.Web.Mvc.UI.Canvas.RavenDb.csproj", "{B8067E18-AD8D-4791-B1F0-9D989BC550D2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Web.Mvc.UI.Canvas.RavenDb.Tests", "DowJones.Web.Mvc.UI.Canvas.RavenDb.Tests\DowJones.Web.Mvc.UI.Canvas.RavenDb.Tests.csproj", "{C1045E7A-593D-4615-9854-EA90074DA51C}"
@@ -59,7 +57,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 19
+		SccNumberOfProjects = 18
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = http://tfs2012.dowjones.net:8080/tfs/defaultcollection
 		SccLocalPath0 = .
@@ -123,18 +121,14 @@ Global
 		SccProjectTopLevelParentUniqueName15 = Framework.sln
 		SccProjectName15 = DowJones.Web.Mvc.Search
 		SccLocalPath15 = DowJones.Web.Mvc.Search
-		SccProjectUniqueName16 = DowJones.Web.Mvc.UI.Canvas.Showcase\\DowJones.Web.Mvc.UI.Canvas.Showcase.csproj
+		SccProjectUniqueName16 = DowJones.Web.Mvc.UI.Canvas.RavenDb.Tests\\DowJones.Web.Mvc.UI.Canvas.RavenDb.Tests.csproj
 		SccProjectTopLevelParentUniqueName16 = Framework.sln
-		SccProjectName16 = DowJones.Web.Mvc.UI.Canvas.Showcase
-		SccLocalPath16 = DowJones.Web.Mvc.UI.Canvas.Showcase
-		SccProjectUniqueName17 = DowJones.Web.Mvc.UI.Canvas.RavenDb.Tests\\DowJones.Web.Mvc.UI.Canvas.RavenDb.Tests.csproj
+		SccProjectName16 = DowJones.Web.Mvc.UI.Canvas.RavenDb.Tests
+		SccLocalPath16 = DowJones.Web.Mvc.UI.Canvas.RavenDb.Tests
+		SccProjectUniqueName17 = DowJones.Web.Mvc.UI.Canvas.RavenDb\\DowJones.Web.Mvc.UI.Canvas.RavenDb.csproj
 		SccProjectTopLevelParentUniqueName17 = Framework.sln
-		SccProjectName17 = DowJones.Web.Mvc.UI.Canvas.RavenDb.Tests
-		SccLocalPath17 = DowJones.Web.Mvc.UI.Canvas.RavenDb.Tests
-		SccProjectUniqueName18 = DowJones.Web.Mvc.UI.Canvas.RavenDb\\DowJones.Web.Mvc.UI.Canvas.RavenDb.csproj
-		SccProjectTopLevelParentUniqueName18 = Framework.sln
-		SccProjectName18 = DowJones.Web.Mvc.UI.Canvas.RavenDb
-		SccLocalPath18 = DowJones.Web.Mvc.UI.Canvas.RavenDb
+		SccProjectName17 = DowJones.Web.Mvc.UI.Canvas.RavenDb
+		SccLocalPath17 = DowJones.Web.Mvc.UI.Canvas.RavenDb
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Framework2.vsmdi
@@ -298,18 +292,6 @@ Global
 		{1E5B6A24-ED92-4ABE-AD3B-9889E16CB01F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1E5B6A24-ED92-4ABE-AD3B-9889E16CB01F}.TestsOnly|Any CPU.ActiveCfg = Release|Any CPU
 		{1E5B6A24-ED92-4ABE-AD3B-9889E16CB01F}.TestsOnly|Any CPU.Build.0 = Release|Any CPU
-		{3C53FDA9-3B22-4207-A9CC-3EBBC7D8BA7A}.Control n Showcase|Any CPU.ActiveCfg = Release|Any CPU
-		{3C53FDA9-3B22-4207-A9CC-3EBBC7D8BA7A}.Control n Showcase|Any CPU.Build.0 = Release|Any CPU
-		{3C53FDA9-3B22-4207-A9CC-3EBBC7D8BA7A}.Debug (IIS6)|Any CPU.ActiveCfg = Debug|Any CPU
-		{3C53FDA9-3B22-4207-A9CC-3EBBC7D8BA7A}.Debug (IIS6)|Any CPU.Build.0 = Debug|Any CPU
-		{3C53FDA9-3B22-4207-A9CC-3EBBC7D8BA7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3C53FDA9-3B22-4207-A9CC-3EBBC7D8BA7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3C53FDA9-3B22-4207-A9CC-3EBBC7D8BA7A}.Release (IIS6)|Any CPU.ActiveCfg = Release|Any CPU
-		{3C53FDA9-3B22-4207-A9CC-3EBBC7D8BA7A}.Release (IIS6)|Any CPU.Build.0 = Release|Any CPU
-		{3C53FDA9-3B22-4207-A9CC-3EBBC7D8BA7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3C53FDA9-3B22-4207-A9CC-3EBBC7D8BA7A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3C53FDA9-3B22-4207-A9CC-3EBBC7D8BA7A}.TestsOnly|Any CPU.ActiveCfg = Release|Any CPU
-		{3C53FDA9-3B22-4207-A9CC-3EBBC7D8BA7A}.TestsOnly|Any CPU.Build.0 = Release|Any CPU
 		{B8067E18-AD8D-4791-B1F0-9D989BC550D2}.Control n Showcase|Any CPU.ActiveCfg = Release|Any CPU
 		{B8067E18-AD8D-4791-B1F0-9D989BC550D2}.Control n Showcase|Any CPU.Build.0 = Release|Any CPU
 		{B8067E18-AD8D-4791-B1F0-9D989BC550D2}.Debug (IIS6)|Any CPU.ActiveCfg = Debug|Any CPU
@@ -349,7 +331,6 @@ Global
 		{1EF77970-5676-4B38-91D7-D4DC8B4A53FA} = {1C44A232-3EE9-4890-B85B-9F921D004281}
 		{C03F69D0-BD01-4861-BF39-BF2D52812797} = {A5E7C6E4-52BF-45F2-B901-5D126C01DB82}
 		{60BFCFAB-61ED-4AB5-9803-D8AAAF1184E4} = {A5E7C6E4-52BF-45F2-B901-5D126C01DB82}
-		{3C53FDA9-3B22-4207-A9CC-3EBBC7D8BA7A} = {A5E7C6E4-52BF-45F2-B901-5D126C01DB82}
 		{B8067E18-AD8D-4791-B1F0-9D989BC550D2} = {A5E7C6E4-52BF-45F2-B901-5D126C01DB82}
 		{C1045E7A-593D-4615-9854-EA90074DA51C} = {A5E7C6E4-52BF-45F2-B901-5D126C01DB82}
 		{095DE252-E183-4AE6-824A-B4504AE737C1} = {2E68706B-4368-405E-980C-34F024BF9949}
