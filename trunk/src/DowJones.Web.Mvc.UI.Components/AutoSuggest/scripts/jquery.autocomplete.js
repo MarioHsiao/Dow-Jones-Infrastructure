@@ -403,6 +403,8 @@
 
         function receiveData(q, data) {
             // even if data is null, but options.showViewAll is true, we show the drop down
+            $dj.debug(q);
+            $dj.debug(data);
             if ((data || options.showViewAll) && hasFocus) {
                 stopLoading();
                 select.display(data, q);

@@ -1,9 +1,43 @@
 using System.ComponentModel;
+using System.Runtime.Serialization;
+using DowJones.Extensions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
 namespace DowJones.Web.Mvc.UI.Components.AutoSuggest
 {
+
+    public class ServiceOptions
+    {
+        [DataMember(Name = "maxResults")]
+        [JsonProperty("maxResults")]
+        public int MaxResults { get; set; }
+
+        [DataMember(Name = "interfaceLanguage")]
+        [JsonProperty("interfaceLanguage")]
+        public string InterfaceLanguage { get; set; }
+
+        [DataMember(Name = "categories")]
+        [JsonProperty("categories")]
+        public string Categories { get; set; }
+
+        [DataMember(Name = "it")]
+        [JsonProperty("it")]
+        public string It { get; set; }
+
+        [DataMember(Name = "companyFilterSet")]
+        [JsonProperty("companyFilterSet")]
+        public string CompanyFilterSet { get; set; }
+
+        [DataMember(Name = "executiveFilterSet")]
+        [JsonProperty("executiveFilterSet")]
+        public string ExecutiveFilterSet { get; set; }
+
+        [DataMember(Name = "showMatchingWord")]
+        [JsonProperty("showMatchingWord")]
+        public bool ShowMatchingWord { get; set; }
+    }
+    
     [JsonConverter(typeof(StringEnumConverter))]
     public enum AutoCompletionType
     {
@@ -61,7 +95,6 @@ namespace DowJones.Web.Mvc.UI.Components.AutoSuggest
         /// Gets or Sets Autocompletion type
         /// </summary>
         [ClientProperty("autocompletionType")]
-        
         public AutoCompletionType AutocompletionType { get; set; }
         
         /// <summary>
@@ -74,7 +107,7 @@ namespace DowJones.Web.Mvc.UI.Components.AutoSuggest
         /// Gets or Sets Auto Suggest Rest Service Options
         /// </summary>
         [ClientProperty("serviceOptions")]
-        public string ServiceOptions { get; set; }
+        public ServiceOptions ServiceOptions { get; set; }
 
         /// <summary>
         /// Gets or Sets Auto Suggest Tokens
@@ -121,16 +154,23 @@ namespace DowJones.Web.Mvc.UI.Components.AutoSuggest
         /// <summary>
         /// Gets or Sets Select First. If true, selects the first row from the suggest list.
         /// </summary>
-        /// [DefaultValue(false)]
+        [DefaultValue(false)]
         [ClientProperty("selectFirst")]
         public bool SelectFirst { get; set; }
 
         /// <summary>
         /// Gets or Sets FillInputOnKeyUpDown. If true , automatically fills the input on KEY UP or KEY DOWN.
         /// </summary>
-        /// [DefaultValue(false)]
+        [DefaultValue(false)]
         [ClientProperty("fillInputOnKeyUpDown")]
         public bool FillInputOnKeyUpDown { get; set; }
+
+        /// <summary>
+        /// Gets or Sets EraseInputOnItemSelect. If true, erases the text input on item select.
+        /// </summary>
+        [DefaultValue(false)]
+        [ClientProperty("eraseInputOnItemSelect")]
+        public bool EraseInputOnItemSelect { get; set; } 
 
         /// <summary>
         /// Gets or Sets ShowHelp. If true, shows the help row at the top of the suggest list.
@@ -145,7 +185,14 @@ namespace DowJones.Web.Mvc.UI.Components.AutoSuggest
         [DefaultValue(false)]
         [ClientProperty("showViewAll")]
         public bool ShowViewAll { get; set; }
-        
+
+        /// <summary>
+        /// Gets or Sets ShowSearchText. If true, shows the search text in conjunction with the showViewAll parameter.
+        /// </summary>
+        [DefaultValue(false)]
+        [ClientProperty("showSearchText")]
+        public bool ShowSearchText { get; set; }
+
         #endregion
 
         #region ..:: Client Event Handlers ::..

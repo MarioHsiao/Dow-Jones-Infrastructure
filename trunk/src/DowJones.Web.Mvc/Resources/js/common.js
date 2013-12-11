@@ -6,8 +6,8 @@
 /// <reference path="underscore.js" />
 
 // Get scoped instances of require() and define()
-var dj_define = _djRequire.define;
-var dj_require = _djRequire.require;
+var dj_define = window._djRequire ? window._djRequire.define : define;
+var dj_require = window._djRequire ? window._djRequire.require : require;
 
 
 // Initialize global DJ object

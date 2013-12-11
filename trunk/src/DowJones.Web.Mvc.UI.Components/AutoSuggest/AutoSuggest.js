@@ -442,7 +442,7 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
 
             if (isUrlGenerated === true) {
                 //Call the transaction and get the authentication token
-                $.crossDomain({
+                DJ.crossDomain({
                     url: authenticationUrl,
                     callbackParameter: "callback",
                     success: function (data) {
