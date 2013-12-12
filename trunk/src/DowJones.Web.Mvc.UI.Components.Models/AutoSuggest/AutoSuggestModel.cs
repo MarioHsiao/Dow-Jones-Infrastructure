@@ -158,6 +158,10 @@ namespace DowJones.Web.Mvc.UI.Components.AutoSuggest
         [ClientProperty("selectFirst")]
         public bool SelectFirst { get; set; }
 
+        [DefaultValue(false)]
+        [ClientProperty("includeCompanyScreening")]
+        public bool IncludeCompanyScreening { get; set; }
+
         /// <summary>
         /// Gets or Sets FillInputOnKeyUpDown. If true , automatically fills the input on KEY UP or KEY DOWN.
         /// </summary>
@@ -261,7 +265,7 @@ namespace DowJones.Web.Mvc.UI.Components.AutoSuggest
         /// </summary>
         public AutoSuggestModel()
         {
-            SuggestServiceUrl = "http://suggest.factiva.com/Search/1.0";
+            SuggestServiceUrl = DowJones.Properties.Settings.Default.SuggestServiceURL;
         }
     }
 

@@ -11,19 +11,20 @@
     .suggest-table tr td { height: 30px; line-height: 30px; }
     .AutoSuggestComponent{margin-left:10px; width: 300px;}
 </style>
-
-@*<table class="suggest-table">
-    @foreach (var mdl in Model)
-    { 
-        <tr>
-            <td>@mdl.AutocompletionType
-            </td>
-            <td>@Html.DJ().Render(mdl, new { id = mdl.ControlId })
-            </td>
-        </tr>
-    }
-</table>*@
+<link href="@Url.Content("~/styles/css/AutoSuggest/AutoSuggest.css")" rel="stylesheet" />
 
 <div id="autoSuggestContainer">
 </div>
+
 @Html.DJ().Render(Model)
+
+
+
+<script type="text/javascript">
+    
+
+
+    function rocket(data) {
+        console.log(data)
+    }
+</script>

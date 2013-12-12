@@ -26,43 +26,18 @@ namespace DowJones.Web.Showcase.Controllers
 
         public AutoSuggestModel GetDJXSearchBoxModel()
         {
-           /* var authTypeToken = '@ConfigurationManager.AppSettings["SuggestAuthTypeToken"]';
-    var suggestServiceURl = '@ConfigurationManager.AppSettings["SuggestServiceUrl"]';
+            var serviceOptions = new ServiceOptions
+                                     {
+                                         MaxResults = 3, 
+                                         InterfaceLanguage = "en",
+                                         Categories = "company|executive|newssubject|keyword|region_all|region_country|region_subSupraNationalRegion|region_stateOrProvince|industry|industry_nace|industry_sic|industry_naics",
+                                         It = "stock",
+                                         CompanyFilterSet = "newsCodedAbt|newsCodedOccr|noADR",
+                                         ExecutiveFilterSet = "newsCoded",
+                                         ShowMatchingWord = true
+                                     };
 
-    DJ.add("AutoSuggest", {
-        container: "autoSuggestContainer",
-        options: { 
-            suggestServiceUrl: suggestServiceURl,
-            autocompletionType: "Categories",
-            controlId: "djKeywordAutoSuggest",
-            authType: "SuggestContext",
-            authTypeValue: 'YPC0P9uW1Y0hWvnUcNuqBlWzIuCTZcappPV5OMlQo_2BS8eTDYW_2FsmBm_2B2gksFHYz6ftM1lV0GYtXwrgTuz3ne6Wa8oxr3ma7C|2',
-            selectFirst: false,
-            showViewAll: false,
-            fillInputOnKeyUpDown: true,
-            eraseInputOnItemSelect: true, // need to expose
-            showHelp: false,
-            showSearchText: true, // need to expose
-            serviceOptions: {
-                maxResults: 3,
-                interfaceLanguage: 'en',
-                categories: 'company|executive|industry|newssubject|region_all|keyword|',
-                it: 'stock',
-                companyFilterSet: 'newsCodedAbt|newsCodedOccr|noADR',
-                executiveFilterSet: 'newsCoded',
-                showMatchingWord: 'true'
-            }
-        }*/
-            ServiceOptions serviceOptions = new ServiceOptions();
-            serviceOptions.MaxResults = 3;
-            serviceOptions.InterfaceLanguage = "en";
-            serviceOptions.Categories = "company|executive|industry|newssubject|region_all|keyword";
-            serviceOptions.It = "stock";
-            serviceOptions.CompanyFilterSet = "newsCodedAbt|newsCodedOccr|noADR";
-            serviceOptions.ExecutiveFilterSet = "newsCoded";
-            serviceOptions.ShowMatchingWord = true;
-            
-            return new AutoSuggestModel()
+            return new AutoSuggestModel
             {
                 AuthType = AuthType.SuggestContext,
                 AuthTypeValue = ConfigurationManager.AppSettings["SuggestAuthTypeToken"],
@@ -74,7 +49,8 @@ namespace DowJones.Web.Showcase.Controllers
                 EraseInputOnItemSelect = true,
                 ShowHelp = false,
                 ShowSearchText = true,
-                ServiceOptions = serviceOptions
+                ServiceOptions = serviceOptions,
+                OnItemClick = "rocket"
             };
         }
 
