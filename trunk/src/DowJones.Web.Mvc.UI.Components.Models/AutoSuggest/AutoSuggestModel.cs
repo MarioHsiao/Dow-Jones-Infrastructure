@@ -199,67 +199,6 @@ namespace DowJones.Web.Mvc.UI.Components.AutoSuggest
 
         #endregion
 
-        #region ..:: Client Event Handlers ::..
-
-        /// <summary>
-        /// Gets or sets the client side OnItemClick event handler.
-        /// </summary>
-        /// <value>The OnItemClick event handler name.</value>
-        [ClientEventHandler("dj.AutoSuggest.headlineClick")]
-        public string OnItemClick { get; set; }
-
-        /// <summary>
-        /// Gets or sets the client side OnInfoClick event handler.
-        /// </summary>
-        /// <value>The OnInfoClick event handler name.</value>
-        [ClientEventHandler("dj.PortalHeadlineList.sourceClick")]
-        public string OnInfoClick { get; set; }
-
-        /// <summary>
-        /// Gets or sets the client side OnPromoteClick event handler.
-        /// </summary>
-        /// <value>The OnPromoteClick event handler name.</value>
-        [ClientEventHandler("dj.AutoSuggest.authorClick")]
-        public string OnPromoteClick { get; set; }
-
-        /// <summary>
-        /// Gets or sets the client side OnNotClick event handler.
-        /// </summary>
-        /// <value>The OnNotClick event handler name.</value>
-        [ClientEventHandler("dj.AutoSuggest.headlineClick")]
-        public string OnNotClick { get; set; }
-
-        /// <summary>
-        /// Gets or sets the client side OnHelpRowClick event handler.
-        /// </summary>
-        /// <value>The OnHelpRowClick event handler name.</value>
-        [ClientEventHandler("dj.AutoSuggest.sourceClick")]
-        public string OnHelpRowClick { get; set; }
-
-        /// <summary>
-        /// Gets or sets the client side OnViewAllClick event handler.
-        /// </summary>
-        /// <value>The OnViewAllClick event handler name.</value>
-        [ClientEventHandler("dj.AutoSuggest.viewAllClick")]
-        public string OnViewAllClick { get; set; }
-
-
-        /// <summary>
-        /// Gets or sets the client side OnViewMorePrivateMarketsClick event handler.
-        /// </summary>
-        /// <value>The OnViewMorePrivateMarketsClick event handler name.</value>
-        [ClientEventHandler("dj.AutoSuggest.viewMorePrivateMarketsClick")]
-        public string OnViewMorePrivateMarketsClick { get; set; }
-
-        /// <summary>
-        /// Gets or sets the client side OnError event handler.
-        /// </summary>
-        /// <value>The OnError event handler name.</value>
-        [ClientEventHandler("dj.AutoSuggest.authorClick")]
-        public string OnError { get; set; }
-
-        #endregion
-
         /// <summary>
         /// Default Constructor
         /// </summary>

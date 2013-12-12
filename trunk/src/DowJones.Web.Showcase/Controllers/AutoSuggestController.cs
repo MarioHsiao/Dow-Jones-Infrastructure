@@ -50,7 +50,6 @@ namespace DowJones.Web.Showcase.Controllers
                 ShowHelp = false,
                 ShowSearchText = true,
                 ServiceOptions = serviceOptions,
-                OnItemClick = "rocket"
             };
         }
 
