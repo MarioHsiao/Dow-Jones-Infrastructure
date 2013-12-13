@@ -85,6 +85,9 @@ namespace DowJones.Web.Mvc.UI
         public virtual void RenderHead(IScriptRegistry scriptRegistry, TextWriter writer)
         {
             var htmlWriter = writer as HtmlTextWriter ?? new HtmlTextWriter(writer);
+            htmlWriter.OpenScriptBlock();
+            htmlWriter.Write("var require;");
+            htmlWriter.CloseScriptBlock();
             htmlWriter.RenderScriptInclude(ClientResourceManager.GenerateUrl(JQueryRequireResources, Culture));
 
             htmlWriter.OpenScriptBlock();

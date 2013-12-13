@@ -1,6 +1,6 @@
 /***  AutoSuggestComponent  ***/
-
- .AutoSuggestComponent{padding:10px; position:relative;}
+#djKeywordAutoSuggest { position: absolute; }
+.AutoSuggestComponent{padding:10px; position:relative;}
 .dj_AutoSuggest{padding-right:17px;}
 .ac_input{ width: 300px;}
 span.icon_clear{ position:absolute;vertical-align:middle;padding-top: 3px; right:5px; display:none; cursor:pointer; font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;color:#38468F;  }span.icon_clear:hover{ color: white; background-color: grey}

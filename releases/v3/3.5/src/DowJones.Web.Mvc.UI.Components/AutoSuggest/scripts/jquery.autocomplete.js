@@ -420,7 +420,11 @@
             var params = extraParams;
             if (extraParams.autocompletionType == "Categories") {
                 var catArr = extraParams.categories.split("|");
-                catArr.splice($.inArray("symbol", catArr), 1);
+                catArr = $.grep(catArr, function (n) { return (n); });
+                var index = $.inArray("symbol", catArr);
+                if (index >= 0) {
+                    catArr.splice(index, 1);
+                }
                 params.categories = catArr.join("|");
                 if (catArr.length == 0) {
                     var data = { category: [], host: "", httpStatus: 200, version: "1.0" };
@@ -447,11 +451,12 @@
             });
             return dfd.promise();
         }
+        
         function deferredRequest(term, success, failure) {
             if (!options.matchCase)
                 term = term.toLowerCase();
             var data = cache.load(term);
-            // recieve the cached data
+            // receive the cached data
             if (data && data.length) {
                 success(term, data);
                 // if an AJAX url has been supplied, try loading the data now
@@ -463,12 +468,7 @@
                 $.each(options.extraParams, function(key, param) {
                     extraParams[key] = typeof param == "function" ? param() : param;
                 });
-                if (extraParams.autocompletionType == "Categories" &&   (options.extraParams.categories.toLowerCase().indexOf("symbol") > 0)) {
-                    //                    if (term == "") {
-                    //                        term = "a";
-                    //                        extraParams.searchText = "a";
-                    //                    }
-
+                if (extraParams.autocompletionType == "Categories" &&   (options.extraParams.categories.toLowerCase().indexOf("symbol") >= 0)) {
                     $.when(requestSuggestService(options, extraParams, input), requestMarketWatch(term, extraParams))
                         .done(function(data, symbols) {
                             if (data.error != undefined) {
@@ -478,7 +478,7 @@
                                 if (symbols != null && symbols.error == null)
                                     data.category.push(symbols);
                                 var parsed = options.parse && options.parse(data, term) || parse(data, term);
-                               if(term.length!=$input.val().length) stopLoading();
+                                if(term.length!=$input.val().length) stopLoading();
                                 //cache.add(term, parsed);
                                 else success(term, parsed);
                             }
@@ -516,16 +516,16 @@
             var dfd = new $.Deferred();
             if (options.extraParams.categories.toLowerCase().indexOf("symbol") < 0)
                 return dfd.resolve(null);
-            var _url = options.mwProdURL + "?q=" + term;
-            _url += "&count=" + options.extraParams.maxResults + "&need=symbol";
+            var url = options.mwProdURL + "?q=" + term;
+            url += "&count=" + options.extraParams.maxResults + "&need=symbol";
             if (options.extraParams.it)
-                _url += "&it=" + options.extraParams.it;
+                url += "&it=" + options.extraParams.it;
             DJ.crossDomain({
                 mode: "abort",
                 cache: false,
                     // limit abortion to this input
                 port: "autocomplete" + input.name,
-                url: _url,
+                url: url,
                 callbackParameter: "callback",
                 timeout: 800,
                 dataType: options.dataType,
@@ -540,59 +540,7 @@
             });
             return dfd.promise();
         }
-        function request(term, success, failure) {
-            if (!options.matchCase)
-                term = term.toLowerCase();
-            var data = cache.load(term);
-            // recieve the cached data
-            if (data && data.length) {
-                success(term, data);
-                // if an AJAX url has been supplied, try loading the data now
-            } else if ((typeof options.url == "string") && (options.url.length > 0)) {
-
-                var extraParams = {
-                    timestamp: +new Date()
-                };
-                $.each(options.extraParams, function(key, param) {
-                    extraParams[key] = typeof param == "function" ? param() : param;
-                });
-
-                DJ.crossDomain({
-                    // try to leverage ajaxQueue plugin to abort previous requests
-                    mode: "abort",
-                    cache: false,
-                    // limit abortion to this input
-                    port: "autocomplete" + input.name,
-                    dataType: options.dataType,
-                    callbackParameter: "callback",
-                    url: options.url,
-                    //                    data: $.extend({
-                    //                        q: lastWord(term),
-                    //                        limit: options.max
-                    //                    }, extraParams),
-                    data: extraParams,
-                    success: function(data) {
-                        if (data.error !== undefined) {
-                            //Stop loading
-                            stopLoading();
-                        }
-                        var parsed = options.parse && options.parse(data) || parse(data);
-                        //cache.add(term, parsed);
-                        success(term, parsed);
-                    },
-                    error: function(jqXHR, textStatus, errorThrown) {
-                        stopLoading();
-                        var data = { error: "Could not make jsonp call." };
-                        success(term, options.parse && options.parse(data) || parse(data));
-                    }
-                });
-            } else {
-                // if we have a failure, we need to empty the list -- this prevents the the [TAB] key from selecting the last successful match
-                select.emptyList();
-                failure(term);
-            }
-        }
-
+        
         function parse(data) {
             var parsed = [];
             if (!data.error && data.count > 0) {
@@ -653,7 +601,10 @@
         width: 0,
         multiple: false,
         multipleSeparator: ", ",
-        highlight: function(value, term, controlType) {
+        highlight: function (value, term, controlType, subControlType) {
+            if (controlType.toLowerCase() === 'company' && subControlType && subControlType.toLowerCase() === 'screening') {
+                return value;
+            }
             if (controlType.toLowerCase() === 'keyword' || controlType.toLowerCase() === 'source' || controlType.toLowerCase() === 'executive') {
                 // Escape any regexy type characters so they don't bugger up the other reg ex
                 term = term.replace(/([\^\$\(\)\[\]\{\}\*\.\+\?\|\\])/gi, "\\$1");
@@ -948,7 +899,7 @@
                     var formatted = options.formatItem(data[i].data, i + 1, max, data[i].value, term);
                     if (formatted === false)
                         continue;
-                    tr = $("<tr/>").html(options.highlight(formatted, term, data[i].data.controlType)).addClass(i % 2 == 0 ? options.resultsEvenClass : options.resultsOddClass).appendTo(list)[0];
+                    tr = $("<tr/>").html(options.highlight(formatted, term, data[i].data.controlType, data[i].data.subControlType)).addClass(i % 2 == 0 ? options.resultsEvenClass : options.resultsOddClass).appendTo(list)[0];
                     if (data[i].data.isCategory === true) {
                         //Append the header
                         if ($("tbody", element).find('tr.ac_cat_head_' + data[i].data.controlType.toLowerCase()).get(0) === undefined) {
@@ -977,8 +928,9 @@
             }
 
             //Show help row based on the settings
+            var inputVal;
             if (options.showHelp) {
-                var inputVal = $(input).val();
+                inputVal = $(input).val();
                 tr = $("<tr/>").addClass("ac_helpRow")
                     .addClass(i % 2 == 0 ? options.resultsEvenClass : options.resultsOddClass)
                     .append($("<td>").html("<span class='ac_helpResult'>" + inputVal + "</span><span class='ac_helpText'>" + options.helpLabelText + "</span>"))
@@ -988,7 +940,7 @@
 
             //Show viewAll row based on the settings
             if (options.showViewAll) {
-                var inputVal = $(input).val();
+                inputVal = $(input).val();
                 var html = (options.showSearchText) ?
                     options.viewAllTextPre + "<span class='ac_search'>" + inputVal + "</span>" + options.viewAllTextPost :
                     options.viewAllText;

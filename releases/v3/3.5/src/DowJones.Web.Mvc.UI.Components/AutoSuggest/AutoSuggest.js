@@ -29,6 +29,7 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
     events: {
         // jQuery events are namespaced as <event>.<namespace>
         itemSelect: "itemSelect.dj.AutoSuggest",
+        freeTextSelect: "Select.dj.AutoSuggest",
         viewAllClick: "viewAllClick.dj.AutoSuggest",
         viewMorePrivateMarketsClick: "viewMorePrivateMarketsClick.dj.AutoSuggest",
         infoClick: "infoClick.dj.AutoSuggest",
@@ -43,6 +44,9 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
         companyTkn: "${companyTkn}",
         executiveTkn: "${executiveTkn}",
         industryTkn: "${industryTkn}",
+        industry_naceTkn: "${industry_naceTkn}",
+        industry_naicsTkn: "${industry_naicsTkn}",
+        industry_sicTkn: "${industry_sicTkn}",
         sourceTkn: "${sourceTkn}",
         keywordTkn: "${keywordTkn}",
         privateMarketCompanyHeaderTkn: "${privateMarketCompanyHeaderTkn}",
@@ -53,7 +57,8 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
         region_stateOrProvinceTkn: "${region_stateOrProvinceTkn}",
         region_metropolitanAreaTkn: "${region_metropolitanAreaTkn}",
         region_subNationalRegionTkn: "${region_subNationalRegionTkn}",
-        region_supranationalRegionTkn: "${region_supranationalRegionTkn}",
+        region_supraNationalRegionTkn: "${region_supranationalRegionTkn}",
+        region_subSupraNationalRegionTkn: "${region_subSupranationalRegionTkn}",
         newssubjectTkn: "${newsSubjectTkn}",
         infoTitleTknPre: "${infoTitleTknPre}",
         infoTitleTknPost: "${infoTitleTknPost}",
@@ -70,6 +75,8 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
         viewAllTkn: "${viewAllTkn}",
         viewAllPreTkn: "${viewAllPreTkn}",
         viewAllPostTkn: "${viewAllPostTkn}",
+        screeningTextPreTkn: "${screeningTextPreTkn}",
+        screeningTextPostTkn: "${screeningTextPostTkn}",
         helpLabelTkn: "${helpLabelTkn}",
         privateMarketCompanyViewMoreTkn: "${privateMarketCompanyViewMoreTkn}",
         privateMarketIndustryViewMoreTkn: "${privateMarketIndustryViewMoreTkn}",
@@ -152,6 +159,9 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
             publishermetadata: "name",
             newssubject: "descriptor",
             industry: "descriptor",
+            industry_nace: "descriptor",
+            industry_sic: "descriptor",
+            industry_naics: "descriptor",
             source: "formalName",
             keyword: "word",
             region_all: "descriptor",
@@ -160,6 +170,7 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
             region_metropolitanarea: "descriptor",
             region_subnationalregion: "descriptor",
             region_supranationalregion: "descriptor",
+            region_subsupranationalregion: "descriptor",
             calendarkeyword: "word",
             symbol: "ticker"
         };
@@ -177,6 +188,9 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
             publishermetadata: "publisherData",
             newssubject: "newsSubject",
             industry: "industry",
+            industry_nace: "industry",
+            industry_sic: "industry",
+            industry_naics: "industry",
             source: "source",
             keyword: "keyWord",
             region_all: "region",
@@ -185,6 +199,7 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
             region_metropolitanarea: "region",
             region_subnationalregion: "region",
             region_supranationalregion: "region",
+            region_subsupranationalregion: "region",
             calendarkeyword: "keyword",
             calendarcompany: "calendarCompany",
             symbol: "symbol"
@@ -261,13 +276,6 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
         else {
             newInfoTitleTkn = tokens.infoTitleTknPre + " " + tokens.infoTitleTknPost;
         }
-
-        //ex:"{infoTitleTknPre}|true|{infoTitleTknPost}"
-        /*
-        {infoTitleTkn}: Token Title
-        true: include Default Column Value
-        pre: append the Default Column Value before the token title
-        */
 
         var colArr;
         var eventObj = {
@@ -442,7 +450,7 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
 
             if (isUrlGenerated === true) {
                 //Call the transaction and get the authentication token
-                $.crossDomain({
+                DJ.crossDomain({
                     url: authenticationUrl,
                     callbackParameter: "callback",
                     success: function (data) {
@@ -481,23 +489,15 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
         var getValueByAutoSuggestType = this._getValueByAutoSuggestType(),
             getNameByAutoSuggestType = this._getNameByAutoSuggestType(),
             catArr = settings.options.categories.split("|");
-        //            if (settings.options.categories.indexOf("symbol") < 1)
-        //                settings.options.categories = settings.options.categories.replace("company|", "company|symbol|");
         
-        if ($.inArray("symbol", catArr) > -1) {
-            var symbol = data.splice(data.length - 1, 1);
-            data.splice($.inArray("symbol", catArr), 0, symbol[0]);
-        }
-        //settings["styleData"] = {};
         for (var dtCat = 0; dtCat < data.length; dtCat++) {
-
             var acName = getNameByAutoSuggestType[catArr[dtCat].toLowerCase()],
                 acValue = getValueByAutoSuggestType[catArr[dtCat].toLowerCase()],
                 catData = data[dtCat][acName];
             for (var m = 0; m < catData.length; m++) {
-                var t = catData[m];
+                var t = catData[m],
+                    headerTkn = catArr[dtCat] + "Tkn";
                 t.controlType = catArr[dtCat];
-                var headerTkn = catArr[dtCat] + "Tkn";
                 t.groupHeading = settings.tokens[headerTkn];
                 t.isCategory = true;
                 var categoryRow = { data: t, value: t[acValue], result: t[acValue] };
@@ -578,6 +578,40 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
         }
         return formattedItem;
     },
+    
+    _postProcessData: function (response, term) {
+        var self = this,
+           settings = self.globalSettingsObj;
+        // check to see if company request in in response
+        var catArr = _.compact(settings.options.categories.split("|")),
+            companyIdx = _.indexOf(catArr, 'company'),
+            symbolIdx = _.indexOf(catArr, 'symbol'),
+            data = response.category;
+
+        // Clean up symbol data
+        var index = $.inArray("symbol", catArr);
+        if (symbolIdx > -1) {
+            var tempSymbol = data.splice(data.length - 1, 1);
+            data.splice(index, 0, tempSymbol[0]);
+        }
+
+        if (companyIdx > -1 && settings.includeCompanyScreening) {
+            var companyData = _.find(data, function(val) {
+                return val.company;
+            });
+            
+            // company node is always returned.
+            if (companyData) {
+                companyData.company.push({
+                    subControlType: "screening",
+                    value: settings.tokens.screeningTextPreTkn + "<strong>" + $.trim(term) + "</strong>" + settings.tokens.screeningTextPostTkn,
+                    query: $.trim(term),
+                });
+            } 
+        }
+        
+        return response;
+    },
 
     //Function to process request (makes a REST API asynchronous call)
     _processRequest: function (settings) {
@@ -586,7 +620,7 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
         self._setCssDefaults(settings);
         $("#" + settings.controlId)._djAutocomplete(settings.url + "/" + settings.autocompletionType + "", {
             dataType: 'jsonp',
-            parse: function (data) {
+            parse: function (data, term) {
                 self.globalSettingsObj = settings;
                 if (data.error != undefined) {
                     if ($.isFunction(settings.onError)) {
@@ -601,9 +635,8 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
                         }
                     }
                     var rows = [];
-                    return self._getParsedRows(settings.autocompletionType, data, rows, settings);
+                    return self._getParsedRows(settings.autocompletionType, self._postProcessData(data, term), rows, settings);
                 }
- 
             },
             formatItem: function (row) { //  parameters are  (row, i, n )
                 if (row) {
@@ -645,8 +678,14 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
         //        });
 
         if ($.isFunction(settings.onItemSelect)) {
-            $("#" + settings.controlId)._djResult(function (e) {
-                    self.globalSettingsObj.onItemSelect(arguments[1]);
+            $("#" + settings.controlId)._djResult(function(e, result) {
+                self.globalSettingsObj.onItemSelect(result);
+                e.stopPropagation();
+                return false;
+            });
+        } else {
+            $("#" + settings.controlId)._djResult(function(e, result) {
+                self.publish(self.events.itemSelect, result);
                 e.stopPropagation();
                 return false;
             });
@@ -655,8 +694,14 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
 
         //OnFreeText EventHandler
         if ($.isFunction(settings.onFreeTextEnter)) {
-            $("#" + settings.controlId)._djFreeText(function (e) {
-                    self.globalSettingsObj.onFreeTextEnter(arguments[1]);
+            $("#" + settings.controlId)._djFreeText(function (e, result) {
+                self.globalSettingsObj.onFreeTextEnter(result);
+                e.stopPropagation();
+                return false;
+            });
+        } else {
+            $("#" + settings.controlId)._djFreeText(function (e, result) {
+                self.publish(self.events.freeTextSelect, result);
                 e.stopPropagation();
                 return false;
             });
@@ -668,27 +713,24 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
             });
         }
         
-
-//        //onViewAll EventHandler
-//        $("#" + settings.controlId)._djViewAll(function (e, result) {
-//            if (result) {
-//                result.autocompletionType = self.globalSettingsObj.autocompletionType;
-//                result.options = self.globalSettingsObj.options;
-//            }
-//            self.publish(self.events.viewAll, result);
-//            e.stopPropagation();
-//            return false;
-        //        });
-
         //onViewAllClick EventHandler
         if ($.isFunction(settings.onViewAllClick)) {
-            $("#" + settings.controlId)._djViewAll(function (e) {
-                var data = arguments[1];
+            $("#" + settings.controlId)._djViewAll(function(e, data) {
                 if (data) {
                     data.autocompletionType = self.globalSettingsObj.autocompletionType;
                     data.options = (self.globalSettingsObj.options) ? (self.globalSettingsObj.options) : null;
                 }
                 self.globalSettingsObj.onViewAllClick(data);
+                e.stopPropagation();
+                return false;
+            });
+        } else {
+            $("#" + settings.controlId)._djViewAll(function (e, result) {
+                if (result) {
+                    result.autocompletionType = self.globalSettingsObj.autocompletionType;
+                    result.options = self.globalSettingsObj.options;
+                }
+                self.publish(self.events.viewAll, result);
                 e.stopPropagation();
                 return false;
             });
@@ -703,6 +745,21 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
                     var data = $(parentTrTag).data("ac_cat_data");
                     suggestControl.focus();
                     self.globalSettingsObj.onViewMorePrivateMarketsClick(data);
+                    $(parentContainerDiv).show();
+                    e.stopPropagation();
+                    return false;
+                });
+                self.prototypeObj.events["viewMorePrivateMarketsEventRegistered "] = true;
+            }
+        }
+        else {
+            if (this.prototypeObj.events["viewMorePrivateMarketsEventRegistered "] === false) {
+                $('a.ac_viewMore').on('click', function (e) {
+                    var parentTrTag = $(this).closest("tr").get(0);
+                    var parentContainerDiv = $(this).closest("div." + self.globalSettingsObj.resultsClass).get(0);
+                    var data = $(parentTrTag).data("ac_cat_data");
+                    suggestControl.focus();
+                    self.publish(self.events.viewMorePrivateMarketsClick, data);
                     $(parentContainerDiv).show();
                     e.stopPropagation();
                     return false;
@@ -727,9 +784,38 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
                 self.prototypeObj.events["infoEventRegistered "] = true;
             }
         }
+        else {
+            if (this.prototypeObj.events["infoEventRegistered "] === false) {
+                $('a.ac_info').on('click', function (e) {
+                    var parentTrTag = $(this).closest("tr").get(0);
+                    var parentContainerDiv = $(this).closest("div." + self.globalSettingsObj.resultsClass).get(0);
+                    var data = $(parentTrTag).data("ac_data").data;
+                    suggestControl.focus();
+                    self.publish(self.events.infoClick, data);
+                    $(parentContainerDiv).show();
+                    e.stopPropagation();
+                    return false;
+                });
+                self.prototypeObj.events["infoEventRegistered "] = true;
+            }
+        }
 
         //OnPromoteClick EventHandler
         if ($.isFunction(settings.onPromoteClick)) {
+            if (this.prototypeObj.events["promoteEventRegistered "] === false) {
+                $('a.ac_promote').on('click', function(e) {
+                    var parentTrTag = $(this).closest("tr").get(0);
+                    var parentContainerDiv = $(this).closest("div." + self.globalSettingsObj.resultsClass).get(0);
+                    var data = $(parentTrTag).data("ac_data").data;
+                    suggestControl.focus();
+                    self.globalSettingsObj.onPromoteClick(data);
+                    $(parentContainerDiv).show();
+                    e.stopPropagation();
+                    return false;
+                });
+                self.prototypeObj.events["promoteEventRegistered "] = true;
+            }
+        } else {
             if (this.prototypeObj.events["promoteEventRegistered "] === false) {
                 $('a.ac_promote').on('click', function (e) {
                     var parentTrTag = $(this).closest("tr").get(0);
@@ -816,6 +902,6 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
     }
 });
 
-    // Declare this class as a jQuery plugin
-    $.plugin('dj_AutoSuggest', DJ.UI.AutoSuggest);
-    $dj.debug('Registered DJ.UI.AutoSuggest (extends DJ.UI.Component)');
+// Declare this class as a jQuery plugin
+$.plugin('dj_AutoSuggest', DJ.UI.AutoSuggest);
+$dj.debug('Registered DJ.UI.AutoSuggest (extends DJ.UI.Component)');

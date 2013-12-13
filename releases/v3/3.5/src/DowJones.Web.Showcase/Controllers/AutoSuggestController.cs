@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Configuration;
+using System.Dynamic;
 using System.Web.Mvc;
+using DowJones.Extensions;
 using DowJones.Web.Mvc.UI.Components.AutoSuggest;
 
 namespace DowJones.Web.Showcase.Controllers
@@ -12,8 +14,43 @@ namespace DowJones.Web.Showcase.Controllers
 
         public ActionResult Index()
         {
-            var autoSuggestModels = GetAutoSuggestModels();
-            return View("Index", autoSuggestModels);
+            var autoSuggestModel = GetDJXSearchBoxModel();
+            return View("Index", autoSuggestModel);
+        }
+
+        public ActionResult DJX()
+        {
+            return View("DJX");
+        }
+
+
+        public AutoSuggestModel GetDJXSearchBoxModel()
+        {
+            var serviceOptions = new ServiceOptions
+                                     {
+                                         MaxResults = 3, 
+                                         InterfaceLanguage = "en",
+                                         Categories = "company|executive|newssubject|keyword|region_all|region_country|region_subSupraNationalRegion|region_stateOrProvince|industry|industry_nace|industry_sic|industry_naics",
+                                         It = "stock",
+                                         CompanyFilterSet = "newsCodedAbt|newsCodedOccr|noADR",
+                                         ExecutiveFilterSet = "newsCoded",
+                                         ShowMatchingWord = true
+                                     };
+
+            return new AutoSuggestModel
+            {
+                AuthType = AuthType.SuggestContext,
+                AuthTypeValue = ConfigurationManager.AppSettings["SuggestAuthTypeToken"],
+                AutocompletionType = AutoCompletionType.Categories,
+                ControlId = "djKeywordAutoSuggest",
+                SelectFirst = false,
+                ShowViewAll = true,
+                FillInputOnKeyUpDown = true,
+                EraseInputOnItemSelect = true,
+                ShowHelp = false,
+                ShowSearchText = true,
+                ServiceOptions = serviceOptions,
+            };
         }
 
         public List<AutoSuggestModel> GetAutoSuggestModels()
@@ -28,7 +65,7 @@ namespace DowJones.Web.Showcase.Controllers
                                               AutocompletionType = AutoCompletionType.Source,
                                               AuthType = AuthType.SuggestContext,
                                               AuthTypeValue = authTypeToken,
-                                              ServiceOptions = "{\"types\":\"blog\"}",
+                                              //ServiceOptions = "{\"types\":\"blog\"}",
                                               Tokens = "{\"blogTkn\":\"Blog\"}",
                                               ControlId = "djSourceAutoSuggest"
                                           };

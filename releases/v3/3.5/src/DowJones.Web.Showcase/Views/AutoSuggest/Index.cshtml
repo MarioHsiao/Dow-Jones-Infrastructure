@@ -1,9 +1,9 @@
-﻿@model IEnumerable<DowJones.Web.Mvc.UI.Components.AutoSuggest.AutoSuggestModel>
-@using System.Configuration
+﻿@using System.Configuration
 
 @{
-    ViewBag.Title = "AutoSuggest";
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout_ComponentExplorer.cshtml";
+    ViewBag.Title = "Auto Suggest";
+    
 }
 <style type="text/css">
     body { font: 12px/18px "Lucida Grande" , "Lucida Sans Unicode" , Helvetica, Arial, Verdana, sans-serif; }
@@ -11,44 +11,20 @@
     .suggest-table tr td { height: 30px; line-height: 30px; }
     .AutoSuggestComponent{margin-left:10px; width: 300px;}
 </style>
+<link href="@Url.Content("~/styles/css/AutoSuggest/AutoSuggest.css")" rel="stylesheet" />
 
-@*<table class="suggest-table">
-    @foreach (var mdl in Model)
-    { 
-        <tr>
-            <td>@mdl.AutocompletionType
-            </td>
-            <td>@Html.DJ().Render(mdl, new { id = mdl.ControlId })
-            </td>
-        </tr>
+<div id="autoSuggestContainer">
+</div>
+
+@Html.DJ().Render(Model)
+
+
+
+<script type="text/javascript">
+    
+
+
+    function rocket(data) {
+        console.log(data)
     }
-</table>*@
-
-    <link href="@Url.Content("~/styles/css/AutoSuggest/AutoSuggest.css")" rel="stylesheet" />
-
-    <!-- required file! DJ.add won't work without "common.js" being available -->
-
-    <script src="@Url.Content("~/common.js")" type="text/javascript"></script>
-
-     <div id="autoSuggestContainer">
-            </div>
-
-    <script type="text/javascript">
-    var authTypeToken = '@ConfigurationManager.AppSettings["SuggestAuthTypeToken"]';
-    var suggestServiceURl = '@ConfigurationManager.AppSettings["SuggestServiceUrl"]';
-
-    DJ.add("AutoSuggest", {
-        container: "autoSuggestContainer",
-        options: { 
-            suggestServiceUrl: suggestServiceURl,
-            autocompletionType: "Keyword",
-            controlId: "djKeywordAutoSuggest",
-            authType: "SuggestContext",
-            authTypeValue: authTypeToken,            
-            selectFirst: true,
-            fillInputOnKeyUpDown: true,
-            showHelp: false,
-            showViewAll: true,
-        }
-    }); 
-    </script>
+</script>

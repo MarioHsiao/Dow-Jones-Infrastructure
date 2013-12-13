@@ -1539,6 +1539,7 @@
     <Content Include="Views\Gauge\Index.cshtml" />
     <Content Include="Views\DiscoveryFilters\Index.cshtml" />
     <Content Include="Views\Charting\Index.cshtml" />
+    <Content Include="Views\AutoSuggest\DJX.cshtml" />
     <None Include="Views\NewsRadar\sample.json" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
