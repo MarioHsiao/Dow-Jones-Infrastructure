@@ -46,27 +46,28 @@
     <Reference Include="CordaNetEmbedder">
       <HintPath>..\packages\Corda.Embedder.7.0.0\lib\CordaNetEmbedder.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Charting">
-      <HintPath>..\packages\DowJones.Charting.3.5.61\lib\DowJones.Charting.dll</HintPath>
-    </Reference>
-    <Reference Include="DowJones.Infrastructure, Version=3.5.63.41901, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Charting, Version=3.5.70.42616, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Infrastructure.3.5.63\lib\DowJones.Infrastructure.dll</HintPath>
+      <HintPath>..\packages\DowJones.Charting.3.5.70\lib\DowJones.Charting.dll</HintPath>
+    </Reference>
+    <Reference Include="DowJones.Infrastructure, Version=3.5.70.42616, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DowJones.Infrastructure.3.5.70\lib\DowJones.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Web">
       <HintPath>..\..\..\trunk\src\DowJones.Web\bin\Debug\DowJones.Web.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Web.Mvc, Version=3.5.63.41901, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Web.Mvc, Version=3.5.70.42616, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Web.Mvc.3.5.63\lib\DowJones.Web.Mvc.dll</HintPath>
+      <HintPath>..\packages\DowJones.Web.Mvc.3.5.70\lib\DowJones.Web.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="DowJones.Web.Mvc.UI.Components, Version=3.5.63.41901, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DowJones.Web.Mvc.UI.Components, Version=3.5.70.42616, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.3.5.63\lib\DowJones.Web.Mvc.UI.Components.dll</HintPath>
+      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.3.5.70\lib\DowJones.Web.Mvc.UI.Components.dll</HintPath>
     </Reference>
     <Reference Include="DowJones.Web.Mvc.UI.Components.Models, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.Models.3.5.63\lib\DowJones.Web.Mvc.UI.Components.Models.dll</HintPath>
+      <HintPath>..\packages\DowJones.Web.Mvc.UI.Components.Models.3.5.70\lib\DowJones.Web.Mvc.UI.Components.Models.dll</HintPath>
     </Reference>
     <Reference Include="factiva.gateway.messages">
       <HintPath>..\packages\Factiva.Gateway.7.5.0.149\lib\factiva.gateway.messages.dll</HintPath>
@@ -586,7 +587,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="GatewayResources\config\CIBSService.config" />
