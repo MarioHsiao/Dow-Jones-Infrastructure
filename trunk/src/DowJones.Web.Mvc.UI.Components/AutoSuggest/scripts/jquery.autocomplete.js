@@ -32,6 +32,7 @@
                 new $.DJAutocompleter(this, options);
             });
         },
+        
         _djResult: function(handler) {
             return this.unbind("result").bind("result", handler);
         },
@@ -73,21 +74,21 @@
             BACKSPACE: 8
         };
 
-        // Create $ object for input element
-        var $input = $(input).attr("autocomplete", "off").addClass(options.inputClass);
-        $('#' + options.eraseBtnId).on("click", function(){ $input.val(""); $(this).fadeOut("fast");});
+        // Create $object for input element
+        var $input = $(input).attr("autocomplete", "off").addClass(options.inputClass),
+            $eraseBtn = $input.next('#' + options.eraseBtnId);
+        $eraseBtn.on("click", function () { $input.val(""); $(this).fadeOut("fast"); });
 
-        var timeout;
-        var previousValue = "";
-        var cache = $.DJAutocompleter.Cache(options);
-        var hasFocus = 0;
-        var lastKeyPressCode;
-        var config = {
-            mouseDownOnSelect: false
-        };
-        var select = $.DJAutocompleter.Select(options, input, selectCurrent, config);
-
-        var blockSubmit;
+        var timeout,
+            previousValue = "",
+            cache = $.DJAutocompleter.Cache(options),
+            hasFocus = 0,
+            lastKeyPressCode,
+            config = {
+                mouseDownOnSelect: false
+            },
+            select = $.DJAutocompleter.Select(options, input, selectCurrent, config),
+            blockSubmit;
 
         // prevent form submit in opera when selecting with return key
         $.browser.opera && $(input.form).bind("submit.autocomplete", function() {
@@ -99,6 +100,7 @@
         });
         
         $input.unbind(($.browser.opera ? "keypress" : "keydown") + ".autocomplete");
+        
         // only opera doesn't trigger keydown multiple times while pressed, others don't work with keypress at all
         $input.bind(($.browser.opera ? "keypress" : "keydown") + ".autocomplete", function(event) {
             // a keypress means the input has focus
@@ -232,9 +234,7 @@
         
         function showOrHideResetButton() {
             var io =  $input.val().length ? 1 : 0 ;
-            $('#' + options.eraseBtnId).stop().fadeTo(300,io);
-//            if ((e.keyCode != 13 || e.which != 13) && $('#' + options.eraseBtnId).is(":hidden"))
-//				$('#' + options.eraseBtnId).fadeIn("fast");
+            $eraseBtn.stop().fadeTo(300, io);
         }
 
         function freetextSearch() {
@@ -294,11 +294,13 @@
                 }
                 v += options.multipleSeparator;
             }
-             if ((!options.eraseInputOnItemSelect) || selected.data.controlType=='keyword')
+
+            if ((!options.eraseInputOnItemSelect) || selected.data.controlType == 'keyword')
                 $input.val(v);
             else {
                  $input.val("");
             }
+
             hideResultsNow();
             $input.trigger("result", [selected.data, selected.value]);
             return true;
@@ -432,7 +434,7 @@
                 }
             }
             DJ.crossDomain({
-                // try to leverage ajaxQueue plugin to abort previous requests
+                // try to leverage ajaxQueue plug-in to abort previous requests
                 mode: "abort",
                 cache: false,
                 // limit abortion to this input
@@ -444,8 +446,8 @@
                 success: function(data) {
                     dfd.resolve(data);
                 },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    dfd.reject(jqXHR);
+                error: function(jqXhr, textStatus, errorThrown) {
+                    dfd.reject(jqXhr);
 
                 }
             });
