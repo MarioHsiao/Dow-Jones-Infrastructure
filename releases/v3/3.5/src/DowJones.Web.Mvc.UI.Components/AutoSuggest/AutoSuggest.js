@@ -127,17 +127,19 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
     */
     initialize: function (settings) {
         if (settings != undefined) {
-            var targetObj = $('#' + settings.controlId);
+            var self = this,
+                targetObj = $('#' + settings.controlId);
+            
             //Throw Exception
             if (!targetObj || targetObj.type != 'text') {
                 //document.write("<input id=\"" + settings.controlId + "\" name=\"" + settings.controlId + "\" class=\"" + settings.controlClassName + "\" type=\"text\"/>");
             }
 
             //Enable/Disable Speech Input | Default: disabled
-            this._initSpeechInput(settings, targetObj);
+            self._initSpeechInput(settings, targetObj);
 
             //Initialize Autosuggest
-            this._initAutoComplete.call(this, settings);
+            self._initAutoComplete(settings);
         }
     },
 
@@ -366,8 +368,6 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
                     t[t.length] = "<a href=\"javascript:void(0)\" class=\"ac_discont\" title=\"" + tokens.disContTkn + "\">discontinued</a>";
                 }
             }
-
-
             t[t.length] = "</td>";
         }
         else {
@@ -602,6 +602,10 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
             
             // company node is always returned.
             if (companyData) {
+                // added for screening portion of component
+                if (settings.hideCompanyResults) {
+                    companyData.company = [];
+                }
                 companyData.company.push({
                     subControlType: "screening",
                     value: settings.tokens.screeningTextPreTkn + "<strong>" + $.trim(term) + "</strong>" + settings.tokens.screeningTextPostTkn,
@@ -882,9 +886,11 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
             // We can use jQuery 1.4.2+ here
             var autosuggestPrototype = this.prototypeObj;
             var suggestContext;
+
             if (jsonObj.authType.toLowerCase() === "suggestcontext") {
                 suggestContext = jsonObj.authTypeValue;
             }
+            
             if (suggestContext === undefined || $.trim(suggestContext).length === 0) {
                 if (autosuggestPrototype.suggestContextObj.callInitiated != true) {
                     this._getSuggestContextAndProcessRequest(jsonObj);
