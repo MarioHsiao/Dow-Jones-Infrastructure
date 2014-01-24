@@ -406,7 +406,8 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
         var t = [];
         var getValueByAutoSuggestType = this._getValueByAutoSuggestType();
         var rowValue = row[getValueByAutoSuggestType[row.controlType.toLowerCase()]];
-        t[t.length] = "<td><div class=\"ac_descriptor\">";
+        var xClass = (row.controlType.toLowerCase() === 'company' && row.subControlType && row.subControlType.toLowerCase() === 'screening' ) ? ' ac_screening' : '';
+        t[t.length] = "<td><div class=\"ac_descriptor" + xClass + "\">";
         t[t.length] = rowValue;
         switch (row.controlType.toLowerCase()) {
             case "executive":
@@ -609,7 +610,7 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
                 companyData.company.push({
                     subControlType: "screening",
                     value: settings.tokens.screeningTextPreTkn + "<strong>" + $.trim(term) + "</strong>" + settings.tokens.screeningTextPostTkn,
-                    query: $.trim(term),
+                    query: $.trim(term)
                 });
             } 
         }
@@ -880,7 +881,7 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
         }
     },
 
-    //Initialize Autocomplete
+    //Initialize Auto-complete
     _initAutoComplete: function (jsonObj) {
         if (jsonObj) {
             // We can use jQuery 1.4.2+ here
@@ -908,6 +909,6 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
     }
 });
 
-// Declare this class as a jQuery plugin
+// Declare this class as a jQuery plug-in
 $.plugin('dj_AutoSuggest', DJ.UI.AutoSuggest);
 $dj.debug('Registered DJ.UI.AutoSuggest (extends DJ.UI.Component)');

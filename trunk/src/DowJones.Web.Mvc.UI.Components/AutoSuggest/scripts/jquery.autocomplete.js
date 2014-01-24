@@ -295,14 +295,18 @@
                 v += options.multipleSeparator;
             }
 
-            if ((!options.eraseInputOnItemSelect) || selected.data.controlType == 'keyword')
+
+            if (selected.data.controlType.toLowerCase() === 'company' && selected.data.subControlType.toLowerCase() === 'screening') {
+                $input.val('');
+            }
+            if ((!options.eraseInputOnItemSelect) || selected.data.controlType == 'keyword') {
                 $input.val(v);
-            else {
-                 $input.val("");
+            } else {
+                $input.val('');
             }
 
             hideResultsNow();
-            $input.trigger("result", [selected.data, selected.value]);
+            $input.trigger('result', [selected.data, selected.value]);
             return true;
         }
 
@@ -361,8 +365,8 @@
         // q: the term entered
         // sValue: the first matching result
         function autoFill(q, sValue) {
-            // autofill in the complete box w/the first match as long as the user hasn't entered in more data
-            // if the last user key pressed was backspace, don't autofill
+            // auto-fill in the complete box w/the first match as long as the user hasn't entered in more data
+            // if the last user key pressed was backspace, don't auto-fill
             if (options.autoFill && (lastWord($input.val()).toLowerCase() == q.toLowerCase()) && lastKeyPressCode != KEY.BACKSPACE) {
                 // fill in the Data (keep the case the user has typed)
                 $input.val($input.val() + sValue.substring(lastWord(previousValue).length));
@@ -720,16 +724,16 @@
                 * to loop through all the data collections looking for matches
                 */
                 var c;
+                var csub;
                 if (!options.url && options.matchContains) {
                     // track all matches
-                    var csub = [];
-                    // loop through all the data grids for matches
+                    csub = []; // loop through all the data grids for matches
                     for (var k in data) {
                         // don't search through the stMatchSets[""] (minChars: 0) cache
                         // this prevents duplicates
                         if (k.length > 0) {
                             c = data[k];
-                            $.each(c, function(i, x) {
+                            $.each(c, function(j, x) {
                                 // if we've got a match, add it to the array
                                 if (matchSubset(x.value, q)) {
                                     csub.push(x);
@@ -747,8 +751,8 @@
                     for (var i = q.length - 1; i >= options.minChars; i--) {
                         c = data[q.substr(0, i)];
                         if (c) {
-                            var csub = [];
-                            $.each(c, function(i, x) {
+                            csub = [];
+                            $.each(c, function(j, x) {
                                 if (matchSubset(x.value, q)) {
                                     csub[csub.length] = x;
                                 }
@@ -807,7 +811,7 @@
                 }
                 return true;
             })
-            .mousedown(function(e) {
+            .mousedown(function() {
                 config.mouseDownOnSelect = true;
 
             }).mouseup(function() {
@@ -1036,7 +1040,7 @@
             selected: function() {
                 var selected = listItems && listItems.filter("." + CLASSES.ACTIVE).removeClass(CLASSES.ACTIVE);
                 if (selected && selected.length && selected.length > 0) {
-                    return ($.data(selected[0], "ac_data")) ? (selected && selected.length && $.data(selected[0], "ac_data")) : (selected && selected.length && "");
+                    return ($.data(selected[0], "ac_data")) ? (selected.length && $.data(selected[0], "ac_data")) : (selected.length && "");
                 }
                 return false;
             },
