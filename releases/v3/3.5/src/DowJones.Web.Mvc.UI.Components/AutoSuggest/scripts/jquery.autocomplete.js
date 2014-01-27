@@ -115,9 +115,9 @@
                     if (select.visible()) {
                         select.prev();
                         if (options.fillInputOnKeyUpDown) {
-                            if (selected.data.controlType.toLowerCase() === 'company' &&
-                                selected.data.subControlType &&
-                                selected.data.subControlType.toLowerCase() === 'screening') {
+                            if (select.selected().controlType.toLowerCase() === 'company' &&
+                                select.selected().subControlType &&
+                                select.selected().subControlType.toLowerCase() === 'screening') {
                                 $input.val(select.selected().query);
                             } else {
                                 $input.val(select.selected().value);
@@ -134,9 +134,9 @@
                     if (select.visible()) {
                         select.next();
                         if (options.fillInputOnKeyUpDown) {
-                            if (selected.data.controlType.toLowerCase() === 'company' &&
-                                selected.data.subControlType &&
-                                selected.data.subControlType.toLowerCase() === 'screening') {
+                            if (select.selected().controlType.toLowerCase() === 'company' &&
+                                select.selected().subControlType &&
+                                select.selected().subControlType.toLowerCase() === 'screening') {
                                 $input.val(select.selected().query);
                             } else {
                                 $input.val(select.selected().value);
