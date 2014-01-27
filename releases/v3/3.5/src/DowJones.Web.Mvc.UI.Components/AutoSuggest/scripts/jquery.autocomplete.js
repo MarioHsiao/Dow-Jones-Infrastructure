@@ -115,7 +115,13 @@
                     if (select.visible()) {
                         select.prev();
                         if (options.fillInputOnKeyUpDown) {
-                            $input.val(select.selected().value);
+                            if (selected.data.controlType.toLowerCase() === 'company' &&
+                                selected.data.subControlType &&
+                                selected.data.subControlType.toLowerCase() === 'screening') {
+                                $input.val(select.selected().query);
+                            } else {
+                                $input.val(select.selected().value);
+                            }
                             select.reset();
                         }
                     } else {
@@ -128,7 +134,13 @@
                     if (select.visible()) {
                         select.next();
                         if (options.fillInputOnKeyUpDown) {
-                            $input.val(select.selected().value);
+                            if (selected.data.controlType.toLowerCase() === 'company' &&
+                                selected.data.subControlType &&
+                                selected.data.subControlType.toLowerCase() === 'screening') {
+                                $input.val(select.selected().query);
+                            } else {
+                                $input.val(select.selected().value);
+                            }
                             select.reset();
                         }
                     } else {
@@ -296,7 +308,9 @@
             }
 
 
-            if (selected.data.controlType.toLowerCase() === 'company' && selected.data.subControlType.toLowerCase() === 'screening') {
+            if (selected.data.controlType.toLowerCase() === 'company' &&
+                selected.data.subControlType &&
+                selected.data.subControlType.toLowerCase() === 'screening') {
                 $input.val('');
             }
             if ((!options.eraseInputOnItemSelect) || selected.data.controlType == 'keyword') {
