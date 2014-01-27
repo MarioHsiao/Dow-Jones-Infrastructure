@@ -108,6 +108,7 @@
             hasFocus = 1;
             // track last key pressed
             lastKeyPressCode = event.keyCode;
+            var selectedItem;
             switch (event.keyCode) {
 
                 case KEY.UP:
@@ -115,12 +116,13 @@
                     if (select.visible()) {
                         select.prev();
                         if (options.fillInputOnKeyUpDown) {
-                            if (select.selected().controlType.toLowerCase() === 'company' &&
-                                select.selected().subControlType &&
-                                select.selected().subControlType.toLowerCase() === 'screening') {
-                                $input.val(select.selected().query);
+                            selectedItem = select.selected();
+                            if (selectedItem.data.controlType.toLowerCase() === 'company' &&
+                                selectedItem.data.subControlType &&
+                                selectedItem.data.subControlType.toLowerCase() === 'screening') {
+                                $input.val(selectedItem.data.query);
                             } else {
-                                $input.val(select.selected().value);
+                                $input.val(selectedItem.value);
                             }
                             select.reset();
                         }
@@ -134,12 +136,13 @@
                     if (select.visible()) {
                         select.next();
                         if (options.fillInputOnKeyUpDown) {
-                            if (select.selected().controlType.toLowerCase() === 'company' &&
-                                select.selected().subControlType &&
-                                select.selected().subControlType.toLowerCase() === 'screening') {
-                                $input.val(select.selected().query);
+                            selectedItem = select.selected();
+                            if (selectedItem.data.controlType.toLowerCase() === 'company' &&
+                                selectedItem.data.subControlType &&
+                                selectedItem.data.subControlType.toLowerCase() === 'screening') {
+                                $input.val(selectedItem.data.query);
                             } else {
-                                $input.val(select.selected().value);
+                                $input.val(selectedItem.value);
                             }
                             select.reset();
                         }
