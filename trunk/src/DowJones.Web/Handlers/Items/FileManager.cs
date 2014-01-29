@@ -18,7 +18,6 @@ namespace DowJones.Web.Handlers.Items
         private readonly string _user;
         private readonly string _password;
 
-
         #endregion
         public FileManager(string domain, string user, string password)
         {

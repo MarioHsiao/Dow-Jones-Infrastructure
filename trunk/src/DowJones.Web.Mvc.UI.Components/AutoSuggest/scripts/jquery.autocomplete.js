@@ -924,9 +924,7 @@
                     if (formatted === false)
                         continue;
 
-                    var trHtml = options.highlight(formatted, term, data[i].data.controlType, data[i].data.subControlType)
-                        .replace(/<script>/gi, '&lt;script&gt;')
-                        .replace(/<\/script>/gi, '&lt;\/script&gt;');
+                    var trHtml = options.highlight(formatted, term, data[i].data.controlType, data[i].data.subControlType);
 
                     tr = $("<tr/>").html(trHtml)
                         .addClass(i % 2 == 0 ? options.resultsEvenClass : options.resultsOddClass)

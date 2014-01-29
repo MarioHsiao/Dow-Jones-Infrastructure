@@ -401,6 +401,10 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
         return t.join("");
     },
 
+    encodeHTML: function(s) {
+        return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    },
+
     //Function to get Formatted Category Row
     _getFormattedCategoryRow: function (settings, row) {
         var t = [];
@@ -408,13 +412,17 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
         var rowValue = row[getValueByAutoSuggestType[row.controlType.toLowerCase()]];
         var xClass = (row.controlType.toLowerCase() === 'company' && row.subControlType && row.subControlType.toLowerCase() === 'screening' ) ? ' ac_screening' : '';
         t[t.length] = "<td><div class=\"ac_descriptor" + xClass + "\">";
-        t[t.length] = rowValue;
+
+        t[t.length] = (row.controlType.toLowerCase() === 'company' && row.subControlType && row.subControlType.toLowerCase() === 'screening' ) ? 
+            settings.tokens.screeningTextPreTkn + '<strong>' + this.encodeHTML(rowValue) + '</strong>' + settings.tokens.screeningTextPostTkn:
+            this.encodeHTML(rowValue);
+
         switch (row.controlType.toLowerCase()) {
             case "executive":
                 if (row.companyName && row.companyName.length > 0 && row.completeName.toLowerCase().indexOf(row.companyName.toLowerCase())<0) {
                     t[t.length] = " <span class=\"ac_executiveCompany\">(";
-                   t[t.length] = row.companyName;
-                   t[t.length] = ")</span>";
+                    t[t.length] = row.companyName;
+                    t[t.length] = ")</span>";
                }
                 break;
             case "symbol":
@@ -609,7 +617,7 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
                 }
                 companyData.company.push({
                     subControlType: "screening",
-                    value: settings.tokens.screeningTextPreTkn + "<strong>" + $.trim(term) + "</strong>" + settings.tokens.screeningTextPostTkn,
+                    value: $.trim(term),
                     query: $.trim(term)
                 });
             } 
@@ -660,6 +668,8 @@ DJ.UI.AutoSuggest = DJ.UI.Component.extend({
             viewAllText: settings.tokens.viewAllTkn,
             viewAllTextPre: settings.tokens.viewAllTknPre,
             viewAllTextPost: settings.tokens.viewAllTknPost,
+            screeningTextPreTkn: settings.tokens.screeningTextPreTkn,
+            screeningTextPostTkn: settings.tokens.screeningTextPostTkn,
             highlight: settings.highlight,
             showHelp: settings.showHelp,
             searchBtnId: settings.searchBtnId,
