@@ -6,10 +6,10 @@ namespace DowJones.Security
 {
     public class ImpersonationUtil
     {
-        public const int LOGON32_LOGON_INTERACTIVE = 2;
-        public const int LOGON32_PROVIDER_DEFAULT = 0;
+        public const int Logon32LogonInteractive = 2;
+        public const int Logon32ProviderDefault = 0;
 
-        WindowsImpersonationContext impersonationContext;
+        WindowsImpersonationContext _impersonationContext;
 
         [DllImport("advapi32.dll")]
         public static extern int LogonUserA(String lpszUserName,
@@ -18,10 +18,9 @@ namespace DowJones.Security
             int dwLogonType,
             int dwLogonProvider,
             ref IntPtr phToken);
+
         [DllImport("advapi32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        public static extern int DuplicateToken(IntPtr hToken,
-            int impersonationLevel,
-            ref IntPtr hNewToken);
+        public static extern int DuplicateToken(IntPtr hToken, int impersonationLevel, ref IntPtr hNewToken);
 
         [DllImport("advapi32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         public static extern bool RevertToSelf();
@@ -29,53 +28,50 @@ namespace DowJones.Security
         [DllImport("kernel32.dll", CharSet = CharSet.Auto)]
         public static extern bool CloseHandle(IntPtr handle);
 
-        private bool _isUserImpersonated = false;
-
-        public bool IsUserImpersonated
-        {
-            get { return _isUserImpersonated; }
-        }
-
+        public bool IsUserImpersonated { get; private set; }
 
         public bool ImpersonateValidUser(String userName, String domain, String password)
         {
-            WindowsIdentity tempWindowsIdentity;
-            IntPtr token = IntPtr.Zero;
-            IntPtr tokenDuplicate = IntPtr.Zero;
+            var token = IntPtr.Zero;
+            var tokenDuplicate = IntPtr.Zero;
 
             if (RevertToSelf())
             {
-                if (LogonUserA(userName, domain, password, LOGON32_LOGON_INTERACTIVE,
-                    LOGON32_PROVIDER_DEFAULT, ref token) != 0)
+                if (LogonUserA(userName, domain, password, Logon32LogonInteractive,
+                    Logon32ProviderDefault, ref token) != 0)
                 {
                     if (DuplicateToken(token, 2, ref tokenDuplicate) != 0)
                     {
-                        tempWindowsIdentity = new WindowsIdentity(tokenDuplicate);
-                        impersonationContext = tempWindowsIdentity.Impersonate();
-                        if (impersonationContext != null)
+                        var tempWindowsIdentity = new WindowsIdentity(tokenDuplicate);
+                        _impersonationContext = tempWindowsIdentity.Impersonate();
+                        if (_impersonationContext != null)
                         {
                             CloseHandle(token);
                             CloseHandle(tokenDuplicate);
-                            _isUserImpersonated = true;
+                            IsUserImpersonated = true;
                             return true;
                         }
                     }
                 }
             }
+
             if (token != IntPtr.Zero)
+            {
                 CloseHandle(token);
+            }
+
             if (tokenDuplicate != IntPtr.Zero)
+            {
                 CloseHandle(tokenDuplicate);
+            }
+
             return false;
         }
 
         public void UndoImpersonation()
         {
-            impersonationContext.Undo();
-            _isUserImpersonated = false;
+            _impersonationContext.Undo();
+            IsUserImpersonated = false;
         }
-
-
-
     }
 }

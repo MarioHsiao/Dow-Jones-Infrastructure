@@ -13,18 +13,18 @@ namespace DowJones.Web.Handlers.Items
     public class FileManager
     {
         #region Local members
-        private ImpersonationUtil util;
-        private readonly string domain;
-        private readonly string user;
-        private readonly string password;
+        private ImpersonationUtil _util;
+        private readonly string _domain;
+        private readonly string _user;
+        private readonly string _password;
 
 
         #endregion
-        public FileManager(string Domain, string User, string Password)
+        public FileManager(string domain, string user, string password)
         {
-            domain = Domain;
-            user = User;
-            password = Password;
+            _domain = domain;
+            _user = user;
+            _password = password;
 
         }
         #region Methods
@@ -54,15 +54,15 @@ namespace DowJones.Web.Handlers.Items
         {
             try
             {
-                util = new ImpersonationUtil();
+                _util = new ImpersonationUtil();
 
-                if (util.ImpersonateValidUser(user, domain, password))
+                if (_util.ImpersonateValidUser(_user, _domain, _password))
                 {
                     var directoryName = (new FileInfo(filePath)).DirectoryName;
 
-                    if (Directory.Exists(directoryName) == false)
+                    if (directoryName != null && Directory.Exists(directoryName) == false)
                     {
-                        if (directoryName != null) Directory.CreateDirectory(directoryName);
+                       Directory.CreateDirectory(directoryName);
                     }
 
                     using (var binaryFile = new FileStream(filePath, FileMode.Create, FileAccess.Write))
@@ -86,8 +86,8 @@ namespace DowJones.Web.Handlers.Items
             }
             finally
             {
-                if (util.IsUserImpersonated)
-                    util.UndoImpersonation();
+                if (_util.IsUserImpersonated)
+                    _util.UndoImpersonation();
             }
         }
 
@@ -100,20 +100,20 @@ namespace DowJones.Web.Handlers.Items
         {
             try
             {
-                util = new ImpersonationUtil();
-                if (util.ImpersonateValidUser(user, domain, password))
+                _util = new ImpersonationUtil();
+                if (_util.ImpersonateValidUser(_user, _domain, _password))
                 {
 
                     if (File.Exists(getFileName) == false)
-                        throw new ItemHandlerException(DowJonesUtilitiesException.ItemHandlerFileNotFound,
-                                                            "Get file: failed");
+                    {
+                        throw new ItemHandlerException(DowJonesUtilitiesException.ItemHandlerFileNotFound, "Get file: failed");
+                    }
 
                     using (var binaryFile = new FileStream(getFileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
                     {
                         var fileContent = new byte[binaryFile.Length];
                         binaryFile.Read(fileContent, 0, fileContent.Length);
                         binaryFile.Close();
-
                         return fileContent;
                     }
 
@@ -126,8 +126,8 @@ namespace DowJones.Web.Handlers.Items
             }
             finally
             {
-                if (util.IsUserImpersonated)
-                    util.UndoImpersonation();
+                if (_util.IsUserImpersonated)
+                    _util.UndoImpersonation();
             }
         }
 
@@ -139,13 +139,13 @@ namespace DowJones.Web.Handlers.Items
         {
             try
             {
-                util = new ImpersonationUtil();
-                if (util.ImpersonateValidUser(user, domain, password))
+                _util = new ImpersonationUtil();
+                if (_util.ImpersonateValidUser(_user, _domain, _password))
                 {
                     if (File.Exists(filePath) == false)
-                        throw new ItemHandlerException(DowJonesUtilitiesException.ItemHandlerFileNotFound,
-                                                            "Delete file: failed");
-
+                    {
+                        throw new ItemHandlerException(DowJonesUtilitiesException.ItemHandlerFileNotFound, "Delete file: failed");
+                    }
                     File.Delete(filePath);
 
                 }
@@ -156,8 +156,8 @@ namespace DowJones.Web.Handlers.Items
             }
             finally
             {
-                if (util.IsUserImpersonated)
-                    util.UndoImpersonation();
+                if (_util.IsUserImpersonated)
+                    _util.UndoImpersonation();
             }
         }
 

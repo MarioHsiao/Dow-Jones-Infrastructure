@@ -628,6 +628,7 @@
             if (controlType.toLowerCase() === 'company' && subControlType && subControlType.toLowerCase() === 'screening') {
                 return value;
             }
+
             if (controlType.toLowerCase() === 'keyword' || controlType.toLowerCase() === 'source' || controlType.toLowerCase() === 'executive') {
                 // Escape any regexy type characters so they don't bugger up the other reg ex
                 term = term.replace(/([\^\$\(\)\[\]\{\}\*\.\+\?\|\\])/gi, "\\$1");
@@ -922,7 +923,15 @@
                     var formatted = options.formatItem(data[i].data, i + 1, max, data[i].value, term);
                     if (formatted === false)
                         continue;
-                    tr = $("<tr/>").html(options.highlight(formatted, term, data[i].data.controlType, data[i].data.subControlType)).addClass(i % 2 == 0 ? options.resultsEvenClass : options.resultsOddClass).appendTo(list)[0];
+
+                    var trHtml = options.highlight(formatted, term, data[i].data.controlType, data[i].data.subControlType)
+                        .replace(/<script>/gi, '&lt;script&gt;')
+                        .replace(/<\/script>/gi, '&lt;\/script&gt;');
+
+                    tr = $("<tr/>").html(trHtml)
+                        .addClass(i % 2 == 0 ? options.resultsEvenClass : options.resultsOddClass)
+                        .appendTo(list)[0];
+
                     if (data[i].data.isCategory === true) {
                         //Append the header
                         if ($("tbody", element).find('tr.ac_cat_head_' + data[i].data.controlType.toLowerCase()).get(0) === undefined) {

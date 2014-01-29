@@ -1,23 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Web.Mvc", "DowJones.Web.Mvc\DowJones.Web.Mvc.csproj", "{3E440D53-ACA6-422A-8FC8-778D505AD1E9}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Web.Mvc.Diagnostics", "DowJones.Web.Mvc.Diagnostics\DowJones.Web.Mvc.Diagnostics.csproj", "{DC6F4246-50E5-4E2E-A90B-70E4BECA1EB6}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Tests", "DowJones.Tests\DowJones.Tests.csproj", "{1EF77970-5676-4B38-91D7-D4DC8B4A53FA}"
-EndProject
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Solution Items", "_Solution Items", "{B83FFDA6-ED2C-41A1-9785-19FC03D9BACB}"
 	ProjectSection(SolutionItems) = preProject
 		default.proj = default.proj
 		LocalCodeCoverage.testsettings = LocalCodeCoverage.testsettings
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaScript Tests", "javascript tests\JavaScript Tests.csproj", "{5F9466C5-EBCA-464F-8EE4-4868BBF6D126}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Web.Mvc.UI.Canvas", "DowJones.Web.Mvc.UI.Canvas\DowJones.Web.Mvc.UI.Canvas.csproj", "{C03F69D0-BD01-4861-BF39-BF2D52812797}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Infrastructure", "DowJones.Infrastructure\DowJones.Infrastructure.csproj", "{095DE252-E183-4AE6-824A-B4504AE737C1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pages", "Pages", "{A5E7C6E4-52BF-45F2-B901-5D126C01DB82}"
 EndProject
@@ -26,6 +16,24 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mvc", "Mvc", "{B4E7C9BA-599E-4F01-931F-CCE836E62A18}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{2E68706B-4368-405E-980C-34F024BF9949}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D98821D6-DE94-45DA-8096-34252A98523E}"
+	ProjectSection(SolutionItems) = preProject
+		Framework2.vsmdi = Framework2.vsmdi
+		Local.testsettings = Local.testsettings
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Web.Mvc", "DowJones.Web.Mvc\DowJones.Web.Mvc.csproj", "{3E440D53-ACA6-422A-8FC8-778D505AD1E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Web.Mvc.Diagnostics", "DowJones.Web.Mvc.Diagnostics\DowJones.Web.Mvc.Diagnostics.csproj", "{DC6F4246-50E5-4E2E-A90B-70E4BECA1EB6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Tests", "DowJones.Tests\DowJones.Tests.csproj", "{1EF77970-5676-4B38-91D7-D4DC8B4A53FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaScript Tests", "javascript tests\JavaScript Tests.csproj", "{5F9466C5-EBCA-464F-8EE4-4868BBF6D126}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Web.Mvc.UI.Canvas", "DowJones.Web.Mvc.UI.Canvas\DowJones.Web.Mvc.UI.Canvas.csproj", "{C03F69D0-BD01-4861-BF39-BF2D52812797}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Infrastructure", "DowJones.Infrastructure\DowJones.Infrastructure.csproj", "{095DE252-E183-4AE6-824A-B4504AE737C1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Web.Mvc.UI.Components.Models", "DowJones.Web.Mvc.UI.Components.Models\DowJones.Web.Mvc.UI.Components.Models.csproj", "{32DA5CA1-0038-4110-BC24-938B39439CE7}"
 EndProject
@@ -48,12 +56,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Web.Mvc.UI.Canvas.RavenDb", "DowJones.Web.Mvc.UI.Canvas.RavenDb\DowJones.Web.Mvc.UI.Canvas.RavenDb.csproj", "{B8067E18-AD8D-4791-B1F0-9D989BC550D2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Web.Mvc.UI.Canvas.RavenDb.Tests", "DowJones.Web.Mvc.UI.Canvas.RavenDb.Tests\DowJones.Web.Mvc.UI.Canvas.RavenDb.Tests.csproj", "{C1045E7A-593D-4615-9854-EA90074DA51C}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D98821D6-DE94-45DA-8096-34252A98523E}"
-	ProjectSection(SolutionItems) = preProject
-		Framework2.vsmdi = Framework2.vsmdi
-		Local.testsettings = Local.testsettings
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
@@ -129,9 +131,6 @@ Global
 		SccProjectTopLevelParentUniqueName17 = Framework.sln
 		SccProjectName17 = DowJones.Web.Mvc.UI.Canvas.RavenDb
 		SccLocalPath17 = DowJones.Web.Mvc.UI.Canvas.RavenDb
-	EndGlobalSection
-	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = Framework2.vsmdi
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Control n Showcase|Any CPU = Control n Showcase|Any CPU
@@ -321,22 +320,25 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{DC6F4246-50E5-4E2E-A90B-70E4BECA1EB6} = {B4E7C9BA-599E-4F01-931F-CCE836E62A18}
-		{3E440D53-ACA6-422A-8FC8-778D505AD1E9} = {B4E7C9BA-599E-4F01-931F-CCE836E62A18}
-		{32DA5CA1-0038-4110-BC24-938B39439CE7} = {B4E7C9BA-599E-4F01-931F-CCE836E62A18}
-		{8F187465-8B2C-4557-B3A2-02F7B4A6C0FE} = {B4E7C9BA-599E-4F01-931F-CCE836E62A18}
-		{B8596915-AD5E-45C2-987D-234AFF8AEAA3} = {B4E7C9BA-599E-4F01-931F-CCE836E62A18}
-		{1E5B6A24-ED92-4ABE-AD3B-9889E16CB01F} = {B4E7C9BA-599E-4F01-931F-CCE836E62A18}
-		{5F9466C5-EBCA-464F-8EE4-4868BBF6D126} = {1C44A232-3EE9-4890-B85B-9F921D004281}
-		{1EF77970-5676-4B38-91D7-D4DC8B4A53FA} = {1C44A232-3EE9-4890-B85B-9F921D004281}
 		{C03F69D0-BD01-4861-BF39-BF2D52812797} = {A5E7C6E4-52BF-45F2-B901-5D126C01DB82}
 		{60BFCFAB-61ED-4AB5-9803-D8AAAF1184E4} = {A5E7C6E4-52BF-45F2-B901-5D126C01DB82}
 		{B8067E18-AD8D-4791-B1F0-9D989BC550D2} = {A5E7C6E4-52BF-45F2-B901-5D126C01DB82}
 		{C1045E7A-593D-4615-9854-EA90074DA51C} = {A5E7C6E4-52BF-45F2-B901-5D126C01DB82}
+		{1EF77970-5676-4B38-91D7-D4DC8B4A53FA} = {1C44A232-3EE9-4890-B85B-9F921D004281}
+		{5F9466C5-EBCA-464F-8EE4-4868BBF6D126} = {1C44A232-3EE9-4890-B85B-9F921D004281}
+		{3E440D53-ACA6-422A-8FC8-778D505AD1E9} = {B4E7C9BA-599E-4F01-931F-CCE836E62A18}
+		{DC6F4246-50E5-4E2E-A90B-70E4BECA1EB6} = {B4E7C9BA-599E-4F01-931F-CCE836E62A18}
+		{32DA5CA1-0038-4110-BC24-938B39439CE7} = {B4E7C9BA-599E-4F01-931F-CCE836E62A18}
+		{8F187465-8B2C-4557-B3A2-02F7B4A6C0FE} = {B4E7C9BA-599E-4F01-931F-CCE836E62A18}
+		{B8596915-AD5E-45C2-987D-234AFF8AEAA3} = {B4E7C9BA-599E-4F01-931F-CCE836E62A18}
+		{1E5B6A24-ED92-4ABE-AD3B-9889E16CB01F} = {B4E7C9BA-599E-4F01-931F-CCE836E62A18}
 		{095DE252-E183-4AE6-824A-B4504AE737C1} = {2E68706B-4368-405E-980C-34F024BF9949}
 		{A8BBD7EC-67E5-48E8-A283-3547A059ED83} = {2E68706B-4368-405E-980C-34F024BF9949}
 		{2E7ABB0C-DFDE-451E-AFD4-41D2894399BF} = {2E68706B-4368-405E-980C-34F024BF9949}
 		{C6E3AF69-F20D-44B4-8BDE-2F51D0E17EF8} = {2E68706B-4368-405E-980C-34F024BF9949}
 		{FC912097-1ED8-44A0-A34D-8FA945AC33DE} = {2E68706B-4368-405E-980C-34F024BF9949}
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = Framework2.vsmdi
 	EndGlobalSection
 EndGlobal

@@ -3,10 +3,10 @@
   <Profiles />
   <Settings>
     <Setting Name="ThunderBallEntitlementToken" Type="System.String" Scope="Application">
-      <Data Profile="(Default)">e73a8e8ffcaa4646b8e6d12ffac23199</Data>
+      <Value Profile="(Default)">e73a8e8ffcaa4646b8e6d12ffac23199</Value>
     </Setting>
     <Setting Name="ThunderBallEndpointAddress" Type="System.String" Scope="Application">
-      <Data Profile="(Default)">http://wsapi.marketwatch.com/ThunderBall/ChartService.svc</Data>
+      <Value Profile="(Default)">http://wsapi.marketwatch.com/ThunderBall/ChartService.svc</Value>
     </Setting>
   </Settings>
 </SettingsFile>
