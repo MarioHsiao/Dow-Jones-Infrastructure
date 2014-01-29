@@ -7,7 +7,16 @@ namespace DowJones.Security
     public class ImpersonationUtil
     {
         public const int Logon32LogonInteractive = 2;
+        public const int Logon32LogonNetwork = 3;
+        public const int Logon32LogonBatch = 4;
+        public const int Logon32LogonService = 5;
+        public const int Logon32LogonUnlock = 7;
+        public const int Logon32LogonNetworkCleartext = 8;
+        public const int Logon32LogonNewCredentials = 9;
         public const int Logon32ProviderDefault = 0;
+        public const int Logon32ProviderWinnt35 = 1;
+        public const int Logon32ProviderWinnt40 = 2;
+        public const int Logon32ProviderWinnt50 = 3;
 
         WindowsImpersonationContext _impersonationContext;
 
@@ -37,8 +46,7 @@ namespace DowJones.Security
 
             if (RevertToSelf())
             {
-                if (LogonUserA(userName, domain, password, Logon32LogonInteractive,
-                    Logon32ProviderDefault, ref token) != 0)
+                if (LogonUserA(userName, domain, password, Logon32LogonNewCredentials, Logon32ProviderDefault, ref token) != 0)
                 {
                     if (DuplicateToken(token, 2, ref tokenDuplicate) != 0)
                     {
