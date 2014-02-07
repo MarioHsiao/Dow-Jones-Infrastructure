@@ -161,6 +161,10 @@ if (!Function.prototype.bind) {
             }
         },
 
+        proxyUri: function(uri) {
+            var hostname = window.location.protocol + "//" + window.location.host;
+            return hostname + '<%= AppSetting("PlatformProxyBaseUrl", "/PlatformProxy.asmx") %>?url=' + escape(uri);
+        },
 
         delegate: function (context, handler, customData) {
             if (!handler) {
@@ -1043,9 +1047,9 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
 
         _createAccessors: function (propertyBag) {
             // declare a local one so that we're immune to changes to the global javascript 'undefined'
-            var UNDEFINED;
+            var undefined;
 
-            if (propertyBag === UNDEFINED || propertyBag === null) {
+            if (propertyBag === undefined || propertyBag === null) {
                 return;     // nothing to create
             }
             for (var propName in propertyBag) {
@@ -1057,7 +1061,6 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
                     this["set_" + propName] = (function (prop) { return function (value) { propertyBag[prop] = value; }; }(propName));
                 }
             }
-
         },
 
 
@@ -1173,10 +1176,9 @@ DJ.$dj.define('$dj', ['jquery'], DJ.$dj);
             this._eventSubscribers = {};
         },
 
-
         _mapperR: function (handlerName, stack) {
             // check if empty string
-            if (!handlerName || handlerName === '' || (handlerName.replace(/\s/g, '') === '')) { return null; }
+            if (!handlerName || (handlerName.replace(/\s/g, '') === '')) { return null; }
 
             var buf = handlerName.split('.');
             stack = stack || window;

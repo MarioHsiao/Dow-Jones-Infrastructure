@@ -6,17 +6,23 @@ namespace DowJones.Security
 {
     public class ImpersonationUtil
     {
-        public const int Logon32LogonInteractive = 2;
-        public const int Logon32LogonNetwork = 3;
-        public const int Logon32LogonBatch = 4;
-        public const int Logon32LogonService = 5;
-        public const int Logon32LogonUnlock = 7;
-        public const int Logon32LogonNetworkCleartext = 8;
-        public const int Logon32LogonNewCredentials = 9;
-        public const int Logon32ProviderDefault = 0;
-        public const int Logon32ProviderWinnt35 = 1;
-        public const int Logon32ProviderWinnt40 = 2;
-        public const int Logon32ProviderWinnt50 = 3;
+        public enum Provider
+        {
+            Default = 0,
+            Winnt35 = 1,
+            Winnt40 = 2,
+            Winnt50 = 3,
+        }
+
+        public enum Logon
+        {
+            Network = 3,
+            Batch = 4,
+            Service = 5,
+            Unlock = 7,
+            NetworkCleartext = 8,
+            NewCredentials = 9
+        }
 
         WindowsImpersonationContext _impersonationContext;
 
@@ -39,14 +45,14 @@ namespace DowJones.Security
 
         public bool IsUserImpersonated { get; private set; }
 
-        public bool ImpersonateValidUser(String userName, String domain, String password)
+        public bool ImpersonateValidUser(String userName, String domain, String password, Logon logon, Provider provider)
         {
             var token = IntPtr.Zero;
             var tokenDuplicate = IntPtr.Zero;
 
             if (RevertToSelf())
             {
-                if (LogonUserA(userName, domain, password, Logon32LogonNewCredentials, Logon32ProviderDefault, ref token) != 0)
+                if (LogonUserA(userName, domain, password, (int)logon, (int)provider, ref token) != 0)
                 {
                     if (DuplicateToken(token, 2, ref tokenDuplicate) != 0)
                     {
@@ -74,6 +80,11 @@ namespace DowJones.Security
             }
 
             return false;
+        }
+
+        public bool ImpersonateValidUser(String userName, String domain, String password)
+        {
+            return ImpersonateValidUser(userName, domain, password, Logon.NewCredentials, Provider.Default);
         }
 
         public void UndoImpersonation()
