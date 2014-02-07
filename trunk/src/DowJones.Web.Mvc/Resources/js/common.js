@@ -162,7 +162,8 @@ if (!Function.prototype.bind) {
         },
 
         proxyUri: function(uri) {
-            
+            var hostname = window.location.protocol + "//" + window.location.host;
+            return hostname + '<%= AppSetting("PlatformProxyBaseUrl", "/PlatformProxy.asmx") %>?url=' + escape(uri);
         },
 
         delegate: function (context, handler, customData) {
