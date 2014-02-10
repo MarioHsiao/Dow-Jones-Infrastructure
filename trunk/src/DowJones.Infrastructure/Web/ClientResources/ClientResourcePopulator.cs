@@ -45,22 +45,26 @@ namespace DowJones.Web
 		private string GetResourceContent(ClientResource clientResource)
 		{
 			Stream contentStream;
-
-			if (clientResource is EmbeddedClientResource)
-				contentStream = RetrieveInternalWebResourceStream(clientResource as EmbeddedClientResource);
-
-			else if (clientResource.IsAbsoluteUrl())
-				contentStream = RetrieveExternalWebResourceStream(clientResource);
-
-			else
-				contentStream = RetrieveLocalResourceStream(clientResource);
-
-
-			if (contentStream == null || !contentStream.CanRead)
-				throw new ClientResourcePopulationException(clientResource);
-
 			string resourceContent;
 
+		    if (clientResource is EmbeddedClientResource)
+		    {
+		        contentStream = RetrieveInternalWebResourceStream(clientResource as EmbeddedClientResource);
+		    }
+			else if (clientResource.IsAbsoluteUrl())
+			{
+			    contentStream = RetrieveExternalWebResourceStream(clientResource);
+			}
+			else
+			{
+			    contentStream = RetrieveLocalResourceStream(clientResource);
+			}
+
+		    if (contentStream == null || !contentStream.CanRead)
+		    {
+		        throw new ClientResourcePopulationException(clientResource);
+		    }
+            
 			using (var reader = new StreamReader(contentStream))
 			{
 				resourceContent = reader.ReadToEnd();
@@ -86,13 +90,14 @@ namespace DowJones.Web
 			var resourceName = GetPreferredResourceName(embeddedClientResource);
 			var stream = embeddedClientResource.TargetAssembly.GetManifestResourceStream(resourceName);
 
-			if (HttpContext.DebugEnabled())
-			{
-				var localFile = RetrieveLocallyModifiedEmbeddedResourceFile(embeddedClientResource);
-				stream = localFile ?? stream;
-			}
+		    if (!HttpContext.DebugEnabled())
+		    {
+		        return stream;
+		    }
 
-			return stream;
+		    var localFile = RetrieveLocallyModifiedEmbeddedResourceFile(embeddedClientResource);
+		    stream = localFile ?? stream;
+		    return stream;
 		}
 
 		/// <summary>
@@ -149,7 +154,7 @@ namespace DowJones.Web
 
 			Log.DebugFormat("Retrieving remote resource {0}...", clientResource.Url);
 
-			var request = WebRequest.Create(clientResource.Url);
+			var request = WebRequest.Create(clientResource.EnsuredUrl(HttpContext));
 
 			var response = request.GetResponse();
 			if (response.ContentLength > 0)

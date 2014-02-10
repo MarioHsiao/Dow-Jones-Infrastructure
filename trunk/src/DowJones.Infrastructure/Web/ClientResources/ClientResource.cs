@@ -3,6 +3,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 
 namespace DowJones.Web
 {
@@ -146,20 +147,31 @@ namespace DowJones.Web
 
         #endregion
 
-        public virtual bool IsAbsoluteUrl()
+        public bool IsAbsoluteUrl()
         {
-            if (string.IsNullOrWhiteSpace(Url))
-                return false;
+            return !string.IsNullOrWhiteSpace(Url) && Regex.IsMatch(Url, @"^(https?:)?//");
+        }
 
-            return Regex.IsMatch(Url, @"^\w*://");
+        public string EnsuredUrl(HttpContextBase context)
+        {
+            if (!Url.StartsWith("//"))
+            {
+                return Url;
+            }
+
+            var scheme = "http:";
+            if (context != null && 
+                context.Request != null && 
+                context.Request.Url != null)
+            {
+                scheme = string.Concat(context.Request.Url.Scheme, ":");
+            }
+            return string.Concat(scheme, Url);
         }
 
         public override string ToString()
         {
-            if (string.IsNullOrWhiteSpace(Name))
-                return Url;
-
-            return string.Format("{0} [{1}]", Name, Url);
+            return string.IsNullOrWhiteSpace(Name) ? Url : string.Format("{0} [{1}]", Name, Url);
         }
 
         public void Update(ClientResource resource)

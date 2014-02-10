@@ -218,7 +218,7 @@ namespace DowJones.Web
 			RenderClientResources(context, orderedClientResources, DefaultEncoding);
 		}
 
-		private void RenderClientResources(HttpContextBase context, IEnumerable<ContentCacheItem> cachedItems, Encoding contentEncoding)
+		private static void RenderClientResources(HttpContextBase context, IEnumerable<ContentCacheItem> cachedItems, Encoding contentEncoding)
 		{
 			Guard.IsNotNull(context, "context");
 			Guard.IsNotNull(cachedItems, "cachedItems");
@@ -245,7 +245,7 @@ namespace DowJones.Web
 			}
 		}
 
-		private bool ResourceHasNotBeenModified(HttpContextBase context)
+		private static bool ResourceHasNotBeenModified(HttpContextBase context)
 		{
 			// If client caching is disabled everything is always modified!
 			if (!IsClientCachingEnabled(context))
