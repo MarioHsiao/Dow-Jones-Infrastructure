@@ -6,14 +6,19 @@
 	<div class="dj_video_carousel-wrap">
 		<ul class="clearfix">       
 			<% 
-				var title, data = self.data;
+				var title, data = self.data, imgSrc;
 				for (var index = 0; index < data.headlines.length; index++) { 
 					x = data.headlines[index]; 
 					title = x.truncatedTitle || x.title;
+                    imgSrc = x.thumbnailImage?x.thumbnailImage.uri:"";
+                    if (imgSrc.length > 0 && $dj.proxyUri)
+                    {
+                        imgSrc = $dj.proxyUri(imgSrc);
+                    }
 			%>
 			<li>
 				<div class="media-thumb">
-					<img src="<%= x.thumbnailImage?x.thumbnailImage.uri:"" %>" title="<%= title %>" />
+					<img src="<%= imgSrc %>" title="<%= title %>" />
 					<span class="media-play"></span>
 				</div>
 				<h4 class="media-headline">
