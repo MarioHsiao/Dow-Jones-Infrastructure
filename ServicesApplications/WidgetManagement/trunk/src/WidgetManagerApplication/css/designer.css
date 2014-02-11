@@ -120,7 +120,7 @@
 
 .confirm-dialog DIV.instructions { color:#666; }
 
-.confirm-dialog textarea { width:100%; }
+.confirm-dialog textarea { width:100%; height:150px; }
 
  /*Hover Menu*/
 .popupMenu {

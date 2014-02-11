@@ -369,9 +369,13 @@ namespace EMG.widgets.services
                                                       type = type
                                                   };
 
-                        var endPoints = new List<IntegrationEndPoint>();
+                        // Initialize w/sharepoint webpart 
+                        var endPoints = new List<IntegrationEndPoint>
+                                        {
+                                            GetIntegrationEndPoint(new SharePointWebPart(renderWidgetDTO))
+                                        };
 
-                        // Add IGoogle Integration Portal EndPoint
+                        /*// Add IGoogle Integration Portal EndPoint
                         if (acceptableBrowser)
                         {
                             endPoints.Add(GetIntegrationEndPoint(new IGoogleGadget(renderWidgetDTO)));
@@ -396,10 +400,9 @@ namespace EMG.widgets.services
                         endPoints.Add(GetIntegrationEndPoint(new LiveDotComGadget(renderWidgetDTO)));
 
                         // Add space.live.com Integration Portal endpoint
-                        endPoints.Add(GetIntegrationEndPoint(new LiveSpacesGadget(renderWidgetDTO)));
+                        endPoints.Add(GetIntegrationEndPoint(new LiveSpacesGadget(renderWidgetDTO)));*/
 
-                        // Add sharepoint webpart 
-                        endPoints.Add(GetIntegrationEndPoint(new SharePointWebPart(renderWidgetDTO)));
+                        
 
                         getWidgetResponseDelegate.IntegrationEndPoints = endPoints.ToArray();
                     }
