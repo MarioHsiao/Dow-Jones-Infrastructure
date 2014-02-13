@@ -273,6 +273,11 @@ namespace DowJones.Ajax.HeadlineList
         /// </summary>
         [EnumMember]
         DateDaily,
+        /// <summary>
+        /// 
+        /// </summary>
+        [EnumMember]
+        Language
     }
 
     /// <summary>

@@ -288,6 +288,12 @@ namespace DowJones.Assemblers.Entities
                                                 objNewsEntity.Type = EntityType.Author;
                                                 break;
                                             }
+                                        case "la":
+                                            {
+                                                //objNewsEntity.TypeDescriptor = "Author";
+                                                objNewsEntity.Type = EntityType.Language;
+                                                break;
+                                            }
                                     }
                                     objNewsEntity.TypeDescriptor = objNewsEntity.Type.ToString();
                                     newsEntities.Add(objNewsEntity);
@@ -336,6 +342,13 @@ namespace DowJones.Assemblers.Entities
                                             parentNewsEntity.Title = ResourceText.GetString("authors");
                                             parentNewsEntity.Type = EntityType.Author;
                                             entities.AuthorNewsEntities = parentNewsEntity;
+                                            break;
+                                        }
+                                    case "la":
+                                        {
+                                            parentNewsEntity.Title = ResourceText.GetString("slanguages");
+                                            parentNewsEntity.Type = EntityType.Language;
+                                            entities.LanguageNewsEntities = parentNewsEntity;
                                             break;
                                         }
                                 }

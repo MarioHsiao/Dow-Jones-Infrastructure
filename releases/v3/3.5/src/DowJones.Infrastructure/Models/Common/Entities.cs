@@ -30,6 +30,9 @@ namespace DowJones.Models.Common
         [JsonProperty("dateNewsEntities")]
         public ParentDateNewsEntity DateNewsEntities { get; set; }
 
+        [JsonProperty("languageNewsEntities")]
+        public ParentNewsEntity LanguageNewsEntities { get; set; }
+
         //[JsonProperty("organizationNewsEntities")]
         //public ParentNewsEntity OrganizationNewsEntities { get; set; }
 
