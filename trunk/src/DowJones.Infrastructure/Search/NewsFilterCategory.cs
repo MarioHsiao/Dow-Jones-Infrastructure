@@ -38,5 +38,8 @@ namespace DowJones.Search
 
         [AssignedToken("group")]
         Group,
+
+        [AssignedToken("language")]
+        Language,
     }
 }
