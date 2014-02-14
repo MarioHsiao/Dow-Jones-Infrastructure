@@ -3,9 +3,9 @@
   .dj_DiscoveryGraph .dj_widget_slimView .scrollable {
     width: 230px; }
   .dj_DiscoveryGraph .dj_widget_slimView a.prev.disabled {
-    background-position: 0px -60px; }
+    background-position: -0px -60px; }
   .dj_DiscoveryGraph .dj_widget_slimView a.next.disabled {
-    background-position: 0px -81px; }
+    background-position: -0px -81px; }
   .dj_DiscoveryGraph .dj_widget_slimView a.up {
     background-position: 0px -42px; }
   .dj_DiscoveryGraph .dj_widget_slimView a.down {
@@ -73,9 +73,9 @@
   /* for non-css3 browsers */
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#cfcfcf');
   /* for IE */
-  background: -webkit-gradient(linear, left top, left bottom, from(white), to(#cfcfcf));
+  background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#cfcfcf));
   /* for webkit browsers */
-  background: -moz-linear-gradient(top, white, #cfcfcf);
+  background: -moz-linear-gradient(top, #ffffff, #cfcfcf);
   /* for firefox 3.6+ */
   font-size: 14px;
   padding: 4px;
@@ -88,3 +88,4 @@
     content: "\2021";
     padding-right: 4px; }
 
+/*# sourceMappingURL=d:\Projects\VS2010\Dow Jones Infrastructure\trunk\src\DowJones.Web.Showcase\Content\css\components\DiscoveryGraph\discoveryGraph.css.map */
