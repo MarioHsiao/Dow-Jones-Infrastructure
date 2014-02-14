@@ -99,6 +99,16 @@ namespace DowJones.Properties
         }
 
         /// <summary>
+        /// Gets a value indicating whether EnableScriptResourceCompression.
+        /// </summary>
+        [ApplicationScopedSetting, DebuggerNonUserCode]
+        [DefaultSettingValueAttribute("True")]
+        public bool EnableProxyBlocking
+        {
+            get { return (bool)this["EnableProxyBlocking"]; }
+        }
+
+        /// <summary>
         /// Gets EntitlementsCookiePath.
         /// </summary>
         [ApplicationScopedSetting, DebuggerNonUserCode]

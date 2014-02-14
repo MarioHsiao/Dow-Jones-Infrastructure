@@ -238,7 +238,7 @@
         vertical-align: middle;
         width: 21px;
         height: 21px;
-        background-image: url("img/post-processing-icons.png");
+        background-image: url('img/post-processing-icons.png');
         background-position: 0 0;
         background-repeat: no-repeat;
         margin-right: 8px; }
@@ -272,3 +272,4 @@
     margin-left: 45px;
     position: relative; }
 
+/*# sourceMappingURL=d:\Projects\VS2010\Dow Jones Infrastructure\trunk\src\DowJones.Web.Showcase\Styles\css\article.css.map */

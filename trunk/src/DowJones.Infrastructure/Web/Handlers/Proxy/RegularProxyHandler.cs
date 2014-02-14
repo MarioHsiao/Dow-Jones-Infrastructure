@@ -8,6 +8,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
+using System.Collections.Generic;
+using System.Configuration;
 using System.Net;
 using System.Web;
 using System.Web.Caching;
@@ -15,6 +17,7 @@ using System.Linq;
 using System.Text;
 using DowJones.Extensions;
 using DowJones.Extensions.Web;
+using DowJones.Properties;
 using DowJones.Web.Handlers.Proxy.Core;
 
 namespace DowJones.Web.Handlers.Proxy
@@ -24,6 +27,19 @@ namespace DowJones.Web.Handlers.Proxy
     /// </summary>
     public class RegularProxyHandler : IHttpHandler
     {
+        private readonly List<string> _whiteListedDomains = new List<string>(new[]
+                                                                             {
+                                                                                 "fdevweb3.win.dowjones.net", 
+                                                                                 "api.dowjones.com", "api.int.dowjones.com",
+                                                                                 "m.wsj.net", "i.mktw.net"
+                                                                             });
+
+        private readonly List<string> _contentTypes = new List<string>(new[]
+                                                                       {
+                                                                           "image/png", "image/jpeg", 
+                                                                           "image/gif", "application/json", 
+                                                                           "text/css", "text/javascript", "application/javascript"
+                                                                       });
         /// <summary>
         /// Gets a value indicating whether another request can use the <see cref="T:System.Web.IHttpHandler"/> instance.
         /// </summary>
@@ -44,6 +60,14 @@ namespace DowJones.Web.Handlers.Proxy
             var cacheDuration = Convert.ToInt32(context.Request["cache"] ?? "0");
             var contentType = context.Request["type"];
 
+
+            if (!IsValidUrl(url))
+            {
+                context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                context.Response.End();
+                return;
+            }
+            
             // We don't want to buffer because we want to save memory
             context.Response.Buffer = false;
 
@@ -53,24 +77,23 @@ namespace DowJones.Web.Handlers.Proxy
                 if (context.Cache[url] != null)
                 {
                     var temp = context.Cache[url] as byte[];
-                    if (temp != null)
+                    if (temp == null)
                     {
-                        context.Response.BinaryWrite(temp);
-                        context.Response.Flush();
+                        return;
                     }
-
+                    context.Response.BinaryWrite(temp);
+                    context.Response.Flush();
                     return;
                 }
             }
 
 
-            StringBuilder urlBuilder = new StringBuilder();
-
+            var urlBuilder = new StringBuilder();
             urlBuilder.AppendFormat("{0}?", url);
 
             // copy query string params
             // skip the first one as it's the target URL itself
-            for (int i = 1; i < context.Request.QueryString.Keys.Count; i++)
+            for (var i = 1; i < context.Request.QueryString.Keys.Count; i++)
             {
                 urlBuilder.AppendFormat("{0}={1}&", context.Request.QueryString.Keys[i], context.Request.QueryString[i]);
             }
@@ -94,11 +117,10 @@ namespace DowJones.Web.Handlers.Proxy
                     client.Headers["Accept-Encoding"] = "gzip";
                     client.Headers["Accept"] = "*/*";
                     client.Headers["Accept-Language"] = "en-US";
-                    client.Headers["User-Agent"] =
-                        "Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US; rv:1.8.1.6) Gecko/20070725 Firefox/2.0.0.6";
+                    client.Headers["User-Agent"] = "Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US; rv:1.8.1.6) Gecko/20070725 Firefox/2.0.0.6";
 
-                    byte[] data = null;
-                    var responseCode = HttpStatusCode.OK;
+                    byte[] data;
+                    HttpStatusCode responseCode;
                     using (new TimedLog("RegularProxy\tDownload Sync"))
                     {
                         try
@@ -107,9 +129,7 @@ namespace DowJones.Web.Handlers.Proxy
                             responseCode = HttpStatusCode.OK;
                         }
                         catch (WebException wex)
-                        //catch (WebException)
                         {
-
                             client.ResponseHeaders.Add(wex.Response.Headers);
                             data = wex.Response.GetResponseStream().ReadAllBytes();
                             responseCode = ((HttpWebResponse)wex.Response).StatusCode;
@@ -134,8 +154,18 @@ namespace DowJones.Web.Handlers.Proxy
                         return;
                     }
 
+                    var clientContentType = client.ResponseHeaders["Content-Type"];
+
+                    if (!IsValidContentType(clientContentType))
+                    {
+                        context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                        context.Response.Write("Unauthorized Access");
+                        context.Response.End();
+                        return;
+                    }
+
                     // Deliver content type, encoding and length as it is received from the external URL
-                    context.Response.ContentType = client.ResponseHeaders["Content-Type"];
+                    context.Response.ContentType = clientContentType;
                     var contentEncoding = client.ResponseHeaders["Content-Encoding"];
                     var contentLength = client.ResponseHeaders["Content-Length"];
 
@@ -172,5 +202,20 @@ namespace DowJones.Web.Handlers.Proxy
                 }
             }
         }
+        private bool IsValidUrl(string url)
+        {
+            var uri = new Uri(url);
+            if (!Settings.Default.EnableProxyBlocking)
+            {
+                return true;
+            }
+            return uri.Scheme == "http" && _whiteListedDomains.Contains(uri.Host.ToLowerInvariant());
+        }
+
+        private bool IsValidContentType(string contentType)
+        {
+            return !Settings.Default.EnableProxyBlocking || _contentTypes.Contains(contentType.ToLowerInvariant());
+        }
     }
+
 }

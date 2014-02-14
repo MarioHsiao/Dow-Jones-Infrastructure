@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Threading;
@@ -13,6 +14,7 @@ using System.Web.Caching;
 using System.Text;
 using DowJones.Extensions;
 using DowJones.Extensions.Web;
+using DowJones.Properties;
 using DowJones.Web.Handlers.Proxy.Core;
 
 namespace DowJones.Web.Handlers.Proxy
@@ -23,7 +25,20 @@ namespace DowJones.Web.Handlers.Proxy
     public class StreamingProxyHandler : IHttpAsyncHandler
     {
         private const int BufferSize = 8 * 1024;
+        private readonly List<string> _whiteListedDomains = new List<string>(new[]
+                                                                             {
+                                                                                 "fdevweb3.win.dowjones.net", 
+                                                                                 "api.dowjones.com", "api.int.dowjones.com",
+                                                                                 "m.wsj.net", "i.mktw.net"
+                                                                             });
 
+        private readonly List<string> _contentTypes = new List<string>(new[]
+                                                                       {
+                                                                           "image/png", "image/jpeg", 
+                                                                           "image/gif", "application/json", 
+                                                                           "text/css", "text/javascript", "application/javascript"
+                                                                       });
+       
         private PipeStream _pipeStream;
         private Stream _responseStream;
 
@@ -43,6 +58,14 @@ namespace DowJones.Web.Handlers.Proxy
             var url = origRequest["url"];
             var cacheDuration = Convert.ToInt32(origRequest["cache"] ?? "0");
 
+            if (!IsValidUrl(url))
+            {
+                context.Response.StatusCode = (int) HttpStatusCode.Unauthorized;
+                context.Response.Write("Unauthorized Access");
+                context.Response.End();
+                return;
+            }
+            
             // See if the user wants to add the content-disposition attribute to the header.
             IncludeContentDisposition = bool.Parse(context.Request["iDisposition"] ?? "true");
 
@@ -131,6 +154,15 @@ namespace DowJones.Web.Handlers.Proxy
             var url = DefinedTargetUrl ?? origRequest["url"];
             var cacheDuration = Convert.ToInt32(origRequest["cache"] ?? "0");
 
+            if (!IsValidUrl(url))
+            {
+                var result = new InvalidRequestResult
+                {
+                    Context = context
+                };
+                return result;
+            }
+
             if (cacheDuration > 0)
             {
                 if (context.Cache[url] != null)
@@ -192,6 +224,16 @@ namespace DowJones.Web.Handlers.Proxy
         /// <param name="result">An <see cref="T:System.IAsyncResult"/> that contains information about the status of the process.</param>
         public void EndProcessRequest(IAsyncResult result)
         {
+            var invalidRequestResult = result as InvalidRequestResult;
+
+            if (invalidRequestResult != null)
+            {
+                invalidRequestResult.Context.Response.StatusCode = (int) HttpStatusCode.Unauthorized;
+                invalidRequestResult.Context.Response.Write("Unauthorized Access");
+                invalidRequestResult.Context.Response.End();
+                return;
+            }
+
             var syncResult = result as SyncResult;
             if (syncResult != null)
             {
@@ -201,7 +243,6 @@ namespace DowJones.Web.Handlers.Proxy
 
                 syncResult.Content.Content.Seek(0, SeekOrigin.Begin);
                 syncResult.Content.Content.WriteTo(syncResult.Context.Response.OutputStream);
-
                 return;
             }
 
@@ -209,9 +250,10 @@ namespace DowJones.Web.Handlers.Proxy
             var state = result.AsyncState as AsyncState;
 
             if (state == null)
+            {
                 return;
-
-
+            }
+            
             state.Context.Response.Buffer = false;
             var request = state.Request;
 
@@ -259,8 +301,10 @@ namespace DowJones.Web.Handlers.Proxy
 
                 using (var readStream = response.GetResponseStream())
                 {
-                    if (context.Response.IsClientConnected)
+                    if (context.Response.IsClientConnected &&
+                        IsValidContentType(response.ContentType))
                     {
+
                         string contentLength;
                         string contentEncoding;
                         string contentDisposition;
@@ -275,23 +319,28 @@ namespace DowJones.Web.Handlers.Proxy
                         {
                             // Cache the content on server for specific duration
                             var cache = new CachedContent
-                                            {
-                                                Content = responseBuffer,
-                                                ContentEncoding = contentEncoding,
-                                                ContentDisposition = contentDisposition,
-                                                ContentLength = contentLength,
-                                                ContentType = response.ContentType,
-                                            };
+                                        {
+                                            Content = responseBuffer,
+                                            ContentEncoding = contentEncoding,
+                                            ContentDisposition = contentDisposition,
+                                            ContentLength = contentLength,
+                                            ContentType = response.ContentType,
+                                        };
 
                             context.Cache.Insert(
-                                request.RequestUri.ToString(), 
-                                cache, 
+                                request.RequestUri.ToString(),
+                                cache,
                                 null,
                                 Cache.NoAbsoluteExpiration,
                                 TimeSpan.FromMinutes(cacheDuration),
-                                CacheItemPriority.Normal, 
+                                CacheItemPriority.Normal,
                                 null);
                         }
+                    }
+                    else
+                    {
+                        context.Response.StatusCode = (int)HttpStatusCode.Forbidden;
+                        context.Response.Write("Unable to process Uri");
                     }
 
                     using (new TimedLog("StreamingProxy\tResponse Flush"))
@@ -427,6 +476,22 @@ namespace DowJones.Web.Handlers.Proxy
             context.Response.ContentType = response.ContentType;
 
             context.Response.AppendHeader("x-Served-By", "StreamingProxy on {0}".FormatWith(Environment.MachineName));
+        }
+
+
+        private bool IsValidUrl(string url)
+        {
+            var uri = new Uri(url);
+            if (!Settings.Default.EnableProxyBlocking)
+            {
+                return true;
+            }
+            return uri.Scheme == "http" && _whiteListedDomains.Contains(uri.Host.ToLowerInvariant());
+        }
+
+        private bool IsValidContentType(string contentType)
+        {
+            return !Settings.Default.EnableProxyBlocking || _contentTypes.Contains(contentType.ToLowerInvariant());
         }
 
         private void ReadData()
