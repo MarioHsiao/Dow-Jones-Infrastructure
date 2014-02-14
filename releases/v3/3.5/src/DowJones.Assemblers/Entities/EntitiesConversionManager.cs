@@ -346,7 +346,7 @@ namespace DowJones.Assemblers.Entities
                                         }
                                     case "la":
                                         {
-                                            parentNewsEntity.Title = ResourceText.GetString("slanguages");
+                                            parentNewsEntity.Title = ResourceText.GetString("languages");
                                             parentNewsEntity.Type = EntityType.Language;
                                             entities.LanguageNewsEntities = parentNewsEntity;
                                             break;
