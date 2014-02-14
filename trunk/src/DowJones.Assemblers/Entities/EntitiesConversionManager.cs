@@ -338,6 +338,13 @@ namespace DowJones.Assemblers.Entities
                                             entities.AuthorNewsEntities = parentNewsEntity;
                                             break;
                                         }
+                                    case "la":
+                                        {
+                                            parentNewsEntity.Title = ResourceText.GetString("slanguages");
+                                            parentNewsEntity.Type = EntityType.Language;
+                                            entities.LanguageNewsEntities = parentNewsEntity;
+                                            break;
+                                        }
                                 }
                                 break;
                             }
