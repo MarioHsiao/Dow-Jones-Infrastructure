@@ -114,6 +114,8 @@ namespace DowJones.Managers.Search
                     return MetadataCollection.People;
                 case NewsFilterCategory.Industry:
                     return MetadataCollection.Industry;
+                case NewsFilterCategory.Language:
+                    return MetadataCollection.Language;
                 case NewsFilterCategory.Region:
                     return MetadataCollection.Region;
                 case NewsFilterCategory.Source:
