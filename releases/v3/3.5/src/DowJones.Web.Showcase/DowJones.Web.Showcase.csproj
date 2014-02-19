@@ -912,6 +912,9 @@
     <Content Include="Content\codemirror\mode\r\LICENSE" />
     <Content Include="Content\codemirror\mode\sieve\LICENSE" />
     <Content Include="Content\codemirror\mode\xquery\LICENSE" />
+    <Content Include="Content\css\components\DiscoveryGraph\discoveryGraph.css.map">
+      <DependentUpon>discoveryGraph.css</DependentUpon>
+    </Content>
     <None Include="Content\css\components\DiscoveryGraph\discoveryGraph.scss" />
     <Content Include="Content\css\components\DiscoveryGraph\discoveryGraph.css">
       <DependentUpon>discoveryGraph.scss</DependentUpon>
@@ -1543,6 +1546,9 @@
     <Content Include="Views\DiscoveryFilters\Index.cshtml" />
     <Content Include="Views\Charting\Index.cshtml" />
     <Content Include="Views\AutoSuggest\DJX.cshtml" />
+    <Content Include="Styles\css\article.css.map">
+      <DependentUpon>article.css</DependentUpon>
+    </Content>
     <None Include="Views\NewsRadar\sample.json" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

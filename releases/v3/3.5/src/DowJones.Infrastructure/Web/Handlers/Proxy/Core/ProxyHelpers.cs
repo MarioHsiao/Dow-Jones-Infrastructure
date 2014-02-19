@@ -43,30 +43,30 @@ namespace DowJones.Web.Handlers.Proxy.Core
 
             var timeoutMilliseconds = (int)TimeSpan.FromSeconds(HttpWebRequestTimeoutInSeconds).TotalMilliseconds;
             var request = WebRequest.Create(urlBuilder.ToString().TrimEnd("?&".ToCharArray())) as HttpWebRequest;
-            if (request != null)
+            if (request == null)
             {
-                request.Headers["Accept-Language"] = "en-US";
-                request.Headers.Add("Accept-Encoding", "gzip");
-                request.AutomaticDecompression = DecompressionMethods.GZip;
-                request.MaximumAutomaticRedirections = 2;
-                request.ReadWriteTimeout = timeoutMilliseconds * 2;
-                request.Timeout = timeoutMilliseconds;
-                request.Accept = "*/*";
-                request.Method = origRequest.HttpMethod;
-                request.UserAgent = UserAgent;
-                request.ContentType = origRequest.ContentType;
-                request.Headers[HttpRequestHeader.AcceptCharset] = string.IsNullOrWhiteSpace(origRequest.Headers["Accept-Charset"]) ? "utf-8" : origRequest.Headers["Accept-Charset"];
-
-                if (!string.IsNullOrWhiteSpace(origRequest.Headers["sessionid"]))
-                    request.Headers["sessionid"] = origRequest.Headers["sessionid"];
-
-                if (!string.IsNullOrWhiteSpace(origRequest.Headers["encryptedtoken"]))
-                    request.Headers["encryptedtoken"] = origRequest.Headers["encryptedtoken"];
-                
-                return request;
+                return null;
             }
 
-            return null;
+            request.Headers["Accept-Language"] = "en-US";
+            request.Headers.Add("Accept-Encoding", "gzip");
+            request.AutomaticDecompression = DecompressionMethods.GZip;
+            request.MaximumAutomaticRedirections = 2;
+            request.ReadWriteTimeout = timeoutMilliseconds * 2;
+            request.Timeout = timeoutMilliseconds;
+            request.Accept = "*/*";
+            request.Method = origRequest.HttpMethod;
+            request.UserAgent = UserAgent;
+            request.ContentType = origRequest.ContentType;
+            request.Headers[HttpRequestHeader.AcceptCharset] = string.IsNullOrWhiteSpace(origRequest.Headers["Accept-Charset"]) ? "utf-8" : origRequest.Headers["Accept-Charset"];
+
+            if (!string.IsNullOrWhiteSpace(origRequest.Headers["sessionid"]))
+                request.Headers["sessionid"] = origRequest.Headers["sessionid"];
+
+            if (!string.IsNullOrWhiteSpace(origRequest.Headers["encryptedtoken"]))
+                request.Headers["encryptedtoken"] = origRequest.Headers["encryptedtoken"];
+                
+            return request;
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace DowJones.Web.Handlers.Proxy.Core
         /// <param name="durationInMinutes">The duration in minutes.</param>
         public static void CacheResponse(HttpContext context, int durationInMinutes)
         {
-            TimeSpan duration = TimeSpan.FromMinutes(durationInMinutes);
+            var duration = TimeSpan.FromMinutes(durationInMinutes);
 
             context.Response.Cache.SetCacheability(HttpCacheability.Public);
             context.Response.Cache.SetExpires(DateTime.Now.Add(duration));
@@ -134,6 +134,35 @@ namespace DowJones.Web.Handlers.Proxy.Core
         /// 
         /// </summary>
         public HttpWebRequest Request;
+    }
+
+    public class InvalidRequestResult : IAsyncResult
+    {   /// <summary>
+        /// 
+        /// </summary>
+        public HttpContext Context;
+
+        #region IAsyncResult Members
+        object IAsyncResult.AsyncState
+        {
+            get { return new object(); }
+        }
+
+        WaitHandle IAsyncResult.AsyncWaitHandle
+        {
+            get { return new ManualResetEvent(true); }
+        }
+
+        bool IAsyncResult.CompletedSynchronously
+        {
+            get { return true; }
+        }
+
+        bool IAsyncResult.IsCompleted
+        {
+            get { return true; }
+        }
+        #endregion
     }
 
     /// <summary>
