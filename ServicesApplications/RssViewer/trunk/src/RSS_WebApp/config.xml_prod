@@ -34,7 +34,7 @@
 				</channelHeader>
 				<factivaChannelLink>http://www.solutions.dowjones.com</factivaChannelLink>
 				<factivaCustomerServiceLink>www.solutions.dowjones.com </factivaCustomerServiceLink>
-				<factivaCopyright>© 2008 Factiva, Inc.  All rights reserved.</factivaCopyright>
+				<factivaCopyright>© 2014 Factiva, Inc.  All rights reserved.</factivaCopyright>
 				<!--- Argotic is handling this -->
 				<!--<rssChannelDocs>http://backend.userland.com/rss</rssChannelDocs>-->
 				<rssChannelLanguage>en-us</rssChannelLanguage>
@@ -165,7 +165,7 @@
 				</channelHeader>
 				<factivaChannelLink>http://www.solutions.dowjones.com</factivaChannelLink>
 				<factivaCustomerServiceLink>www.solutions.dowjones.com </factivaCustomerServiceLink>
-				<factivaCopyright>© 2008 Factiva, Inc.  All rights reserved.</factivaCopyright>
+				<factivaCopyright>© 2014 Factiva, Inc.  All rights reserved.</factivaCopyright>
 				<!--- Argotic is handling this -->
 				<!--<rssChannelDocs>http://backend.userland.com/rss</rssChannelDocs>-->
 				<rssChannelLanguage>en-us</rssChannelLanguage>
@@ -290,7 +290,7 @@
 				</channelHeader>
 				<factivaChannelLink>http://www.solutions.dowjones.com</factivaChannelLink>
 				<factivaCustomerServiceLink>www.solutions.dowjones.com </factivaCustomerServiceLink>
-				<factivaCopyright>© 2008 Factiva, Inc.  All rights reserved.</factivaCopyright>
+				<factivaCopyright>© 2014 Factiva, Inc.  All rights reserved.</factivaCopyright>
 				<!--- Argotic is handling this -->
 				<!--<rssChannelDocs>http://backend.userland.com/rss</rssChannelDocs>-->
 				<rssChannelLanguage>en-us</rssChannelLanguage>
@@ -418,7 +418,7 @@
 				</channelHeader>
 				<factivaChannelLink>http://www.solutions.dowjones.com</factivaChannelLink>
 				<factivaCustomerServiceLink>www.solutions.dowjones.com </factivaCustomerServiceLink>
-				<factivaCopyright>© 2008 Factiva, Inc.  All rights reserved.</factivaCopyright>
+				<factivaCopyright>© 2014 Factiva, Inc.  All rights reserved.</factivaCopyright>
 				<!--- Argotic is handling this -->
 				<!--<rssChannelDocs>http://backend.userland.com/rss</rssChannelDocs>-->
 				<rssChannelLanguage>en-us</rssChannelLanguage>
@@ -537,7 +537,7 @@
 			<rssChannel>
 				<channelHeader>
 					<channelName>
-						<suffix>- Factiva Editor's Choice</suffix>
+						<suffix>- Suggested Reading</suffix>
 						<param type='eid'>title</param>
 					</channelName>
 					<channelDesc>
@@ -547,7 +547,7 @@
 				</channelHeader>
 				<factivaChannelLink>http://www.solutions.dowjones.com</factivaChannelLink>
 				<factivaCustomerServiceLink>www.solutions.dowjones.com </factivaCustomerServiceLink>
-				<factivaCopyright>© 2008 Factiva, Inc.  All rights reserved.</factivaCopyright>
+				<factivaCopyright>© 2014 Factiva, Inc.  All rights reserved.</factivaCopyright>
 				<!--- Argotic is handling this -->
 				<!--<rssChannelDocs>http://backend.userland.com/rss</rssChannelDocs>-->
 				<rssChannelLanguage>en-us</rssChannelLanguage>
@@ -897,7 +897,7 @@
 				</channelHeader>
 				<factivaChannelLink>http://www.solutions.dowjones.com</factivaChannelLink>
 				<factivaCustomerServiceLink>www.solutions.dowjones.com </factivaCustomerServiceLink>
-				<factivaCopyright>© 2008 Factiva, Inc.  All rights reserved.</factivaCopyright>
+				<factivaCopyright>© 2014 Factiva, Inc.  All rights reserved.</factivaCopyright>
 				<!--- Argotic is handling this -->
 				<!--<rssChannelDocs>http://backend.userland.com/rss</rssChannelDocs>-->
 				<rssChannelLanguage>en-us</rssChannelLanguage>
@@ -1019,7 +1019,7 @@
 				</channelHeader>
 				<factivaChannelLink>http://www.solutions.dowjones.com</factivaChannelLink>
 				<factivaCustomerServiceLink>www.solutions.dowjones.com </factivaCustomerServiceLink>
-				<factivaCopyright>© 2008 Factiva, Inc.  All rights reserved.</factivaCopyright>
+				<factivaCopyright>© 2014 Factiva, Inc.  All rights reserved.</factivaCopyright>
 				<!--- Argotic is handling this -->
 				<!--<rssChannelDocs>http://backend.userland.com/rss</rssChannelDocs>-->
 				<rssChannelLanguage>en-us</rssChannelLanguage>
@@ -1626,7 +1626,7 @@
       <channelDesc>Factiva</channelDesc>
       <factivaChannelLink>www.factiva.com/rss</factivaChannelLink>
       <factivaCustomerServiceLink>http://customer.factiva.com</factivaCustomerServiceLink>
-      <factivaCopyright>© 2008 Factiva, Inc.  All rights reserved.</factivaCopyright>
+      <factivaCopyright>© 2014 Factiva, Inc.  All rights reserved.</factivaCopyright>
       <rssChannelDocs>http://backend.userland.com/rss</rssChannelDocs>
       <rssChannelLanguage>en-us</rssChannelLanguage>
       <rssChannelAuthor>Dow Jones Factiva</rssChannelAuthor>
