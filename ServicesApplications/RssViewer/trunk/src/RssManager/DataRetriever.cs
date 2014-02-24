@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Configuration;
 using System.Globalization;
@@ -28,6 +29,7 @@ using Factiva.Gateway.Messages.Track.V1_0;
 using Factiva.Gateway.Services.V1_0;
 using Factiva.Gateway.Utils.V1_0;
 using Factiva.Gateway.V1_0;
+using FactivaEncryption;
 using FactivaRssManager;
 using FCMLib;
 using Common_V2 = Factiva.Gateway.Messages.Assets.Common.V2_0;
@@ -1589,6 +1591,8 @@ namespace FactivaRssManager_2_0
 
             var controlData = new ControlData();
 
+            var nldtl = string.Empty;
+
             try
             {
                 controlData.IPAddress = _remoteHost;
@@ -1613,7 +1617,9 @@ namespace FactivaRssManager_2_0
                 {
                     return "<HeadlineInfo></HeadlineInfo>";
                 }
-                
+
+                nldtl = string.Format("&nldtl={0}", GetNLDTLToken(inputData.getItem("newsletterID")));
+
                 var cacheManualWorkspaceForNewsLetterRss = GetCacheData("WSID_" + inputData.getItem("WSID") + "_en", 4);
                 if (cacheManualWorkspaceForNewsLetterRss != "")
                 {
@@ -1637,6 +1643,10 @@ namespace FactivaRssManager_2_0
                                                         position = getItemPositionFromAN(item.AccessionNumber, manualWorkspace)
                                                    };
                                 PopulateDocument(document, item.ContentHeadline);
+
+                                // Append Newsletter Details token
+                                document.reference += nldtl;
+
                                 documentCollection.Add(document);
                             }
                         }
@@ -2001,7 +2011,17 @@ namespace FactivaRssManager_2_0
             return position;
         }
 
-        
+
+        private static string GetNLDTLToken(string newsletterId)
+        {
+            const string ERC_PUB_KEY = "3x4e10e4";
+            var enc = new encryption();
+            var nvp = new NameValueCollection(1);
+
+            nvp.Add("nlId", newsletterId);
+
+            return HttpUtility.UrlEncode(enc.encrypt(nvp, ERC_PUB_KEY));
+        }
         #endregion
     }
     #region << HeadlineInfo >>
