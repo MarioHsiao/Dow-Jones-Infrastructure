@@ -31,14 +31,15 @@ namespace DowJones.Web.Handlers.Proxy
                                                                              {
                                                                                  "fdevweb3.win.dowjones.net", 
                                                                                  "api.dowjones.com", "api.int.dowjones.com",
-                                                                                 "m.wsj.net", "i.mktw.net"
+                                                                                 "m.wsj.net", "i.mktw.net", "www.factiva.com"
                                                                              });
 
         private readonly List<string> _contentTypes = new List<string>(new[]
                                                                        {
                                                                            "image/png", "image/jpeg", 
                                                                            "image/gif", "application/json", 
-                                                                           "text/css", "text/javascript", "application/javascript"
+                                                                           "text/css", "text/javascript", 
+                                                                           "application/javascript", "application/x-shockwave-flash"
                                                                        });
         /// <summary>
         /// Gets a value indicating whether another request can use the <see cref="T:System.Web.IHttpHandler"/> instance.
@@ -209,12 +210,17 @@ namespace DowJones.Web.Handlers.Proxy
             {
                 return true;
             }
-            return uri.Scheme == "http" && _whiteListedDomains.Contains(uri.Host.ToLowerInvariant());
+
+            return _whiteListedDomains.Any(uri.Host.ToLowerInvariant().Contains);
         }
 
         private bool IsValidContentType(string contentType)
         {
-            return !Settings.Default.EnableProxyBlocking || _contentTypes.Contains(contentType.ToLowerInvariant());
+            var len = contentType.IndexOf(";"); 
+            if ( len > -1) {
+                contentType = contentType.Substring(0, len).Trim().ToLowerInvariant();
+            }
+            return !Settings.Default.EnableProxyBlocking || _contentTypes.Any(contentType.Contains);
         }
     }
 
