@@ -26,10 +26,10 @@ using factiva.nextgen.ui;
 using log4net;
 using ContentCategory = Factiva.BusinessLayerLogic.ContentCategory;
 using ContentHeadline = Factiva.Gateway.Messages.Search.V2_0.ContentHeadline;
-using ContentItem=Factiva.Gateway.Messages.Search.V2_0.ContentItem;
+using ContentItem = Factiva.Gateway.Messages.Search.V2_0.ContentItem;
 using ContentLanguage = Factiva.BusinessLayerLogic.ContentLanguage;
 using Encryption = FactivaEncryption.encryption;
-using UrlBuilder=EMG.Utility.Uri.UrlBuilder;
+using UrlBuilder = EMG.Utility.Uri.UrlBuilder;
 
 namespace EMG.widgets.ui.utility.headline
 {
@@ -73,7 +73,7 @@ namespace EMG.widgets.ui.utility.headline
         private const int MaxReferrerSize = 255;
 
 
-        protected static readonly ILog Log = LogManager.GetLogger(typeof (HeadlineUtility));
+        protected static readonly ILog Log = LogManager.GetLogger(typeof(HeadlineUtility));
         private readonly DateTimeFormatter _dateTimeFormatter;
         private readonly ResourceText _resourceText;
         private readonly NumberFormatter _numberFormatter;
@@ -109,7 +109,7 @@ namespace EMG.widgets.ui.utility.headline
             // If there is a valid time update the following fields
             if (contentHeadlineStruct.contentHeadline.PublicationTime > DateTime.MinValue && !headlineInfo.InternalDmmArticle)
             {
-                headlineInfo.PublicationDateTime =  DateTimeFormatter.Merge(contentHeadlineStruct.contentHeadline.PublicationDate, contentHeadlineStruct.contentHeadline.PublicationTime);
+                headlineInfo.PublicationDateTime = DateTimeFormatter.Merge(contentHeadlineStruct.contentHeadline.PublicationDate, contentHeadlineStruct.contentHeadline.PublicationTime);
                 headlineInfo.PubDateTime = _dateTimeFormatter.FormatLongDateTime(headlineInfo.PublicationDateTime);
             }
             else
@@ -250,7 +250,7 @@ namespace EMG.widgets.ui.utility.headline
             headlineInfo.Text = ParseParagraphsV2(contentHeadlineStruct.contentHeadline.Headline, false).Trim();
             // NOTE: Removed VP 6/23/09 Deloitte doesnt want it
             //Truncate(headlineInfo.Text, contentHeadlineStruct.contentHeadline.TruncationRules.ExtraSmall);
-            headlineInfo.TruncText = null; 
+            headlineInfo.TruncText = null;
             headlineInfo.WC = contentHeadlineStruct.contentHeadline.WordCount;
             headlineInfo.IconUrl = GetHeadlineIcon(contentHeadlineStruct.contentHeadline);
 
@@ -259,7 +259,7 @@ namespace EMG.widgets.ui.utility.headline
                 headlineInfo.PublicationDateTime = DateTimeFormatter.Merge(contentHeadlineStruct.contentHeadline.PublicationDate, contentHeadlineStruct.contentHeadline.PublicationTime);
                 headlineInfo.PubDateTime = _dateTimeFormatter.FormatLongDateTime(headlineInfo.PublicationDateTime);
             }
-            
+
             if (contentHeadlineStruct.contentHeadline.WordCount > 0)
             {
                 headlineInfo.WordCount = string.Format("{0} {1}",
@@ -292,7 +292,7 @@ namespace EMG.widgets.ui.utility.headline
 
             switch (headlineInfo.ContentType.ToLower())
             {
-                
+
                 case "article":
                     imgPath += "/img/syndication/hl/articles.gif";
                     break;
@@ -329,15 +329,15 @@ namespace EMG.widgets.ui.utility.headline
             string imgPath;
             if (HttpContext.Current != null)
             {
-                imgPath = HttpContext.Current.Request.Url.Scheme + "://" 
-                    + HttpContext.Current.Request.Url.Authority 
+                imgPath = HttpContext.Current.Request.Url.Scheme + "://"
+                    + HttpContext.Current.Request.Url.Authority
                     + HttpContext.Current.Request.ApplicationPath;
             }
             else
             {
                 imgPath = "~";
             }
-            
+
             if (contentHeadline != null && contentHeadline.ContentItems != null &&
                 contentHeadline.ContentItems.ContentType != null)
             {
@@ -414,7 +414,7 @@ namespace EMG.widgets.ui.utility.headline
         {
             factiva.nextgen.ui.UrlBuilder ub = new factiva.nextgen.ui.UrlBuilder();
             ub.OutputType = UrlBuilder.UrlOutputType.Absolute;
-            
+
             ub.BaseUrl = Settings.Default.Cyclone_Redirection_URL;
             ub.Append("fid", alertInfo.Id);
             ub.Append("fn", alertInfo.Name);
@@ -446,7 +446,7 @@ namespace EMG.widgets.ui.utility.headline
                     ub.Append("f", "s");
                     if (definition.AuthenticationCredentials != null && !string.IsNullOrEmpty(definition.AuthenticationCredentials.ProfileId))
                     {
-                        string externalReaderToken = GetEncryptedExternalReaderToken(definition.AuthenticationCredentials.ProfileId,tokenProperties);
+                        string externalReaderToken = GetEncryptedExternalReaderToken(definition.AuthenticationCredentials.ProfileId, tokenProperties);
                         ub.Append("erc", externalReaderToken);
                     }
                     break;
@@ -517,9 +517,11 @@ namespace EMG.widgets.ui.utility.headline
         /// <returns></returns>
         public static string GenerateCycloneManualNewsletterWorkspaceArticleLink(ManualNewsletterWorkspaceWidgetDefinition definition, HeadlineInfo headline, ManualNewsletterWorkspaceInfo workspaceInfo, WidgetTokenProperties tokenProperties, WidgetDistributionType distributionType, IntegrationTarget integrationTarget, string language)
         {
-            factiva.nextgen.ui.UrlBuilder ub = new factiva.nextgen.ui.UrlBuilder();
-            ub.OutputType = UrlBuilder.UrlOutputType.Absolute;
-            ub.BaseUrl = Settings.Default.Cyclone_Redirection_URL;
+            var ub = new factiva.nextgen.ui.UrlBuilder
+                         {
+                             OutputType = UrlBuilder.UrlOutputType.Absolute,
+                             BaseUrl = Settings.Default.Cyclone_Redirection_URL
+                         };
             ub.Append("an", headline.AccessionNumber);
             ub.Append("napc", "WN");
 
@@ -550,7 +552,7 @@ namespace EMG.widgets.ui.utility.headline
                     ub.Append("f", "s");
                     if (definition.AuthenticationCredentials != null && !string.IsNullOrEmpty(definition.AuthenticationCredentials.ProfileId))
                     {
-                        string externalReaderToken = GetEncryptedExternalReaderToken(definition.AuthenticationCredentials.ProfileId,
+                        var externalReaderToken = GetEncryptedExternalReaderToken(definition.AuthenticationCredentials.ProfileId,
                                                                                      tokenProperties);
                         ub.Append("erc", externalReaderToken);
                     }
@@ -560,7 +562,24 @@ namespace EMG.widgets.ui.utility.headline
                     // do nothing here
                     break;
             }
+
+            //Append the nldtl token which has the newsletter Id
+            var encryptedToken = GetEncryptedStringForNLDetails(workspaceInfo.Id);
+            ub.Append("nldtl", encryptedToken);
             return ub.ToString(null);
+        }
+
+        ///<summary>
+        /// Get Encrypted Newsletter Details Token
+        ///</summary>
+        ///<param name="newsletterId"></param>
+        ///<returns></returns>
+        public static string GetEncryptedStringForNLDetails(long newsletterId)
+        {
+            // Use factiva encription to encode into a token name/value pairs
+            var encryption = new Encryption();
+            var nvp = new NameValueCollection { { "nlId", newsletterId.ToString() } };
+            return encryption.encrypt(nvp, ExternalReaderPublicKey);
         }
 
 
@@ -696,10 +715,10 @@ namespace EMG.widgets.ui.utility.headline
             AlertAssetOperationalData opData = new AlertAssetOperationalData(DisseminationMethod.Widget);
             opData.AssetId = alertInfo.Id.ToString();
             opData.AssetName = alertInfo.Name;
-            opData.AlertType = MapProductType(alertInfo.Type); 
+            opData.AlertType = MapProductType(alertInfo.Type);
             opData.AudienceOption = MapDistributionTypeToDisseminationOption(definition.DistributionType);
             opData.LinkType = linkType;
-            
+
             opData.WidgetOperationalData.WidgetID = tokenProperties.WidgetId;
             opData.WidgetOperationalData.WidgetName = definition.Name;
             opData.WidgetOperationalData.AssetCount = definition.alertIds.Length.ToString();
@@ -723,21 +742,21 @@ namespace EMG.widgets.ui.utility.headline
         private static string GetOperationalDataMemento(AutomaticWorkspaceWidgetDefinition definition, AutomaticWorkspaceInfo workspaceInfo, WidgetTokenProperties tokenProperties, IntegrationTarget integrationTarget)
         {
             WorkspaceAssetOperationalData opData = new WorkspaceAssetOperationalData(DisseminationMethod.Widget);
-           opData.AssetId = workspaceInfo.Id.ToString();
-           opData.AssetName = workspaceInfo.Name;
-           opData.AudienceOption = MapDistributionTypeToDisseminationOption(definition.DistributionType);
-           opData.LinkType = "sa";
+            opData.AssetId = workspaceInfo.Id.ToString();
+            opData.AssetName = workspaceInfo.Name;
+            opData.AudienceOption = MapDistributionTypeToDisseminationOption(definition.DistributionType);
+            opData.LinkType = "sa";
 
-           opData.WidgetOperationalData.WidgetID = tokenProperties.WidgetId;
-           opData.WidgetOperationalData.WidgetName = definition.Name;
-           opData.WidgetOperationalData.AssetCount = "1";
-           opData.WidgetOperationalData.HeadlineFormat = definition.DisplayType.ToString();
-           opData.WidgetOperationalData.NumberOfItems = definition.NumOfHeadlines.ToString();
-           opData.WidgetOperationalData.PublisherID = tokenProperties.UserId;
-           opData.WidgetOperationalData.PublisherNamespace = tokenProperties.NameSpace;
-           opData.WidgetOperationalData.PublishingDomain = GetHttpReferer(integrationTarget);
+            opData.WidgetOperationalData.WidgetID = tokenProperties.WidgetId;
+            opData.WidgetOperationalData.WidgetName = definition.Name;
+            opData.WidgetOperationalData.AssetCount = "1";
+            opData.WidgetOperationalData.HeadlineFormat = definition.DisplayType.ToString();
+            opData.WidgetOperationalData.NumberOfItems = definition.NumOfHeadlines.ToString();
+            opData.WidgetOperationalData.PublisherID = tokenProperties.UserId;
+            opData.WidgetOperationalData.PublisherNamespace = tokenProperties.NameSpace;
+            opData.WidgetOperationalData.PublishingDomain = GetHttpReferer(integrationTarget);
 
-           return opData.GetMemento;
+            return opData.GetMemento;
         }
 
         /// <summary>
@@ -824,7 +843,7 @@ namespace EMG.widgets.ui.utility.headline
         {
             switch (integrationTarget)
             {
-                    // Return Known integration points
+                // Return Known integration points
                 case IntegrationTarget.Blogger:
                 case IntegrationTarget.IGoogle:
                 case IntegrationTarget.LiveDotCom:
@@ -833,7 +852,7 @@ namespace EMG.widgets.ui.utility.headline
                 case IntegrationTarget.PageFlakes:
                     return integrationTarget.ToString();
 
-                    // Return unknown integration points referrer.
+                // Return unknown integration points referrer.
                 default:
                     HttpContext context = HttpContext.Current;
                     string referrer = (context.Request.UrlReferrer != null) ? context.Request.UrlReferrer.Host : context.Request.Url.Host;
@@ -1013,10 +1032,10 @@ namespace EMG.widgets.ui.utility.headline
         {
             if (!string.IsNullOrEmpty(language) && !string.IsNullOrEmpty(language.Trim()))
             {
-                FieldInfo fieldInfo = typeof (ContentLanguage).GetField(language.ToLower());
+                FieldInfo fieldInfo = typeof(ContentLanguage).GetField(language.ToLower());
                 if (fieldInfo != null)
                 {
-                    AssignedToken assignedToken = (AssignedToken) Attribute.GetCustomAttribute(fieldInfo, typeof (AssignedToken));
+                    AssignedToken assignedToken = (AssignedToken)Attribute.GetCustomAttribute(fieldInfo, typeof(AssignedToken));
                     if (assignedToken != null)
                     {
                         return _resourceText.GetString(assignedToken.Token);
@@ -1035,7 +1054,7 @@ namespace EMG.widgets.ui.utility.headline
         {
             if (!string.IsNullOrEmpty(language) && !string.IsNullOrEmpty(language.Trim()))
             {
-                ContentLanguage lang = (ContentLanguage) Enum.Parse(typeof (ContentLanguage), language);
+                ContentLanguage lang = (ContentLanguage)Enum.Parse(typeof(ContentLanguage), language);
                 return lang;
             }
             throw new ArgumentNullException("language");
