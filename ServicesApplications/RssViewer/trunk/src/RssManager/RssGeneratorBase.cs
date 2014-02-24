@@ -17,6 +17,7 @@ using EMG.Utility.Uri;
 using EMG.Utility.Url;
 using Factiva.BusinessLayerLogic;
 using Factiva.BusinessLayerLogic.Utility.Xml;
+using FactivaEncryption;
 using utils = Data.utils;
 using Factiva.Gateway.Messages.Assets.Common.V2_0;
 
@@ -273,6 +274,9 @@ namespace FactivaRssManager
             var operationalDataMemento = string.Empty;
             //var rss = new StringBuilder();
 
+            // Get Newsletter Details token containing Newsletter ID
+            var nldtl = GetNLDTLToken(inputData.getItem("newsletterID"));
+
             var headlineNodes = headlinesData.getNodeList("//" + xmlTopLevelNode);
             foreach (XmlNode headlineNode in headlineNodes)
             {
@@ -410,13 +414,15 @@ namespace FactivaRssManager
                                 case "nl2":
                                 case "nl1":
                                     operationalDataMemento = GetNewsletterOperationalDataMemento(inputData.getItem("newsletterID"),inputData.getItem("newsletterName"), audience,false);
+                                    urlBuilder.Append("nldtl", nldtl);
                                     break;
                                 case "nl2pcast":
                                     operationalDataMemento = GetNewsletterOperationalDataMemento(inputData.getItem("newsletterID"), inputData.getItem("newsletterName"), audience, true);
+                                    urlBuilder.Append("nldtl", nldtl);
                                     break;
                             }
-
                             urlBuilder.Append("od", HttpContext.Current.Server.UrlEncode(operationalDataMemento));
+
                             strCompleteURL = urlBuilder.ToString();
                         }
                         #endregion
@@ -929,6 +935,17 @@ namespace FactivaRssManager
             var xs = new XmlSerializer(objectType);
             var obj = xs.Deserialize(xmlReader);
             return obj;
+        }
+
+        private static string GetNLDTLToken(string newsletterId)
+        {
+            const string ERC_PUB_KEY = "3x4e10e4";
+            var enc = new encryption();
+            var nvp = new NameValueCollection(1);
+
+            nvp.Add("nlId", newsletterId);
+
+            return HttpUtility.UrlEncode(enc.encrypt(nvp, ERC_PUB_KEY));
         }
     }
 
