@@ -407,18 +407,22 @@ namespace FactivaRssManager
                             {
                                 case "ws1":
                                     operationalDataMemento = GetWorkspaceOperationalDataMemento(inputData.getItem("workspaceID"),inputData.getItem("workspaceName"), audience,false);
+                                    urlBuilder.Append("mod", "workspace_rss");
                                     break;
                                 case "ws1pcast":
                                     operationalDataMemento = GetWorkspaceOperationalDataMemento(inputData.getItem("workspaceID"), inputData.getItem("workspaceName"), audience, true);
+                                    urlBuilder.Append("mod", "workspace_rss");
                                     break;
                                 case "nl2":
                                 case "nl1":
                                     operationalDataMemento = GetNewsletterOperationalDataMemento(inputData.getItem("newsletterID"),inputData.getItem("newsletterName"), audience,false);
                                     urlBuilder.Append("nldtl", nldtl);
+                                    urlBuilder.Append("mod", "newsletter_rss");
                                     break;
                                 case "nl2pcast":
                                     operationalDataMemento = GetNewsletterOperationalDataMemento(inputData.getItem("newsletterID"), inputData.getItem("newsletterName"), audience, true);
                                     urlBuilder.Append("nldtl", nldtl);
+                                    urlBuilder.Append("mod", "newsletter_rss");
                                     break;
                             }
                             urlBuilder.Append("od", HttpContext.Current.Server.UrlEncode(operationalDataMemento));
