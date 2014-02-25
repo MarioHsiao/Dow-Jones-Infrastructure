@@ -465,9 +465,11 @@ namespace EMG.widgets.ui.utility.headline
         /// <returns></returns>
         public static string GenerateCycloneAutomaticWorkspaceArticleLink(AutomaticWorkspaceWidgetDefinition definition, HeadlineInfo headline, AutomaticWorkspaceInfo workspaceInfo, WidgetTokenProperties tokenProperties, WidgetDistributionType distributionType, IntegrationTarget integrationTarget, string language)
         {
-            factiva.nextgen.ui.UrlBuilder ub = new factiva.nextgen.ui.UrlBuilder();
-            ub.OutputType = UrlBuilder.UrlOutputType.Absolute;
-            ub.BaseUrl = Settings.Default.Cyclone_Redirection_URL;
+            var ub = new factiva.nextgen.ui.UrlBuilder
+                         {
+                             OutputType = UrlBuilder.UrlOutputType.Absolute,
+                             BaseUrl = Settings.Default.Cyclone_Redirection_URL
+                         };
             ub.Append("an", headline.AccessionNumber);
             ub.Append("napc", "WW");
 
@@ -508,6 +510,10 @@ namespace EMG.widgets.ui.utility.headline
                     // do nothing here
                     break;
             }
+
+            //Append omniture tracking code
+            ub.Append("mod", "workspace_widget");
+
             return ub.ToString(null);
         }
 
@@ -566,6 +572,10 @@ namespace EMG.widgets.ui.utility.headline
             //Append the nldtl token which has the newsletter Id
             var encryptedToken = GetEncryptedStringForNLDetails(workspaceInfo.Id);
             ub.Append("nldtl", encryptedToken);
+
+            //Append omniture tracking code
+            ub.Append("mod", "newsletter_widget");
+
             return ub.ToString(null);
         }
 
