@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Globalization;
+using System.Web;
 using DowJones.Infrastructure.Models.SocialMedia;
 
 namespace DowJones.Managers.SocialMedia.Twitter.Extensions
@@ -84,7 +85,7 @@ namespace DowJones.Managers.SocialMedia.Twitter.Extensions
             foreach (Match match in _parseHashtags.Matches(input))
             {
                 var hashtag = Uri.EscapeDataString(match.Value);
-                input = input.Replace(match.Value, string.Format(CultureInfo.InvariantCulture, "<a href=\"http://search.twitter.com/search?q={0}\" target=\"_blank\">{1}</a>", hashtag, match.Value));
+                input = input.Replace(match.Value, string.Format(CultureInfo.InvariantCulture, "<a href=\"https://twitter.com/search?q={0}\" target=\"_blank\">{1}</a>", HttpUtility.UrlEncode(hashtag), match.Value));
             }
 
             return input;
