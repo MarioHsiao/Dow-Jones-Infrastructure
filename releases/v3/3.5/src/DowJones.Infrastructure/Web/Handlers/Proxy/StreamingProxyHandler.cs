@@ -344,11 +344,6 @@ namespace DowJones.Web.Handlers.Proxy
                         context.Response.StatusCode = (int)HttpStatusCode.Forbidden;
                         context.Response.Write("Unable to process Uri");
                     }
-                    else
-                    {
-                        context.Response.StatusCode = (int)HttpStatusCode.Forbidden;
-                        context.Response.Write("Unable to process Uri");
-                    }
 
                     using (new TimedLog("StreamingProxy\tResponse Flush"))
                     {
