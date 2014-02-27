@@ -10,10 +10,10 @@ namespace EMG.widgets.ui.controls.navigation
 {
     internal class FlashObjectDelegate
     {
-        public string source;
-        public string width;
-        public string height;
-        public string targetFlashPlayerVersion;
+        public string Source;
+        public string Width;
+        public string Height;
+        public string TargetFlashPlayerVersion;
     }
 
     /// <summary>
@@ -21,15 +21,15 @@ namespace EMG.widgets.ui.controls.navigation
     /// </summary>
     public class LearnAboutFactivaWidgetsControl : BaseControl
     {
-        private WidgetManagementDTO m_WidgetManagementDTO;
+        private WidgetManagementDTO _widgetManagementDTO;
         /// <summary>
         /// Gets or sets the widget management DTO.
         /// </summary>
         /// <value>The widget management DTO.</value>
         public WidgetManagementDTO WidgetManagementDTO
         {
-            get { return m_WidgetManagementDTO; }
-            set { m_WidgetManagementDTO = value; }
+            get { return _widgetManagementDTO; }
+            set { _widgetManagementDTO = value; }
         }
 
         /// <summary>
@@ -46,32 +46,36 @@ namespace EMG.widgets.ui.controls.navigation
         /// <param name="writer">The writer.</param>
         protected override void Render(HtmlTextWriter writer)
         {
-            if (m_WidgetManagementDTO != null &&
-                m_WidgetManagementDTO.IsValid() && 
-                m_WidgetManagementDTO.IsValid(m_WidgetManagementDTO.doneUrl))
+            if (_widgetManagementDTO == null || !_widgetManagementDTO.IsValid() || !_widgetManagementDTO.IsValid(_widgetManagementDTO.doneUrl))
             {
-                // Create a Javascript FlashObjectDelegate
-                FlashObjectDelegate flashObjectDelegate = new FlashObjectDelegate();
-                flashObjectDelegate.source = Settings.Default.MarketingFlashMovie_Source;
-                flashObjectDelegate.width = Settings.Default.MarketingFlashMovie_Width;
-                flashObjectDelegate.height = Settings.Default.MarketingFlashMovie_Height;
-                flashObjectDelegate.targetFlashPlayerVersion = Settings.Default.MarketingFlashMovie_TargetVersion;
-                // Label 
-                JavaScriptSerializer serializer = new JavaScriptSerializer();
-                Controls.Add(new LiteralControl("<script type=\"text/javascript\"> var movieData = " + serializer.Serialize(flashObjectDelegate) + ";</script>"));
-
-                // Date link
-                HtmlAnchor anchor = new HtmlAnchor();
-                anchor.ID = "movieAnchor";
-                anchor.Title = anchor.InnerText = ResourceText.GetInstance.GetString("learnMoreAboutWidgets");
-                anchor.HRef = "javascript:void(0)";
-                anchor.Attributes.Add("onclick", "showMovie();return false;");
-                Controls.Add(anchor);
-                
-                
-                // Render controls
-                base.Render(writer);
+                return;
             }
+
+            // Create a Javascript FlashObjectDelegate
+            var flashObjectDelegate = new FlashObjectDelegate
+                                      {
+                                          Source = Settings.Default.MarketingFlashMovie_Source, 
+                                          Width = Settings.Default.MarketingFlashMovie_Width, 
+                                          Height = Settings.Default.MarketingFlashMovie_Height, 
+                                          TargetFlashPlayerVersion = Settings.Default.MarketingFlashMovie_TargetVersion
+                                      };
+            // Label 
+            var serializer = new JavaScriptSerializer();
+            Controls.Add(new LiteralControl("<script type=\"text/javascript\"> var movieData = " + serializer.Serialize(flashObjectDelegate) + ";</script>"));
+
+            // Date link
+            var anchor = new HtmlAnchor
+                         {
+                             ID = "movieAnchor"
+                         };
+            anchor.Title = anchor.InnerText = ResourceText.GetInstance.GetString("learnMoreAboutWidgets");
+            anchor.HRef = "javascript:void(0)";
+            anchor.Attributes.Add("onclick", "showMovie();return false;");
+            Controls.Add(anchor);
+                
+                
+            // Render controls
+            base.Render(writer);
         }
     }
 }
