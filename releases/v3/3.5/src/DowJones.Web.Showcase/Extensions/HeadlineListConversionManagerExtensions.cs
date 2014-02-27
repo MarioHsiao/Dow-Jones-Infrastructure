@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Web;
 using DowJones.Ajax.HeadlineList;
 using DowJones.Assemblers.Headlines;
 using DowJones.DependencyInjection;
@@ -25,20 +26,20 @@ namespace DowJones.Web.Showcase.Extensions
 
             switch (searchMode.GetValueOrDefault())
             {
+                default:
                 case ContentSearchMode.ContentServer:
                     result = manager.PerformContentSearch(searchText);
-                    break;
-                default:
-                    result = manager.PerformTwitterSearch(searchText);
                     break;
             }
 
             return new HeadlineListViewModel { Query = searchText, Result = result };
         }
 
+        
+        [Obsolete("Twitter Search is no longer a supported api")]
         public static HeadlineListDataResult PerformTwitterSearch(this HeadlineListConversionManager manager, string searchText)
         {
-            var result = manager.Process("http://search.twitter.com/search.atom?q=" + searchText);
+            var result = manager.Process("http://search.twitter.com/search.atom?q=" + HttpUtility.UrlEncode(searchText));
             return result;
         }
 

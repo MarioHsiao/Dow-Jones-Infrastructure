@@ -82,8 +82,8 @@ namespace DowJones.Web.Handlers.Proxy
                     {
                         return;
                     }
-                    context.Response.BinaryWrite(temp);
-                    context.Response.Flush();
+                        context.Response.BinaryWrite(temp);
+                        context.Response.Flush();
                     return;
                 }
             }
@@ -212,7 +212,7 @@ namespace DowJones.Web.Handlers.Proxy
             }
 
             return _whiteListedDomains.Any(uri.Host.ToLowerInvariant().Contains);
-        }
+                }
 
         private bool IsValidContentType(string contentType)
         {

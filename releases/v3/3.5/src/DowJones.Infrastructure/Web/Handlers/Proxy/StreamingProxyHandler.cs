@@ -321,23 +321,28 @@ namespace DowJones.Web.Handlers.Proxy
                         {
                             // Cache the content on server for specific duration
                             var cache = new CachedContent
-                                        {
-                                            Content = responseBuffer,
-                                            ContentEncoding = contentEncoding,
-                                            ContentDisposition = contentDisposition,
-                                            ContentLength = contentLength,
-                                            ContentType = response.ContentType,
-                                        };
+                                            {
+                                                Content = responseBuffer,
+                                                ContentEncoding = contentEncoding,
+                                                ContentDisposition = contentDisposition,
+                                                ContentLength = contentLength,
+                                                ContentType = response.ContentType,
+                                            };
 
                             context.Cache.Insert(
-                                request.RequestUri.ToString(),
-                                cache,
+                                request.RequestUri.ToString(), 
+                                cache, 
                                 null,
                                 Cache.NoAbsoluteExpiration,
                                 TimeSpan.FromMinutes(cacheDuration),
-                                CacheItemPriority.Normal,
+                                CacheItemPriority.Normal, 
                                 null);
                         }
+                    }
+                    else
+                    {
+                        context.Response.StatusCode = (int)HttpStatusCode.Forbidden;
+                        context.Response.Write("Unable to process Uri");
                     }
                     else
                     {
