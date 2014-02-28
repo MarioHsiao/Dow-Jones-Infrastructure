@@ -18,6 +18,7 @@ namespace DowJones.Web
             get { return applicationPath ?? HttpContext.Request.ApplicationPath; }
             set { applicationPath = value; }
         }
+
         private static string applicationPath;
 
 
@@ -71,12 +72,26 @@ namespace DowJones.Web
         {
             var styleSheetRelativePath = match.Groups[1].Value.Trim();
 
+            if (styleSheetRelativePath.StartsWith("data:")) // This takes care of data-uris
+            {
+                return  string.Format("url('{0}')", styleSheetRelativePath);;
+            }
+
             if (styleSheetRelativePath.StartsWith("/"))
+            {
                 styleSheetRelativePath = styleSheetRelativePath.Substring(1);
+            }
 
             var combinedPath = Path.Combine(basePath, styleSheetRelativePath);
             combinedPath = combinedPath.Replace('\\', '/');
+
             var relativePath = VirtualPathUtility.ToAbsolute(combinedPath, ApplicationPath);
+
+            // Check for an application path
+            if (ApplicationPath.Length > 1 && ApplicationPath != "/")
+            {
+                relativePath = string.Concat(ApplicationPath, relativePath);
+            }
 
             return string.Format("url('{0}')", relativePath);
         }

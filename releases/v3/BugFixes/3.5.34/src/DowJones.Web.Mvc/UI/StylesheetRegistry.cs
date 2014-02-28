@@ -86,11 +86,8 @@ namespace DowJones.Web.Mvc.UI
 
         protected void WriteStylesheetIncludes(HtmlTextWriter htmlWriter)
         {
-            var unrenderedStyleSheets =
-                GetStylesheets().Where(x => !_renderedResources.Contains(x));
-
-            IEnumerable<string> unrenderedStyleSheetUrls =
-               _combiner.GenerateCombinedResourceUrls(unrenderedStyleSheets);
+            var unrenderedStyleSheets = GetStylesheets().Where(x => !_renderedResources.Contains(x));
+            var unrenderedStyleSheetUrls = _combiner.GenerateCombinedResourceUrls(unrenderedStyleSheets);
 
             // Write out includes
             foreach (var url in unrenderedStyleSheetUrls)

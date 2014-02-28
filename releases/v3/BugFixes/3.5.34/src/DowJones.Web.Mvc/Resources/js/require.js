@@ -8,7 +8,10 @@
 jQuery: false, clearInterval: false, setInterval: false, self: false,
 setTimeout: false, opera: false */
 
-var requirejs, require, define;
+//var requirejs, require, define;
+// require will be added by framework to make it scoped
+var requirejs, define;
+
 (function () {
     //Change this version number for each release.
     var version = "1.0.4",

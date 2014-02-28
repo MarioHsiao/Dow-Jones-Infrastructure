@@ -30,7 +30,7 @@ namespace DowJones.Web.Mvc.UI.Components.Article
     using PostProcessingOptions = PostProcessing.PostProcessingOptions;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 07 29 2013 02:39 
+    // Last Generated Timestamp: 04/12/2013 01:53 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.Article.Article.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.Article.ArticleComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "0.0.0.30158")]
     public class ArticleComponent : DowJones.Web.Mvc.UI.ViewComponentBase<ArticleModel>
@@ -88,7 +88,7 @@ WriteLiteral("\" data-ref=\"");
 WriteLiteral("\">\r\n        \r\n");
 
 
-         if (Model != null && Model.VideoPlayer != null) 
+         if (Model != null && Model.VideoPlayer != null)
         {
 
 WriteLiteral("             <div class=\"multimediaPlayer\">\r\n                <div class=\"player\">" +
@@ -933,9 +933,9 @@ WriteLiteral("<div class=\"dj_article_article_body\">\r\n");
 
  if (!Model.ArticleDataSet.Correction.IsNullOrEmpty())
 {
-    foreach (KeyValuePair<string, List<RenderItem>> kvc in Model.ArticleDataSet.Correction.SelectMany(dci => dci))
-    {
- Write(kvc.Key.Equals("pre") ? CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(kvc.Value, "pre", "dj_article_paragraph"))
+foreach (KeyValuePair<string, List<RenderItem>> kvc in Model.ArticleDataSet.Correction.SelectMany(dci => dci))
+{
+Write(kvc.Key.Equals("pre") ? CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(kvc.Value, "pre", "dj_article_paragraph"))
                                 : CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(kvc.Value, "p", "dj_article_paragraph")));
 
                                                                                                                                           }
@@ -944,13 +944,13 @@ WriteLiteral("<div class=\"dj_article_article_body\">\r\n");
 
  if (!Model.ArticleDataSet.LeadParagraph.IsNullOrEmpty())
 {
-    if (showIndexing)
-    {
+if (showIndexing)
+{
 
 WriteLiteral("<div class=\"dj_article_index\">LP</div>\r\n");
 
 
-    }                    
+}                    
 
 WriteLiteral("<div class=\"dj_article_lp dj_article_section\">\r\n");
 
@@ -973,13 +973,13 @@ WriteLiteral("</div>\r\n");
 
  if (!Model.ArticleDataSet.TailParagraphs.IsNullOrEmpty() && Model.ArticleDisplayOptions != DisplayOptions.Headline)
 {
-    if (showIndexing)
-    {
+if (showIndexing)
+{
 
 WriteLiteral("<div class=\"dj_article_index\">TD</div>\r\n");
 
 
-    }
+}
 
 WriteLiteral("<div class=\"dj_article_td dj_article_section\">\r\n");
 

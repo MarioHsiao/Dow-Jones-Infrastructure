@@ -310,7 +310,7 @@ DJ.UI.DiscoveryFilters = DJ.UI.Component.extend({
         var labelItem = $(evt.target).parent();
         self.publish(self.events.itemClick, { "data": labelItem.data("entity") });
     },
-    
+
     _onItemCountClicked: function (evt) {
         var self = this;
         var countItem = $(evt.target);

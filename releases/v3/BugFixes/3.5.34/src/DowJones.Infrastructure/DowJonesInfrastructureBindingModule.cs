@@ -10,6 +10,7 @@ using DowJones.Globalization;
 using DowJones.Infrastructure;
 using DowJones.Loggers;
 using DowJones.Managers.Alert;
+using DowJones.Managers.Multimedia;
 using DowJones.Managers.Search;
 using DowJones.Managers.Search.Preference;
 using DowJones.Mapping;
@@ -118,6 +119,7 @@ namespace DowJones
             Bind<TaskFactory>().ToMethod(x => TaskFactoryManager.Instance.GetDefaultTaskFactory()).InSingletonScope();
 
             Bind<ISocialMediaProvider>().To<TweetRiverProvider>().InRequestScope();
+            Bind<IMultimediaManager>().To<MultimediaManager>().InRequestScope();
         }
     }
 }

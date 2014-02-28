@@ -114,6 +114,12 @@ namespace DowJones.Session
         /// <value>The user id.</value>
         public string UserId { get; set; }
 
+        /// <summary>
+        /// Gets the Encrypted user id and Namespace.
+        /// </summary>
+        /// <value>The user id.</value>
+        public string EncryptedUserId { get; set; }
+
 
         /// <summary>
         /// Initializes a new instance of the <see cref="UserSession" /> class.

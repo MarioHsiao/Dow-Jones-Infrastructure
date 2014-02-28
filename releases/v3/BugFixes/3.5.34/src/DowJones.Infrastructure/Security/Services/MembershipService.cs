@@ -182,6 +182,7 @@ namespace DowJones.Security.Services
             return bFlag;
         }
         #endregion
+
         public int MaxSourceList { get; private set; }
     }
 

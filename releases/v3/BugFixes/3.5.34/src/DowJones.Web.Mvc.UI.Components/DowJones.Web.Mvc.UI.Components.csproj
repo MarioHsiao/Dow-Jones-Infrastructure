@@ -80,15 +80,15 @@
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="factiva.gateway.messages, Version=7.5.0.138, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="factiva.gateway.messages, Version=7.5.0.140, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.138\lib\factiva.gateway.messages.dll</HintPath>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.141\lib\factiva.gateway.messages.dll</HintPath>
     </Reference>
     <Reference Include="FactivaGateway, Version=1.6.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.138\lib\FactivaGateway.dll</HintPath>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.141\lib\FactivaGateway.dll</HintPath>
     </Reference>
     <Reference Include="Interop.FCMLib">
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.138\lib\Interop.FCMLib.dll</HintPath>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.141\lib\Interop.FCMLib.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
@@ -309,6 +309,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TaxonomySearchBrowseComponent.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="TemplateComponent\TemplateComponent.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TemplateComponent.cshtml</DependentUpon>
     </Compile>
     <Compile Include="TopicEditor\TopicEditorComponent.cs">
       <DependentUpon>TopicEditorComponent.cshtml</DependentUpon>
@@ -690,6 +695,10 @@
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>HeadlinePostProcessingComponent.cs</LastGenOutput>
     </None>
+    <None Include="TemplateComponent\TemplateComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>TemplateComponent.cs</LastGenOutput>
+    </None>
     <None Include="TopicEditor\TopicEditorComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>TopicEditorComponent.cs</LastGenOutput>
@@ -972,6 +981,14 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="CompanyInfo\ClientTemplates\ReportHeadlineEntry.htm" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TemplateComponent\TemplateComponent.js" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="TemplateComponent\ClientTemplates\Error.html" />
+    <EmbeddedResource Include="TemplateComponent\ClientTemplates\Success.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

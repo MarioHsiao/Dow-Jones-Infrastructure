@@ -99,8 +99,10 @@
                     }
 
                 },
-
+                
                 colors: [(_optionBag.stockSeriesColor || '#5ea9c3')],
+                
+                colors: [(optionBag.stockSeriesColor || '#5ea9c3')],
 
                 loading: {
                     hideDuration: 250,
@@ -488,7 +490,7 @@
 
             if (self.data) {
                 var isFullSizeGraph = o.isFullChart;
-
+                
                 if (!isFullSizeGraph) {
                     self.$element.html(this.templates.marketindex({ data: self.data.stockDataResult }));
 
