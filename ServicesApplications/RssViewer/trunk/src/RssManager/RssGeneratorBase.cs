@@ -275,7 +275,37 @@ namespace FactivaRssManager
             //var rss = new StringBuilder();
 
             // Get Newsletter Details token containing Newsletter ID
-            var nldtl = GetNLDTLToken(inputData.getItem("newsletterID"));
+            var _type = string.Empty;
+            var nldtl = string.Empty;
+
+            if (null != inputData)
+            {
+                if (!string.IsNullOrEmpty(inputData.getItem("from")))
+                {
+                    switch (inputData.getItem("from").ToLower())
+                    {
+                        case "ws1":
+                        case "ws1pcast":
+                            _type = "WS";
+                            if (!string.IsNullOrEmpty(inputData.getItem("workspaceID")))
+                            {
+                                nldtl = GetNLDTLToken(inputData.getItem("workspaceID"), _type);
+                            }
+                            break;
+                        case "nl1":
+                        case "nl2":
+                        case "nl2pcast":
+                            // For now, all Newsletter RSS will only be Factiva Newsletter.
+                            // Until MCT Newsletter support RSS, the value will always be NL
+                            _type = "NL";
+                            if (!string.IsNullOrEmpty(inputData.getItem("newsletterID")))
+                            {
+                                nldtl = GetNLDTLToken(inputData.getItem("newsletterID"), _type);
+                            }
+                            break;
+                    }
+                }
+            }
 
             var headlineNodes = headlinesData.getNodeList("//" + xmlTopLevelNode);
             foreach (XmlNode headlineNode in headlineNodes)
@@ -402,6 +432,7 @@ namespace FactivaRssManager
                                     break;
                             }
                             urlBuilder.Append("cat", AdocTOCURL);
+                            urlBuilder.Append("nldtl", nldtl);
 
                             switch (product)
                             {
@@ -416,12 +447,10 @@ namespace FactivaRssManager
                                 case "nl2":
                                 case "nl1":
                                     operationalDataMemento = GetNewsletterOperationalDataMemento(inputData.getItem("newsletterID"),inputData.getItem("newsletterName"), audience,false);
-                                    urlBuilder.Append("nldtl", nldtl);
                                     urlBuilder.Append("mod", "newsletter_rss");
                                     break;
                                 case "nl2pcast":
                                     operationalDataMemento = GetNewsletterOperationalDataMemento(inputData.getItem("newsletterID"), inputData.getItem("newsletterName"), audience, true);
-                                    urlBuilder.Append("nldtl", nldtl);
                                     urlBuilder.Append("mod", "newsletter_rss");
                                     break;
                             }
@@ -941,13 +970,14 @@ namespace FactivaRssManager
             return obj;
         }
 
-        private static string GetNLDTLToken(string newsletterId)
+        private static string GetNLDTLToken(string newsletterId, string _type)
         {
             const string ERC_PUB_KEY = "3x4e10e4";
             var enc = new encryption();
             var nvp = new NameValueCollection(1);
 
             nvp.Add("nlId", newsletterId);
+            nvp.Add("nt", _type);
 
             return HttpUtility.UrlEncode(enc.encrypt(nvp, ERC_PUB_KEY));
         }
