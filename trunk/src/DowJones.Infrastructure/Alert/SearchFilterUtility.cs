@@ -77,7 +77,10 @@ namespace DowJones.Infrastructure.Alert
                 {
                     lstSearchString.Add(CreateSearchString("keyword", string.Join(" ", newsFilter.keywords), SearchMode.Simple, SearchType.Free));
                 }
-               
+                if (newsFilter.language != null)
+                {
+                    lstSearchString.Add(CreateSearchString("la", GetFilterValue(newsFilter.language), SearchMode.Any, SearchType.Controlled));
+                }
                 if (newsFilter.authorExcluded != null)
                 {
                     lstSearchString.Add(CreateSearchString("au", GetFilterValue(newsFilter.authorExcluded), SearchMode.None, SearchType.Controlled));
@@ -102,7 +105,10 @@ namespace DowJones.Infrastructure.Alert
                 {
                     lstSearchString.Add(CreateSearchString("rst", GetFilterValue(newsFilter.sourceExcluded), SearchMode.None, SearchType.Controlled));
                 }
-                
+                if (newsFilter.languageExcluded != null)
+                {
+                    lstSearchString.Add(CreateSearchString("la", GetFilterValue(newsFilter.languageExcluded), SearchMode.None, SearchType.Controlled));
+                }
             }
             return lstSearchString;
         }
