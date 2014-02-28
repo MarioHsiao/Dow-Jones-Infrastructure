@@ -97,7 +97,10 @@ namespace DowJones.Managers.Alert
                             break;
                         case "key":
                             _newsFilters.keywords = GetKeywordFilterItem(filter.Filter);
-
+                            break;
+                        case "la":
+                            _newsFilters.language = GetFilterItem(filter.Filter);
+                            _newsFilters.languageExcluded = GetFilterItem(filter.ExcludeFilter);
                             break;
                     }
                 }
