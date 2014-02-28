@@ -311,9 +311,11 @@ namespace EMG.widgets.ui.utility.headline
             }
             if (!string.IsNullOrEmpty(imgPath) && !(string.IsNullOrEmpty(imgPath.Trim())))
             {
-                UrlBuilder urlBuilder = new UrlBuilder();
-                urlBuilder.BaseUrl = imgPath;
-                urlBuilder.OutputType = UrlBuilder.UrlOutputType.Absolute;
+                var urlBuilder = new UrlBuilder
+                                            {
+                                                BaseUrl = imgPath,
+                                                OutputType = UrlBuilder.UrlOutputType.Absolute
+                                            };
                 return urlBuilder.ToString();
             }
             return imgPath;
@@ -511,6 +513,10 @@ namespace EMG.widgets.ui.utility.headline
                     break;
             }
 
+            //Append the nldtl token which has the newsletter Id & NT (Newsletter Type)
+            var encryptedToken = GetEncryptedStringForNLDetails(workspaceInfo.Id, "WS");
+            ub.Append("nldtl", encryptedToken);
+
             //Append omniture tracking code
             ub.Append("mod", "workspace_widget");
 
@@ -569,8 +575,8 @@ namespace EMG.widgets.ui.utility.headline
                     break;
             }
 
-            //Append the nldtl token which has the newsletter Id
-            var encryptedToken = GetEncryptedStringForNLDetails(workspaceInfo.Id);
+            //Append the nldtl token which has the newsletter Id & NT (Newsletter Type)
+            var encryptedToken = GetEncryptedStringForNLDetails(workspaceInfo.Id, "NL");
             ub.Append("nldtl", encryptedToken);
 
             //Append omniture tracking code
@@ -583,12 +589,13 @@ namespace EMG.widgets.ui.utility.headline
         /// Get Encrypted Newsletter Details Token
         ///</summary>
         ///<param name="newsletterId"></param>
+        ///<param name="nt"></param>
         ///<returns></returns>
-        public static string GetEncryptedStringForNLDetails(long newsletterId)
+        public static string GetEncryptedStringForNLDetails(long newsletterId, string nt)
         {
             // Use factiva encription to encode into a token name/value pairs
             var encryption = new Encryption();
-            var nvp = new NameValueCollection { { "nlId", newsletterId.ToString() } };
+            var nvp = new NameValueCollection {{"nlId", newsletterId.ToString()}, {"nt", nt}};
             return encryption.encrypt(nvp, ExternalReaderPublicKey);
         }
 
