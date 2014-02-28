@@ -55,8 +55,8 @@ namespace DowJones.Web.Handlers.Proxy
                     var temp = context.Cache[url] as byte[];
                     if (temp != null)
                     {
-                        context.Response.BinaryWrite(temp);
-                        context.Response.Flush();
+                    context.Response.BinaryWrite(temp);
+                    context.Response.Flush();
                     }
 
                     return;
@@ -169,7 +169,7 @@ namespace DowJones.Web.Handlers.Proxy
                         context.Response.OutputStream.Write(data, 0, data.Length);
                         context.Response.Flush();
                     }
-                }
+        }
             }
         }
     }
