@@ -29,9 +29,9 @@ namespace DowJones.Web.Handlers.Proxy
     {
         private readonly List<string> _whiteListedDomains = new List<string>(new[]
                                                                              {
-                                                                                 "fdevweb3.win.dowjones.net", 
-                                                                                 "api.dowjones.com", "api.int.dowjones.com",
-                                                                                 "m.wsj.net", "i.mktw.net", "www.factiva.com"
+                                                                                 "dowjones.net", 
+                                                                                 "m.wsj.net", "i.mktw.net",
+                                                                                 "factiva.com", "dowjones.com"
                                                                              });
 
         private readonly List<string> _contentTypes = new List<string>(new[]
@@ -39,7 +39,7 @@ namespace DowJones.Web.Handlers.Proxy
                                                                            "image/png", "image/jpeg", 
                                                                            "image/gif", "application/json", 
                                                                            "text/css", "text/javascript", 
-                                                                           "application/javascript", "application/x-shockwave-flash"
+                                                                           "application/javascript", "application/x-shockwave-flash", "text/html"
                                                                        });
         /// <summary>
         /// Gets a value indicating whether another request can use the <see cref="T:System.Web.IHttpHandler"/> instance.

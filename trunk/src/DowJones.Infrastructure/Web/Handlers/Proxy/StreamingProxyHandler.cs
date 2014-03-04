@@ -28,17 +28,17 @@ namespace DowJones.Web.Handlers.Proxy
         private const int BufferSize = 8 * 1024;
         private readonly List<string> _whiteListedDomains = new List<string>(new[]
                                                                              {
-                                                                                 "fdevweb3.win.dowjones.net", 
-                                                                                 "api.dowjones.com", "api.int.dowjones.com",
-                                                                                 "m.wsj.net", "i.mktw.net", "www.factiva.com" 
+                                                                                 "dowjones.net", 
+                                                                                 "m.wsj.net", "i.mktw.net",
+                                                                                 "factiva.com", "dowjones.com"
                                                                              });
 
         private readonly List<string> _contentTypes = new List<string>(new[]
                                                                        {
-                                                                          "image/png", "image/jpeg", 
+                                                                           "image/png", "image/jpeg", 
                                                                            "image/gif", "application/json", 
                                                                            "text/css", "text/javascript", 
-                                                                           "application/javascript", "application/x-shockwave-flash"
+                                                                           "application/javascript", "application/x-shockwave-flash", "text/html"
                                                                        });
        
         private PipeStream _pipeStream;
