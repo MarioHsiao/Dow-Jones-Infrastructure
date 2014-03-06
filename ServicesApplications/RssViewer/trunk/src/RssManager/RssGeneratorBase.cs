@@ -1,14 +1,14 @@
 using System;
-using System.Globalization;
-using System.Xml;
 using System.Collections.Specialized;
+using System.Globalization;
+using System.Text;
+using System.Web;
+using System.Xml;
 using System.Xml.Serialization;
 using Argotic.Common;
 using Argotic.Extensions.Core;
 using Argotic.Syndication;
 using Data;
-using System.Text;
-using System.Web;
 using EMG.Utility.Formatters.Globalization;
 using EMG.Utility.Handlers.Syndication.Podcast.Core;
 using EMG.Utility.Managers.Assets;
@@ -17,10 +17,8 @@ using EMG.Utility.Uri;
 using EMG.Utility.Url;
 using Factiva.BusinessLayerLogic;
 using Factiva.BusinessLayerLogic.Utility.Xml;
-using FactivaEncryption;
-using utils = Data.utils;
 using Factiva.Gateway.Messages.Assets.Common.V2_0;
-
+using utils = Data.utils;
 
 namespace FactivaRssManager
 {
@@ -973,11 +971,8 @@ namespace FactivaRssManager
         private static string GetNLDTLToken(string newsletterId, string _type)
         {
             const string ERC_PUB_KEY = "3x4e10e4";
-            var enc = new encryption();
-            var nvp = new NameValueCollection(1);
-
-            nvp.Add("nlId", newsletterId);
-            nvp.Add("nt", _type);
+            var enc = new FactivaEncryption.encryption();
+            var nvp = new NameValueCollection(1) {{"nlId", newsletterId}, {"nt", _type}};
 
             return HttpUtility.UrlEncode(enc.encrypt(nvp, ERC_PUB_KEY));
         }
