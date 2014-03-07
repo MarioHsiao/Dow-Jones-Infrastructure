@@ -69,6 +69,8 @@ namespace DowJones.Security.Services
 
         public bool IsNewsDigest { get; private set; }
 
+        public bool IsFullTextODEAllowed { get; private set; }
+
         #endregion
 
         #region Constructor(s)
@@ -95,12 +97,13 @@ namespace DowJones.Security.Services
         internal override sealed void Initialize()
         {
             string emailAC3 = _matrixEmailService.ac3.FirstOrDefault(x => x.HasValue());
-
+            string emailFTODE = _matrixEmailService.FTODE;
             if (emailAC3 != null && emailAC3.Trim().Length > 0)
             {
                 MaximumFoldersPerEmailSetup = int.Parse(emailAC3.Trim());
             }
 
+            IsFullTextODEAllowed = (emailFTODE == "1");
             IsNewsDigest = _matrixEmailService.ac3.ContainsAtAnyIndex("Y");
         }
 
