@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using DowJones.Json.Gateway.Interfaces;
 
 namespace DowJones.Json.Gateway.Extentions
 {
@@ -15,6 +16,15 @@ namespace DowJones.Json.Gateway.Extentions
             if (!typeof(T).IsEnum)
                 throw new ArgumentException("Destination type is not enum");
             return (T)Enum.Parse(typeof(T), value.ToString());
+        }
+    }
+
+
+    public static class ControlDataExtensions
+    {
+        public static bool IsValid(this IControlData controlData)
+        {
+            return controlData != null;
         }
     }
 }

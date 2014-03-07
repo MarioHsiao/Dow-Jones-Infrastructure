@@ -1,4 +1,5 @@
-﻿using DowJones.Json.Gateway.Converters;
+﻿using System;
+using DowJones.Json.Gateway.Converters;
 using DowJones.Json.Gateway.Extentions;
 using RestSharp;
 using RestSharpRestClient = RestSharp.RestClient;
@@ -15,19 +16,17 @@ namespace DowJones.Json.Gateway
         DELETE
     }
 
-    public class RestRequest
-    {
-        public string ServerUri { get; set; } 
-
-        public string ResourcePath { get; set; }
-
-        public Method Method { get; set; }
-    }
-
     public class RestManager
     {
-        public T Execute<T>(RestRequest restRequest) where T : new()
+        public RestResponse<TResponse> Execute<TRequest, TResponse>(RestRequest<TRequest> restRequest) 
+            where TRequest : new() 
+            where TResponse: new()
         {
+            if (!restRequest.ControlData.IsValid())
+            {
+                throw new Exception("Invalid Control Data");
+            }
+
             var client = new RestSharpRestClient(restRequest.ServerUri);
             var request = new RestSharpRestRequest(restRequest.ResourcePath, restRequest.Method.ConvertTo<RestSharpMethod>())
                           {
@@ -35,11 +34,14 @@ namespace DowJones.Json.Gateway
                               JsonSerializer = JsonDataConverterDecoratorSingleton.Instance,
                           };
 
-            var response = client.Execute<T>(request);
-            return response.Data;
+            var response = client.Execute(request);
 
-            //client.ExecuteAsync();
-
+            return new RestResponse<TResponse>
+                    {
+                        ReturnCode = 0,
+                        ReponseControlData = restRequest.ControlData,
+                        Data = JsonDataConverterDecoratorSingleton.Instance.Deserialize<TResponse>(response)
+                    };
         }
     }
 }
