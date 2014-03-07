@@ -3,10 +3,11 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using RestSharp;
+using JsonSerializer = Newtonsoft.Json.JsonSerializer;
 
 namespace DowJones.Json.Gateway.Converters
 {
-    internal class JsonDotNetJsonConverter : IJsonConverter
+    internal class JsonDotNetJsonConverter : ISerialize
     {
         public JsonSerializer Serializer { get; private set; }
 
@@ -35,7 +36,7 @@ namespace DowJones.Json.Gateway.Converters
             Serializer = serializer;
         }
 
-        public T Deserialize<T>(IRestResponse response)
+        protected internal T Deserialize<T>(IRestResponse response)
         {
             var deserializedObject = JsonConvert.DeserializeObject<T>(response.Content);
             return deserializedObject;
@@ -60,12 +61,7 @@ namespace DowJones.Json.Gateway.Converters
         ///     Unused for JSON Serialization
         /// </summary>
         public string RootElement { get; set; }
-
-        /// <summary>
-        ///     Serialize the object as JSON
-        /// </summary>
-        /// <param name="obj">Object to serialize</param>
-        /// <returns>JSON as String</returns>
+        
         public string Serialize(object obj)
         {
             using (var stringWriter = new StringWriter())

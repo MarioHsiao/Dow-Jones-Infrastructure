@@ -3,7 +3,7 @@ using DowJones.Json.Gateway.Core;
 
 namespace DowJones.Json.Gateway.Interfaces
 {
-    public interface IUserAdminData
+    public interface IUserAdminData : IJsonSerializable
     {
          string AnalysisInformation { get; set; }
 
@@ -13,6 +13,6 @@ namespace DowJones.Json.Gateway.Interfaces
 
          string SupplementalData { get; set; }
 
-         List<Token> Tokens { get; set; } 
+         List<IToken> Tokens { get; set; } 
     }
 }

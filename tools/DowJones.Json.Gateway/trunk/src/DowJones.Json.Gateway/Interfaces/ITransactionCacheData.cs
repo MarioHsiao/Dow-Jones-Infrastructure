@@ -2,7 +2,7 @@
 
 namespace DowJones.Json.Gateway.Interfaces
 {
-    public interface ITransactionCacheData
+    public interface ITransactionCacheData : IJsonSerializable
     {
         string CacheApplication { get; set; }
 

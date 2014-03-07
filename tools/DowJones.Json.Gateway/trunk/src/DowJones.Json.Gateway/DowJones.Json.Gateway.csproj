@@ -51,9 +51,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Converters\IDeserializer.cs" />
-    <Compile Include="Converters\IJsonConverter.cs" />
-    <Compile Include="Converters\ISerializer.cs" />
+    <Compile Include="Converters\ISerialize.cs" />
+    <Compile Include="Converters\JsonDataConverterDecorator.cs" />
     <Compile Include="Converters\JsonDataConverterSingleton.cs" />
     <Compile Include="Converters\JsonDotNetJsonConverter.cs" />
     <Compile Include="Core\CacheExpirationPolicy.cs" />

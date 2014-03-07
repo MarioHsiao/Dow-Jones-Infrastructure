@@ -1,5 +1,4 @@
 ﻿using DowJones.Json.Gateway.Converters;
-using DowJones.Json.Gateway.Core;
 using DowJones.Json.Gateway.Extentions;
 using RestSharp;
 using RestSharpRestClient = RestSharp.RestClient;
@@ -27,21 +26,17 @@ namespace DowJones.Json.Gateway
 
     public class RestManager
     {
-        public IJsonConverter JsonConverter { get; set; }
-        
-        public RestManager(IJsonConverter converter = null)
-        {
-            JsonConverter = converter;
-        }
-
-        public void Execute(RestRequest restRequest)
+        public T Execute<T>(RestRequest restRequest) where T : new()
         {
             var client = new RestSharpRestClient(restRequest.ServerUri);
             var request = new RestSharpRestRequest(restRequest.ResourcePath, restRequest.Method.ConvertTo<RestSharpMethod>())
                           {
-                              RequestFormat = DataFormat.Json, 
-                              JsonSerializer = JsonConverter ?? new JsonDotNetJsonConverter(),
+                              RequestFormat = DataFormat.Json,
+                              JsonSerializer = JsonDataConverterDecoratorSingleton.Instance,
                           };
+
+            var response = client.Execute<T>(request);
+            return response.Data;
 
             //client.ExecuteAsync();
 
