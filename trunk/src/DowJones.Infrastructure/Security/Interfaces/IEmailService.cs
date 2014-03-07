@@ -4,5 +4,6 @@ namespace DowJones.Security.Interfaces
     {
         int MaximumFoldersPerEmailSetup { get; }
         bool IsNewsDigest { get; }
+        bool IsFullTextODEAllowed { get; }
     }
 }
