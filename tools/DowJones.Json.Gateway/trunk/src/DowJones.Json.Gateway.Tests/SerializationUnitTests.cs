@@ -32,5 +32,7 @@ namespace DowJones.Json.Gateway.Tests
             var str = JsonDataConverterSingleton.Instance.Serialize(userCommerceData);
             Assert.IsTrue(str == "{}");
         }
+
+
     }
 }
