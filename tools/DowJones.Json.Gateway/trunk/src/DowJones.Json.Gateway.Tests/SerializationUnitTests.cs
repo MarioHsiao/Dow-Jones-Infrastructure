@@ -1,9 +1,6 @@
-﻿using System;
-using DowJones.Json.Gateway.Core;
+﻿using DowJones.Json.Gateway.Converters;
+using DowJones.Json.Gateway.Messages.Core;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
-using RestSharp;
 
 namespace DowJones.Json.Gateway.Tests
 {
@@ -16,14 +13,7 @@ namespace DowJones.Json.Gateway.Tests
         public void CommerceDataJsonSerializationEmptyObject()
         {
             var userCommerData = new UserCommerceData();
-            var str = JsonConvert.SerializeObject(userCommerData, Formatting.None, new JsonSerializerSettings
-                                                                                      {
-                                                                                          NullValueHandling = NullValueHandling.Ignore,
-                                                                                          DefaultValueHandling = DefaultValueHandling.Ignore,
-                                                                                          ContractResolver = new DefaultContractResolver(),
-                                                                                         
-                                                                                      });
-
+            var str = JsonDataConverterSingleton.Instance.Serialize(userCommerData);
             Assert.IsTrue(str == "{}");
         }
 
@@ -31,21 +21,16 @@ namespace DowJones.Json.Gateway.Tests
         public void ControlDataSerializationEmptyObject()
         {
             var controlData = new ControlData();
-            var str = JsonConvert.SerializeObject(controlData, Formatting.None, new JsonSerializerSettings
-            {
-                NullValueHandling = NullValueHandling.Ignore,
-                DefaultValueHandling = DefaultValueHandling.Ignore,
-                ContractResolver = new DefaultContractResolver(),
-            });
-
+            var str = JsonDataConverterSingleton.Instance.Serialize(controlData);
             Assert.IsTrue(str == "{}");
         }
 
-
-        private UserCommerceData GetUserCommerDataObject()
+        [TestMethod]
+        public void UserCommerceDataSerializationEmptyObject()
         {
             var userCommerceData = new UserCommerceData();
-            return null;
+            var str = JsonDataConverterSingleton.Instance.Serialize(userCommerceData);
+            Assert.IsTrue(str == "{}");
         }
     }
 }

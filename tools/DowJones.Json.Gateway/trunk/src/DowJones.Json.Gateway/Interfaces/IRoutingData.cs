@@ -1,6 +1,6 @@
 ﻿namespace DowJones.Json.Gateway.Interfaces
 {
-    public interface IRoutingData
+    public interface IRoutingData : IJsonSerializable
     {
         int ContentServerAddress { get; set; }
 

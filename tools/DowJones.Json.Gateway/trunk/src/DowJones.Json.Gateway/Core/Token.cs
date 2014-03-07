@@ -1,10 +1,8 @@
-﻿using System;
-using System.Diagnostics;
-using System.Xml.Serialization;
+﻿using DowJones.Json.Gateway.Interfaces;
 
 namespace DowJones.Json.Gateway.Core
 {
-    public class Token
+    public class Token : IToken
     {
         public string Name { get; set; }
 

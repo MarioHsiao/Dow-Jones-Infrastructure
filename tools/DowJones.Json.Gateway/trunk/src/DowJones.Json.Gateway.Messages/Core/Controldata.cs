@@ -1,9 +1,8 @@
-﻿using System.Collections.Specialized;
-using DowJones.Json.Gateway.Interfaces;
+﻿using DowJones.Json.Gateway.Interfaces;
 
-namespace DowJones.Json.Gateway.Core
+namespace DowJones.Json.Gateway.Messages.Core
 {
-    public class ControlData : IControlData
+    public class ControlData : AbstractJsonSerializable, IControlData
     {
         public IRoutingData RoutingData { get; set; }
         public IUserCommerceData UserCommerceData { get; set; }

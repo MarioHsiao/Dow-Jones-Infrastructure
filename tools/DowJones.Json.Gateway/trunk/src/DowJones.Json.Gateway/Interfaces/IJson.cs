@@ -1,9 +1,11 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿using DowJones.Json.Gateway.Converters;
 
 namespace DowJones.Json.Gateway.Interfaces
 {
     public interface IJsonSerializable
     {
+        ISerializer Serializer { get; set; }
+
         string ToJson();
     }
 }

@@ -1,13 +1,16 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using DowJones.Json.Gateway.Core;
 using DowJones.Json.Gateway.Interfaces;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 
-namespace DowJones.Json.Gateway.Core
+namespace DowJones.Json.Gateway.Messages.Core
 {
-    public class UserCredentialData : IUserCredentialData
+    public class UserCredentialData : AbstractJsonSerializable, IUserCredentialData
     {
+        public UserCredentialData()
+        {
+            IpAddress = "127.0.0.1";
+        }
+
         public string AccountId { get; set; }
 
         public string CallingUrl { get; set; }
@@ -33,17 +36,7 @@ namespace DowJones.Json.Gateway.Core
         public string UserId { get; set; }
 
         public string UserPassword { get; set; }
-        
-        public string ToJson()
-        {
-            var ignored = JsonConvert.SerializeObject(this, Formatting.None, new JsonSerializerSettings
-            {
-                NullValueHandling = NullValueHandling.Ignore,
-                DefaultValueHandling = DefaultValueHandling.Ignore,
-                ContractResolver = new DefaultContractResolver(),
-            });
 
-            return !string.IsNullOrEmpty(ignored) ? string.Format("{0}", ignored) : string.Empty;
-        }
+       
     }
 }

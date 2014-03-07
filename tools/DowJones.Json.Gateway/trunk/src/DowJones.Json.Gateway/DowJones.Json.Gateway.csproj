@@ -51,29 +51,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\IDeserializer.cs" />
+    <Compile Include="Converters\IJsonConverter.cs" />
+    <Compile Include="Converters\ISerializer.cs" />
+    <Compile Include="Converters\JsonDataConverterSingleton.cs" />
+    <Compile Include="Converters\JsonDotNetJsonConverter.cs" />
     <Compile Include="Core\CacheExpirationPolicy.cs" />
     <Compile Include="Core\CacheScope.cs" />
     <Compile Include="Core\CacheStatus.cs" />
-    <Compile Include="Core\ControlData.cs" />
-    <Compile Include="Core\RoutingData.cs" />
+    <Compile Include="Core\RestRequestAsyncHandle.cs" />
+    <Compile Include="Core\Token.cs" />
+    <Compile Include="Extentions\EnumExtensions.cs" />
     <Compile Include="Interfaces\IControlData.cs" />
     <Compile Include="Interfaces\IJson.cs" />
     <Compile Include="Interfaces\IPlatformAdminData.cs" />
     <Compile Include="Interfaces\IRoutingData.cs" />
+    <Compile Include="Interfaces\IToken.cs" />
     <Compile Include="Interfaces\ITransactionCacheData.cs" />
     <Compile Include="Interfaces\IUserAdminData.cs" />
     <Compile Include="Interfaces\IUserCommerceData.cs" />
     <Compile Include="Interfaces\IUserCredentialData.cs" />
     <Compile Include="RestManager.cs" />
-    <Compile Include="Core\UserCredentialData.cs" />
     <Compile Include="Core\ClientCode.cs" />
-    <Compile Include="Core\Token.cs" />
-    <Compile Include="Core\UserCommerceData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Extentions\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
