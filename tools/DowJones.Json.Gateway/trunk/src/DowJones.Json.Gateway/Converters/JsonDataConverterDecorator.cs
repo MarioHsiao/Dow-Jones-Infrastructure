@@ -23,6 +23,11 @@ namespace DowJones.Json.Gateway.Converters
             return _jsonConverter.Deserialize<T>(response);
         }
 
+        protected internal T Deserialize<T>(string str)
+        {
+            return _jsonConverter.Deserialize<T>(str);
+        }
+
         public string RootElement { get; set; }
         public string Namespace { get; set; }
         public string DateFormat { get; set; }

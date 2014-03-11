@@ -38,8 +38,12 @@ namespace DowJones.Json.Gateway.Converters
 
         protected internal T Deserialize<T>(IRestResponse response)
         {
-            var deserializedObject = JsonConvert.DeserializeObject<T>(response.Content);
-            return deserializedObject;
+            return Deserialize<T>(response.Content);
+        }
+
+        protected internal T Deserialize<T>(string str)
+        {
+            return JsonConvert.DeserializeObject<T>(str);
         }
 
         /// <summary>

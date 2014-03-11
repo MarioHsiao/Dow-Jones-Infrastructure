@@ -6,9 +6,6 @@ namespace DowJones.Json.Gateway
         where TRequest : new()
     {
         public IControlData ControlData { get; set; }
-        public string ServerUri { get; set; } 
-
-        public string ResourcePath { get; set; }
 
         public Method Method { get; set; }
 

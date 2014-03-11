@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.1.2.99\lib\2.0\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.1\lib\net35\Newtonsoft.Json.dll</HintPath>
@@ -45,14 +48,17 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\ServicePath.cs" />
     <Compile Include="Converters\ISerialize.cs" />
     <Compile Include="Converters\JsonDataConverterDecorator.cs" />
+    <Compile Include="Converters\JsonDataConverterDecoratorSingleton.cs" />
     <Compile Include="Converters\JsonDataConverterSingleton.cs" />
     <Compile Include="Converters\JsonDotNetJsonConverter.cs" />
     <Compile Include="Core\CacheExpirationPolicy.cs" />
@@ -60,9 +66,12 @@
     <Compile Include="Core\CacheStatus.cs" />
     <Compile Include="Core\RestRequestAsyncHandle.cs" />
     <Compile Include="Core\Token.cs" />
+    <Compile Include="Exceptions\JsonGatewayError.cs" />
+    <Compile Include="Extentions\ControlDataExtensions.cs" />
     <Compile Include="Extentions\EnumExtensions.cs" />
     <Compile Include="Interfaces\IControlData.cs" />
     <Compile Include="Interfaces\IJson.cs" />
+    <Compile Include="Interfaces\IJsonRestRequest.cs" />
     <Compile Include="Interfaces\IPlatformAdminData.cs" />
     <Compile Include="Interfaces\IRoutingData.cs" />
     <Compile Include="Interfaces\IToken.cs" />
@@ -70,6 +79,11 @@
     <Compile Include="Interfaces\IUserAdminData.cs" />
     <Compile Include="Interfaces\IUserCommerceData.cs" />
     <Compile Include="Interfaces\IUserCredentialData.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="RestManager.cs" />
     <Compile Include="Core\ClientCode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -78,7 +92,12 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

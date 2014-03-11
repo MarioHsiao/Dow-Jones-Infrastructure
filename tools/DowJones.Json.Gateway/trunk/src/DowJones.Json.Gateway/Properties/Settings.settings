@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="DowJones.Json.Gateway.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ServerUri" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://skdfrtweb02.dev.us.factiva.net:9097</Value>
+    </Setting>
+    <Setting Name="Timeout" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">15000</Value>
+    </Setting>
+    <Setting Name="TransportType" Type="System.String" Scope="User">
+      <Value Profile="(Default)">HTTP</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

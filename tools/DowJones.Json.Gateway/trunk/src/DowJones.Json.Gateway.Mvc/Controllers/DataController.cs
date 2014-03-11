@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
+using System.Web;
 using System.Web.Http;
 
 namespace DowJones.Json.Gateway.Mvc.Controllers
@@ -9,6 +10,7 @@ namespace DowJones.Json.Gateway.Mvc.Controllers
         // GET api/data
         public IEnumerable<string> Get()
         {
+            HttpContext.Current.Response.AddHeader("ControlData", "{app:'a'}");
             return new [] { "value1", "value2" };
         }
 

@@ -37,18 +37,126 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.1.2.99\lib\2.0\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Pam\Assets\ItemManager\Class1.cs" />
+    <Compile Include="Core\PlatformAdminData.cs" />
+    <Compile Include="Core\TransactionCacheData.cs" />
+    <Compile Include="Pam\Assets\ItemManager\AccessQualifier.cs" />
+    <Compile Include="Pam\Assets\ItemManager\AddSubItemsToItem.cs" />
+    <Compile Include="Pam\Assets\ItemManager\AddSubItemsToItemResponse.cs" />
+    <Compile Include="Pam\Assets\ItemManager\Aggregation.cs" />
+    <Compile Include="Pam\Assets\ItemManager\AggregationType.cs" />
+    <Compile Include="Pam\Assets\ItemManager\AuthorListItem.cs" />
+    <Compile Include="Pam\Assets\ItemManager\AuthorListItemProperties.cs" />
+    <Compile Include="Pam\Assets\ItemManager\AuthorListSubItem.cs" />
+    <Compile Include="Pam\Assets\ItemManager\BookmarkItem.cs" />
+    <Compile Include="Pam\Assets\ItemManager\BookmarkItemProperties.cs" />
+    <Compile Include="Pam\Assets\ItemManager\BookmarkValueType.cs" />
+    <Compile Include="Pam\Assets\ItemManager\ChartDates.cs" />
+    <Compile Include="Pam\Assets\ItemManager\ChartFilter.cs" />
+    <Compile Include="Pam\Assets\ItemManager\ChartFilterMode.cs" />
+    <Compile Include="Pam\Assets\ItemManager\ChartFilterOperator.cs" />
+    <Compile Include="Pam\Assets\ItemManager\ChartFilters.cs" />
+    <Compile Include="Pam\Assets\ItemManager\ChartFilterSearchType.cs" />
+    <Compile Include="Pam\Assets\ItemManager\ChartFilterType.cs" />
+    <Compile Include="Pam\Assets\ItemManager\ChartItem.cs" />
+    <Compile Include="Pam\Assets\ItemManager\ChartItemProperties.cs" />
+    <Compile Include="Pam\Assets\ItemManager\CreateItem.cs" />
+    <Compile Include="Pam\Assets\ItemManager\CreateItemIfNotExists.cs" />
+    <Compile Include="Pam\Assets\ItemManager\CreateItemIfNotExistsResponse.cs" />
+    <Compile Include="Pam\Assets\ItemManager\CreateItemResponse.cs" />
+    <Compile Include="Pam\Assets\ItemManager\DateInterval.cs" />
+    <Compile Include="Pam\Assets\ItemManager\DatePeriod.cs" />
+    <Compile Include="Pam\Assets\ItemManager\DateRange.cs" />
+    <Compile Include="Pam\Assets\ItemManager\DateType.cs" />
+    <Compile Include="Pam\Assets\ItemManager\DeleteItem.cs" />
+    <Compile Include="Pam\Assets\ItemManager\DeleteItemResponse.cs" />
+    <Compile Include="Pam\Assets\ItemManager\DeleteSubItemsOnItem.cs" />
+    <Compile Include="Pam\Assets\ItemManager\DeleteSubItemsOnItemResponse.cs" />
+    <Compile Include="Pam\Assets\ItemManager\ExecutiveListItem.cs" />
+    <Compile Include="Pam\Assets\ItemManager\ExecutiveListItemProperties.cs" />
+    <Compile Include="Pam\Assets\ItemManager\ExecutiveListSubItem.cs" />
+    <Compile Include="Pam\Assets\ItemManager\Filter.cs" />
+    <Compile Include="Pam\Assets\ItemManager\GetItemByID.cs" />
+    <Compile Include="Pam\Assets\ItemManager\GetItemByIDResponse.cs" />
+    <Compile Include="Pam\Assets\ItemManager\GetItemsByIDs.cs" />
+    <Compile Include="Pam\Assets\ItemManager\GetItemsByIDsResponse.cs" />
+    <Compile Include="Pam\Assets\ItemManager\GetItemsByValue.cs" />
+    <Compile Include="Pam\Assets\ItemManager\GetItemsByValueResponse.cs" />
+    <Compile Include="Pam\Assets\ItemManager\GetItemsDetailsList.cs" />
+    <Compile Include="Pam\Assets\ItemManager\GetItemsDetailsListResponse.cs" />
+    <Compile Include="Pam\Assets\ItemManager\GetSubscribableItems.cs" />
+    <Compile Include="Pam\Assets\ItemManager\GetSubscribableItemsResponse.cs" />
+    <Compile Include="Pam\Assets\ItemManager\GraphType.cs" />
+    <Compile Include="Pam\Assets\ItemManager\GroupIdList.cs" />
+    <Compile Include="Pam\Assets\ItemManager\GroupList.cs" />
+    <Compile Include="Pam\Assets\ItemManager\GroupListType.cs" />
+    <Compile Include="Pam\Assets\ItemManager\Image.cs" />
+    <Compile Include="Pam\Assets\ItemManager\ImageMimeType.cs" />
+    <Compile Include="Pam\Assets\ItemManager\ImageProperties.cs" />
+    <Compile Include="Pam\Assets\ItemManager\IndustryListItem.cs" />
+    <Compile Include="Pam\Assets\ItemManager\IndustryListItemProperties.cs" />
+    <Compile Include="Pam\Assets\ItemManager\IndustryListSubItem.cs" />
+    <Compile Include="Pam\Assets\ItemManager\Item.cs" />
+    <Compile Include="Pam\Assets\ItemManager\ItemDetailsItem.cs" />
+    <Compile Include="Pam\Assets\ItemManager\ItemOperator.cs" />
+    <Compile Include="Pam\Assets\ItemManager\ItemProperties.cs" />
+    <Compile Include="Pam\Assets\ItemManager\ItemSortBy.cs" />
+    <Compile Include="Pam\Assets\ItemManager\ItemStatus.cs" />
+    <Compile Include="Pam\Assets\ItemManager\ItemType.cs" />
+    <Compile Include="Pam\Assets\ItemManager\MetricType.cs" />
+    <Compile Include="Pam\Assets\ItemManager\Paging.cs" />
+    <Compile Include="Pam\Assets\ItemManager\Permission.cs" />
+    <Compile Include="Pam\Assets\ItemManager\QueryReference.cs" />
+    <Compile Include="Pam\Assets\ItemManager\QueryType.cs" />
+    <Compile Include="Pam\Assets\ItemManager\RegionListItem.cs" />
+    <Compile Include="Pam\Assets\ItemManager\RegionListItemProperties.cs" />
+    <Compile Include="Pam\Assets\ItemManager\RegionListSubItem.cs" />
+    <Compile Include="Pam\Assets\ItemManager\ResultType.cs" />
+    <Compile Include="Pam\Assets\ItemManager\SetShareProperties.cs" />
+    <Compile Include="Pam\Assets\ItemManager\SetSharePropertiesResponse.cs" />
+    <Compile Include="Pam\Assets\ItemManager\ShareProperties.cs" />
+    <Compile Include="Pam\Assets\ItemManager\SharePropertiesResponse.cs" />
+    <Compile Include="Pam\Assets\ItemManager\ShareRole.cs" />
+    <Compile Include="Pam\Assets\ItemManager\ShareScope.cs" />
+    <Compile Include="Pam\Assets\ItemManager\ShareStatus.cs" />
+    <Compile Include="Pam\Assets\ItemManager\ShareType.cs" />
+    <Compile Include="Pam\Assets\ItemManager\SortOrder.cs" />
+    <Compile Include="Pam\Assets\ItemManager\StartDay.cs" />
+    <Compile Include="Pam\Assets\ItemManager\SubItem.cs" />
+    <Compile Include="Pam\Assets\ItemManager\SubjectListItem.cs" />
+    <Compile Include="Pam\Assets\ItemManager\SubjectListItemProperties.cs" />
+    <Compile Include="Pam\Assets\ItemManager\SubjectListSubItem.cs" />
+    <Compile Include="Pam\Assets\ItemManager\SyndicationItem.cs" />
+    <Compile Include="Pam\Assets\ItemManager\SyndicationItemEx.cs" />
+    <Compile Include="Pam\Assets\ItemManager\SyndicationItemProperties.cs" />
+    <Compile Include="Pam\Assets\ItemManager\SyndicationItemResult.cs" />
+    <Compile Include="Pam\Assets\ItemManager\SyndicationItemType.cs" />
+    <Compile Include="Pam\Assets\ItemManager\SyndicationItemValueType.cs" />
+    <Compile Include="Pam\Assets\ItemManager\UpdateItem.cs" />
+    <Compile Include="Pam\Assets\ItemManager\UpdateItemName.cs" />
+    <Compile Include="Pam\Assets\ItemManager\UpdateItemNameResponse.cs" />
+    <Compile Include="Pam\Assets\ItemManager\UpdateItemProperties.cs" />
+    <Compile Include="Pam\Assets\ItemManager\UpdateItemPropertiesResponse.cs" />
+    <Compile Include="Pam\Assets\ItemManager\UpdateItemResponse.cs" />
+    <Compile Include="Pam\Assets\ItemManager\UserFile.cs" />
+    <Compile Include="Pam\Assets\ItemManager\UserFileProperties.cs" />
+    <Compile Include="Pam\Assets\ItemManager\UserFileSearchFilter.cs" />
+    <Compile Include="Pam\Assets\ItemManager\UserFileType.cs" />
+    <Compile Include="Pam\Assets\Pages\GetPageByName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Core\AbstractJsonSerializable.cs" />
-    <Compile Include="Core\Controldata.cs" />
+    <Compile Include="Core\ControlData.cs" />
     <Compile Include="Core\RoutingData.cs" />
     <Compile Include="Core\UserCommerceData.cs" />
     <Compile Include="Core\UserCredentialData.cs" />
@@ -58,6 +166,9 @@
       <Project>{24bde427-77a1-47a7-8f2b-5771e98ea2a4}</Project>
       <Name>DowJones.Json.Gateway</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
