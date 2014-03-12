@@ -13,7 +13,7 @@ namespace DowJones.Json.Gateway.Attributes
         private readonly string _path = string.Empty;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ServicePath"/> class.
+        /// Initializes a new instance of the <see cref="ServicePathAttribute"/> class.
         /// </summary>
         /// <param name="path">The path.</param>
         public ServicePathAttribute(string path)

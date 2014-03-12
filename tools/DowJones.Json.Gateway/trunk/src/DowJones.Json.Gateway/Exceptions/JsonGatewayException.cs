@@ -1,11 +1,14 @@
 using System;
 using System.Diagnostics;
+using System.Runtime.Serialization;
+using System.Security.Permissions;
 using System.Text;
 using DowJones.Json.Gateway.Converters;
 using log4net;
 
 namespace DowJones.Json.Gateway.Exceptions
 {
+    [Serializable]
     public class JsonGatewayException : ApplicationException
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(JsonGatewayException));
@@ -53,8 +56,18 @@ namespace DowJones.Json.Gateway.Exceptions
             }
         }
 
-        
+        [SecurityPermissionAttribute(SecurityAction.Demand, SerializationFormatter = true)]
+        public override void GetObjectData(SerializationInfo info,
+           StreamingContext context)
+        {
+            // Change the case of two properties, and then use the  
+            // method of the base class.
+            HelpLink = HelpLink.ToLower();
+            Source = Source.ToUpper();
 
+            base.GetObjectData(info, context);
+        }
+        
         internal static void GetInnerExceptionLog(StringBuilder sb, Exception innerException, int depth = 0)
         {
             while (true)

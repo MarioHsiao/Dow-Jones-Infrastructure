@@ -1,6 +1,6 @@
 ﻿using DowJones.Json.Gateway.Interfaces;
 
-namespace DowJones.Json.Gateway.Core
+namespace DowJones.Json.Gateway.Common
 {
     public class Token : IToken
     {

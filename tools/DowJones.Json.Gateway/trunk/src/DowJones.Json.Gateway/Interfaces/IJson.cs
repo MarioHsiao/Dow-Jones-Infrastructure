@@ -1,8 +1,8 @@
-﻿using DowJones.Json.Gateway.Converters;
+﻿using System;
 
 namespace DowJones.Json.Gateway.Interfaces
 {
-    public interface IJsonSerializable
+    public interface IJsonSerializable : ICloneable
     {
         string ToJson();
     }

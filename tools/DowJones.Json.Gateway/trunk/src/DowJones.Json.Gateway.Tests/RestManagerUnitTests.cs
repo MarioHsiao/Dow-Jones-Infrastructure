@@ -18,7 +18,6 @@ namespace DowJones.Json.Gateway.Tests
         {
             var r = new RestRequest<GetPageByName>
                     {
-                        Method = Method.GET,
                         Request = new GetPageByName { Name = "new", Type = "DJXMaster" },
                         ControlData = GetControlData()
                     };

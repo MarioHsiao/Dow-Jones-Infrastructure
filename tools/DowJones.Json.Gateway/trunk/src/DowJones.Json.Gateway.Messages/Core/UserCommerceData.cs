@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using DowJones.Json.Gateway.Core;
+using DowJones.Json.Gateway.Common;
 using DowJones.Json.Gateway.Interfaces;
 
 namespace DowJones.Json.Gateway.Messages.Core

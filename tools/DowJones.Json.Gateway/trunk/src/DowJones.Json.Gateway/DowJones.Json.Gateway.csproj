@@ -56,22 +56,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\ServicePath.cs" />
+    <Compile Include="Common\CacheExpirationPolicy.cs" />
+    <Compile Include="Common\CacheScope.cs" />
+    <Compile Include="Common\CacheStatus.cs" />
+    <Compile Include="Common\ClientCode.cs" />
+    <Compile Include="Common\Token.cs" />
     <Compile Include="Converters\Formatting.cs" />
     <Compile Include="Converters\ISerialize.cs" />
     <Compile Include="Converters\JsonDataConverterDecorator.cs" />
     <Compile Include="Converters\JsonDataConverterDecoratorSingleton.cs" />
     <Compile Include="Converters\JsonDataConverterSingleton.cs" />
     <Compile Include="Converters\JsonDotNetJsonConverter.cs" />
-    <Compile Include="Core\CacheExpirationPolicy.cs" />
-    <Compile Include="Core\CacheScope.cs" />
-    <Compile Include="Core\CacheStatus.cs" />
     <Compile Include="Core\RestRequestAsyncHandle.cs" />
-    <Compile Include="Core\Token.cs" />
     <Compile Include="Exceptions\Error.cs" />
     <Compile Include="Exceptions\JsonGatewayError.cs" />
     <Compile Include="Exceptions\JsonGatewayException.cs" />
     <Compile Include="Extentions\ControlDataExtensions.cs" />
     <Compile Include="Extentions\EnumExtensions.cs" />
+    <Compile Include="GetRestClientProcessor.cs" />
+    <Compile Include="IRestClientProcessor.cs" />
     <Compile Include="Interfaces\IControlData.cs" />
     <Compile Include="Interfaces\IJson.cs" />
     <Compile Include="Interfaces\IJsonRestRequest.cs" />
@@ -82,13 +85,14 @@
     <Compile Include="Interfaces\IUserAdminData.cs" />
     <Compile Include="Interfaces\IUserCommerceData.cs" />
     <Compile Include="Interfaces\IUserCredentialData.cs" />
+    <Compile Include="IRestRequest.cs" />
+    <Compile Include="IRestResponse.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="RestManager.cs" />
-    <Compile Include="Core\ClientCode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RestRequest.cs" />
     <Compile Include="RestResponse.cs" />

@@ -1,4 +1,6 @@
-﻿namespace DowJones.Json.Gateway.Interfaces
+﻿using System;
+
+namespace DowJones.Json.Gateway.Interfaces
 {
     public interface IRoutingData : IJsonSerializable
     {

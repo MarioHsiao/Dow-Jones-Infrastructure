@@ -9,7 +9,7 @@
     {
     }
 
-    public interface IUpdateJsonRestRequest : IJsonRestRequest
+    public interface IPutJsonRestRequest : IJsonRestRequest
     {
     }
 

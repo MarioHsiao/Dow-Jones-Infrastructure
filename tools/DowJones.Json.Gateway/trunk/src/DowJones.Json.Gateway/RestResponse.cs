@@ -3,8 +3,7 @@ using DowJones.Json.Gateway.Interfaces;
 
 namespace DowJones.Json.Gateway
 {
-    public class RestResponse<TResponse>
-        where TResponse : new()
+    public class RestResponse<T> : IRestResponse<T> where T : new()
     {
         public IControlData ReponseControlData { get; set; }
 
@@ -12,6 +11,6 @@ namespace DowJones.Json.Gateway
 
         public long ReturnCode { get; set; }
 
-        public TResponse Data { get; set; }
+        public T Data { get; set; }
     }
 }

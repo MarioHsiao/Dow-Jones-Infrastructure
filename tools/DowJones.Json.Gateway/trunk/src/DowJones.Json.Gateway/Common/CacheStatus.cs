@@ -1,4 +1,4 @@
-﻿namespace DowJones.Json.Gateway.Core
+﻿namespace DowJones.Json.Gateway.Common
 {
     public enum CacheStatus
     {

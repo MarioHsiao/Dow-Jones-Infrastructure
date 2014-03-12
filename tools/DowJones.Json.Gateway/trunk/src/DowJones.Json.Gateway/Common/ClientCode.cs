@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace DowJones.Json.Gateway.Core
+namespace DowJones.Json.Gateway.Common
 {
     public class ClientCode
     {

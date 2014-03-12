@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using DowJones.Json.Gateway.Core;
 
 namespace DowJones.Json.Gateway.Interfaces

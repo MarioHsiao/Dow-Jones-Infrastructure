@@ -20,11 +20,12 @@ namespace DowJones.Json.Gateway.Converters
             ContentType = "application/json";
 
             Serializer = new JsonSerializer
-                          {
-                              NullValueHandling = NullValueHandling.Ignore,
-                              DefaultValueHandling = DefaultValueHandling.Ignore,
-                              ContractResolver = new DefaultContractResolver()
-                          };
+                         {
+                             NullValueHandling = NullValueHandling.Ignore,
+                             DefaultValueHandling = DefaultValueHandling.Ignore,
+                             ContractResolver = new DefaultContractResolver(),
+                             DateTimeZoneHandling = DateTimeZoneHandling.Utc
+                         };
             Serializer.Converters.Add(new StringEnumConverter());
         }
 
@@ -66,21 +67,16 @@ namespace DowJones.Json.Gateway.Converters
         ///     Unused for JSON Serialization
         /// </summary>
         public string RootElement { get; set; }
-        
+
         public string Serialize(object obj, Formatting formatting = Formatting.None)
         {
-            using (var stringWriter = new StringWriter())
+            var stringWriter = new StringWriter();
+            using (var jsonTextWriter = new JsonTextWriter(stringWriter))
             {
-                using (var jsonTextWriter = new JsonTextWriter(stringWriter))
-                {
-                    jsonTextWriter.Formatting = Formatting.None.ConvertTo<Newtonsoft.Json.Formatting>();
-                    jsonTextWriter.QuoteChar = '"';
-
-                    Serializer.Serialize(jsonTextWriter, obj);
-
-                    var result = stringWriter.ToString();
-                    return result;
-                }
+                jsonTextWriter.Formatting = Formatting.None.ConvertTo<Newtonsoft.Json.Formatting>();
+                jsonTextWriter.QuoteChar = '"';
+                Serializer.Serialize(jsonTextWriter, obj);
+                return stringWriter.ToString();
             }
         }
     }

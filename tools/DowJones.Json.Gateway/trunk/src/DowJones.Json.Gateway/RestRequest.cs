@@ -1,14 +1,12 @@
 ﻿using DowJones.Json.Gateway.Interfaces;
+using RestSharp;
 
 namespace DowJones.Json.Gateway
 {
-    public class RestRequest<TRequest> 
-        where TRequest : new()
+    public class RestRequest<T> : IRestRequest<T> where T : new()
     {
         public IControlData ControlData { get; set; }
 
-        public Method Method { get; set; }
-
-        public TRequest Request { get; set; }
+        public T Request { get; set; }
     }
 }

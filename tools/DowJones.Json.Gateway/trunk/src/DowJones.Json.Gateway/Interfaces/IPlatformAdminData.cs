@@ -1,5 +1,4 @@
-﻿using System.Net.NetworkInformation;
-using System.Security.Cryptography.X509Certificates;
+﻿using System;
 
 namespace DowJones.Json.Gateway.Interfaces
 {
