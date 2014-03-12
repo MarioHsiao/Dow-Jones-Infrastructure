@@ -2,6 +2,6 @@
 {
     public interface ISerialize
     {
-        string Serialize(object obj);
+        string Serialize(object obj, Formatting formatting);
     }
 }

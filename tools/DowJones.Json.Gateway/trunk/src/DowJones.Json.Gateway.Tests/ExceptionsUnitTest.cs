@@ -11,7 +11,7 @@ namespace DowJones.Json.Gateway.Tests
         public void ExpectedErrorParsing()
         {
             const string content = "{\"Error\":{\"Code\":589500,\"Message\":\"Generic ServiceProxy Error Cannot find module 'sax'\"}}";
-            var ex = JsonGatewayException.ParseExceptionMessage(content);
+            var ex = JsonGatewayException.Parse(content);
 
             Assert.IsTrue(ex.ReturnCode == 589500);
             Assert.IsTrue(ex.Message == "Generic ServiceProxy Error Cannot find module 'sax'");
@@ -21,7 +21,7 @@ namespace DowJones.Json.Gateway.Tests
         public void UnExpectedErrorParsing()
         {
             const string content = "Generic ServiceProxy Error Cannot find module 'sax'";
-            var ex = JsonGatewayException.ParseExceptionMessage(content);
+            var ex = JsonGatewayException.Parse(content);
 
             Assert.IsTrue(ex.ReturnCode == JsonGatewayException.GenericError);
             Assert.IsTrue(ex.Message == "Generic ServiceProxy Error Cannot find module 'sax'");

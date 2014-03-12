@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\ServicePath.cs" />
+    <Compile Include="Converters\Formatting.cs" />
     <Compile Include="Converters\ISerialize.cs" />
     <Compile Include="Converters\JsonDataConverterDecorator.cs" />
     <Compile Include="Converters\JsonDataConverterDecoratorSingleton.cs" />
@@ -66,7 +67,9 @@
     <Compile Include="Core\CacheStatus.cs" />
     <Compile Include="Core\RestRequestAsyncHandle.cs" />
     <Compile Include="Core\Token.cs" />
+    <Compile Include="Exceptions\Error.cs" />
     <Compile Include="Exceptions\JsonGatewayError.cs" />
+    <Compile Include="Exceptions\JsonGatewayException.cs" />
     <Compile Include="Extentions\ControlDataExtensions.cs" />
     <Compile Include="Extentions\EnumExtensions.cs" />
     <Compile Include="Interfaces\IControlData.cs" />

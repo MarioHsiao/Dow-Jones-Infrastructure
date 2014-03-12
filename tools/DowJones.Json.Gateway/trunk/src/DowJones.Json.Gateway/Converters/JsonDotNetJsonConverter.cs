@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using DowJones.Json.Gateway.Extentions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
@@ -66,13 +67,13 @@ namespace DowJones.Json.Gateway.Converters
         /// </summary>
         public string RootElement { get; set; }
         
-        public string Serialize(object obj)
+        public string Serialize(object obj, Formatting formatting = Formatting.None)
         {
             using (var stringWriter = new StringWriter())
             {
                 using (var jsonTextWriter = new JsonTextWriter(stringWriter))
                 {
-                    jsonTextWriter.Formatting = Formatting.Indented;
+                    jsonTextWriter.Formatting = Formatting.None.ConvertTo<Newtonsoft.Json.Formatting>();
                     jsonTextWriter.QuoteChar = '"';
 
                     Serializer.Serialize(jsonTextWriter, obj);

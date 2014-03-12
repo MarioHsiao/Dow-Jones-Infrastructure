@@ -51,20 +51,39 @@ namespace DowJones.Json.Gateway
             }
 
             var composite = GetHttpProxy(restRequest);
-            var response = composite.Client.Execute(composite.Request);
-
-            switch (response.StatusCode)
+            try
             {
-                case HttpStatusCode.OK:
-                    return new RestResponse<TResponse>
-                       {
-                           ReturnCode = 0,
-                           ReponseControlData = restRequest.ControlData,
-                           Data = JsonDataConverterDecoratorSingleton.Instance.Deserialize<TResponse>(response)
-                       };
-                default:
-                    Console.Write(response.Content);
-                    throw JsonGatewayException.ParseExceptionMessage(response.Content);
+                var response = composite.Client.Execute(composite.Request);
+
+                switch (response.StatusCode)
+                {
+                    case HttpStatusCode.OK: // Request succeeded process body of code
+                        return new RestResponse<TResponse>
+                               {
+                                   ReturnCode = 0,
+                                   ReponseControlData = restRequest.ControlData,
+                                   Data = JsonDataConverterDecoratorSingleton.Instance.Deserialize<TResponse>(response)
+                               };
+                    case HttpStatusCode.BadRequest:
+                        return GenerateErrorResponse<TResponse>(JsonGatewayException.BadRequest, "Equivalent to HTTP status 400. BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.");
+                    
+                    case HttpStatusCode.InternalServerError:
+                    default:
+                        var error = JsonGatewayError.Parse(response.Content).Error;
+                        return GenerateErrorResponse<TResponse>(error.Code, error.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+                return new RestResponse<TResponse>
+                               {
+                                   ReturnCode = JsonGatewayException.GenericError,
+                                   Error = new Error
+                                           {
+                                               Code = JsonGatewayException.GenericError,
+                                               Message = ex.Message
+                                           }
+                               };
             }
         }
 
@@ -74,6 +93,20 @@ namespace DowJones.Json.Gateway
             return Settings.Default.TransportType == "RTS" ? 
                 GetRtsProxy(restRequest) : 
                 GetHttpProxy(restRequest);
+        }
+
+        internal RestResponse<TResponse> GenerateErrorResponse<TResponse>(long code, string message)
+            where TResponse : IJsonRestResponse, new()
+        {
+            return new RestResponse<TResponse>
+            {
+                ReturnCode = code,
+                Error = new Error()
+                {
+                    Code = code,
+                    Message = message,
+                }
+            };
         }
 
         internal RestComposite GetHttpProxy<TRequest>(RestRequest<TRequest> restRequest)
@@ -148,9 +181,28 @@ namespace DowJones.Json.Gateway
                 var name =  dataMember != null ? dataMember.Name : property.Name ;
 
                 var val = property.GetValue(request, null);
-                if (val != null)
+
+                if (val == null)
                 {
-                    restRequest.AddParameter(name, JsonDataConverterDecoratorSingleton.Instance.Serialize(val));
+                    continue;
+                }
+
+                var sourceType = property.PropertyType;
+                if (sourceType.IsPrimitive || sourceType == typeof(string) || sourceType == typeof(Single))
+                {
+                    restRequest.AddParameter(name, val, ParameterType.QueryString);
+                }
+                else if (sourceType.IsEnum)
+                {
+                    restRequest.AddParameter(name, val.ToString(), ParameterType.QueryString);
+                }
+                else if (sourceType == typeof (DateTime))
+                {
+                    restRequest.AddParameter(name, ((DateTime) val).Ticks, ParameterType.QueryString);
+                }
+                else if (sourceType.IsClass)
+                {
+                    restRequest.AddParameter(name, JsonDataConverterDecoratorSingleton.Instance.Serialize(val));                        
                 }
             }
         }

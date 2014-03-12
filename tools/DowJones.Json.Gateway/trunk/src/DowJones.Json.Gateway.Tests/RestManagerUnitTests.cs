@@ -44,7 +44,7 @@ namespace DowJones.Json.Gateway.Tests
             Console.Write(test.GetServicePath());
         }
 
-        private ControlData GetControlData()
+        private static ControlData GetControlData()
         {
             // {"UserCredentialData":{"SessionId":"27139XxX_f336e3d6-a46c-c332-f5e3-a9e714bf0d49","IpAddress":"127.0.0.1","UUID":"3bb6cd20-968c-4def-805d-283710580dba","EID":"E6OO2HVCQHVPEXDO5LSIIKF7AY","AccountId":"9GEE001500","UserId":"E000008728"},"UserCommerceData":{"ClientType":"Q","AccessPointCode":"DX"},"RoutingData":{"ContentServerAddress":0,"TransportType":"HTTP"},"PlatformAdminData":{"TransactionTimeout":30}}
             //{"SessionId":"27139XxX_f336e3d6-a46c-c332-f5e3-a9e714bf0d49","IpAddress":"127.0.0.1","UUID":"3bb6cd20-968c-4def-805d-283710580dba","EID":"E6OO2HVCQHVPEXDO5LSIIKF7AY","AccountId":"9GEE001500","UserId":"E000008728"}
