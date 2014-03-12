@@ -46,7 +46,6 @@ namespace DowJones.Json.Gateway
             return null;
         }
         
-
         private Method GetMethod<T>(T request)
             where T : IJsonRestRequest, new()
         {
