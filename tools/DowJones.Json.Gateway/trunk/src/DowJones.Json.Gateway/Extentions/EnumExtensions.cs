@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Runtime.Serialization;
 using DowJones.Json.Gateway.Attributes;
+using DowJones.Json.Gateway.Exceptions;
 
 namespace DowJones.Json.Gateway.Extentions
 {
@@ -25,7 +26,12 @@ namespace DowJones.Json.Gateway.Extentions
 
         public static string GetServicePath<T>(this T sourceClass)
         {
-            return ((ServicePathAttribute)Attribute.GetCustomAttribute(typeof(T), typeof(ServicePathAttribute))).Path;
+            var attr = Attribute.GetCustomAttributes(typeof(T).GetField(sourceClass.ToString()), typeof(DataMemberAttribute)).FirstOrDefault() as ServicePathAttribute;
+            if (attr != null)
+            {
+                return attr.Path;
+            }
+            throw new JsonGatewayException(JsonGatewayException.ServicePathIsNotDefined, "ServicePath is undefined.");
         }
 
         public static DataMemberAttribute GetDataMember<T>(this T sourceField)

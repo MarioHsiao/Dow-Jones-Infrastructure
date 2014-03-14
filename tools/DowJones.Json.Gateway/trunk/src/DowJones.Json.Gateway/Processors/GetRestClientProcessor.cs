@@ -25,8 +25,7 @@ namespace DowJones.Json.Gateway.Processors
                 return GenerateGenericError<TRes>(ex);
             }
         }
-
-
+        
         public RestComposite GetHttpProxy<T>(RestRequest<T> restRequest)
             where T : IJsonRestRequest, new()
         {

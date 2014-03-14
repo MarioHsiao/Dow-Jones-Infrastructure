@@ -30,6 +30,9 @@ namespace DowJones.Json.Gateway.Exceptions
         public const long ServiceUnavailable = BaseError + 12;
         public const long InternalServerError = BaseError + 13;
 
+
+        public const long ServicePathIsNotDefined = BaseError + 30;
+
         #endregion
 
         private static readonly ILog Log = LogManager.GetLogger(typeof (JsonGatewayException));
