@@ -5,7 +5,7 @@ namespace DowJones.Json.Gateway
 {
     public interface IRestResponse<T> where T : new()
     {
-        IControlData ReponseControlData { get; set; }
+        IControlData ResponseControlData { get; set; }
         Error Error { get; set; }
         long ReturnCode { get; set; }
         T Data { get; set; }

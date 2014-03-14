@@ -1,6 +1,7 @@
 ﻿using System;
 using DowJones.Json.Gateway.Extentions;
 using DowJones.Json.Gateway.Interfaces;
+using DowJones.Json.Gateway.Processors;
 using RestSharp;
 using RestSharpRestClient = RestSharp.RestClient;
 using RestSharpRestRequest = RestSharp.RestRequest;
@@ -36,17 +37,10 @@ namespace DowJones.Json.Gateway
             }
 
             var method = GetMethod(restRequest.Request);
-
-            switch (method)
-            {
-                case Method.GET:
-                    return new GetRestClientProcessor().Process<TReq, TRes>(restRequest);
-            }
-
-            return null;
+            return new RestClientProcessorFactory(method).Process<TReq, TRes>(restRequest);
         }
         
-        private Method GetMethod<T>(T request)
+        private static Method GetMethod<T>(T request)
             where T : IJsonRestRequest, new()
         {
             var postRequest = request as IPostJsonRestRequest;
@@ -64,25 +58,5 @@ namespace DowJones.Json.Gateway
             var deleteRequest = request as IDeleteJsonRestRequest;
             return deleteRequest != null ? Method.DELETE : Method.GET;
         }
-
-       /* internal RestComposite GetRtsProxy<T>(RestRequest<T> restRequest)
-            where T : IGetJsonRestRequest, IPostJsonRestRequest, IPutJsonRestRequest, IDeleteJsonRestRequest, new()
-
-        {
-            var client = new RestSharpRestClient(Settings.Default.ServerUri);
-            var request = new RestSharpRestRequest("", restRequest.Method.ConvertTo<Method>())
-            {
-                RequestFormat = DataFormat.Json,
-                JsonSerializer = JsonDataConverterDecoratorSingleton.Instance,
-            };
-            request.AddParameter("uri", GetRoutingUri(restRequest.Request), ParameterType.QueryString);
-
-            return new RestComposite
-            {
-                Client = client,
-                Request = request
-            };
-        }*/
-
     }
 }

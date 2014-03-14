@@ -4,12 +4,11 @@ using System.Net;
 using System.Runtime.Serialization;
 using DowJones.Json.Gateway.Converters;
 using DowJones.Json.Gateway.Exceptions;
-using DowJones.Json.Gateway.Extentions;
 using DowJones.Json.Gateway.Interfaces;
 using DowJones.Json.Gateway.Properties;
 using RestSharp;
 
-namespace DowJones.Json.Gateway
+namespace DowJones.Json.Gateway.Processors
 {
     internal class GetRestClientProcessor : RestClientProcessor
     {
@@ -19,36 +18,11 @@ namespace DowJones.Json.Gateway
             try
             {
                 var response = composite.Client.Execute(composite.Request);
-
-                switch (response.StatusCode)
-                {
-                    case HttpStatusCode.OK: // Request succeeded process body of code
-                        return new RestResponse<TRes>
-                               {
-                                   ReturnCode = 0,
-                                   ReponseControlData = restRequest.ControlData,
-                                   Data = JsonDataConverterDecoratorSingleton.Instance.Deserialize<TRes>(response)
-                               };
-                    case HttpStatusCode.BadRequest:
-                        return GenerateErrorResponse<TRes>(JsonGatewayException.BadRequest, "Equivalent to HTTP status 400. BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.");
-
-                    case HttpStatusCode.InternalServerError:
-                    default:
-                        var error = JsonGatewayError.Parse(response.Content).Error;
-                        return GenerateErrorResponse<TRes>(error.Code, error.Message);
-                }
+                return ProcessStatus<TReq, TRes>(restRequest, response);
             }
             catch (Exception ex)
             {
-                return new RestResponse<TRes>
-                       {
-                           ReturnCode = JsonGatewayException.GenericError,
-                           Error = new Error
-                                   {
-                                       Code = JsonGatewayException.GenericError,
-                                       Message = ex.Message
-                                   }
-                       };
+                return GenerateGenericError<TRes>(ex);
             }
         }
 
@@ -65,10 +39,9 @@ namespace DowJones.Json.Gateway
             };
             request.AddParameter("uri", GetRoutingUri(restRequest.Request), ParameterType.QueryString);
 
-            // add controldata to header
+            // add ControlData to header
             request.AddHeader("ControlData", restRequest.ControlData.ToJson());
             GetQueryString(restRequest.Request, request);
-            request.AddBody(request);
 
             return new RestComposite
             {

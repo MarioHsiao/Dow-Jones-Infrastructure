@@ -11,11 +11,39 @@ namespace DowJones.Json.Gateway.Exceptions
     [Serializable]
     public class JsonGatewayException : ApplicationException
     {
-        private static readonly ILog Log = LogManager.GetLogger(typeof(JsonGatewayException));
-        private readonly long _returnCode = -1;
         protected const long BaseError = 581000;
+
+        #region Errors
+
         public const long GenericError = BaseError;
         public const long BadRequest = BaseError + 1;
+        public const long GatewayTimeout = BaseError + 2;
+        public const long RequestUriTooLong = BaseError + 3;
+        public const long MethodNotAllowed = BaseError + 4;
+        public const long NotAcceptable = BaseError + 5;
+        public const long NotFound = BaseError + 6;
+        public const long NotImplemented = BaseError + 7;
+        public const long RequestTimeout = BaseError + 8;
+        public const long Unauthorized = BaseError + 9;
+        public const long Forbidden = BaseError + 10;
+        public const long RequestEntityTooLarge = BaseError + 11;
+        public const long ServiceUnavailable = BaseError + 12;
+        public const long InternalServerError = BaseError + 13;
+
+        #endregion
+
+        private static readonly ILog Log = LogManager.GetLogger(typeof (JsonGatewayException));
+        private readonly long _returnCode = -1;
+
+        public JsonGatewayException(long returnCode, string message) : base(message)
+        {
+            _returnCode = returnCode;
+        }
+
+        public JsonGatewayException(long returnCode, string message, Exception ex) : base(message, ex)
+        {
+            _returnCode = returnCode;
+        }
 
         public virtual ILog Logger
         {
@@ -27,19 +55,10 @@ namespace DowJones.Json.Gateway.Exceptions
             get { return _returnCode; }
         }
 
-        public JsonGatewayException(long returnCode, string message) : base(message)
-        {
-            _returnCode = returnCode;
-        }
-        public JsonGatewayException(long returnCode, string message, Exception ex) : base(message, ex)
-        {
-            _returnCode = returnCode;
-        }
-        
         protected void LogException()
         {
             if (ReturnCode != -1 && !Logger.IsDebugEnabled) return;
-            var stackTrace = StackTrace ?? new StackTrace().ToString();
+            string stackTrace = StackTrace ?? new StackTrace().ToString();
             Logger.Error(string.Format("\nReturn code: {0} - Message: {1}\nStack Trace: {2}", ReturnCode, Message, stackTrace));
         }
 
@@ -56,18 +75,18 @@ namespace DowJones.Json.Gateway.Exceptions
             }
         }
 
-        [SecurityPermissionAttribute(SecurityAction.Demand, SerializationFormatter = true)]
+        [SecurityPermission(SecurityAction.Demand, SerializationFormatter = true)]
         public override void GetObjectData(SerializationInfo info,
-           StreamingContext context)
+            StreamingContext context)
         {
-            // Change the case of two properties, and then use the  
+            // Change the public const long of two properties, and then use the  
             // method of the base class.
             HelpLink = HelpLink.ToLower();
             Source = Source.ToUpper();
 
             base.GetObjectData(info, context);
         }
-        
+
         internal static void GetInnerExceptionLog(StringBuilder sb, Exception innerException, int depth = 0)
         {
             while (true)
@@ -88,7 +107,7 @@ namespace DowJones.Json.Gateway.Exceptions
             }
         }
 
-        static internal void GetExceptionLog(StringBuilder sb, Exception exception, int depth)
+        internal static void GetExceptionLog(StringBuilder sb, Exception exception, int depth)
         {
             sb.AppendFormat("\n==========Inner Exception level {0}==========", depth);
             sb.AppendFormat("\nInner Exception Type: {0}", exception.GetType().FullName);

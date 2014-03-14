@@ -5,7 +5,7 @@ namespace DowJones.Json.Gateway
 {
     public class RestResponse<T> : IRestResponse<T> where T : new()
     {
-        public IControlData ReponseControlData { get; set; }
+        public IControlData ResponseControlData { get; set; }
 
         public Error Error { get; set; }
 

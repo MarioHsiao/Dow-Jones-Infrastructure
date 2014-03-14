@@ -73,8 +73,6 @@
     <Compile Include="Exceptions\JsonGatewayException.cs" />
     <Compile Include="Extentions\ControlDataExtensions.cs" />
     <Compile Include="Extentions\EnumExtensions.cs" />
-    <Compile Include="GetRestClientProcessor.cs" />
-    <Compile Include="IRestClientProcessor.cs" />
     <Compile Include="Interfaces\IControlData.cs" />
     <Compile Include="Interfaces\IJson.cs" />
     <Compile Include="Interfaces\IJsonRestRequest.cs" />
@@ -87,6 +85,11 @@
     <Compile Include="Interfaces\IUserCredentialData.cs" />
     <Compile Include="IRestRequest.cs" />
     <Compile Include="IRestResponse.cs" />
+    <Compile Include="Processors\GenericRestClientProcessor.cs" />
+    <Compile Include="Processors\GetRestClientProcessor.cs" />
+    <Compile Include="Processors\IRestClientProcessor.cs" />
+    <Compile Include="Processors\RestClientProcessor.cs" />
+    <Compile Include="Processors\RestClientProcessorFactory.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
