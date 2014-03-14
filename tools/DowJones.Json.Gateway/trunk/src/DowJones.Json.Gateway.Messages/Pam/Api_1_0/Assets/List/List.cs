@@ -8,7 +8,6 @@ namespace DowJones.Json.Gateway.Messages.Pam.Api_1_0.Assets.List
     [KnownType(typeof (RegionList))]
     [KnownType(typeof (SubjectList))]
     [KnownType(typeof (ExecutiveList))]
-    [KnownType(typeof (ItemGroupCollection))]
     public class List
     {
         [DataMember(Name = "id")]

@@ -1,13 +1,17 @@
 ﻿using System.IO;
+using System.Runtime.Serialization.Formatters;
 using DowJones.Json.Gateway.Extentions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using RestSharp;
+using RestSharp.Deserializers;
+using RestSharp.Serializers;
 using JsonSerializer = Newtonsoft.Json.JsonSerializer;
 
 namespace DowJones.Json.Gateway.Converters
 {
+    
     internal class JsonDotNetJsonConverter : ISerialize
     {
         public JsonSerializer Serializer { get; private set; }
@@ -24,7 +28,12 @@ namespace DowJones.Json.Gateway.Converters
                              NullValueHandling = NullValueHandling.Ignore,
                              DefaultValueHandling = DefaultValueHandling.Ignore,
                              ContractResolver = new DefaultContractResolver(),
-                             DateTimeZoneHandling = DateTimeZoneHandling.Utc
+                             DateTimeZoneHandling = DateTimeZoneHandling.Utc,
+                             TypeNameHandling = TypeNameHandling.All,
+                             MissingMemberHandling = MissingMemberHandling.Ignore,
+                             //PreserveReferencesHandling = PreserveReferencesHandling.All,
+                             TypeNameAssemblyFormat = FormatterAssemblyStyle.Simple,
+                             
                          };
             Serializer.Converters.Add(new StringEnumConverter());
         }
@@ -38,14 +47,16 @@ namespace DowJones.Json.Gateway.Converters
             Serializer = serializer;
         }
 
-        protected internal T Deserialize<T>(IRestResponse response)
+        public T Deserialize<T>(IRestResponse response)
         {
             return Deserialize<T>(response.Content);
+
         }
 
-        protected internal T Deserialize<T>(string str)
+        public T Deserialize<T>(string str)
         {
-            return JsonConvert.DeserializeObject<T>(str);
+            var reader = new JsonTextReader(new StringReader(str));
+            return Serializer.Deserialize<T>(reader);
         }
 
         /// <summary>
@@ -63,12 +74,17 @@ namespace DowJones.Json.Gateway.Converters
         /// </summary>
         public string Namespace { get; set; }
 
+        public string Serialize(object obj)
+        {
+            return Serialize(obj, Formatting.None);
+        }
+
         /// <summary>
         ///     Unused for JSON Serialization
         /// </summary>
         public string RootElement { get; set; }
 
-        public string Serialize(object obj, Formatting formatting = Formatting.None)
+        public string Serialize(object obj, Formatting formatting)
         {
             var stringWriter = new StringWriter();
             using (var jsonTextWriter = new JsonTextWriter(stringWriter))

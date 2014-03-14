@@ -1,12 +1,10 @@
 using System;
 using System.Linq;
-using System.Net;
 using System.Runtime.Serialization;
 using DowJones.Json.Gateway.Converters;
-using DowJones.Json.Gateway.Exceptions;
 using DowJones.Json.Gateway.Interfaces;
-using DowJones.Json.Gateway.Properties;
 using RestSharp;
+using Environment = DowJones.Json.Gateway.Interfaces.Environment;
 
 namespace DowJones.Json.Gateway.Processors
 {
@@ -14,7 +12,7 @@ namespace DowJones.Json.Gateway.Processors
     {
         public override RestResponse<TRes> Process<TReq, TRes>(RestRequest<TReq> restRequest)
         {
-            var composite = GetHttpProxy(restRequest);
+            var composite = GetRestComposite(restRequest);
             try
             {
                 var response = composite.Client.Execute(composite.Request);
@@ -26,21 +24,50 @@ namespace DowJones.Json.Gateway.Processors
             }
         }
         
-        public RestComposite GetHttpProxy<T>(RestRequest<T> restRequest)
+        public RestComposite GetRestComposite<T>(RestRequest<T> restRequest)
             where T : IJsonRestRequest, new()
         {
+            return restRequest.ControlData.RoutingData.Environment != Environment.Development ? GetNonDevelopmentRestComposite(restRequest) : GetDevelopmentRestComposite(restRequest);
+        }
 
-            var client = new RestClient(Settings.Default.ServerUri);
+        public RestComposite GetNonDevelopmentRestComposite<T>(RestRequest<T> restRequest)
+            where T : IJsonRestRequest, new()
+        {
+            //application/json, , text/json, text/x-json, text/javascript, 
+            var client = new RestClient(restRequest.ControlData.RoutingData.ServerUri);
+            client.RemoveHandler("application/xml");
+            client.RemoveHandler("text/xml");
+
             var request = new RestRequest("", Method.GET)
             {
                 RequestFormat = DataFormat.Json,
-                JsonSerializer = JsonDataConverterDecoratorSingleton.Instance,
+                JsonSerializer = DataConverterDecoratorSingleton.Instance,
             };
             request.AddParameter("uri", GetRoutingUri(restRequest.Request), ParameterType.QueryString);
+            AddCommon(restRequest, request);
+            
+            return new RestComposite
+            {
+                Client = client,
+                Request = request
+            };
+        }
 
-            // add ControlData to header
-            request.AddHeader("ControlData", restRequest.ControlData.ToJson());
-            GetQueryString(restRequest.Request, request);
+        public RestComposite GetDevelopmentRestComposite<T>(RestRequest<T> restRequest)
+            where T : IJsonRestRequest, new()
+        {
+            //application/json, , text/json, text/x-json, text/javascript, 
+            var client = new RestClient(restRequest.ControlData.RoutingData.ServerUri);
+            client.RemoveHandler("application/xml");
+            client.RemoveHandler("text/xml");
+            
+            var request = new RestRequest( GetRoutingUri(restRequest.Request), Method.GET)
+            {
+                RequestFormat = DataFormat.Json,
+                JsonSerializer = DataConverterDecoratorSingleton.Instance,
+            };
+            
+            AddCommon(restRequest, request);
 
             return new RestComposite
             {
@@ -49,7 +76,16 @@ namespace DowJones.Json.Gateway.Processors
             };
         }
 
-        protected internal void GetQueryString<TRequest>(TRequest request, RestRequest restRequest)
+
+        protected internal void AddCommon<T>(RestRequest<T> restRequest, IRestRequest request)
+            where T : IJsonRestRequest, new()
+        {
+             // add ControlData to header
+            request.AddHeader("ControlData", restRequest.ControlData.ToJson());
+            GetQueryString(restRequest.Request, request);
+        }
+
+        protected internal void GetQueryString<TRequest>(TRequest request, IRestRequest restRequest)
             where TRequest : IJsonRestRequest, new()
         {
             var properties = request.GetType().GetProperties();
@@ -81,7 +117,7 @@ namespace DowJones.Json.Gateway.Processors
                 }
                 else if (sourceType.IsClass)
                 {
-                    restRequest.AddParameter(name, JsonDataConverterDecoratorSingleton.Instance.Serialize(val));
+                    restRequest.AddParameter(name, DataConverterDecoratorSingleton.Instance.Serialize(val));
                 }
             }
         }

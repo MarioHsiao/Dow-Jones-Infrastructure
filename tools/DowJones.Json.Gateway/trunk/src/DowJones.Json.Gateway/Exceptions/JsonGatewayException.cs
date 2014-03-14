@@ -16,22 +16,26 @@ namespace DowJones.Json.Gateway.Exceptions
         #region Errors
 
         public const long GenericError = BaseError;
-        public const long BadRequest = BaseError + 1;
-        public const long GatewayTimeout = BaseError + 2;
-        public const long RequestUriTooLong = BaseError + 3;
-        public const long MethodNotAllowed = BaseError + 4;
-        public const long NotAcceptable = BaseError + 5;
-        public const long NotFound = BaseError + 6;
-        public const long NotImplemented = BaseError + 7;
-        public const long RequestTimeout = BaseError + 8;
-        public const long Unauthorized = BaseError + 9;
-        public const long Forbidden = BaseError + 10;
-        public const long RequestEntityTooLarge = BaseError + 11;
-        public const long ServiceUnavailable = BaseError + 12;
-        public const long InternalServerError = BaseError + 13;
+
+        public const long ControlDataIsNotValid = BaseError + 1;
+        public const long ServicePathIsNotDefined = BaseError + 2;
+
+        public const long HttpBaseError = BaseError + 30;
+        public const long BadRequest = HttpBaseError + 1;
+        public const long GatewayTimeout = HttpBaseError + 2;
+        public const long RequestUriTooLong = HttpBaseError + 3;
+        public const long MethodNotAllowed = HttpBaseError + 4;
+        public const long NotAcceptable = HttpBaseError + 5;
+        public const long NotFound = HttpBaseError + 6;
+        public const long NotImplemented = HttpBaseError + 7;
+        public const long RequestTimeout = HttpBaseError + 8;
+        public const long Unauthorized = HttpBaseError + 9;
+        public const long Forbidden = HttpBaseError + 10;
+        public const long RequestEntityTooLarge = HttpBaseError + 11;
+        public const long ServiceUnavailable = HttpBaseError + 12;
+        public const long InternalServerError = HttpBaseError + 13;
 
 
-        public const long ServicePathIsNotDefined = BaseError + 30;
 
         #endregion
 
@@ -69,7 +73,7 @@ namespace DowJones.Json.Gateway.Exceptions
         {
             try
             {
-                var jsonGatewayError = JsonDataConverterDecoratorSingleton.Instance.Deserialize<JsonGatewayError>(json);
+                var jsonGatewayError = DataConverterDecoratorSingleton.Instance.Deserialize<JsonGatewayError>(json);
                 return new JsonGatewayException(jsonGatewayError.Error.Code, jsonGatewayError.Error.Message);
             }
             catch (Exception)

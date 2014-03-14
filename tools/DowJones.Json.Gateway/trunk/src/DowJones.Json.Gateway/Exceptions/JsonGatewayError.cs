@@ -15,7 +15,7 @@ namespace DowJones.Json.Gateway.Exceptions
         {
             try
             {
-                return JsonDataConverterDecoratorSingleton.Instance.Deserialize<JsonGatewayError>(json);
+                return DataConverterDecoratorSingleton.Instance.Deserialize<JsonGatewayError>(json);
             }
             catch (Exception ex)
             {

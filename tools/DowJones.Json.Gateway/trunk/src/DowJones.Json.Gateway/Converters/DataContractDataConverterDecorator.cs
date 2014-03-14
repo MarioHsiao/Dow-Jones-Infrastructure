@@ -4,11 +4,11 @@ using RestSharp.Deserializers;
 
 namespace DowJones.Json.Gateway.Converters
 {
-    class JsonDataConverterDecorator : ISerializer, IDeserializer
+    class DataContractDataConverterDecorator : ISerializer, IDeserializer
     {
-        private readonly JsonDotNetJsonConverter _jsonConverter;
+        private readonly DataContractJsonConverter _jsonConverter;
 
-        public JsonDataConverterDecorator(JsonDotNetJsonConverter converter)
+        public DataContractDataConverterDecorator(DataContractJsonConverter converter)
         {
             ContentType = "application/json";
             _jsonConverter = converter;
@@ -19,7 +19,8 @@ namespace DowJones.Json.Gateway.Converters
             return _jsonConverter.Serialize(obj);
         }
 
-        public T Deserialize<T>(IRestResponse response)
+        public T Deserialize<T>(RestResponse response)
+            where T : new()
         {
             return _jsonConverter.Deserialize<T>(response);
         }
@@ -27,6 +28,11 @@ namespace DowJones.Json.Gateway.Converters
         protected internal T Deserialize<T>(string str)
         {
             return _jsonConverter.Deserialize<T>(str);
+        }
+
+        public T Deserialize<T>(IRestResponse response)
+        {
+            return _jsonConverter.Deserialize<T>(response);
         }
 
         public string RootElement { get; set; }

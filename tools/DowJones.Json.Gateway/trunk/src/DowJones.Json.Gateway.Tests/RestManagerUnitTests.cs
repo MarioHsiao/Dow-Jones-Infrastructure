@@ -41,7 +41,6 @@ namespace DowJones.Json.Gateway.Tests
         public void TestServicePath()
         {
             var test = new GetPageByName();
-            Console.Write(test.GetServicePath());
         }
     }
 

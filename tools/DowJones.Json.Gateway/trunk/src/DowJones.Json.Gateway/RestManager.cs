@@ -1,4 +1,4 @@
-﻿using System;
+﻿using DowJones.Json.Gateway.Exceptions;
 using DowJones.Json.Gateway.Extentions;
 using DowJones.Json.Gateway.Interfaces;
 using DowJones.Json.Gateway.Processors;
@@ -31,9 +31,9 @@ namespace DowJones.Json.Gateway
             where TReq : IJsonRestRequest, new()
             where TRes : IJsonRestResponse, new()
         {
-            if (!restRequest.ControlData.IsValid())
+            if (!restRequest.ControlData.IsNotNullAndValid())
             {
-                throw new Exception("Invalid Control Data");
+                throw new JsonGatewayException(JsonGatewayException.ControlDataIsNotValid, "Invalid Control Data");
             }
 
             var method = GetMethod(restRequest.Request);

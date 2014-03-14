@@ -40,7 +40,6 @@ namespace DowJones.Json.Gateway.Tests.Core
                                                 },
                                     
                               };
-            Console.Write(controlData.ToJson());
             return controlData;
         }
         

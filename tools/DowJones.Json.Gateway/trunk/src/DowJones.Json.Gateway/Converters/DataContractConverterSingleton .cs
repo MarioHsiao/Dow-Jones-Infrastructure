@@ -1,10 +1,10 @@
 ﻿namespace DowJones.Json.Gateway.Converters
 {
-    internal class JsonDataConverterSingleton
+    internal class DataContractConverterSingleton
     {
         private static DataContractJsonConverter _instance;
 
-        private JsonDataConverterSingleton() { }
+        private DataContractConverterSingleton() { }
 
         internal static DataContractJsonConverter Instance
         {

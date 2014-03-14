@@ -67,7 +67,7 @@ namespace DowJones.Json.Gateway.Processors
                            {
                                ReturnCode = 0,
                                ResponseControlData = restRequest.ControlData,
-                               Data = JsonDataConverterDecoratorSingleton.Instance.Deserialize<TRes>(response)
+                               Data = DataConverterDecoratorSingleton.Instance.Deserialize<TRes>(response)
                            };
 
                 case HttpStatusCode.BadRequest:

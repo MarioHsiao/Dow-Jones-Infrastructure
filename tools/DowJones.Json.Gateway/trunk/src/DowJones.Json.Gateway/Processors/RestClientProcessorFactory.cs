@@ -16,7 +16,7 @@ namespace DowJones.Json.Gateway.Processors
                     Processor = new GetRestClientProcessor();
                     break;
                 default:
-                    Processor = new GenericRestClientProcessor();
+                    Processor = new GenericRestClientProcessor(method);
                     break;
             }
         }

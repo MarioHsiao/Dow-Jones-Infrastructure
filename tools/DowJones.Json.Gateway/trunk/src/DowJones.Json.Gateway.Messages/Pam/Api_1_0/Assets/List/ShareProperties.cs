@@ -6,25 +6,25 @@ namespace DowJones.Json.Gateway.Messages.Pam.Api_1_0.Assets.List
     [KnownType(typeof (SharePropertiesResponse))]
     public class ShareProperties
     {
-        [DataMember(Name = "accessPermission", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "accessPermission")]
         public Permission AccessPermission { get; set; }
 
-        [DataMember(Name = "assignPermission", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "assignPermission")]
         public Permission AssignPermission { get; set; }
 
-        [DataMember(Name = "updatePermission", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "updatePermission")]
         public Permission UpdatePermission { get; set; }
 
-        [DataMember(Name = "deletePermission", IsRequired = true, EmitDefaultValue = false, Order = 3)]
+        [DataMember(Name = "deletePermission")]
         public Permission DeletePermission { get; set; }
 
-        [DataMember(Name = "listingScope", IsRequired = true, Order = 4)]
+        [DataMember(Name = "listingScope")]
         public ShareScope ListingScope { get; set; }
 
-        [DataMember(Name = "sharePromotion", IsRequired = true, Order = 5)]
+        [DataMember(Name = "sharePromotion")]
         public ShareScope SharePromotion { get; set; }
 
-        [DataMember(Name = "qualifier", IsRequired = true, Order = 6)]
+        [DataMember(Name = "qualifier")]
         public AccessQualifier Qualifier { get; set; }
     }
 }

@@ -4,9 +4,9 @@ namespace DowJones.Json.Gateway.Extentions
 {
     public static class ControlDataExtensions
     {
-        public static bool IsValid(this IControlData controlData)
+        public static bool IsNotNullAndValid(this IControlData controlData)
         {
-            return controlData != null;
+            return controlData != null && controlData.IsValid();
         }
     }
 }

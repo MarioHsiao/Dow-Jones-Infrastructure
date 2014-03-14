@@ -11,5 +11,7 @@
         IPlatformAdminData PlatformAdminData { get; set; }
 
         ITransactionCacheData TransactionCacheData { get; set; }
+
+        bool IsValid();
     }
 } 

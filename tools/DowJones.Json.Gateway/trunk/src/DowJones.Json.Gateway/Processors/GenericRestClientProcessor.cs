@@ -1,20 +1,23 @@
 using System;
-using System.Linq;
-using System.Net;
-using System.Runtime.Serialization;
 using DowJones.Json.Gateway.Converters;
-using DowJones.Json.Gateway.Exceptions;
 using DowJones.Json.Gateway.Interfaces;
 using DowJones.Json.Gateway.Properties;
 using RestSharp;
+using Environment = DowJones.Json.Gateway.Interfaces.Environment;
 
 namespace DowJones.Json.Gateway.Processors
 {
     internal class GenericRestClientProcessor : RestClientProcessor
     {
+        private Method _method;
+        public GenericRestClientProcessor(Method method)
+        {
+            _method = method;
+        }
+
         public override RestResponse<TRes> Process<TReq, TRes>(RestRequest<TReq> restRequest)
         {
-            var composite = GetHttpProxy(restRequest);
+            var composite = GetRestComposite(restRequest);
             try
             {
                 var response = composite.Client.Execute(composite.Request);
@@ -26,28 +29,65 @@ namespace DowJones.Json.Gateway.Processors
             }
         }
 
+        public RestComposite GetRestComposite<T>(RestRequest<T> restRequest)
+            where T : IJsonRestRequest, new()
+        {
+            return restRequest.ControlData.RoutingData.Environment != Environment.Development ? GetNonDevelopmentRestComposite(restRequest) : GetDevelopmentRestComposite(restRequest);
+        }
 
-        public RestComposite GetHttpProxy<T>(RestRequest<T> restRequest)
+        public RestComposite GetNonDevelopmentRestComposite<T>(RestRequest<T> restRequest)
             where T : IJsonRestRequest, new()
         {
 
             var client = new RestClient(Settings.Default.ServerUri);
-            var request = new RestRequest("", Method.GET)
+            client.RemoveHandler("application/xml");
+            client.RemoveHandler("text/xml");
+
+            var request = new RestRequest("", _method)
             {
                 RequestFormat = DataFormat.Json,
-                JsonSerializer = JsonDataConverterDecoratorSingleton.Instance,
+                JsonSerializer = DataConverterDecoratorSingleton.Instance,
             };
+            
             request.AddParameter("uri", GetRoutingUri(restRequest.Request), ParameterType.QueryString);
-
-            // add ControlData to header
-            request.AddHeader("ControlData", restRequest.ControlData.ToJson());
-            request.AddBody(request);
+            AddCommon(restRequest, request);
 
             return new RestComposite
             {
                 Client = client,
                 Request = request
             };
+        }
+
+        public RestComposite GetDevelopmentRestComposite<T>(RestRequest<T> restRequest)
+            where T : IJsonRestRequest, new()
+        {
+
+            var client = new RestClient(restRequest.ControlData.RoutingData.ServerUri);
+            client.RemoveHandler("application/xml");
+            client.RemoveHandler("text/xml");
+
+            var request = new RestRequest(GetRoutingUri(restRequest.Request), _method)
+            {
+                RequestFormat = DataFormat.Json,
+                JsonSerializer = DataConverterDecoratorSingleton.Instance,
+            };
+
+            AddCommon(restRequest, request);
+
+            return new RestComposite
+            {
+                Client = client,
+                Request = request
+            };
+        }
+
+        protected internal void AddCommon<T>(RestRequest<T> restRequest, IRestRequest request)
+            where T : IJsonRestRequest, new()
+        {
+            // add ControlData to header
+            request.AddHeader("ControlData", restRequest.ControlData.ToJson());
+            request.AddBody(restRequest.Request);
         }
     }
 }

@@ -11,22 +11,22 @@ namespace DowJones.Json.Gateway.Messages.Pam.Api_1_0.Assets.List
     [KnownType(typeof (AuthorListProperties))]
     public class ListProperties
     {
-        [DataMember(Name = "description", IsRequired = true)]
+        [DataMember(Name = "description")]
         public string Description { get; set; }
 
-        [DataMember(Name = "creationDate", IsRequired = true)]
+        [DataMember(Name = "creationDate")]
         public DateTime CreationDate { get; set; }
 
-        [DataMember(Name = "createdBy", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "createdBy", EmitDefaultValue = false)]
         public string CreatedBy { get; set; }
 
-        [DataMember(Name = "lastModifiedDate", IsRequired = true)]
+        [DataMember(Name = "lastModifiedDate")]
         public DateTime LastModifiedDate { get; set; }
 
-        [DataMember(Name = "lastModifiedBy", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "lastModifiedBy", EmitDefaultValue = false)]
         public string LastModifiedBy { get; set; }
 
-        [DataMember(Name = "lastAccessedDate", IsRequired = true)]
+        [DataMember(Name = "lastAccessedDate")]
         public DateTime LastAccessedDate { get; set; }
     }
 }

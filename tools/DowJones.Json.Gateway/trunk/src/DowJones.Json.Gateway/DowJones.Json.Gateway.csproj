@@ -49,6 +49,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -61,10 +62,13 @@
     <Compile Include="Common\CacheStatus.cs" />
     <Compile Include="Common\ClientCode.cs" />
     <Compile Include="Common\Token.cs" />
+    <Compile Include="Converters\DataContractJsonConverter.cs" />
     <Compile Include="Converters\Formatting.cs" />
     <Compile Include="Converters\ISerialize.cs" />
+    <Compile Include="Converters\DataContractDataConverterDecorator.cs" />
     <Compile Include="Converters\JsonDataConverterDecorator.cs" />
-    <Compile Include="Converters\JsonDataConverterDecoratorSingleton.cs" />
+    <Compile Include="Converters\DataConverterDecoratorSingleton.cs" />
+    <Compile Include="Converters\DataContractConverterSingleton .cs" />
     <Compile Include="Converters\JsonDataConverterSingleton.cs" />
     <Compile Include="Converters\JsonDotNetJsonConverter.cs" />
     <Compile Include="Core\RestRequestAsyncHandle.cs" />

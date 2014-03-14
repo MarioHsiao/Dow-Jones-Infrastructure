@@ -26,7 +26,8 @@ namespace DowJones.Json.Gateway.Extentions
 
         public static string GetServicePath<T>(this T sourceClass)
         {
-            var attr = Attribute.GetCustomAttributes(typeof(T).GetField(sourceClass.ToString()), typeof(DataMemberAttribute)).FirstOrDefault() as ServicePathAttribute;
+            var attr =  ((ServicePathAttribute)Attribute.GetCustomAttribute(typeof(T), typeof(ServicePathAttribute)));
+        
             if (attr != null)
             {
                 return attr.Path;
