@@ -2,6 +2,7 @@
 using System.Globalization;
 using DowJones.Json.Gateway.Exceptions;
 using DowJones.Json.Gateway.Extensions;
+using DowJones.Json.Gateway.Interfaces;
 using DowJones.Json.Gateway.Messages.Pam.Api_1_0.Assets.List;
 using DowJones.Json.Gateway.Tests.Core;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -26,6 +27,7 @@ namespace DowJones.Json.Gateway.Tests.Pam
 
             r.ControlData.RoutingData.ServerUri = "http://pamapi.dev.dowjones.net/";
             r.ControlData.RoutingData.Environment = Environment.Development;
+            r.ControlData.RoutingData.Serializer = JsonSerializer.DataContract;
 
             try
             {

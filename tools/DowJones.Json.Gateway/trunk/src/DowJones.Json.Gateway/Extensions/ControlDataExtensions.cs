@@ -1,6 +1,6 @@
 ﻿using DowJones.Json.Gateway.Interfaces;
 
-namespace DowJones.Json.Gateway.Extentions
+namespace DowJones.Json.Gateway.Extensions
 {
     public static class ControlDataExtensions
     {

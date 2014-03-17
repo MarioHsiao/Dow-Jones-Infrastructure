@@ -1,6 +1,4 @@
 using RestSharp;
-using RestSharp.Serializers;
-using RestSharp.Deserializers;
 
 namespace DowJones.Json.Gateway.Converters
 {

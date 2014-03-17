@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using DowJones.Json.Gateway.Attributes;
-using DowJones.Json.Gateway.Extentions;
 using DowJones.Json.Gateway.Interfaces;
 using DowJones.Json.Gateway.Messages.Core;
 using DowJones.Json.Gateway.Tests.Core;

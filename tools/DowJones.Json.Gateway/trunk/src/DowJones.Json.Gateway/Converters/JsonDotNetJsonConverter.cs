@@ -1,13 +1,10 @@
 ﻿using System.IO;
 using System.Runtime.Serialization.Formatters;
 using DowJones.Json.Gateway.Extensions;
-using DowJones.Json.Gateway.Extentions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using RestSharp;
-using RestSharp.Deserializers;
-using RestSharp.Serializers;
 using JsonSerializer = Newtonsoft.Json.JsonSerializer;
 
 namespace DowJones.Json.Gateway.Converters

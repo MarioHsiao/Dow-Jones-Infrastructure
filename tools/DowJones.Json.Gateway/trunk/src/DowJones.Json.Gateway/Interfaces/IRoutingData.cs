@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace DowJones.Json.Gateway.Interfaces
+﻿namespace DowJones.Json.Gateway.Interfaces
 {
     public enum Environment
     {

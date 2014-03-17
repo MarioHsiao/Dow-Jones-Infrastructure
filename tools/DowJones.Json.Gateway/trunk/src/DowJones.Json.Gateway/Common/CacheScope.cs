@@ -1,5 +1,4 @@
-﻿
-namespace DowJones.Json.Gateway.Common
+﻿namespace DowJones.Json.Gateway.Common
 {
     public enum CacheScope
     {

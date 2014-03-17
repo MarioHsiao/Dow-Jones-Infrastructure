@@ -1,5 +1,4 @@
-﻿using System;
-using DowJones.Json.Gateway.Common;
+﻿using DowJones.Json.Gateway.Common;
 
 namespace DowJones.Json.Gateway.Interfaces
 {

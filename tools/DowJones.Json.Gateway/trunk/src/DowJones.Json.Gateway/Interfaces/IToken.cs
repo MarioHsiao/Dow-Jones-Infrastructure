@@ -1,6 +1,4 @@
-﻿using DowJones.Json.Gateway.Core;
-
-namespace DowJones.Json.Gateway.Interfaces
+﻿namespace DowJones.Json.Gateway.Interfaces
 {
     public interface IToken
     {

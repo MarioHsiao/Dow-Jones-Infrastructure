@@ -1,5 +1,5 @@
 ﻿using DowJones.Json.Gateway.Exceptions;
-using DowJones.Json.Gateway.Extentions;
+using DowJones.Json.Gateway.Extensions;
 using DowJones.Json.Gateway.Interfaces;
 using DowJones.Json.Gateway.Processors;
 using RestSharp;
