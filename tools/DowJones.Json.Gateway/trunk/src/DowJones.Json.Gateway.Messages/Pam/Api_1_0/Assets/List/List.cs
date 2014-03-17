@@ -1,4 +1,5 @@
 using System.Runtime.Serialization;
+using DowJones.Json.Gateway.Messages.Pam.Api_1_0.Sharing;
 
 namespace DowJones.Json.Gateway.Messages.Pam.Api_1_0.Assets.List
 {

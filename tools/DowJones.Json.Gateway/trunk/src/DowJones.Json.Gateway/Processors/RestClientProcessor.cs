@@ -37,7 +37,11 @@ namespace DowJones.Json.Gateway.Processors
         protected internal string GetTransactionName<TRequest>(TRequest request)
             where TRequest : IJsonRestRequest, new()
         {
-
+            var contract = request.GetDataContract();
+            if (contract != null && !string.IsNullOrEmpty(contract.Name))
+            {
+                return contract.Name;
+            }
             return request.GetType().Name;
         }
 

@@ -26,7 +26,7 @@ namespace DowJones.Json.Gateway.Tests
             
             var t = rm.Execute<GetPageByName, GetPageByNameResponse>(r);
            
-
+            Console.WriteLine(t.Data);
           /*  
             Assert.IsNotNull(t.Data);
             Assert.IsInstanceOfType(t.Data, typeof(List<string>));
