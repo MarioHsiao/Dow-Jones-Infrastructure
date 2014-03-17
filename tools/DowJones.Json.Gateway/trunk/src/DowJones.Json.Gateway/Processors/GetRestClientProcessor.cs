@@ -61,7 +61,7 @@ namespace DowJones.Json.Gateway.Processors
             client.RemoveHandler("application/xml");
             client.RemoveHandler("text/xml");
             
-            var request = new RestRequest( GetRoutingUri(restRequest.Request), Method.GET)
+            var request = new RestRequest(GetRoutingUri(restRequest.Request), Method.GET)
             {
                 RequestFormat = DataFormat.Json,
                 JsonSerializer = JsonSerializerFactory.Create(JsonSerializer.DataContract),

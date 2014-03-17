@@ -3,7 +3,6 @@ using System.Net;
 using DowJones.Json.Gateway.Converters;
 using DowJones.Json.Gateway.Exceptions;
 using DowJones.Json.Gateway.Extensions;
-using DowJones.Json.Gateway.Extentions;
 using DowJones.Json.Gateway.Interfaces;
 using RestSharp;
 
@@ -38,6 +37,7 @@ namespace DowJones.Json.Gateway.Processors
         protected internal string GetTransactionName<TRequest>(TRequest request)
             where TRequest : IJsonRestRequest, new()
         {
+
             return request.GetType().Name;
         }
 

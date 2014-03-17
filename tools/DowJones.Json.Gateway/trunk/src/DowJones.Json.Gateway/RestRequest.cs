@@ -1,5 +1,4 @@
 ﻿using DowJones.Json.Gateway.Interfaces;
-using RestSharp;
 
 namespace DowJones.Json.Gateway
 {
