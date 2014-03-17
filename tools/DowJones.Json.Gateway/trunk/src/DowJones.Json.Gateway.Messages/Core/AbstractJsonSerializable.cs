@@ -14,7 +14,7 @@ namespace DowJones.Json.Gateway.Messages.Core
     {
         public string ToJson()
         {
-            return JsonDataConverterSingleton.Instance.Serialize(this);
+            return JsonDotNetDataConverterSingleton.Instance.Serialize(this);
         }
         
         public object Clone()

@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 using DowJones.Json.Gateway.Attributes;
 using DowJones.Json.Gateway.Exceptions;
 
-namespace DowJones.Json.Gateway.Extentions
+namespace DowJones.Json.Gateway.Extensions
 {
     public static class EnumExtensions
     {

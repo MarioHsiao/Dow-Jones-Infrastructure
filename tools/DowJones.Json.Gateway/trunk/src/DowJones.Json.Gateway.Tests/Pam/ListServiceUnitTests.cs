@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using DowJones.Json.Gateway.Exceptions;
+using DowJones.Json.Gateway.Extensions;
 using DowJones.Json.Gateway.Messages.Pam.Api_1_0.Assets.List;
 using DowJones.Json.Gateway.Tests.Core;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -41,7 +42,7 @@ namespace DowJones.Json.Gateway.Tests.Pam
                     Console.WriteLine(t.Error.Message);
                     Assert.Fail(string.Concat("failed w/rc:= ",t.ReturnCode.ToString(CultureInfo.InvariantCulture)));
                 }
-                Console.WriteLine();
+                Console.WriteLine(t.Data.ToJson(true));
                 
             }
             catch (JsonGatewayException gatewayException)
@@ -83,7 +84,7 @@ namespace DowJones.Json.Gateway.Tests.Pam
                     Console.WriteLine(t.Error.Message);
                     Assert.Fail(string.Concat("failed w/rc:= ", t.ReturnCode.ToString(CultureInfo.InvariantCulture)));
                 }
-                Console.WriteLine();
+                Console.WriteLine(t.Data.ToJson(true));
 
             }
             catch (JsonGatewayException gatewayException)

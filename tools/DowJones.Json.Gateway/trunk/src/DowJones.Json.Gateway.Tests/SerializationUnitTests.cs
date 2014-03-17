@@ -13,7 +13,7 @@ namespace DowJones.Json.Gateway.Tests
         public void CommerceDataJsonSerializationEmptyObject()
         {
             var userCommerData = new UserCommerceData();
-            var str = JsonDataConverterSingleton.Instance.Serialize(userCommerData);
+            var str = JsonDotNetDataConverterSingleton.Instance.Serialize(userCommerData);
             Assert.IsTrue(str == "{}");
         }
 
@@ -21,7 +21,7 @@ namespace DowJones.Json.Gateway.Tests
         public void ControlDataSerializationEmptyObject()
         {
             var controlData = new ControlData();
-            var str = JsonDataConverterSingleton.Instance.Serialize(controlData);
+            var str = JsonDotNetDataConverterSingleton.Instance.Serialize(controlData);
             Assert.IsTrue(str == "{}");
         }
 
@@ -29,7 +29,7 @@ namespace DowJones.Json.Gateway.Tests
         public void UserCommerceDataSerializationEmptyObject()
         {
             var userCommerceData = new UserCommerceData();
-            var str = JsonDataConverterSingleton.Instance.Serialize(userCommerceData);
+            var str = JsonDotNetDataConverterSingleton.Instance.Serialize(userCommerceData);
             Assert.IsTrue(str == "{}");
         }
 

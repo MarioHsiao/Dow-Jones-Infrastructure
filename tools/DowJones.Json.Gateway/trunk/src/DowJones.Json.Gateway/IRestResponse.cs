@@ -3,7 +3,7 @@ using DowJones.Json.Gateway.Interfaces;
 
 namespace DowJones.Json.Gateway
 {
-    public interface IRestResponse<T> where T : new()
+    public interface IRestResponse<T> where T : IJsonRestResponse ,new()
     {
         IControlData ResponseControlData { get; set; }
         Error Error { get; set; }

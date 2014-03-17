@@ -2,6 +2,7 @@ using System;
 using System.Net;
 using DowJones.Json.Gateway.Converters;
 using DowJones.Json.Gateway.Exceptions;
+using DowJones.Json.Gateway.Extensions;
 using DowJones.Json.Gateway.Extentions;
 using DowJones.Json.Gateway.Interfaces;
 using RestSharp;
@@ -67,7 +68,7 @@ namespace DowJones.Json.Gateway.Processors
                            {
                                ReturnCode = 0,
                                ResponseControlData = restRequest.ControlData,
-                               Data = DataConverterDecoratorSingleton.Instance.Deserialize<TRes>(response)
+                               Data = DataContractConverterDecoratorSingleton.Instance.Deserialize<TRes>(response)
                            };
 
                 case HttpStatusCode.BadRequest:

@@ -23,6 +23,9 @@ namespace DowJones.Json.Gateway.Messages.Core
         public Environment Environment { get; set; }
 
         [IgnoreDataMember]
+        public JsonSerializer Serializer { get; set; }
+
+        [IgnoreDataMember]
         public string ServerUri { get; set; }
     }
 }

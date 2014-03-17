@@ -9,7 +9,7 @@ namespace DowJones.Json.Gateway.Processors
 {
     internal class GenericRestClientProcessor : RestClientProcessor
     {
-        private Method _method;
+        private readonly Method _method;
         public GenericRestClientProcessor(Method method)
         {
             _method = method;
@@ -46,7 +46,7 @@ namespace DowJones.Json.Gateway.Processors
             var request = new RestRequest("", _method)
             {
                 RequestFormat = DataFormat.Json,
-                JsonSerializer = DataConverterDecoratorSingleton.Instance,
+                JsonSerializer = JsonSerializerFactory.Create(JsonSerializer.DataContract),
             };
             
             request.AddParameter("uri", GetRoutingUri(restRequest.Request), ParameterType.QueryString);
@@ -70,7 +70,7 @@ namespace DowJones.Json.Gateway.Processors
             var request = new RestRequest(GetRoutingUri(restRequest.Request), _method)
             {
                 RequestFormat = DataFormat.Json,
-                JsonSerializer = DataConverterDecoratorSingleton.Instance,
+                JsonSerializer = JsonSerializerFactory.Create(JsonSerializer.DataContract),
             };
 
             AddCommon(restRequest, request);

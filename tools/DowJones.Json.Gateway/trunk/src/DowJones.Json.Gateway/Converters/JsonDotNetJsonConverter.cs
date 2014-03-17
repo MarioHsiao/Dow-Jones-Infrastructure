@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Runtime.Serialization.Formatters;
+using DowJones.Json.Gateway.Extensions;
 using DowJones.Json.Gateway.Extentions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;

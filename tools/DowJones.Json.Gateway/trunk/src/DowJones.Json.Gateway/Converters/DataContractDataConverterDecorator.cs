@@ -1,10 +1,8 @@
 using RestSharp;
-using RestSharp.Serializers;
-using RestSharp.Deserializers;
 
 namespace DowJones.Json.Gateway.Converters
 {
-    class DataContractDataConverterDecorator : ISerializer, IDeserializer
+    class DataContractDataConverterDecorator : DataConverterDecorator
     {
         private readonly DataContractJsonConverter _jsonConverter;
 
@@ -14,7 +12,7 @@ namespace DowJones.Json.Gateway.Converters
             _jsonConverter = converter;
         }
 
-        public string Serialize(object obj)
+        public override string Serialize(object obj)
         {
             return _jsonConverter.Serialize(obj);
         }
@@ -25,19 +23,20 @@ namespace DowJones.Json.Gateway.Converters
             return _jsonConverter.Deserialize<T>(response);
         }
 
-        protected internal T Deserialize<T>(string str)
+        protected internal override T Deserialize<T>(string str)
         {
             return _jsonConverter.Deserialize<T>(str);
         }
 
-        public T Deserialize<T>(IRestResponse response)
+        public override T Deserialize<T>(IRestResponse response)
         {
             return _jsonConverter.Deserialize<T>(response);
         }
 
-        public string RootElement { get; set; }
-        public string Namespace { get; set; }
-        public string DateFormat { get; set; }
-        public string ContentType { get; set; }
+        public override sealed string ContentType { get; set; }
+        public override string Serialize(object obj, Formatting formatting)
+        {
+            return Serialize(obj);
+        }
     }
 }

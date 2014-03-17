@@ -41,7 +41,7 @@ namespace DowJones.Json.Gateway.Processors
             var request = new RestRequest("", Method.GET)
             {
                 RequestFormat = DataFormat.Json,
-                JsonSerializer = DataConverterDecoratorSingleton.Instance,
+                JsonSerializer = JsonSerializerFactory.Create(JsonSerializer.DataContract),
             };
             request.AddParameter("uri", GetRoutingUri(restRequest.Request), ParameterType.QueryString);
             AddCommon(restRequest, request);
@@ -64,7 +64,7 @@ namespace DowJones.Json.Gateway.Processors
             var request = new RestRequest( GetRoutingUri(restRequest.Request), Method.GET)
             {
                 RequestFormat = DataFormat.Json,
-                JsonSerializer = DataConverterDecoratorSingleton.Instance,
+                JsonSerializer = JsonSerializerFactory.Create(JsonSerializer.DataContract),
             };
             
             AddCommon(restRequest, request);
@@ -117,7 +117,7 @@ namespace DowJones.Json.Gateway.Processors
                 }
                 else if (sourceType.IsClass)
                 {
-                    restRequest.AddParameter(name, DataConverterDecoratorSingleton.Instance.Serialize(val));
+                    restRequest.AddParameter(name, JsonSerializerFactory.Create(JsonSerializer.DataContract).Serialize(val));
                 }
             }
         }
