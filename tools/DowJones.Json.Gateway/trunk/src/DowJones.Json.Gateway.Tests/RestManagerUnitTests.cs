@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using DowJones.Json.Gateway.Attributes;
+using DowJones.Json.Gateway.Converters;
 using DowJones.Json.Gateway.Interfaces;
 using DowJones.Json.Gateway.Messages.Core;
 using DowJones.Json.Gateway.Tests.Core;
@@ -45,16 +46,20 @@ namespace DowJones.Json.Gateway.Tests
 
     [ServicePath("pamapi/1.0/DJXPages.svc")]
     [DataContract(Name = "GetPageByName")]
-    public class GetPageByName : GetJsonRestRequest
+    public class GetPageByName : IGetJsonRestRequest
     {
         [DataMember(Name = "type")]
         public string Type { get; set; }
 
         [DataMember(Name = "name")]
         public string Name { get; set; }
+        public virtual string ToJson(ISerialize decorator)
+        {
+            return decorator.Serialize(this);
+        }
     }
 
-    public class GetPageByNameResponse : JsonRestResponse
+    public class GetPageByNameResponse : IJsonRestResponse
     {
     }
 }

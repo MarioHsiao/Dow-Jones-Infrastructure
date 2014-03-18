@@ -1,10 +1,11 @@
 using System.Runtime.Serialization;
+using DowJones.Json.Gateway.Converters;
 using DowJones.Json.Gateway.Interfaces;
 
 namespace DowJones.Json.Gateway.Messages.Pam.Api_1_0.Assets.List.Transactions
 {
     [DataContract(Name = "GetListsPropertiesList", Namespace = "")]
-    public class GetListsPropertiesListRequest : PostJsonRestRequest
+    public class GetListsPropertiesListRequest : IPostJsonRestRequest
     {
         [DataMember(Name = "maxResultsToReturn", IsRequired = true)]
         public int MaxResultsToReturn { get; set; }
@@ -23,5 +24,10 @@ namespace DowJones.Json.Gateway.Messages.Pam.Api_1_0.Assets.List.Transactions
 
         [DataMember(Name = "filterCollection", IsRequired = true, EmitDefaultValue = false, Order = 5)]
         public FilterCollection FilterCollection { get; set; }
+
+        public virtual string ToJson(ISerialize decorator)
+        {
+            return decorator.Serialize(this);
+        }
     }
 }

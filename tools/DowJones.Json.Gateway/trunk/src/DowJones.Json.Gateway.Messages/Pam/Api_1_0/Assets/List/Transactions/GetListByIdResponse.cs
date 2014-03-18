@@ -6,7 +6,7 @@ namespace DowJones.Json.Gateway.Messages.Pam.Api_1_0.Assets.List.Transactions
 {
     [ServicePath("pamapi/1.0/List.svc")]
     [DataContract(Name = "GetListByIDResponse", Namespace = "")]
-    public class GetListByIdResponse : JsonRestResponse
+    public class GetListByIdResponse : IJsonRestResponse
     {
         [DataMember(Name = "list", IsRequired = true, EmitDefaultValue = false)]
         public List List { get; set; }

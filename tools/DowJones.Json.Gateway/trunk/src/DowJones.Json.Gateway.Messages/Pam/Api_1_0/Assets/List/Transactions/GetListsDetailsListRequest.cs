@@ -1,10 +1,13 @@
 using System.Runtime.Serialization;
+using DowJones.Json.Gateway.Attributes;
+using DowJones.Json.Gateway.Converters;
 using DowJones.Json.Gateway.Interfaces;
 
 namespace DowJones.Json.Gateway.Messages.Pam.Api_1_0.Assets.List.Transactions
 {
+    [ServicePath("pamapi/1.0/List.svc")]
     [DataContract(Name = "GetListsDetailsList", Namespace = "")]
-    public class GetListsDetailsListRequest : PostJsonRestRequest
+    public class GetListsDetailsListRequest : IPostJsonRestRequest
 
     {
         [DataMember(Name = "maxResultsToReturn", IsRequired = true)]
@@ -19,10 +22,15 @@ namespace DowJones.Json.Gateway.Messages.Pam.Api_1_0.Assets.List.Transactions
         [DataMember(Name = "sortOrder", IsRequired = true)]
         public SortOrder SortOrder { get; set; }
 
-        [DataMember(Name = "paging", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "paging", EmitDefaultValue = false)]
         public Paging Paging { get; set; }
 
-        [DataMember(Name = "filterCollection", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "filterCollection", EmitDefaultValue = false)]
         public FilterCollection FilterCollection { get; set; }
+
+        public string ToJson(ISerialize decorator)
+        {
+            return decorator.Serialize(this);
+        }
     }
 }

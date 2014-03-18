@@ -15,6 +15,52 @@ namespace DowJones.Json.Gateway.Tests.Pam
     public class ListServiceUnitTests : AbstractUnitTests
     {
         [TestMethod]
+        public void GetListsDetailsListRequest()
+        {
+            var r = new RestRequest<GetListsDetailsListRequest>
+            {
+                Request = new GetListsDetailsListRequest
+                {
+                    MaxResultsToReturn = 100,
+                    ListTypeCollection = new ListTypeCollection(new [] { ListType.IndustryList })
+                },
+                ControlData = GetControlData(),
+            };
+
+            r.ControlData.RoutingData.TransportType = "HTTP";
+            // ReSharper disable StringLiteralTypo
+            r.ControlData.RoutingData.ServerUri = "http://pamapi.dev.dowjones.net/";
+            // ReSharper restore StringLiteralTypo
+            r.ControlData.RoutingData.Environment = Environment.Development;
+            r.ControlData.RoutingData.Serializer = JsonSerializer.DataContract;
+
+            try
+            {
+                var rm = new RestManager();
+                var t = rm.Execute<GetListsDetailsListRequest, GetListsDetailsListResponse>(r);
+
+                if (t.ReturnCode == 0)
+                {
+                    Assert.IsNotNull(t);
+                }
+                else
+                {
+                    Console.WriteLine(t.Error.Message);
+                    Assert.Fail(string.Concat("failed w/rc:= ", t.ReturnCode.ToString(CultureInfo.InvariantCulture)));
+                }
+                Console.WriteLine(t.Data.ToJson(true));
+            }
+            catch (JsonGatewayException gatewayException)
+            {
+                Console.Write(gatewayException.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.Message);
+            }
+        }
+
+        [TestMethod]
         public void GetListByIdRequest()
         {
             var r = new RestRequest<GetListByIdRequest>
@@ -31,13 +77,12 @@ namespace DowJones.Json.Gateway.Tests.Pam
             r.ControlData.RoutingData.ServerUri = "http://pamapi.dev.dowjones.net/";
             // ReSharper restore StringLiteralTypo
             r.ControlData.RoutingData.Environment = Environment.Development;
-            r.ControlData.RoutingData.Environment = Environment.Development;
             r.ControlData.RoutingData.Serializer = JsonSerializer.DataContract;
 
             try
             {
                 var rm = new RestManager();
-                RestResponse<GetListByIdResponse> t = rm.Execute<GetListByIdRequest, GetListByIdResponse>(r);
+                var t = rm.Execute<GetListByIdRequest, GetListByIdResponse>(r);
 
                 if (t.ReturnCode == 0)
                 {

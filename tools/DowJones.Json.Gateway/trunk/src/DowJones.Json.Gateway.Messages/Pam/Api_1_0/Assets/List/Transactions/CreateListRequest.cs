@@ -7,12 +7,12 @@ namespace DowJones.Json.Gateway.Messages.Pam.Api_1_0.Assets.List.Transactions
 {
     [ServicePath("pamapi/1.0/List.svc")]
     [DataContract(Name = "CreateList", Namespace = "")]
-    public class CreateListRequest : PostJsonRestRequest
+    public class CreateListRequest : IPostJsonRestRequest
     {
         [DataMember(Name = "list", IsRequired = true, EmitDefaultValue = false)]
         public List List { get; set; }
 
-        public sealed override string ToJson(ISerialize decorator)
+        public string ToJson(ISerialize decorator)
         {
             return decorator.Serialize(this);
         }

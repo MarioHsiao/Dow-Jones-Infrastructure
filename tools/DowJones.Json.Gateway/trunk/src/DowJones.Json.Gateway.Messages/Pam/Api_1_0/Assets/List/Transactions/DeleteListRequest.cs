@@ -7,12 +7,12 @@ namespace DowJones.Json.Gateway.Messages.Pam.Api_1_0.Assets.List.Transactions
 {
     [ServicePath("pamapi/1.0/List.svc")]
     [DataContract(Name = "DeleteList", Namespace = "")]
-    public class DeleteListRequest : DeleteJsonRestRequest
+    public class DeleteListRequest : IDeleteJsonRestRequest
     {
         [DataMember(Name = "id", IsRequired = true)]
         public long Id { get; set; }
 
-        public sealed override string ToJson(ISerialize decorator)
+        public string ToJson(ISerialize decorator)
         {
             return decorator.Serialize(Id);
         }

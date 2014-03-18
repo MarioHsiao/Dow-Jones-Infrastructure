@@ -8,10 +8,10 @@ namespace DowJones.Json.Gateway.Messages.Pam.Api_1_0.Assets.List
         [DataMember(Name = "id", IsRequired = true)]
         public long Id { get; set; }
 
-        [DataMember(Name = "ErrorCode", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "ErrorCode", EmitDefaultValue = false)]
         public string ErrorCode { get; set; }
 
-        [DataMember(Name = "list", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "list", EmitDefaultValue = false)]
         public List List { get; set; }
     }
 }
