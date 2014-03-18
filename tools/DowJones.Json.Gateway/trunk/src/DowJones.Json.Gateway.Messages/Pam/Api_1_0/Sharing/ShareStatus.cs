@@ -5,8 +5,8 @@ namespace DowJones.Json.Gateway.Messages.Pam.Api_1_0.Sharing
     [DataContract(Name = "ShareStatus", Namespace = "")]
     public enum ShareStatus
     {
-        [EnumMember] Active = 0,
+        [EnumMember(Value = "Active")] Active = 0,
 
-        [EnumMember] Inactive = 1,
+        [EnumMember(Value = "Inactive")] Inactive = 1,
     }
 }

@@ -5,8 +5,8 @@ namespace DowJones.Json.Gateway.Messages.Pam.Api_1_0.Assets.List
     [DataContract(Name = "GroupListType", Namespace = "")]
     public enum GroupListType
     {
-        [EnumMember] Group = 0,
+        [EnumMember(Value = "Group")] Group = 0,
 
-        [EnumMember] User = 1,
+        [EnumMember(Value = "User")] User = 1,
     }
 }

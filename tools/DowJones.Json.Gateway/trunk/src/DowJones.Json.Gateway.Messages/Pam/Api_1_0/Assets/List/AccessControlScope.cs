@@ -5,14 +5,14 @@ namespace DowJones.Json.Gateway.Messages.Pam.Api_1_0.Assets.List
     [DataContract(Name = "AccessControlScope", Namespace = "")]
     public enum AccessControlScope
     {
-        [EnumMember] Personal = 0,
+        [EnumMember(Value = "Personal")] Personal = 0,
 
-        [EnumMember] Account = 1,
+        [EnumMember(Value = "Account")] Account = 1,
 
-        [EnumMember] AccountAdmin = 2,
+        [EnumMember(Value = "AccountAdmin")] AccountAdmin = 2,
 
-        [EnumMember] Everyone = 3,
+        [EnumMember(Value = "Everyone")] Everyone = 3,
 
-        [EnumMember] PreviousScope = 4,
+        [EnumMember(Value = "PreviousScope")] PreviousScope = 4,
     }
 }

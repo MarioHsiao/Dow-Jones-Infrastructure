@@ -12,6 +12,6 @@ namespace DowJones.Json.Gateway.Messages.Pam.Api_1_0.Assets.List
         public ItemGroupType GroupType { get; set; }
 
         [DataMember(Name = "itemCollection", IsRequired = true, EmitDefaultValue = false, Order = 2)]
-        public ItemCollection itemCollection { get; set; }
+        public ItemCollection ItemCollection { get; set; }
     }
 }
