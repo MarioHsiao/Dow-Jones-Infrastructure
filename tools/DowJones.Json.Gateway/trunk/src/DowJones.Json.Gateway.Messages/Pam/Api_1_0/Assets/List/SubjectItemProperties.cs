@@ -5,7 +5,7 @@ namespace DowJones.Json.Gateway.Messages.Pam.Api_1_0.Assets.List
     [DataContract(Name = "SubjectItemProperties", Namespace = "")]
     public class SubjectItemProperties : ItemProperties
     {
-        [DataMember(Name = "executiveCode", IsRequired = true, EmitDefaultValue = false)]
-        public string ExecutiveCode { get; set; }
+        [DataMember(Name = "code", IsRequired = true, EmitDefaultValue = false)]
+        public string Code { get; set; }
     }
 }

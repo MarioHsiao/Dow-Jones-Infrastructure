@@ -7,16 +7,16 @@ namespace DowJones.Json.Gateway.Messages.Pam.Api_1_0.Sharing
     [KnownType(typeof (SharePropertiesResponse))]
     public class ShareProperties
     {
-        [DataMember(Name = "accessPermission")]
+        [DataMember(Name = "accessPermission", EmitDefaultValue = false)]
         public Permission AccessPermission { get; set; }
 
-        [DataMember(Name = "assignPermission")]
+        [DataMember(Name = "assignPermission", EmitDefaultValue = false)]
         public Permission AssignPermission { get; set; }
 
-        [DataMember(Name = "updatePermission")]
+        [DataMember(Name = "updatePermission", EmitDefaultValue = false)]
         public Permission UpdatePermission { get; set; }
 
-        [DataMember(Name = "deletePermission")]
+        [DataMember(Name = "deletePermission", EmitDefaultValue = false)]
         public Permission DeletePermission { get; set; }
 
         [DataMember(Name = "listingScope")]

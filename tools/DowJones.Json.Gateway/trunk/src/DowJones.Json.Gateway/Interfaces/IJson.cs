@@ -6,4 +6,5 @@ namespace DowJones.Json.Gateway.Interfaces
     {
         string ToJson();
     }
+
 }
