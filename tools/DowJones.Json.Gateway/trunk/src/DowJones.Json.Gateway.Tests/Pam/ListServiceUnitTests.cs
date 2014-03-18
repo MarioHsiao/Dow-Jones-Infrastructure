@@ -5,7 +5,6 @@ using DowJones.Json.Gateway.Extensions;
 using DowJones.Json.Gateway.Interfaces;
 using DowJones.Json.Gateway.Messages.Pam.Api_1_0.Assets.List;
 using DowJones.Json.Gateway.Messages.Pam.Api_1_0.Assets.List.Transactions;
-using DowJones.Json.Gateway.Messages.Pam.Api_1_0.Sharing;
 using DowJones.Json.Gateway.Tests.Core;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Environment = DowJones.Json.Gateway.Interfaces.Environment;
@@ -38,20 +37,18 @@ namespace DowJones.Json.Gateway.Tests.Pam
             try
             {
                 var rm = new RestManager();
-                var t = rm.Execute<GetListByIdRequest, GetListByIdResponse>(r);
+                RestResponse<GetListByIdResponse> t = rm.Execute<GetListByIdRequest, GetListByIdResponse>(r);
 
                 if (t.ReturnCode == 0)
                 {
                     Assert.IsNotNull(t);
-                    
                 }
                 else
                 {
                     Console.WriteLine(t.Error.Message);
-                    Assert.Fail(string.Concat("failed w/rc:= ",t.ReturnCode.ToString(CultureInfo.InvariantCulture)));
+                    Assert.Fail(string.Concat("failed w/rc:= ", t.ReturnCode.ToString(CultureInfo.InvariantCulture)));
                 }
                 Console.WriteLine(t.Data.ToJson(true));
-                
             }
             catch (JsonGatewayException gatewayException)
             {
@@ -66,53 +63,54 @@ namespace DowJones.Json.Gateway.Tests.Pam
         [TestMethod]
         public void CreateList()
         {
-
-            var item = new AuthorItem();
-            var item1 = new AuthorItem();
-            var authList = new AuthorList();
-            var per = new Permission();
-            var role = new ShareRoleCollection();
-            var itemColl = new ItemCollection();
-            var group = new ItemGroup();
-            var grpList = new GroupList();
-            var share = new ShareProperties();
-            var grpCollection = new ItemGroupCollection();
-            grpList.Add(new GroupIdList { Type = GroupListType.Group, IdCollection = new IdCollection { "test-1", "test-2" } });
-            role.Add(ShareRole.Admin);
-            per.Scope = ShareScope.Account;
-            per.ShareRoleCollection = role;
-            per.Groups = grpList;
-            share.AccessPermission = per;
-            share.AssignPermission = new Permission { Groups = grpList, Scope = ShareScope.Personal, ShareRoleCollection = role };
-            share.DeletePermission = new Permission { Groups = grpList, Scope = ShareScope.AccountAdmin, ShareRoleCollection = role };
-            item.Id = 1;
-            item.Properties = new AuthorItemProperties { Code = "001" };
-            item1.Id = 2;
-            item1.Properties = new AuthorItemProperties { Code = "002" };
-            itemColl.Add(item);
-            itemColl.Add(item1);
-            group.Id = 10;
-            group.GroupType = ItemGroupType.Default;
-            group.ItemCollection = itemColl;
-
-            authList.Id = 100;
-            authList.Name = "Dow Jones Author List";
-            authList.CustomCode = "Arunald";
-            grpCollection.Add(group);
-            authList.ItemGroupCollection = grpCollection;
-            authList.Properties = new AuthorListProperties { Description = "Ahthor List" };
-            authList.ShareProperties = share;
+            var authList = new AuthorList
+                           {
+                               Id = 100,
+                               Name = "Dow Jones Author List",
+                               CustomCode = "Arunald",
+                               Properties = new AuthorListProperties
+                                            {
+                                                Description = "Author List"
+                                            },
+                               ItemGroupCollection = new ItemGroupCollection
+                                                     {
+                                                         new ItemGroup
+                                                         {
+                                                             Id = 10,
+                                                             GroupType = ItemGroupType.Default,
+                                                             ItemCollection = new ItemCollection(new[]
+                                                                                                 {
+                                                                                                     new AuthorItem
+                                                                                                     {
+                                                                                                         Id = 1, 
+                                                                                                         Properties = new AuthorItemProperties
+                                                                                                                      {
+                                                                                                                          Code = "001"
+                                                                                                                      }
+                                                                                                     },
+                                                                                                     new AuthorItem
+                                                                                                     {
+                                                                                                         Id = 2, 
+                                                                                                         Properties = new AuthorItemProperties
+                                                                                                                      {
+                                                                                                                          Code = "002"
+                                                                                                                      }
+                                                                                                     }
+                                                                                                 })
+                                                         }
+                                                     }
+                           };
 
             Console.Write(authList.ToJson(true));
 
             var r = new RestRequest<CreateListRequest>
-            {
-                Request = new CreateListRequest
-                {
-                    List = authList
-                },
-                ControlData = GetControlData(),
-            };
+                    {
+                        Request = new CreateListRequest
+                                  {
+                                      List = authList
+                                  },
+                        ControlData = GetControlData(),
+                    };
 
             // ReSharper disable StringLiteralTypo
             r.ControlData.RoutingData.ServerUri = "http://pamapi.dev.dowjones.net/";
@@ -123,7 +121,7 @@ namespace DowJones.Json.Gateway.Tests.Pam
             try
             {
                 var rm = new RestManager();
-                var t = rm.Execute<CreateListRequest, CreateListResponse>(r);
+                RestResponse<CreateListResponse> t = rm.Execute<CreateListRequest, CreateListResponse>(r);
 
                 if (t.ReturnCode == 0)
                 {
@@ -135,7 +133,6 @@ namespace DowJones.Json.Gateway.Tests.Pam
                     Assert.Fail(string.Concat("failed w/rc:= ", t.ReturnCode.ToString(CultureInfo.InvariantCulture)));
                 }
                 Console.WriteLine(t.Data.ToJson(true));
-
             }
             catch (JsonGatewayException gatewayException)
             {

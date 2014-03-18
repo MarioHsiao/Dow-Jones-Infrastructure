@@ -23,7 +23,7 @@ namespace DowJones.Json.Gateway.Messages.Pam.Api_1_0.Assets.List
         [DataMember(Name = "itemGroupCollection")]
         public ItemGroupCollection ItemGroupCollection { get; set; }
 
-        [DataMember(Name = "shareProperties")]
+        [DataMember(Name = "shareProperties", EmitDefaultValue = false)]
         public ShareProperties ShareProperties { get; set; }
     }
 }
