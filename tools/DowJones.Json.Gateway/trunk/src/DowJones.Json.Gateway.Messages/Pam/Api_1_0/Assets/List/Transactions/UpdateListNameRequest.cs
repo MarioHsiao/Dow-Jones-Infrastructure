@@ -4,7 +4,7 @@ using DowJones.Json.Gateway.Interfaces;
 namespace DowJones.Json.Gateway.Messages.Pam.Api_1_0.Assets.List.Transactions
 {
     [DataContract(Name = "UpdateListName", Namespace = "")]
-    public class UpdateListNameRequest : IPostJsonRestRequest
+    public class UpdateListNameRequest : PostJsonRestRequest
     {
         [DataMember(Name = "id", IsRequired = true)]
         public long Id { get; set; }

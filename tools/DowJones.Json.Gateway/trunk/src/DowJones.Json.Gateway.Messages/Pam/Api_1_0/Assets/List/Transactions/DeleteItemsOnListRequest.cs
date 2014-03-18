@@ -6,7 +6,7 @@ namespace DowJones.Json.Gateway.Messages.Pam.Api_1_0.Assets.List.Transactions
 {
     [ServicePath("pamapi/1.0/List.svc")]
     [DataContract(Name = "DeleteItemsOnList", Namespace = "")]
-    public class DeleteItemsOnListRequest : IPostJsonRestRequest
+    public class DeleteItemsOnListRequest : PostJsonRestRequest
     {
         [DataMember(Name = "listId", IsRequired = true)]
         public long ListId { get; set; }

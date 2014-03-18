@@ -43,14 +43,15 @@ namespace DowJones.Json.Gateway.Processors
             client.RemoveHandler("application/xml");
             client.RemoveHandler("text/xml");
 
+            var decorator = JsonSerializerFactory.Create(restRequest.ControlData.RoutingData.Serializer);
             var request = new RestRequest("", _method)
             {
                 RequestFormat = DataFormat.Json,
-                JsonSerializer = JsonSerializerFactory.Create(JsonSerializer.DataContract),
+                JsonSerializer = decorator,
             };
             
             request.AddParameter("uri", GetRoutingUri(restRequest.Request), ParameterType.QueryString);
-            AddCommon(restRequest, request);
+            AddCommon(restRequest, request, decorator);
 
             return new RestComposite
             {
@@ -67,13 +68,14 @@ namespace DowJones.Json.Gateway.Processors
             client.RemoveHandler("application/xml");
             client.RemoveHandler("text/xml");
 
+            var decorator = JsonSerializerFactory.Create(restRequest.ControlData.RoutingData.Serializer);
             var request = new RestRequest(GetRoutingUri(restRequest.Request), _method)
             {
                 RequestFormat = DataFormat.Json,
-                JsonSerializer = JsonSerializerFactory.Create(JsonSerializer.DataContract),
+                JsonSerializer = decorator,
             };
 
-            AddCommon(restRequest, request);
+            AddCommon(restRequest, request, decorator);
 
             return new RestComposite
             {
@@ -82,12 +84,12 @@ namespace DowJones.Json.Gateway.Processors
             };
         }
 
-        protected internal void AddCommon<T>(RestRequest<T> restRequest, IRestRequest request)
+        protected internal void AddCommon<T>(RestRequest<T> restRequest, IRestRequest request, DataConverterDecorator decorator)
             where T : IJsonRestRequest, new()
         {
             // add ControlData to header
             request.AddHeader("ControlData", restRequest.ControlData.ToJson());
-            request.AddBody(restRequest.Request);
+            request.AddParameter("application/json", restRequest.Request.ToJson(decorator), ParameterType.RequestBody);
         }
     }
 }

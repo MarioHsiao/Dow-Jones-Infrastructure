@@ -1,6 +1,6 @@
 ﻿namespace DowJones.Json.Gateway.Interfaces
 {
-    public interface IControlData : IJsonSerializable
+    public interface IControlData : IJsonSerializable, IJsonRestRequest
     {
         IRoutingData RoutingData { get; set; }
 

@@ -6,8 +6,9 @@ namespace DowJones.Json.Gateway.Converters
 {
     public abstract class DataConverterDecorator : ISerialize, ISerializer, IDeserializer
     {
-        public abstract string Serialize(object obj);
+        public abstract string Serialize<T>(T obj);
 
+        public abstract string Serialize(object obj);
         public string RootElement { get; set; }
         
         public string Namespace { get; set; }

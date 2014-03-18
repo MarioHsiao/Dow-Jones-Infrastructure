@@ -4,7 +4,7 @@ using DowJones.Json.Gateway.Interfaces;
 namespace DowJones.Json.Gateway.Messages.Pam.Api_1_0.Assets.List.Transactions
 {
     [DataContract(Name = "UpdateListPropertiesResponse", Namespace = "")]
-    public class UpdateListPropertiesResponse : IJsonRestResponse
+    public class UpdateListPropertiesResponse : JsonRestResponse
     {
     }
 }

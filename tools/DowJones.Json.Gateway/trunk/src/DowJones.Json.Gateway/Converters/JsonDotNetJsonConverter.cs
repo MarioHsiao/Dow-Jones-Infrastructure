@@ -72,7 +72,7 @@ namespace DowJones.Json.Gateway.Converters
         /// </summary>
         public string Namespace { get; set; }
 
-        public string Serialize(object obj)
+        public string Serialize<T>(T obj)
         {
             return Serialize(obj, Formatting.None);
         }

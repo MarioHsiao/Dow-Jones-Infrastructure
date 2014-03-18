@@ -7,13 +7,13 @@ namespace DowJones.Json.Gateway.Converters
 {
     public class DataContractJsonConverter : ISerialize
     {
-        public string Serialize(object obj)
+        public string Serialize<T>(T obj)
         {
             //Create a stream to serialize the object to.
             var ms = new MemoryStream();
 
             // Serializer the User object to the stream.
-            var serializer = new DataContractJsonSerializer(obj.GetType());
+            var serializer = new DataContractJsonSerializer(typeof(T));
             serializer.WriteObject(ms, obj);
             var json = ms.ToArray();
             ms.Close();

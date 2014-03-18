@@ -4,7 +4,7 @@ using DowJones.Json.Gateway.Interfaces;
 namespace DowJones.Json.Gateway.Messages.Pam.Api_1_0.Assets.List.Transactions
 {
     [DataContract(Name = "GetListsDetailsList", Namespace = "")]
-    public class GetListsDetailsListRequest : IPostJsonRestRequest
+    public class GetListsDetailsListRequest : PostJsonRestRequest
 
     {
         [DataMember(Name = "maxResultsToReturn", IsRequired = true)]

@@ -6,7 +6,7 @@ namespace DowJones.Json.Gateway.Messages.Pam.Api_1_0.Assets.List.Transactions
 {
     [ServicePath("pamapi/1.0/List.svc")]
     [DataContract(Name = "AddItemsToList", Namespace = "")]
-    public class AddItemsToListRequest : IPostJsonRestRequest
+    public class AddItemsToListRequest : PostJsonRestRequest
     {
         [DataMember(Name = "listId", IsRequired = true)]
         public long ListId { get; set; }

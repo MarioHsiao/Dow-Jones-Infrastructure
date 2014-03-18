@@ -5,7 +5,7 @@ using DowJones.Json.Gateway.Messages.Pam.Api_1_0.Sharing;
 namespace DowJones.Json.Gateway.Messages.Pam.Api_1_0.Assets.List.Transactions
 {
     [DataContract(Name = "SetShareProperties", Namespace = "")]
-    public class SetSharePropertiesRequest : IPostJsonRestRequest
+    public class SetSharePropertiesRequest : PostJsonRestRequest
     {
         [DataMember(Name = "listId", IsRequired = true)]
         public long ListId { get; set; }

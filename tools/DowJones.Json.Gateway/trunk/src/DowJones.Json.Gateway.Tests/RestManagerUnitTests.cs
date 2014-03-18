@@ -45,7 +45,7 @@ namespace DowJones.Json.Gateway.Tests
 
     [ServicePath("pamapi/1.0/DJXPages.svc")]
     [DataContract(Name = "GetPageByName")]
-    public class GetPageByName : IGetJsonRestRequest
+    public class GetPageByName : GetJsonRestRequest
     {
         [DataMember(Name = "type")]
         public string Type { get; set; }
@@ -54,7 +54,7 @@ namespace DowJones.Json.Gateway.Tests
         public string Name { get; set; }
     }
 
-    public class GetPageByNameResponse : IJsonRestResponse
+    public class GetPageByNameResponse : JsonRestResponse
     {
     }
 }

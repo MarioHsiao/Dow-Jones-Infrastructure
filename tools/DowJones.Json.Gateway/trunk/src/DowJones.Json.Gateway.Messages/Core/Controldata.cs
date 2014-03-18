@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Runtime.Serialization;
+using DowJones.Json.Gateway.Converters;
 using DowJones.Json.Gateway.Interfaces;
 
 namespace DowJones.Json.Gateway.Messages.Core
 {
     [DataContract]
-    public class ControlData : AbstractJsonSerializable, IControlData 
+    public class ControlData : AbstractJsonSerializable, IControlData, IJsonRestRequest
     {
         [DataMember]
         public IRoutingData RoutingData { get; set; }
@@ -25,6 +26,11 @@ namespace DowJones.Json.Gateway.Messages.Core
         public bool IsValid()
         {
             return true;
+        }
+
+        public string ToJson(ISerialize decorator)
+        {
+            return decorator.Serialize(this);
         }
     }
 }
