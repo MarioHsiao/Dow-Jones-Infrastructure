@@ -20,7 +20,7 @@
 
         internal static DataConverterDecorator Instance
         {
-            get { return _instance ?? (_instance = new DataContractDataConverterDecorator(DataContractConverterSingleton.Instance)); }
+            get { return _instance ?? (_instance = new JsonDotNetDataConverterDecorator(JsonDotNetDataConverterSingleton.Instance)); }
         }
     }
 }

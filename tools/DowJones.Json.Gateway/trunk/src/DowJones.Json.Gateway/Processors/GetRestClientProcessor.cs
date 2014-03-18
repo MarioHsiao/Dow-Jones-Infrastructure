@@ -41,7 +41,7 @@ namespace DowJones.Json.Gateway.Processors
             var request = new RestRequest("", Method.GET)
             {
                 RequestFormat = DataFormat.Json,
-                JsonSerializer = JsonSerializerFactory.Create(JsonSerializer.DataContract),
+                JsonSerializer = JsonSerializerFactory.Create(restRequest.ControlData.RoutingData.Serializer),
             };
             request.AddParameter("uri", GetRoutingUri(restRequest.Request), ParameterType.QueryString);
             AddCommon(restRequest, request);
@@ -60,11 +60,13 @@ namespace DowJones.Json.Gateway.Processors
             var client = new RestClient(restRequest.ControlData.RoutingData.ServerUri);
             client.RemoveHandler("application/xml");
             client.RemoveHandler("text/xml");
+
+            
             
             var request = new RestRequest(GetRoutingUri(restRequest.Request), Method.GET)
             {
                 RequestFormat = DataFormat.Json,
-                JsonSerializer = JsonSerializerFactory.Create(JsonSerializer.DataContract),
+                JsonSerializer = JsonSerializerFactory.Create(restRequest.ControlData.RoutingData.Serializer),
             };
             
             AddCommon(restRequest, request);

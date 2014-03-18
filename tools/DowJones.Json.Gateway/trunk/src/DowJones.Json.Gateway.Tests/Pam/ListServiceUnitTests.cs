@@ -32,7 +32,7 @@ namespace DowJones.Json.Gateway.Tests.Pam
             // ReSharper restore StringLiteralTypo
             r.ControlData.RoutingData.Environment = Environment.Development;
             r.ControlData.RoutingData.Environment = Environment.Development;
-            r.ControlData.RoutingData.Serializer = JsonSerializer.DataContract;
+            r.ControlData.RoutingData.Serializer = JsonSerializer.JsonDotNet;
 
             try
             {

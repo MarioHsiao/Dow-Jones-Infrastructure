@@ -63,6 +63,10 @@ namespace DowJones.Json.Gateway.Processors
             where TReq : IJsonRestRequest, new()
             where TRes : IJsonRestResponse, new()
         {
+            var jsonDecorator = restRequest.ControlData.RoutingData.Serializer == JsonSerializer.DataContract ?
+                DataContractConverterDecoratorSingleton.Instance :
+                JsonDotNetConverterDecoratorSingleton.Instance;
+
             switch (response.StatusCode)
             {
                 case HttpStatusCode.NonAuthoritativeInformation:
@@ -72,7 +76,7 @@ namespace DowJones.Json.Gateway.Processors
                            {
                                ReturnCode = 0,
                                ResponseControlData = restRequest.ControlData,
-                               Data = DataContractConverterDecoratorSingleton.Instance.Deserialize<TRes>(response)
+                               Data = jsonDecorator.Deserialize<TRes>(response)
                            };
 
                 case HttpStatusCode.BadRequest:
