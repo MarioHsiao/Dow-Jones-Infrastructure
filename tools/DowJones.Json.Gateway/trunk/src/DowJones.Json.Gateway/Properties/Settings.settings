@@ -8,8 +8,8 @@
     <Setting Name="Timeout" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">15000</Value>
     </Setting>
-    <Setting Name="TransportType" Type="System.String" Scope="User">
-      <Value Profile="(Default)">HTTP</Value>
+    <Setting Name="TransportType" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">RTS</Value>
     </Setting>
   </Settings>
 </SettingsFile>

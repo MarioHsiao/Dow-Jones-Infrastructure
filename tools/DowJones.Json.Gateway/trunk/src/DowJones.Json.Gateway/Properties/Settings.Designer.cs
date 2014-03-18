@@ -41,15 +41,12 @@ namespace DowJones.Json.Gateway.Properties {
             }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("RTS")]
         public string TransportType {
             get {
                 return ((string)(this["TransportType"]));
-            }
-            set {
-                this["TransportType"] = value;
             }
         }
     }
