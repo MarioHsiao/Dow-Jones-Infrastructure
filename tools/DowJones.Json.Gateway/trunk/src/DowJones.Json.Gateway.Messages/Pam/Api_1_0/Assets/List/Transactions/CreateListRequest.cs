@@ -14,7 +14,7 @@ namespace DowJones.Json.Gateway.Messages.Pam.Api_1_0.Assets.List.Transactions
 
         public sealed override string ToJson(ISerialize decorator)
         {
-            return decorator.Serialize(List);
+            return decorator.Serialize(this);
         }
     }
 }

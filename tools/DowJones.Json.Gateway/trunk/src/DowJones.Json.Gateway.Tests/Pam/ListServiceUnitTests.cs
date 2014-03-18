@@ -67,16 +67,16 @@ namespace DowJones.Json.Gateway.Tests.Pam
         public void CreateList()
         {
 
-            AuthorItem item = new AuthorItem();
-            AuthorItem item_1 = new AuthorItem();
+            var item = new AuthorItem();
+            var item1 = new AuthorItem();
             var authList = new AuthorList();
-            Permission per = new Permission();
-            ShareRoleCollection role = new ShareRoleCollection();
-            ItemCollection itemColl = new ItemCollection();
-            ItemGroup group = new ItemGroup();
-            GroupList grpList = new GroupList();
-            ShareProperties share = new ShareProperties();
-            ItemGroupCollection grpCollection = new ItemGroupCollection();
+            var per = new Permission();
+            var role = new ShareRoleCollection();
+            var itemColl = new ItemCollection();
+            var group = new ItemGroup();
+            var grpList = new GroupList();
+            var share = new ShareProperties();
+            var grpCollection = new ItemGroupCollection();
             grpList.Add(new GroupIdList { Type = GroupListType.Group, IdCollection = new IdCollection { "test-1", "test-2" } });
             role.Add(ShareRole.Admin);
             per.Scope = ShareScope.Account;
@@ -87,10 +87,10 @@ namespace DowJones.Json.Gateway.Tests.Pam
             share.DeletePermission = new Permission { Groups = grpList, Scope = ShareScope.AccountAdmin, ShareRoleCollection = role };
             item.Id = 1;
             item.Properties = new AuthorItemProperties { Code = "001" };
-            item_1.Id = 2;
-            item_1.Properties = new AuthorItemProperties { Code = "002" };
+            item1.Id = 2;
+            item1.Properties = new AuthorItemProperties { Code = "002" };
             itemColl.Add(item);
-            itemColl.Add(item_1);
+            itemColl.Add(item1);
             group.Id = 10;
             group.GroupType = ItemGroupType.Default;
             group.ItemCollection = itemColl;
