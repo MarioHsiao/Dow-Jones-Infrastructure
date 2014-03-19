@@ -3,6 +3,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using DowJones.Json.Gateway.Converters;
 using DowJones.Json.Gateway.Interfaces;
+using log4net;
 using RestSharp;
 using Environment = DowJones.Json.Gateway.Interfaces.Environment;
 
@@ -10,6 +11,8 @@ namespace DowJones.Json.Gateway.Processors
 {
     internal class GetRestClientProcessor : RestClientProcessor
     {
+        private readonly ILog _log = LogManager.GetLogger(typeof(GetRestClientProcessor));
+
         public override RestResponse<TRes> Process<TReq, TRes>(RestRequest<TReq> restRequest)
         {
             var composite = GetRestComposite(restRequest);
@@ -83,11 +86,19 @@ namespace DowJones.Json.Gateway.Processors
             where T : IJsonRestRequest, new()
         {
              // add ControlData to header
-            request.AddHeader("ControlData", restRequest.ControlData.ToJson());
-            GetQueryString(restRequest.Request, request);
+            var jsonControlData = restRequest.ControlData.ToJson(ControlDataDataConverterSingleton.Instance);
+            if (_log.IsDebugEnabled)
+            {
+                _log.DebugFormat("ControlData(Json):\n{0}", jsonControlData);
+            }
+
+            request.AddHeader("ControlData", jsonControlData);
+            GetQueryString(restRequest.Request, request, decorator);
         }
 
-        protected internal void GetQueryString<TRequest>(TRequest request, IRestRequest restRequest)
+
+
+        protected internal void GetQueryString<TRequest>(TRequest request, IRestRequest restRequest, DataConverterDecorator decorator)
             where TRequest : IJsonRestRequest, new()
         {
             var properties = request.GetType().GetProperties();
@@ -115,11 +126,11 @@ namespace DowJones.Json.Gateway.Processors
                 }
                 else if (sourceType == typeof(DateTime))
                 {
-                    restRequest.AddParameter(name, ((DateTime)val).Ticks, ParameterType.QueryString);
+                    restRequest.AddParameter(name, decorator.Serialize(val), ParameterType.QueryString);
                 }
                 else if (sourceType.IsClass)
                 {
-                    restRequest.AddParameter(name, JsonSerializerFactory.Create(JsonSerializer.DataContract).Serialize(val));
+                    restRequest.AddParameter(name, decorator.Serialize(val));
                 }
             }
         }

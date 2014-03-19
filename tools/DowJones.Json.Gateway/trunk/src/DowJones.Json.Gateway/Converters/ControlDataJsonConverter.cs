@@ -4,11 +4,10 @@ using DowJones.Json.Gateway.Extensions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
-using JsonSerializer = Newtonsoft.Json.JsonSerializer;
 
 namespace DowJones.Json.Gateway.Converters
 {
-    internal class JsonDotNetJsonConverter : ISerialize
+    internal class ControlDataJsonConverter : ISerialize
     {
         public JsonSerializer Serializer { get; private set; }
 
@@ -16,7 +15,7 @@ namespace DowJones.Json.Gateway.Converters
         ///     Default serializer
         /// </summary>
         /// 
-        public JsonDotNetJsonConverter()
+        public ControlDataJsonConverter()
         {
             Serializer = new JsonSerializer
                          {
@@ -24,22 +23,15 @@ namespace DowJones.Json.Gateway.Converters
                              DefaultValueHandling = DefaultValueHandling.Ignore,
                              ContractResolver = new DefaultContractResolver(),
                              DateTimeZoneHandling = DateTimeZoneHandling.Utc,
-                             TypeNameHandling = TypeNameHandling.Auto,
+                             TypeNameHandling = TypeNameHandling.None,
                              Binder = new TypeNameSerializationBinder(),
                              MissingMemberHandling = MissingMemberHandling.Ignore,
                              //PreserveReferencesHandling = PreserveReferencesHandling.All,
                              TypeNameAssemblyFormat = FormatterAssemblyStyle.Full,
                          };
-            Serializer.Converters.Add(new StringEnumConverter {AllowIntegerValues = false});
+            Serializer.Converters.Add(new StringEnumConverter { AllowIntegerValues = false });
         }
-
-        /// <summary>
-        ///     Default serializer with overload for allowing custom Json.NET settings
-        /// </summary>
-        public JsonDotNetJsonConverter(JsonSerializer serializer)
-        {
-            Serializer = serializer;
-        }
+        
 
         public T Deserialize<T>(string str)
         {

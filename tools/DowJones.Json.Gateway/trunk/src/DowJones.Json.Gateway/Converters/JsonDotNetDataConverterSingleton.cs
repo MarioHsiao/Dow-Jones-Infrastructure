@@ -2,11 +2,11 @@
 {
     internal class JsonDotNetDataConverterSingleton
     {
-        private static JsonDotNetJsonConverter _instance;
+        private static ISerialize _instance;
 
         private JsonDotNetDataConverterSingleton() { }
 
-        internal static JsonDotNetJsonConverter Instance
+        internal static ISerialize Instance
         {
             get { return _instance ?? (_instance = new JsonDotNetJsonConverter()); }
         }

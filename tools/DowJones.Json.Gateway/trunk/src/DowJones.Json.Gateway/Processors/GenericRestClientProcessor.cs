@@ -91,7 +91,7 @@ namespace DowJones.Json.Gateway.Processors
             where T : IJsonRestRequest, new()
         {
             // add ControlData to header
-            var jsonControlData = restRequest.ControlData.ToJson();
+            var jsonControlData = restRequest.ControlData.ToJson(ControlDataDataConverterSingleton.Instance);
             var jsonRequest = restRequest.Request.ToJson(decorator);
             if (_log.IsDebugEnabled)
             {

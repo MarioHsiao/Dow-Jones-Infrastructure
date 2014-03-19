@@ -4,9 +4,9 @@ namespace DowJones.Json.Gateway.Converters
 {
     class JsonDotNetDataConverterDecorator : DataConverterDecorator
     {
-        private readonly JsonDotNetJsonConverter _jsonConverter;
+        private readonly ISerialize _jsonConverter;
 
-        public JsonDotNetDataConverterDecorator(JsonDotNetJsonConverter converter)
+        public JsonDotNetDataConverterDecorator(ISerialize converter)
         {
             ContentType = "application/json";
             _jsonConverter = converter;
@@ -34,7 +34,7 @@ namespace DowJones.Json.Gateway.Converters
 
         public override sealed string ContentType { get; set; }
 
-        protected internal override T Deserialize<T>(string str)
+        public override T Deserialize<T>(string str)
         {
             return _jsonConverter.Deserialize<T>(str);
         }

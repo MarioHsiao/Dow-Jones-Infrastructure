@@ -4,7 +4,12 @@ using RestSharp.Serializers;
 
 namespace DowJones.Json.Gateway.Converters
 {
-    public abstract class DataConverterDecorator : ISerialize, ISerializer, IDeserializer
+    public interface IDataConverterDecorator : ISerialize
+    {
+        T Deserialize<T>(string str);
+    }
+
+    public abstract class DataConverterDecorator : ISerializer, IDeserializer, IDataConverterDecorator
     {
         public abstract string Serialize<T>(T obj, Formatting formatting);
 
@@ -23,7 +28,7 @@ namespace DowJones.Json.Gateway.Converters
         
         public abstract T Deserialize<T>(IRestResponse response);
 
-        protected internal abstract T Deserialize<T>(string str);
+        public abstract T Deserialize<T>(string str);
 
         public abstract string ContentType { get; set; }
 

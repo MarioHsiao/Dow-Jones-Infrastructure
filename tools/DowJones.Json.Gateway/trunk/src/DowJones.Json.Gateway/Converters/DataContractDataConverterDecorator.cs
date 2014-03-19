@@ -34,7 +34,7 @@ namespace DowJones.Json.Gateway.Converters
             return _jsonConverter.Deserialize<T>(response);
         }
 
-        protected internal override T Deserialize<T>(string str)
+        public override T Deserialize<T>(string str)
         {
             return _jsonConverter.Deserialize<T>(str);
         }
