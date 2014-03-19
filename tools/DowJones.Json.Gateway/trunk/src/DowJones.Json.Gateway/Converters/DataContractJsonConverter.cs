@@ -38,14 +38,5 @@ namespace DowJones.Json.Gateway.Converters
         {
             return Deserialize<T>(response.Content);
         }
-
-        public string RootElement { get; set; }
-        public string Namespace { get; set; }
-        public string DateFormat { get; set; }
-        public string ContentType { get; set; }
-        public string Serialize(object obj, Formatting formatting)
-        {
-            return Serialize(obj);
-        }
     }
 }

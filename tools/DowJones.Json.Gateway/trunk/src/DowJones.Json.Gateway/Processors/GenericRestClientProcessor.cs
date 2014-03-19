@@ -2,6 +2,7 @@ using System;
 using DowJones.Json.Gateway.Converters;
 using DowJones.Json.Gateway.Interfaces;
 using DowJones.Json.Gateway.Properties;
+using log4net;
 using RestSharp;
 using Environment = DowJones.Json.Gateway.Interfaces.Environment;
 
@@ -10,6 +11,8 @@ namespace DowJones.Json.Gateway.Processors
     internal class GenericRestClientProcessor : RestClientProcessor
     {
         private readonly Method _method;
+        private readonly ILog _log = LogManager.GetLogger(typeof (GenericRestClientProcessor));
+
         public GenericRestClientProcessor(Method method)
         {
             _method = method;
@@ -88,8 +91,15 @@ namespace DowJones.Json.Gateway.Processors
             where T : IJsonRestRequest, new()
         {
             // add ControlData to header
-            request.AddHeader("ControlData", restRequest.ControlData.ToJson());
-            request.AddParameter("application/json", restRequest.Request.ToJson(decorator), ParameterType.RequestBody);
+            var jsonControlData = restRequest.ControlData.ToJson();
+            var jsonRequest = restRequest.Request.ToJson(decorator);
+            if (_log.IsDebugEnabled)
+            {
+                _log.DebugFormat("ControlData(Json):\n{0}", jsonControlData);
+                _log.DebugFormat("Request(Json):\n{0}", jsonRequest);
+            }
+            request.AddHeader("ControlData", jsonControlData);
+            request.AddParameter("application/json", jsonRequest, ParameterType.RequestBody);
         }
     }
 }

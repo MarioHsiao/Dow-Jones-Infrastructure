@@ -28,12 +28,7 @@ namespace DowJones.Json.Gateway.Converters
 
         public override Type BindToType(string assemblyName, string typeName)
         {
-            foreach (var t in LoadedAssemblies.Select(a => a.GetTypes()).SelectMany(assemblyTypes => assemblyTypes.Where(t => t.Name == typeName)))
-            {
-                return t;
-            }
-
-            return null;
+            return LoadedAssemblies.Select(a => a.GetTypes()).SelectMany(assemblyTypes => assemblyTypes.Where(t => t.Name == typeName)).FirstOrDefault();
         }
     }
 }

@@ -10,13 +10,14 @@ namespace DowJones.Json.Gateway.Messages.Core
     [KnownType(typeof(TransactionCacheData))]
     [KnownType(typeof(UserCommerceData))]
     [KnownType(typeof(UserCredentialData))]
+    [KnownType(typeof(ControlData))]
     public abstract class AbstractJsonSerializable:  IJsonSerializable
     {
         public string ToJson()
         {
             return JsonDotNetDataConverterSingleton.Instance.Serialize(this);
         }
-        
+
         public object Clone()
         {
             return MemberwiseClone();

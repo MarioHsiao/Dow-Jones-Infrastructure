@@ -1,12 +1,11 @@
-﻿using System;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 using DowJones.Json.Gateway.Converters;
 using DowJones.Json.Gateway.Interfaces;
 
 namespace DowJones.Json.Gateway.Messages.Core
 {
     [DataContract]
-    public class ControlData : AbstractJsonSerializable, IControlData, IJsonRestRequest
+    public class ControlData : AbstractJsonSerializable, IControlData
     {
         [DataMember]
         public IRoutingData RoutingData { get; set; }

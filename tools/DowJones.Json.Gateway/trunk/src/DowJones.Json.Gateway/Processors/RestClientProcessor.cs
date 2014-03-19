@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Net;
 using DowJones.Json.Gateway.Converters;
 using DowJones.Json.Gateway.Exceptions;
@@ -72,10 +73,18 @@ namespace DowJones.Json.Gateway.Processors
                 case HttpStatusCode.NonAuthoritativeInformation:
                 case HttpStatusCode.NoContent:
                 case HttpStatusCode.OK: // Request succeeded process body of code
+                    var cd = restRequest.ControlData;
+                    if (response.Headers.Count > 0)
+                    {
+                        foreach (var parameter in response.Headers.Where(parameter => String.Equals(parameter.Name, "ControlData", StringComparison.InvariantCultureIgnoreCase)))
+                        {
+                            cd = JsonDotNetDataConverterSingleton.Instance.Deserialize<IControlData>(parameter.Value.ToString());
+                        }
+                    }
                     return new RestResponse<TRes>
                            {
                                ReturnCode = 0,
-                               ResponseControlData = restRequest.ControlData,
+                               ResponseControlData = cd,
                                Data = jsonDecorator.Deserialize<TRes>(response)
                            };
 

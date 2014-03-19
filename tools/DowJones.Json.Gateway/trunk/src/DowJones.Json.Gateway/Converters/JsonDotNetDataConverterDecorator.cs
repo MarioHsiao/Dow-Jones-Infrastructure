@@ -29,7 +29,7 @@ namespace DowJones.Json.Gateway.Converters
 
         public override T Deserialize<T>(IRestResponse response)
         {
-            return _jsonConverter.Deserialize<T>(response);
+            return _jsonConverter.Deserialize<T>(response.Content);
         }
 
         public override sealed string ContentType { get; set; }

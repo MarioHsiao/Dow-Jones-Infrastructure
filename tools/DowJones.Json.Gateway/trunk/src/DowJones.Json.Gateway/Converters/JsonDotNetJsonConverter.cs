@@ -4,7 +4,6 @@ using DowJones.Json.Gateway.Extensions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
-using RestSharp;
 using JsonSerializer = Newtonsoft.Json.JsonSerializer;
 
 namespace DowJones.Json.Gateway.Converters
@@ -16,21 +15,20 @@ namespace DowJones.Json.Gateway.Converters
         /// <summary>
         ///     Default serializer
         /// </summary>
+        /// 
         public JsonDotNetJsonConverter()
         {
-            ContentType = "application/json";
-
             Serializer = new JsonSerializer
                          {
                              NullValueHandling = NullValueHandling.Ignore,
                              DefaultValueHandling = DefaultValueHandling.Ignore,
                              ContractResolver = new DefaultContractResolver(),
                              DateTimeZoneHandling = DateTimeZoneHandling.Utc,
-                             TypeNameHandling = TypeNameHandling.Auto,
+                             TypeNameHandling = TypeNameHandling.None,
                              Binder = new TypeNameSerializationBinder(),
                              MissingMemberHandling = MissingMemberHandling.Ignore,
                              //PreserveReferencesHandling = PreserveReferencesHandling.All,
-                             TypeNameAssemblyFormat = FormatterAssemblyStyle.Simple,
+                             TypeNameAssemblyFormat = FormatterAssemblyStyle.Full,
                          };
             Serializer.Converters.Add(new StringEnumConverter {AllowIntegerValues = false});
         }
@@ -40,14 +38,7 @@ namespace DowJones.Json.Gateway.Converters
         /// </summary>
         public JsonDotNetJsonConverter(JsonSerializer serializer)
         {
-            ContentType = "application/json";
             Serializer = serializer;
-        }
-
-        public T Deserialize<T>(IRestResponse response)
-        {
-            return Deserialize<T>(response.Content);
-
         }
 
         public T Deserialize<T>(string str)
@@ -57,35 +48,6 @@ namespace DowJones.Json.Gateway.Converters
             return Serializer.Deserialize<T>(reader);
         }
 
-        /// <summary>
-        ///     Content type for serialized content
-        /// </summary>
-        public string ContentType { get; set; }
-
-        /// <summary>
-        ///     Unused for JSON Serialization
-        /// </summary>
-        public string DateFormat { get; set; }
-
-        /// <summary>
-        ///     Unused for JSON Serialization
-        /// </summary>
-        public string Namespace { get; set; }
-
-        public string Serialize(object obj, Formatting formatting)
-        {
-            return Serialize(obj, Formatting.None);
-        }
-
-        public string Serialize<T>(T obj)
-        {
-            return Serialize(obj, Formatting.None);
-        }
-
-        /// <summary>
-        ///     Unused for JSON Serialization
-        /// </summary>
-        public string RootElement { get; set; }
 
         public string Serialize<T>(T obj, Formatting formatting)
         {
@@ -97,6 +59,11 @@ namespace DowJones.Json.Gateway.Converters
                 Serializer.Serialize(jsonTextWriter, obj, typeof(T));
                 return stringWriter.ToString();
             }
+        }
+
+        public string Serialize<T>(T obj)
+        {
+            return Serialize(obj, Formatting.None);
         }
     }
 }
