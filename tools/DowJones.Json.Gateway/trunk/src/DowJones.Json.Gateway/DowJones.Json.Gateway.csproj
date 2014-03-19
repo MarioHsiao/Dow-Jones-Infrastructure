@@ -81,9 +81,14 @@
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Interfaces\IControlData.cs" />
+    <Compile Include="Interfaces\IDeleteJsonRestRequest.cs" />
+    <Compile Include="Interfaces\IGetJsonRestRequest.cs" />
     <Compile Include="Interfaces\IJson.cs" />
     <Compile Include="Interfaces\IJsonRestRequest.cs" />
+    <Compile Include="Interfaces\IJsonRestResponse.cs" />
     <Compile Include="Interfaces\IPlatformAdminData.cs" />
+    <Compile Include="Interfaces\IPostJsonRestRequest.cs" />
+    <Compile Include="Interfaces\IPutJsonRestRequest.cs" />
     <Compile Include="Interfaces\IRoutingData.cs" />
     <Compile Include="Interfaces\IToken.cs" />
     <Compile Include="Interfaces\ITransactionCacheData.cs" />
