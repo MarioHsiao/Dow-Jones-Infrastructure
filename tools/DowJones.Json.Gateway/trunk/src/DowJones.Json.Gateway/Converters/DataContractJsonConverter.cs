@@ -7,6 +7,11 @@ namespace DowJones.Json.Gateway.Converters
 {
     public class DataContractJsonConverter : ISerialize
     {
+        public string Serialize<T>(T obj, Formatting formatting)
+        {
+            return Serialize(obj);
+        }
+
         public string Serialize<T>(T obj)
         {
             //Create a stream to serialize the object to.

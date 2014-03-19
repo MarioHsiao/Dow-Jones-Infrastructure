@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using DowJones.Json.Gateway.Converters;
 using DowJones.Json.Gateway.Exceptions;
 using DowJones.Json.Gateway.Extensions;
 using DowJones.Json.Gateway.Interfaces;
@@ -146,7 +147,6 @@ namespace DowJones.Json.Gateway.Tests.Pam
                                                      }
                            };
 
-            Console.Write(authList.ToJson(true));
 
             var r = new RestRequest<CreateListRequest>
                     {
@@ -162,12 +162,15 @@ namespace DowJones.Json.Gateway.Tests.Pam
             // ReSharper restore StringLiteralTypo
             r.ControlData.RoutingData.TransportType = "RTS";
             r.ControlData.RoutingData.Environment = Environment.Development;
-
+            r.ControlData.RoutingData.Serializer = JsonSerializer.DataContract;
+            
             try
             {
                 var rm = new RestManager();
-                RestResponse<CreateListResponse> t = rm.Execute<CreateListRequest, CreateListResponse>(r);
+                var t = rm.Execute<CreateListRequest, CreateListResponse>(r);
 
+                Console.Write(r.Request.ToJson(new DataContractJsonConverter()));
+                
                 if (t.ReturnCode == 0)
                 {
                     Assert.IsNotNull(t);

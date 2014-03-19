@@ -12,6 +12,11 @@ namespace DowJones.Json.Gateway.Converters
             _jsonConverter = converter;
         }
 
+        public override string Serialize<T>(T obj, Formatting formatting)
+        {
+            return _jsonConverter.Serialize(obj);
+        }
+
         public override string Serialize<T>(T obj)
         {
             return _jsonConverter.Serialize(obj);

@@ -67,12 +67,14 @@
     <Compile Include="Converters\IDataConverterDecorator.cs" />
     <Compile Include="Converters\ISerialize.cs" />
     <Compile Include="Converters\DataContractDataConverterDecorator.cs" />
+    <Compile Include="Converters\JsonDotNetConverterDecoratorSingleton.cs" />
     <Compile Include="Converters\JsonDotNetDataConverterDecorator.cs" />
     <Compile Include="Converters\DataContractConverterDecoratorSingleton.cs" />
     <Compile Include="Converters\DataContractConverterSingleton .cs" />
     <Compile Include="Converters\JsonDotNetDataConverterSingleton.cs" />
     <Compile Include="Converters\JsonDotNetJsonConverter.cs" />
     <Compile Include="Converters\JsonSerialierFactory.cs" />
+    <Compile Include="Converters\TypeNameSerializationBinder.cs" />
     <Compile Include="Core\RestRequestAsyncHandle.cs" />
     <Compile Include="Exceptions\Error.cs" />
     <Compile Include="Exceptions\JsonGatewayError.cs" />

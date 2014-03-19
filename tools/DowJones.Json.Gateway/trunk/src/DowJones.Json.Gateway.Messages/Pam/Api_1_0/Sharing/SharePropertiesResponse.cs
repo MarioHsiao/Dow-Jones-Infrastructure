@@ -1,4 +1,6 @@
 using System.Runtime.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace DowJones.Json.Gateway.Messages.Pam.Api_1_0.Sharing
 {
@@ -17,19 +19,21 @@ namespace DowJones.Json.Gateway.Messages.Pam.Api_1_0.Sharing
         [DataMember(Name = "rootID", IsRequired = true)]
         public long RootId { get; set; }
 
-        [DataMember(Name = "rootAccessControlScope", IsRequired = true)]
+        [DataMember(Name = "rootAccessControlScope", EmitDefaultValue = true)]
+        [JsonConverter(typeof(StringEnumConverter))]
         public ShareScope RootAccessControlScope { get; set; }
 
-        [DataMember(Name = "lastModifiedDate", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "lastModifiedDate",  EmitDefaultValue = false)]
         public string LastModifiedDate { get; set; }
 
-        [DataMember(Name = "previousACScope", IsRequired = true)]
+        [DataMember(Name = "previousACScope", EmitDefaultValue = true)]
+        [JsonConverter(typeof(StringEnumConverter))]
         public ShareScope PreviousAcScope { get; set; }
 
-        [DataMember(Name = "internalAccess", IsRequired = true)]
+        [DataMember(Name = "internalAccess", EmitDefaultValue = true)]
         public bool InternalAccess { get; set; }
 
-        [DataMember(Name = "allowCopy", IsRequired = true)]
+        [DataMember(Name = "allowCopy", EmitDefaultValue = true)]
         public bool AllowCopy { get; set; }
     }
 }

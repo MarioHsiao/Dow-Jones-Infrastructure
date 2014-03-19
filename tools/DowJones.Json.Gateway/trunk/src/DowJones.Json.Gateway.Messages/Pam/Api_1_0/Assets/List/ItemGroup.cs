@@ -1,4 +1,6 @@
 using System.Runtime.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace DowJones.Json.Gateway.Messages.Pam.Api_1_0.Assets.List
 {

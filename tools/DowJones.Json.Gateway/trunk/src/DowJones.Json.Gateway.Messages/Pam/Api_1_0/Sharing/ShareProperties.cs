@@ -1,5 +1,7 @@
 using System.Runtime.Serialization;
 using DowJones.Json.Gateway.Messages.Pam.Api_1_0.Assets.List;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace DowJones.Json.Gateway.Messages.Pam.Api_1_0.Sharing
 {
@@ -20,9 +22,11 @@ namespace DowJones.Json.Gateway.Messages.Pam.Api_1_0.Sharing
         public Permission DeletePermission { get; set; }
 
         [DataMember(Name = "listingScope")]
+        [JsonConverter(typeof(StringEnumConverter))]
         public ShareScope ListingScope { get; set; }
 
         [DataMember(Name = "sharePromotion")]
+        [JsonConverter(typeof(StringEnumConverter))]
         public ShareScope SharePromotion { get; set; }
 
         [DataMember(Name = "qualifier")]

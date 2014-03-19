@@ -12,6 +12,11 @@ namespace DowJones.Json.Gateway.Converters
             _jsonConverter = converter;
         }
 
+        public override string Serialize<T>(T obj, Formatting formatting)
+        {
+            return _jsonConverter.Serialize(obj);
+        }
+
         public override string Serialize<T>(T obj)
         {
             return _jsonConverter.Serialize(obj);
@@ -21,6 +26,7 @@ namespace DowJones.Json.Gateway.Converters
         {
             return _jsonConverter.Serialize(obj);
         }
+
 
         public T Deserialize<T>(RestResponse response)
             where T : new()
@@ -41,7 +47,7 @@ namespace DowJones.Json.Gateway.Converters
         public override sealed string ContentType { get; set; }
         public override string Serialize(object obj, Formatting formatting)
         {
-            return Serialize(obj);
+            throw new System.NotImplementedException();
         }
     }
 }

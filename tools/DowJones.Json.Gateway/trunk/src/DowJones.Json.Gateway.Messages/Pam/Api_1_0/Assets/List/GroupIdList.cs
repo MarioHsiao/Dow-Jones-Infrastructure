@@ -1,4 +1,6 @@
 using System.Runtime.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace DowJones.Json.Gateway.Messages.Pam.Api_1_0.Assets.List
 {
@@ -9,6 +11,7 @@ namespace DowJones.Json.Gateway.Messages.Pam.Api_1_0.Assets.List
         public IdCollection IdCollection { get; set; }
 
         [DataMember(Name = "type", IsRequired = true)]
+        [JsonConverter(typeof(StringEnumConverter))]
         public GroupListType Type { get; set; }
     }
 }
