@@ -83,6 +83,7 @@
     <Compile Include="Exceptions\JsonGatewayException.cs" />
     <Compile Include="Extensions\ControlDataExtensions.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
+    <Compile Include="Extensions\RestClientExtension.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Interfaces\IControlData.cs" />
     <Compile Include="Interfaces\IDeleteJsonRestRequest.cs" />

@@ -43,8 +43,7 @@ namespace DowJones.Json.Gateway.Processors
         {
 
             var client = new RestClient(Settings.Default.ServerUri);
-            client.RemoveHandler("application/xml");
-            client.RemoveHandler("text/xml");
+            client.ClearHandlers();
 
             var decorator = JsonSerializerFactory.Create(restRequest.ControlData.RoutingData.Serializer);
             var request = new RestRequest("", _method)
@@ -68,9 +67,8 @@ namespace DowJones.Json.Gateway.Processors
         {
 
             var client = new RestClient(restRequest.ControlData.RoutingData.ServerUri);
-            client.RemoveHandler("application/xml");
-            client.RemoveHandler("text/xml");
-
+            client.ClearHandlers();
+            
             var decorator = JsonSerializerFactory.Create(restRequest.ControlData.RoutingData.Serializer);
             var request = new RestRequest(GetRoutingUri(restRequest.Request), _method)
             {

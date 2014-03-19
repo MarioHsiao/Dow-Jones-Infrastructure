@@ -38,9 +38,8 @@ namespace DowJones.Json.Gateway.Processors
         {
             //application/json, , text/json, text/x-json, text/javascript, 
             var client = new RestClient(restRequest.ControlData.RoutingData.ServerUri);
-            client.RemoveHandler("application/xml");
-            client.RemoveHandler("text/xml");
-
+            client.ClearHandlers();
+            
             var decorator = JsonSerializerFactory.Create(restRequest.ControlData.RoutingData.Serializer);
             var request = new RestRequest("", Method.GET)
             {
@@ -62,8 +61,7 @@ namespace DowJones.Json.Gateway.Processors
         {
             //application/json, , text/json, text/x-json, text/javascript, 
             var client = new RestClient(restRequest.ControlData.RoutingData.ServerUri);
-            client.RemoveHandler("application/xml");
-            client.RemoveHandler("text/xml");
+            client.ClearHandlers();
 
             var decorator = JsonSerializerFactory.Create(restRequest.ControlData.RoutingData.Serializer);
             var request = new RestRequest(GetRoutingUri(restRequest.Request), Method.GET)
@@ -81,7 +79,6 @@ namespace DowJones.Json.Gateway.Processors
             };
         }
 
-
         protected internal void AddCommon<T>(RestRequest<T> restRequest, IRestRequest request, DataConverterDecorator decorator)
             where T : IJsonRestRequest, new()
         {
@@ -95,9 +92,7 @@ namespace DowJones.Json.Gateway.Processors
             request.AddHeader("ControlData", jsonControlData);
             GetQueryString(restRequest.Request, request, decorator);
         }
-
-
-
+        
         protected internal void GetQueryString<TRequest>(TRequest request, IRestRequest restRequest, DataConverterDecorator decorator)
             where TRequest : IJsonRestRequest, new()
         {
