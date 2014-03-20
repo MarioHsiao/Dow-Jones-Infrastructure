@@ -35,7 +35,7 @@ namespace DowJones.Json.Gateway.Processors
         public RestComposite GetRestComposite<T>(RestRequest<T> restRequest)
             where T : IJsonRestRequest, new()
         {
-            return restRequest.ControlData.RoutingData.Environment != Environment.Development ? GetNonDevelopmentRestComposite(restRequest) : GetDevelopmentRestComposite(restRequest);
+            return restRequest.ControlData.RoutingData.Environment != Environment.Direct ? GetNonDevelopmentRestComposite(restRequest) : GetDevelopmentRestComposite(restRequest);
         }
 
         public RestComposite GetNonDevelopmentRestComposite<T>(RestRequest<T> restRequest)

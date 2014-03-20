@@ -2,10 +2,8 @@
 {
     public enum Environment
     {
-        Production,
-        Beta,
-        Integration,
-        Development,
+        Direct,
+        Proxy,
     }
 
     public enum JsonSerializer
