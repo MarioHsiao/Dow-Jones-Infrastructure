@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using DowJones.Preferences;
 using DowJones.Security;
 using Factiva.Gateway.Messages.Membership.Authorization.V1_0;
@@ -112,6 +113,83 @@ namespace DowJones.Infrastructure.Security
             //Assert.IsNotNull(entitlementsPrinciple.CoreServices.EmailService);
             //Assert.IsTrue(entitlementsPrinciple.CoreServices.EmailService.IsFullTextODEAllowed);
             Console.WriteLine(@"IsFullTextODEAllowed: " + entitlementsPrinciple.CoreServices.EmailService.IsFullTextODEAllowed);
+        }
+
+
+        [TestMethod]
+        public void IsFullTextODEAllowed_Should_Be_True_When_Email_FTODE_Flag_Is_1()
+        {
+
+            GetUserAuthorizationsResponse getUserAuthorizationsResponse = new GetUserAuthorizationsResponse
+                                                                              {
+                                                                                  AuthorizationMatrix = new AuthorizationMatrix
+                                                                                                            {
+                                                                                                                Email = new MatrixEmailService {
+                                                                                                                    ac3 = new List<string> {"15"},
+                                                                                                                    FTODE = "1"
+                                                                                                                }
+                                                                                                            },
+                                                                                  RuleSet = "8999CPBE99999999RN9999999999999999999999990099000099990000000099999900000000009999990000999999999999000000000099MM9998999899000000999999000000000000000000000000"
+                                                                              };
+
+            var entitlementsPrinciple = new EntitlementsPrinciple(getUserAuthorizationsResponse);
+
+            Assert.IsNotNull(entitlementsPrinciple);
+            Assert.IsNotNull(entitlementsPrinciple.CoreServices);
+            Assert.IsNotNull(entitlementsPrinciple.CoreServices.EmailService);
+            Assert.IsTrue(entitlementsPrinciple.CoreServices.EmailService.IsFullTextODEAllowed);
+            //Console.WriteLine(@"IsFullTextODEAllowed: " + entitlementsPrinciple.CoreServices.EmailService.IsFullTextODEAllowed);
+        }
+
+        [TestMethod]
+        public void IsFullTextODEAllowed_Should_Be_False_When_Email_FTODE_Flag_Is_Not_1()
+        {
+
+            GetUserAuthorizationsResponse getUserAuthorizationsResponse = new GetUserAuthorizationsResponse
+            {
+                AuthorizationMatrix = new AuthorizationMatrix
+                {
+                    Email = new MatrixEmailService
+                    {
+                        ac3 = new List<string> { "15" },
+                        FTODE = "0"
+                    }
+                },
+                RuleSet = "8999CPBE99999999RN9999999999999999999999990099000099990000000099999900000000009999990000999999999999000000000099MM9998999899000000999999000000000000000000000000"
+            };
+
+            var entitlementsPrinciple = new EntitlementsPrinciple(getUserAuthorizationsResponse);
+
+            Assert.IsNotNull(entitlementsPrinciple);
+            Assert.IsNotNull(entitlementsPrinciple.CoreServices);
+            Assert.IsNotNull(entitlementsPrinciple.CoreServices.EmailService);
+            Assert.IsFalse(entitlementsPrinciple.CoreServices.EmailService.IsFullTextODEAllowed);
+            //Console.WriteLine(@"IsFullTextODEAllowed: " + entitlementsPrinciple.CoreServices.EmailService.IsFullTextODEAllowed);
+        }
+
+        [TestMethod]
+        public void IsFullTextODEAllowed_Should_Be_False_When_Email_FTODE_Flag_Is_Not_Exist()
+        {
+
+            GetUserAuthorizationsResponse getUserAuthorizationsResponse = new GetUserAuthorizationsResponse
+            {
+                AuthorizationMatrix = new AuthorizationMatrix
+                {
+                    Email = new MatrixEmailService
+                    {
+                        ac3 = new List<string> { "15" }
+                    }
+                },
+                RuleSet = "8999CPBE99999999RN9999999999999999999999990099000099990000000099999900000000009999990000999999999999000000000099MM9998999899000000999999000000000000000000000000"
+            };
+
+            var entitlementsPrinciple = new EntitlementsPrinciple(getUserAuthorizationsResponse);
+
+            Assert.IsNotNull(entitlementsPrinciple);
+            Assert.IsNotNull(entitlementsPrinciple.CoreServices);
+            Assert.IsNotNull(entitlementsPrinciple.CoreServices.EmailService);
+            Assert.IsFalse(entitlementsPrinciple.CoreServices.EmailService.IsFullTextODEAllowed);
+            //Console.WriteLine(@"IsFullTextODEAllowed: " + entitlementsPrinciple.CoreServices.EmailService.IsFullTextODEAllowed);
         }
     }
 }
