@@ -7,7 +7,7 @@ using DowJones.Json.Gateway.Messages.Pam.Api_1_0.Sharing;
 namespace DowJones.Json.Gateway.Messages.Pam.Api_1_0.Assets.List.Transactions
 {
     [DataContract(Name = "SetShareProperties", Namespace = "")]
-    [ServicePath("pamapi/1.0/List.svc")]
+    [ServicePath("pamapi/1.0/Lists.svc")]
     public class SetSharePropertiesRequest : IPostJsonRestRequest
     {
         [DataMember(Name = "listId", IsRequired = true)]

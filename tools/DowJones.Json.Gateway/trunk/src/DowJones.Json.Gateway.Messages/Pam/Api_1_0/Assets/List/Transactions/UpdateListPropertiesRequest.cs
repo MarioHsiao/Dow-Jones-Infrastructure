@@ -5,7 +5,7 @@ using DowJones.Json.Gateway.Interfaces;
 
 namespace DowJones.Json.Gateway.Messages.Pam.Api_1_0.Assets.List.Transactions
 {
-    [ServicePath("pamapi/1.0/List.svc")]
+    [ServicePath("pamapi/1.0/Lists.svc")]
     [DataContract(Name = "UpdateListProperties", Namespace = "")]
     public class UpdateListPropertiesRequest : IPostJsonRestRequest
     {

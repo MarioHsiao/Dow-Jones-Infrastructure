@@ -11,6 +11,7 @@ namespace DowJones.Json.Gateway.Messages.Core
         {
             TransportType = Properties.Settings.Default.TransportType;
             ServerUri = Properties.Settings.Default.ServerUri;
+            Environment = Environment.Proxy;
         }        
         
         [DataMember]
