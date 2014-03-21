@@ -205,6 +205,8 @@ namespace DowJones.Web.Mvc.UI.Components.Article
 
         public bool ShowAuthorLinks { get; set; }
 
+        public bool IsTranslationAllowedBySource { get; set; }
+
         public ArticleReference ArticleReference { get; set; }
 
         /// <summary>
