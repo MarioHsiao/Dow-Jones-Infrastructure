@@ -64,7 +64,7 @@ namespace DowJones.Infrastructure.Security
         }
 
         [TestMethod]
-        public void Entiltlement_FTODE_Test()
+        public void Entiltlement_FullTextODE_Functional_Test()
         {
             var request = new GetUserAuthorizationsRequest();
             ServiceResponse response = null;
@@ -168,7 +168,7 @@ namespace DowJones.Infrastructure.Security
         }
 
         [TestMethod]
-        public void IsFullTextODEAllowed_Should_Be_False_When_Email_FTODE_Flag_Is_Not_Exist()
+        public void IsFullTextODEAllowed_Should_Be_False_When_Email_FTODE_Flag_Does_Not_Exist()
         {
 
             GetUserAuthorizationsResponse getUserAuthorizationsResponse = new GetUserAuthorizationsResponse
