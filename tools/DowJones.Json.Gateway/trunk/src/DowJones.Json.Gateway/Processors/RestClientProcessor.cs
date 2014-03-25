@@ -5,12 +5,15 @@ using DowJones.Json.Gateway.Converters;
 using DowJones.Json.Gateway.Exceptions;
 using DowJones.Json.Gateway.Extensions;
 using DowJones.Json.Gateway.Interfaces;
+using log4net;
 using RestSharp;
 
 namespace DowJones.Json.Gateway.Processors
 {
     public abstract class RestClientProcessor : IRestClientProcessor
     {
+        internal abstract ILog Log { get; set; }
+
         public abstract RestResponse<TRes> Process<TReq, TRes>(RestRequest<TReq> restRequest)
             where TReq : IJsonRestRequest, new()
             where TRes : IJsonRestResponse, new();
@@ -27,6 +30,14 @@ namespace DowJones.Json.Gateway.Processors
                                    Message = message,
                                }
                    };
+        }
+
+        protected internal void LogBodyContent(string content)
+        {
+            if (Log.IsDebugEnabled)
+            {
+                Log.Debug(content);
+            }
         }
 
         protected internal string GetRoutingUri<TRequest>(TRequest request)
@@ -68,6 +79,7 @@ namespace DowJones.Json.Gateway.Processors
                 DataContractConverterDecoratorSingleton.Instance :
                 JsonDotNetConverterDecoratorSingleton.Instance;
 
+            LogBodyContent(response.Content);
             switch (response.StatusCode)
             {
                 case HttpStatusCode.NonAuthoritativeInformation:
@@ -89,27 +101,27 @@ namespace DowJones.Json.Gateway.Processors
                            };
 
                 case HttpStatusCode.BadRequest:
-                    return GenerateErrorResponse<TRes>(JsonGatewayException.BadRequest, 
+                    return GenerateErrorResponse<TRes>(JsonGatewayException.BadRequest,
                         "Equivalent to HTTP status 400. " +
                         "BadRequest indicates that the request could not be understood by the server. BadRequest is sent when no other error is applicable, or if the exact error is unknown or does not have its own error code.");
 
                 case HttpStatusCode.GatewayTimeout:
-                    return GenerateErrorResponse<TRes>(JsonGatewayException.GatewayTimeout, 
+                    return GenerateErrorResponse<TRes>(JsonGatewayException.GatewayTimeout,
                         "Equivalent to HTTP status 504. " +
                         "GatewayTimeout indicates that an intermediate proxy server timed out while waiting for a response from another proxy or the origin server.");
 
                 case HttpStatusCode.RequestUriTooLong:
-                    return GenerateErrorResponse<TRes>(JsonGatewayException.RequestUriTooLong, 
+                    return GenerateErrorResponse<TRes>(JsonGatewayException.RequestUriTooLong,
                         "Equivalent to HTTP status 414. " +
                         "RequestUriTooLong indicates that the URI is too long.");
 
                 case HttpStatusCode.MethodNotAllowed:
-                    return GenerateErrorResponse<TRes>(JsonGatewayException.MethodNotAllowed, 
+                    return GenerateErrorResponse<TRes>(JsonGatewayException.MethodNotAllowed,
                         "Equivalent to HTTP status 405. " +
                         "MethodNotAllowed indicates that the request method (POST or GET) is not allowed on the requested resource.");
 
                 case HttpStatusCode.NotAcceptable:
-                    return GenerateErrorResponse<TRes>(JsonGatewayException.NotAcceptable, 
+                    return GenerateErrorResponse<TRes>(JsonGatewayException.NotAcceptable,
                         "Equivalent to HTTP status 406. " +
                         "NotAcceptable indicates that the client has indicated with Accept headers that it will not accept any of the available representations of the resource.");
 
@@ -119,7 +131,7 @@ namespace DowJones.Json.Gateway.Processors
                         "NotFound indicates that the requested resource does not exist on the server.");
 
                 case HttpStatusCode.NotImplemented:
-                    return GenerateErrorResponse<TRes>(JsonGatewayException.NotImplemented, 
+                    return GenerateErrorResponse<TRes>(JsonGatewayException.NotImplemented,
                         ".");
 
                 case HttpStatusCode.RequestTimeout:

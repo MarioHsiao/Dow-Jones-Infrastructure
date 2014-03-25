@@ -11,7 +11,7 @@ namespace DowJones.Json.Gateway.Processors
 {
     internal class GetRestClientProcessor : RestClientProcessor
     {
-        private readonly ILog _log = LogManager.GetLogger(typeof(GetRestClientProcessor));
+        private ILog _log = LogManager.GetLogger(typeof(GetRestClientProcessor));
 
         public override RestResponse<TRes> Process<TReq, TRes>(RestRequest<TReq> restRequest)
         {
@@ -26,7 +26,13 @@ namespace DowJones.Json.Gateway.Processors
                 return GenerateGenericError<TRes>(ex);
             }
         }
-        
+
+        internal override ILog Log
+        {
+            get { return _log; }
+            set { _log = value; }
+        }
+
         public RestComposite GetRestComposite<T>(RestRequest<T> restRequest)
             where T : IJsonRestRequest, new()
         {

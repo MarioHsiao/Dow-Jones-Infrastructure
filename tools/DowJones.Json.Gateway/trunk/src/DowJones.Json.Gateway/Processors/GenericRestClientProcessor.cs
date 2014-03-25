@@ -3,6 +3,7 @@ using DowJones.Json.Gateway.Converters;
 using DowJones.Json.Gateway.Interfaces;
 using DowJones.Json.Gateway.Properties;
 using log4net;
+using log4net.Core;
 using RestSharp;
 using Environment = DowJones.Json.Gateway.Interfaces.Environment;
 
@@ -11,7 +12,7 @@ namespace DowJones.Json.Gateway.Processors
     internal class GenericRestClientProcessor : RestClientProcessor
     {
         private readonly Method _method;
-        private readonly ILog _log = LogManager.GetLogger(typeof (GenericRestClientProcessor));
+        private ILog _log = LogManager.GetLogger(typeof (GenericRestClientProcessor));
 
         public GenericRestClientProcessor(Method method)
         {
@@ -30,6 +31,12 @@ namespace DowJones.Json.Gateway.Processors
             {
                 return GenerateGenericError<TRes>(ex);
             }
+        }
+
+        internal override ILog Log
+        {
+            get { return _log; }
+            set { _log = value; }
         }
 
         public RestComposite GetRestComposite<T>(RestRequest<T> restRequest)

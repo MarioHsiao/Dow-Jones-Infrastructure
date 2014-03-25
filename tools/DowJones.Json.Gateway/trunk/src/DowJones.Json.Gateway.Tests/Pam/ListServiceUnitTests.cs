@@ -68,13 +68,15 @@ namespace DowJones.Json.Gateway.Tests.Pam
                     {
                         Request = new GetListByIdRequest
                                   {
-                                      Id = 50,
+                                      Id = 67,
                                   },
                         ControlData = GetControlData(),
                     };
             r.ControlData.RoutingData.TransportType = "HTTP";
             // ReSharper disable StringLiteralTypo
-            r.ControlData.RoutingData.ServerUri = "http://sktfrtutil01.dev.us.factiva.net:9097";
+            //r.ControlData.RoutingData.ServerUri = "http://sktfrtutil01.dev.us.factiva.net:9097";
+            r.ControlData.RoutingData.ServerUri = "http://pamapi.dev.dowjones.net/";
+            r.ControlData.RoutingData.Environment = Environment.Direct;
             // ReSharper restore StringLiteralTypo
 
             try

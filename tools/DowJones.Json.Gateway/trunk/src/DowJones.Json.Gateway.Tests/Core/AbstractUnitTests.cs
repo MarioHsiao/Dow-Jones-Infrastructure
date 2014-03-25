@@ -42,8 +42,9 @@ namespace DowJones.Json.Gateway.Tests.Core
                                                            IpAddress = "127.0.0.1",
                                                            UserGuidId = "3bb6cd20-968c-4def-805d-283710580dba",
                                                            EncryptedUserId = "E6OO2HVCQHVPEXDO5LSIIKF7AY",
-                                                           AccountId = "9GEE001500",
-                                                           UserId = "E000008728"
+                                                           AccountId = "9PRO001000",
+                                                           UserId = "listuser",
+                                                           Namespace = "16"
                                                        }, 
                                   TransactionCacheData = new TransactionCacheData(),
                                   PlatformAdminData = new PlatformAdminData
