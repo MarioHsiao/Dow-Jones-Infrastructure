@@ -117,7 +117,7 @@
     <Compile Include="Pam\Api_1_0\Assets\List\Transactions\DeleteListRequest.cs" />
     <Compile Include="Pam\Api_1_0\Assets\List\Transactions\DeleteListResponse.cs" />
     <Compile Include="Pam\Api_1_0\Assets\List\Transactions\GetListByIdRequest.cs" />
-    <Compile Include="Pam\Api_1_0\Assets\List\Transactions\GetListByIDResponse.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\Transactions\GetListByIdResponse.cs" />
     <Compile Include="Pam\Api_1_0\Assets\List\Transactions\GetListsDetailsListRequest.cs" />
     <Compile Include="Pam\Api_1_0\Assets\List\Transactions\GetListsDetailsListResponse.cs" />
     <Compile Include="Pam\Api_1_0\Assets\List\Transactions\GetListsPropertiesListRequest.cs" />

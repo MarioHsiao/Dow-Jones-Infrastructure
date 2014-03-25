@@ -13,7 +13,7 @@ using Environment = DowJones.Json.Gateway.Interfaces.Environment;
 namespace DowJones.Json.Gateway.Tests.Pam
 {
     [TestClass]
-    public class ListServiceUnitTests : AbstractUnitTests
+    public class DirectListServiceUnitTests : AbstractUnitTests
     {
         [TestMethod]
         public void GetListsDetailsListRequest()
@@ -30,9 +30,9 @@ namespace DowJones.Json.Gateway.Tests.Pam
 
             r.ControlData.RoutingData.TransportType = "HTTP";
             // ReSharper disable StringLiteralTypo
-            r.ControlData.RoutingData.ServerUri = "http://pamapi.dev.dowjones.net/";
+            r.ControlData.RoutingData.ServerUri = "http://sktfrtutil01.dev.us.factiva.net:9097";
             // ReSharper restore StringLiteralTypo
-            r.ControlData.RoutingData.Environment = Environment.Development;
+            r.ControlData.RoutingData.Environment = Environment.Direct;
             r.ControlData.RoutingData.Serializer = JsonSerializer.DataContract;
 
             try
@@ -68,17 +68,14 @@ namespace DowJones.Json.Gateway.Tests.Pam
                     {
                         Request = new GetListByIdRequest
                                   {
-                                      Id = 10,
+                                      Id = 50,
                                   },
                         ControlData = GetControlData(),
                     };
-
             r.ControlData.RoutingData.TransportType = "HTTP";
             // ReSharper disable StringLiteralTypo
-            r.ControlData.RoutingData.ServerUri = "http://pamapi.dev.dowjones.net/";
+            r.ControlData.RoutingData.ServerUri = "http://sktfrtutil01.dev.us.factiva.net:9097";
             // ReSharper restore StringLiteralTypo
-            r.ControlData.RoutingData.Environment = Environment.Development;
-            r.ControlData.RoutingData.Serializer = JsonSerializer.DataContract;
 
             try
             {
@@ -161,7 +158,7 @@ namespace DowJones.Json.Gateway.Tests.Pam
             r.ControlData.RoutingData.ServerUri = "http://pamapi.dev.dowjones.net/";
             // ReSharper restore StringLiteralTypo
             r.ControlData.RoutingData.TransportType = "RTS";
-            r.ControlData.RoutingData.Environment = Environment.Development;
+            r.ControlData.RoutingData.Environment = Environment.Direct;
             r.ControlData.RoutingData.Serializer = JsonSerializer.DataContract;
             
             try
