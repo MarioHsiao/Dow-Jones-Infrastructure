@@ -104,34 +104,45 @@ namespace DowJones.Json.Gateway.Processors
         {
             var properties = request.GetType().GetProperties();
 
+            if (Log.IsDebugEnabled)
+            {
+                Log.DebugFormat("Found {0} properties for {1}", properties.Count(), request.GetType().FullName);
+            }
+
             foreach (var property in properties)
             {
-                var dataMember = property.GetCustomAttributes(typeof(DataMemberAttribute), false).FirstOrDefault() as DataMemberAttribute;
+                var dataMember = property.GetCustomAttributes(typeof(DataMemberAttribute), true).FirstOrDefault() as DataMemberAttribute;
                 var name = dataMember != null ? dataMember.Name : property.Name;
 
                 var val = property.GetValue(request, null);
 
                 if (val == null)
                 {
+                    if (Log.IsDebugEnabled)
+                    {
+                        Log.DebugFormat("Propery-Name: {0} is null", name);
+                    }
                     continue;
                 }
 
                 var sourceType = property.PropertyType;
                 if (sourceType.IsPrimitive || sourceType == typeof(string) || sourceType == typeof(Single))
                 {
+                    if (Log.IsDebugEnabled)
+                    {
+                        Log.DebugFormat("Propery-Name: {0}, Propery-Value: {1}", name, val);
+                    }
                     restRequest.AddParameter(name, val, ParameterType.QueryString);
                 }
-                else if (sourceType.IsEnum)
+                else if (sourceType.IsEnum || sourceType == typeof(DateTime) || sourceType.IsClass)
                 {
-                    restRequest.AddParameter(name, val.ToString(), ParameterType.QueryString);
-                }
-                else if (sourceType == typeof(DateTime))
-                {
-                    restRequest.AddParameter(name, decorator.Serialize(val), ParameterType.QueryString);
-                }
-                else if (sourceType.IsClass)
-                {
-                    restRequest.AddParameter(name, decorator.Serialize(val));
+                    var v = decorator.Serialize(val);
+                    if (Log.IsDebugEnabled)
+                    {
+                        Log.DebugFormat("Propery-Name: {0}, Propery-Value: {1}", name, v);
+                    }
+                    
+                    restRequest.AddParameter(name, v);
                 }
             }
         }

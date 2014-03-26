@@ -34,10 +34,12 @@ namespace DowJones.Json.Gateway.Processors
 
         protected internal void LogBodyContent(string content)
         {
-            if (Log.IsDebugEnabled)
+            if (!Log.IsDebugEnabled)
             {
-                Log.Debug(content);
+                return;
             }
+
+            Log.DebugFormat("Raw Response Content:\n {0}", content);
         }
 
         protected internal string GetRoutingUri<TRequest>(TRequest request)

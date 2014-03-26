@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Threading;
 using DowJones.Json.Gateway.Converters;
 using DowJones.Json.Gateway.Exceptions;
 using DowJones.Json.Gateway.Extensions;
@@ -24,17 +25,13 @@ namespace DowJones.Json.Gateway.Tests.Pam
                         Request = new GetListsDetailsListRequest
                                   {
                                       MaxResultsToReturn = 100,
-                                      ListTypeCollection = new ListTypeCollection(new[] {ListType.IndustryList})
+                                      ListTypeCollection = new ListTypeCollection(new[] {ListType.AuthorList})
                                   },
                         ControlData = GetControlData(),
                     };
 
-            r.ControlData.RoutingData.TransportType = "HTTP";
-            // ReSharper disable StringLiteralTypo
-            r.ControlData.RoutingData.ServerUri = "http://sktfrtutil01.dev.us.factiva.net:9097";
-            // ReSharper restore StringLiteralTypo
-            r.ControlData.RoutingData.Environment = Environment.Direct;
-            r.ControlData.RoutingData.Serializer = JsonSerializer.DataContract;
+            // Update Routing Data
+            UpdateRoutingData(r.ControlData.RoutingData);
 
             try
             {
@@ -75,14 +72,8 @@ namespace DowJones.Json.Gateway.Tests.Pam
                         ControlData = GetControlData(),
                     };
 
-            r.ControlData.RoutingData.TransportType = "HTTP";
-            // ReSharper disable StringLiteralTypo
-            // ReSharper disable CommentTypo
-            //r.ControlData.RoutingData.ServerUri = "http://sktfrtutil01.dev.us.factiva.net:9097";
-            // ReSharper restore CommentTypo
-            r.ControlData.RoutingData.ServerUri = "http://pamapi.dev.dowjones.net/";
-            r.ControlData.RoutingData.Environment = Environment.Direct;
-            // ReSharper restore StringLiteralTypo
+            // Update Routing Data
+            UpdateRoutingData(r.ControlData.RoutingData);
 
             try
             {
@@ -112,59 +103,22 @@ namespace DowJones.Json.Gateway.Tests.Pam
         }
 
         [TestMethod]
-        public void CreateListRequest()
+        public void CreateAndDeleteListRequest()
         {
             DeleteList(CreateList());
         }
-        
-        public void UpdateName()
+
+        [TestMethod]
+        public void CrudListRequests()
         {
-            var r = new RestRequest<UpdateListNameRequest>
-                    {
-                        Request = new UpdateListNameRequest
-                                  {
-                                      Id = CreateList(),
-                                      Name = "Dow Jones Author List-2"
-                                  },
-                        ControlData = GetControlData(),
-                    };
+            var id = CreateList();
 
-            // ReSharper disable StringLiteralTypo
-            r.ControlData.RoutingData.ServerUri = "http://pamapi.dev.dowjones.net/";
-            // ReSharper restore StringLiteralTypo
-            r.ControlData.RoutingData.TransportType = "HTTP";
-            r.ControlData.RoutingData.Environment = Environment.Direct;
-            r.ControlData.RoutingData.Serializer = JsonSerializer.DataContract;
+            UpdateListName(id);
 
-            try
-            {
-                var rm = new RestManager();
-                var t = rm.Execute<UpdateListNameRequest, UpdateListNameResponse>(r);
-
-                Console.Write(r.Request.ToJson(new DataContractJsonConverter()));
-
-                if (t.ReturnCode == 0)
-                {
-                    Assert.IsNotNull(t);
-                }
-                else
-                {
-                    Console.WriteLine(t.Error.Message);
-                    Assert.Fail(string.Concat("failed w/rc:= ", t.ReturnCode.ToString(CultureInfo.InvariantCulture)));
-                }
-                Console.WriteLine(t.Data.ToJson(true));
-            }
-            catch (JsonGatewayException gatewayException)
-            {
-                Console.Write(gatewayException.Message);
-            }
-            catch (Exception ex)
-            {
-                Console.Write(ex.Message);
-            }
+            DeleteList(id);
         }
-
-        private bool DeleteList(long id)
+        
+       private void DeleteList(long id)
         {
             var r = new RestRequest<DeleteListRequest>
                 {
@@ -175,12 +129,8 @@ namespace DowJones.Json.Gateway.Tests.Pam
                     ControlData = GetControlData(),
                 };
 
-            // ReSharper disable StringLiteralTypo
-            r.ControlData.RoutingData.ServerUri = "http://pamapi.dev.dowjones.net/";
-            // ReSharper restore StringLiteralTypo
-            r.ControlData.RoutingData.TransportType = "HTTP";
-            r.ControlData.RoutingData.Environment = Environment.Direct;
-            r.ControlData.RoutingData.Serializer = JsonSerializer.DataContract;
+            // Update Routing Data
+            UpdateRoutingData(r.ControlData.RoutingData);
 
             try
             {
@@ -199,7 +149,7 @@ namespace DowJones.Json.Gateway.Tests.Pam
                     Assert.Fail(string.Concat("failed w/rc:= ", t.ReturnCode.ToString(CultureInfo.InvariantCulture)));
                 }
                 Console.WriteLine(t.Data.ToJson(true));
-                return true;
+                return;
             }
             catch (JsonGatewayException gatewayException)
             {
@@ -209,8 +159,70 @@ namespace DowJones.Json.Gateway.Tests.Pam
             {
                 Console.Write(ex.Message);
             }
-            Assert.Fail("unable to get id");
-            return false;
+            Assert.Fail("unable delete list");
+        }
+
+        private static void UpdateRoutingData(IRoutingData routingData)
+        {
+            // ReSharper disable StringLiteralTypo
+            // ReSharper disable CommentTypo
+            // routingData.ServerUri = "http://sktfrtutil01.dev.us.factiva.net:9097";
+            // ReSharper restore CommentTypo
+            // ReSharper restore StringLiteralTypo
+
+            // ReSharper disable StringLiteralTypo
+            routingData.ServerUri = "http://pamapi.dev.dowjones.net/";
+            // ReSharper restore StringLiteralTypo
+
+            routingData.TransportType = "HTTP";
+            routingData.Environment = Environment.Direct;
+            routingData.Serializer = JsonSerializer.DataContract;
+        }
+
+        private void UpdateListName(long id)
+        {
+            Thread.Sleep(100);
+            var r = new RestRequest<UpdateListNameRequest>
+            {
+                Request = new UpdateListNameRequest
+                {
+                    Id = id,
+                    Name = DateTime.Now.Ticks.ToString(CultureInfo.InvariantCulture), 
+                },
+                ControlData = GetControlData(),
+            };
+
+            // update routing Data
+            UpdateRoutingData(r.ControlData.RoutingData);
+
+            try
+            {
+                var rm = new RestManager();
+                var t = rm.Execute<UpdateListNameRequest, UpdateListNameResponse>(r);
+
+                Console.Write(r.Request.ToJson(new DataContractJsonConverter()));
+
+                if (t.ReturnCode == 0)
+                {
+                    Assert.IsNotNull(t);
+                }
+                else
+                {
+                    Console.WriteLine(t.Error.Message);
+                    Assert.Fail(string.Concat("failed w/rc:= ", t.ReturnCode.ToString(CultureInfo.InvariantCulture)));
+                }
+                Console.WriteLine(t.Data.ToJson(true));
+                return;
+            }
+            catch (JsonGatewayException gatewayException)
+            {
+                Console.Write(gatewayException.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.Message);
+            }
+            Assert.Fail("unable update name");
         }
 
         private long CreateList()
@@ -224,13 +236,7 @@ namespace DowJones.Json.Gateway.Tests.Pam
                         ControlData = GetControlData(),
                     };
 
-            // ReSharper disable StringLiteralTypo
-            r.ControlData.RoutingData.ServerUri = "http://pamapi.dev.dowjones.net/";
-            // ReSharper restore StringLiteralTypo
-            r.ControlData.RoutingData.TransportType = "HTTP";
-            r.ControlData.RoutingData.Environment = Environment.Direct;
-            r.ControlData.RoutingData.Serializer = JsonSerializer.DataContract;
-
+             UpdateRoutingData(r.ControlData.RoutingData);
             try
             {
                 var rm = new RestManager();
@@ -268,9 +274,6 @@ namespace DowJones.Json.Gateway.Tests.Pam
                    {
                        Id = 0,
                        Name = DateTime.Now.Ticks.ToString(CultureInfo.InvariantCulture),
-// ReSharper disable StringLiteralTypo
-                       //CustomCode = "Arunald-1",
-// ReSharper restore StringLiteralTypo
                        Properties = new AuthorListProperties
                                     {
                                         Description = "Author List"
@@ -302,7 +305,7 @@ namespace DowJones.Json.Gateway.Tests.Pam
                                                                                          })
                                                  }
                                              },
-                       ShareProperties = new ShareProperties() { 
+                       ShareProperties = new ShareProperties { 
                            AccessPermission = new Permission
                                               {
                                                   Scope = ShareScope.Personal, 
