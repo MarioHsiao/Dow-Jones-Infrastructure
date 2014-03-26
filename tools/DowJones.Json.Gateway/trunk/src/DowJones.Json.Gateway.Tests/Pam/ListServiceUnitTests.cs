@@ -6,6 +6,7 @@ using DowJones.Json.Gateway.Extensions;
 using DowJones.Json.Gateway.Interfaces;
 using DowJones.Json.Gateway.Messages.Pam.Api_1_0.Assets.List;
 using DowJones.Json.Gateway.Messages.Pam.Api_1_0.Assets.List.Transactions;
+using DowJones.Json.Gateway.Messages.Pam.Api_1_0.Sharing;
 using DowJones.Json.Gateway.Tests.Core;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Environment = DowJones.Json.Gateway.Interfaces.Environment;
@@ -19,14 +20,14 @@ namespace DowJones.Json.Gateway.Tests.Pam
         public void GetListsDetailsListRequest()
         {
             var r = new RestRequest<GetListsDetailsListRequest>
-            {
-                Request = new GetListsDetailsListRequest
-                {
-                    MaxResultsToReturn = 100,
-                    ListTypeCollection = new ListTypeCollection(new [] { ListType.IndustryList })
-                },
-                ControlData = GetControlData(),
-            };
+                    {
+                        Request = new GetListsDetailsListRequest
+                                  {
+                                      MaxResultsToReturn = 100,
+                                      ListTypeCollection = new ListTypeCollection(new[] {ListType.IndustryList})
+                                  },
+                        ControlData = GetControlData(),
+                    };
 
             r.ControlData.RoutingData.TransportType = "HTTP";
             // ReSharper disable StringLiteralTypo
@@ -64,17 +65,21 @@ namespace DowJones.Json.Gateway.Tests.Pam
         [TestMethod]
         public void GetListByIdRequest()
         {
+            var id = CreateList();
             var r = new RestRequest<GetListByIdRequest>
                     {
                         Request = new GetListByIdRequest
                                   {
-                                      Id = 67,
+                                      Id = id,
                                   },
                         ControlData = GetControlData(),
                     };
+
             r.ControlData.RoutingData.TransportType = "HTTP";
             // ReSharper disable StringLiteralTypo
+            // ReSharper disable CommentTypo
             //r.ControlData.RoutingData.ServerUri = "http://sktfrtutil01.dev.us.factiva.net:9097";
+            // ReSharper restore CommentTypo
             r.ControlData.RoutingData.ServerUri = "http://pamapi.dev.dowjones.net/";
             r.ControlData.RoutingData.Environment = Environment.Direct;
             // ReSharper restore StringLiteralTypo
@@ -83,6 +88,60 @@ namespace DowJones.Json.Gateway.Tests.Pam
             {
                 var rm = new RestManager();
                 var t = rm.Execute<GetListByIdRequest, GetListByIdResponse>(r);
+
+                if (t.ReturnCode == 0)
+                {
+                    Assert.IsNotNull(t);
+                }
+                else
+                {
+                    Console.WriteLine(t.Error.Message);
+                    Assert.Fail(string.Concat("failed w/rc:= ", t.ReturnCode.ToString(CultureInfo.InvariantCulture)));
+                }
+                Console.WriteLine(t.Data.ToJson(true));
+                DeleteList(id);
+            }
+            catch (JsonGatewayException gatewayException)
+            {
+                Console.Write(gatewayException.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.Message);
+            }
+        }
+
+        [TestMethod]
+        public void CreateListRequest()
+        {
+            DeleteList(CreateList());
+        }
+        
+        public void UpdateName()
+        {
+            var r = new RestRequest<UpdateListNameRequest>
+                    {
+                        Request = new UpdateListNameRequest
+                                  {
+                                      Id = CreateList(),
+                                      Name = "Dow Jones Author List-2"
+                                  },
+                        ControlData = GetControlData(),
+                    };
+
+            // ReSharper disable StringLiteralTypo
+            r.ControlData.RoutingData.ServerUri = "http://pamapi.dev.dowjones.net/";
+            // ReSharper restore StringLiteralTypo
+            r.ControlData.RoutingData.TransportType = "HTTP";
+            r.ControlData.RoutingData.Environment = Environment.Direct;
+            r.ControlData.RoutingData.Serializer = JsonSerializer.DataContract;
+
+            try
+            {
+                var rm = new RestManager();
+                var t = rm.Execute<UpdateListNameRequest, UpdateListNameResponse>(r);
+
+                Console.Write(r.Request.ToJson(new DataContractJsonConverter()));
 
                 if (t.ReturnCode == 0)
                 {
@@ -105,71 +164,31 @@ namespace DowJones.Json.Gateway.Tests.Pam
             }
         }
 
-        [TestMethod]
-        public void CreateList()
+        private bool DeleteList(long id)
         {
-            var authList = new AuthorList
-                           {
-                               Id = 100,
-                               Name = "Dow Jones Author List",
-                               CustomCode = "Arunald",
-                               Properties = new AuthorListProperties
-                                            {
-                                                Description = "Author List"
-                                            },
-                               ItemGroupCollection = new ItemGroupCollection
-                                                     {
-                                                         new ItemGroup
-                                                         {
-                                                             Id = 10,
-                                                             GroupType = ItemGroupType.Default,
-                                                             ItemCollection = new ItemCollection(new[]
-                                                                                                 {
-                                                                                                     new AuthorItem
-                                                                                                     {
-                                                                                                         Id = 1, 
-                                                                                                         Properties = new AuthorItemProperties
-                                                                                                                      {
-                                                                                                                          Code = "001"
-                                                                                                                      }
-                                                                                                     },
-                                                                                                     new AuthorItem
-                                                                                                     {
-                                                                                                         Id = 2, 
-                                                                                                         Properties = new AuthorItemProperties
-                                                                                                                      {
-                                                                                                                          Code = "002"
-                                                                                                                      }
-                                                                                                     }
-                                                                                                 })
-                                                         }
-                                                     }
-                           };
-
-
-            var r = new RestRequest<CreateListRequest>
+            var r = new RestRequest<DeleteListRequest>
+                {
+                    Request = new DeleteListRequest
                     {
-                        Request = new CreateListRequest
-                                  {
-                                      List = authList
-                                  },
-                        ControlData = GetControlData(),
-                    };
+                       Id = id
+                    },
+                    ControlData = GetControlData(),
+                };
 
             // ReSharper disable StringLiteralTypo
             r.ControlData.RoutingData.ServerUri = "http://pamapi.dev.dowjones.net/";
             // ReSharper restore StringLiteralTypo
-            r.ControlData.RoutingData.TransportType = "RTS";
+            r.ControlData.RoutingData.TransportType = "HTTP";
             r.ControlData.RoutingData.Environment = Environment.Direct;
             r.ControlData.RoutingData.Serializer = JsonSerializer.DataContract;
-            
+
             try
             {
                 var rm = new RestManager();
-                var t = rm.Execute<CreateListRequest, CreateListResponse>(r);
+                var t = rm.Execute<DeleteListRequest, DeleteListResponse>(r);
 
                 Console.Write(r.Request.ToJson(new DataContractJsonConverter()));
-                
+
                 if (t.ReturnCode == 0)
                 {
                     Assert.IsNotNull(t);
@@ -180,6 +199,7 @@ namespace DowJones.Json.Gateway.Tests.Pam
                     Assert.Fail(string.Concat("failed w/rc:= ", t.ReturnCode.ToString(CultureInfo.InvariantCulture)));
                 }
                 Console.WriteLine(t.Data.ToJson(true));
+                return true;
             }
             catch (JsonGatewayException gatewayException)
             {
@@ -189,6 +209,110 @@ namespace DowJones.Json.Gateway.Tests.Pam
             {
                 Console.Write(ex.Message);
             }
+            Assert.Fail("unable to get id");
+            return false;
+        }
+
+        private long CreateList()
+        {
+             var r = new RestRequest<CreateListRequest>
+                    {
+                        Request = new CreateListRequest
+                                  {
+                                      List = GetAuthorList()
+                                  },
+                        ControlData = GetControlData(),
+                    };
+
+            // ReSharper disable StringLiteralTypo
+            r.ControlData.RoutingData.ServerUri = "http://pamapi.dev.dowjones.net/";
+            // ReSharper restore StringLiteralTypo
+            r.ControlData.RoutingData.TransportType = "HTTP";
+            r.ControlData.RoutingData.Environment = Environment.Direct;
+            r.ControlData.RoutingData.Serializer = JsonSerializer.DataContract;
+
+            try
+            {
+                var rm = new RestManager();
+                var t = rm.Execute<CreateListRequest, CreateListResponse>(r);
+
+                Console.Write(r.Request.ToJson(new DataContractJsonConverter()));
+
+                if (t.ReturnCode == 0)
+                {
+                    Assert.IsNotNull(t);
+                }
+                else
+                {
+                    Console.WriteLine(t.Error.Message);
+                    Assert.Fail(string.Concat("failed w/rc:= ", t.ReturnCode.ToString(CultureInfo.InvariantCulture)));
+                }
+                Console.WriteLine(t.Data.ToJson(true));
+                return t.Data.Id;
+            }
+            catch (JsonGatewayException gatewayException)
+            {
+                Console.Write(gatewayException.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.Message);
+            }
+            Assert.Fail("unable to get id");
+            return 0;
+        }
+
+        private static AuthorList GetAuthorList()
+        {
+            return new AuthorList
+                   {
+                       Id = 0,
+                       Name = DateTime.Now.Ticks.ToString(CultureInfo.InvariantCulture),
+// ReSharper disable StringLiteralTypo
+                       //CustomCode = "Arunald-1",
+// ReSharper restore StringLiteralTypo
+                       Properties = new AuthorListProperties
+                                    {
+                                        Description = "Author List"
+                                    },
+                       ItemGroupCollection = new ItemGroupCollection
+                                             {
+                                                 new ItemGroup
+                                                 {
+                                                     Id = 0,
+                                                     GroupType = ItemGroupType.Default,
+                                                     ItemCollection = new ItemCollection(new[]
+                                                                                         {
+                                                                                             new AuthorItem
+                                                                                             {
+                                                                                                 Id = 0,
+                                                                                                 Properties = new AuthorItemProperties
+                                                                                                              {
+                                                                                                                  Code = "001"
+                                                                                                              }
+                                                                                             },
+                                                                                             new AuthorItem
+                                                                                             {
+                                                                                                 Id = 0,
+                                                                                                 Properties = new AuthorItemProperties
+                                                                                                              {
+                                                                                                                  Code = "002"
+                                                                                                              }
+                                                                                             }
+                                                                                         })
+                                                 }
+                                             },
+                       ShareProperties = new ShareProperties() { 
+                           AccessPermission = new Permission
+                                              {
+                                                  Scope = ShareScope.Personal, 
+                                                 ShareRoleCollection = new ShareRoleCollection(), 
+                                                 Groups = new GroupList(),
+                                              },
+                          
+}
+
+                   };
         }
     }
 }

@@ -9,6 +9,12 @@ namespace DowJones.Json.Gateway.Messages.Pam.Api_1_0.Assets.List
         [DataMember(Name = "id", IsRequired = true)]
         public long Id { get; set; }
 
+        [DataMember(Name = "name", IsRequired = true)]
+        public string Name { get; set; }
+
+        [DataMember(Name = "customCode", IsRequired = true)]
+        public string CustomCode { get; set; }
+        
         [DataMember(Name = "properties", IsRequired = true, EmitDefaultValue = false)]
         public ListProperties Properties { get; set; }
 

@@ -9,7 +9,7 @@ namespace DowJones.Json.Gateway.Messages.Pam.Api_1_0.Sharing
     [KnownType(typeof (SharePropertiesResponse))]
     public class ShareProperties
     {
-        [DataMember(Name = "accessPermission", EmitDefaultValue = false)]
+        [DataMember(Name = "accessPermission", IsRequired = true, EmitDefaultValue = false)]
         public Permission AccessPermission { get; set; }
 
         [DataMember(Name = "assignPermission", EmitDefaultValue = false)]
