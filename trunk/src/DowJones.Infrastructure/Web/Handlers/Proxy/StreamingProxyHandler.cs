@@ -28,7 +28,7 @@ namespace DowJones.Web.Handlers.Proxy
         private const int BufferSize = 8 * 1024;
         private readonly List<string> _whiteListedDomains = new List<string>(new[]
                                                                              {
-                                                                                 "dowjones.net", 
+                                                                                 "dowjones.net", "foxnews.com",
                                                                                  "m.wsj.net", "i.mktw.net",
                                                                                  "factiva.com", "dowjones.com"
                                                                              });
