@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Syntax Highlightere</title>
+
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="@Url.Content("~/content/bootstrap.css")" rel="Stylesheet" />
+        <link href="@Url.Content("~/content/default.min.css")" rel="Stylesheet" />
+
+        <script src="@Url.Content("~/content/scripts/jquery.min.js")"></script>
+        <script src="@Url.Content("~/content/scripts/highlight.min.js")"></script>
+        <script src="@Url.Content("~/content/scripts/bootstrap.js")"></script>
+
+        <style>
+            #editor {
+                margin-top: 50px;
+                height: 200px;
+
+            }
+        </style>
+
+    </head>
+    <body>
+        <header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
+            <div class="container">
+                <div class="navbar-header">
+                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="../" class="navbar-brand">Syntax Highligher</a>
+                </div>
+                <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="../getting-started">ACE Editor</a>
+                        </li>
+                        @*<li>
+                            <a href="../css">CSS</a>
+                        </li>
+                        <li>
+                            <a href="../components">Components</a>
+                        </li>
+                        <li>
+                            <a href="../javascript">JavaScript</a>
+                        </li>
+                        <li>
+                            <a href="../customize">Customize</a>
+                        </li>*@
+
+                    </ul>
+                   @* <ul class="nav navbar-nav navbar-right">
+                        <li><a href="http://expo.getbootstrap.com" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Community links', 'Expo']);">Expo</a></li>
+                        <li><a href="http://blog.getbootstrap.com" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Community links', 'Blog']);">Blog</a></li>
+                    </ul>*@
+                </nav>
+            </div>
+        </header>
+        
+        <div id="editor">
+            (ns=(gelear or cbrand) or in=(isocial or iresinv)) and (social media or twitter or facebook or linkedin or youtube or foursquare or tmblr or social w/3 (site* or network* or network*)) same (customer service or brand* or marketing or employee* or communicat* or strateg* or tweet* or messag* or posted or posting or followers or following or digital strateg*) and wc>150 not (ip=nbite or ns=(nsum or c14 or nhoc or nran or ntab or nhoc or nnam or nrmf or nrgn) or rst=(mfpe or glomcp or cndl or freg or glomfd))
+        </div>
+        
+        <div class="controls">
+        </div>
+
+        <script src="@Url.Content("~/content/src-noconflict/ace.js")" type="text/javascript" charset="utf-8"></script>
+        <script>
+            var editor = ace.edit("editor");
+            editor.setTheme("ace/theme/monokai");
+            editor.getSession().setMode("ace/mode/factiva");
+        </script>
+    </body>
+</html>
