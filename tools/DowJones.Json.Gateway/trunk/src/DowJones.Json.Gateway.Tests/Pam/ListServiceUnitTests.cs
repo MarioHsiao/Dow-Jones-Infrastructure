@@ -117,6 +117,63 @@ namespace DowJones.Json.Gateway.Tests.Pam
 
             DeleteList(id);
         }
+
+
+        [TestMethod]
+        public void GetListsDetailsList()
+        {
+            var id = CreateList();
+            var r = new RestRequest<GetListsDetailsListRequest>
+                    {
+                        Request = new GetListsDetailsListRequest
+
+                                  {
+                                      MaxResultsToReturn = 100,
+                                      ListTypeCollection = new ListTypeCollection(),
+                                      FilterCollection = new FilterCollection(new[]
+                                                                              {
+                                                                                  new IdSearchFilter
+                                                                                  {
+                                                                                      ListIdCollection = new ListIdCollection(new[] {id.ToString(CultureInfo.InvariantCulture)})
+                                                                                  }
+                                                                              })
+                                  },
+                        ControlData = GetControlData()
+                    };
+
+            UpdateRoutingData(r.ControlData.RoutingData);
+
+            try
+            {
+                var rm = new RestManager();
+                var t = rm.Execute<GetListsDetailsListRequest, GetListsDetailsListResponse>(r);
+
+                Console.Write(r.Request.ToJson(new DataContractJsonConverter()));
+
+                if (t.ReturnCode == 0)
+                {
+                    Assert.IsNotNull(t);
+                }
+                else
+                {
+                    Console.WriteLine(t.Error.Message);
+                    Assert.Fail(string.Concat("failed w/rc:= ", t.ReturnCode.ToString(CultureInfo.InvariantCulture)));
+                }
+                Console.WriteLine(t.Data.ToJson(true));
+                DeleteList(id);
+                return;
+            }
+            catch (JsonGatewayException gatewayException)
+            {
+                Console.Write(gatewayException.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.Message);
+            }
+            DeleteList(id);
+            Assert.Fail("unable delete list");
+        }
         
        private void DeleteList(long id)
         {

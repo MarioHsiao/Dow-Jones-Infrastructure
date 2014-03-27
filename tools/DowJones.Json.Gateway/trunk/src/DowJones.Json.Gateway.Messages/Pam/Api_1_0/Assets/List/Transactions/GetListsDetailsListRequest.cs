@@ -13,13 +13,13 @@ namespace DowJones.Json.Gateway.Messages.Pam.Api_1_0.Assets.List.Transactions
         [DataMember(Name = "maxResultsToReturn", IsRequired = true)]
         public int MaxResultsToReturn { get; set; }
 
-        [DataMember(Name = "listTypeCollection", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "listTypeCollection",IsRequired = true, EmitDefaultValue = false)]
         public ListTypeCollection ListTypeCollection { get; set; }
 
-        [DataMember(Name = "sortBy", IsRequired = true)]
+        [DataMember(Name = "sortBy", EmitDefaultValue = true)]
         public ListSortBy SortBy { get; set; }
 
-        [DataMember(Name = "sortOrder", IsRequired = true)]
+        [DataMember(Name = "sortOrder", EmitDefaultValue = true)]
         public SortOrder SortOrder { get; set; }
 
         [DataMember(Name = "paging", EmitDefaultValue = false)]
