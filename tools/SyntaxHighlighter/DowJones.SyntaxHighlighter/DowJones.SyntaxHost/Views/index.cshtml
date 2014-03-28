@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>Syntax Highlightere</title>
+        <title>Syntax Highlighter</title>
 
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,15 +10,13 @@
         <link href="@Url.Content("~/content/bootstrap.css")" rel="Stylesheet" />
         <link href="@Url.Content("~/content/default.min.css")" rel="Stylesheet" />
 
-        <script src="@Url.Content("~/content/scripts/jquery.min.js")"></script>
-        <script src="@Url.Content("~/content/scripts/highlight.min.js")"></script>
-        <script src="@Url.Content("~/content/scripts/bootstrap.js")"></script>
-
+        <script src="@Url.Content("~/scripts/jquery-1.9.0.min.js")"></script>
+        <script src="@Url.Content("~/scripts/highlight.min.js")"></script>
+        <script src="@Url.Content("~/scripts/bootstrap.min.js")"></script>
         <style>
             #editor {
                 margin-top: 50px;
                 height: 200px;
-
             }
         </style>
 
@@ -62,18 +60,79 @@
             </div>
         </header>
         
-        <div id="editor">
-            (ns=(gelear or cbrand) or in=(isocial or iresinv)) and (social media or twitter or facebook or linkedin or youtube or foursquare or tmblr or social w/3 (site* or network* or network*)) same (customer service or brand* or marketing or employee* or communicat* or strateg* or tweet* or messag* or posted or posting or followers or following or digital strateg*) and wc>150 not (ip=nbite or ns=(nsum or c14 or nhoc or nran or ntab or nhoc or nnam or nrmf or nrgn) or rst=(mfpe or glomcp or cndl or freg or glomfd))
+        <div id="editor">(ns=(gelear or cbrand) or in=(isocial or iresinv)) and (social media or twitter or facebook or linkedin or youtube or foursquare or tmblr or social w/3 (site* or network* or network*)) same (customer service or brand* or marketing or employee* or communicat* or strateg* or tweet* or messag* or posted or posting or followers or following or digital strateg*) and wc>150 not (ip=nbite or ns=(nsum or c14 or nhoc or nran or ntab or nhoc or nnam or nrmf or nrgn) or rst=(mfpe or glomcp or cndl or freg or glomfd))
         </div>
         
-        <div class="controls">
+        <div class="comments">
+            Type in a word like "will" below and press ctrl+space or alt+space to get "rhyme completion"
         </div>
-
+        
+        <script src="@Url.Content("~/content/scripts/suggestTransport.js")" type="text/javascript" charset="utf-8"></script>
         <script src="@Url.Content("~/content/src-noconflict/ace.js")" type="text/javascript" charset="utf-8"></script>
+        <script src="@Url.Content("~/content/src-noconflict/ext-language_tools.js")" type="text/javascript" charset="utf-8"></script>
         <script>
+            var langTools = ace.require("ace/ext/language_tools");
             var editor = ace.edit("editor");
             editor.setTheme("ace/theme/monokai");
             editor.getSession().setMode("ace/mode/factiva");
+            editor.setOptions({
+                enableBasicAutocompletion: true,
+                enableSnippets: false
+            });
+
+            editor.getSession().on("change", function(e) {
+                logEvent('change', e);
+            });
+
+            editor.getSession().on("tokenizerUpdate", function (e) {
+                logEvent('tokenizerUpdate', e);
+            });
+
+            editor.on("blur", function(e) {
+                logEvent('blur', e);
+            });
+
+            editor.on("tokenizerUpdate", function (e) {
+                logEvent('tokenizerUpdate', e);
+            });
+
+            function log(obj) {
+                if (console && console.log) {
+                    console.log(obj);
+                }
+            }
+
+            function logEvent(name, data) {
+                log({
+                    name: name,
+                    data: data
+                });
+            }
+
+            var rhymeCompleter = {
+                getCompletions: function (editor, session, pos, prefix, callback) {
+                    log(editor);
+                    log(session);
+                    log(pos);
+                    log(prefix);
+                    
+                    if (prefix.length === 0) { callback(null, []); return;}
+                    
+                    $.getJSON(
+                        "http://rhymebrain.com/talk?function=getRhymes&word=" + prefix,
+                        function(wordList) {
+                            // wordList like [{"word":"flow","freq":24,"score":300,"flags":"bc","syllables":"1"}]
+                            callback(null, wordList.map(function(ea) {
+                                return { name: ea.word, value: ea.word, score: ea.score, meta: "rhyme" }
+                            }));
+                        });
+                }
+            }
+            langTools.addCompleter(rhymeCompleter);
+
+
+
+
         </script>
     </body>
 </html>
