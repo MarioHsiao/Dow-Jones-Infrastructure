@@ -1,5 +1,4 @@
-﻿using System;
-using DowJones.Json.Gateway.Interfaces;
+﻿using DowJones.Json.Gateway.Interfaces;
 using RestSharp;
 
 namespace DowJones.Json.Gateway.Processors
