@@ -10,9 +10,9 @@
         <link href="@Url.Content("~/content/bootstrap.css")" rel="Stylesheet" />
         <link href="@Url.Content("~/content/default.min.css")" rel="Stylesheet" />
 
-        <script src="@Url.Content("~/scripts/jquery-1.9.0.min.js")"></script>
-        <script src="@Url.Content("~/scripts/highlight.min.js")"></script>
-        <script src="@Url.Content("~/scripts/bootstrap.min.js")"></script>
+        <script src="@Url.Content("~/content/scripts/jquery-1.9.0.min.js")"></script>
+        <script src="@Url.Content("~/content/scripts/highlight.min.js")"></script>
+        <script src="@Url.Content("~/content/scripts/bootstrap.min.js")"></script>
         <style>
             #editor {
                 margin-top: 50px;
@@ -68,8 +68,8 @@
         </div>
         
         <script src="@Url.Content("~/content/scripts/suggestTransport.js")" type="text/javascript" charset="utf-8"></script>
-        <script src="@Url.Content("~/content/src-noconflict/ace.js")" type="text/javascript" charset="utf-8"></script>
-        <script src="@Url.Content("~/content/src-noconflict/ext-language_tools.js")" type="text/javascript" charset="utf-8"></script>
+        <script src="@Url.Content("~/content/scripts/ace/src-noconflict/ace.js")" type="text/javascript" charset="utf-8"></script>
+        <script src="@Url.Content("~/content/scripts/ace/src-noconflict/ext-language_tools.js")" type="text/javascript" charset="utf-8"></script>
         <script>
             var langTools = ace.require("ace/ext/language_tools");
             var editor = ace.edit("editor");
@@ -111,15 +111,32 @@
 
             var rhymeCompleter = {
                 getCompletions: function (editor, session, pos, prefix, callback) {
-                    log(editor);
-                    log(session);
-                    log(pos);
-                    log(prefix);
+                    if (prefix.length === 0) {
+                        callback(null, [
+                            {
+                                name: "or",
+                                value: "or",
+                                score: 1,
+                                meta: "operator"
+                            },
+                            {
+                                name: "and",
+                                value: "and",
+                                score: 1,
+                                meta: "operator"
+                            },
+                            {
+                                name: "not",
+                                value: "not",
+                                score: 1,
+                                meta: "operator"
+                            }
+                        ]); return;
+                    }
+
+                    var t = new djCore.Transport("http://rhymebrain.com/talk?function=getRhymes&word=%QUERY%");
                     
-                    if (prefix.length === 0) { callback(null, []); return;}
-                    
-                    $.getJSON(
-                        "http://rhymebrain.com/talk?function=getRhymes&word=" + prefix,
+                    t.get(prefix,
                         function(wordList) {
                             // wordList like [{"word":"flow","freq":24,"score":300,"flags":"bc","syllables":"1"}]
                             callback(null, wordList.map(function(ea) {

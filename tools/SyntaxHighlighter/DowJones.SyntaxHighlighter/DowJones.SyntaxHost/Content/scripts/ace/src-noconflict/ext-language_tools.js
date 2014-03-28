@@ -66,7 +66,7 @@ var snippetCompleter = {
     }
 };
 
-var completers = [snippetCompleter, textCompleter, keyWordCompleter];
+var completers = [snippetCompleter, /*textCompleter,*/ keyWordCompleter];
 exports.addCompleter = function(completer) {
     completers.push(completer);
 };

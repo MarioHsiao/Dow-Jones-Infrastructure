@@ -1,12 +1,12 @@
 ﻿(function ($) {
-    var djx = window.__djx = window.__djx || {};
+    var djCore = window.djCore = window.djCore || {};
 
-    djx.config = djx.config || {
+    djCore.config = djCore.config || {
         debug: false
     };
 
-    djx.version = "0.9.3";
-    djx.utils = {
+    djCore.version = "0.0.0";
+    djCore.utils = {
         isMsie: function() {
             var match = /(msie) ([\w.]+)/i.exec(navigator.userAgent);
             return match ? parseInt(match[2], 10) : false;
@@ -135,15 +135,15 @@
         noop: function() {}
     };
 
-    djx.RequestCache = function () {
+    djCore.RequestCache = function () {
         function requestCache(o) {
-            utils.bindAll(this);
+            djCore.utils.bindAll(this);
             o = o || {};
             this.sizeLimit = o.sizeLimit || 10;
             this.cache = {};
             this.cachedKeysByAge = [];
         }
-        utils.mixin(requestCache.prototype, {
+        djCore.utils.mixin(requestCache.prototype, {
             get: function (url) {
                 return this.cache[url];
             },
@@ -160,15 +160,15 @@
         return requestCache;
     }();
 
-    djx.Transport = function () {
+    djCore.Transport = function () {
         var pendingRequestsCount = 0, pendingRequests = {}, maxPendingRequests, requestCache;
         function transport(o) {
-            utils.bindAll(this);
-            o = utils.isString(o) ? {
+            djCore.utils.bindAll(this);
+            o = djCore.utils.isString(o) ? {
                 url: o
             } : o;
-            requestCache = requestCache || new djx.RequestCache();
-            maxPendingRequests = utils.isNumber(o.maxParallelRequests) ? o.maxParallelRequests : maxPendingRequests || 6;
+            requestCache = requestCache || new djCore.RequestCache();
+            maxPendingRequests = djCore.utils.isNumber(o.maxParallelRequests) ? o.maxParallelRequests : maxPendingRequests || 6;
             this.url = o.url;
             this.wildcard = o.wildcard || "%QUERY";
             this.filter = o.filter;
@@ -180,10 +180,10 @@
                 dataType: o.dataType || "json",
                 beforeSend: o.beforeSend
             };
-            this._get = (/^throttle$/i.test(o.rateLimitFn) ? utils.throttle : utils.debounce)(this._get, o.rateLimitWait || 300);
+            this._get = (/^throttle$/i.test(o.rateLimitFn) ? djCore.utils.throttle : djCore.utils.debounce)(this._get, o.rateLimitWait || 300);
         }
 
-        utils.mixin(transport.prototype, {
+        djCore.utils.mixin(transport.prototype, {
             _get: function (url, cb) {
                 var that = this;
                 if (belowPendingRequestsThreshold()) {
@@ -215,10 +215,10 @@
             },
             get: function (query, cb) {
                 var that = this, encodedQuery = encodeURIComponent(query || ""), url, resp;
-                cb = cb || utils.noop;
+                cb = cb || djCore.utils.noop;
                 url = this.replace ? this.replace(this.url, encodedQuery) : this.url.replace(this.wildcard, encodedQuery);
                 if (resp = requestCache.get(url)) {
-                    utils.defer(function () {
+                    djCore.utils.defer(function () {
                         cb(that.filter ? that.filter(resp) : resp);
                     });
                 } else {
