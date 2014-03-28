@@ -102,8 +102,10 @@
     <Compile Include="Interfaces\IUserCredentialData.cs" />
     <Compile Include="IRestRequest.cs" />
     <Compile Include="IRestResponse.cs" />
+    <Compile Include="Processors\DeleteRestClientProcessor.cs" />
     <Compile Include="Processors\GenericRestClientProcessor.cs" />
     <Compile Include="Processors\GetRestClientProcessor.cs" />
+    <Compile Include="Processors\UrlBasedRestClientProcessor.cs" />
     <Compile Include="Processors\IRestClientProcessor.cs" />
     <Compile Include="Processors\RestClientProcessor.cs" />
     <Compile Include="Processors\RestClientProcessorFactory.cs" />

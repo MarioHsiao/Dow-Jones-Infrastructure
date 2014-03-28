@@ -3,7 +3,7 @@ using RestSharp;
 
 namespace DowJones.Json.Gateway.Processors
 {
-    internal class GetRestClientProcessor : UrlBasedRestClientProcessor
+    internal class DeleteRestClientProcessor : UrlBasedRestClientProcessor
     {
         private ILog _log = LogManager.GetLogger(typeof(UrlBasedRestClientProcessor));
 
@@ -15,7 +15,7 @@ namespace DowJones.Json.Gateway.Processors
 
         protected override Method Method
         {
-            get { return Method.GET; }
+            get { return Method.DELETE; }
         }
     }
 }

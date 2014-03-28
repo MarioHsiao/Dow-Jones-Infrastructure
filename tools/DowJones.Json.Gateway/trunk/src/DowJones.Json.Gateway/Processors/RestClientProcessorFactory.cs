@@ -15,6 +15,9 @@ namespace DowJones.Json.Gateway.Processors
                 case Method.GET:
                     Processor = new GetRestClientProcessor();
                     break;
+                case Method.DELETE:
+                    Processor = new DeleteRestClientProcessor();
+                    break;
                 default:
                     Processor = new GenericRestClientProcessor(method);
                     break;
