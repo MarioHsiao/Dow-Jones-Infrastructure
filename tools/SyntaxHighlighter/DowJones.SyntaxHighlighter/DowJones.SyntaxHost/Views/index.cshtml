@@ -11,6 +11,7 @@
         <link href="@Url.Content("~/content/default.min.css")" rel="Stylesheet" />
 
         <script src="@Url.Content("~/content/scripts/jquery-1.9.0.min.js")"></script>
+        <script src="@Url.Content("~/content/scripts/underscore.min.js")"></script>
         <script src="@Url.Content("~/content/scripts/highlight.min.js")"></script>
         <script src="@Url.Content("~/content/scripts/bootstrap.min.js")"></script>
         <style>
@@ -21,52 +22,55 @@
         </style>
 
     </head>
-    <body>
-        <header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
-            <div class="container">
-                <div class="navbar-header">
-                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a href="../" class="navbar-brand">Syntax Highligher</a>
+<body>
+    <header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="@Url.Content("~/")" class="navbar-brand">Syntax Highligher</a>
                 </div>
                 <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
                     <ul class="nav navbar-nav">
                         <li>
-                            <a href="../getting-started">ACE Editor</a>
+                            <a href="http://ace.c9.io/#nav=about">ACE Editor</a>
                         </li>
                         @*<li>
-                            <a href="../css">CSS</a>
-                        </li>
-                        <li>
-                            <a href="../components">Components</a>
-                        </li>
-                        <li>
-                            <a href="../javascript">JavaScript</a>
-                        </li>
-                        <li>
-                            <a href="../customize">Customize</a>
-                        </li>*@
+                                <a href="../css">CSS</a>
+                            </li>
+                            <li>
+                                <a href="../components">Components</a>
+                            </li>
+                            <li>
+                                <a href="../javascript">JavaScript</a>
+                            </li>
+                            <li>
+                                <a href="../customize">Customize</a>
+                            </li>*@
 
                     </ul>
-                   @* <ul class="nav navbar-nav navbar-right">
-                        <li><a href="http://expo.getbootstrap.com" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Community links', 'Expo']);">Expo</a></li>
-                        <li><a href="http://blog.getbootstrap.com" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Community links', 'Blog']);">Blog</a></li>
-                    </ul>*@
+                    @* <ul class="nav navbar-nav navbar-right">
+                            <li><a href="http://expo.getbootstrap.com" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Community links', 'Expo']);">Expo</a></li>
+                            <li><a href="http://blog.getbootstrap.com" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Community links', 'Blog']);">Blog</a></li>
+                        </ul>*@
                 </nav>
             </div>
         </header>
-        
-        <div id="editor">(ns=(gelear or cbrand) or in=(isocial or iresinv)) and (social media or twitter or facebook or linkedin or youtube or foursquare or tmblr or social w/3 (site* or network* or network*)) same (customer service or brand* or marketing or employee* or communicat* or strateg* or tweet* or messag* or posted or posting or followers or following or digital strateg*) and wc>150 not (ip=nbite or ns=(nsum or c14 or nhoc or nran or ntab or nhoc or nnam or nrmf or nrgn) or rst=(mfpe or glomcp or cndl or freg or glomfd))
+
+        <div id="editor">
+            (ns=(gelear or cbrand) or in=(isocial or iresinv)) and (social media or twitter or facebook or linkedin or youtube or foursquare or tmblr or social w/3 (site* or network* or network*)) same (customer service or brand* or marketing or employee* or communicat* or strateg* or tweet* or messag* or posted or posting or followers or following or digital strateg*) and wc>150 not (ip=nbite or ns=(nsum or c14 or nhoc or nran or ntab or nhoc or nnam or nrmf or nrgn) or rst=(mfpe or glomcp or cndl or freg or glomfd))
+            (innovation or innovative or innovator or innovated or innovates or innovators or innovating OR ((new or newest or latest or introduces or announces or revolutionary or groundbreaking or ground breaking) /n3/ (products or services or technology or technological or product or service)) OR game changer or game changers or game changing OR ((creative or creatively or creating or creates or creativeness) /n10/ (ideas or idea or solution or solutions or solving or solves)) OR ahead of the times or state of the art or cutting edge or leading /n2/ industry OR ((new OR newer OR improve OR improves OR improvements OR improvement OR improved OR clean OR cleaner OR break-through or break-through or breakthrough or breakthroughs OR moderni?ation or moderni?ations OR moderni?ed OR new type or new types or cutting edge or leading edge) /n3/ (technology OR technological OR technologies OR technologic OR technologically OR solution OR solutions OR system OR systems OR concept OR concepts OR method OR methods OR project OR projects)) OR ((opportunity or concepts or solutions or solution or concept) /n5/ (prototyping or developing or incubation or commercialization)))
+            ((Manager or director or head or VP or vice president or executive or consult* or strategist or officer) near5 (competitive intel* or business intel* or compet* research* or compet* analysis or market research*) near10 (Said or say* or state* or confirm* or den* or tell* or told* or comment* or email* or call* or contact* or announc* or speak*)) and wc>50 not (ns=(nran or ntab or nsum or nobt or gwea or ncal or npan or nabst or grcps or c1512 or mcat or csched or nnam) or hd=(index or diary or summary or table or calendar or obit$)) 
         </div>
-        
+
         <div class="comments">
             Type in a word like "will" below and press ctrl+space or alt+space to get "rhyme completion"
         </div>
-        
+
         <script src="@Url.Content("~/content/scripts/suggestTransport.js")" type="text/javascript" charset="utf-8"></script>
         <script src="@Url.Content("~/content/scripts/ace/src-noconflict/ace.js")" type="text/javascript" charset="utf-8"></script>
         <script src="@Url.Content("~/content/scripts/ace/src-noconflict/ext-language_tools.js")" type="text/javascript" charset="utf-8"></script>
@@ -80,7 +84,7 @@
                 enableSnippets: false
             });
 
-            editor.getSession().on("change", function(e) {
+            editor.getSession().on("change", function (e) {
                 logEvent('change', e);
             });
 
@@ -88,7 +92,7 @@
                 logEvent('tokenizerUpdate', e);
             });
 
-            editor.on("blur", function(e) {
+            editor.on("blur", function (e) {
                 logEvent('blur', e);
             });
 
@@ -135,11 +139,11 @@
                     }
 
                     var t = new djCore.Transport("http://rhymebrain.com/talk?function=getRhymes&word=%QUERY%");
-                    
+
                     t.get(prefix,
-                        function(wordList) {
+                        function (wordList) {
                             // wordList like [{"word":"flow","freq":24,"score":300,"flags":"bc","syllables":"1"}]
-                            callback(null, wordList.map(function(ea) {
+                            callback(null, wordList.map(function (ea) {
                                 return { name: ea.word, value: ea.word, score: ea.score, meta: "rhyme" }
                             }));
                         });
@@ -152,4 +156,5 @@
 
         </script>
     </body>
+
 </html>

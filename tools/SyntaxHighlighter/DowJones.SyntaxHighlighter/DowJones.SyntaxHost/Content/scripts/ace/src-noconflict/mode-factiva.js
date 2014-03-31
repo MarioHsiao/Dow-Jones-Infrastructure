@@ -48,14 +48,23 @@ ace.define('ace/mode/factiva', ['require', 'exports', 'module', 'ace/lib/oop', '
                     token: "constant.character.asterisk",
                     regex: "[\\*]"
                 }, {
+                    token: "constant.character.question",
+                    regex: "[\\?]"
+                }, {
+                    token: "constant.character.dollar",
+                    regex: "[\\$]"
+                }, {
                     token: 'constant.character.count',
                     regex: '\\batleast[0-9]+\\b'
                 }, {
                     token: 'constant.character.proximity',
                     regex: '\\bnear[0-9]*\\b'
                 }, {
+                    token: 'constant.character.same',
+                    regex: '\\bsame[0-9]*\\b'
+                }, {
                     token: 'constant.character.proximity',
-                    regex: '\\N[1-9][0-9]*\\b'
+                    regex: '\\/(n|N)[1-9][0-9]*\\/'
                 }, {
                     token: 'constant.character.adjancency',
                     regex: '\\badj[0-9]*\\b'
@@ -67,7 +76,7 @@ ace.define('ace/mode/factiva', ['require', 'exports', 'module', 'ace/lib/oop', '
                     regex: 'w/[1-9][0-9]*\\b'
                 }, {
                     token: 'keyword.operator',
-                    regex: '\\b(?:and|or|not)\\b'
+                    regex: '\\b(?:and|or|not|AND|OR|NOT)\\b'
                 }, {
                     token: "paren.lparen",
                     regex: "[\\(]"
