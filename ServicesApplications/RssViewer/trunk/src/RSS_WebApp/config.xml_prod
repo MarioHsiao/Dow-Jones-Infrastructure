@@ -49,8 +49,8 @@
 			<!-- How do I the build the target URL to fetch the article? -->
 			<TopLevelNode nsPrefix="ns1" nsURI="http://types.factiva.com/search">Result</TopLevelNode>
 			<articleURL>
-				<DirectURL><![CDATA[http://global.factiva.com/redir/default.aspx?]]></DirectURL>
-				<WSJDirectURL><![CDATA[http://online.wsj.com/article/]]></WSJDirectURL>
+				<DirectURL><![CDATA[https://global.factiva.com/redir/default.aspx?]]></DirectURL>
+				<WSJDirectURL><![CDATA[https://online.wsj.com/article/]]></WSJDirectURL>
 				<eid>
 					<!-- EID values which need to appear in the article url -->
 					<params>
@@ -179,7 +179,7 @@
 			</rssChannel>
 			<!-- How do I the build the target URL to fetch the article? -->
 			<articleURL>
-				<DirectURL><![CDATA[http://global.factiva.com/redir/default.aspx?]]></DirectURL>
+				<DirectURL><![CDATA[https://global.factiva.com/redir/default.aspx?]]></DirectURL>
 				<eid>
 					<!-- EID values which need to appear in the article url -->
 					<params>
@@ -305,7 +305,7 @@
 			<!-- How do I the build the target URL to fetch the article? -->
 			<TopLevelNode nsPrefix="ns1" nsURI="http://types.factiva.com/search">Result</TopLevelNode>
 			<articleURL>
-				<DirectURL><![CDATA[http://global.factiva.com/redir/default.aspx?]]></DirectURL>
+				<DirectURL><![CDATA[https://global.factiva.com/redir/default.aspx?]]></DirectURL>
 				<eid>
 					<!-- EID values which need to appear in the article url -->
 					<params>
@@ -433,7 +433,7 @@
 			<!-- How do I the build the target URL to fetch the article? -->
 			<TopLevelNode nsPrefix="ns1" nsURI="http://types.factiva.com/search">Result</TopLevelNode>
 			<articleURL>
-				<DirectURL><![CDATA[http://global.factiva.com/redir/default.aspx?]]></DirectURL>
+				<DirectURL><![CDATA[https://global.factiva.com/redir/default.aspx?]]></DirectURL>
 				<eid>
 					<!-- EID values which need to appear in the article url -->
 					<params>
@@ -562,7 +562,7 @@
 			<!-- How do I the build the target URL to fetch the article? -->
 			<TopLevelNode nsPrefix="ns1" nsURI="http://types.factiva.com/search">Result</TopLevelNode>
 			<articleURL>
-				<DirectURL><![CDATA[http://global.factiva.com/redir/default.aspx?]]></DirectURL>
+				<DirectURL><![CDATA[https://global.factiva.com/redir/default.aspx?]]></DirectURL>
 				<eid>
 					<!-- EID values which need to appear in the article url -->
 					<params>
@@ -859,7 +859,7 @@
 			<!-- How do I the build the target URL to fetch the article? -->
 			<TopLevelNode nsPrefix="ns1" nsURI="http://types.factiva.com/search">document</TopLevelNode>
 			<articleURL>
-				<DirectURL><![CDATA[http://global.factiva.com/redir/default.aspx?]]></DirectURL>
+				<DirectURL><![CDATA[https://global.factiva.com/redir/default.aspx?]]></DirectURL>
 				<eid>
 					<!-- EID values which need to appear in the article url -->
 					<params>
@@ -980,7 +980,7 @@
 			</rssChannel>
 			<!-- How do I the build the target URL to fetch the article? -->
 			<articleURL>
-				<DirectURL><![CDATA[http://global.factiva.com/redir/default.aspx?]]></DirectURL>
+				<DirectURL><![CDATA[https://global.factiva.com/redir/default.aspx?]]></DirectURL>
 				<eid>
 					<!-- EID values which need to appear in the article url -->
 					<params>
@@ -1116,7 +1116,7 @@
       <!-- How do I the build the target URL to fetch the article? -->
       <TopLevelNode nsPrefix="ns1" nsURI="http://types.factiva.com/search">document</TopLevelNode>
       <articleURL>
-        <DirectURL><![CDATA[http://global.factiva.com/redir/default.aspx?]]></DirectURL>
+        <DirectURL><![CDATA[https://global.factiva.com/redir/default.aspx?]]></DirectURL>
         <eid>
           <!-- EID values which need to appear in the article url -->
           <params>
@@ -1241,7 +1241,7 @@
       </rssChannel>
       <!-- How do I the build the target URL to fetch the article? -->
       <articleURL>
-        <DirectURL><![CDATA[http://global.factiva.com/redir/default.aspx?]]></DirectURL>
+        <DirectURL><![CDATA[https://global.factiva.com/redir/default.aspx?]]></DirectURL>
         <eid>
           <!-- EID values which need to appear in the article url -->
           <params>
@@ -1364,7 +1364,7 @@
       </rssChannel>
       <!-- How do I the build the target URL to fetch the article? -->
       <articleURL>
-        <DirectURL><![CDATA[http://global.factiva.com/redir/default.aspx?]]></DirectURL>
+        <DirectURL><![CDATA[https://global.factiva.com/redir/default.aspx?]]></DirectURL>
         <eid>
           <!-- EID values which need to appear in the article url -->
           <params>
@@ -1486,7 +1486,7 @@
       </rssChannel>
       <!-- How do I the build the target URL to fetch the article? -->
       <articleURL>
-        <DirectURL><![CDATA[http://global.factiva.com/redir/default.aspx?]]></DirectURL>
+        <DirectURL><![CDATA[https://global.factiva.com/redir/default.aspx?]]></DirectURL>
         <eid>
           <!-- EID values which need to appear in the article url -->
           <params>
