@@ -1,4 +1,5 @@
-﻿using DowJones.Json.Gateway.Interfaces;
+﻿using DowJones.Json.Gateway.Common;
+using DowJones.Json.Gateway.Interfaces;
 
 namespace DowJones.Json.Gateway.Converters
 {

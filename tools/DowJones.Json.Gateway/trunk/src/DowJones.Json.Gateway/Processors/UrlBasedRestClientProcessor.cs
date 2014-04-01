@@ -5,7 +5,7 @@ using DowJones.Json.Gateway.Converters;
 using DowJones.Json.Gateway.Interfaces;
 using log4net;
 using RestSharp;
-using Environment = DowJones.Json.Gateway.Interfaces.Environment;
+using Environment = DowJones.Json.Gateway.Common.Environment;
 
 namespace DowJones.Json.Gateway.Processors
 {

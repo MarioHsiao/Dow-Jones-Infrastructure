@@ -1,6 +1,7 @@
 ﻿using System.Runtime.Serialization;
+using DowJones.Json.Gateway.Common;
 using DowJones.Json.Gateway.Interfaces;
-using Environment = DowJones.Json.Gateway.Interfaces.Environment;
+using Environment = DowJones.Json.Gateway.Common.Environment;
 
 namespace DowJones.Json.Gateway.Messages.Core
 {

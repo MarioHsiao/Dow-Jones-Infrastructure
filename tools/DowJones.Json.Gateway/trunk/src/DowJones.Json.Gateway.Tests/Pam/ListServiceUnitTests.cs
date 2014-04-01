@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Threading;
+using DowJones.Json.Gateway.Common;
 using DowJones.Json.Gateway.Converters;
 using DowJones.Json.Gateway.Exceptions;
 using DowJones.Json.Gateway.Extensions;
@@ -10,7 +11,7 @@ using DowJones.Json.Gateway.Messages.Pam.Api_1_0.Assets.List.Transactions;
 using DowJones.Json.Gateway.Messages.Pam.Api_1_0.Sharing;
 using DowJones.Json.Gateway.Tests.Core;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Environment = DowJones.Json.Gateway.Interfaces.Environment;
+using Environment = DowJones.Json.Gateway.Common.Environment;
 
 namespace DowJones.Json.Gateway.Tests.Pam
 {
@@ -281,6 +282,8 @@ namespace DowJones.Json.Gateway.Tests.Pam
             }
             Assert.Fail("unable update name");
         }
+
+        
 
         private long CreateList()
         {

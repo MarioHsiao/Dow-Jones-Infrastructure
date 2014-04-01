@@ -61,6 +61,8 @@
     <Compile Include="Common\CacheScope.cs" />
     <Compile Include="Common\CacheStatus.cs" />
     <Compile Include="Common\ClientCode.cs" />
+    <Compile Include="Common\Environment.cs" />
+    <Compile Include="Common\JsonSerializer.cs" />
     <Compile Include="Common\Token.cs" />
     <Compile Include="Converters\ControlDataDataConverterSingleton.cs" />
     <Compile Include="Converters\ControlDataJsonConverter.cs" />

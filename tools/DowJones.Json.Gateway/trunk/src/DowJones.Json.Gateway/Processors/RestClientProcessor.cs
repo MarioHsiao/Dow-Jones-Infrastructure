@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Net;
+using DowJones.Json.Gateway.Common;
 using DowJones.Json.Gateway.Converters;
 using DowJones.Json.Gateway.Exceptions;
 using DowJones.Json.Gateway.Extensions;

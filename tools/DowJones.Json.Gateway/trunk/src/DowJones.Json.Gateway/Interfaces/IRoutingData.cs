@@ -1,17 +1,7 @@
-﻿namespace DowJones.Json.Gateway.Interfaces
+﻿using DowJones.Json.Gateway.Common;
+
+namespace DowJones.Json.Gateway.Interfaces
 {
-    public enum Environment
-    {
-        Direct,
-        Proxy,
-    }
-
-    public enum JsonSerializer
-    {
-        DataContract,
-        JsonDotNet
-    }
-
     public interface IRoutingData : IJsonSerializable
     {
         int ContentServerAddress { get; set; }
@@ -25,3 +15,4 @@
         string ServerUri { get; set; }
     }
 }
+
