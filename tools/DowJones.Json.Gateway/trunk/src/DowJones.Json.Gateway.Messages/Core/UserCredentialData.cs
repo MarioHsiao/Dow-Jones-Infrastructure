@@ -5,12 +5,13 @@ using DowJones.Json.Gateway.Interfaces;
 
 namespace DowJones.Json.Gateway.Messages.Core
 {
-    [DataContract(Name = "UserCredentialData")]
+    [DataContract]
     public class UserCredentialData : AbstractJsonSerializable, IUserCredentialData
     {
         public UserCredentialData()
         {
             IpAddress = "127.0.0.1";
+            Tokens = new List<Token>();
         }
 
         [DataMember]
@@ -47,7 +48,7 @@ namespace DowJones.Json.Gateway.Messages.Core
         public string SessionId { get; set; }
 
         [DataMember]
-        public List<Token> Tokens { get; set; }
+        public IEnumerable<Token> Tokens { get; set; }
 
         [DataMember]
         public string UserFlavor { get; set; }

@@ -7,6 +7,16 @@ namespace DowJones.Json.Gateway.Messages.Core
     [DataContract]
     public class ControlData : AbstractJsonSerializable, IControlData
     {
+        public ControlData()
+        {
+            AuthorizationData = new AuthorizationData();
+            UserCommerceData = new UserCommerceData();
+            UserCredentialData = new UserCredentialData();
+            PlatformAdminData = new PlatformAdminData();
+            TransactionCacheData = new TransactionCacheData();
+            RoutingData = new RoutingData();
+        }
+
         [DataMember]
         public IRoutingData RoutingData { get; set; }
 
@@ -21,6 +31,8 @@ namespace DowJones.Json.Gateway.Messages.Core
 
         [DataMember]
         public ITransactionCacheData TransactionCacheData { get; set; }
+
+        public IAuthorizationData AuthorizationData { get; set; }
 
         public bool IsValid()
         {

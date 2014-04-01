@@ -8,6 +8,11 @@ namespace DowJones.Json.Gateway.Messages.Core
     [DataContract]
     public class UserCommerceData : AbstractJsonSerializable, IUserCommerceData
     {
+        public UserCommerceData()
+        {
+            Tokens = new List<Token>();
+        }
+
         [DataMember]
         public string AccessPointCode { get; set; }
 
@@ -30,6 +35,6 @@ namespace DowJones.Json.Gateway.Messages.Core
         public string NetworkPartnerId { get; set; }
 
         [DataMember]
-        public List<Token> Tokens { get; set; }
+        public IEnumerable<Token> Tokens { get; set; }
     }
 }

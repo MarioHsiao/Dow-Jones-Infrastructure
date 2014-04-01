@@ -1,12 +1,22 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
 using DowJones.Json.Gateway.Common;
 using DowJones.Json.Gateway.Interfaces;
+using DowJones.Json.Gateway.Messages.Pam.Api_1_0.Assets.List;
 
 namespace DowJones.Json.Gateway.Messages.Core
 {
     [DataContract]
     public class TransactionCacheData : AbstractJsonSerializable, ITransactionCacheData
     {
+        public TransactionCacheData()
+        {
+            Tokens = new List<Token>();
+        }
+
+        [DataMember]
+        public IEnumerable<Token> Tokens { get; set; }
+
         [DataMember]
         public string CacheApplication { get; set; }
 

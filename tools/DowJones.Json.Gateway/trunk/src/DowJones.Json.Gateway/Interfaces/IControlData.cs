@@ -12,6 +12,8 @@
 
         ITransactionCacheData TransactionCacheData { get; set; }
 
+        IAuthorizationData AuthorizationData { get; set; }
+
         bool IsValid();
     }
 } 

@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\ServicePath.cs" />
+    <Compile Include="Common\AuthComponent.cs" />
     <Compile Include="Common\CacheExpirationPolicy.cs" />
     <Compile Include="Common\CacheScope.cs" />
     <Compile Include="Common\CacheStatus.cs" />
@@ -87,6 +88,7 @@
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\RestClientExtension.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Interfaces\IAuthorizationData.cs" />
     <Compile Include="Interfaces\IControlData.cs" />
     <Compile Include="Interfaces\IDeleteJsonRestRequest.cs" />
     <Compile Include="Interfaces\IGetJsonRestRequest.cs" />
