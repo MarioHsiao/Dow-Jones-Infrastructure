@@ -19,6 +19,7 @@ namespace DowJones.Json.Gateway.Exceptions
 
         public const long ControlDataIsNotValid = BaseError + 1;
         public const long ServicePathIsNotDefined = BaseError + 2;
+        public const long UnableToParseError = BaseError + 3;
 
         public const long HttpBaseError = BaseError + 30;
         public const long BadRequest = HttpBaseError + 1;
@@ -34,6 +35,7 @@ namespace DowJones.Json.Gateway.Exceptions
         public const long RequestEntityTooLarge = HttpBaseError + 11;
         public const long ServiceUnavailable = HttpBaseError + 12;
         public const long InternalServerError = HttpBaseError + 13;
+
 
 
 

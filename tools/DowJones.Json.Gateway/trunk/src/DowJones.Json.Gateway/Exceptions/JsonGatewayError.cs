@@ -15,8 +15,30 @@ namespace DowJones.Json.Gateway.Exceptions
         {
             try
             {
-                return JsonDotNetDataConverterSingleton.Instance.Deserialize<JsonGatewayError>(json);
+                var serviceError = JsonDotNetDataConverterSingleton.Instance.Deserialize<JsonGatewayError>(json);
+
+
+                if (serviceError != null && serviceError.Error != null)
+                {
+                    return serviceError;
+                }
+
+                var proxyError = JsonDotNetDataConverterSingleton.Instance.Deserialize<Error>(json);
+
+                if (proxyError == null || proxyError.Code == -1)
+                {
+                    proxyError = new Error
+                                 {
+                                     Code = JsonGatewayException.UnableToParseError,
+                                     Message = "Unable to parse error from backend proxy or service"
+                                 };
+                }
+                return new JsonGatewayError
+                       {
+                           Error = proxyError
+                       };
             }
+
             catch (Exception ex)
             {
                 return new JsonGatewayError
@@ -27,7 +49,6 @@ namespace DowJones.Json.Gateway.Exceptions
                                        Message = ex.Message
                                    }
                        };
-
             }
         }
     }
