@@ -224,12 +224,13 @@ namespace DowJones.Json.Gateway.Tests.Pam
         {
             // ReSharper disable StringLiteralTypo
             // ReSharper disable CommentTypo
-            // routingData.ServerUri = "http://sktfrtutil01.dev.us.factiva.net:9097";
+            // routingData.HttpEndPoint = "http://sktfrtutil01.dev.us.factiva.net:9097";
             // ReSharper restore CommentTypo
             // ReSharper restore StringLiteralTypo
 
             // ReSharper disable StringLiteralTypo
             routingData.ServerUri = "http://fdevweb3.win.dowjones.net/serviceproxy2";
+            routingData.HttpEndPoint = "http://pamapi.dev.dowjones.net/";
             // ReSharper restore StringLiteralTypo
 
             routingData.TransportType = "HTTP";

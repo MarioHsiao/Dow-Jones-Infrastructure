@@ -39,6 +39,7 @@ namespace DowJones.Json.Gateway.Messages.Core
         [DataMember]
         public string FileSave { get; set; }
 
+
         [DataMember]
         public ulong Flags { get; set; }
 

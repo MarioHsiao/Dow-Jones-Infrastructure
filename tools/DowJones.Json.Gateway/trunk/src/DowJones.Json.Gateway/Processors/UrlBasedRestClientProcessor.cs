@@ -62,7 +62,7 @@ namespace DowJones.Json.Gateway.Processors
             where T : IJsonRestRequest, new()
         {
             //application/json, , text/json, text/x-json, text/javascript, 
-            var client = new RestClient(restRequest.ControlData.RoutingData.ServerUri);
+            var client = new RestClient(restRequest.ControlData.RoutingData.HttpEndPoint);
             client.ClearHandlers();
 
             var decorator = JsonSerializerFactory.Create(restRequest.ControlData.RoutingData.Serializer);
