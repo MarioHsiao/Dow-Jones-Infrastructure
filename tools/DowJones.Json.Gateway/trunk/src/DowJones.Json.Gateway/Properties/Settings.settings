@@ -17,8 +17,5 @@
     <Setting Name="Environment" Type="DowJones.Json.Gateway.Common.Environment" Scope="Application">
       <Value Profile="(Default)">Proxy</Value>
     </Setting>
-    <Setting Name="Setting" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
   </Settings>
 </SettingsFile>
