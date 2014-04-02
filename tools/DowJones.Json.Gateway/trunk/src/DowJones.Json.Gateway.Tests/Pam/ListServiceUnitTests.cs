@@ -133,13 +133,7 @@ namespace DowJones.Json.Gateway.Tests.Pam
                     ListTypeCollection = new ListTypeCollection(new[] { ListType.AuthorList }),
 
                     Paging = new Paging(),
-                    FilterCollection = new FilterCollection(new[]
-                                                                              {
-                                                                                  new IdSearchFilter
-                                                                                  {
-                                                                                      ListIdCollection = new ListIdCollection(new[] {id.ToString(CultureInfo.InvariantCulture)})
-                                                                                  }
-                                                                              })
+                    FilterCollection = new FilterCollection(new[] {new IdSearchFilter { ListIdCollection = new ListIdCollection(new[] {id.ToString(CultureInfo.InvariantCulture)})}})
                 },
                 ControlData = GetControlData()
             };
