@@ -18,9 +18,6 @@ namespace DowJones.Json.Gateway.Messages.Pam.Api_1_0.Assets.List
         [DataMember(Name = "properties", IsRequired = true, EmitDefaultValue = false)]
         public ListProperties Properties { get; set; }
 
-        [DataMember(Name = "numberOfItems", IsRequired = true)]
-        public int NumberOfItems { get; set; }
-
         [DataMember(Name = "shareProperties", IsRequired = true, EmitDefaultValue = false)]
         public ShareProperties ShareProperties { get; set; }
     }

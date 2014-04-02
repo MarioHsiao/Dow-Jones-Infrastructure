@@ -9,22 +9,22 @@ namespace DowJones.Json.Gateway.Messages.Pam.Api_1_0.Assets.List.Transactions
     [DataContract(Name = "GetListsPropertiesList", Namespace = "")]
     public class GetListsPropertiesListRequest : IPostJsonRestRequest
     {
-        [DataMember(Name = "maxResultsToReturn", IsRequired = true)]
+        [DataMember(Name = "maxResultsToReturn")]
         public int MaxResultsToReturn { get; set; }
 
-        [DataMember(Name = "listTypeCollection", IsRequired = true, EmitDefaultValue = false, Order = 1)]
+        [DataMember(Name = "listTypeCollection", IsRequired = true)]
         public ListTypeCollection ListTypeCollection { get; set; }
 
-        [DataMember(Name = "sortBy", IsRequired = true, Order = 2)]
+        [DataMember(Name = "sortBy")]
         public ListSortBy SortBy { get; set; }
 
-        [DataMember(Name = "paging", IsRequired = true, EmitDefaultValue = false, Order = 3)]
+        [DataMember(Name = "paging")]
         public Paging Paging { get; set; }
 
-        [DataMember(Name = "sortOrder", IsRequired = true, Order = 4)]
+        [DataMember(Name = "sortOrder")]
         public SortOrder SortOrder { get; set; }
 
-        [DataMember(Name = "filterCollection", IsRequired = true, EmitDefaultValue = false, Order = 5)]
+        [DataMember(Name = "filterCollection")]
         public FilterCollection FilterCollection { get; set; }
 
         public virtual string ToJson(ISerialize decorator)
