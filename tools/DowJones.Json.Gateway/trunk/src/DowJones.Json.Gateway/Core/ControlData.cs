@@ -18,21 +18,21 @@ namespace DowJones.Json.Gateway.Messages.Core
         }
 
         [DataMember]
-        public IRoutingData RoutingData { get; set; }
+        public RoutingData RoutingData { get; set; }
 
         [DataMember]
-        public IUserCommerceData UserCommerceData { get; set; }
+        public UserCommerceData UserCommerceData { get; set; }
 
         [DataMember]
-        public IUserCredentialData UserCredentialData { get; set; }
+        public UserCredentialData UserCredentialData { get; set; }
 
         [DataMember]
-        public IPlatformAdminData PlatformAdminData { get; set; }
+        public PlatformAdminData PlatformAdminData { get; set; }
 
         [DataMember]
-        public ITransactionCacheData TransactionCacheData { get; set; }
+        public TransactionCacheData TransactionCacheData { get; set; }
 
-        public IAuthorizationData AuthorizationData { get; set; }
+        public AuthorizationData AuthorizationData { get; set; }
 
         public bool IsValid()
         {

@@ -2,7 +2,6 @@
 using System.Runtime.Serialization;
 using DowJones.Json.Gateway.Common;
 using DowJones.Json.Gateway.Interfaces;
-using DowJones.Json.Gateway.Messages.Pam.Api_1_0.Assets.List;
 
 namespace DowJones.Json.Gateway.Messages.Core
 {

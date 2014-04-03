@@ -56,9 +56,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\AuthoirizationData.cs" />
-    <Compile Include="Core\PlatformAdminData.cs" />
-    <Compile Include="Core\TransactionCacheData.cs" />
     <Compile Include="Pam\Api_1_0\Assets\List\AccessControlScope.cs" />
     <Compile Include="Pam\Api_1_0\Assets\List\AccessQualifier.cs" />
     <Compile Include="Pam\Api_1_0\Assets\List\AuthorItem.cs" />
@@ -148,11 +145,6 @@
     <Compile Include="Pam\Api_1_0\Sharing\ShareStatus.cs" />
     <Compile Include="Pam\Api_1_0\Sharing\ShareType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Core\AbstractJsonSerializable.cs" />
-    <Compile Include="Core\ControlData.cs" />
-    <Compile Include="Core\RoutingData.cs" />
-    <Compile Include="Core\UserCommerceData.cs" />
-    <Compile Include="Core\UserCredentialData.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DowJones.Json.Gateway\DowJones.Json.Gateway.csproj">
@@ -163,7 +155,9 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Core\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -6,6 +6,7 @@ using DowJones.Json.Gateway.Converters;
 using DowJones.Json.Gateway.Exceptions;
 using DowJones.Json.Gateway.Extensions;
 using DowJones.Json.Gateway.Interfaces;
+using DowJones.Json.Gateway.Messages.Core;
 using log4net;
 using RestSharp;
 
@@ -93,7 +94,7 @@ namespace DowJones.Json.Gateway.Processors
                     {
                         foreach (var parameter in response.Headers.Where(parameter => String.Equals(parameter.Name, "ControlData", StringComparison.InvariantCultureIgnoreCase)))
                         {
-                            cd = JsonDotNetDataConverterSingleton.Instance.Deserialize<IControlData>(parameter.Value.ToString());
+                            cd = JsonDotNetDataConverterSingleton.Instance.Deserialize<ControlData>(parameter.Value.ToString());
                         }
                     }
                     return new RestResponse<TRes>

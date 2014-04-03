@@ -1,17 +1,19 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using DowJones.Json.Gateway.Converters;
 using DowJones.Json.Gateway.Interfaces;
 using log4net;
 using RestSharp;
+using RestSharp.Contrib;
 using Environment = DowJones.Json.Gateway.Common.Environment;
 
 namespace DowJones.Json.Gateway.Processors
 {
     internal abstract class UrlBasedRestClientProcessor : RestClientProcessor
     {
-        private ILog _log = LogManager.GetLogger(typeof(UrlBasedRestClientProcessor));
+        private readonly ILog _log = LogManager.GetLogger(typeof(UrlBasedRestClientProcessor));
 
         protected abstract Method Method { get; }
         
@@ -48,8 +50,10 @@ namespace DowJones.Json.Gateway.Processors
                 RequestFormat = DataFormat.Json,
                 JsonSerializer = decorator,
             };
-            request.AddParameter("uri", GetRoutingUri(restRequest.Request), ParameterType.QueryString);
-            AddCommon(restRequest, request, decorator);
+
+            var uri = GetUri(GetRoutingUri(restRequest.Request), GetParams(restRequest.Request, decorator));
+            request.AddParameter("uri", uri, ParameterType.QueryString);
+            AddCommonHeaderParams(restRequest, request, decorator);
             
             return new RestComposite
             {
@@ -72,7 +76,8 @@ namespace DowJones.Json.Gateway.Processors
                 JsonSerializer = decorator,
             };
             
-            AddCommon(restRequest, request, decorator);
+            AddCommonHeaderParams(restRequest, request, decorator);
+            UpateQueryStringParams(restRequest.Request, request, decorator);
 
             return new RestComposite
             {
@@ -81,7 +86,7 @@ namespace DowJones.Json.Gateway.Processors
             };
         }
 
-        protected internal void AddCommon<T>(RestRequest<T> restRequest, IRestRequest request, DataConverterDecorator decorator)
+        protected internal void AddCommonHeaderParams<T>(RestRequest<T> restRequest, IRestRequest request, DataConverterDecorator decorator)
             where T : IJsonRestRequest, new()
         {
              // add ControlData to header
@@ -92,12 +97,22 @@ namespace DowJones.Json.Gateway.Processors
             }
 
             request.AddHeader("ControlData", jsonControlData);
-            GetQueryString(restRequest.Request, request, decorator);
         }
-        
-        protected internal void GetQueryString<TRequest>(TRequest request, IRestRequest restRequest, DataConverterDecorator decorator)
+
+
+        protected string GetUri(string baseUri, Dictionary<string, object> queryParams)
+        {
+            var pairs = queryParams.Select(s => string.Concat(s.Key, "=", HttpUtility.UrlEncode(s.Value.ToString()))).ToList();
+            var qs = string.Join("&", pairs.ToArray());
+            var partialUri = string.Concat(baseUri, "?", qs);
+
+            return partialUri;
+        }
+
+        protected internal Dictionary<string, object> GetParams<TRequest>(TRequest request, DataConverterDecorator decorator)
             where TRequest : IJsonRestRequest, new()
         {
+            var paramsDict = new Dictionary<string, object>();
             var properties = request.GetType().GetProperties();
 
             if (Log.IsDebugEnabled)
@@ -128,7 +143,7 @@ namespace DowJones.Json.Gateway.Processors
                     {
                         Log.DebugFormat("Propery-Name: {0}, Propery-Value: {1}", name, val);
                     }
-                    restRequest.AddParameter(name, val, ParameterType.QueryString);
+                    paramsDict.Add(name, val);
                 }
                 else if (sourceType.IsEnum || sourceType == typeof(DateTime) || sourceType.IsClass)
                 {
@@ -137,9 +152,21 @@ namespace DowJones.Json.Gateway.Processors
                     {
                         Log.DebugFormat("Propery-Name: {0}, Propery-Value: {1}", name, v);
                     }
-                    
-                    restRequest.AddParameter(name, v);
+
+                    paramsDict.Add(name, v);
                 }
+            }
+
+            return paramsDict;
+        }
+
+        protected internal void UpateQueryStringParams<TRequest>(TRequest request, IRestRequest restRequest, DataConverterDecorator decorator)
+            where TRequest : IJsonRestRequest, new()
+        {
+            var dict = GetParams(request, decorator);
+            foreach (var item in dict)
+            {
+                restRequest.AddParameter(item.Key, item.Value, ParameterType.QueryString);
             }
         }
     }

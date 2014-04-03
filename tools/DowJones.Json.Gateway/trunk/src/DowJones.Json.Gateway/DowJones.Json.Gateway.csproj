@@ -80,7 +80,15 @@
     <Compile Include="Converters\JsonDotNetJsonConverter.cs" />
     <Compile Include="Converters\JsonSerialierFactory.cs" />
     <Compile Include="Converters\TypeNameSerializationBinder.cs" />
+    <Compile Include="Core\AbstractJsonSerializable.cs" />
+    <Compile Include="Core\AuthoirizationData.cs" />
+    <Compile Include="Core\ControlData.cs" />
+    <Compile Include="Core\PlatformAdminData.cs" />
     <Compile Include="Core\RestRequestAsyncHandle.cs" />
+    <Compile Include="Core\RoutingData.cs" />
+    <Compile Include="Core\TransactionCacheData.cs" />
+    <Compile Include="Core\UserCommerceData.cs" />
+    <Compile Include="Core\UserCredentialData.cs" />
     <Compile Include="Exceptions\Error.cs" />
     <Compile Include="Exceptions\JsonGatewayError.cs" />
     <Compile Include="Exceptions\JsonGatewayException.cs" />
