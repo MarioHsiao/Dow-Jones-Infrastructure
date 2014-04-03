@@ -9,6 +9,11 @@ namespace DowJones.Tools.Charting.Highcharts.Core
     [Serializable]
     public class Credits
     {
+        public Credits()
+        {
+            Enabled = false;
+        }
+
         public bool? Enabled { get; set; }
         public string Href { get; set; }
         public string Text { get; set; }
