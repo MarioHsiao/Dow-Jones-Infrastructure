@@ -51,9 +51,10 @@ namespace DowJones.Json.Gateway.Processors
                 JsonSerializer = decorator,
             };
 
-            var uri = GetUri(GetRoutingUri(restRequest.Request), GetParams(restRequest.Request, decorator));
-            request.AddParameter("uri", uri, ParameterType.QueryString);
+            //var uri = GetUri(GetRoutingUri(restRequest.Request), GetParams(restRequest.Request, decorator));
+            request.AddParameter("uri", GetRoutingUri(restRequest.Request), ParameterType.QueryString);
             AddCommonHeaderParams(restRequest, request, decorator);
+            UpateQueryStringParams(restRequest.Request, request, decorator);
             
             return new RestComposite
             {
@@ -98,7 +99,6 @@ namespace DowJones.Json.Gateway.Processors
 
             request.AddHeader("ControlData", jsonControlData);
         }
-
 
         protected string GetUri(string baseUri, Dictionary<string, object> queryParams)
         {
