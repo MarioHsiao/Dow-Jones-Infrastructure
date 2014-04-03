@@ -9,16 +9,10 @@ namespace DowJones.Json.Gateway.Messages.Core
     {
         public ControlData()
         {
-            //AuthorizationData = new AuthorizationData();
-            //UserCommerceData = new UserCommerceData();
-            //UserCredentialData = new UserCredentialData();
-            //PlatformAdminData = new PlatformAdminData();
-            // TransactionCacheData = new TransactionCacheData();
-            //RoutingData = new RoutingData();
         }
 
         [DataMember]
-        public RoutingData RoutingData { get; set; }
+        public RoutingData RoutingData { get; set; } 
 
         [DataMember]
         public UserCommerceData UserCommerceData { get; set; }
