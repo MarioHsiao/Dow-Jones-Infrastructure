@@ -188,13 +188,17 @@
     <Content Include="lib\es\AjaxControlToolkit.resources.dll" />
     <Content Include="lib\es\WidgetUiResources.resources.dll" />
     <Content Include="lib\factiva.gateway.messages.dll" />
+    <Content Include="lib\factiva.gateway.messages.pdb" />
+    <Content Include="lib\factiva.gateway.messages.XML" />
     <Content Include="lib\factiva.nextgen.ui.dll" />
     <Content Include="lib\factiva.nextgen.ui.pdb" />
     <Content Include="lib\FactivaBusinessLayerLogic.dll" />
     <Content Include="lib\FactivaBusinessLayerLogic.pdb" />
+    <Content Include="lib\FactivaBusinessLayerLogic.XmlSerializers.dll" />
     <Content Include="lib\FactivaCharting.dll" />
     <Content Include="lib\FactivaCharting.pdb" />
     <Content Include="lib\FactivaGateway.dll" />
+    <Content Include="lib\FactivaGateway.pdb" />
     <Content Include="lib\FactivaServices.dll" />
     <Content Include="lib\FactivaServices.pdb" />
     <Content Include="lib\FactivaServices.xml" />
@@ -1291,6 +1295,7 @@
     <Content Include="GatewayResources\Config\Triggers.config" />
     <Content Include="GatewayResources\Config\UserEventRecorderService.config" />
     <Content Include="lib\FactivaBusinessLayerLogic.dll.config" />
+    <Content Include="lib\factiva.nextgen.ui.dll.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
