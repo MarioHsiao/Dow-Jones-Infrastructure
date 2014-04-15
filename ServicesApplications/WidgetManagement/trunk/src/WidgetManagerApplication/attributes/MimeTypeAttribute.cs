@@ -8,7 +8,7 @@ namespace EMG.widgets.ui.attributes
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = true)]
     public class MimeType : Attribute
     {
-        private readonly string m_MimeType = string.Empty;
+        private readonly string _mimeType = string.Empty;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MimeType"/> class.
@@ -16,7 +16,7 @@ namespace EMG.widgets.ui.attributes
         /// <param name="mimeType">Type of the MIME.</param>
         public MimeType(string mimeType)
         {
-            m_MimeType = mimeType;
+            _mimeType = mimeType;
         }
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace EMG.widgets.ui.attributes
         /// <value>The value.</value>
         public string Value
         {
-            get { return m_MimeType; }
+            get { return _mimeType; }
         }
     }
 }

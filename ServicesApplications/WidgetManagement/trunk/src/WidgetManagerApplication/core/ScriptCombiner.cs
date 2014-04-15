@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.IO.Compression;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -14,6 +15,9 @@ using log4net;
 
 namespace EMG.widgets.ui.core
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class ScriptCombiner
     {
         /// <summary>
@@ -26,7 +30,7 @@ namespace EMG.widgets.ui.core
         /// </summary>
         private const string HiddenFieldParamName = "_TSM_HiddenField_";
 
-        private static readonly ILog _iLog = LogManager.GetLogger(typeof(ScriptCombiner));
+        private static readonly ILog Log = LogManager.GetLogger(typeof(ScriptCombiner));
         
         /// <summary>
         /// Regular expression for detecting WebResource/ScriptResource substitutions in script files
@@ -62,79 +66,79 @@ namespace EMG.widgets.ui.core
             }
 
             // Initialize
-            var output = false;
             var request = context.Request;
             var hiddenFieldName = request.Params[HiddenFieldParamName];
             var combinedScripts = request.Params[CombinedScriptsParamName];
 
-            if (!string.IsNullOrEmpty(hiddenFieldName) && !string.IsNullOrEmpty(combinedScripts))
+            if (string.IsNullOrEmpty(hiddenFieldName) || string.IsNullOrEmpty(combinedScripts))
             {
-                // This is a request for a combined script file
-                var response = context.Response;
-                response.ContentType = "application/x-javascript";
+                return false;
+            }
 
-                // Set the same (~forever) caching rules that ScriptResource.axd uses
-                var cache = response.Cache;
-                cache.SetCacheability(HttpCacheability.Public);
-                cache.VaryByParams[HiddenFieldParamName] = true;
-                cache.VaryByParams[CombinedScriptsParamName] = true;
-                cache.VaryByContentEncodings["gzip"] = true;
-                cache.VaryByContentEncodings["deflate"] = true;
-                cache.SetOmitVaryStar(true);
-                cache.SetExpires(DateTime.Now.AddDays(365));
-                cache.SetValidUntilExpires(true);
-                cache.SetLastModified(assemblyModifiedDate);
+            // This is a request for a combined script file
+            var response = context.Response;
+            response.ContentType = "application/x-javascript";
 
-                // Get the stream to write the combined script to (using a compressed stream if requested)
-                // Ccertain versions of IE6 have difficulty with compressed responses, so we
-                // don't compress for those browsers (just like ASP.NET AJAX's ScriptResourceHandler)
-                var outputStream = response.OutputStream;
-                if (!request.Browser.IsBrowser("IE") || (6 < request.Browser.MajorVersion))
+            // Set the same (~forever) caching rules that ScriptResource.axd uses
+            var cache = response.Cache;
+            cache.SetCacheability(HttpCacheability.Public);
+            cache.VaryByParams[HiddenFieldParamName] = true;
+            cache.VaryByParams[CombinedScriptsParamName] = true;
+            cache.VaryByContentEncodings["gzip"] = true;
+            cache.VaryByContentEncodings["deflate"] = true;
+            cache.SetOmitVaryStar(true);
+            cache.SetExpires(DateTime.Now.AddDays(365));
+            cache.SetValidUntilExpires(true);
+            cache.SetLastModified(assemblyModifiedDate);
+
+            // Get the stream to write the combined script to (using a compressed stream if requested)
+            // Certain versions of IE6 have difficulty with compressed responses, so we
+            // don't compress for those browsers (just like ASP.NET AJAX's ScriptResourceHandler)
+            var outputStream = response.OutputStream;
+            if (!request.Browser.IsBrowser("IE") || (6 < request.Browser.MajorVersion))
+            {
+                foreach (var acceptEncoding in (request.Headers["Accept-Encoding"] ?? "").ToUpperInvariant().Split(','))
                 {
-                    foreach (var acceptEncoding in (request.Headers["Accept-Encoding"] ?? "").ToUpperInvariant().Split(','))
+                    if ("GZIP" == acceptEncoding)
                     {
-                        if ("GZIP" == acceptEncoding)
-                        {
-                            // Browser wants GZIP; wrap the output stream with a GZipStream
-                            response.AddHeader("Content-encoding", "gzip");
-                            outputStream = new GZipStream(outputStream, CompressionMode.Compress);
-                            break;
-                        }
-                        if ("DEFLATE" != acceptEncoding)
-                            continue;
-                        // Browser wants Deflate; wrap the output stream with a DeflateStream
-                        response.AddHeader("Content-encoding", "deflate");
-                        outputStream = new DeflateStream(outputStream, CompressionMode.Compress);
+                        // Browser wants GZIP; wrap the output stream with a GZipStream
+                        response.AddHeader("Content-encoding", "gzip");
+                        outputStream = new GZipStream(outputStream, CompressionMode.Compress);
                         break;
                     }
+                    if ("DEFLATE" != acceptEncoding)
+                        continue;
+                    // Browser wants Deflate; wrap the output stream with a DeflateStream
+                    response.AddHeader("Content-encoding", "deflate");
+                    outputStream = new DeflateStream(outputStream, CompressionMode.Compress);
+                    break;
                 }
-
-                // Output the combined script
-                using (var outputWriter = new StreamWriter(outputStream))
-                {
-                    // Get the list of scripts to combine
-                    var scriptEntries = DeserializeScriptEntries(HttpUtility.UrlDecode(combinedScripts), false);
-
-                    // Write the scripts
-                    WriteScripts(scriptEntries, outputWriter);
-
-                    // Write the ASP.NET AJAX script notification code
-                    outputWriter.WriteLine("if(typeof(Sys)!=='undefined')Sys.Application.notifyScriptLoaded();");
-
-                    // Write a handler to run on page load and update the hidden field tracking scripts loaded in the browser
-                    outputWriter.WriteLine(string.Format(CultureInfo.InvariantCulture,
-                                                         "(function() {{" +
-                                                         "var fn = function() {{" +
-                                                         "$get('{0}').value += '{1}';" +
-                                                         "Sys.Application.remove_load(fn);" +
-                                                         "}};" +
-                                                         "Sys.Application.add_load(fn);" +
-                                                         "}})();", hiddenFieldName, SerializeScriptEntries(scriptEntries, true)));
-                }
-
-                output = true;
             }
-            return output;
+
+            // Output the combined script
+            using (var outputWriter = new StreamWriter(outputStream))
+            {
+                // Get the list of scripts to combine
+                var scriptEntries = DeserializeScriptEntries(HttpUtility.UrlDecode(combinedScripts), false);
+
+                // Write the scripts
+                WriteScripts(scriptEntries, outputWriter);
+
+                // Write the ASP.NET AJAX script notification code
+                outputWriter.WriteLine("if(typeof(Sys)!=='undefined')Sys.Application.notifyScriptLoaded();");
+
+                // Write a handler to run on page load and update the hidden field tracking scripts loaded in the browser
+                outputWriter.WriteLine(string.Format(CultureInfo.InvariantCulture,
+                    "(function() {{" +
+                    "var fn = function() {{" +
+                    "$get('{0}').value += '{1}';" +
+                    "Sys.Application.remove_load(fn);" +
+                    "}};" +
+                    "Sys.Application.add_load(fn);" +
+                    "}})();", hiddenFieldName, SerializeScriptEntries(scriptEntries, true)));
+            }
+
+            return true;
         }
 
         /// <summary>
@@ -175,7 +179,7 @@ namespace EMG.widgets.ui.core
             return serializedScriptEntries.ToString();
         }
 
-        // <summary>
+        /// <summary>
         /// Checks if the specified ScriptEntry is combinable
         /// </summary>
         /// <param name="scriptEntry">ScriptEntry to check</param>
@@ -195,43 +199,33 @@ namespace EMG.widgets.ui.core
                 else
                 {
                     // IncludeScripts specifies the combinable scripts
-                    foreach (string includeScript in scriptCombineAttribute.IncludeScripts.Split(','))
+                    if (scriptCombineAttribute.IncludeScripts.Split(',')
+                        .Any(includeScript => 0 == string.Compare(scriptEntry.Name, includeScript.Trim(), StringComparison.OrdinalIgnoreCase)))
                     {
-                        // If this script name matches, it's combinable
-                        if (0 == string.Compare(scriptEntry.Name, includeScript.Trim(), StringComparison.OrdinalIgnoreCase))
-                        {
-                            combinable = true;
-                            break;
-                        }
+                        combinable = true;
                     }
                 }
-                if (!string.IsNullOrEmpty(scriptCombineAttribute.ExcludeScripts))
+                if (string.IsNullOrEmpty(scriptCombineAttribute.ExcludeScripts)) continue;
+                // ExcludeScripts specifies the non-combinable scripts (and overrides IncludeScripts)
+                if (scriptCombineAttribute.ExcludeScripts.Split(',')
+                    .Any(excludeScript => 0 == string.Compare(scriptEntry.Name, excludeScript.Trim(), StringComparison.OrdinalIgnoreCase)))
                 {
-                    // ExcludeScripts specifies the non-combinable scripts (and overrides IncludeScripts)
-                    foreach (var excludeScript in scriptCombineAttribute.ExcludeScripts.Split(','))
-                    {
-                        // If the script name matches, it's not combinable
-                        if (0 != string.Compare(scriptEntry.Name, excludeScript.Trim(), StringComparison.OrdinalIgnoreCase))
-                            continue;
-                        combinable = false;
-                        break;
-                    }
+                    combinable = false;
                 }
             }
-            if (combinable)
+            
+            if (!combinable)
             {
-                // Make sure the script has an associated WebResourceAttribute (else ScriptManager wouldn't have served it)
-                var correspondingWebResourceAttribute = false;
-                foreach (WebResourceAttribute webResourceAttribute in assembly.GetCustomAttributes(typeof (WebResourceAttribute), false))
-                {
-                    if (scriptEntry.Name != webResourceAttribute.WebResource)
-                        continue;
-                    correspondingWebResourceAttribute = true;
-                    break;
-                }
-                // Don't allow it to be combined if not
-                combinable &= correspondingWebResourceAttribute;
+                return false;
             }
+
+            // Make sure the script has an associated WebResourceAttribute (else ScriptManager wouldn't have served it)
+            var correspondingWebResourceAttribute = assembly.GetCustomAttributes(typeof (WebResourceAttribute), false)
+                                                    .Cast<WebResourceAttribute>()
+                                                    .Any(webResourceAttribute => scriptEntry.Name == webResourceAttribute.WebResource);
+
+            // Don't allow it to be combined if not
+            combinable &= correspondingWebResourceAttribute;
             return combinable;
         }
 
@@ -255,7 +249,7 @@ namespace EMG.widgets.ui.core
                 string culture = null;
                 string mvid = null;
                 Dictionary<string, string> resourceNameHashToResourceName = null;
-                foreach (string script in assemblyScripts.Split(':'))
+                foreach (var script in assemblyScripts.Split(':'))
                 {
                     if (null == assembly)
                     {
@@ -281,9 +275,9 @@ namespace EMG.widgets.ui.core
                             foreach (string resourceName in (new ScriptEntry(assembly, null, null)).LoadAssembly().GetManifestResourceNames())
                             {
                                 var hashCode = resourceName.GetHashCode().ToString("x", CultureInfo.InvariantCulture);
-                                if (_iLog.IsInfoEnabled)
+                                if (Log.IsInfoEnabled)
                                 {
-                                    _iLog.InfoFormat("hashCode {0} for resourceName:{1}", hashCode, resourceName);
+                                    Log.InfoFormat("hashCode {0} for resourceName:{1}", hashCode, resourceName);
                                 }
                                 if (resourceNameHashToResourceName.ContainsKey(hashCode))
                                 {
@@ -298,24 +292,24 @@ namespace EMG.widgets.ui.core
                         if (!resourceNameHashToResourceName.TryGetValue(script, out scriptName))
                         {
                             //throw new NotSupportedException(string.Format(CultureInfo.CurrentCulture, "Assembly \"{0}\" does not contain a script with hash code \"{1}\".", assembly, script));
-                            if (_iLog.IsErrorEnabled)
+                            if (Log.IsErrorEnabled)
                             { 
-                                _iLog.ErrorFormat("Unable to find script:{0} in assembly:{1}", script, assembly); 
+                                Log.ErrorFormat("Unable to find script:{0} in assembly:{1}", script, assembly); 
                             }
                         }
 
-                        if (!string.IsNullOrEmpty(scriptName))
+                        if (string.IsNullOrEmpty(scriptName))
                         {
-                            // Create a ScriptEntry to represent the script
-                            if (_iLog.IsErrorEnabled)
-                            {
-                                _iLog.DebugFormat("Found script hash:{0} name:{1} in assembly:{2}", script, scriptName, assembly);
-                            }
-                            var scriptEntry = new ScriptEntry(assembly, scriptName, culture) { Loaded = loaded };
-                            scriptEntries.Add(scriptEntry);
-                            
+                            continue;
                         }
-                        
+
+                        // Create a ScriptEntry to represent the script
+                        if (Log.IsErrorEnabled)
+                        {
+                            Log.DebugFormat("Found script hash:{0} name:{1} in assembly:{2}", script, scriptName, assembly);
+                        }
+                        var scriptEntry = new ScriptEntry(assembly, scriptName, culture) { Loaded = loaded };
+                        scriptEntries.Add(scriptEntry);
                     }
                 }
             }
@@ -335,7 +329,7 @@ namespace EMG.widgets.ui.core
                 {
                     if (!IsScriptCombinable(scriptEntry))
                     {
-                        throw new NotSupportedException(string.Format(CultureInfo.CurrentCulture, "Combined script request includes uncombinable script \"{0}\".", scriptEntry.Name));
+                        throw new NotSupportedException(string.Format(CultureInfo.CurrentCulture, "Combined script request includes un-combinable script \"{0}\".", scriptEntry.Name));
                     }
 
                     // This script hasn't been loaded by the browser, so add it to the combined script file
@@ -481,11 +475,7 @@ namespace EMG.widgets.ui.core
             /// <returns>Assembly reference</returns>
             public Assembly LoadAssembly()
             {
-                if (null == _loadedAssembly)
-                {
-                    _loadedAssembly = System.Reflection.Assembly.Load(Assembly);
-                }
-                return _loadedAssembly;
+                return _loadedAssembly ?? (_loadedAssembly = System.Reflection.Assembly.Load(Assembly));
             }
 
             /// <summary>

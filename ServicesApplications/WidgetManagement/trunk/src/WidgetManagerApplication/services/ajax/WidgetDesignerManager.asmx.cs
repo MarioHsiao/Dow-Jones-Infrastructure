@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Web.Script.Services;
@@ -74,7 +75,7 @@ namespace EMG.widgets.services
                 }
 
                 var list = new List<TokenItem>(collection.Keys.Count);
-                for (int i = 0; i < collection.Keys.Count; i++)
+                for (var i = 0; i < collection.Keys.Count; i++)
                 {
                     list.Add(new TokenItem(collection.Keys[i], collection[collection.Keys[i]]));
                 }
@@ -83,7 +84,7 @@ namespace EMG.widgets.services
             }
             catch (EmgWidgetsUIException)
             {
-                throw new EmgWidgetsUIException("Unable to decrpt token");
+                throw new EmgWidgetsUIException("Unable to decrypt token");
             }
         }
 
@@ -138,24 +139,25 @@ namespace EMG.widgets.services
         private static List<int> GetUniqueAssetIds(ICollection<int> assetIds)
         {
             var validIds = new List<int>();
-            if (assetIds != null)
+            if (assetIds == null)
             {
-                if (assetIds.Count == 1)
-                {
-                    return new List<int>(assetIds);
-                }
+                return validIds;
+            }
 
-                // Make sure the list is unique and maintain order.
-                if (assetIds.Count > 1)
-                {
-                    foreach (var i in assetIds)
-                    {
-                        if (!validIds.Contains(i))
-                        {
-                            validIds.Add(i);
-                        }
-                    }
-                }
+            if (assetIds.Count == 1)
+            {
+                return new List<int>(assetIds);
+            }
+
+            // Make sure the list is unique and maintain order.
+            if (assetIds.Count <= 1)
+            {
+                return validIds;
+            }
+
+            foreach (var i in assetIds.Where(i => !validIds.Contains(i)))
+            {
+                validIds.Add(i);
             }
 
             return validIds;
@@ -167,7 +169,7 @@ namespace EMG.widgets.services
         /// <param name="widgetId">The widget id.</param>
         /// <param name="accessPointCode">The access point code.</param>
         /// <param name="interfaceLanguage">The interface language.</param>
-        /// <param name="productPrefix">The overidden product prefix.</param>
+        /// <param name="productPrefix">The overridden product prefix.</param>
         /// <returns>A Delete Widget Delegate.</returns>
         [WebMethod]
         [ScriptMethod]
@@ -203,8 +205,8 @@ namespace EMG.widgets.services
         /// <param name="sortBy">The sort by.</param>
         /// <param name="accessPointCode">The access point code.</param>
         /// <param name="interfaceLanguage">The interface language.</param>
-        /// <param name="productPrefix">The overidden product prefix.</param>
-        /// <returns>A Get Weidget List Delegate</returns>
+        /// <param name="productPrefix">The overridden product prefix.</param>
+        /// <returns>A Get Widget List Delegate</returns>
         [WebMethod]
         [ScriptMethod]
         [GenerateScriptType(typeof(WidgetType))]
@@ -229,7 +231,7 @@ namespace EMG.widgets.services
                     {
                         var widgetDelegates = new List<WidgetDelegate>(widgets.Length);
                         var mappingDictionary = new Dictionary<string, string>();
-                        foreach (Widget widget in widgets)
+                        foreach (var widget in widgets)
                         {
                             var item = new WidgetDelegate();
                             if (widget is AlertWidget)
@@ -297,27 +299,31 @@ namespace EMG.widgets.services
 
         private static void MarryWorkspaceNames(ICollection<WidgetDelegate> widgetDelegates,  IDictionary<string, string> mappingDictionary)
         {
-            if (widgetDelegates.Count > 0 && mappingDictionary.Count > 0)
+            if (widgetDelegates.Count <= 0 || mappingDictionary.Count <= 0)
             {
-                var manager = new WorkspaceManager(SessionData.Instance().SessionBasedControlDataEx, SessionData.Instance().InterfaceLanguage);
-                var workspaceItems = manager.GetWorkspaceList();
+                return;
+            }
 
-                if (workspaceItems.Count > 0)
+            var manager = new WorkspaceManager(SessionData.Instance().SessionBasedControlDataEx, SessionData.Instance().InterfaceLanguage);
+            var workspaceItems = manager.GetWorkspaceList();
+
+            if (workspaceItems.Count <= 0)
+            {
+                return;
+            }
+
+            foreach (var widgetDelegate in widgetDelegates)
+            {
+                // Check workspaceID
+                if (!mappingDictionary.ContainsKey(widgetDelegate.Id))
                 {
-                    foreach (var widgetDelegate in widgetDelegates)
-                    {
-                        // Check workspaceID
-                        if (!mappingDictionary.ContainsKey(widgetDelegate.Id))
-                        {
-                            continue;
-                        }
+                    continue;
+                }
 
-                        var workspaceId = mappingDictionary[widgetDelegate.Id];
-                        if (workspaceItems.ContainsKey(workspaceId))
-                        {
-                            widgetDelegate.Name = workspaceItems[workspaceId].Properties.Name;
-                        }
-                    }
+                var workspaceId = mappingDictionary[widgetDelegate.Id];
+                if (workspaceItems.ContainsKey(workspaceId))
+                {
+                    widgetDelegate.Name = workspaceItems[workspaceId].Properties.Name;
                 }
             }
         }
@@ -328,7 +334,7 @@ namespace EMG.widgets.services
         /// <param name="widgetId">The widget id.</param>
         /// <param name="accessPointCode">The access point code.</param>
         /// <param name="interfaceLanguage">The interface language.</param>
-        /// <param name="productPrefix">The overidden product prefix.</param>
+        /// <param name="productPrefix">The overridden product prefix.</param>
         /// <returns></returns>
         [WebMethod]
         [ScriptMethod]
@@ -339,15 +345,15 @@ namespace EMG.widgets.services
             {
                 var getWidgetResponseDelegate = new GetWidgetCodeResponseDelegate();
                 new SessionData(accessPointCode, interfaceLanguage, 0, true, productPrefix, string.Empty);
+
                 if (!string.IsNullOrEmpty(widgetId) && !string.IsNullOrEmpty(widgetId.Trim()))
                 {
                     try
                     {
                         var widgetManager = new WidgetManager(SessionData.Instance().SessionBasedControlDataEx, SessionData.Instance().InterfaceLanguage);
                         var type = GetWidgetType(widgetManager.GetCachedWidgetById(widgetId));
-                        var acceptableBrowser = !HttpContext.Current.Request.Browser.IsBrowser("IE") || HttpContext.Current.Request.Browser.MajorVersion > 6;
                         
-                        // use factiva encription to encode into a token name/value pairs
+                        // use factiva encryption to encode into a token name/value pairs
                         var encryption = new Encryption();
 
                         var nameValueCollection = new NameValueCollection
@@ -374,35 +380,6 @@ namespace EMG.widgets.services
                                         {
                                             GetIntegrationEndPoint(new SharePointWebPart(renderWidgetDTO))
                                         };
-
-                        /*// Add IGoogle Integration Portal EndPoint
-                        if (acceptableBrowser)
-                        {
-                            endPoints.Add(GetIntegrationEndPoint(new IGoogleGadget(renderWidgetDTO)));
-                        }
-
-                        // Add PageFlakesRssPortalEndPoint Integration Portal EndPoint
-                        if (acceptableBrowser)
-                        {
-                            endPoints.Add(GetIntegrationEndPoint(new PageFlakesFlake(renderWidgetDTO)));
-                        }
-
-                        // Add NetVibes Integration Portal EndPoint
-                        if (acceptableBrowser)
-                        {
-                            endPoints.Add(GetIntegrationEndPoint(new NetvibesModule(renderWidgetDTO)));
-                        }
-
-                        // Add Blogger Integration Portal EndPoint
-                        endPoints.Add(GetIntegrationEndPoint(new BloggerWidget(renderWidgetDTO)));
-
-                        // Add Live.com Integration Portal EndPoint
-                        endPoints.Add(GetIntegrationEndPoint(new LiveDotComGadget(renderWidgetDTO)));
-
-                        // Add space.live.com Integration Portal endpoint
-                        endPoints.Add(GetIntegrationEndPoint(new LiveSpacesGadget(renderWidgetDTO)));*/
-
-                        
 
                         getWidgetResponseDelegate.IntegrationEndPoints = endPoints.ToArray();
                     }

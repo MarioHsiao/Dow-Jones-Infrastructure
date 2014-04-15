@@ -4,6 +4,9 @@ using System;
 using System.Web;
 using EMG.widgets.ui.core;
 
+/// <summary>
+/// 
+/// </summary>
 public class CombineScriptsHandler : IHttpHandler
 {
     /// <summary>

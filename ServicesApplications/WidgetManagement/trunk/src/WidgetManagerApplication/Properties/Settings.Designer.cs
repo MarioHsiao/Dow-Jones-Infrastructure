@@ -25,7 +25,7 @@ namespace EMG.widgets.ui.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://global.int.factiva.com/redir/default.aspx")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://global.int.factiva.com/redir/default.aspx")]
         public string Cyclone_Redirection_URL {
             get {
                 return ((string)(this["Cyclone_Redirection_URL"]));
@@ -34,7 +34,7 @@ namespace EMG.widgets.ui.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://preview.int.factiva.com/du/alerts.aspx")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://preview.int.factiva.com/du/alerts.aspx")]
         public string IF_BaseUrl_AlertHeadlineWidget {
             get {
                 return ((string)(this["IF_BaseUrl_AlertHeadlineWidget"]));

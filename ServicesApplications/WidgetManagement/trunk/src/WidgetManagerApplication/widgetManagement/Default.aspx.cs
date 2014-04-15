@@ -6,6 +6,7 @@
 using System;
 using System.Collections;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Web;
@@ -56,12 +57,12 @@ namespace EMG.widgets.ui.widgetManagement
         /// <summary>
         /// The m_ widget management dto.
         /// </summary>
-        private WidgetManagementDTO widgetManagementDTO;
+        private WidgetManagementDTO _widgetManagementDTO;
 
         /// <summary>
         /// The _gallery settings.
         /// </summary>
-        private GallerySettings gallerySettings;
+        private GallerySettings _gallerySettings;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Default"/> class.
@@ -80,8 +81,8 @@ namespace EMG.widgets.ui.widgetManagement
         /// <value>The widget management DTO.</value>
         public WidgetManagementDTO WidgetManagementDTO
         {
-            get { return widgetManagementDTO; }
-            set { widgetManagementDTO = value; }
+            get { return _widgetManagementDTO; }
+            set { _widgetManagementDTO = value; }
         }
 
         /// <summary>
@@ -99,12 +100,12 @@ namespace EMG.widgets.ui.widgetManagement
             // ScriptManager.Services.Add(new ServiceReference("~/services/ajax/WidgetDesignerManager.asmx"));
             ScriptManager.Services.Add(new ServiceReference("~/EMG.widgets.services.WidgetDesignerManager.asmx"));
 
-            widgetManagementDTO = (WidgetManagementDTO) FormState.Accept(typeof (WidgetManagementDTO), true);
+            _widgetManagementDTO = (WidgetManagementDTO) FormState.Accept(typeof (WidgetManagementDTO), true);
             SessionData.SiteUserType = SiteUserType.FactivaWidgetBuilderUser;
 
-            _siteHeader.DoneUrl = widgetManagementDTO.doneUrl;
+            _siteHeader.DoneUrl = _widgetManagementDTO.doneUrl;
 
-            if (!widgetManagementDTO.IsValid())
+            if (!_widgetManagementDTO.IsValid())
             {
                 throw new EmgWidgetsUIException(EmgWidgetsUIException.RETURN_URL_IS_NOT_SPECIFIED);
             }
@@ -122,7 +123,7 @@ namespace EMG.widgets.ui.widgetManagement
         {
             var control = new WidgetGalleryVideosControl
                               {
-                                  WidgetManagementDTO = widgetManagementDTO
+                                  WidgetManagementDTO = _widgetManagementDTO
                               };
             return control;
         }
@@ -136,7 +137,7 @@ namespace EMG.widgets.ui.widgetManagement
         {
             var control = new SearchWidgetListControl
                               {
-                                  WidgetManagementDTO = widgetManagementDTO
+                                  WidgetManagementDTO = _widgetManagementDTO
                               };
             control.Attributes.Add("class", "searchWidgetListCtrl");
             return control;
@@ -151,7 +152,7 @@ namespace EMG.widgets.ui.widgetManagement
         {
             var control = new LearnAboutFactivaWidgetsControl
                               {
-                                  WidgetManagementDTO = widgetManagementDTO
+                                  WidgetManagementDTO = _widgetManagementDTO
                               };
             return control;
         }
@@ -174,35 +175,45 @@ namespace EMG.widgets.ui.widgetManagement
                                     Text = ResourceText.GetInstance.GetString("headlines")
                                 };
 
-            var companies = new WidgetDiscoveryTab();
-            companies.Active = true;
-            companies.DisplayCheckbox = true;
-            companies.Id = "companies";
-            companies.Text = ResourceText.GetInstance.GetString("companies");
+            var companies = new WidgetDiscoveryTab
+                            {
+                                Active = true,
+                                DisplayCheckbox = true, 
+                                Id = "companies", 
+                                Text = ResourceText.GetInstance.GetString("companies")
+                            };
 
-            var executives = new WidgetDiscoveryTab();
-            executives.Active = true;
-            executives.DisplayCheckbox = true;
-            executives.Id = "executives";
-            executives.Text = ResourceText.GetInstance.GetString("executives");
+            var executives = new WidgetDiscoveryTab
+                             {
+                                 Active = true, 
+                                 DisplayCheckbox = true, 
+                                 Id = "executives", 
+                                 Text = ResourceText.GetInstance.GetString("executives")
+                             };
 
-            var industries = new WidgetDiscoveryTab();
-            industries.Active = true;
-            industries.DisplayCheckbox = true;
-            industries.Id = "industries";
-            industries.Text = ResourceText.GetInstance.GetString("industries");
+            var industries = new WidgetDiscoveryTab
+                             {
+                                 Active = true, 
+                                 DisplayCheckbox = true, 
+                                 Id = "industries", 
+                                 Text = ResourceText.GetInstance.GetString("industries")
+                             };
 
-            var regions = new WidgetDiscoveryTab();
-            regions.Active = true;
-            regions.DisplayCheckbox = true;
-            regions.Id = "regions";
-            regions.Text = ResourceText.GetInstance.GetString("regions");
+            var regions = new WidgetDiscoveryTab
+                          {
+                              Active = true, 
+                              DisplayCheckbox = true, 
+                              Id = "regions",
+                              Text = ResourceText.GetInstance.GetString("regions")
+                          };
 
-            var subjects = new WidgetDiscoveryTab();
-            subjects.Active = true;
-            subjects.DisplayCheckbox = true;
-            subjects.Id = "subjects";
-            subjects.Text = ResourceText.GetInstance.GetString("newsSubjects");
+            var subjects = new WidgetDiscoveryTab
+                           {
+                               Active = true, 
+                               DisplayCheckbox = true, 
+                               Id = "subjects", 
+                               Text = ResourceText.GetInstance.GetString("newsSubjects")
+                           };
 
             tabs.Add(headlines);
             tabs.Add(companies);
@@ -221,7 +232,7 @@ namespace EMG.widgets.ui.widgetManagement
         /// <param name="modules">
         /// The modules.
         /// </param>
-        private void AddGalleryControls(ArrayList modules)
+        private void AddGalleryControls(IEnumerable modules)
         {
             // Add javascript to tell client script what page this is 
             ClientScript.RegisterClientScriptBlock(GetType(), "identifier", GetClientScriptIdentifier("gallery"));
@@ -237,9 +248,11 @@ namespace EMG.widgets.ui.widgetManagement
             }
 
             // Add the Hidden Inputs Control
-            var navHiddenInputsContainerControl = new HiddenInputsContainerControl();
-            navHiddenInputsContainerControl.SiteUserType = SessionData.SiteUserType;
-            navHiddenInputsContainerControl.WidgetManagementDTO = widgetManagementDTO;
+            var navHiddenInputsContainerControl = new HiddenInputsContainerControl
+                                                  {
+                                                      SiteUserType = SessionData.SiteUserType, 
+                                                      WidgetManagementDTO = _widgetManagementDTO
+                                                  };
             ContentBottom.Controls.Add(navHiddenInputsContainerControl);
         }
 
@@ -272,11 +285,11 @@ namespace EMG.widgets.ui.widgetManagement
             moduleType = moduleType.Trim();
             if (ValidateString(moduleType))
             {
-                object serverControl;
+                object serverControl = null;
                 if (Cache.Get(moduleType) == null)
                 {
                     var typeInfo = moduleType;
-                    var index = typeInfo.IndexOf(",");
+                    var index = typeInfo.IndexOf(",", StringComparison.Ordinal);
                     if (index > 0)
                     {
                         typeInfo = typeInfo.Substring(0, index);
@@ -286,8 +299,11 @@ namespace EMG.widgets.ui.widgetManagement
                     {
                         var type = Assembly.GetCallingAssembly().GetType(typeInfo, true, true);
                         var ci = type.GetConstructor(new Type[0]);
-                        serverControl = ci.Invoke(null);
-                        Cache.Insert(moduleType, ci);
+                        if (ci != null)
+                        {
+                            serverControl = ci.Invoke(null);
+                            Cache.Insert(moduleType, ci);
+                        }
                     }
                     catch (Exception)
                     {
@@ -299,8 +315,11 @@ namespace EMG.widgets.ui.widgetManagement
                         {
                             var type = cAssembly.GetType(typeInfo, true, true);
                             var ci = type.GetConstructor(new Type[0]);
-                            serverControl = ci.Invoke(null);
-                            Cache.Insert(moduleType, ci);
+                            if (ci != null)
+                            {
+                                serverControl = ci.Invoke(null);
+                                Cache.Insert(moduleType, ci);
+                            }
                         }
                         catch (Exception nex)
                         {
@@ -315,14 +334,15 @@ namespace EMG.widgets.ui.widgetManagement
 
                 if (serverControl != null)
                 {
-                    if (serverControl is BasePage)
+                    var page = serverControl as BasePage;
+                    if (page != null)
                     {
-                        ((BasePage) serverControl).Page = this;
+                        page.Page = this;
                     }
 
                     if (serverControl.GetType() == typeof (AlertWidgetGalleryControl) &&
                         SessionData.Instance().FactivaAccessObject.IsTrackCoreServiceOn &&
-                        widgetManagementDTO.SA_FROM == "GL" &&
+                        _widgetManagementDTO.SA_FROM == "GL" &&
                         !SessionData.Instance().FactivaAccessObject.IsDotComTrackDisplayServiceOn)
                     {
                         AddNonBreakingSpace(targetControl);
@@ -370,32 +390,37 @@ namespace EMG.widgets.ui.widgetManagement
         private void AddCreateSlashUpdateWidgetControls()
         {
             // Add javascript to tell client script what page this is 
-            ClientScript.RegisterClientScriptBlock(GetType(), "identifier", GetClientScriptIdentifier("designer", widgetManagementDTO.widgetType, widgetManagementDTO.secondaryAction));
+            ClientScript.RegisterClientScriptBlock(GetType(), "identifier", GetClientScriptIdentifier("designer", _widgetManagementDTO.widgetType, _widgetManagementDTO.secondaryAction));
 
             // Add sub navigation control
             ContentTop.Controls.Add(AddTabs());
 
             // Add the Hidden Inputs Control
-            var navHiddenInputsContainerControl = new HiddenInputsContainerControl();
-            navHiddenInputsContainerControl.SiteUserType = SessionData.SiteUserType;
-            navHiddenInputsContainerControl.WidgetManagementDTO = widgetManagementDTO;
+            var navHiddenInputsContainerControl = new HiddenInputsContainerControl
+                                                  {
+                                                      SiteUserType = SessionData.SiteUserType, 
+                                                      WidgetManagementDTO = _widgetManagementDTO
+                                                  };
             ContentBottom.Controls.Add(navHiddenInputsContainerControl);
 
-            var proxyControl = new DesignerProxyControl();
-            proxyControl.SiteUserType = SessionData.SiteUserType;
-            proxyControl.WidgetManagementDTO = widgetManagementDTO;
+            var proxyControl = new DesignerProxyControl
+                               {
+                                   SiteUserType = SessionData.SiteUserType, 
+                                   WidgetManagementDTO = _widgetManagementDTO
+                               };
             ContentTop.Controls.Add(proxyControl);
 
-            if (widgetManagementDTO.widgetType != WidgetType.AlertHeadlineWidget)
+            if (_widgetManagementDTO.widgetType != WidgetType.AlertHeadlineWidget)
                 return;
-            var wDesignerExtender = new WidgetDesignerExtender();
-            wDesignerExtender.ID = "wDesignerBehavior";
-            wDesignerExtender.AppendInsideControlID = "wSortContainer";
-            wDesignerExtender.DiscoveryTabs = GetDefaultDiscoveryTabs();
-            wDesignerExtender.Containment = "window";
-            wDesignerExtender.OnWidgetDesignerUpdate = "updateAlertHeadlineWidgetPreview";
-            wDesignerExtender.Revert = false;
-            wDesignerExtender.TargetControlID = "tabStates";
+            var wDesignerExtender = new WidgetDesignerExtender
+                                    {
+                                        ID = "wDesignerBehavior", 
+                                        AppendInsideControlID = "wSortContainer", 
+                                        DiscoveryTabs = GetDefaultDiscoveryTabs(), 
+                                        Containment = "window", 
+                                        OnWidgetDesignerUpdate = "updateAlertHeadlineWidgetPreview", 
+                                        Revert = false, TargetControlID = "tabStates"
+                                    };
             ContentBottom.Controls.Add(wDesignerExtender);
         }
 
@@ -413,58 +438,65 @@ namespace EMG.widgets.ui.widgetManagement
             ContentMain.Controls.Add(GetSearchWidgetListControl());
 
             // Add the Hidden Inputs Control
-            var navHiddenInputsContainerControl = new HiddenInputsContainerControl();
-            navHiddenInputsContainerControl.SiteUserType = SessionData.SiteUserType;
-            navHiddenInputsContainerControl.WidgetManagementDTO = widgetManagementDTO;
+            var navHiddenInputsContainerControl = new HiddenInputsContainerControl
+                                                  {
+                                                      SiteUserType = SessionData.SiteUserType, 
+                                                      WidgetManagementDTO = _widgetManagementDTO
+                                                  };
             ContentBottom.Controls.Add(navHiddenInputsContainerControl);
 
-            var listContainer = new HtmlGenericControl("div");
-            listContainer.ID = "listCntr";
+            var listContainer = new HtmlGenericControl("div")
+                                {
+                                    ID = "listCntr"
+                                };
             ContentMain.Controls.Add(listContainer);
 
             // Add the Preview Control
-            var previewControl = new HtmlGenericControl("div");
-            previewControl.ID = "wPreviewContainer";
+            var previewControl = new HtmlGenericControl("div")
+                                 {
+                                     ID = "wPreviewContainer"
+                                 };
 
-// previewControl.InnerText = ResourceText.GetInstance.GetString("loading");
             listContainer.Controls.Add(previewControl);
 
 
             // Add the additional navigation controls
-            var previewControlExtender = new WidgetPreviewExtender();
-
-// previewControlExtender.ContentCssClass = "rock";
-            // Events
-            previewControlExtender.ID = "wPreviewExtender";
-            previewControlExtender.TargetControlID = "wPreviewContainer";
-            previewControlExtender.OnWidgetDelete = "onWidgetDelete";
-            previewControlExtender.OnWidgetEdit = "onWidgetEdit";
-            previewControlExtender.OnWidgetPreview = "onWidgetPreview";
-            previewControlExtender.OnWidgetPublish = "onWidgetPublish";
-            previewControlExtender.OnPreviewBack = "onPreviewBack";
-
-// Tokens
-            previewControlExtender.EditToken = ResourceText.GetInstance.GetString("editDesign");
-            previewControlExtender.PreviewToken = ResourceText.GetInstance.GetString("preview");
-            previewControlExtender.DeleteToken = ResourceText.GetInstance.GetString("delete");
-            previewControlExtender.DateToken = ResourceText.GetInstance.GetString("date");
-            previewControlExtender.LoadingToken = ResourceText.GetInstance.GetString("loading");
-            previewControlExtender.BackToken = ResourceText.GetInstance.GetString("back");
-            previewControlExtender.NoWidgetsToken = ResourceText.GetInstance.GetString("noWidgets");
-            previewControlExtender.PublishToken = ResourceText.GetInstance.GetString("publish");
-            previewControlExtender.NameToken = ResourceText.GetInstance.GetString("name");
-            previewControlExtender.TypeToken = ResourceText.GetInstance.GetString("typeLabel");
-            previewControlExtender.AlertToken = ResourceText.GetInstance.GetString("alert");
-            previewControlExtender.NewsletterToken = ResourceText.GetInstance.GetString("newsletter");
-            previewControlExtender.WorkspaceToken = ResourceText.GetInstance.GetString("workspace");
+            var previewControlExtender = new WidgetPreviewExtender
+                                         {
+                                             ID = "wPreviewExtender", 
+                                             TargetControlID = "wPreviewContainer", 
+                                             OnWidgetDelete = "onWidgetDelete", 
+                                             OnWidgetEdit = "onWidgetEdit", 
+                                             OnWidgetPreview = "onWidgetPreview", 
+                                             OnWidgetPublish = "onWidgetPublish", 
+                                             OnPreviewBack = "onPreviewBack", 
+                                             EditToken = ResourceText.GetInstance.GetString("editDesign"), 
+                                             PreviewToken = ResourceText.GetInstance.GetString("preview"), 
+                                             DeleteToken = ResourceText.GetInstance.GetString("delete"), 
+                                             DateToken = ResourceText.GetInstance.GetString("date"), 
+                                             LoadingToken = ResourceText.GetInstance.GetString("loading"), 
+                                             BackToken = ResourceText.GetInstance.GetString("back"), 
+                                             NoWidgetsToken = ResourceText.GetInstance.GetString("noWidgets"), 
+                                             PublishToken = ResourceText.GetInstance.GetString("publish"), 
+                                             NameToken = ResourceText.GetInstance.GetString("name"), 
+                                             TypeToken = ResourceText.GetInstance.GetString("typeLabel"), 
+                                             AlertToken = ResourceText.GetInstance.GetString("alert"), 
+                                             NewsletterToken = ResourceText.GetInstance.GetString("newsletter"), 
+                                             WorkspaceToken = ResourceText.GetInstance.GetString("workspace")
+                                         };
 
             // Add resources 
             listContainer.Controls.Add(previewControlExtender);
 
-            var previewContainer = new HtmlGenericControl("div");
-            previewContainer.ID = "previewCntr";
-            var previewArea = new HtmlGenericControl("div");
-            previewArea.ID = "previewArea";
+            var previewContainer = new HtmlGenericControl("div")
+                                   {
+                                       ID = "previewCntr"
+                                   };
+
+            var previewArea = new HtmlGenericControl("div")
+                              {
+                                  ID = "previewArea"
+                              };
             previewContainer.Controls.Add(previewArea);
         }
 
@@ -475,18 +507,20 @@ namespace EMG.widgets.ui.widgetManagement
         /// </returns>
         private TabContainer AddTabs()
         {
-            var tabContainer = new TabContainer();
-            tabContainer.ID = "wTabContainer";
-            tabContainer.OnClientActiveTabChanged = "ActiveTabChanged";
-            tabContainer.CssClass = "ajax__tab_emg";
+            var tabContainer = new TabContainer
+                               {
+                                   ID = "wTabContainer", 
+                                   OnClientActiveTabChanged = "ActiveTabChanged", 
+                                   CssClass = "ajax__tab_emg"
+                               };
 
 
-            if (widgetManagementDTO.action == WidgetManagementAction.Create ||
-                (!string.IsNullOrEmpty(widgetManagementDTO.widgetId) &&
-                 !string.IsNullOrEmpty(widgetManagementDTO.widgetId.Trim())))
+            if (_widgetManagementDTO.action == WidgetManagementAction.Create ||
+                (!string.IsNullOrEmpty(_widgetManagementDTO.widgetId) &&
+                 !string.IsNullOrEmpty(_widgetManagementDTO.widgetId.Trim())))
             {
                 // Set the correct index
-                switch (widgetManagementDTO.action)
+                switch (_widgetManagementDTO.action)
                 {
                     case WidgetManagementAction.List:
                         tabContainer.ActiveTabIndex = 1;
@@ -494,36 +528,39 @@ namespace EMG.widgets.ui.widgetManagement
                     case WidgetManagementAction.Gallery:
                         tabContainer.ActiveTabIndex = 2;
                         break;
-                    default:
-                        break;
                 }
 
-                var widgetsDesignerPanel = new TabPanel();
-                widgetsDesignerPanel.HeaderText = ResourceText.GetInstance.GetString("widgetDesigner");
-                widgetsDesignerPanel.OnClientClick = "fireMyWidgetDesigner";
+                var widgetsDesignerPanel = new TabPanel
+                                           {
+                                               HeaderText = ResourceText.GetInstance.GetString("widgetDesigner"), 
+                                               OnClientClick = "fireMyWidgetDesigner"
+                                           };
+
                 tabContainer.Tabs.Add(widgetsDesignerPanel);
             }
             else
             {
                 // Set the correct index
-                switch (widgetManagementDTO.action)
+                switch (_widgetManagementDTO.action)
                 {
                     case WidgetManagementAction.Gallery:
                         tabContainer.ActiveTabIndex = 1;
                         break;
-                    default:
-                        break;
                 }
             }
 
-            var myWidgetsPanel = new TabPanel();
-            myWidgetsPanel.HeaderText = ResourceText.GetInstance.GetString("widgetManagement");
-            myWidgetsPanel.OnClientClick = "fireMyWidgets";
+            var myWidgetsPanel = new TabPanel
+                                 {
+                                     HeaderText = ResourceText.GetInstance.GetString("widgetManagement"), 
+                                     OnClientClick = "fireMyWidgets"
+                                 };
             tabContainer.Tabs.Add(myWidgetsPanel);
 
-            var widgetGallery = new TabPanel();
-            widgetGallery.HeaderText = ResourceText.GetInstance.GetString("widgetGallery");
-            widgetGallery.OnClientClick = "fireWidgetGallery";
+            var widgetGallery = new TabPanel
+                                {
+                                    HeaderText = ResourceText.GetInstance.GetString("widgetGallery"), 
+                                    OnClientClick = "fireWidgetGallery"
+                                };
             tabContainer.Tabs.Add(widgetGallery);
 
 
@@ -556,12 +593,12 @@ namespace EMG.widgets.ui.widgetManagement
         /// </summary>
         public override void HandleInvalidSessionError()
         {
-            if (widgetManagementDTO == null)
-                widgetManagementDTO = (WidgetManagementDTO) FormState.Accept(typeof (WidgetManagementDTO), true);
+            if (_widgetManagementDTO == null)
+                _widgetManagementDTO = (WidgetManagementDTO) FormState.Accept(typeof (WidgetManagementDTO), true);
 
-            if (widgetManagementDTO != null && widgetManagementDTO.IsValid())
+            if (_widgetManagementDTO != null && _widgetManagementDTO.IsValid())
             {
-                RedirectToReturnUrl(widgetManagementDTO);
+                RedirectToReturnUrl(_widgetManagementDTO);
             }
 
             base.HandleInvalidSessionError();
@@ -578,9 +615,9 @@ namespace EMG.widgets.ui.widgetManagement
         /// </param>
         public void Page_Load(object sender, EventArgs e)
         {
-            var pageName = "";
-            if (!widgetManagementDTO.IsValid()) return;
-            switch (widgetManagementDTO.action)
+            string pageName;
+            if (!_widgetManagementDTO.IsValid()) return;
+            switch (_widgetManagementDTO.action)
             {
                 case WidgetManagementAction.Create:
                     pageName = "DJ_FF_WidgetDesigner";
@@ -588,35 +625,37 @@ namespace EMG.widgets.ui.widgetManagement
                     break;
                 case WidgetManagementAction.Update:
                     pageName = "DJ_FF_WidgetDesigner";
-// Get Widget and update the dto with right widgetType
+                    
+                // Get Widget and update the dto with right widgetType
                     var widgetManager = new WidgetManager(SessionData.SessionBasedControlDataEx, SessionData.InterfaceLanguage);
-                    var widget = widgetManager.GetCachedWidgetById(widgetManagementDTO.widgetId);
+                    var widget = widgetManager.GetCachedWidgetById(_widgetManagementDTO.widgetId);
 
                     // update the type
                     if (widget is AlertWidget)
                     {
-                        widgetManagementDTO.widgetType = WidgetType.AlertHeadlineWidget;
+                        _widgetManagementDTO.widgetType = WidgetType.AlertHeadlineWidget;
                     }
                     else if (widget is AutomaticWorkspaceWidget)
                     {
-                        widgetManagementDTO.widgetType = WidgetType.AutomaticWorkspaceWidget;
+                        _widgetManagementDTO.widgetType = WidgetType.AutomaticWorkspaceWidget;
                     }
                     else if (widget is ManualWorkspaceWidget)
                     {
-                        widgetManagementDTO.widgetType = WidgetType.ManualNewsletterWorkspaceWidget;
+                        _widgetManagementDTO.widgetType = WidgetType.ManualNewsletterWorkspaceWidget;
                     }
 
-                    FormState.Remove(widgetManagementDTO);
-                    FormState.Add(widgetManagementDTO);
+                    FormState.Remove(_widgetManagementDTO);
+                    FormState.Add(_widgetManagementDTO);
                     AddWidgetManagementDtoToContext();
                     AddCreateSlashUpdateWidgetControls();
                     break;
                 case WidgetManagementAction.Gallery:
                     pageName = "DJ_FF_Widgetgallery";
-// Add Galery Controls
-                    gallerySettings = new GallerySettings(widgetManagementDTO);
+                    
+                    // Add Gallery Controls
+                    _gallerySettings = new GallerySettings(_widgetManagementDTO);
 
-                    AddGalleryControls(gallerySettings.portalSettings.modules);
+                    AddGalleryControls(_gallerySettings.portalSettings.modules);
                     break;
                 default:
                     pageName = "DJ_FF_MyWidgets";
@@ -634,10 +673,9 @@ namespace EMG.widgets.ui.widgetManagement
 
             var accountsToSkip = Settings.Default.SkipOmnitureAccounts.Trim().Split(',');
 
-            foreach(var account in accountsToSkip)
+            if (accountsToSkip.Any(account => !string.IsNullOrEmpty(account) && SessionData.AccountId.StartsWith(account)))
             {
-                if (!string.IsNullOrEmpty(account) && SessionData.AccountId.StartsWith(account))
-                    return "";
+                return "";
             }
 
             var sb = new StringBuilder();
@@ -665,7 +703,7 @@ namespace EMG.widgets.ui.widgetManagement
         {
             if (HttpContext.Current != null)
             {
-                HttpContext.Current.Items[AbstractGalleryControl.HTTP_CONTEXT_WIDGET_MANAGEMENT_DTO] = widgetManagementDTO;
+                HttpContext.Current.Items[AbstractGalleryControl.HTTP_CONTEXT_WIDGET_MANAGEMENT_DTO] = _widgetManagementDTO;
             }
         }
 

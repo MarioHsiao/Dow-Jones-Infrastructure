@@ -1,8 +1,4 @@
 using System;
-using System.Web;
-using System.Web.SessionState;
-using System.Web.UI;
-using EMG.Utility.Generators;
 using factiva.nextgen;
 using factiva.nextgen.ui.page;
 using EMG.widgets.ui.dto.request;
@@ -23,17 +19,19 @@ namespace EMG.widgets.ui.widgetManagement
 #endif
     public partial class Manage : BasePage
     {
-        private WidgetManagementDTO m_WidgetManagementDTO = null;
+        /// <summary>
+        /// 
+        /// </summary>
+        public Manage()
+        {
+            WidgetManagementDTO = null;
+        }
 
         /// <summary>
         /// Gets or sets the widget management DTO.
         /// </summary>
         /// <value>The widget management DTO.</value>
-        public WidgetManagementDTO WidgetManagementDTO
-        {
-            get { return m_WidgetManagementDTO; }
-            set { m_WidgetManagementDTO = value; }
-        }
+        public WidgetManagementDTO WidgetManagementDTO { get; set; }
 
         /// <summary>
         /// Handles the Init event of the Page control.
