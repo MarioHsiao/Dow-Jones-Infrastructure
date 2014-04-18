@@ -13,6 +13,7 @@ namespace DowJones.Web
         public const string GLOBAL_SESS_COOKIE_KEY = "GSLogin";
         public const string LOCAL_PERM_COOKIE_KEY = "persistent";
         public const string LOGIN_PERM_COOKIE_KEY = "LPLogin";
+        public const string GLOBAL_SESS_SECURE_COOKIE_KEY = "GSSLogin";
 
         private readonly HttpContextBase _httpContext;
 
@@ -211,6 +212,11 @@ namespace DowJones.Web
                 return "." + parts[length - 2] + "." + parts[length - 1];
             }
             return ".factiva.com";
+        }
+
+        public string GetSecureHasKey(string key)
+        {
+            return GetCookieValue(GLOBAL_SESS_SECURE_COOKIE_KEY, key);
         }
     }
 }
