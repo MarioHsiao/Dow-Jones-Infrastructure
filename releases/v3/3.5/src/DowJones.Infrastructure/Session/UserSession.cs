@@ -120,6 +120,12 @@ namespace DowJones.Session
         /// <value>The user id.</value>
         public string EncryptedUserId { get; set; }
 
+        /// <summary>
+        /// Gets Security Hash.
+        /// </summary>
+        /// <value>Security Hash</value>
+        public string SecurityHash { get; set; }
+
 
         /// <summary>
         /// Initializes a new instance of the <see cref="UserSession" /> class.
