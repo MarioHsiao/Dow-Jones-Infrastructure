@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30219.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Json.Gateway", "DowJones.Json.Gateway\DowJones.Json.Gateway.csproj", "{24BDE427-77A1-47A7-8F2B-5771E98EA2A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Json.Gateway.Messages", "DowJones.Json.Gateway.Messages\DowJones.Json.Gateway.Messages.csproj", "{7FEADC24-A62D-433E-B308-0C991A036F93}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Json.Gateway.Tests", "DowJones.Json.Gateway.Tests\DowJones.Json.Gateway.Tests.csproj", "{BADB2A74-103F-4F92-AC41-45D3AC311D14}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Json.Gateway.Mvc", "DowJones.Json.Gateway.Mvc\DowJones.Json.Gateway.Mvc.csproj", "{1B484D07-D362-4AC2-ABE8-814DEE0BD1AD}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://tfs2012.dowjones.net:8080/tfs/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = DowJones.Json.Gateway.Messages\\DowJones.Json.Gateway.Messages.csproj
+		SccProjectName1 = DowJones.Json.Gateway.Messages
+		SccLocalPath1 = DowJones.Json.Gateway.Messages
+		SccProjectUniqueName2 = DowJones.Json.Gateway.Tests\\DowJones.Json.Gateway.Tests.csproj
+		SccProjectName2 = DowJones.Json.Gateway.Tests
+		SccLocalPath2 = DowJones.Json.Gateway.Tests
+		SccProjectUniqueName3 = DowJones.Json.Gateway\\DowJones.Json.Gateway.csproj
+		SccProjectName3 = DowJones.Json.Gateway
+		SccLocalPath3 = DowJones.Json.Gateway
+		SccProjectUniqueName4 = DowJones.Json.Gateway.Mvc\\DowJones.Json.Gateway.Mvc.csproj
+		SccProjectName4 = DowJones.Json.Gateway.Mvc
+		SccLocalPath4 = DowJones.Json.Gateway.Mvc
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{24BDE427-77A1-47A7-8F2B-5771E98EA2A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24BDE427-77A1-47A7-8F2B-5771E98EA2A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24BDE427-77A1-47A7-8F2B-5771E98EA2A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24BDE427-77A1-47A7-8F2B-5771E98EA2A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FEADC24-A62D-433E-B308-0C991A036F93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FEADC24-A62D-433E-B308-0C991A036F93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FEADC24-A62D-433E-B308-0C991A036F93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FEADC24-A62D-433E-B308-0C991A036F93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BADB2A74-103F-4F92-AC41-45D3AC311D14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BADB2A74-103F-4F92-AC41-45D3AC311D14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BADB2A74-103F-4F92-AC41-45D3AC311D14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BADB2A74-103F-4F92-AC41-45D3AC311D14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B484D07-D362-4AC2-ABE8-814DEE0BD1AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B484D07-D362-4AC2-ABE8-814DEE0BD1AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B484D07-D362-4AC2-ABE8-814DEE0BD1AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B484D07-D362-4AC2-ABE8-814DEE0BD1AD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

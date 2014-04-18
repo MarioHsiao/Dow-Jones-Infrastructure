@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7FEADC24-A62D-433E-B308-0C991A036F93}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DowJones.Json.Gateway.Messages</RootNamespace>
+    <AssemblyName>DowJones.Json.Gateway.Messages</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.1.2.99\lib\2.0\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.1\lib\net35\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web.Http">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.30506.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Pam\Api_1_0\Assets\List\AccessControlScope.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\AccessQualifier.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\AuthorItem.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\AuthorItemProperties.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\AuthorList.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\AuthorListProperties.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\EnableDisable.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\ExecutiveItem.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\ExecutiveItemProperties.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\ExecutiveList.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\ExecutiveListProperties.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\Filter.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\FilterCollection.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\FilterGroup.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\GetSubscribableItemsResponse.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\GetSubscribableLists.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\GroupIdList.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\GroupList.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\IdCollection.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\IdSearchFilter.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\IndustryItem.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\IndustryItemProperties.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\IndustryList.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\IndustryListProperties.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\Item.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\ItemCollection.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\ItemGroup.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\ItemGroupCollection.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\ItemGroupType.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\ItemIdCollection.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\ItemProperties.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\List.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\ListDetailsItem.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\ListDetailsItemCollection.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\ListIdCollection.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\ListProperties.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\ListPropertiesItem.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\ListPropertiesItemCollection.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\ListSortBy.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\ListType.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\ListTypeCollection.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\Paging.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\Permission.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\RegionItem.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\RegionItemProperties.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\RegionList.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\RegionListProperties.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\SortOrder.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\SubjectItem.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\SubjectItemProperties.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\SubjectList.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\SubjectListProperties.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\SubscribePage.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\Transactions\AddItemsToListRequest.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\Transactions\AddItemsToListResponse.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\Transactions\CreateListRequest.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\Transactions\CreateListResponse.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\Transactions\DeleteItemsOnListRequest.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\Transactions\DeleteItemsOnListResponse.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\Transactions\DeleteListRequest.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\Transactions\DeleteListResponse.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\Transactions\GetListByIdRequest.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\Transactions\GetListByIdResponse.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\Transactions\GetListsDetailsListRequest.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\Transactions\GetListsDetailsListResponse.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\Transactions\GetListsPropertiesListRequest.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\Transactions\GetListsPropertiesListResponse.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\Transactions\SetSharePropertiesRequest.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\Transactions\SetSharePropertiesResponse.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\Transactions\SubscribeListRequest.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\Transactions\SubscribeListResponse.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\Transactions\UnSubscribeListRequest.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\Transactions\UnSubscribeListResponse.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\Transactions\UpdateListNameRequest.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\Transactions\UpdateListNameResponse.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\Transactions\UpdateListPropertiesRequest.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\Transactions\UpdateListPropertiesResponse.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\Transactions\UpdateListRequest.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\Transactions\UpdateListResponse.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\GroupListType.cs" />
+    <Compile Include="Pam\Api_1_0\Sharing\ShareProperties.cs" />
+    <Compile Include="Pam\Api_1_0\Sharing\SharePropertiesResponse.cs" />
+    <Compile Include="Pam\Api_1_0\Sharing\ShareRole.cs" />
+    <Compile Include="Pam\Api_1_0\Sharing\ShareRoleCollection.cs" />
+    <Compile Include="Pam\Api_1_0\Sharing\ShareScope.cs" />
+    <Compile Include="Pam\Api_1_0\Sharing\ShareScopeCollection.cs" />
+    <Compile Include="Pam\Api_1_0\Sharing\ShareStatus.cs" />
+    <Compile Include="Pam\Api_1_0\Sharing\ShareType.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DowJones.Json.Gateway\DowJones.Json.Gateway.csproj">
+      <Project>{24bde427-77a1-47a7-8f2b-5771e98ea2a4}</Project>
+      <Name>DowJones.Json.Gateway</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Core\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
