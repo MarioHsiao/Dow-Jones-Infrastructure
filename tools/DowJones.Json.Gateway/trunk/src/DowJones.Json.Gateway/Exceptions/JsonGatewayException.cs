@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Runtime.Serialization;
 using System.Security.Permissions;
 using System.Text;
+using System.Text.RegularExpressions;
 using DowJones.Json.Gateway.Converters;
 using log4net;
 
@@ -38,6 +39,7 @@ namespace DowJones.Json.Gateway.Exceptions
 
 
         public const long ControlDataSerializationError = HttpBaseError + 20;
+        public const long UnableToParseJsonBodyForError = HttpBaseError + 21;
 
 
         #endregion
@@ -48,11 +50,13 @@ namespace DowJones.Json.Gateway.Exceptions
         public JsonGatewayException(long returnCode, string message) : base(message)
         {
             _returnCode = returnCode;
+            LogException();
         }
 
         public JsonGatewayException(long returnCode, string message, Exception ex) : base(message, ex)
         {
             _returnCode = returnCode;
+            LogException();
         }
 
         public virtual ILog Logger
@@ -68,20 +72,30 @@ namespace DowJones.Json.Gateway.Exceptions
         protected void LogException()
         {
             if (ReturnCode != -1 && !Logger.IsDebugEnabled) return;
-            string stackTrace = StackTrace ?? new StackTrace().ToString();
+            var stackTrace = StackTrace ?? new StackTrace().ToString();
             Logger.Error(string.Format("\nReturn code: {0} - Message: {1}\nStack Trace: {2}", ReturnCode, Message, stackTrace));
+        }
+
+        private bool ContainsHTML(string checkString)
+        {
+            return Regex.IsMatch(checkString, "<(.|\n)*?>");
         }
 
         public static JsonGatewayException Parse(string json)
         {
             try
             {
-                var jsonGatewayError = DataContractConverterDecoratorSingleton.Instance.Deserialize<JsonGatewayError>(json);
+                if (Log.IsErrorEnabled)
+                {
+                    Log.Error(json);
+                }
+
+                var jsonGatewayError = JsonGatewayError.Parse(json);
                 return new JsonGatewayException(jsonGatewayError.Error.Code, jsonGatewayError.Error.Message);
             }
             catch (Exception)
             {
-                return new JsonGatewayException(GenericError, json);
+                return null;
             }
         }
 

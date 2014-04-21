@@ -17,7 +17,6 @@ namespace DowJones.Json.Gateway.Exceptions
             {
                 var serviceError = JsonDotNetDataConverterSingleton.Instance.Deserialize<JsonGatewayError>(json);
 
-
                 if (serviceError != null && serviceError.Error != null)
                 {
                     return serviceError;

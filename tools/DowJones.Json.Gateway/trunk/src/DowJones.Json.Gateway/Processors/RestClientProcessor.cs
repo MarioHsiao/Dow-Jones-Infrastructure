@@ -35,7 +35,7 @@ namespace DowJones.Json.Gateway.Processors
                        };
 
             var error = JsonGatewayException.Parse(content);
-            if (error.ReturnCode != JsonGatewayException.GenericError)
+            if (error != null && error.ReturnCode != JsonGatewayException.GenericError)
             {
                 return new RestResponse<TRes>
                        {
@@ -47,7 +47,7 @@ namespace DowJones.Json.Gateway.Processors
                                    }
                        };
             }
-
+            
             return new RestResponse<TRes>
                    {
                        ReturnCode = code,
