@@ -37,6 +37,7 @@ namespace DowJones.Json.Gateway.Exceptions
         public const long InternalServerError = HttpBaseError + 13;
 
 
+        public const long ControlDataSerializationError = HttpBaseError + 20;
 
 
         #endregion
