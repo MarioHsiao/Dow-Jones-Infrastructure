@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Xml;
 using Data;
 using System.Web;
@@ -102,15 +103,15 @@ namespace FactivaRssManager
 			get{return _articleURL;}
 		}
 
-		public virtual void buildRequest(InputData inputData,ConfigData configData)
+		public virtual void BuildRequest(InputData inputData,ConfigData configData)
 		{
-			buildRssHeader(inputData,configData);
-			buildArticleURL(inputData,configData);
+			BuildRssHeader(inputData,configData);
+			BuildArticleUrl(inputData,configData);
 		}
-		protected void buildRssHeader(InputData inputData,ConfigData configData)
+		protected void BuildRssHeader(InputData inputData,ConfigData configData)
 		{	
-			buildChannelName(inputData,configData);
-			buildChannelDesc(inputData,configData);
+			BuildChannelName(inputData,configData);
+			BuildChannelDesc(inputData,configData);
 
 			_factivaChannelLink = configData.getItem("//rssChannel/factivaChannelLink");
 			_customerServiceLink = configData.getItem("//rssChannel/factivaCustomerServiceLink");
@@ -126,7 +127,7 @@ namespace FactivaRssManager
 			_channelLastBuildDate = today.ToString("R");
 
 		}
-		protected virtual void buildChannelName(InputData inputData , ConfigData configData)
+		protected virtual void BuildChannelName(InputData inputData , ConfigData configData)
 		{
 			// prefix
 			_channelTitle = configData.getItem("//rssChannel/channelHeader/channelName/prefix");
@@ -136,7 +137,7 @@ namespace FactivaRssManager
             _channelTitle = channelTitle + configData.getItem("//rssChannel/channelHeader/channelName/suffix");
         }
 
-		protected virtual void buildChannelDesc(InputData inputData , ConfigData configData)
+		protected virtual void BuildChannelDesc(InputData inputData , ConfigData configData)
 		{
 			// prefix
 			_channelDesc = configData.getItem("//rssChannel/channelHeader/channelDesc/prefix");
@@ -146,7 +147,7 @@ namespace FactivaRssManager
             _channelDesc = _channelDesc + configData.getItem("//rssChannel/channelHeader/channelDesc/suffix");
 
 		}
-        protected virtual void buildArticleURL(InputData inputData, ConfigData configData)
+        protected virtual void BuildArticleUrl(InputData inputData, ConfigData configData)
         {
             // DirectURL
             if (!string.IsNullOrEmpty(inputData.getItem("app")) && inputData.getItem("app").ToUpper() == "WSJ")
@@ -163,7 +164,7 @@ namespace FactivaRssManager
                 {
                     foreach (string predefinedValue in predefinedValues)
                     {
-                        if (_articleURL.IndexOf("?") > 0)
+                        if (_articleURL.IndexOf("?", StringComparison.Ordinal) > 0)
                             _articleURL = _articleURL + "&" + predefinedValue;
                         else
                             _articleURL = _articleURL + "?" + predefinedValue;
@@ -172,28 +173,22 @@ namespace FactivaRssManager
 
                 // User Values specified in EID
                 //string[] eidValues = configData.getItemValues("//articleURL/eid/params/param");
-                XmlNodeList eidNodes;
-                eidNodes = configData.getNodeList("//articleURL/eid/params/param");
+                XmlNodeList eidNodes = configData.getNodeList("//articleURL/eid/params/param");
                 if (eidNodes != null)
                 {
-                    foreach (XmlNode eidNode in eidNodes)
+                    foreach (var strMapNameValue in 
+                        from XmlNode eidNode in eidNodes 
+                            let xmlAttributeCollection = eidNode.Attributes where xmlAttributeCollection != null 
+                            let eidMapTo = xmlAttributeCollection["mapTo"].InnerText let eidValue = eidNode.InnerText 
+                            let strMapNameValue = string.Empty where !string.IsNullOrEmpty(inputData.getItem(eidValue)) 
+                            where eidMapTo != null select string.Format("{0}={1}", eidMapTo, HttpContext.Current.Server.UrlEncode(inputData.getItem(eidValue))))
                     {
-                        string eidMapTo = eidNode.Attributes["mapTo"].InnerText;
-                        string eidValue = eidNode.InnerText;
-                        string _strMapNameValue = string.Empty;
+                        if (_articleURL.IndexOf("?", StringComparison.Ordinal) > 0)
+                            _articleURL = _articleURL + "&";
+                        else
+                            _articleURL = _articleURL + "?";
 
-                        if (!string.IsNullOrEmpty(inputData.getItem(eidValue)))
-                            if (eidMapTo != null)
-                            {
-                                _strMapNameValue = string.Format("{0}={1}", eidMapTo, HttpContext.Current.Server.UrlEncode(inputData.getItem(eidValue)));
-
-                                if (_articleURL.IndexOf("?") > 0)
-                                    _articleURL = _articleURL + "&";
-                                else
-                                    _articleURL = _articleURL + "?";
-
-                                _articleURL = _articleURL + _strMapNameValue;
-                            }
+                        _articleURL = _articleURL + strMapNameValue;
                     }
                 }
                 _articleURL = _articleURL.Replace("?&", "?").Replace("&&", "&");

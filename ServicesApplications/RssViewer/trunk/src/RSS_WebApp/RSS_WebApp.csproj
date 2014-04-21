@@ -118,7 +118,9 @@
   <ItemGroup>
     <Content Include="cache.not_on_this_server" />
     <Content Include="config.xml_int" />
-    <Content Include="config.xml_prod" />
+    <Content Include="config.xml_prod">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="cmd\rename_FactivaRss_prod.bat" />
     <Content Include="GatewayResources\config\Analyze.config" />
     <Content Include="GatewayResources\config\ArchiveService.config" />

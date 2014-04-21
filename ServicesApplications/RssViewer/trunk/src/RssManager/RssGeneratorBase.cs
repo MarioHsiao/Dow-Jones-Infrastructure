@@ -94,7 +94,7 @@ namespace FactivaRssManager
                 var headlinesData = new XmlData(xmlHeadlines, xmlNS);
                 try
                 {
-                    buildRssDetailFields(configData, inputData);
+                    BuildRssDetailFields(configData, inputData);
                 }
                 catch (Exception ex)
                 {
@@ -105,7 +105,7 @@ namespace FactivaRssManager
                 string rss;
                 try
                 {
-                    rss = buildRss(headlinesData, inputData);
+                    rss = BuildRss(headlinesData, inputData);
                 }
                 catch (Exception ex)
                 {
@@ -124,7 +124,7 @@ namespace FactivaRssManager
             }
         }
 
-        protected virtual void buildRssDetailFields(ConfigData configData, InputData inputData)
+        protected virtual void BuildRssDetailFields(ConfigData configData, InputData inputData)
         {
             try
             {
@@ -155,20 +155,22 @@ namespace FactivaRssManager
                 }
 
 
-
-                if (inputData.getItem("from") != null || inputData.getItem("type") != null)
+                if (inputData.getItem("from") == null && inputData.getItem("type") == null)
                 {
-                    var strPodCast = (inputData.getItem("type") != null ? inputData.getItem("type").ToLower() : inputData.getItem("from").ToLower());
-                    if (configData.getNode(string.Format("//Custom/params/param[@name='{0}']", strPodCast)) != null)
-                    {
-                        IsPodCast = true;
-                        Logger.Log(Logger.Level.INFO, string.Format("validateNode::Validating PodCast Type[09239-003] ... {0}", strPodCast));
-                        fldEnclosures = configData.getItemValues("//rssDetail/rssMapping/enclosure/params/param");
-                        //fldEnclosureConnector = configData.getItem("//rssDetail/rssMapping/enclosure/@connector");
-                        Logger.Log(Logger.Level.INFO, string.Format("PodCast fldEnclosures :- {0} ", fldEnclosures));
-                    }
+                    return;
                 }
 
+                var strPodCast = (inputData.getItem("type") != null ? inputData.getItem("type").ToLower() : inputData.getItem("from").ToLower());
+                if (configData.getNode(string.Format("//Custom/params/param[@name='{0}']", strPodCast)) == null)
+                {
+                    return;
+                }
+
+                IsPodCast = true;
+                Logger.Log(Logger.Level.INFO, string.Format("validateNode::Validating PodCast Type[09239-003] ... {0}", strPodCast));
+                fldEnclosures = configData.getItemValues("//rssDetail/rssMapping/enclosure/params/param");
+                //fldEnclosureConnector = configData.getItem("//rssDetail/rssMapping/enclosure/@connector");
+                Logger.Log(Logger.Level.INFO, string.Format("PodCast fldEnclosures :- {0} ", fldEnclosures));
             }
             catch (Exception ex)
             {
@@ -177,13 +179,13 @@ namespace FactivaRssManager
             }
         }
 
-        protected virtual string buildRss(XmlData headlinesData, InputData inputData)
+        protected virtual string BuildRss(XmlData headlinesData, InputData inputData)
         {
-            createChannelHeader();
-            return createDetail(headlinesData, inputData);
+            CreateChannelHeader();
+            return CreateDetail(headlinesData, inputData);
         }
 
-        protected void createChannelHeader()
+        protected void CreateChannelHeader()
         {
             rssFeed.Channel = new RssChannel();
             try
@@ -267,7 +269,7 @@ namespace FactivaRssManager
             return opData.GetMemento;
         }
 
-        protected virtual string createDetail(XmlData headlinesData, InputData inputData)
+        protected virtual string CreateDetail(XmlData headlinesData, InputData inputData)
         {
             var operationalDataMemento = string.Empty;
             //var rss = new StringBuilder();
@@ -375,7 +377,7 @@ namespace FactivaRssManager
                     case "nl1":
                     case "ws1":
                         #region << Workspace RSS & Podcasts >>
-                        var audience = (Audience)deSerialize(inputData.getItem("audience"), typeof(Audience));
+                        var audience = (Audience)Deserialize(inputData.getItem("audience"), typeof(Audience));
                         // If it's an external weblink or insight chart link build the compelete url .
                         if (fldDirectUrls.Length > 0)
                         {
@@ -633,12 +635,12 @@ namespace FactivaRssManager
                         break;
                 }
 
-                rssFeed.Channel.AddItem(createItem(title, description, date, source, strCompleteURL, strCompleteURL, enclosure, inputData, operationalDataMemento));
+                rssFeed.Channel.AddItem(CreateItem(title, description, date, source, strCompleteURL, strCompleteURL, enclosure, inputData, operationalDataMemento));
             }
             return Serialize(rssFeed, false);
         }
 
-        protected virtual string createItem(string title, string description, string date, string source, string articleURL, string guid)
+        protected virtual string CreateItem(string title, string description, string date, string source, string articleURL, string guid)
         {
             var data = date.Split(',');
             var item = new StringBuilder();
@@ -664,9 +666,9 @@ namespace FactivaRssManager
 
             item.Append("<pubDate>");
             if (!string.IsNullOrEmpty(data[0]) && !string.IsNullOrEmpty(data[1]))
-                item.Append(formatDate(data[0], data[1]));
+                item.Append(FormatDate(data[0], data[1]));
             if (data.Length > 2)
-                item.Append(formatDate(data[2], data[3]));
+                item.Append(FormatDate(data[2], data[3]));
             item.Append("</pubDate>");
 
             item.Append("<guid>");
@@ -679,7 +681,7 @@ namespace FactivaRssManager
         }
 
 
-        protected virtual RssItem createItem(string title, string description, string date, string source, string articleURL, string guid, string an, InputData inputData,string operationalDataMemento)
+        protected virtual RssItem CreateItem(string title, string description, string date, string source, string articleURL, string guid, string an, InputData inputData,string operationalDataMemento)
         {
             //var xmlDoc = new XmlDocument();
             var uid = string.Empty;
@@ -715,8 +717,20 @@ namespace FactivaRssManager
                 item.Description = description;
                 if (!string.IsNullOrEmpty(articleURL))
                 {
-                    if (!articleURL.Contains("http:"))
-                        articleURL = "http://" + articleURL;
+                    if (!articleURL.StartsWith("https://"))
+                    {
+                        if (articleURL.StartsWith("//"))
+                        {
+                            articleURL = string.Concat("https:", articleURL);
+                        }
+                        else if (articleURL.StartsWith("http:"))
+                        {
+                            articleURL = articleURL.Replace("http:", "https:");
+                        }
+
+                    }
+
+                       
                 }
                 item.Link = new EscapedUri(articleURL);
                 item.Author = source;
@@ -733,7 +747,7 @@ namespace FactivaRssManager
 
                 try
                 {
-                    item.PublicationDate = DateTime.Parse(formatDate(data[0], data[1]));
+                    item.PublicationDate = DateTime.Parse(FormatDate(data[0], data[1]));
                 }
                 catch (Exception ex)
                 {
@@ -742,7 +756,7 @@ namespace FactivaRssManager
                 try
                 {
                     if (!string.IsNullOrEmpty(data[2]))
-                        item.PublicationDate = DateTime.Parse(formatDate(data[2], data[3]));
+                        item.PublicationDate = DateTime.Parse(FormatDate(data[2], data[3]));
                 }
                 catch (Exception ex)
                 {
@@ -892,7 +906,7 @@ namespace FactivaRssManager
             }
         }
 
-        protected virtual string formatDate(string pubDate, string pubTime)
+        protected virtual string FormatDate(string pubDate, string pubTime)
         {
             var finalPubDate = "";
             var tmpDate = "";
@@ -914,11 +928,14 @@ namespace FactivaRssManager
                 {
                     finalPubDate = System.Convert.ToString(System.Convert.ToDateTime(finalPubDate).ToString("R"));
                 }
+
                 //if time is blank then remove 00:00:00 GMT
                 if (pubTime == "")
                 {
-                    if (finalPubDate.IndexOf("00:00:00 GMT") != -1)
-                        finalPubDate = Left(finalPubDate, finalPubDate.IndexOf("00:00:00 GMT"));
+                    if (finalPubDate.IndexOf("00:00:00 GMT", StringComparison.Ordinal) != -1)
+                    {
+                        finalPubDate = Left(finalPubDate, finalPubDate.IndexOf("00:00:00 GMT", StringComparison.Ordinal));
+                    }
                 }
             }
             catch (Exception ex)
@@ -956,7 +973,7 @@ namespace FactivaRssManager
             return strParam;
         }
 
-        public static object deSerialize(string xmlRequest, Type objectType)
+        public static object Deserialize(string xmlRequest, Type objectType)
         {
             //System.Type objectType = null;
             var xmlDoc = new XmlDocument();
@@ -970,11 +987,11 @@ namespace FactivaRssManager
 
         private static string GetNLDTLToken(string newsletterId, string _type)
         {
-            const string ERC_PUB_KEY = "3x4e10e4";
+            const string ercPubKey = "3x4e10e4";
             var enc = new FactivaEncryption.encryption();
             var nvp = new NameValueCollection(1) {{"nlId", newsletterId}, {"nt", _type}};
 
-            return HttpUtility.UrlEncode(enc.encrypt(nvp, ERC_PUB_KEY));
+            return HttpUtility.UrlEncode(enc.encrypt(nvp, ercPubKey));
         }
     }
 

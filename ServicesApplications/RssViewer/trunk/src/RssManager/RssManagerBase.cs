@@ -61,7 +61,7 @@ namespace FactivaRssManager
 		private RssRequest _rssRequest = new  RssRequest();
 		public void buildRssRequest()
 		{
-			_rssRequest.buildRequest(_inputData,_configData);
+			_rssRequest.BuildRequest(_inputData,_configData);
 		}
 
 		// Generate RSS
