@@ -138,7 +138,7 @@ namespace DowJones.Json.Gateway.Processors
                         {
                             if (Log.IsErrorEnabled && controlDataParam != null)
                             {
-                                Log.Error("Unable to parse following controldata:\n");
+                                Log.Error("Unable to parse following controldata:");
                                 Log.Error(ex.ToString());
                             }
 
