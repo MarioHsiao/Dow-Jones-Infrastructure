@@ -2,14 +2,18 @@
 {
     public enum CacheStatus
     {
-        /// <summary>
-        /// 'Miss' means items was not found in the cache.
-        /// </summary>
-        Miss,
+        NotSpecified,
 
+        Unknown,
+        
         /// <summary>
         /// 'Hit' means items was found in the cache.
         /// </summary>
-        Hit
+        Hit,
+        
+        /// <summary>
+        /// 'Miss' means items was not found in the cache.
+        /// </summary>
+        Miss
     }
 }

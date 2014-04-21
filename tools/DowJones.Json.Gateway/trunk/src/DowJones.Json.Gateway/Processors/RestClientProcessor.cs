@@ -121,20 +121,35 @@ namespace DowJones.Json.Gateway.Processors
 
                         try
                         {
-                            if (controlDataParam != null)
+                            if (controlDataParam != null && controlDataParam.Value != null)
                             {
-                                cd = JsonDotNetDataConverterSingleton.Instance.Deserialize<ControlData>(controlDataParam.Value.ToString());
+                                var data = controlDataParam.Value.ToString();
+                                if (Log.IsErrorEnabled)
+                                {
+                                    Log.ErrorFormat("Returned ControlData: {0}\n");
+                                }
+                                if (data.IsNotEmpty())
+                                {
+                                    cd = JsonDotNetDataConverterSingleton.Instance.Deserialize<ControlData>(data);
+                                }
                             }
                         }
-                        catch
+                        catch (Exception ex)
                         {
+                            if (Log.IsErrorEnabled && controlDataParam != null)
+                            {
+                                Log.Error("Unable to parse following controldata:\n");
+                                Log.Error(ex.ToString());
+                            }
+
                             return GenerateErrorResponse<TRes>(
-                                null, 
-                                JsonGatewayException.GenericError, 
-                                "Equivalent to HTTP status 500. " +
-                                "Unable to deserialize control-data object.");
+                                null,
+                                JsonGatewayException.ReturnedControlDataDeserializationError, 
+                                ex.Message);
                         }
                     }
+
+                    Log.Error(response.Content);
                     return new RestResponse<TRes>
                            {
                                ReturnCode = 0,

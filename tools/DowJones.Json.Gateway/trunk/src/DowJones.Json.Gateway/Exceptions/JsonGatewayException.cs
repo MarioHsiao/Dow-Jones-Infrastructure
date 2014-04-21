@@ -40,6 +40,7 @@ namespace DowJones.Json.Gateway.Exceptions
 
         public const long ControlDataSerializationError = HttpBaseError + 20;
         public const long UnableToParseJsonBodyForError = HttpBaseError + 21;
+        public const long ReturnedControlDataDeserializationError = HttpBaseError + 22;
 
 
         #endregion

@@ -42,13 +42,12 @@ namespace DowJones.Json.Gateway.Processors
         public RestComposite GetRestComposite<T>(RestRequest<T> restRequest)
             where T : IJsonRestRequest, new()
         {
-            return restRequest.ControlData.RoutingData.Environment != Environment.Direct ? GetNonDevelopmentRestComposite(restRequest) : GetDevelopmentRestComposite(restRequest);
+            return restRequest.ControlData.RoutingData.Environment == Environment.Direct ? GetDevelopmentRestComposite(restRequest) : GetNonDevelopmentRestComposite(restRequest);
         }
 
         public RestComposite GetNonDevelopmentRestComposite<T>(RestRequest<T> restRequest)
             where T : IJsonRestRequest, new()
         {
-
             var client = new RestClient(restRequest.ControlData.RoutingData.ServerUri);
             client.ClearHandlers();
 
@@ -98,10 +97,10 @@ namespace DowJones.Json.Gateway.Processors
             // add ControlData to header
             var jsonControlData = restRequest.ControlData.ToJson(ControlDataDataConverterSingleton.Instance);
             var jsonRequest = restRequest.Request.ToJson(decorator);
-            if (_log.IsDebugEnabled)
+            if (_log.IsInfoEnabled)
             {
-                _log.DebugFormat("ControlData(Json):\n{0}", jsonControlData);
-                _log.DebugFormat("Request(Json):\n{0}", jsonRequest);
+                _log.InfoFormat("ControlData(Json):\n{0}", jsonControlData);
+                _log.InfoFormat("Request(Json):\n{0}", jsonRequest);
             }
             request.AddHeader("ControlData", jsonControlData);
             request.AddParameter("application/json", jsonRequest, ParameterType.RequestBody);

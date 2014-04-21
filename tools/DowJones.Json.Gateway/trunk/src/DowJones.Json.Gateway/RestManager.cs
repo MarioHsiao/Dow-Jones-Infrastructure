@@ -2,6 +2,7 @@
 using DowJones.Json.Gateway.Extensions;
 using DowJones.Json.Gateway.Interfaces;
 using DowJones.Json.Gateway.Processors;
+using log4net;
 using RestSharp;
 using RestSharpRestClient = RestSharp.RestClient;
 using RestSharpRestRequest = RestSharp.RestRequest;
@@ -22,6 +23,9 @@ namespace DowJones.Json.Gateway
             ServiceType = "HTTP";
         }
 
+        private readonly ILog _log = LogManager.GetLogger(typeof(RestManager));
+        
+
         protected internal string ServerUri { get; set; }
 
 
@@ -31,6 +35,12 @@ namespace DowJones.Json.Gateway
             where TReq : IJsonRestRequest, new()
             where TRes : IJsonRestResponse, new()
         {
+            if (_log.IsInfoEnabled)
+            {
+                _log.Info("Start-Execute");
+                _log.Info(restRequest.ControlData.ToJson());
+            }
+
             if (!restRequest.ControlData.IsNotNullAndValid())
             {
                 throw new JsonGatewayException(JsonGatewayException.ControlDataIsNotValid, "Invalid Control Data");
