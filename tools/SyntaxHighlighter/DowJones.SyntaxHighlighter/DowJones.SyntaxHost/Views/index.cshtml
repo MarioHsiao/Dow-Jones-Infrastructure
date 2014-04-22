@@ -74,85 +74,11 @@
         <script src="@Url.Content("~/content/scripts/suggestTransport.js")" type="text/javascript" charset="utf-8"></script>
         <script src="@Url.Content("~/content/scripts/ace/src-noconflict/ace.js")" type="text/javascript" charset="utf-8"></script>
         <script src="@Url.Content("~/content/scripts/ace/src-noconflict/ext-language_tools.js")" type="text/javascript" charset="utf-8"></script>
+        <script src="@Url.Content("~/content/scripts/editor.js")" type="text/javascript" charset="utf-8"></script>
+
         <script>
-            var langTools = ace.require("ace/ext/language_tools");
-            var editor = ace.edit("editor");
-            editor.setTheme("ace/theme/monokai");
-            editor.getSession().setMode("ace/mode/factiva");
-            editor.setOptions({
-                enableBasicAutocompletion: true,
-                enableSnippets: false
-            });
 
-            editor.getSession().on("change", function (e) {
-                logEvent('change', e);
-            });
-
-            editor.getSession().on("tokenizerUpdate", function (e) {
-                logEvent('tokenizerUpdate', e);
-            });
-
-            editor.on("blur", function (e) {
-                logEvent('blur', e);
-            });
-
-            editor.on("tokenizerUpdate", function (e) {
-                logEvent('tokenizerUpdate', e);
-            });
-
-            function log(obj) {
-                if (console && console.log) {
-                    console.log(obj);
-                }
-            }
-
-            function logEvent(name, data) {
-                log({
-                    name: name,
-                    data: data
-                });
-            }
-
-            var rhymeCompleter = {
-                getCompletions: function (editor, session, pos, prefix, callback) {
-                    if (prefix.length === 0) {
-                        callback(null, [
-                            {
-                                name: "or",
-                                value: "or",
-                                score: 1,
-                                meta: "operator"
-                            },
-                            {
-                                name: "and",
-                                value: "and",
-                                score: 1,
-                                meta: "operator"
-                            },
-                            {
-                                name: "not",
-                                value: "not",
-                                score: 1,
-                                meta: "operator"
-                            }
-                        ]); return;
-                    }
-
-                    var t = new djCore.Transport("http://rhymebrain.com/talk?function=getRhymes&word=%QUERY%");
-
-                    t.get(prefix,
-                        function (wordList) {
-                            // wordList like [{"word":"flow","freq":24,"score":300,"flags":"bc","syllables":"1"}]
-                            callback(null, wordList.map(function (ea) {
-                                return { name: ea.word, value: ea.word, score: ea.score, meta: "rhyme" }
-                            }));
-                        });
-                }
-            }
-            langTools.addCompleter(rhymeCompleter);
-
-
-
+            var editor = new djCore.Editor({ id: 'editor', theme: 'ace/theme/monokai', mode: 'ace/mode/factiva' });
 
         </script>
     </body>

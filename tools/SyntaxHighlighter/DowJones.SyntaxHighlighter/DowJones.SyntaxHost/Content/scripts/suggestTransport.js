@@ -50,24 +50,26 @@
         every: function(obj, test) {
             var result = true;
             if (!obj) {
-                return result;
+                return true;
             }
             $.each(obj, function(key, val) {
                 if (!(result = test.call(null, val, key, obj))) {
                     return false;
                 }
+                return true;
             });
             return !!result;
         },
         some: function(obj, test) {
             var result = false;
             if (!obj) {
-                return result;
+                return false;
             }
             $.each(obj, function(key, val) {
                 if (result = test.call(null, val, key, obj)) {
                     return false;
                 }
+                return true;
             });
             return !!result;
         },
@@ -162,6 +164,7 @@
 
     djCore.Transport = function () {
         var pendingRequestsCount = 0, pendingRequests = {}, maxPendingRequests, requestCache;
+
         function transport(o) {
             djCore.utils.bindAll(this);
             o = djCore.utils.isString(o) ? {
@@ -228,6 +231,7 @@
             }
         });
         return transport;
+
         function incrementPendingRequests() {
             pendingRequestsCount++;
         }
