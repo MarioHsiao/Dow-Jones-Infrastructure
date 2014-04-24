@@ -7,6 +7,6 @@ namespace DowJones.Json.Gateway.Messages.Pam.Api_1_0.Assets.List
     {
         [EnumMember(Value = "Group")] Group = 0,
 
-        [EnumMember(Value = "User")] User = 1,
+        [EnumMember(Value = "Role")] Role = 1,
     }
 }
