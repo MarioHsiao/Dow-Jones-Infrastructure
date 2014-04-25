@@ -1296,6 +1296,7 @@
     <Content Include="GatewayResources\Config\UserEventRecorderService.config" />
     <Content Include="lib\FactivaBusinessLayerLogic.dll.config" />
     <Content Include="lib\factiva.nextgen.ui.dll.config" />
+    <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
