@@ -149,13 +149,25 @@ namespace DowJones.Json.Gateway.Processors
                         }
                     }
 
-                    Log.Error(response.Content);
+                    var bodyError = JsonDotNetDataConverterSingleton.Instance.Deserialize<BodyError>(response.Content);
+
+
+                    if (bodyError != null && bodyError.Error != null &&  bodyError.Error.Code != 0)
+                    {
+                        return new RestResponse<TRes>
+                        {
+                            ReturnCode = bodyError.Error.Code,
+                            ResponseControlData = cd,
+                            Error = bodyError.Error
+                        };
+                    }
+                    
                     return new RestResponse<TRes>
-                           {
-                               ReturnCode = 0,
-                               ResponseControlData = cd,
-                               Data = jsonDecorator.Deserialize<TRes>(response.Content)
-                           };
+                    {
+                        ReturnCode = 0,
+                        ResponseControlData = cd,
+                        Data = jsonDecorator.Deserialize<TRes>(response.Content)
+                    };
 
                 case HttpStatusCode.BadRequest:
                     return GenerateErrorResponse<TRes>(

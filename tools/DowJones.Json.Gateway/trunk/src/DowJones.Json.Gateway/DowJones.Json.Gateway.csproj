@@ -89,6 +89,7 @@
     <Compile Include="Core\TransactionCacheData.cs" />
     <Compile Include="Core\UserCommerceData.cs" />
     <Compile Include="Core\UserCredentialData.cs" />
+    <Compile Include="Exceptions\BodyError.cs" />
     <Compile Include="Exceptions\Error.cs" />
     <Compile Include="Exceptions\JsonGatewayError.cs" />
     <Compile Include="Exceptions\JsonGatewayException.cs" />
