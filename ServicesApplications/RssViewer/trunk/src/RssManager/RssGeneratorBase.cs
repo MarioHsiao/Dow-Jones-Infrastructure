@@ -715,6 +715,7 @@ namespace FactivaRssManager
 
                 item.Title = title;
                 item.Description = description;
+
                 if (!string.IsNullOrEmpty(articleURL))
                 {
                     if (!articleURL.StartsWith("https://"))
@@ -723,15 +724,13 @@ namespace FactivaRssManager
                         {
                             articleURL = string.Concat("https:", articleURL);
                         }
-                        else if (articleURL.StartsWith("http:"))
+                        /*else if (articleURL.StartsWith("http:"))
                         {
                             articleURL = articleURL.Replace("http:", "https:");
-                        }
-
+                        }*/
                     }
-
-                       
                 }
+
                 item.Link = new EscapedUri(articleURL);
                 item.Author = source;
 
