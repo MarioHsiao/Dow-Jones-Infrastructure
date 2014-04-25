@@ -22,17 +22,17 @@
         </style>
 
     </head>
-<body>
-    <header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
-        <div class="container">
-            <div class="navbar-header">
-                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a href="@Url.Content("~/")" class="navbar-brand">Syntax Highligher</a>
+    <body>
+        <header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
+            <div class="container">
+                <div class="navbar-header">
+                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="@Url.Content("~/")" class="navbar-brand">Syntax Highligher</a>
                 </div>
                 <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
                     <ul class="nav navbar-nav">
@@ -60,27 +60,444 @@
                 </nav>
             </div>
         </header>
+        
+        <div class="container">
+            <div id="editor">(ns=(gelear or cbrand) or in=(isocial or iresinv)) and (social media or twitter or facebook or linkedin or youtube or foursquare or tmblr or social w/3 (site* or network* or network*)) same (customer service or brand* or marketing or employee* or communicat* or strateg* or tweet* or messag* or posted or posting or followers or following or digital strateg*) and wc>150
+            </div>
 
-        <div id="editor">
-            (ns=(gelear or cbrand) or in=(isocial or iresinv)) and (social media or twitter or facebook or linkedin or youtube or foursquare or tmblr or social w/3 (site* or network* or network*)) same (customer service or brand* or marketing or employee* or communicat* or strateg* or tweet* or messag* or posted or posting or followers or following or digital strateg*) and wc>150 not (ip=nbite or ns=(nsum or c14 or nhoc or nran or ntab or nhoc or nnam or nrmf or nrgn) or rst=(mfpe or glomcp or cndl or freg or glomfd))
-            (innovation or innovative or innovator or innovated or innovates or innovators or innovating OR ((new or newest or latest or introduces or announces or revolutionary or groundbreaking or ground breaking) /n3/ (products or services or technology or technological or product or service)) OR game changer or game changers or game changing OR ((creative or creatively or creating or creates or creativeness) /n10/ (ideas or idea or solution or solutions or solving or solves)) OR ahead of the times or state of the art or cutting edge or leading /n2/ industry OR ((new OR newer OR improve OR improves OR improvements OR improvement OR improved OR clean OR cleaner OR break-through or break-through or breakthrough or breakthroughs OR moderni?ation or moderni?ations OR moderni?ed OR new type or new types or cutting edge or leading edge) /n3/ (technology OR technological OR technologies OR technologic OR technologically OR solution OR solutions OR system OR systems OR concept OR concepts OR method OR methods OR project OR projects)) OR ((opportunity or concepts or solutions or solution or concept) /n5/ (prototyping or developing or incubation or commercialization)))
-            ((Manager or director or head or VP or vice president or executive or consult* or strategist or officer) near5 (competitive intel* or business intel* or compet* research* or compet* analysis or market research*) near10 (Said or say* or state* or confirm* or den* or tell* or told* or comment* or email* or call* or contact* or announc* or speak*)) and wc>50 not (ns=(nran or ntab or nsum or nobt or gwea or ncal or npan or nabst or grcps or c1512 or mcat or csched or nnam) or hd=(index or diary or summary or table or calendar or obit$)) 
-        </div>
-
-        <div class="comments">
-            Type in a word like "will" below and press ctrl+space or alt+space to get "rhyme completion"
+            <div class="comments">
+                Type in a word like "will" below and press ctrl+space or alt+space to get "rhyme completion"
+            </div>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>PC (Windows/Linux)</th>
+                            <th>Mac</th>
+                            <th>action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Ctrl-,</td>
+                            <td>Command-,</td>
+                            <td>Show the settings menu</td>
+                        </tr>
+                        <tr>
+                            <td>Ctrl-Alt-Up</td>
+                            <td>Ctrl-Option-Up</td>
+                            <td>add multi-cursor above</td>
+                        </tr>
+                        <tr>
+                            <td>Ctrl-Alt-Down</td>
+                            <td>Ctrl-Option-Down</td>
+                            <td>add multi-cursor below</td>
+                        </tr>
+                        <tr>
+                            <td>Ctrl-Alt-Right</td>
+                            <td>Ctrl-Option-Right</td>
+                            <td>add next occurrence to multi-selection</td>
+                        </tr>
+                        <tr>
+                            <td>Ctrl-Alt-Left</td>
+                            <td>Ctrl-Option-Left</td>
+                            <td>add previous occurrence to multi-selection</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Ctrl-L</td>
+                            <td>center selection</td>
+                        </tr>
+                        <tr>
+                            <td>Ctrl-Shift-U</td>
+                            <td>Ctrl-Shift-U</td>
+                            <td>change to lower case</td>
+                        </tr>
+                        <tr>
+                            <td>Ctrl-U</td>
+                            <td>Ctrl-U</td>
+                            <td>change to upper case</td>
+                        </tr>
+                        <tr>
+                            <td>Alt-Shift-Down</td>
+                            <td>Command-Option-Down</td>
+                            <td>copy lines down</td>
+                        </tr>
+                        <tr>
+                            <td>Alt-Shift-Up</td>
+                            <td>Command-Option-Up</td>
+                            <td>copy lines up</td>
+                        </tr>
+                        <tr>
+                            <td>Delete</td>
+                            <td></td>
+                            <td>delete</td>
+                        </tr>
+                        <tr>
+                            <td>Ctrl-Shift-D</td>
+                            <td>Command-Shift-D</td>
+                            <td>duplicate selection</td>
+                        </tr>
+                        <tr>
+                            <td>Ctrl-F</td>
+                            <td>Command-F</td>
+                            <td>find</td>
+                        </tr>
+                        <tr>
+                            <td>Ctrl-K</td>
+                            <td>Command-G</td>
+                            <td>find next</td>
+                        </tr>
+                        <tr>
+                            <td>Ctrl-Shift-K</td>
+                            <td>Command-Shift-G</td>
+                            <td>find previous</td>
+                        </tr>
+                        <tr>
+                            <td>Alt-0</td>
+                            <td>Command-Option-0</td>
+                            <td>fold all</td>
+                        </tr>
+                        <tr>
+                            <td>Alt-L, Ctrl-F1</td>
+                            <td>Command-Option-L, Command-F1</td>
+                            <td>fold selection</td>
+                        </tr>
+                        <tr>
+                            <td>Down</td>
+                            <td>Down, Ctrl-N</td>
+                            <td>go line down</td>
+                        </tr>
+                        <tr>
+                            <td>Up</td>
+                            <td>Up, Ctrl-P</td>
+                            <td>go line up</td>
+                        </tr>
+                        <tr>
+                            <td>Ctrl-End</td>
+                            <td>Command-End, Command-Down</td>
+                            <td>go to end</td>
+                        </tr>
+                        <tr>
+                            <td>Left</td>
+                            <td>Left, Ctrl-B</td>
+                            <td>go to left</td>
+                        </tr>
+                        <tr>
+                            <td>Ctrl-L</td>
+                            <td>Command-L</td>
+                            <td>go to line</td>
+                        </tr>
+                        <tr>
+                            <td>Alt-Right, End</td>
+                            <td>Command-Right, End, Ctrl-E</td>
+                            <td>go to line end</td>
+                        </tr>
+                        <tr>
+                            <td>Alt-Left, Home</td>
+                            <td>Command-Left, Home, Ctrl-A</td>
+                            <td>go to line start</td>
+                        </tr>
+                        <tr>
+                            <td>Ctrl-P</td>
+                            <td></td>
+                            <td>go to matching bracket</td>
+                        </tr>
+                        <tr>
+                            <td>PageDown</td>
+                            <td>Option-PageDown, Ctrl-V</td>
+                            <td>go to page down</td>
+                        </tr>
+                        <tr>
+                            <td>PageUp</td>
+                            <td>Option-PageUp</td>
+                            <td>go to page up</td>
+                        </tr>
+                        <tr>
+                            <td>Right</td>
+                            <td>Right, Ctrl-F</td>
+                            <td>go to right</td>
+                        </tr>
+                        <tr>
+                            <td>Ctrl-Home</td>
+                            <td>Command-Home, Command-Up</td>
+                            <td>go to start</td>
+                        </tr>
+                        <tr>
+                            <td>Ctrl-Left</td>
+                            <td>Option-Left</td>
+                            <td>go to word left</td>
+                        </tr>
+                        <tr>
+                            <td>Ctrl-Right</td>
+                            <td>Option-Right</td>
+                            <td>go to word right</td>
+                        </tr>
+                        <tr>
+                            <td>Tab</td>
+                            <td>Tab</td>
+                            <td>indent</td>
+                        </tr>
+                        <tr>
+                            <td>Ctrl-Alt-E</td>
+                            <td></td>
+                            <td>macros recording</td>
+                        </tr>
+                        <tr>
+                            <td>Ctrl-Shift-E</td>
+                            <td>Command-Shift-E</td>
+                            <td>macros replay</td>
+                        </tr>
+                        <tr>
+                            <td>Alt-Down</td>
+                            <td>Option-Down</td>
+                            <td>move lines down</td>
+                        </tr>
+                        <tr>
+                            <td>Alt-Up</td>
+                            <td>Option-Up</td>
+                            <td>move lines up</td>
+                        </tr>
+                        <tr>
+                            <td>Ctrl-Alt-Shift-Up</td>
+                            <td>Ctrl-Option-Shift-Up</td>
+                            <td>move multicursor from current line to the line above</td>
+                        </tr>
+                        <tr>
+                            <td>Ctrl-Alt-Shift-Down</td>
+                            <td>Ctrl-Option-Shift-Down</td>
+                            <td>move multicursor from current line to the line below</td>
+                        </tr>
+                        <tr>
+                            <td>Shift-Tab</td>
+                            <td>Shift-Tab</td>
+                            <td>outdent</td>
+                        </tr>
+                        <tr>
+                            <td>Insert</td>
+                            <td>Insert</td>
+                            <td>overwrite</td>
+                        </tr>
+                        <tr>
+                            <td>Ctrl-Shift-Z, Ctrl-Y</td>
+                            <td>Command-Shift-Z, Command-Y</td>
+                            <td>redo</td>
+                        </tr>
+                        <tr>
+                            <td>Ctrl-Alt-Shift-Right</td>
+                            <td>Ctrl-Option-Shift-Right</td>
+                            <td>remove current occurrence from multi-selection and move to next</td>
+                        </tr>
+                        <tr>
+                            <td>Ctrl-Alt-Shift-Left</td>
+                            <td>Ctrl-Option-Shift-Left</td>
+                            <td>remove current occurrence from multi-selection and move to previous</td>
+                        </tr>
+                        <tr>
+                            <td>Ctrl-D</td>
+                            <td>Command-D</td>
+                            <td>remove line</td>
+                        </tr>
+                        <tr>
+                            <td>Alt-Delete</td>
+                            <td>Ctrl-K</td>
+                            <td>remove to line end</td>
+                        </tr>
+                        <tr>
+                            <td>Alt-Backspace</td>
+                            <td>Command-Backspace</td>
+                            <td>remove to linestart</td>
+                        </tr>
+                        <tr>
+                            <td>Ctrl-Backspace</td>
+                            <td>Option-Backspace, Ctrl-Option-Backspace</td>
+                            <td>remove word left</td>
+                        </tr>
+                        <tr>
+                            <td>Ctrl-Delete</td>
+                            <td>Option-Delete</td>
+                            <td>remove word right</td>
+                        </tr>
+                        <tr>
+                            <td>Ctrl-R</td>
+                            <td>Command-Option-F</td>
+                            <td>replace</td>
+                        </tr>
+                        <tr>
+                            <td>Ctrl-Shift-R</td>
+                            <td>Command-Shift-Option-F</td>
+                            <td>replace all</td>
+                        </tr>
+                        <tr>
+                            <td>Ctrl-Down</td>
+                            <td>Command-Down</td>
+                            <td>scroll line down</td>
+                        </tr>
+                        <tr>
+                            <td>Ctrl-Up</td>
+                            <td></td>
+                            <td>scroll line up</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Option-PageDown</td>
+                            <td>scroll page down</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Option-PageUp</td>
+                            <td>scroll page up</td>
+                        </tr>
+                        <tr>
+                            <td>Ctrl-A</td>
+                            <td>Command-A</td>
+                            <td>select all</td>
+                        </tr>
+                        <tr>
+                            <td>Ctrl-Shift-L</td>
+                            <td>Ctrl-Shift-L</td>
+                            <td>select all from multi-selection</td>
+                        </tr>
+                        <tr>
+                            <td>Shift-Down</td>
+                            <td>Shift-Down</td>
+                            <td>select down</td>
+                        </tr>
+                        <tr>
+                            <td>Shift-Left</td>
+                            <td>Shift-Left</td>
+                            <td>select left</td>
+                        </tr>
+                        <tr>
+                            <td>Shift-End</td>
+                            <td>Shift-End</td>
+                            <td>select line end</td>
+                        </tr>
+                        <tr>
+                            <td>Shift-Home</td>
+                            <td>Shift-Home</td>
+                            <td>select line start</td>
+                        </tr>
+                        <tr>
+                            <td>Shift-PageDown</td>
+                            <td>Shift-PageDown</td>
+                            <td>select page down</td>
+                        </tr>
+                        <tr>
+                            <td>Shift-PageUp</td>
+                            <td>Shift-PageUp</td>
+                            <td>select page up</td>
+                        </tr>
+                        <tr>
+                            <td>Shift-Right</td>
+                            <td>Shift-Right</td>
+                            <td>select right</td>
+                        </tr>
+                        <tr>
+                            <td>Ctrl-Shift-End</td>
+                            <td>Command-Shift-Down</td>
+                            <td>select to end</td>
+                        </tr>
+                        <tr>
+                            <td>Alt-Shift-Right</td>
+                            <td>Command-Shift-Right</td>
+                            <td>select to line end</td>
+                        </tr>
+                        <tr>
+                            <td>Alt-Shift-Left</td>
+                            <td>Command-Shift-Left</td>
+                            <td>select to line start</td>
+                        </tr>
+                        <tr>
+                            <td>Ctrl-Shift-P</td>
+                            <td></td>
+                            <td>select to matching bracket</td>
+                        </tr>
+                        <tr>
+                            <td>Ctrl-Shift-Home</td>
+                            <td>Command-Shift-Up</td>
+                            <td>select to start</td>
+                        </tr>
+                        <tr>
+                            <td>Shift-Up</td>
+                            <td>Shift-Up</td>
+                            <td>select up</td>
+                        </tr>
+                        <tr>
+                            <td>Ctrl-Shift-Left</td>
+                            <td>Option-Shift-Left</td>
+                            <td>select word left</td>
+                        </tr>
+                        <tr>
+                            <td>Ctrl-Shift-Right</td>
+                            <td>Option-Shift-Right</td>
+                            <td>select word right</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Ctrl-O</td>
+                            <td>split line</td>
+                        </tr>
+                        <tr>
+                            <td>Ctrl-/</td>
+                            <td>Command-/</td>
+                            <td>toggle comment</td>
+                        </tr>
+                        <tr>
+                            <td>Ctrl-T</td>
+                            <td>Ctrl-T</td>
+                            <td>transpose letters</td>
+                        </tr>
+                        <tr>
+                            <td>Ctrl-Z</td>
+                            <td>Command-Z</td>
+                            <td>undo</td>
+                        </tr>
+                        <tr>
+                            <td>Alt-Shift-L, Ctrl-Shift-F1</td>
+                            <td>Command-Option-Shift-L, Command-Shift-F1</td>
+                            <td>unfold</td>
+                        </tr>
+                        <tr>
+                            <td>Alt-Shift-0</td>
+                            <td>Command-Option-Shift-0</td>
+                            <td>unfold all</td>
+                        </tr>
+                        <tr>
+                            <td>Ctrl-Enter</td>
+                            <td>Command-Enter</td>
+                            <td>enter full screen</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <script src="@Url.Content("~/content/scripts/suggestTransport.js")" type="text/javascript" charset="utf-8"></script>
         <script src="@Url.Content("~/content/scripts/ace/src-noconflict/ace.js")" type="text/javascript" charset="utf-8"></script>
         <script src="@Url.Content("~/content/scripts/ace/src-noconflict/ext-language_tools.js")" type="text/javascript" charset="utf-8"></script>
+        <script src="@Url.Content("~/content/scripts/jquery-json.2.4.0.js")" type="text/javascript" charset="utf-8"></script>
         <script src="@Url.Content("~/content/scripts/editor.js")" type="text/javascript" charset="utf-8"></script>
-
         <script>
 
-            var editor = new djCore.Editor({ id: 'editor', theme: 'ace/theme/monokai', mode: 'ace/mode/factiva' });
+            var editor = new djCore.Editor({
+                id: 'editor',
+                theme: 'ace/theme/vibrant_ink',
+                mode: 'ace/mode/factiva',
+                settings: {
+                    authType: 'SessionId'
+                },
+                serviceOptions: {
+                    authToken: '27142ZzZINHEQOKTAAAGUBQAAAAAJ7NLAAAAAABSGAYTIMBUGI2TCNZRGYYDMNJX'
+                }
+            });
 
         </script>
     </body>
 
 </html>
+
+
+
+
+

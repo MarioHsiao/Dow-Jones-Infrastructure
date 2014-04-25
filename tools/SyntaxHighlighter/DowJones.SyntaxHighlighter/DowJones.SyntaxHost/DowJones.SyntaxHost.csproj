@@ -131,6 +131,8 @@
     <Content Include="Content\nancy-vertical-bf-tb.png" />
     <Content Include="Content\scripts\editor.js" />
     <Content Include="Content\scripts\highlight.min.js" />
+    <Content Include="Content\scripts\jquery-json.2.4.0.min.js" />
+    <Content Include="Content\scripts\jquery-json.2.4.0.js" />
     <Content Include="Content\scripts\suggestTransport.js" />
     <Content Include="Content\scripts\ace\src-noconflict\ace.js" />
     <Content Include="Content\scripts\ace\src-noconflict\ext-chromevox.js" />
@@ -449,8 +451,9 @@
     </Content>
     <Content Include="Views\index.cshtml" />
     <Content Include="Views\QrCode.cshtml" />
-    <Content Include="Content\scripts\jquery-1.9.0.min.map" />
-    <Content Include="Content\scripts\underscore.min.map" />
+    <Content Include="Content\scripts\jquery.min.map" />
+    <Content Include="Content\scripts\underscore-min.map" />
+    <None Include="Properties\PublishProfiles\montana.dev.us.factiva.com.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -458,9 +461,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Content\scripts\Scripts\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

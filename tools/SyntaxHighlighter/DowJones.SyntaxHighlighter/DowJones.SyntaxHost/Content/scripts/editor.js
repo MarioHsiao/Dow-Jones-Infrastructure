@@ -2,12 +2,24 @@
     var djCore = window.djCore = window.djCore || {};
     
     djCore.Editor = function () {
-        var langTools, editor;
+        var langTools,
+            editor,
+            u = djCore.utils,
+            loggerNamespace =  'djCore.Editor',
+            validCategories = 'company|executive|newssubject|keyword|source|region_all|region_country|region_subSupraNationalRegion|region_stateOrProvince|industry|industry_nace|industry_sic|industry_naics'.split('|');
+
+        var broker = {
+            suggestContextObj: {
+                'callInitiated': false, 
+                'authToken':    null
+            }
+        };
+
         var dSettings = {
-            url: '//suggest.int.factiva.com/Search/1.0',
+            url: '//suggest.factiva.com/Search/1.0',
             symbolDataUrl: '//data.dowjones.com/autocomplete/data',
             dataType: 'jsonp',
-            authType: 'SuggestContext',
+            authType: 'SuggestContext', // SuggestContext|SessionId|EncryptedToken;
             intercept: false,
             interceptList: [{category: 'source', prefix: 'rst:'}]
         }
@@ -21,26 +33,81 @@
             showMatchingWord: 'true',
             autocompletionType: 'Categories',
             format: 'json',
-            suggestContext: ''
+            //suggestContext: 'YPC0P9uW1Y2BkE2YOeeHKT6yJEztjrrCTVui_2FK1veWMkRIpQfmgFse9HKCVrSLXFGfuqgoD_2F8vukMMT88DTMsYM_2F_2F3jHLBbM|2'
         };
 
+        //Initialize Autocomplete
         function djEditor(o) {
-            var self = this, 
-                u = djCore.utils;
-
-            self.settings = u.mixin({}, o.settings, dSettings);
-            self.serviceOptions = u.mixin({}, o.serviceOptions, dServiceOptions);
-            langTools = ace.require("ace/ext/language_tools");
-            editor = ace.edit(o.id);
-            editor.setTheme(o.theme);
-            editor.getSession().setMode(o.mode);
-            editor.setOptions({
+            var self = this;
+            self._o = o;
+            self.$editor = $('#' + o.id);
+            self._o.originalHeight = self.$editor.height();
+            log(self._o.originalHeight);
+            self.transport = new djCore.Transport("http://rhymebrain.com/talk?function=getRhymes&word=%QUERY%");
+            self.settings = u.mixin({}, dSettings, o.settings);
+            self.serviceOptions = u.mixin({}, dServiceOptions, o.serviceOptions);
+            self.langTools = ace.require("ace/ext/language_tools");
+            self.editor = ace.edit(o.id);
+            self.editor.getSession().setMode(o.mode);
+            self.editor.setOptions({
                 enableBasicAutocompletion: true,
-                enableSnippets: false
+                enableSnippets: false,
+                theme: o.theme
             });
+
+            self.editor.renderer.setShowGutter(o.showGutter !== false);      // default is false
+            self.editor.getSession().setUseWrapMode(o.useWrapMode !== true); // default is true
+
            
-            var rhymeCompleter = {
+            log(self.settings);
+            log(self.serviceOptions);
+            log('calling: _initEvents');
+            self._initEvents();
+            log('calling: _initializeAutocomplete');
+            self._initializeAutocomplete();
+
+           /* self.editor.commands.on("afterExec", function (e) {
+               /* log("afterExec");
+                log(e.command.name + "::>" + /^[\w.]$/.test(e.args));
+                if (e.command.name == "insertstring" && /^[\w.]$/.test(e.args)) {
+                    
+                log(e.args);
+                    self.editor.execCommand("startAutocomplete");
+                }#1#
+            });
+*/
+            var autoCompleter = {
                 getCompletions: function (ed, session, pos, prefix, callback) {
+                    log('prefix:' + prefix);
+                    var success = function (data) {
+                        log('callback data')
+                        log(data);
+                        callback(null, [
+                            {
+                                name: "_or",
+                                value: "or",
+                                score: 1,
+                                meta: "operator"
+                            },
+                            {
+                                name: "_and",
+                                value: "and",
+                                score: 1,
+                                meta: "operator"
+                            },
+                            {
+                                name: "_not",
+                                value: "not",
+                                score: 1,
+                                meta: "operator"
+                            }
+                        ]); return;
+                    };
+
+                    var failure = function(error) {
+                        
+                    };
+
                     if (prefix.length === 0) {
                         callback(null, [
                             {
@@ -63,126 +130,254 @@
                             }
                         ]); return;
                     }
-
-                    var t = new djCore.Transport("http://rhymebrain.com/talk?function=getRhymes&word=%QUERY%");
-
-                    t.get(prefix,
-                        function (wordList) {
-                            // wordList like [{"word":"flow","freq":24,"score":300,"flags":"bc","syllables":"1"}]
-                            callback(null, wordList.map(function (ea) {
-                                return { name: ea.word, value: ea.word, score: ea.score, meta: "rhyme" }
-                            }));
-                        });
+                    var opts = {
+                        id: o.id,
+                        url: self.settings.url,
+                        extraParams: self._setExtraParams(prefix)
                 }
-            }
-
-            langTools.addCompleter(rhymeCompleter);
+                    deferredRequest(prefix, opts, success, failure);
+                }
+            } 
+            self.langTools.addCompleter(autoCompleter);
         }
 
+        u.mixin(djEditor.prototype, {
+            _initEvents: function () {
+                var self = this;
+
+                self.editor.getSession().on("change", function(e) {
+                    logEvent('change', e);
+                    self.updateHeight();
+                });
+
+                self.editor.getSession().on("tokenizerUpdate", function (e) {
+                    logEvent('tokenizerUpdate', e);
+                });
+
+                self.editor.on("blur", function (e) {
+                    logEvent('blur', e);
+                });
+
+                self.editor.on("tokenizerUpdate", function (e) {
+                    logEvent('tokenizerUpdate', e);
+                });
+            },
+
+            _initializeAutocomplete: function () {
+                var self = this,
+				    settings = self.settings,
+				    serviceOptions = self.serviceOptions;
+                if (settings && serviceOptions) {
+                    var suggestContext;
+                    if (settings.authType.toLowerCase() === "suggestcontext") {
+                        suggestContext = serviceOptions.suggestContext;
+                    }
+
+                    if (suggestContext === undefined || $.trim(suggestContext).length === 0) {
+                        if (broker.suggestContextObj.callInitiated !== true) {
+                            self._getSuggestContextAndProcessRequest();
+                        } else if (broker.suggestContextObj.authToken) {
+                            serviceOptions.suggestContext = u.urlDecode(broker.suggestContextObj.authToken);
+                            self._finalizeInit();
+                        }
+                    } else {
+                        serviceOptions.suggestContext = u.urlDecode(suggestContext);
+                        self._finalizeInit();
+                    }
+                }
+            },
+
+            _finalizeInit: function () {
+                var self = this,
+                  settings = self.settings,
+                  serviceOptions = self.serviceOptions;
+
+                log('done --> initialization');
+            },
+
+            updateHeight: function() {
+                var self = this,
+                 settings = self.settings,
+                 serviceOptions = self.serviceOptions;
+
+                var newHeight =
+                    self.editor.getSession().getScreenLength()
+                    * self.editor.renderer.lineHeight
+                    + self.editor.renderer.scrollBar.getWidth();
+
+                if (newHeight == self._o.originalHeight) {
+                    return;
+                }
+
+                if (newHeight > self._o.originalHeight) {
+                    self.$editor.height(newHeight + "px");
+                    self.editor.resize();
+                    return;
+                }
+
+                if (newHeight < self._o.originalHeight) {
+                    self.$editor.height(self._o.originalHeight);
+                    self.editor.resize();
+                }
+            },
+
+            //Build parameters
+            _setExtraParams: function (text) {
+                var self = this,
+                  settings = self.settings,
+                  serviceOptions = self.serviceOptions;
+
+                var paramsObj = {
+                    format: 'json',
+                    maxResults: 10,
+                    autocompletionType: settings.autocompletionType,
+                    searchText: text
+                };
+                var p = $.extend({}, paramsObj, serviceOptions);
+                log(p);
+                return p;
+            },
+
+            _getSuggestContextAndProcessRequest: function () {
+                var self = this,
+                    settings = self.settings,
+                    serviceOptions = self.serviceOptions,
+                    isUrlGenerated = false;
+
+                //No valid authentication token. So generate a token based on sessionid or encrypted key
+                if (settings.url.indexOf("/Search/") > 0) {
+                    var authenticationUrl = settings.url.replace("/Search/", "/Authenticate/");
+                    switch (settings.authType.toLowerCase()) {
+                        case "sessionid":
+                            if ($.trim(serviceOptions.authToken).length > 0) {
+                                authenticationUrl = authenticationUrl + "/" + "RegisterUsingSessionId?SID=" + serviceOptions.authToken;
+                                isUrlGenerated = true;
+                            }
+                            break;
+                        case "encryptedtoken":
+                            if ($.trim(serviceOptions.authToken).length > 0) {
+                                authenticationUrl = authenticationUrl + "/" + "RegisterUsingEncryptedKey?eid=" + serviceOptions.authToken;
+                                isUrlGenerated = true;
+                            }
+                            break;
+                    }
+
+                    if (isUrlGenerated === true) {
+                        //Call the transaction and get the authentication token
+                        $.jsonp({
+                            url: authenticationUrl,
+                            callbackParameter: "callback",
+                            success: function (data) {
+                                if (data.error) {
+                                    /*if ($.isFunction(options.onError)) {
+                                        //options.onError(data.error);
+                                    }*/
+                                } else {
+                                    serviceOptions.suggestContext = u.urlDecode(data.key);
+                                    self._finalizeInit();
+                                }
+                            }
+                        });
+                    }
+                }
+            }
+        });
+        
         return djEditor;
 
-        
+        function deferredRequest(term, options, success, failure) {
+            if (!options.matchCase)
+                term = term.toLowerCase();
+            //var cdata = cache.load(term);
+            // receive the cached data
+            /*if (cdata && cdata.length) {
+                success(term, cdata);*/
+                // if an AJAX url has been supplied, try loading the data now
+            /*  } else*/
 
-        //Initialize Autocomplete
-        function init() {
-            var self = this,
-                settings = self.settings,
-                serviceOptions = self.serviceOptions;
+            log('term>' + term);
+            log(options);
+            if ((typeof options.url == "string") && (options.url.length > 0)) {
+                var extraParams = {
+                    timestamp: + new Date()
+                };
+                $.each(options.extraParams, function (key, param) {
+                    extraParams[key] = typeof param == "function" ? param() : param;
+                });
+                if (extraParams.autocompletionType == "Categories" && (options.extraParams.categories.toLowerCase().indexOf("symbol") >= 0)) {
+                    options.url = options.url + "/" + extraParams.autocompletionType + "";
+                    $.when(requestSuggestService(options, extraParams, options.id))
+                        .done(function (data, symbols) {
+                            if (data.error != undefined) {
+                            } else {
+                                if (symbols != null && symbols.error == null)
+                                    data.category.push(symbols);
+                                success({ term : term, data: data });
+                            }
+                        })
+                        .fail(function () {
+                            var error = { error: "Could not make jsonp call." };
+                            failure(error);
+                        });
 
-            if (settings && serviceOptions) {
-                var autosuggestPrototype = self.prototypeObj;
-                var suggestContext;
-                if (settings.authType.toLowerCase() === "suggestcontext") {
-                    suggestContext = serviceOptions.suggestContext;
-                }
-
-                if (suggestContext === undefined || $.trim(suggestContext).length === 0) {
-                    if (autosuggestPrototype.suggestContextObj.callInitiated !== true) {
-                        getSuggestContextAndProcessRequest();
-                    } else if (autosuggestPrototype.suggestContextObj.authToken) {
-                        serviceOptions.suggestContext = djCore.utils.urlDecode(autosuggestPrototype.suggestContextObj.authToken);
-                        finalizeInit();
-                    }
                 } else {
-                    serviceOptions.suggestContext = djCore.utils.urlDecode(suggestContext);
-                    finalizeInit();
+                    options.url = options.url + "/" + extraParams.autocompletionType + "";
+                    $.when(requestSuggestService(options,extraParams, options.id))
+                        .done(function (data) {
+                            success({ term: term, data: data });
+                        })
+                        .fail(function () {
+                            var error = { error: "Could not make jsonp call." };
+                            failure(error);
+                        });
                 }
+
+            } else {
+                failure('unable to find items');
             }
         };
 
+        function requestSuggestService(options, params, editorId) {
+            var dfd = new $.Deferred();
 
-        function finalizeInit() {
-            
-        }
+            log(params);
 
-        function initEvents() {
-            console.log(this);
-            
-            editor.getSession().on("change", function (e) {
-                logEvent('change', e);
-            });
-
-            editor.getSession().on("tokenizerUpdate", function (e) {
-                logEvent('tokenizerUpdate', e);
-            });
-
-            editor.on("blur", function (e) {
-                logEvent('blur', e);
-            });
-
-            editor.on("tokenizerUpdate", function (e) {
-                logEvent('tokenizerUpdate', e);
-            });
-        }
-
-        function getSuggestContextAndProcessRequest() {
-            var self = this,
-                settings = self.settings,
-                serviceOptions = self.serviceOptions,
-                isUrlGenerated = false;
-
-            //No valid authentication token. So generate a token based on sessionid or encrypted key
-            if (settings.url.indexOf("/Search/") > 0) {
-                var authenticationUrl = settings.url.replace("/Search/", "/Authenticate/");
-                switch (settings.authType.toLowerCase()) {
-                    case "sessionid":
-                        if ($.trim(serviceOptions.authToken).length > 0) {
-                            authenticationUrl = authenticationUrl + "/" + "RegisterUsingSessionId?SID=" + serviceOptions.authToken;
-                            isUrlGenerated = true;
-                        }
-                        break;
-                    case "encryptedtoken":
-                        if ($.trim(serviceOptions.authToken).length > 0) {
-                            authenticationUrl = authenticationUrl + "/" + "RegisterUsingEncryptedKey?eid=" + serviceOptions.authToken;
-                            isUrlGenerated = true;
-                        }
-                        break;
+            if (params.autocompletionType == "Categories") {
+                var catArr = params.categories.split("|");
+                catArr = $.grep(catArr, function (n) { return (n); });
+                var index = $.inArray("symbol", catArr);
+                if (index >= 0) {
+                    catArr.splice(index, 1);
                 }
-
-                if (isUrlGenerated === true) {
-                    //Call the transaction and get the authentication token
-                    crossDomain({
-                        url: authenticationUrl,
-                        callbackParameter: "callback",
-                        success: function (data) {
-                            if (data.error) {
-                                /*if ($.isFunction(options.onError)) {
-                                    //options.onError(data.error);
-                                }*/
-                            } else {
-                                serviceOptions.authToken = djCore.utils.urlDecode(data.key);
-                                finalizeInit();
-                            }
-                        }
-                    });
+                params.categories = catArr.join("|");
+                if (catArr.length == 0) {
+                    var data = { category: [], host: "", httpStatus: 200, version: "1.0" };
+                    return dfd.resolve(data);
                 }
-            };
+            }
+
+            $.jsonp({
+                // try to leverage ajaxQueue plug-in to abort previous requests
+                mode: "abort",
+                cache: false,
+                // limit abortion to this input
+                port: "autocomplete" + editor,
+                dataType: options.dataType,
+                callbackParameter: "callback",
+                url: options.url,
+                data: params,
+                success: function (data) {
+                    dfd.resolve(data);
+                },
+                error: function (jqXhr, textStatus, errorThrown) {
+                    dfd.reject(jqXhr);
+                }
+            });
+            return dfd.promise();
         }
 
         function log(obj) {
-            if (console && console.log) {
-                console.log(obj);
-            }
+            djCore.logger.debug(obj);
         }
 
         function logEvent(name, data) {
