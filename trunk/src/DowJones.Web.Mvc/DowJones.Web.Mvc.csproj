@@ -135,6 +135,7 @@
     <Compile Include="ActionFilters\RequireAuthenticationAttribute.cs" />
     <Compile Include="ActionFilters\SessionTimeoutExceptionFilter.cs" />
     <Compile Include="ActionFilters\SetThreadCultureToInterfaceLanguageFilter.cs" />
+    <Compile Include="ActionFilters\ValidateSessionIDWithSecureHash.cs" />
     <Compile Include="ActionResults\NewtonSoftJsonResult.cs" />
     <Compile Include="ActionResults\RedirectToAuthenticationServerActionResult.cs" />
     <Compile Include="ActionResults\XmlResult.cs" />
