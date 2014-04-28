@@ -47,7 +47,7 @@ namespace DowJones.Json.Gateway.Messages.Core
         public ushort FunctionType { get; set; }
 
         [DataMember]
-        public string HttpEndPoint { get; set; }
+        public string ServiceUrl { get; set; }
 
         [DataMember]
         public ushort MajorServiceVersion { get; set; }
