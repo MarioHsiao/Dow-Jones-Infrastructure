@@ -66,7 +66,7 @@ var snippetCompleter = {
     }
 };
 
-var completers = [ /*snippetCompleter,textCompleter, keyWordCompleter*/];
+var completers = [ /*snippetCompleter, textCompleter, keyWordCompleter*/];
 exports.addCompleter = function(completer) {
     completers.push(completer);
 };
@@ -146,7 +146,7 @@ require("../config").defineOptions(Editor.prototype, "editor", {
 
 ace.define('ace/snippets', ['require', 'exports', 'module' , 'ace/lib/lang', 'ace/range', 'ace/keyboard/hash_handler', 'ace/tokenizer', 'ace/lib/dom'], function(require, exports, module) {
 
-var lang = require("./lib/lang")
+var lang = require("./lib/lang");
 var Range = require("./range").Range
 var HashHandler = require("./keyboard/hash_handler").HashHandler;
 var Tokenizer = require("./tokenizer").Tokenizer;
@@ -979,10 +979,10 @@ var Autocomplete = function() {
     this.changeListener = this.changeListener.bind(this);
     this.mousedownListener = this.mousedownListener.bind(this);
     this.mousewheelListener = this.mousewheelListener.bind(this);
-    
+
     this.changeTimer = lang.delayedCall(function() {
         this.updateCompletions(true);
-    }.bind(this))
+    }.bind(this));
 };
 
 (function() {
@@ -1081,11 +1081,17 @@ var Autocomplete = function() {
             data.completer.insertMatch(this.editor);
         } else {
             if (this.completions.filterText) {
-                var ranges = this.editor.selection.getAllRanges();
+                var position = this.editor.getCursorPosition();
+                var token = this.editor.session.getTokenAt(position.row, position.column);
+                var Range = require('ace/range').Range,
+                    range = new Range(position.row, token.start + 1, position.row, token.start + 1 + (token.value.length));
+                this.editor.session.remove(range);
+
+                /*var ranges = this.editor.session.selection.getAllRanges();
                 for (var i = 0, range; range = ranges[i]; i++) {
                     range.start.column -= this.completions.filterText.length;
                     this.editor.session.remove(range);
-                }
+                }*/
             }
             if (data.snippet)
                 snippetManager.insertSnippet(this.editor, data.snippet);
@@ -1390,7 +1396,7 @@ var AcePopup = function(parentNode) {
         if (selected)
             dom.addCssClass(selected, "ace_selected");
     });
-    var hideHoverMarker = function() { setHoverMarker(-1) };
+    var hideHoverMarker = function() { setHoverMarker(-1); };
     var setHoverMarker = function(row, suppressRedraw) {
         if (row !== hoverMarker.start.row) {
             hoverMarker.start.row = hoverMarker.end.row = row;
@@ -1418,8 +1424,8 @@ var AcePopup = function(parentNode) {
     };
 
     var bgTokenizer = popup.session.bgTokenizer;
-    bgTokenizer.$tokenizeRow = function(i) {
-        var data = popup.data[i];
+    bgTokenizer.$tokenizeRow = function(j) {
+        var data = popup.data[j];
         var tokens = [];
         if (!data)
             return tokens;
@@ -1493,31 +1499,31 @@ var AcePopup = function(parentNode) {
         popup.isOpen = false;
     };
     popup.show = function(pos, lineHeight, topdownOnly) {
-        var el = this.container;
+        var ele = this.container;
         var screenHeight = window.innerHeight;
         var screenWidth = window.innerWidth;
         var renderer = this.renderer;
         var maxH = renderer.$maxLines * lineHeight * 1.4;
         var top = pos.top + this.$borderSize;
         if (top + maxH > screenHeight - lineHeight && !topdownOnly) {
-            el.style.top = "";
-            el.style.bottom = screenHeight - top + "px";
+            ele.style.top = "";
+            ele.style.bottom = screenHeight - top + "px";
             popup.isTopdown = false;
         } else {
             top += lineHeight;
-            el.style.top = top + "px";
-            el.style.bottom = "";
+            ele.style.top = top + "px";
+            ele.style.bottom = "";
             popup.isTopdown = true;
         }
 
-        el.style.display = "";
+        ele.style.display = "";
         this.renderer.$textLayer.checkForSizeChanges();
         
         var left = pos.left;
-        if (left + el.offsetWidth > screenWidth)
-            left = screenWidth - el.offsetWidth;
+        if (left + ele.offsetWidth > screenWidth)
+            left = screenWidth - ele.offsetWidth;
             
-        el.style.left = left + "px";
+        ele.style.left = left + "px";
         
         this._signal("show");
         lastMouseEvent = null;
@@ -1558,10 +1564,9 @@ dom.importCssString("\
 }\
 .ace_autocomplete .ace_completion-highlight{\
     color: #000;\
-    text-shadow: 0 0 0.01em;\
 }\
 .ace_autocomplete {\
-    width: 280px;\
+    width: 400px;\
     z-index: 200000;\
     background: #fbfbfb;\
     color: #444;\

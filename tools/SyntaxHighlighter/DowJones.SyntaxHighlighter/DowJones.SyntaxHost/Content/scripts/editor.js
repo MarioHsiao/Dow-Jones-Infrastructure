@@ -1,5 +1,11 @@
 ﻿(function ($, ace) {
     var djCore = window.djCore = window.djCore || {};
+
+    if (!String.prototype.contains) {
+        String.prototype.contains = function () {
+            return String.prototype.indexOf.apply(this, arguments) !== -1;
+        };
+    }
     
     djCore.Editor = function () {
         var langTools,
@@ -7,6 +13,90 @@
             u = djCore.utils,
             loggerNamespace =  'djCore.Editor',
             validCategories = 'company|executive|newssubject|keyword|source|region_all|region_country|region_subSupraNationalRegion|region_stateOrProvince|industry|industry_nace|industry_sic|industry_naics'.split('|');
+
+        var categoryMap = {
+            author: 'author',
+            outlet: 'outlet',
+            executive: 'executive',
+            company: 'company',
+            region: 'region',
+            publishercity: 'publisherCity',
+            publishermetadata: 'publisherData',
+            newssubject: 'newsSubject',
+            industry: 'industry',
+            industry_nace: 'industry',
+            industry_sic: 'industry',
+            industry_naics: 'industry',
+            source: 'source',
+            keyword: 'keyWord',
+            region_all: 'region',
+            region_country: 'region',
+            region_stateorprovince: 'region',
+            region_metropolitanarea: 'region',
+            region_subnationalregion: 'region',
+            region_supranationalregion: 'region',
+            region_subsupranationalregion: 'region',
+            calendarkeyword: 'keyword',
+            calendarcompany: 'calendarCompany',
+            symbol: 'symbol'
+        };
+
+        var operators = [
+            {
+                name: "or",
+                value: "or",
+                score: 1,
+                meta: "operator"
+            },
+            {
+                name: "and",
+                value: "and",
+                score: 1,
+                meta: "operator"
+            },
+            {
+                name: "not",
+                value: "not",
+                score: 1,
+                meta: "operator"
+            }, {
+                name: "adjacency",
+                value: "adjacency",
+                snippet: "adj1",
+                score: 1,
+                meta: "operator"
+            }, {
+                name: "same",
+                value: "same",
+                snippet: "same",
+                score: 1,
+                meta: "operator"
+            }, {
+                name: "near",
+                value: "near",
+                snippet: "near1",
+                score: 1,
+                meta: "operator"
+            }, {
+                name: "near",
+                value: "near",
+                snippet: "near1",
+                score: 1,
+                meta: "operator"
+            }, {
+                name: "atleast",
+                value: "atleast",
+                snippet: "atleast1",
+                score: 1,
+                meta: "operator"
+            }, {
+                name: "word count",
+                value: "word count",
+                snippet: "wc>0",
+                score: 1,
+                meta: "operator"
+            }
+        ];
 
         var broker = {
             suggestContextObj: {
@@ -21,19 +111,20 @@
             dataType: 'jsonp',
             authType: 'SuggestContext', // SuggestContext|SessionId|EncryptedToken;
             intercept: false,
-            interceptList: [{category: 'source', prefix: 'rst:'}]
+            interceptList: [{ category: 'source', prefix: 'rst:' }],
+            showGutter: false,
+            showWrapMode: true,
         }
 
         var dServiceOptions = {
-            maxResults: 3,
-            categories: 'company|executive|newssubject|source|keyword',
+            maxResults: 10,
+            categories: 'company|region_all|executive|newssubject|source|keyword',
             it: 'stock',
             companyFilterSet: 'newsCodedAbt|newsCodedOccr|noADR',
             executiveFilterSet: 'newsCoded',
             showMatchingWord: 'true',
             autocompletionType: 'Categories',
-            format: 'json',
-            //suggestContext: 'YPC0P9uW1Y2BkE2YOeeHKT6yJEztjrrCTVui_2FK1veWMkRIpQfmgFse9HKCVrSLXFGfuqgoD_2F8vukMMT88DTMsYM_2F_2F3jHLBbM|2'
+            format: 'json'
         };
 
         //Initialize Autocomplete
@@ -42,7 +133,6 @@
             self._o = o;
             self.$editor = $('#' + o.id);
             self._o.originalHeight = self.$editor.height();
-            log(self._o.originalHeight);
             self.transport = new djCore.Transport("http://rhymebrain.com/talk?function=getRhymes&word=%QUERY%");
             self.settings = u.mixin({}, dSettings, o.settings);
             self.serviceOptions = u.mixin({}, dServiceOptions, o.serviceOptions);
@@ -55,98 +145,187 @@
                 theme: o.theme
             });
 
-            self.editor.renderer.setShowGutter(o.showGutter !== false);      // default is false
-            self.editor.getSession().setUseWrapMode(o.useWrapMode !== true); // default is true
-
-           
-            log(self.settings);
-            log(self.serviceOptions);
-            log('calling: _initEvents');
+            self.editor.renderer.setShowGutter(self.settings.showGutter !== false);      // default is false
+            self.editor.getSession().setUseWrapMode(self.settings.showWrapMode === true); // default is true
             self._initEvents();
-            log('calling: _initializeAutocomplete');
             self._initializeAutocomplete();
 
-           /* self.editor.commands.on("afterExec", function (e) {
-               /* log("afterExec");
-                log(e.command.name + "::>" + /^[\w.]$/.test(e.args));
-                if (e.command.name == "insertstring" && /^[\w.]$/.test(e.args)) {
-                    
-                log(e.args);
-                    self.editor.execCommand("startAutocomplete");
-                }#1#
+            self.editor.commands.on("afterExec", function (e) {
+                //if (e.command.name == "insertstring" && /^[\w|\s|=.]$/.test(e.args)) {
+                log(e.command.name);
+                log('args>' + e.args);
+                switch (e.command.name.toLowerCase()) {
+                    case 'insertstring':
+                        if (e.args && e.args.length <= 1) {
+                            self.editor.execCommand("startAutocomplete");
+                        }
+                        break;
+                    case 'space':
+                    case 'backspace':
+                        self.editor.execCommand("startAutocomplete");
+                        break;
+                }
             });
-*/
+
             var autoCompleter = {
                 getCompletions: function (ed, session, pos, prefix, callback) {
-                    log('prefix:' + prefix);
-                    var success = function (data) {
-                        log('callback data')
-                        log(data);
-                        callback(null, [
-                            {
-                                name: "_or",
-                                value: "or",
-                                score: 1,
-                                meta: "operator"
-                            },
-                            {
-                                name: "_and",
-                                value: "and",
-                                score: 1,
-                                meta: "operator"
-                            },
-                            {
-                                name: "_not",
-                                value: "not",
-                                score: 1,
-                                meta: "operator"
-                            }
-                        ]); return;
-                    };
+                    var r = pos.row,
+                        c = pos.column,
+                        curToken = session.getTokenAt(r, c); 
 
-                    var failure = function(error) {
-                        
-                    };
+                    log(curToken);
+
+                    if (curToken.type === 'keyword.equals' || curToken.type === 'comment') {
+                        callback(null, []);
+                        return;
+                    }
+
+                    if (curToken.type === 'text') {
+                        var query = curToken.value.replace(/^#\?/, '');
+
+                        if (query.contains('"')) {
+                            return;
+                        }
+
+                        if (query && query.length > 0) {
+                            var opts = {
+                                id: o.id,
+                                url: self.settings.url,
+                                extraParams: self._setExtraParams(query)
+                            }
+
+                            deferredRequest(
+                                query,
+                                opts,
+                                function(data) {
+                                    callback(null, self._filter(self.serviceOptions.categories.split('|'), data));
+                                },
+                                function(err) { callback(null, operators); }
+                            );
+                            return;
+                        }
+                    }
 
                     if (prefix.length === 0) {
-                        callback(null, [
-                            {
-                                name: "or",
-                                value: "or",
-                                score: 1,
-                                meta: "operator"
-                            },
-                            {
-                                name: "and",
-                                value: "and",
-                                score: 1,
-                                meta: "operator"
-                            },
-                            {
-                                name: "not",
-                                value: "not",
-                                score: 1,
-                                meta: "operator"
-                            }
-                        ]); return;
+                        callback(null, operators);
+                        return;
                     }
-                    var opts = {
-                        id: o.id,
-                        url: self.settings.url,
-                        extraParams: self._setExtraParams(prefix)
-                }
-                    deferredRequest(prefix, opts, success, failure);
+                    
+                    return;
                 }
             } 
             self.langTools.addCompleter(autoCompleter);
         }
-
+        
         u.mixin(djEditor.prototype, {
+            __categoryMapper: function (cat) {
+                var self = this;
+                return categoryMap[cat];
+            },
+
+            setTheme: function (val) {
+                var self = this;
+                self.editor.setOptions({
+                    theme: val
+                });
+            },
+
+            __snippetMapper: function (cat, code, name) {
+
+                switch(cat.toLowerCase()) {
+                    case 'company':
+                        return 'fds=' + code + ' /* ' + name + ' */';
+                    case 'newssubject':
+                        return 'ns=' + code + ' /* ' + name + ' */';
+                    case 'region':
+                        return 're=' + code + ' /* ' + name + ' */';
+                    case 'industry':
+                        return 'in=' + code + ' /* ' + name + ' */';
+                    case 'language':
+                        return 'la=' + code + ' /* ' + name + ' */';
+                    case 'source':
+                    case 'outlet':
+                        return 'rst=' + code + ' /* ' + name + ' */';
+                    case 'author':
+                        return 'au=' + code + ' /* ' + name + ' */';
+                    case 'executive':
+                        if (code) {
+                            return 'pe=' + code + ' /* ' +  name + ' */';
+                        }
+                        return '\"' + name + '\"';
+                    case 'keyword':
+                        return '\"' + name + '\"';
+                }
+            },
+
+            __scoreMapper: function (cat) {
+                switch (cat.toLowerCase()) {
+                    case 'company':
+                        return 10;
+                    case 'newssubject':
+                        return 9;
+                    case 'region':
+                        return 8;
+                    case 'industry':
+                        return 7;
+                    case 'language':
+                        return 6;
+                    case 'source':
+                    case 'outlet':
+                        return 5;
+                    case 'executive':
+                    case 'author':
+                        return 4;
+                    case 'keyword':
+                        return 3;
+                }
+            },
+
+            _filter: function (categories, parsedResponse) {
+                var self = this,
+                    items = [];
+                var data = _.pick(parsedResponse.data, 'category').category;
+
+                $.each(categories, function (i, category) {
+                    category = self.__categoryMapper(category.toLowerCase());
+                    var item = data[i];
+                    if (item) {
+                        var tempResponse = _.pick(item, category);
+                        if (tempResponse && tempResponse[category] && tempResponse[category].length && tempResponse[category].length > 0) {
+                            var tObj = tempResponse[category];
+                            $.each(tObj, function (index, el) {
+                                el.name = el.value = el.value || el.descriptor || el.completeName || el.formalName || el.word;
+                                el.value = el.name;
+                                el.meta = category;
+                                el.score = self.__scoreMapper(category);
+                                el.snippet = self.__snippetMapper(category, el.code, el.name);
+                                items.push(el);
+                            });
+                        }
+                    }
+                });
+               
+                return items;
+            },
+
             _initEvents: function () {
                 var self = this;
 
+                self.editor.on('mousemove', function (e) {
+                    var position = e.getDocumentPosition();
+                    var token = self.editor.session.getTokenAt(position.row, position.column);
+                    
+                });
+
+                self.editor.on('dblclick', function (e) {
+                    var position = e.getDocumentPosition();
+                    var token = self.editor.session.getTokenAt(position.row, position.column);
+                    log('dblclick')
+                    log(token)
+                });
+
                 self.editor.getSession().on("change", function(e) {
-                    logEvent('change', e);
+                    //logEvent('change', e);
                     self.updateHeight();
                 });
 
@@ -234,7 +413,6 @@
                     searchText: text
                 };
                 var p = $.extend({}, paramsObj, serviceOptions);
-                log(p);
                 return p;
             },
 
@@ -296,7 +474,6 @@
             /*  } else*/
 
             log('term>' + term);
-            log(options);
             if ((typeof options.url == "string") && (options.url.length > 0)) {
                 var extraParams = {
                     timestamp: + new Date()
@@ -339,9 +516,6 @@
 
         function requestSuggestService(options, params, editorId) {
             var dfd = new $.Deferred();
-
-            log(params);
-
             if (params.autocompletionType == "Categories") {
                 var catArr = params.categories.split("|");
                 catArr = $.grep(catArr, function (n) { return (n); });

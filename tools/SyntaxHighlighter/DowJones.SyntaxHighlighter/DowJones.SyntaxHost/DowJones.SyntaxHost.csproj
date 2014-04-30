@@ -129,6 +129,8 @@
     <Content Include="Content\nancy-logo-resized.png" />
     <Content Include="Content\nancy-logo.png" />
     <Content Include="Content\nancy-vertical-bf-tb.png" />
+    <Content Include="Content\scripts\ace\src-noconflict\theme-factiva_dark.js" />
+    <Content Include="Content\scripts\ace\src-noconflict\theme-factiva_light.js" />
     <Content Include="Content\scripts\editor.js" />
     <Content Include="Content\scripts\highlight.min.js" />
     <Content Include="Content\scripts\jquery-json.2.4.0.min.js" />

@@ -19,8 +19,11 @@
                 margin-top: 50px;
                 height: 200px;
             }
-        </style>
 
+            table {
+                font-size: 10px;
+            }
+        </style>
     </head>
     <body>
         <header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
@@ -64,10 +67,20 @@
         <div class="container">
             <div id="editor">(ns=(gelear or cbrand) or in=(isocial or iresinv)) and (social media or twitter or facebook or linkedin or youtube or foursquare or tmblr or social w/3 (site* or network* or network*)) same (customer service or brand* or marketing or employee* or communicat* or strateg* or tweet* or messag* or posted or posting or followers or following or digital strateg*) and wc>150
             </div>
+            
+            <div class="btn-group" data-toggle="buttons">
+                <label class="btn btn-primary" id="lightTheme">
+                    <input type="radio" name="options"> Light Theme
+                </label>
+                <label class="btn btn-primary active" id="darkTheme" data-toggle="button">
+                    <input type="radio" name="options" checked=""> Dark Theme
+                </label>
+            </div>
 
             <div class="comments">
-                Type in a word like "will" below and press ctrl+space or alt+space to get "rhyme completion"
+                Type in a word like "will" below and press ctrl+space or alt+space to get "auto-complete completion"
             </div>
+            <div></div>
             <div class="table-responsive">
                 <table class="table">
                     <thead>
@@ -482,14 +495,23 @@
 
             var editor = new djCore.Editor({
                 id: 'editor',
-                theme: 'ace/theme/vibrant_ink',
+                theme: 'ace/theme/factiva_dark',
                 mode: 'ace/mode/factiva',
+              
                 settings: {
-                    authType: 'SessionId'
+                    authType: 'EncryptedToken'
                 },
                 serviceOptions: {
-                    authToken: '27142ZzZINHEQOKTAAAGUBQAAAAAJ7NLAAAAAABSGAYTIMBUGI2TCNZRGYYDMNJX'
+                    authToken: 'S00ZGF91tNqYWRyMTZyMTMvOD2mNpItMtmm5DN9RcF0WEbBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB'
                 }
+            });
+
+            $('#darkTheme').click(function (e) {
+                editor.setTheme('ace/theme/factiva_dark');
+            });
+
+            $('#lightTheme').click(function (e) {
+                editor.setTheme('ace/theme/factiva_light');
             });
 
         </script>

@@ -45,6 +45,10 @@ ace.define('ace/mode/factiva', ['require', 'exports', 'module', 'ace/lib/oop', '
         this.$rules = {
             "start": [
                 {
+                    token: "comment",
+                    regex: "\\/\\*.*?\\*\\/"
+                },
+                {
                     token: "constant.character.asterisk",
                     regex: "[\\*]"
                 }, {
@@ -52,7 +56,10 @@ ace.define('ace/mode/factiva', ['require', 'exports', 'module', 'ace/lib/oop', '
                     regex: "[\\?]"
                 }, {
                     token: "constant.character.dollar",
-                    regex: "[\\$]"
+                    regex: "\\$[1-9][0-9]*"
+                }, {
+                    token: "constant.character.percent",
+                    regex: "[\\%]"
                 }, {
                     token: 'constant.character.count',
                     regex: '\\batleast[0-9]+\\b'
@@ -67,7 +74,7 @@ ace.define('ace/mode/factiva', ['require', 'exports', 'module', 'ace/lib/oop', '
                     regex: '\\/(n|N)[1-9][0-9]*\\/'
                 }, {
                     token: 'constant.character.adjancency',
-                    regex: '\\badj[0-9]*\\b'
+                    regex: '\\badj[1-9]*\\b'
                 }, {
                     token: 'constant.character.wordcount',
                     regex: '\\bwc[<|>][1-9][0-9]*\\b'

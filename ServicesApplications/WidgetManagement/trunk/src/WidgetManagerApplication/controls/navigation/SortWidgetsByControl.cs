@@ -47,8 +47,10 @@ namespace EMG.widgets.ui.controls.navigation
                 Controls.Add(new LiteralControl("<span class=\"sortBy\">"  + ResourceText.GetInstance.GetString("sortBy") +  ":</span>"));
 
                 // Date link
-                HtmlAnchor dateAnchor = new HtmlAnchor();
-                dateAnchor.ID = "dateAnchor";
+                var dateAnchor = new HtmlAnchor
+                                 {
+                                     ID = "dateAnchor"
+                                 };
                 dateAnchor.Title = dateAnchor.InnerText = ResourceText.GetInstance.GetString("date");
                 dateAnchor.HRef = "javascript:void(0)";
                 dateAnchor.Attributes.Add("onclick", "fireDateSort();return false;");
@@ -58,8 +60,10 @@ namespace EMG.widgets.ui.controls.navigation
                 Controls.Add(new LiteralControl("<span class=\"pipe\">|</span>"));
 
                 // name link
-                HtmlAnchor nameAnchor = new HtmlAnchor();
-                nameAnchor.ID = "nameAnchor";
+                var nameAnchor = new HtmlAnchor
+                                 {
+                                     ID = "nameAnchor"
+                                 };
                 nameAnchor.Title = nameAnchor.InnerText = ResourceText.GetInstance.GetString("name");
                 nameAnchor.HRef = "javascript:void(0)";
                 nameAnchor.Attributes.Add("onclick","fireNameSort();return false;");
