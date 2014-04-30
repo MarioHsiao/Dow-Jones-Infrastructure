@@ -5,6 +5,17 @@
         String.prototype.contains = function () {
             return String.prototype.indexOf.apply(this, arguments) !== -1;
         };
+        String.prototype.startsWith = function (str) {
+            return (str === this.substr(0, str.length));
+        }
+        String.prototype.ltrim = function () {
+            var trimmed = this.replace(/^\s+/g, '');
+            return trimmed;
+        };
+        String.prototype.rtrim = function () {
+            var trimmed = this.replace(/\s+$/g, '');
+            return trimmed;
+        };
     }
     
     djCore.Editor = function () {
@@ -175,15 +186,15 @@
 
                     log(curToken);
 
-                    if (curToken.type === 'keyword.equals' || curToken.type === 'comment') {
+                    if (curToken.type === 'keyword.equals') {
                         callback(null, []);
                         return;
                     }
 
                     if (curToken.type === 'text') {
-                        var query = curToken.value.replace(/^#\?/, '');
+                        var query = curToken.value.ltrim();
 
-                        if (query.contains('"')) {
+                        if (query.startsWith('"') || query.startsWith('/')) {
                             return;
                         }
 
@@ -234,23 +245,23 @@
 
                 switch(cat.toLowerCase()) {
                     case 'company':
-                        return 'fds=' + code + ' /* ' + name + ' */';
+                        return 'fds=' + code;
                     case 'newssubject':
-                        return 'ns=' + code + ' /* ' + name + ' */';
+                        return 'ns=' + code;
                     case 'region':
-                        return 're=' + code + ' /* ' + name + ' */';
+                        return 're=' + code;
                     case 'industry':
-                        return 'in=' + code + ' /* ' + name + ' */';
+                        return 'in=' + code;
                     case 'language':
-                        return 'la=' + code + ' /* ' + name + ' */';
+                        return 'la=' + code;
                     case 'source':
                     case 'outlet':
-                        return 'rst=' + code + ' /* ' + name + ' */';
+                        return 'rst=' + code;
                     case 'author':
-                        return 'au=' + code + ' /* ' + name + ' */';
+                        return 'au=' + code;
                     case 'executive':
                         if (code) {
-                            return 'pe=' + code + ' /* ' +  name + ' */';
+                            return 'pe=' + code;
                         }
                         return '\"' + name + '\"';
                     case 'keyword':
@@ -320,8 +331,10 @@
                 self.editor.on('dblclick', function (e) {
                     var position = e.getDocumentPosition();
                     var token = self.editor.session.getTokenAt(position.row, position.column);
-                    log('dblclick')
-                    log(token)
+                    
+                    if (token.type == 'text') {
+                        log(token);
+                    }
                 });
 
                 self.editor.getSession().on("change", function(e) {

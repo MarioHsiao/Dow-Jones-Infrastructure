@@ -31,6 +31,16 @@ ace.define('ace/mode/factiva', ['require', 'exports', 'module', 'ace/lib/oop', '
     var lang = require("../lib/lang");
     var TextHighlightRules = require("./text_highlight_rules").TextHighlightRules;
 
+    var DATE= "(date|ups)",
+        M = "(0[1-9]|[1-9]|1[0-2])",
+        D = "(0[1-9]|[1-9]|1[0-9]|2[0-9]|3[0-1])",
+        Y = "(19|20)\\d\\d";
+    var MDY = M + "\\/" + D + "\\/" + Y;
+    var DMY = D + "\\/" + Y + "\\/" + Y;
+    var ISO = Y + M + D;
+    var DATE_NUM = "(\\+|\\-)\\d{1,3}";
+    var DATESPEC = "(" + MDY + "|" + DMY + "|" + ISO + "|" + DATE_NUM + ")";
+
     var FactivaHighlightRules = function () {
 
         var keywordMapper = this.createKeywordMapper({
@@ -50,16 +60,28 @@ ace.define('ace/mode/factiva', ['require', 'exports', 'module', 'ace/lib/oop', '
                 },
                 {
                     token: "constant.character.asterisk",
-                    regex: "[\\*]"
+                    regex: "\\b\\w\\w+\\*"
                 }, {
                     token: "constant.character.question",
-                    regex: "[\\?]"
+                    regex: "\\b\\w+\\?[\\w+\\?*]*"
                 }, {
                     token: "constant.character.dollar",
                     regex: "\\$[1-9][0-9]*"
                 }, {
                     token: "constant.character.percent",
                     regex: "[\\%]"
+                }, {
+                    token: 'constant.character.date_after',
+                    regex: '\\b'+ Date + '\\safter\\s' + DATESPEC
+                }, {
+                    token: 'constant.character.date_before',
+                    regex: '\\b' + Date + '\\sbefore\\s' + DATESPEC
+                }, {
+                    token: 'constant.character.date_exact',
+                    regex: '\\b' + Date + '\\s' + DATESPEC
+                }, {
+                    token: 'constant.character.date_from_to',
+                    regex: '\\b' + Date + '\\sfrom\\s' + DATESPEC + '\\sto\\s' + DATESPEC
                 }, {
                     token: 'constant.character.count',
                     regex: '\\batleast[0-9]+\\b'
@@ -95,7 +117,7 @@ ace.define('ace/mode/factiva', ['require', 'exports', 'module', 'ace/lib/oop', '
                     regex: "\\b(co|fds|in|ns|re|rst|la|sc)(=)"
                 }, {
                     token: ["keyword.artcode", "keyword.equals"],
-                    regex: "\\b(?:ip|an|by|art|clm|ct|cx|cr|dln|de|ed|hd|hl|hlp|lp|pg|pub|rf|se|sn|td|vol)="
+                    regex: "\\b(ip|an|by|art|clm|ct|cx|cr|dln|de|ed|hd|hl|hlp|lp|pg|pub|rf|se|sn|td|vol)(=)"
                 }, {
                     token: "phrase",           // " string
                     regex: '".*?"'
