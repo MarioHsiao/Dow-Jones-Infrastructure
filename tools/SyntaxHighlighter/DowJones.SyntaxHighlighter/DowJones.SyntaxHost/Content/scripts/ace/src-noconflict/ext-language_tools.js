@@ -62,7 +62,7 @@ var snippetCompleter = {
                 });
             }
         }, this);
-        callback(null, completions);
+        callback(null, completions)
     }
 };
 
@@ -971,7 +971,7 @@ var lang = require("./lib/lang");
 var snippetManager = require("./snippets").snippetManager;
 
 var Autocomplete = function() {
-    this.autoInsert = true;
+    this.autoInsert = false;
     this.keyboardHandler = new HashHandler();
     this.keyboardHandler.bindKeys(this.commands);
 
@@ -1071,8 +1071,13 @@ var Autocomplete = function() {
 
         this.popup.setRow(row);
     };
+    
+    this.insertMatch = function (data) {
+        var getWhitespaceCount = function (str) {
+            var trimmed = str.replace(/^\s+/g, '');
+            return str.length - trimmed.length;
+        };
 
-    this.insertMatch = function(data) {
         if (!data)
             data = this.popup.getData(this.popup.getRow());
         if (!data)
@@ -1083,8 +1088,10 @@ var Autocomplete = function() {
             if (this.completions.filterText) {
                 var position = this.editor.getCursorPosition();
                 var token = this.editor.session.getTokenAt(position.row, position.column);
+                var start = token.start + getWhitespaceCount(token.value);
+                var end = token.start + token.value.length;
                 var Range = require('ace/range').Range,
-                    range = new Range(position.row, token.start + 1, position.row, token.start + 1 + (token.value.length));
+                    range = new Range(position.row, start, position.row, end);
                 this.editor.session.remove(range);
 
                 /*var ranges = this.editor.session.selection.getAllRanges();
@@ -1094,7 +1101,7 @@ var Autocomplete = function() {
                 }*/
             }
             if (data.snippet)
-                snippetManager.insertSnippet(this.editor, data.snippet);
+                snippetManager.insertSnippet(this.editor, data.snippet + " ");
             else
                 this.editor.execCommand("insertstring", data.value || data);
         }

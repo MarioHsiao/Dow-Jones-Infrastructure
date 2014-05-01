@@ -32,11 +32,11 @@ ace.define('ace/mode/factiva', ['require', 'exports', 'module', 'ace/lib/oop', '
     var TextHighlightRules = require("./text_highlight_rules").TextHighlightRules;
 
     var DATE= "(date|ups)",
-        M = "(0[1-9]|[1-9]|1[0-2])",
-        D = "(0[1-9]|[1-9]|1[0-9]|2[0-9]|3[0-1])",
+        M = "(0[1-9]|1[0-2])",
+        D = "(0[1-9]|1[0-9]|2[0-9]|3[0-1])",
         Y = "(19|20)\\d\\d";
     var MDY = M + "\\/" + D + "\\/" + Y;
-    var DMY = D + "\\/" + Y + "\\/" + Y;
+    var DMY = D + "\\/" + Y + "\\/" + Y
     var ISO = Y + M + D;
     var DATE_NUM = "(\\+|\\-)\\d{1,3}";
     var DATESPEC = "(" + MDY + "|" + DMY + "|" + ISO + "|" + DATE_NUM + ")";
@@ -72,16 +72,16 @@ ace.define('ace/mode/factiva', ['require', 'exports', 'module', 'ace/lib/oop', '
                     regex: "[\\%]"
                 }, {
                     token: 'constant.character.date_after',
-                    regex: '\\b'+ Date + '\\safter\\s' + DATESPEC
+                    regex: '\\b(date|ups)\\safter\\s' + DATESPEC
                 }, {
                     token: 'constant.character.date_before',
-                    regex: '\\b' + Date + '\\sbefore\\s' + DATESPEC
+                    regex: '\\b(date|ups)\\sbefore\\s' + DATESPEC
+                }, {
+                    token: 'constant.character.date_from_to ',
+                    regex: '\\b(date|ups)\\sfrom\\s' + DATESPEC + '\\sto\\s' + DATESPEC
                 }, {
                     token: 'constant.character.date_exact',
-                    regex: '\\b' + Date + '\\s' + DATESPEC
-                }, {
-                    token: 'constant.character.date_from_to',
-                    regex: '\\b' + Date + '\\sfrom\\s' + DATESPEC + '\\sto\\s' + DATESPEC
+                    regex: '\\b(date|ups)\\s' + DATESPEC
                 }, {
                     token: 'constant.character.count',
                     regex: '\\batleast[0-9]+\\b'
@@ -114,10 +114,10 @@ ace.define('ace/mode/factiva', ['require', 'exports', 'module', 'ace/lib/oop', '
                     regex: "[\\)]"
                 }, {
                     token: ["keyword.fii", "keyword.equals"],
-                    regex: "\\b(co|fds|in|ns|re|rst|la|sc)(=)"
+                    regex: "\\b(fds|in|ns|re|la|sc)(=)"
                 }, {
                     token: ["keyword.artcode", "keyword.equals"],
-                    regex: "\\b(ip|an|by|art|clm|ct|cx|cr|dln|de|ed|hd|hl|hlp|lp|pg|pub|rf|se|sn|td|vol)(=)"
+                    regex: "\\b(rst|co|ip|an|by|art|clm|ct|cx|cr|dln|de|ed|hd|hl|hlp|lp|pg|pub|rf|se|sn|td|vol|duns|isin|cusip|sedol|ric|pe|au)(=)"
                 }, {
                     token: "phrase",           // " string
                     regex: '".*?"'
@@ -171,7 +171,7 @@ ace.define('ace/mode/behaviour/fstyle', ['require', 'exports', 'module', 'ace/li
     };
 
     var FstyleBehaviour = function () {
-        
+
         this.add("parens", "insertion", function (state, action, editor, session, text) {
             if (text == '(') {
                 initContext(editor);
@@ -214,6 +214,73 @@ ace.define('ace/mode/behaviour/fstyle', ['require', 'exports', 'module', 'ace/li
                 var line = session.doc.getLine(range.start.row);
                 var rightChar = line.substring(range.start.column + 1, range.start.column + 2);
                 if (rightChar == ')') {
+                    range.end.column++;
+                    return range;
+                }
+            }
+        });
+
+        this.add("string_dquotes", "insertion", function(state, action, editor, session, text) {
+            if (text == '"' || text == "'") {
+                initContext(editor);
+                var quote = text;
+                var selection = editor.getSelectionRange();
+                var selected = session.doc.getTextRange(selection);
+                if (selected !== "" && selected !== "'" && selected != '"' && editor.getWrapBehavioursEnabled()) {
+                    return {
+                        text: quote + selected + quote,
+                        selection: false
+                    };
+                } else {
+                    var cursor = editor.getCursorPosition();
+                    var line = session.doc.getLine(cursor.row);
+                    var leftChar = line.substring(cursor.column-1, cursor.column);
+                    if (leftChar == '\\') {
+                        return null;
+                    }
+                    var tokens = session.getTokens(selection.start.row);
+                    var col = 0, token;
+                    var quotepos = -1; // Track whether we're inside an open quote.
+
+                    for (var x = 0; x < tokens.length; x++) {
+                        token = tokens[x];
+                        if (token.type == "string") {
+                          quotepos = -1;
+                        } else if (quotepos < 0) {
+                          quotepos = token.value.indexOf(quote);
+                        }
+                        if ((token.value.length + col) > selection.start.column) {
+                            break;
+                        }
+                        col += tokens[x].value.length;
+                    }
+                    if (!token || (quotepos < 0 && token.type !== "comment" && (token.type !== "string" || ((selection.start.column !== token.value.length+col-1) && token.value.lastIndexOf(quote) === token.value.length-1)))) {
+                        if (!FstyleBehaviour.isSaneInsertion(editor, session))
+                            return undefined;
+                        return {
+                            text: quote + quote,
+                            selection: [1,1]
+                        };
+                    } else if (token && token.type === "string") {
+                        var rightChar = line.substring(cursor.column, cursor.column + 1);
+                        if (rightChar == quote) {
+                            return {
+                                text: '',
+                                selection: [1, 1]
+                            };
+                        }
+                    }
+                }
+            }
+        });
+
+        this.add("string_dquotes", "deletion", function(state, action, editor, session, range) {
+            var selected = session.doc.getTextRange(range);
+            if (!range.isMultiLine() && (selected == '"' || selected == "'")) {
+                initContext(editor);
+                var line = session.doc.getLine(range.start.row);
+                var rightChar = line.substring(range.start.column + 1, range.start.column + 2);
+                if (rightChar == selected) {
                     range.end.column++;
                     return range;
                 }
@@ -285,8 +352,6 @@ ace.define('ace/mode/behaviour/fstyle', ['require', 'exports', 'module', 'ace/li
             context.maybeInsertedRow = -1;
         }
     };
-
-
 
     oop.inherits(FstyleBehaviour, Behaviour);
 

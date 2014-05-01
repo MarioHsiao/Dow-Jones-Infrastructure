@@ -2,21 +2,36 @@
     var djCore = window.djCore = window.djCore || {};
 
     if (!String.prototype.contains) {
-        String.prototype.contains = function () {
+        String.prototype.contains = function() {
             return String.prototype.indexOf.apply(this, arguments) !== -1;
         };
-        String.prototype.startsWith = function (str) {
-            return (str === this.substr(0, str.length));
-        }
-        String.prototype.ltrim = function () {
-            var trimmed = this.replace(/^\s+/g, '');
-            return trimmed;
-        };
-        String.prototype.rtrim = function () {
-            var trimmed = this.replace(/\s+$/g, '');
-            return trimmed;
-        };
     }
+
+    String.prototype.startsWith = function (str) {
+        return (str === this.substr(0, str.length));
+    }
+    String.prototype.ltrim = function () {
+        var trimmed = this.replace(/^\s+/g, '');
+        return trimmed;
+    };
+    String.prototype.rtrim = function () {
+        var trimmed = this.replace(/\s+$/g, '');
+        return trimmed;
+    };
+    Date.prototype._pad = function(number) {
+        var r = String(number);
+        if (r.length === 1) {
+            r = '0' + r;
+        }
+        return r;
+    }
+
+    Date.prototype.ToFactivaIsoString = function() {
+        return this.getUTCFullYear()
+            + this._pad(this.getUTCMonth() + 1)
+            + this._pad(this.getUTCDate());
+    }
+   
     
     djCore.Editor = function () {
         var langTools,
@@ -24,6 +39,18 @@
             u = djCore.utils,
             loggerNamespace =  'djCore.Editor',
             validCategories = 'company|executive|newssubject|keyword|source|region_all|region_country|region_subSupraNationalRegion|region_stateOrProvince|industry|industry_nace|industry_sic|industry_naics'.split('|');
+
+        var catMap = {
+            fds: 'company',
+            co: 'symbol',
+            in: 'industry',
+            ns: 'newssubject',
+            sc: 'source',
+            rst: 'source',
+            au: 'author',
+            pe: 'executive',
+            re: 'region_all'
+        }
 
         var categoryMap = {
             author: 'author',
@@ -52,61 +79,61 @@
             symbol: 'symbol'
         };
 
-        var operators = [
+        var dateOperators = [
             {
-                name: "or",
-                value: "or",
+                name: "after",
+                value: "date after",
+                snippet: "date after -1",
                 score: 1,
-                meta: "operator"
+                meta: "date-operator"
             },
             {
-                name: "and",
-                value: "and",
+                name: "before",
+                value: "date before",
+                snippet: "date before +1",
                 score: 1,
-                meta: "operator"
+                meta: "date-operator"
             },
             {
-                name: "not",
-                value: "not",
+                name: "from_to",
+                value: "date from to",
+                snippet: "date from +1 to -1",
                 score: 1,
-                meta: "operator"
-            }, {
-                name: "adjacency",
-                value: "adjacency",
-                snippet: "adj1",
+                meta: "date-operator"
+            },
+            {
+                name: "exact",
+                value: "date exact",
+                snippet: "date " + new Date().ToFactivaIsoString(),
                 score: 1,
-                meta: "operator"
-            }, {
-                name: "same",
-                value: "same",
-                snippet: "same",
-                score: 1,
-                meta: "operator"
-            }, {
-                name: "near",
-                value: "near",
-                snippet: "near1",
-                score: 1,
-                meta: "operator"
-            }, {
-                name: "near",
-                value: "near",
-                snippet: "near1",
-                score: 1,
-                meta: "operator"
-            }, {
-                name: "atleast",
-                value: "atleast",
-                snippet: "atleast1",
-                score: 1,
-                meta: "operator"
-            }, {
-                name: "word count",
-                value: "word count",
-                snippet: "wc>0",
-                score: 1,
-                meta: "operator"
+                meta: "date-operator"
             }
+        ];
+
+        var coreOperators = [
+            { name: "or", value: "or", score: 1, meta: "operator" },
+            { name: "and", value: "and", score: 1, meta: "operator" },
+            { name: "not", value: "not", score: 1, meta: "operator" },
+            { name: "adjacency", value: "adjacency", snippet: "adj1", score: 1, meta: "operator" },
+            { name: "same", value: "same", snippet: "same", score: 1, meta: "operator" }, 
+            { name: "near", value: "near", snippet: "near1", score: 1, meta: "operator" },
+            { name: "atleast", value: "atleast", snippet: "atleast1", score: 1, meta: "operator" },
+            { name: "word count", value: "word count", snippet: "wc>0", score: 1, meta: "operator" }
+        ];
+
+        var languageList = [
+            { name: "English", value: "English", snipet: "en", score: 1, meta: "language" },
+            { name: "French", value: "French",  snipet: "en", score: 1, meta: "language" },
+            { name: "German", value: "German", snipet: "de", score: 1, meta: "language" },
+            { name: "Spanish", value: "Spanish", snipet: "es", score: 1, meta: "language" },
+            { name: "Portuguese", value: "Portuguese", snipet: "pt", score: 1, meta: "language" },
+            { name: "Italian", value: "Italian", snipet: "it", score: 1, meta: "language" },
+            { name: "Japanese", value: "Japanese", snipet: "js", score: 1, meta: "language" },
+            { name: "Russian", value: "Russian", snipet: "ru", score: 1, meta: "language" },
+            { name: "Chinese-Simplified", value: "Chinese-Simplified", snipet: "zhcn", score: 1, meta: "language" },
+            { name: "Chinese-Tradional", value: "Chinese-Tradional", snipet: "zhtn", score: 1, meta: "language" },
+            { name: "Korean", value: "Korean", snipet: "kn", score: 1, meta: "language" },
+            { name: "English", value: "English", snipet: "en", score: 1, meta: "language" }
         ];
 
         var broker = {
@@ -144,7 +171,6 @@
             self._o = o;
             self.$editor = $('#' + o.id);
             self._o.originalHeight = self.$editor.height();
-            self.transport = new djCore.Transport("http://rhymebrain.com/talk?function=getRhymes&word=%QUERY%");
             self.settings = u.mixin({}, dSettings, o.settings);
             self.serviceOptions = u.mixin({}, dServiceOptions, o.serviceOptions);
             self.langTools = ace.require("ace/ext/language_tools");
@@ -159,66 +185,103 @@
             self.editor.renderer.setShowGutter(self.settings.showGutter !== false);      // default is false
             self.editor.getSession().setUseWrapMode(self.settings.showWrapMode === true); // default is true
             self._initEvents();
+            self._disableEditorCommands();
             self._initializeAutocomplete();
 
             self.editor.commands.on("afterExec", function (e) {
                 //if (e.command.name == "insertstring" && /^[\w|\s|=.]$/.test(e.args)) {
-                log(e.command.name);
-                log('args>' + e.args);
-                switch (e.command.name.toLowerCase()) {
+               /* switch (e.command.name.toLowerCase()) {
                     case 'insertstring':
                         if (e.args && e.args.length <= 1) {
                             self.editor.execCommand("startAutocomplete");
                         }
                         break;
                     case 'space':
-                    case 'backspace':
+                    //case 'backspace':
                         self.editor.execCommand("startAutocomplete");
                         break;
-                }
+                }*/
             });
 
             var autoCompleter = {
+                getCategory: function (session, pos) {
+                    var r = pos.row,
+                      c = pos.column,
+                      curToken = session.getTokenAt(r, c);
+                    if (curToken.start === 0) {
+                        return undefined;
+                    }
+
+                    log("getCategory");
+                    log(curToken);
+                    if (curToken) {
+                        if (curToken.type == "paren.lparen" ||
+                            curToken.type == "keyword.equals" || 
+                            curToken.type == 'keyword.operator' || 
+                            curToken.type == 'text') {
+                            return this.getCategory(session, { row: pos.row, column: curToken.start - 1 });
+                        }
+                        if (curToken.type == "keyword.fii") {
+                            
+                            return curToken.value;
+                        }
+                    }
+                    return undefined;
+                },
+
                 getCompletions: function (ed, session, pos, prefix, callback) {
                     var r = pos.row,
                         c = pos.column,
-                        curToken = session.getTokenAt(r, c); 
+                        curToken = session.getTokenAt(r, c),
+                        includeCategory = true,
+                        category = this.getCategory(session, { row: pos.row, column: curToken.start - 1 });
 
-                    log(curToken);
+                    if (curToken.type === 'text') {
+                        if (category === 'la') {
+                            callback(null, languageList);
+                            return;
+                        }
+                    }
 
-                    if (curToken.type === 'keyword.equals') {
+                    if (curToken.type === 'phrase' || curToken.token === 'keyword.equals') {
                         callback(null, []);
                         return;
                     }
 
                     if (curToken.type === 'text') {
-                        var query = curToken.value.ltrim();
+                        var query = $.trim(curToken.value),
+                             opts = {
+                                 id: o.id,
+                                 url: self.settings.url,
+                                 extraParams: self._setExtraParams(query)
+                             }
 
-                        if (query.startsWith('"') || query.startsWith('/')) {
+                        if (query.startsWith('"') || query.startsWith('/') ||
+                            query.startsWith('-') || query.startsWith('+')) {
                             return;
                         }
 
+                        // write code to find category
+                        if (category) {
+                            opts.extraParams.categories = catMap[category];
+                            includeCategory = false;
+                        }
+                        
                         if (query && query.length > 0) {
-                            var opts = {
-                                id: o.id,
-                                url: self.settings.url,
-                                extraParams: self._setExtraParams(query)
-                            }
-
                             deferredRequest(
                                 query,
                                 opts,
                                 function(data) {
-                                    callback(null, self._filter(self.serviceOptions.categories.split('|'), data));
+                                    callback(null, self._filter(opts.extraParams.categories.split('|'), data, includeCategory));
                                 },
-                                function(err) { callback(null, operators); }
+                                function(err) { callback(null, coreOperators.concat(dateOperators)); }
                             );
                             return;
                         }
                     }
 
                     if (prefix.length === 0) {
-                        callback(null, operators);
+                        callback(null, coreOperators.concat(dateOperators));
                         return;
                     }
                     
@@ -241,7 +304,17 @@
                 });
             },
 
-            __snippetMapper: function (cat, code, name) {
+            __snippetMapper: function (cat, code, name, includeCategory) {
+
+                if (!includeCategory) {
+                    switch (cat.toLowerCase()) {
+                        case 'executive':
+                        case 'keyword':
+                            break;
+                        default:
+                            return code;
+                    }
+                }
 
                 switch(cat.toLowerCase()) {
                     case 'company':
@@ -292,7 +365,7 @@
                 }
             },
 
-            _filter: function (categories, parsedResponse) {
+            _filter: function (categories, parsedResponse, includeCategory) {
                 var self = this,
                     items = [];
                 var data = _.pick(parsedResponse.data, 'category').category;
@@ -309,7 +382,7 @@
                                 el.value = el.name;
                                 el.meta = category;
                                 el.score = self.__scoreMapper(category);
-                                el.snippet = self.__snippetMapper(category, el.code, el.name);
+                                el.snippet = self.__snippetMapper(category, el.code, el.name, includeCategory);
                                 items.push(el);
                             });
                         }
@@ -317,6 +390,33 @@
                 });
                
                 return items;
+            },
+
+            _disableEditorCommands: function () {
+                var self = this;
+
+                var items = [
+                    { name: 'unfind',               winKey: 'Ctrl-F',   macKey: 'Command-F' },
+                    { name: 'uncenter_selection',   winKey: 'Ctrl-L',   macKey: 'Command-L' },
+                    { name: 'remove_settings',      winKey: 'Ctrl-,',   macKey: 'Command-,' }
+                ];
+
+                $.each(items, function (i, item) {
+                    log(item.name)
+                    self.editor.commands.addCommands([
+                        {
+                            name: item.name,
+                            bindKey: {
+                                win: item.winKey,
+                                mac: item.macKey
+                            },
+                            exec: function() {
+                                return false;
+                            },
+                            readOnly: true
+                        }
+                    ]);
+                });
             },
 
             _initEvents: function () {
@@ -333,7 +433,7 @@
                     var token = self.editor.session.getTokenAt(position.row, position.column);
                     
                     if (token.type == 'text') {
-                        log(token);
+                        //log(token);
                     }
                 });
 
@@ -479,6 +579,7 @@
         function deferredRequest(term, options, success, failure) {
             if (!options.matchCase)
                 term = term.toLowerCase();
+
             //var cdata = cache.load(term);
             // receive the cached data
             /*if (cdata && cdata.length) {
@@ -486,7 +587,6 @@
                 // if an AJAX url has been supplied, try loading the data now
             /*  } else*/
 
-            log('term>' + term);
             if ((typeof options.url == "string") && (options.url.length > 0)) {
                 var extraParams = {
                     timestamp: + new Date()
