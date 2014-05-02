@@ -1,0 +1,113 @@
+﻿<script src="../template.js"></script> 
+<script>
+setTargetScript('../../DowJones.Web.Mvc/Resources/js/ErrorManager.js');
+
+$(document).ready(function () {
+
+    module('DJ.ErrorManager');
+
+    test('should exist', function () {
+        ok(DJ.ErrorManager);
+    });
+
+
+    module('DJ.ErrorManager.getError');
+
+    test('should exist', function () {
+        ok(DJ.ErrorManager.getError);
+    });
+
+    test('should have $dj.getError alias', function () {
+        equals(DJ.ErrorManager.getError, $dj.getError);
+    });
+
+    test('should return null for null object', function () {
+        equals(DJ.ErrorManager.getError(null), null);
+    });
+
+    test('should return null for no error found', function () {
+        equals(DJ.ErrorManager.getError('this is some text'), null);
+        equals(DJ.ErrorManager.getError({ fdsafdsaf: "fsdafdasfasd" }), null);
+        equals(DJ.ErrorManager.getError('{ fdsafdsaf: "fsdafdasfasd" }'), null);
+        equals(DJ.ErrorManager.getError({ status: 200, responseText: '<html>BOO YA!</html>' }), null);
+    });
+
+    test('should parse regular JSON object', function () {
+        var testObject = { code: 123, message: "Hello!" };
+        var error = DJ.ErrorManager.getError(testObject);
+
+        equals(testObject.code, error.code);
+        equals(testObject.message, error.message);
+    });
+
+    test('should get child error property', function () {
+        var expectedError = { code: 1234 };
+        var error = DJ.ErrorManager.getError({ error: expectedError });
+
+        equals(expectedError, error);
+    });
+
+    test('should parse XHR response when it has an error function', function () {
+        var xhr = {
+            "readyState": 4,
+            "responseText": "{\"audit\":null,\"error\":{\"code\":875002,\"message\":\"DowJones Integration API can not process your request at this time. Please try again later.\"}}",
+            "status": 500,
+            "statusText": "error",
+            error: function () { }
+        };
+
+        var error = DJ.ErrorManager.getError(xhr);
+
+        equals(875002, error.code);
+    });
+
+    test('should parse XHR response text when it is JSON', function () {
+        var xhr = { status: 500, responseText: '{ "code": "1234" }' };
+        var error = DJ.ErrorManager.getError(xhr);
+
+        equals(1234, error.code);
+    });
+
+    test('should parse XHR response status when response text is not JSON', function () {
+        var xhr = { status: 500, responseText: '<html><head><title>Object reference not set to an instance of an object.</title>' };
+        var error = DJ.ErrorManager.getError(xhr);
+
+        equals(210905, error.code);
+    });
+
+
+
+    module('DJ.ErrorManager.formatError');
+
+    test('should exist', function () {
+        ok(DJ.ErrorManager.formatError);
+    });
+
+    test('should have $dj.formatError alias', function () {
+        equals(DJ.ErrorManager.formatError, $dj.formatError);
+    });
+
+    test('should return message value for null error', function () {
+        equals(DJ.ErrorManager.formatError(null, 'EXPECTED'), 'EXPECTED');
+        equals(DJ.ErrorManager.formatError({}.error, 'EXPECTED'), 'EXPECTED');
+    });
+
+    test('should return custom message for custom error code', function () {
+        var customError = { "123456": "CUSTOM ERROR" };
+        DJ.ErrorManager.registerErrors(customError);
+        var errorText = DJ.ErrorManager.formatError({ code: 123456 });
+
+        ok(errorText.match(/CUSTOM ERROR/));
+    });
+
+    test('should return predefined messages for known HTTP error codes (210903-5)', function () {
+        $.each([3, 4, 5], function (i, code) {
+            var errorText = DJ.ErrorManager.formatError({ code: parseInt('21090' + code) });
+
+            ok(errorText.match("errorForUser21090" + code),
+               "Expected 'errorForUser21090" + code + "', got " + errorText);
+        });
+    });
+
+});
+</script>

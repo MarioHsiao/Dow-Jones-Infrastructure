@@ -1,0 +1,68 @@
+﻿@using DowJones.Web.Mvc
+@{
+    ViewBag.Title = "Entity List";
+    ScriptRegistry.OnDocumentReady("initDemo()");
+    StylesheetRegistry.Include("http://djuxsandbox.com/css/ui-dev.css");
+}
+
+<script type="text/javascript">
+
+    function initDemo() {
+        var entityList = $('#EntityList').findComponent(DJ.UI.EntityList);
+
+        entityList.subscribe('entityRemoved.dj.EntityList', function (entity) {
+            $dj.debug('Removed entity ', entity);
+            showEntities();
+        });
+
+        $('fieldset button').click(function () {
+            var fields = $(this).closest('fieldset').find(':input');
+            var entity = {
+                code: fields.filter('[name=code]').val(),
+                group: fields.filter('[name=group]').val(),
+                name: fields.filter('[name=name]').val()
+            };
+
+            entityList.addEntity(entity);
+            showEntities();
+        });
+
+        function showEntities() {
+            $('#serialized').text(JSON.stringify(entityList.getEntities()));
+        }
+
+        showEntities();
+    }
+
+</script>
+
+<div class=".dj_search-filters .wrap .filters">
+@DJ.Render(Model, new { id = "EntityList" })
+</div>
+
+<fieldset>
+    <legend>New Entity</legend>
+
+    <p>
+        <label for="group">Group</label>
+        @(DJ.DropDownList<DowJones.Search.NewsFilterCategory>("group"))
+    </p>
+
+    <p>
+        <label for="code">Code</label>
+        @Html.TextBox("code")
+    </p>
+
+    <p>
+        <label for="name">Name</label>
+        @Html.TextBox("name")
+    </p>
+
+    <button id="addEntity">Add Entity</button>
+
+</fieldset>
+
+<div>
+    <h2>Entities JSON</h2>
+    <div id="serialized"></div>
+</div>

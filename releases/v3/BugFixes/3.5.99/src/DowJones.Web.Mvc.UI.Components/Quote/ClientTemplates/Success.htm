@@ -1,0 +1,45 @@
+﻿<% var quote = self.quote; %>
+<p class="market-snapshot">
+    <span class="ticker-symbol"><%= quote.ticker %></span>
+    <span class="stock-exchange"><%= (quote.listedExchanges && quote.listedExchanges[0] && quote.listedExchanges[0].code)?quote.listedExchanges[0].code:"" %></span>
+    <span class="market-data-source"><%= quote.provider && quote.provider.name?"<%= Token("sourcesLabel") %>: <a href='javascript:void(0);'>" + quote.provider.name + "</a>":"" %></span>
+</p><!-- end: .market-snapshot -->
+                                
+<p class="stock-value">
+    <span class="current-value"><%= (quote.last && quote.last.displayText)?quote.last.displayText.value:"--" %></span>
+    <span class="difference-value <%= quote.change?((quote.change.value > 0)?"positive":((quote.change.value < 0)?"negative":"")):"" %>">
+        <%= (quote.change && quote.change.displayText)?quote.change.displayText.value:"--" %>
+    </span>
+    <span class="difference-percentage <%= quote.percentageChange?((quote.percentageChange.value > 0)?"positive":((quote.percentageChange.value < 0)?"negative":"")):"" %>">
+        <%= (quote.percentageChange && quote.percentageChange.displayText)?quote.percentageChange.displayText.value:"--" %>
+    </span>
+</p>
+                
+<ul class="summary-data">
+    <li class="stock-open-price">
+        <span class="summary-data-label"><%= Token("open") %></span>
+        <span class="summary-data-value"><%= (quote.open && quote.open.displayText)?quote.open.displayText.value:"--" %></span>
+    </li>
+    <li class="shares">
+        <span class="summary-data-label"><%= Token("volume") %></span>
+        <span class="summary-data-value"><%= (quote.volume && quote.volume.displayText)?quote.volume.displayText.value:"--" %></span>
+    </li>
+    <li class="high-price">
+        <span class="summary-data-label"><%= Token("high") %></span>
+        <span class="summary-data-value"><%= (quote.high && quote.high.displayText)?quote.high.displayText.value:"--" %></span>
+    </li>
+    <li class="low-price">
+        <span class="summary-data-label"><%= Token("low") %></span>
+        <span class="summary-data-value"><%= (quote.low && quote.low.displayText)?quote.low.displayText.value:"--" %></span>
+    </li>
+    <li>
+        <span class="summary-data-label"><%= Token("fiftyTwoWeekRange") %></span> 
+        <span class="summary-data-value"><%= ((quote.fiftyTwoWeekHigh && quote.fiftyTwoWeekHigh.displayText)?quote.fiftyTwoWeekHigh.displayText.value:"--")+" - "+((quote.fiftyTwoWeekLow && quote.fiftyTwoWeekLow.displayText)?quote.fiftyTwoWeekLow.displayText.value:"--")  %></span>
+    </li>
+    <li class="market-cap">
+        <span class="summary-data-label"><%= Token("marketCapitalization") %></span>
+        <span class="summary-data-value"><%= (quote.marketCap && quote.marketCap.displayText)?quote.marketCap.displayText.value:"--" %></span>
+    </li>
+</ul>
+<p class="dj_module-company-snapshot-disclaimer">
+    <span class="middot">&middot;</span> <%= Token("companyOverviewQuotesDelayed") %> <span class="middot">&middot;</span> <%= Token("quotesInLocalCurrency") %> </p>
