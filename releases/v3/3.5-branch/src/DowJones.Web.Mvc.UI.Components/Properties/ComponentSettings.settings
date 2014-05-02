@@ -1,9 +1,0 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="DowJones.Web.Mvc.UI.Components" GeneratedClassName="ComponentSettings">
-  <Profiles />
-  <Settings>
-    <Setting Name="AutoSuggestHandlerServiceUrl" Type="System.String" Scope="Application">
-      <Data Profile="(Default)">http://arch.dev.us.factiva.com/showcase/emgajaxtoolkittests2008/emg.tools.web.widgets.autosuggest.ashx?version=2.0</Data>
-    </Setting>
-  </Settings>
-</SettingsFile>

@@ -1,9 +1,0 @@
-﻿<%  var nodes = self, options = this.options; %>
-
-<% if (nodes && nodes.length > 0) { %>
-	<ul class="dj_tree_view">
-	<% for (var i = 0; i < nodes.length; i++) { %>		
-		<%= this.templates.treeViewNode(nodes[i]) %>
-	<% } %>
-	</ul>
-<% } %>
