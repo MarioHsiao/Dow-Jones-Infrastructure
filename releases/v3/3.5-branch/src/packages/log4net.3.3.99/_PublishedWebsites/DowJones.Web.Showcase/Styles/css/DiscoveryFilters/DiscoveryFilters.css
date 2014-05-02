@@ -1,0 +1,136 @@
+﻿body { font-family: Arial,Helvetica,sans-serif; }
+/*.dj_discoveryFilters-list { list-style-type: none; margin: 0; padding: 0; }
+.dj_discoveryFilters-list li.dj_discoveryFilters-listItem { margin: 0 5px 5px 5px; padding: 5px; }
+.dj_discoveryFilters-list .fdtWrapper div.open span.dj_cd-export { display: block !important; }
+.dj_discoveryFilters-list .dj_df-div .dj_hc-container { width: 220px; margin: 0 10px; }
+.dj_discoveryFilters-list .cd_hideSpan { visibility: hidden; }
+.dj_discoveryFilters-list .dj_df-expand { height: 20px; width: 20px; position: absolute; background: url('http://global.int.factiva.com/img/facelift/facelift-icon-sprite.png?51.1.0?53.2.0') no-repeat scroll 0 -420px transparent; margin: 1px 0 0 20px; z-index: 998; }
+.dj_discoveryFilters-list .dj_df-collapse { height: 20px; width: 20px; position: absolute; background: url('http://global.int.factiva.com/img/facelift/facelift-icon-sprite.png?51.1.0?53.2.0') no-repeat scroll 0 -460px transparent; margin: 1px 0 0 20px; z-index: 998; }
+.dj_discoveryFilters-list .dj_df-div .cd_div_collapse { display: none; }
+.dj_discoveryFilters-list .dj_df-div .cd_div_expand { display: block; }
+.dj_discoveryFilters-list .dj_df-export { position: relative; top: 5px; z-index: 3; color: #666; float: right; font-size: 8px; }
+.dj_discoveryFilters-list .dj_df-export a { display: -moz-inline-stack; display: inline-block; height: 15px; line-height: 15px; padding: 0 0 0 4px; background-image: url('http://global.int.factiva.com/img/facelift/facelift-icon-sprite.png?51.1.0?53.2.0'); background-repeat: no-repeat; background-position: 0 -1280px; vertical-align: middle; }
+.dj_discoveryFilters-list .dj_df-export span { background-repeat: no-repeat; background-position: right -1295px; display: -moz-inline-stack; display: inline-block; height: 14px; color: #333; line-height: 14px; text-align: center; padding: 0 8px 1px 4px; vertical-align: top; border: solid 1px #ccc; border-radius: 4px; }
+.dj_discoveryFilters-list .dj_df-header { color: #666; text-decoration: none; }
+.dj_discoveryFilters-list .dj_cd-title { position: relative; font-weight: bold; margin: 0; padding: 2px 3px 9px 41px; cursor: move; color: #333; background: url('http://global.int.factiva.com/img/facelift/facelift-icon-sprite.png?51.1.0?53.2.0') no-repeat scroll 0 -659px transparent; }
+.dj_discoveryFilters-list .hide{display:none;}
+.dj_discoveryFilters-list .show{display:block;}
+*/
+.dj_discoveryFilters-list {
+                margin-left: 12px;
+                width: 171px;
+}
+
+.open .side-title .fi-two, .open .side-section-title .fi-two {
+	background-position: -10px -10px;
+}
+
+.dj_discoveryFilters-list .dj_df-header .side-section-title {
+                padding-left: 12px;
+                cursor: pointer;
+}
+
+.dj_discoveryFilters-list .dj_df-header .side-section-title .fi-two {
+                /*width: 8px;
+                height: 8px;
+                background-position:-20px 0;*/
+                position: absolute;
+                left: 0;
+                top: 2px;
+                display: -moz-inline-stack;
+	display: inline-block;
+	zoom: 1;
+	*display: inline;
+	vertical-align: middle;
+	background: transparent url(http://montana.dev.us.factiva.com/DevSnapshot/Content/styles/images/factiva-icons2.png?1.1.0) no-repeat 0 0;
+	cursor: pointer;
+}
+
+.fi-two.fi_d-arrow-drk-blue {
+	width: 8px;
+	height: 8px;
+	background-position: -20px 0;
+}
+
+.dj_most-mentioned .dj_discoveryFilters-list .dj_df-header .fi_export {
+    float: right;
+    margin-right: 7px;
+    text-indent: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.dj_most-mentioned .dj_discoveryFilters-list .dj_df-header.open .fi_export {
+    display: none;
+}
+
+.dj_most-mentioned .dj_discovery-filters .dj_df-more-less span{
+    text-indent: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.dj_df-not {
+    background: url("http://sierra.dev.us.factiva.com/dotcom/img/dj_discovery-pane-not.jpg") no-repeat scroll 0 0 transparent;
+    cursor: pointer;
+    height: 12px;
+    left: -12px;
+    position: absolute;
+    top:0px;
+    width: 12px;
+    display:none;
+}
+
+
+.dj_df-chart 
+{
+    position: relative;
+    zoom: 1;
+}
+
+
+.dj_discoveryFilters-list li
+{
+    position: relative;
+    zoom: 1;
+}
+
+.dj_discoveryFilters-dataLabel-hover .dj_df-not
+{
+    display:block;
+}
+
+.ellipsis {
+    -moz-binding: url("ellipsis.xml?53.2.0#ellipsis");
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #004C70;
+    display: inline-block;
+    /*margin-right: 3px;
+    margin-top: 2px;*/
+    text-align: left;
+    width: 150px;
+}
+
+.dj_most-mentioned .dj_discoveryFilters-list .dj_df-count {
+    display: -moz-inline-stack;
+    display: inline-block;
+    zoom: 1;
+    *display: inline;
+    color: #999;
+    margin-top: 2px;
+    cursor: pointer;
+}
+
+.dj_most-mentioned .dj_discoveryFilters-list .dj_df-label {
+    color: #999;
+    margin-top: 2px;
+    width:100px;
+    display:inline-block;
+}
+
+
+
+/*Draggable Styles*/
+.ui-state-highlight { height: 1.5em; line-height: 1.2em; }

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>DowJones.Pages</id>
+        <version>$version$</version>
+        <title>Dow Jones Pages Framework</title>
+        <description>The Dow Jones Page core artifacts</description>
+        <authors>Dow Jones Platform Integration Team</authors>
+        <tags>DowJones</tags>
+        <language>en-US</language>
+        <projectUrl>http://dowjones.com</projectUrl>
+        <licenseUrl>http://dowjones.com</licenseUrl>
+        <dependencies>
+            <dependency id="DowJones.Infrastructure" version="$version$" />
+            <dependency id="Factiva.Gateway" version="7.5.0.50" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="DowJones.Pages.dll" target="lib" />
+        <file src="DowJones.Pages.pdb" target="lib" />
+    </files>
+</package>

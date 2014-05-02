@@ -1,0 +1,1162 @@
+﻿<script src="../template.js"></script> 
+<script src="../../DowJones.Web.Mvc.UI.Components/HeadlineListCarousel/jquery.jcarousel.js"></script> 
+<script>
+    setTargetScript('../../DowJones.Web.Mvc.UI.Components/HeadlineListCarousel/HeadlineListCarousel.js');
+
+    $(document).ready(function () {
+        function getSampleMetaData() {
+            return $.extend({}, { options: { numberOfHeadlinesToScrollBy: 3, displaySnippets: 0, displayTime: true, extension: "", debug: false }, tokens: {}, data: {
+                "isTimeInGMT": false,
+                "hitCount": {
+                    "exp": 0,
+                    "isPositive": true,
+                    "rawText": {
+                        "Value": "1,476"
+                    },
+                    "text": {
+                        "Value": "1,476"
+                    },
+                    "value": 1476
+                },
+                "resultSet": {
+                    "count": {
+                        "exp": 0,
+                        "isPositive": true,
+                        "rawText": {
+                            "Value": "10"
+                        },
+                        "text": {
+                            "Value": "10"
+                        },
+                        "value": 10
+                    },
+                    "duplicateCount": {
+                        "exp": 0,
+                        "isPositive": true,
+                        "rawText": {
+                            "Value": "10"
+                        },
+                        "text": {
+                            "Value": "10"
+                        },
+                        "value": 10
+                    },
+                    "first": {
+                        "exp": 0,
+                        "isPositive": true,
+                        "rawText": {
+                            "Value": "0"
+                        },
+                        "text": {
+                            "Value": "0"
+                        },
+                        "value": 0
+                    },
+                    "headlines": [
+            {
+                "baseLanguage": "de",
+                "baseLanguageDescriptor": "${langDe}",
+                "contentCategory": 5,
+                "contentCategoryDescriptor": "multimedia",
+                "mimetype": null,
+                "contentSubCategory": 5,
+                "contentSubCategoryDescriptor": "video",
+                "publicationDateTime": "/Date(1293598800000)/",
+                "publicationDateTimeDescriptor": "Wednesday, 29 December 2010",
+                "sourceReference": "mmsavo",
+                "sourceDescriptor": "Dow Jones German Newswires Video",
+                "wordCount": 52,
+                "wordCountDescriptor": "52 ${words}",
+                "selected": false,
+                "index": {
+                    "exp": 0,
+                    "isPositive": true,
+                    "rawText": {
+                        "Value": "1"
+                    },
+                    "text": {
+                        "Value": "1"
+                    },
+                    "value": 1
+                },
+                "title": [
+                    {
+                        "items": [
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Highlight",
+                                "value": "Dow"
+                            },
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Highlight",
+                                "value": "Jones"
+                            },
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Textual",
+                                "value": "Morning Briefing vom 29. Dezember 2010"
+                            }
+                        ]
+                    }
+                ],
+                "truncatedTitle": null,
+                "snippet": [
+                    {
+                        "items": [
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Textual",
+                                "value": "Summary: Nach der Nullnummer des Vortags zieht der deutsche Aktienmarkt am Mittwochmorgen etwas an. Ordentliche Vorgaben aus Asien hieven den DAX im frühen Geschäft dabei zwar zeitweilig über 7.000 Punkte, für einen abermaligen nachhaltigen ..."
+                            }
+                        ]
+                    }
+                ],
+                "credit": null,
+                "byline": null,
+                "sectionName": null,
+                "copyright": [
+                    {
+                        "items": [
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Textual",
+                                "value": "© 2010"
+                            }
+                        ]
+                    }
+                ],
+                "columnName": null,
+                "duplicateHeadlines": [],
+                "summary": null,
+                "comment": null,
+                "importance": null,
+                "importanceDescriptor": null,
+                "hasDuplicates": false,
+                "documentVector": "[marke reicht, 1][vortags zieht, 1][zeitweilig ueber, 1][fruehen geschaeft, 1][morning briefing, 1][asien hieven, 1][ordentliche vorgaben, 1][jones morning, 1][deutsche aktienmarkt, 1][psychologisch wichtige, 1][sprung ueber, 1][dow jones, 1][abermaligen nachhaltigen, 1][wichtige marke, 1][nachhaltigen sprung, 1]",
+                "time": "2:55",
+                "reference": {
+                    "type": "accessionNo",
+                    "guid": "MMSAVO0020101229e6ct00001",
+                    "externalUri": null,
+                    "mimetype": "text/xml",
+                    "ref": null
+                },
+                "thumbnailImage": {
+                    "guid": null,
+                    "uri": "http://www.youtube.com/watch?v=jhaAiZfG38Q",
+                    "src": "http://arch.dev.us.factiva.com/Showcase/EMG.Utility.Handlers.Video.ImageHandler.ashx?url=http%3a%2f%2fi3.ytimg.com%2fvi%2fjhaAiZfG38Q%2fdefault.jpg&height=77&ar=locked"
+                },
+                "truncationRules": {
+                    "Extrasmall": 52,
+                    "Small": 0,
+                    "Medium": 0,
+                    "Large": 0
+                }
+            },
+            {
+                "baseLanguage": "en",
+                "baseLanguageDescriptor": "${langEn}",
+                "contentCategory": 5,
+                "contentCategoryDescriptor": "multimedia",
+                "mimetype": null,
+                "contentSubCategory": 5,
+                "contentSubCategoryDescriptor": "video",
+                "publicationDateTime": "/Date(1293598800000)/",
+                "publicationDateTimeDescriptor": "Wednesday, 29 December 2010",
+                "sourceReference": "mmsaja",
+                "sourceDescriptor": "MarketWatch Video",
+                "wordCount": 683,
+                "wordCountDescriptor": "683 ${words}",
+                "selected": false,
+                "index": {
+                    "exp": 0,
+                    "isPositive": true,
+                    "rawText": {
+                        "Value": "2"
+                    },
+                    "text": {
+                        "Value": "2"
+                    },
+                    "value": 2
+                },
+                "title": [
+                    {
+                        "items": [
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Textual",
+                                "value": "Behavioral Investing: Beyond emotions"
+                            }
+                        ]
+                    }
+                ],
+                "truncatedTitle": null,
+                "snippet": [
+                    {
+                        "items": [
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Textual",
+                                "value": "...Investors aren0027t the only one struggling with their emotions getting in the way of their investing. I0027m in Vegas I would"
+                            },
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Highlight",
+                                "value": "Dow"
+                            },
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Highlight",
+                                "value": "Jones"
+                            },
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Textual",
+                                "value": "-- world stand here with my -- Bellini who0027s CEO of cavern researched things for joining asks my pleasure and so -- you..."
+                            }
+                        ]
+                    }
+                ],
+                "credit": null,
+                "byline": null,
+                "sectionName": null,
+                "copyright": [
+                    {
+                        "items": [
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Textual",
+                                "value": "© 2010"
+                            }
+                        ]
+                    }
+                ],
+                "columnName": null,
+                "duplicateHeadlines": [],
+                "summary": null,
+                "comment": null,
+                "importance": null,
+                "importanceDescriptor": null,
+                "hasDuplicates": false,
+                "documentVector": "[ve developed, 1][emotions, 1][financial advisors, 1][behavioral investing, 1][fund managers, 1][self awareness, 1][re, 0.894427][decisions, 0.894427][look, 0.774597][performance, 0.774597][improve, 0.774597][process, 0.774597][know, 0.774597][move back, 0.707107][world stand, 0.707107]",
+                "time": "3:43",
+                "reference": {
+                    "type": "accessionNo",
+                    "guid": "MMSAJA0020101229e6ct00001",
+                    "externalUri": null,
+                    "mimetype": "text/xml",
+                    "ref": null
+                },
+                "thumbnailImage": {
+                    "guid": null,
+                    "uri": "http://www.youtube.com/watch?v=jhaAiZfG38Q",
+                    "src": "http://arch.dev.us.factiva.com/Showcase/EMG.Utility.Handlers.Video.ImageHandler.ashx?url=http%3a%2f%2ficonpacks.mozdev.org%2fimages%2fthunderbird-icon.png&height=77&ar=locked"
+                },
+                "truncationRules": {
+                    "Extrasmall": 28,
+                    "Small": 0,
+                    "Medium": 0,
+                    "Large": 0
+                }
+            },
+            {
+                "baseLanguage": "de",
+                "baseLanguageDescriptor": "${langDe}",
+                "contentCategory": 5,
+                "contentCategoryDescriptor": "multimedia",
+                "mimetype": null,
+                "contentSubCategory": 5,
+                "contentSubCategoryDescriptor": "video",
+                "publicationDateTime": "/Date(1293512400000)/",
+                "publicationDateTimeDescriptor": "Tuesday, 28 December 2010",
+                "sourceReference": "mmsavo",
+                "sourceDescriptor": "Dow Jones German Newswires Video",
+                "wordCount": 31,
+                "wordCountDescriptor": "31 ${words}",
+                "selected": false,
+                "index": {
+                    "exp": 0,
+                    "isPositive": true,
+                    "rawText": {
+                        "Value": "3"
+                    },
+                    "text": {
+                        "Value": "3"
+                    },
+                    "value": 3
+                },
+                "title": [
+                    {
+                        "items": [
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Highlight",
+                                "value": "Dow"
+                            },
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Highlight",
+                                "value": "Jones"
+                            },
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Textual",
+                                "value": "Morning Briefing vom 28. Dezember 2010"
+                            }
+                        ]
+                    }
+                ],
+                "truncatedTitle": null,
+                "snippet": [
+                    {
+                        "items": [
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Textual",
+                                "value": "Summary: Behauptetet zeigt sich der deutsche Aktienmarkt am Dienstag im Eröffnungsgeschäft. Im Blick steht die Entwicklung des Autosektors nach dem Kursrutsch vom Vortag."
+                            }
+                        ]
+                    }
+                ],
+                "credit": null,
+                "byline": null,
+                "sectionName": null,
+                "copyright": [
+                    {
+                        "items": [
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Textual",
+                                "value": "© 2010"
+                            }
+                        ]
+                    }
+                ],
+                "columnName": null,
+                "duplicateHeadlines": [],
+                "summary": null,
+                "comment": null,
+                "importance": null,
+                "importanceDescriptor": null,
+                "hasDuplicates": false,
+                "documentVector": "[jones morning, 1][dow jones, 1][behauptetet zeigt, 1][morning briefing, 1][deutsche aktienmarkt, 1][blick, 0.632456][eroeffnungsgeschaeft, 0.632456][dienstag, 0.632456][kursrutsch, 0.632456][autosektors, 0.632456][dezember, 0.632456][summary, 0.632456][entwicklung, 0.632456][vortag, 0.632456]",
+                "time": "2:19",
+                "reference": {
+                    "type": "accessionNo",
+                    "guid": "MMSAVO0020101228e6cs00001",
+                    "externalUri": null,
+                    "mimetype": "text/xml",
+                    "ref": null
+                },
+                "thumbnailImage": {
+                    "guid": null,
+                    "uri": "http://www.youtube.com/watch?v=jhaAiZfG38Q",
+                    "src": "http://arch.dev.us.factiva.com/Showcase/EMG.Utility.Handlers.Video.ImageHandler.ashx?url=http%3a%2f%2fi3.ytimg.com%2fvi%2fjhaAiZfG38Q%2fdefault.jpg&height=77&ar=locked"
+                },
+                "truncationRules": {
+                    "Extrasmall": 52,
+                    "Small": 0,
+                    "Medium": 0,
+                    "Large": 0
+                }
+            },
+            {
+                "baseLanguage": "de",
+                "baseLanguageDescriptor": "${langDe}",
+                "contentCategory": 5,
+                "contentCategoryDescriptor": "multimedia",
+                "mimetype": null,
+                "contentSubCategory": 5,
+                "contentSubCategoryDescriptor": "video",
+                "publicationDateTime": "/Date(1293512400000)/",
+                "publicationDateTimeDescriptor": "Tuesday, 28 December 2010",
+                "sourceReference": "mmsavo",
+                "sourceDescriptor": "Dow Jones German Newswires Video",
+                "wordCount": 43,
+                "wordCountDescriptor": "43 ${words}",
+                "selected": false,
+                "index": {
+                    "exp": 0,
+                    "isPositive": true,
+                    "rawText": {
+                        "Value": "4"
+                    },
+                    "text": {
+                        "Value": "4"
+                    },
+                    "value": 4
+                },
+                "title": [
+                    {
+                        "items": [
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Textual",
+                                "value": "Wachstumshoffnungen treiben den Ölpreis"
+                            }
+                        ]
+                    }
+                ],
+                "truncatedTitle": null,
+                "snippet": [
+                    {
+                        "items": [
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Textual",
+                                "value": "...vor dem Hintergrund der hohen Liquidität im Finanzsystem und den guten Wachstumsaussichten der Weltwirtschaft im kommenden Jahr weiter zulegen. Das ist das Ergebnis einer Umfrage von"
+                            },
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Highlight",
+                                "value": "Dow"
+                            },
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Highlight",
+                                "value": "Jones"
+                            },
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Textual",
+                                "value": "Newswires bei den Öl-Analysten und Marktexperten...."
+                            }
+                        ]
+                    }
+                ],
+                "credit": null,
+                "byline": null,
+                "sectionName": null,
+                "copyright": [
+                    {
+                        "items": [
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Textual",
+                                "value": "© 2010"
+                            }
+                        ]
+                    }
+                ],
+                "columnName": null,
+                "duplicateHeadlines": [],
+                "summary": null,
+                "comment": null,
+                "importance": null,
+                "importanceDescriptor": null,
+                "hasDuplicates": false,
+                "documentVector": "[guten wachstumsaussichten, 1][jones newswires, 1][oelpreisnotierungen duerften, 1][wachstumshoffnungen treiben, 1][hohen liquiditaet, 1][dow jones, 1][kommenden, 0.632456][hintergrund, 0.632456][weltwirtschaft, 0.632456][ergebnis, 0.632456][summary, 0.632456][finanzsystem, 0.632456][oelpreis, 0.632456][zulegen, 0.632456][umfrage, 0.632456]",
+                "time": "2:27",
+                "reference": {
+                    "type": "accessionNo",
+                    "guid": "MMSAVO0020101228e6cs0002t",
+                    "externalUri": null,
+                    "mimetype": "text/xml",
+                    "ref": null
+                },
+                "thumbnailImage": {
+                    "guid": null,
+                    "uri": "http://www.youtube.com/watch?v=jhaAiZfG38Q",
+                    "src": "http://arch.dev.us.factiva.com/Showcase/EMG.Utility.Handlers.Video.ImageHandler.ashx?url=http%3a%2f%2ficonpacks.mozdev.org%2fimages%2fthunderbird-icon.png&height=77&ar=locked"
+                },
+                "truncationRules": {
+                    "Extrasmall": 27,
+                    "Small": 0,
+                    "Medium": 0,
+                    "Large": 0
+                }
+            },
+            {
+                "baseLanguage": "de",
+                "baseLanguageDescriptor": "${langDe}",
+                "contentCategory": 5,
+                "contentCategoryDescriptor": "multimedia",
+                "mimetype": null,
+                "contentSubCategory": 5,
+                "contentSubCategoryDescriptor": "video",
+                "publicationDateTime": "/Date(1293426000000)/",
+                "publicationDateTimeDescriptor": "Monday, 27 December 2010",
+                "sourceReference": "mmsavo",
+                "sourceDescriptor": "Dow Jones German Newswires Video",
+                "wordCount": 24,
+                "wordCountDescriptor": "24 ${words}",
+                "selected": false,
+                "index": {
+                    "exp": 0,
+                    "isPositive": true,
+                    "rawText": {
+                        "Value": "5"
+                    },
+                    "text": {
+                        "Value": "5"
+                    },
+                    "value": 5
+                },
+                "title": [
+                    {
+                        "items": [
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Highlight",
+                                "value": "Dow"
+                            },
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Highlight",
+                                "value": "Jones"
+                            },
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Textual",
+                                "value": "Morning Briefing vom 27. Dezember 2010"
+                            }
+                        ]
+                    }
+                ],
+                "truncatedTitle": null,
+                "snippet": [
+                    {
+                        "items": [
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Textual",
+                                "value": "Summary: Mit überraschend starken Kursverlusten ist der deutsche Aktienmarkt am Montag in die neue Handelswoche gestartet."
+                            }
+                        ]
+                    }
+                ],
+                "credit": null,
+                "byline": null,
+                "sectionName": null,
+                "copyright": [
+                    {
+                        "items": [
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Textual",
+                                "value": "© 2010"
+                            }
+                        ]
+                    }
+                ],
+                "columnName": null,
+                "duplicateHeadlines": [],
+                "summary": null,
+                "comment": null,
+                "importance": null,
+                "importanceDescriptor": null,
+                "hasDuplicates": false,
+                "documentVector": "[morning briefing, 1][dow jones, 1][deutsche aktienmarkt, 1][jones morning, 1][starken kursverlusten, 1][handelswoche gestartet, 1][ueberraschend starken, 1][summary, 0.632456][montag, 0.632456][dezember, 0.632456]",
+                "time": "3:9",
+                "reference": {
+                    "type": "accessionNo",
+                    "guid": "MMSAVO0020101227e6cr00001",
+                    "externalUri": null,
+                    "mimetype": "text/xml",
+                    "ref": null
+                },
+                "thumbnailImage": {
+                    "guid": null,
+                    "uri": "http://www.youtube.com/watch?v=jhaAiZfG38Q",
+                    "src": "http://arch.dev.us.factiva.com/Showcase/EMG.Utility.Handlers.Video.ImageHandler.ashx?url=http%3a%2f%2fi3.ytimg.com%2fvi%2fjhaAiZfG38Q%2fdefault.jpg&height=77&ar=locked"
+                },
+                "truncationRules": {
+                    "Extrasmall": 52,
+                    "Small": 0,
+                    "Medium": 0,
+                    "Large": 0
+                }
+            },
+            {
+                "baseLanguage": "de",
+                "baseLanguageDescriptor": "${langDe}",
+                "contentCategory": 5,
+                "contentCategoryDescriptor": "multimedia",
+                "mimetype": null,
+                "contentSubCategory": 5,
+                "contentSubCategoryDescriptor": "video",
+                "publicationDateTime": "/Date(1293080400000)/",
+                "publicationDateTimeDescriptor": "Thursday, 23 December 2010",
+                "sourceReference": "mmsavo",
+                "sourceDescriptor": "Dow Jones German Newswires Video",
+                "wordCount": 42,
+                "wordCountDescriptor": "42 ${words}",
+                "selected": false,
+                "index": {
+                    "exp": 0,
+                    "isPositive": true,
+                    "rawText": {
+                        "Value": "6"
+                    },
+                    "text": {
+                        "Value": "6"
+                    },
+                    "value": 6
+                },
+                "title": [
+                    {
+                        "items": [
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Highlight",
+                                "value": "Dow"
+                            },
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Highlight",
+                                "value": "Jones"
+                            },
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Textual",
+                                "value": "Marktausblick für die kommende Woche"
+                            }
+                        ]
+                    }
+                ],
+                "truncatedTitle": null,
+                "snippet": [
+                    {
+                        "items": [
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Textual",
+                                "value": "Summary: Nach Weihnachten sind die Umsätze traditionell niedrig. Doch bedeutet dies auch geringe Kursbewegungen? Börsenreporter Herbert Rude gibt eine Antwort darauf und nennt die wichtigsten Ereignisse, die am deutschen Aktienmarkt bis ..."
+                            }
+                        ]
+                    }
+                ],
+                "credit": null,
+                "byline": null,
+                "sectionName": null,
+                "copyright": [
+                    {
+                        "items": [
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Textual",
+                                "value": "© 2010"
+                            }
+                        ]
+                    }
+                ],
+                "columnName": null,
+                "duplicateHeadlines": [],
+                "summary": null,
+                "comment": null,
+                "importance": null,
+                "importanceDescriptor": null,
+                "hasDuplicates": false,
+                "documentVector": "[silvester einflussfaktoren, 1][traditionell niedrig, 1][jones marktausblick, 1][umsaetze traditionell, 1][bedeutet dies, 1][herbert rude, 1][boersenreporter herbert, 1][geringe kursbewegungen, 1][dow jones, 1][wichtigsten ereignisse, 1][antwort darauf, 1][kommende woche, 1][nennt, 0.632456][aktienmarkt, 0.632456][weihnachten, 0.632456]",
+                "time": "2:0",
+                "reference": {
+                    "type": "accessionNo",
+                    "guid": "MMSAVO0020101223e6cn0005l",
+                    "externalUri": null,
+                    "mimetype": "text/xml",
+                    "ref": null
+                },
+                "thumbnailImage": {
+                    "guid": null,
+                    "uri": "http://www.youtube.com/watch?v=jhaAiZfG38Q",
+                    "src": "http://arch.dev.us.factiva.com/Showcase/EMG.Utility.Handlers.Video.ImageHandler.ashx?url=http%3a%2f%2ficonpacks.mozdev.org%2fimages%2fthunderbird-icon.png&height=77&ar=locked"
+                },
+                "truncationRules": {
+                    "Extrasmall": 49,
+                    "Small": 0,
+                    "Medium": 0,
+                    "Large": 0
+                }
+            },
+            {
+                "baseLanguage": "de",
+                "baseLanguageDescriptor": "${langDe}",
+                "contentCategory": 5,
+                "contentCategoryDescriptor": "multimedia",
+                "mimetype": null,
+                "contentSubCategory": 5,
+                "contentSubCategoryDescriptor": "video",
+                "publicationDateTime": "/Date(1292821200000)/",
+                "publicationDateTimeDescriptor": "Monday, 20 December 2010",
+                "sourceReference": "mmsavo",
+                "sourceDescriptor": "Dow Jones German Newswires Video",
+                "wordCount": 25,
+                "wordCountDescriptor": "25 ${words}",
+                "selected": false,
+                "index": {
+                    "exp": 0,
+                    "isPositive": true,
+                    "rawText": {
+                        "Value": "7"
+                    },
+                    "text": {
+                        "Value": "7"
+                    },
+                    "value": 7
+                },
+                "title": [
+                    {
+                        "items": [
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Highlight",
+                                "value": "Dow"
+                            },
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Highlight",
+                                "value": "Jones"
+                            },
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Textual",
+                                "value": "Morning Briefing 20. Dezember"
+                            }
+                        ]
+                    }
+                ],
+                "truncatedTitle": null,
+                "snippet": [
+                    {
+                        "items": [
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Textual",
+                                "value": "Summary: Etwas fester sind die Kurse am Frankfurter Aktienmarkt in den Handel gestartet. Börsenreporter Herbert Rude nennt die Gründe."
+                            }
+                        ]
+                    }
+                ],
+                "credit": null,
+                "byline": null,
+                "sectionName": null,
+                "copyright": [
+                    {
+                        "items": [
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Textual",
+                                "value": "© 2010"
+                            }
+                        ]
+                    }
+                ],
+                "columnName": null,
+                "duplicateHeadlines": [],
+                "summary": null,
+                "comment": null,
+                "importance": null,
+                "importanceDescriptor": null,
+                "hasDuplicates": false,
+                "documentVector": "[jones morning, 1][dow jones, 1][frankfurter aktienmarkt, 1][herbert rude, 1][handel gestartet, 1][boersenreporter herbert, 1][rude nennt, 1][morning briefing, 1][summary, 0.632456][dezember, 0.632456][gruende, 0.632456][kurse, 0.632456][fester, 0.632456]",
+                "time": "2:3",
+                "reference": {
+                    "type": "accessionNo",
+                    "guid": "MMSAVO0020101220e6ck00001",
+                    "externalUri": null,
+                    "mimetype": "text/xml",
+                    "ref": null
+                },
+                "thumbnailImage": {
+                    "guid": null,
+                    "uri": "http://www.youtube.com/watch?v=jhaAiZfG38Q",
+                    "src": "http://arch.dev.us.factiva.com/Showcase/EMG.Utility.Handlers.Video.ImageHandler.ashx?url=http%3a%2f%2fi3.ytimg.com%2fvi%2fjhaAiZfG38Q%2fdefault.jpg&height=77&ar=locked"
+                },
+                "truncationRules": {
+                    "Extrasmall": 51,
+                    "Small": 0,
+                    "Medium": 0,
+                    "Large": 0
+                }
+            },
+            {
+                "baseLanguage": "de",
+                "baseLanguageDescriptor": "${langDe}",
+                "contentCategory": 5,
+                "contentCategoryDescriptor": "multimedia",
+                "mimetype": null,
+                "contentSubCategory": 5,
+                "contentSubCategoryDescriptor": "video",
+                "publicationDateTime": "/Date(1293080400000)/",
+                "publicationDateTimeDescriptor": "Thursday, 23 December 2010",
+                "sourceReference": "mmsavo",
+                "sourceDescriptor": "Dow Jones German Newswires Video",
+                "wordCount": 35,
+                "wordCountDescriptor": "35 ${words}",
+                "selected": false,
+                "index": {
+                    "exp": 0,
+                    "isPositive": true,
+                    "rawText": {
+                        "Value": "8"
+                    },
+                    "text": {
+                        "Value": "8"
+                    },
+                    "value": 8
+                },
+                "title": [
+                    {
+                        "items": [
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Highlight",
+                                "value": "Dow"
+                            },
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Highlight",
+                                "value": "Jones"
+                            },
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Textual",
+                                "value": "Morning Briefing 23. Dezember"
+                            }
+                        ]
+                    }
+                ],
+                "truncatedTitle": null,
+                "snippet": [
+                    {
+                        "items": [
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Textual",
+                                "value": "Summary: Gut behauptet ist der deutsche Aktienmarkt am Donnerstag in den Handel gestartet. Wie von Marktteilnehmern erwartet sind Umsätze und Kursveränderungen extrem gering, beschreibt Hans-Joachim Koch die Lage."
+                            }
+                        ]
+                    }
+                ],
+                "credit": null,
+                "byline": null,
+                "sectionName": null,
+                "copyright": [
+                    {
+                        "items": [
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Textual",
+                                "value": "© 2010"
+                            }
+                        ]
+                    }
+                ],
+                "columnName": null,
+                "duplicateHeadlines": [],
+                "summary": null,
+                "comment": null,
+                "importance": null,
+                "importanceDescriptor": null,
+                "hasDuplicates": false,
+                "documentVector": "[morning briefing, 1][joachim koch, 1][beschreibt hans, 1][extrem gering, 1][jones morning, 1][dow jones, 1][handel gestartet, 1][marktteilnehmern erwartet, 1][gut behauptet, 1][deutsche aktienmarkt, 1][kursveraenderungen extrem, 1][umsaetze, 0.632456][dezember, 0.632456][donnerstag, 0.632456][summary, 0.632456]",
+                "time": "5:47",
+                "reference": {
+                    "type": "accessionNo",
+                    "guid": "MMSAVO0020101223e6cn00001",
+                    "externalUri": null,
+                    "mimetype": "text/xml",
+                    "ref": null
+                },
+                "thumbnailImage": {
+                    "guid": null,
+                    "uri": "http://www.youtube.com/watch?v=jhaAiZfG38Q",
+                    "src": "http://arch.dev.us.factiva.com/Showcase/EMG.Utility.Handlers.Video.ImageHandler.ashx?url=http%3a%2f%2ficonpacks.mozdev.org%2fimages%2fthunderbird-icon.png&height=77&ar=locked"
+                },
+                "truncationRules": {
+                    "Extrasmall": 51,
+                    "Small": 0,
+                    "Medium": 0,
+                    "Large": 0
+                }
+            },
+            {
+                "baseLanguage": "en",
+                "baseLanguageDescriptor": "${langEn}",
+                "contentCategory": 5,
+                "contentCategoryDescriptor": "multimedia",
+                "mimetype": null,
+                "contentSubCategory": 5,
+                "contentSubCategoryDescriptor": "video",
+                "publicationDateTime": "/Date(1292821200000)/",
+                "publicationDateTimeDescriptor": "Monday, 20 December 2010",
+                "sourceReference": "mmsavi",
+                "sourceDescriptor": "Dow Jones Adviser Video",
+                "wordCount": 342,
+                "wordCountDescriptor": "342 ${words}",
+                "selected": false,
+                "index": {
+                    "exp": 0,
+                    "isPositive": true,
+                    "rawText": {
+                        "Value": "9"
+                    },
+                    "text": {
+                        "Value": "9"
+                    },
+                    "value": 9
+                },
+                "title": [
+                    {
+                        "items": [
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Textual",
+                                "value": "Year-End Checklist: SEC Registration"
+                            }
+                        ]
+                    }
+                ],
+                "truncatedTitle": null,
+                "snippet": [
+                    {
+                        "items": [
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Textual",
+                                "value": "...advisers are facing a long to-do list as 2010 winds down. The new year will ring in new SEC registration requirements."
+                            },
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Highlight",
+                                "value": "Dow"
+                            },
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Highlight",
+                                "value": "Jones"
+                            },
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Textual",
+                                "value": "Compliance Watch columnist, Suzanne Barlyn, explains how to prepare before time runs out...."
+                            }
+                        ]
+                    }
+                ],
+                "credit": null,
+                "byline": null,
+                "sectionName": null,
+                "copyright": [
+                    {
+                        "items": [
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Textual",
+                                "value": "(c) 2010"
+                            }
+                        ]
+                    }
+                ],
+                "columnName": null,
+                "duplicateHeadlines": [],
+                "summary": null,
+                "comment": null,
+                "importance": null,
+                "importanceDescriptor": null,
+                "hasDuplicates": false,
+                "documentVector": "[dow jones, 1][private equity, 1][equity fund, 1][jones newswires, 0.816497][hedge fund, 0.816497][fund advisers, 0.816497][sec registration, 0.816497][help, 0.632456][need, 0.632456][lot, 0.632456][new sec, 0.57735][watch columnist, 0.57735][hedge funds, 0.57735][new year, 0.57735][registration requirements, 0.57735]",
+                "time": "2:7",
+                "reference": {
+                    "type": "accessionNo",
+                    "guid": "MMSAVI0020101220e6ck00001",
+                    "externalUri": null,
+                    "mimetype": "text/xml",
+                    "ref": null
+                },
+                "thumbnailImage": {
+                    "guid": null,
+                    "uri": "http://www.youtube.com/watch?v=jhaAiZfG38Q",
+                    "src": "http://arch.dev.us.factiva.com/Showcase/EMG.Utility.Handlers.Video.ImageHandler.ashx?url=http%3a%2f%2fi3.ytimg.com%2fvi%2fjhaAiZfG38Q%2fdefault.jpg&height=77&ar=locked"
+                },
+                "truncationRules": {
+                    "Extrasmall": 23,
+                    "Small": 0,
+                    "Medium": 0,
+                    "Large": 0
+                }
+            },
+            {
+                "baseLanguage": "de",
+                "baseLanguageDescriptor": "${langDe}",
+                "contentCategory": 5,
+                "contentCategoryDescriptor": "multimedia",
+                "mimetype": null,
+                "contentSubCategory": 5,
+                "contentSubCategoryDescriptor": "video",
+                "publicationDateTime": "/Date(1292907600000)/",
+                "publicationDateTimeDescriptor": "Tuesday, 21 December 2010",
+                "sourceReference": "mmsavo",
+                "sourceDescriptor": "Dow Jones German Newswires Video",
+                "wordCount": 41,
+                "wordCountDescriptor": "41 ${words}",
+                "selected": false,
+                "index": {
+                    "exp": 0,
+                    "isPositive": true,
+                    "rawText": {
+                        "Value": "10"
+                    },
+                    "text": {
+                        "Value": "10"
+                    },
+                    "value": 10
+                },
+                "title": [
+                    {
+                        "items": [
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Highlight",
+                                "value": "Dow"
+                            },
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Highlight",
+                                "value": "Jones"
+                            },
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Textual",
+                                "value": "Marktausblick für den 22. Dezember"
+                            }
+                        ]
+                    }
+                ],
+                "truncatedTitle": null,
+                "snippet": [
+                    {
+                        "items": [
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Textual",
+                                "value": "Summary: Zwar kehrt langsam vorweihnachtliche Ruhe ein, doch aktuelle Konjunkturdaten könnten am Mittwoch noch einmal - zusammen mit dem saisonal üblichen Window Dressing - für Bewegung sorgen. Dazu nennt Börsenreporter Herbert Rude die ..."
+                            }
+                        ]
+                    }
+                ],
+                "credit": null,
+                "byline": null,
+                "sectionName": null,
+                "copyright": [
+                    {
+                        "items": [
+                            {
+                                "_type": 0,
+                                "guid": null,
+                                "type": "Textual",
+                                "value": "© 2010"
+                            }
+                        ]
+                    }
+                ],
+                "columnName": null,
+                "duplicateHeadlines": [],
+                "summary": null,
+                "comment": null,
+                "importance": null,
+                "importanceDescriptor": null,
+                "hasDuplicates": false,
+                "documentVector": "[herbert rude, 1][bewegung sorgen, 1][window dressing, 1][ueblichen window, 1][saisonal ueblichen, 1][nennt boersenreporter, 1][kehrt langsam, 1][konjunkturdaten koennten, 1][jones marktausblick, 1][vorweihnachtliche ruhe, 1][langsam vorweihnachtliche, 1][boersenreporter herbert, 1][aktuelle konjunkturdaten, 1][dow jones, 1][zusammen, 0.632456]",
+                "time": "1:54",
+                "reference": {
+                    "type": "accessionNo",
+                    "guid": "MMSAVO0020101221e6cl0005l",
+                    "externalUri": null,
+                    "mimetype": "text/xml",
+                    "ref": null
+                },
+                "thumbnailImage": {
+                    "guid": null,
+                    "uri": "http://www.youtube.com/watch?v=jhaAiZfG38Q",
+                    "src": "http://arch.dev.us.factiva.com/Showcase/EMG.Utility.Handlers.Video.ImageHandler.ashx?url=http%3a%2f%2ficonpacks.mozdev.org%2fimages%2fthunderbird-icon.png&height=77&ar=locked"
+                },
+                "truncationRules": {
+                    "Extrasmall": 49,
+                    "Small": 0,
+                    "Medium": 0,
+                    "Large": 0
+                }
+            }
+        ]
+                }
+            }, eventHandlers: { "OnHeadlineClick": "onHeadlineClick"}
+            });
+        }
+
+        test("has $.fn.dj_headlineListCarousel", function () {
+            ok($.fn.dj_headlineListCarousel);
+            ok(createjQueryTestElement('HeadlineListCarousel').dj_headlineListCarousel);
+        });
+
+        test("should create new Headline List Carousel control", function () {
+            var headlineList = createjQueryTestElement('HeadlineListCarousel').dj_headlineListCarousel(getSampleMetaData());
+
+            ok(headlineList);
+        });
+
+        test("should assign data", function () {
+            var metaData = getSampleMetaData();
+            var expectedHitCount = metaData.data.hitCount.value;
+
+            var headlineListCarousel = createjQueryTestElement('HeadlineListCarousel').dj_headlineListCarousel(metaData).data('dj_headlineListCarousel');
+            var actualData = headlineListCarousel.getData();
+
+            equals(expectedHitCount, actualData.hitCount.value);
+        });
+
+    });
+</script>

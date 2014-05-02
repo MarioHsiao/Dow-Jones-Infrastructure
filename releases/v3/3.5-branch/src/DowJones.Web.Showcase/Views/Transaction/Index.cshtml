@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    Html.DJ().ScriptRegistry()
+        .OnDocumentReady(@"
+            $(document).ready(function () {
+                $.ajax({
+                    url: ""/DowJones.Web.Mvc.UI.Canvas.WebServices.CanvasRenderingManagerDataService.asmx/Ping"",
+                    type: ""GET"",
+                    processData: false,
+                    contentType: ""application/json"",
+                    timeout: 10000,
+                    dataType: ""text"",  // not ""json"" we'll parse
+                    success: function (res) { alert(res); },
+                    error: function (xhr, status) { alert(status); }
+                });
+
+            }); 
+        ");
+}
+
+<b>Transaction</b>
+<script type="text/javascript">
+
+   
+
+</script>

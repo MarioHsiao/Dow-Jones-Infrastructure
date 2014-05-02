@@ -1,0 +1,30 @@
+﻿@using System.Web.Mvc
+@using System.Web.Mvc.Html
+@using DowJones.Search.Navigation;
+
+@model OutletsSearchResults
+@ScriptResource RelativeResourceName=OutletsSearchResults.js
+@ClientPlugin dj_OutletsSearchResults
+
+<input type="hidden" id="outlet-list-pageSize" name="EntityNavigator.pageSize" />
+<input type="hidden" id="outlet-list-firstIndex" name="EntityNavigator.firstIndex" />
+<input type="hidden" id="outlet-list-sortBy" name="EntityNavigator.sortBy" />
+<input type="hidden" id="outlet-list-sortOrder" name="EntityNavigator.sortOrder" />
+<input type="hidden" id="outlet-list-selectedEntityIds" name="EntityNavigator.selectedEntityIds" />
+<div class="columns clearfix">
+	<div style="height:650px;overflow:auto;">
+	@if (Model.RelatedConcepts != null && Model.HideRelatedConcepts == false)
+	{
+		<div class="dj_related-concepts ui-component clearfix">
+			<div class="list-wrap">
+				<h2>@DJ.Token( "relatedConcepts" )</h2>
+				@DJ.Render( Model.RelatedConcepts )
+			</div>
+			<span class="dj_icon dj_close-section dj_icon-close-dark-gray"></span>        
+		</div>
+	}
+	
+	@Html.Hidden("hideRelatedConcepts", Model.HideRelatedConcepts.ToString().ToLower())
+	@Html.DJ().Render( Model.Outlets )
+	</div>
+</div>

@@ -1,0 +1,50 @@
+﻿<% 
+    var model = self;
+    var options = this.options;
+    var hasCorrections = model.corrections && model.corrections.length;
+    var hasNotes = model.notes && model.notes.length;
+    var hasLeadParagraphs = model.leadParagraphs && model.leadParagraphs.length;
+    var showIndexingCodeSets = options.showIndexing && model.indexingCodeSets && model.indexingCodeSets.length;
+    var showIpcs = options.showIndexing && model.ipcs && model.ipcs.length;
+    var showIpds = options.showIndexing && model.ipds && model.ipds.length;
+    var i, len;
+%>
+<div class="dj_article_article_body">
+    <% if(hasCorrections) { 
+        for(i = 0, len = model.corrections.length; i < len; i++) { 
+            var item = model.corrections[i]; %>
+            <%= this.templates.paragraph(item) %>
+    <% }} %>
+    
+    <%= this.templates.section({indexCode: "LP", items: model.leadParagraphs}) %>
+    <%= this.templates.section({indexCode: "TD", items: model.tailParagraphs}) %>
+    
+    <% if (options.articleDisplayOption !== "Headline") {
+        if (model.contact) %> <%= this.templates.section({indexCode: "CT", items: [model.contact]}) %>
+
+        <%= this.templates.section({indexCode: "RF", items: model.notes}) %>
+    
+        <% if (model.artWork) %> <%= this.templates.section({indexCode: "ART", items: [model.artWork]}) %>
+    <% } %>  
+    
+    <% if (showIndexingCodeSets) 
+        for (i = 0, len = model.indexingCodeSets.length; i < len; i++) { 
+            var ics = model.indexingCodeSets[i];       
+    %> 
+        <%= this.templates.simpleSection({indexCode: ics.code, item: ics.set}) %>
+    <% } %> 
+    
+    <% if (showIpcs) %> 
+        <%= this.templates.simpleSection({indexCode: "IPC", item: model.ipcs.join(' | ')}) %>
+    
+    <% if (showIpds) %> 
+        <%= this.templates.simpleSection({indexCode: "IPD", item: model.ipds.join(' | ')}) %>
+    
+    <% if (model.publisherName) %> 
+        <%= this.templates.simpleSection({indexCode: "PUB", item: model.publisherName}) %>
+    
+    <% if (model.accessionNo) %> 
+        <%= this.templates.simpleSection({indexCode: "AN", item: '<%= Token("document") %> ' + model.accessionNo}) %>
+    
+    <% if(model.contentCategory === "Picture") %> <div class="dj_article_clear"></div>
+</div>

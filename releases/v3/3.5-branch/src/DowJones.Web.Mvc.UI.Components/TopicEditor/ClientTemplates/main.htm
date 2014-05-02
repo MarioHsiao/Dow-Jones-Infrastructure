@@ -1,0 +1,39 @@
+﻿<div class="save-as-topic-form dj_select-box-alt">
+	<fieldset>
+        <div class="dj_form-field read-only freeText">
+	        <label><%= Token("freeText") %></label>
+	        <p></p>
+        </div>
+        <div class="topic-filters"></div>
+        <div class="dj_form-field topic-name">
+			<label><%= Token("topicName") %></label>
+			<input type="text" maxlength="25"/>
+			<span class="input-note"><%= Token("specialCharactersNotValid") %>
+				<br />&lt;&gt;&amp;#\%+|
+			</span>
+		</div>
+		<div class="dj_form-field topic-category">
+	        <label><%= Token("topicCategory") %></label>
+	        <select class="dj_selectbox dj_selectbox-small"></select>
+	    </div>
+		<div class="dj_form-field topic-color">
+	        <label><%= Token("chartTopicColor") %></label>
+	        <span class="custom-color"></span>
+			<span class="custom-color-picker">
+				<a href="javascript:void(0);" class="custom-color-picker-link"><%= Token("customColorPicker") %></a>
+				<span class="custom-color-picker-icon"></span>
+			</span>
+            <div class="color-picker-holder"></div>
+	    </div>
+		<div class="dj_form-field textarea topic-description">
+			<label><%= Token("topicDescription") %></label>
+			<textarea rows="3"></textarea>
+		</div>
+	</fieldset>
+</div>
+<div class="footer">
+    <span class="footer-note"><%= Token("saveAsTopicDisclaimer") %></span> 
+	<span class="dj_btn dj_btn-drk-gray"><%= Token("cancel") %></span>
+    <span class="dj_btn dj_btn-blue no-margin"><%= Token("save") %></span>
+    <div class="clear"></div>
+</div>
