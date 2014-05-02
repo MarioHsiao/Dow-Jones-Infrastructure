@@ -48,7 +48,10 @@ namespace DowJones.Json.Gateway.Processors
         public RestComposite GetNonDevelopmentRestComposite<T>(RestRequest<T> restRequest)
             where T : IJsonRestRequest, new()
         {
-            var client = new RestClient(restRequest.ControlData.RoutingData.ServerUri);
+            var client = new RestClient(restRequest.ControlData.RoutingData.ServerUri)
+                {
+                    FollowRedirects = false
+                };
             client.ClearHandlers();
 
             var decorator = JsonSerializerFactory.Create(restRequest.ControlData.RoutingData.Serializer);
@@ -72,7 +75,10 @@ namespace DowJones.Json.Gateway.Processors
             where T : IJsonRestRequest, new()
         {
 
-            var client = new RestClient(restRequest.ControlData.RoutingData.ServiceUrl);
+            var client = new RestClient(restRequest.ControlData.RoutingData.ServiceUrl)
+                {
+                    FollowRedirects = false
+                };
             client.ClearHandlers();
             
             var decorator = JsonSerializerFactory.Create(restRequest.ControlData.RoutingData.Serializer);

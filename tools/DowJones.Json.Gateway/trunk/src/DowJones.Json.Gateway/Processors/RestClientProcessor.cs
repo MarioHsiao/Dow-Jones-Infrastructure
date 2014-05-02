@@ -59,14 +59,18 @@ namespace DowJones.Json.Gateway.Processors
                    };
         }
 
-        protected internal void LogBodyContent(string content)
+        protected internal void LogResponse(IRestResponse response)
         {
             if (!Log.IsDebugEnabled)
             {
                 return;
             }
-
-            Log.DebugFormat("Raw Response Content:\n {0}", content);
+            Log.DebugFormat("Response Status Code:\n {0} {1}", response.StatusCode, response.StatusDescription);
+            if (response.Headers != null && response.Headers.Count > 0)
+                Log.DebugFormat("Response Headers \n {0}", response.Headers[0]);
+            Log.DebugFormat("Request :\n {0}", response.Request);
+            Log.DebugFormat("Response Status :\n {0}", response.ResponseStatus);
+            Log.DebugFormat("Raw Response Content:\n {0}", response.Content);
         }
 
         protected internal string GetRoutingUri<TRequest>(TRequest request)
@@ -108,7 +112,8 @@ namespace DowJones.Json.Gateway.Processors
                 DataContractConverterDecoratorSingleton.Instance :
                 JsonDotNetConverterDecoratorSingleton.Instance;
 
-            LogBodyContent(response.Content);
+            LogResponse(response);
+           
             switch (response.StatusCode)
             {
                 case HttpStatusCode.NonAuthoritativeInformation:
@@ -124,9 +129,9 @@ namespace DowJones.Json.Gateway.Processors
                             if (controlDataParam != null && controlDataParam.Value != null)
                             {
                                 var data = controlDataParam.Value.ToString();
-                                if (Log.IsErrorEnabled)
+                                if (Log.IsDebugEnabled)
                                 {
-                                    Log.ErrorFormat("Returned ControlData: {0}\n");
+                                    Log.DebugFormat("Returned ControlData: {0}\n", data);
                                 }
                                 if (data.IsNotEmpty())
                                 {
@@ -160,6 +165,7 @@ namespace DowJones.Json.Gateway.Processors
                             ResponseControlData = cd,
                             Error = bodyError.Error
                         };
+                       
                     }
                     
                     return new RestResponse<TRes>
