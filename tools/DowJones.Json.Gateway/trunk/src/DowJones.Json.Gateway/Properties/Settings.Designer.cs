@@ -25,7 +25,7 @@ namespace DowJones.Json.Gateway.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://skdfrtweb02.dev.us.factiva.net:9097")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost/restserviceproxy")]
         public string ServerUri {
             get {
                 return ((string)(this["ServerUri"]));
