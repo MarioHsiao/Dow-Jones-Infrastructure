@@ -21,10 +21,25 @@ namespace DowJones.Json.Gateway.Processors
 
         public override RestResponse<TRes> Process<TReq, TRes>(RestRequest<TReq> restRequest)
         {
+
+            if (_log.IsDebugEnabled)
+            {
+                _log.Debug("---: EXECUTING GENERIC REST CLIENT --> Process() :---");
+            }
             var composite = GetRestComposite(restRequest);
             try
             {
+                if (_log.IsDebugEnabled)
+                {
+                    _log.Debug("---:REQUESTED BASE URL=" + composite.Client.BaseUrl);
+                }
                 var response = composite.Client.Execute(composite.Request);
+                if (_log.IsDebugEnabled)
+                {
+                    _log.Debug("---:CLIENT RESPONSE ERROR INFO:---");
+                    _log.Debug(response.ErrorMessage);
+                    _log.Debug(response.ErrorException);
+                }
                 return ProcessStatus<TReq, TRes>(restRequest, response);
             }
             catch (Exception ex)
@@ -49,6 +64,12 @@ namespace DowJones.Json.Gateway.Processors
             where T : IJsonRestRequest, new()
         {
 
+            if (_log.IsDebugEnabled)
+            {
+                _log.Debug(String.Format("---:BUILDING <<< NON DEVELOPMENT >>> REST CLIENT WITH SERVERURI=[{0}]", restRequest.ControlData.RoutingData.ServerUri));
+                _log.Debug(String.Format("\t ..... AND HTTPENDPOINT= [{0}]", restRequest.ControlData.RoutingData.HttpEndPoint));
+                
+            }
             var client = new RestClient(restRequest.ControlData.RoutingData.ServerUri);
             client.ClearHandlers();
 
@@ -72,6 +93,11 @@ namespace DowJones.Json.Gateway.Processors
         public RestComposite GetDevelopmentRestComposite<T>(RestRequest<T> restRequest)
             where T : IJsonRestRequest, new()
         {
+            if (_log.IsDebugEnabled)
+            {
+                _log.Debug(String.Format("---:BUILDING <<< DEVELOPMENT >>> REST CLIENT WITH HTTPENDPOINT=[{0}]", restRequest.ControlData.RoutingData.HttpEndPoint));
+                _log.Debug(String.Format("\t ..... AND SERVERURI= [{0}]", restRequest.ControlData.RoutingData.ServerUri));
+            }
 
             var client = new RestClient(restRequest.ControlData.RoutingData.HttpEndPoint);
             client.ClearHandlers();
