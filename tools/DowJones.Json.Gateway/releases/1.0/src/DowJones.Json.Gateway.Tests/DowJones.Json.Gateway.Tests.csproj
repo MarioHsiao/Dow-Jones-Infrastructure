@@ -74,6 +74,7 @@
     <Compile Include="RestManagerUnitTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ExceptionsUnitTest.cs" />
+    <Compile Include="Core\PropertiesUnitTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">

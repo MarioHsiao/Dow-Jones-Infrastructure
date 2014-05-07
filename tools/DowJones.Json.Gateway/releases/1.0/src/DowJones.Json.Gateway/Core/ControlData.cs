@@ -1,5 +1,6 @@
 ﻿using System.Runtime.Serialization;
 using DowJones.Json.Gateway.Converters;
+using DowJones.Json.Gateway.Exceptions;
 using DowJones.Json.Gateway.Interfaces;
 
 namespace DowJones.Json.Gateway.Messages.Core
@@ -35,7 +36,14 @@ namespace DowJones.Json.Gateway.Messages.Core
 
         public string ToJson(ISerialize decorator)
         {
-            return decorator.Serialize(this);
+            try
+            {
+                return decorator.Serialize(this);
+            }
+            catch
+            {
+                throw new JsonGatewayException(JsonGatewayException.ControlDataSerializationError, "Unable to serialize the 'ControlData' object."); 
+            }
         }
     }
 }

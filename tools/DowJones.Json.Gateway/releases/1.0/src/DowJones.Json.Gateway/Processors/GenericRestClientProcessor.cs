@@ -57,21 +57,23 @@ namespace DowJones.Json.Gateway.Processors
         public RestComposite GetRestComposite<T>(RestRequest<T> restRequest)
             where T : IJsonRestRequest, new()
         {
-            return restRequest.ControlData.RoutingData.Environment != Environment.Direct ? GetNonDevelopmentRestComposite(restRequest) : GetDevelopmentRestComposite(restRequest);
+            return restRequest.ControlData.RoutingData.Environment == Environment.Direct ? GetDevelopmentRestComposite(restRequest) : GetNonDevelopmentRestComposite(restRequest);
         }
 
         public RestComposite GetNonDevelopmentRestComposite<T>(RestRequest<T> restRequest)
             where T : IJsonRestRequest, new()
         {
 
-            if (_log.IsDebugEnabled)
-            {
-                _log.Debug(String.Format("---:BUILDING <<< NON DEVELOPMENT >>> REST CLIENT WITH SERVERURI=[{0}]", restRequest.ControlData.RoutingData.ServerUri));
-                _log.Debug(String.Format("\t ..... AND HTTPENDPOINT= [{0}]", restRequest.ControlData.RoutingData.HttpEndPoint));
-                
-            }
             var client = new RestClient(restRequest.ControlData.RoutingData.ServerUri);
+
             client.ClearHandlers();
+
+            if (_log.IsInfoEnabled)
+            {
+                _log.InfoFormat("restRequest.ControlData.RoutingData.ServerUri:{0}", restRequest.ControlData.RoutingData.ServerUri);
+                _log.InfoFormat("routingUri:{0}", routingUri);
+                _log.InfoFormat("client:{0}", client.ToString());
+            }
 
             var decorator = JsonSerializerFactory.Create(restRequest.ControlData.RoutingData.Serializer);
             var request = new RestRequest("", _method)
@@ -80,7 +82,7 @@ namespace DowJones.Json.Gateway.Processors
                 JsonSerializer = decorator,
             };
             
-            request.AddParameter("uri", GetRoutingUri(restRequest.Request), ParameterType.QueryString);
+            request.AddParameter("uri", routingUri, ParameterType.QueryString);
             AddCommon(restRequest, request, decorator);
 
             return new RestComposite
@@ -99,7 +101,10 @@ namespace DowJones.Json.Gateway.Processors
                 _log.Debug(String.Format("\t ..... AND SERVERURI= [{0}]", restRequest.ControlData.RoutingData.ServerUri));
             }
 
-            var client = new RestClient(restRequest.ControlData.RoutingData.HttpEndPoint);
+            var client = new RestClient(restRequest.ControlData.RoutingData.ServiceUrl)
+                {
+                    FollowRedirects = false
+                };
             client.ClearHandlers();
             
             var decorator = JsonSerializerFactory.Create(restRequest.ControlData.RoutingData.Serializer);
@@ -124,10 +129,10 @@ namespace DowJones.Json.Gateway.Processors
             // add ControlData to header
             var jsonControlData = restRequest.ControlData.ToJson(ControlDataDataConverterSingleton.Instance);
             var jsonRequest = restRequest.Request.ToJson(decorator);
-            if (_log.IsDebugEnabled)
+            if (_log.IsInfoEnabled)
             {
-                _log.DebugFormat("ControlData(Json):\n{0}", jsonControlData);
-                _log.DebugFormat("Request(Json):\n{0}", jsonRequest);
+                _log.InfoFormat("ControlData(Json):\n{0}", jsonControlData);
+                _log.InfoFormat("Request(Json):\n{0}", jsonRequest);
             }
             request.AddHeader("ControlData", jsonControlData);
             request.AddParameter("application/json", jsonRequest, ParameterType.RequestBody);

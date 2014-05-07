@@ -281,8 +281,8 @@ namespace DowJones.Json.Gateway.Tests.Pam
             // ReSharper restore StringLiteralTypo
 
             // ReSharper disable StringLiteralTypo
-            routingData.ServerUri = "http://fdevweb3.win.dowjones.net/serviceproxy2";
-            routingData.HttpEndPoint = "http://pamapi.dev.dowjones.net/";
+            routingData.ServerUri = "http://fdevweb3.win.dowjones.net/restserviceproxy";
+            routingData.ServiceUrl = "http://pamapi.int.dowjones.net/";
             // ReSharper restore StringLiteralTypo
 
             routingData.TransportType = "HTTP";

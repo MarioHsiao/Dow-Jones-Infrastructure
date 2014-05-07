@@ -58,6 +58,8 @@
   <ItemGroup>
     <Compile Include="Pam\Api_1_0\Assets\List\AccessControlScope.cs" />
     <Compile Include="Pam\Api_1_0\Assets\List\AccessQualifier.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\AssignListsToGroupStatus.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\AssignListsToGroupStatusCollection.cs" />
     <Compile Include="Pam\Api_1_0\Assets\List\AuthorItem.cs" />
     <Compile Include="Pam\Api_1_0\Assets\List\AuthorItemProperties.cs" />
     <Compile Include="Pam\Api_1_0\Assets\List\AuthorList.cs" />
@@ -72,6 +74,7 @@
     <Compile Include="Pam\Api_1_0\Assets\List\FilterGroup.cs" />
     <Compile Include="Pam\Api_1_0\Assets\List\GetSubscribableItemsResponse.cs" />
     <Compile Include="Pam\Api_1_0\Assets\List\GetSubscribableLists.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\GroupAssignmentAction.cs" />
     <Compile Include="Pam\Api_1_0\Assets\List\GroupIdList.cs" />
     <Compile Include="Pam\Api_1_0\Assets\List\GroupList.cs" />
     <Compile Include="Pam\Api_1_0\Assets\List\IdCollection.cs" />
@@ -111,6 +114,8 @@
     <Compile Include="Pam\Api_1_0\Assets\List\SubscribePage.cs" />
     <Compile Include="Pam\Api_1_0\Assets\List\Transactions\AddItemsToListRequest.cs" />
     <Compile Include="Pam\Api_1_0\Assets\List\Transactions\AddItemsToListResponse.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\Transactions\AssignListsToGroupRequest.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\List\Transactions\AssignListsToGroupResponse.cs" />
     <Compile Include="Pam\Api_1_0\Assets\List\Transactions\CreateListRequest.cs" />
     <Compile Include="Pam\Api_1_0\Assets\List\Transactions\CreateListResponse.cs" />
     <Compile Include="Pam\Api_1_0\Assets\List\Transactions\DeleteItemsOnListRequest.cs" />
@@ -153,7 +158,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="DowJones.Json.Gateway.Messages.nuspec" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Core\" />

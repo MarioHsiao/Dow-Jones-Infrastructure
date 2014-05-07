@@ -34,15 +34,22 @@ namespace DowJones.Json.Gateway.Processors
         public RestComposite GetRestComposite<T>(RestRequest<T> restRequest)
             where T : IJsonRestRequest, new()
         {
-            return restRequest.ControlData.RoutingData.Environment != Environment.Direct ? GetNonDevelopmentRestComposite(restRequest) : GetDevelopmentRestComposite(restRequest);
+            return restRequest.ControlData.RoutingData.Environment == Environment.Direct ? GetDevelopmentRestComposite(restRequest) : GetNonDevelopmentRestComposite(restRequest);
         }
 
         public RestComposite GetNonDevelopmentRestComposite<T>(RestRequest<T> restRequest)
             where T : IJsonRestRequest, new()
         {
-            //application/json, , text/json, text/x-json, text/javascript, 
+            var routingUri = GetRoutingUri(restRequest.Request);
             var client = new RestClient(restRequest.ControlData.RoutingData.ServerUri);
             client.ClearHandlers();
+
+            if (_log.IsInfoEnabled)
+            {
+                _log.InfoFormat("restRequest.ControlData.RoutingData.ServerUri:{0}", restRequest.ControlData.RoutingData.ServerUri);
+                _log.InfoFormat("routingUri:{0}", routingUri);
+                _log.InfoFormat("client:{0}", client.ToString());
+            }
             
             var decorator = JsonSerializerFactory.Create(restRequest.ControlData.RoutingData.Serializer);
             var request = new RestRequest("", Method)
@@ -52,7 +59,7 @@ namespace DowJones.Json.Gateway.Processors
             };
 
             //var uri = GetUri(GetRoutingUri(restRequest.Request), GetParams(restRequest.Request, decorator));
-            request.AddParameter("uri", GetRoutingUri(restRequest.Request), ParameterType.QueryString);
+            request.AddParameter("uri", routingUri, ParameterType.QueryString);
             AddCommonHeaderParams(restRequest, request, decorator);
             UpateQueryStringParams(restRequest.Request, request, decorator);
             
@@ -67,7 +74,10 @@ namespace DowJones.Json.Gateway.Processors
             where T : IJsonRestRequest, new()
         {
             //application/json, , text/json, text/x-json, text/javascript, 
-            var client = new RestClient(restRequest.ControlData.RoutingData.HttpEndPoint);
+            var client = new RestClient(restRequest.ControlData.RoutingData.ServiceUrl)
+                {
+                    FollowRedirects = false
+                };
             client.ClearHandlers();
 
             var decorator = JsonSerializerFactory.Create(restRequest.ControlData.RoutingData.Serializer);
@@ -92,9 +102,9 @@ namespace DowJones.Json.Gateway.Processors
         {
              // add ControlData to header
             var jsonControlData = restRequest.ControlData.ToJson(ControlDataDataConverterSingleton.Instance);
-            if (_log.IsDebugEnabled)
+            if (_log.IsInfoEnabled)
             {
-                _log.DebugFormat("ControlData(Json):\n{0}", jsonControlData);
+                _log.InfoFormat("ControlData(Json):\n{0}", jsonControlData);
             }
 
             request.AddHeader("ControlData", jsonControlData);

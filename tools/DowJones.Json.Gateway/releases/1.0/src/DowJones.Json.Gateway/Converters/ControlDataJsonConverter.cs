@@ -29,7 +29,7 @@ namespace DowJones.Json.Gateway.Converters
                              //PreserveReferencesHandling = PreserveReferencesHandling.All,
                              TypeNameAssemblyFormat = FormatterAssemblyStyle.Full,
                          };
-            Serializer.Converters.Add(new StringEnumConverter { AllowIntegerValues = false });
+            Serializer.Converters.Add(new StringEnumConverter());
         }
         
 

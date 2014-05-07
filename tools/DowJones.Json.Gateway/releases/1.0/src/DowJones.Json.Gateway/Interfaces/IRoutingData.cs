@@ -23,7 +23,7 @@ namespace DowJones.Json.Gateway.Interfaces
 
         ushort FunctionType { get; set; }
 
-        string HttpEndPoint { get; set; }
+        string ServiceUrl { get; set; }
 
         ushort MajorServiceVersion { get; set; }
 

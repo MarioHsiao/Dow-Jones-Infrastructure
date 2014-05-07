@@ -89,6 +89,7 @@
     <Compile Include="Core\TransactionCacheData.cs" />
     <Compile Include="Core\UserCommerceData.cs" />
     <Compile Include="Core\UserCredentialData.cs" />
+    <Compile Include="Exceptions\BodyError.cs" />
     <Compile Include="Exceptions\Error.cs" />
     <Compile Include="Exceptions\JsonGatewayError.cs" />
     <Compile Include="Exceptions\JsonGatewayException.cs" />
@@ -134,6 +135,7 @@
   <ItemGroup />
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="DowJones.Json.Gateway.nuspec" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

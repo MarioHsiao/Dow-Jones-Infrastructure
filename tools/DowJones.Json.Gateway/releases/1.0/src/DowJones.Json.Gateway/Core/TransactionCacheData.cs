@@ -37,12 +37,12 @@ namespace DowJones.Json.Gateway.Messages.Core
         [DataMember]
         public CacheScope? CacheScope { get; set; }
 
-        [DataMember]
         public CacheStatus? CacheStatus { get; set; }
-
+        
         [DataMember]
         public string CacheWait { get; set; }
-
+        
+        
         [DataMember]
         public bool ForceCacheRefresh { get; set; }
     }

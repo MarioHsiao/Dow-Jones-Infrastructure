@@ -23,7 +23,7 @@ namespace DowJones.Json.Gateway.Messages.Core
         public string BypassClientBilling { get; set; }
 
         [DataMember]
-        public ClientCode ClientCode { get; set; }
+        public string ClientCode { get; set; }
 
         [DataMember]
         public string ClientType { get; set; }

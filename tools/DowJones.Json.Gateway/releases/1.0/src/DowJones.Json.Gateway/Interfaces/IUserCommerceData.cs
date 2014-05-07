@@ -11,7 +11,7 @@ namespace DowJones.Json.Gateway.Interfaces
         
         string BypassClientBilling { get; set; }
         
-        ClientCode ClientCode { get; set; }
+        string ClientCode { get; set; }
         
         string ClientType { get; set; }
         
