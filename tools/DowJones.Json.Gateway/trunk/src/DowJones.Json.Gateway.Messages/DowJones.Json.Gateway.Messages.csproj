@@ -158,7 +158,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="DowJones.Json.Gateway.Messages.nuspec" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Core\" />

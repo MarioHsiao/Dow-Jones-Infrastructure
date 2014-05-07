@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>DowJones.Json.Gateway.Messages</id>
+    <version>$version$</version>
+    <title>Dow Jones JSON REST Messages and Transaction Library</title>
+    <description>The Dow Jones Infrastructure library</description>
+    <authors>Dow Jones Platform Integration Team</authors>
+    <tags>DowJones</tags>
+    <language>en-US</language>
+    <projectUrl>http://dowjones.com</projectUrl>
+    <licenseUrl>http://dowjones.com</licenseUrl>
+    <dependencies>
+      <package id="DowJones.Json.Gateway" version="$version$" />
+      <package id="log4net" version="[1.2.99]" />
+      <package id="Newtonsoft.Json" version="6.0.1" />
+      <package id="RestSharp" version="104.4.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="DowJones.Json.Gateway.Messages.dll" target="lib" />
+    <file src="DowJones.Json.Gateway.Messages.pdb" target="lib" />
+  </files>
+</package>
