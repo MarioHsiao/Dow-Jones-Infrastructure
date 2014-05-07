@@ -50,7 +50,6 @@ namespace EMG.widgets.ui
         {
             try
             {
-                var deletedFoldersResponse = new DeletedFoldersResponse();
                 var controlData = new ControlData
                 {
                     UserID = ConfigurationManager.GetLightWeightUser("RssFeed1LightWeightUser").userId,
@@ -68,7 +67,7 @@ namespace EMG.widgets.ui
                 object responseObj;
                 serviceResponse.GetResponse(ServiceResponse.ResponseFormat.Object, out responseObj);
 
-                deletedFoldersResponse = (DeletedFoldersResponse) responseObj;
+                var deletedFoldersResponse = (DeletedFoldersResponse) responseObj;
                 if (deletedFoldersResponse == null || deletedFoldersResponse.DeletedFolders.Count <= 0)
                 {
                     return;
@@ -78,7 +77,7 @@ namespace EMG.widgets.ui
                 var deletedFolderManager = new TrackDeletedFoldersCacheManager(controlData.Clone(), "en");
                 deletedFolderManager.Load(deletedFoldersResponse.DeletedFolders);
                 
-                if (Log.IsDebugEnabled) Log.Debug("Global >> LoadTrackDeletedFolders: Successfully Retreived Deleted Folders.");
+                if (Log.IsDebugEnabled) Log.Debug("Global >> LoadTrackDeletedFolders: Successfully Retrieved Deleted Folders.");
             }
             catch (Exception ex)
             {
@@ -155,20 +154,20 @@ namespace EMG.widgets.ui
     /// <summary>
     /// A helper class to create the specified performance counters.
     /// </summary>
-    public class PerfmormanceMonitor
+    public class PerformanceMonitor
     {
         private readonly CounterCreationDataCollection _counters = new CounterCreationDataCollection();
         private readonly string _categoryName = string.Empty;
         private readonly string _categoryHelp = string.Empty;
-        private static readonly ILog Logger = LogManager.GetLogger(typeof(PerfmormanceMonitor));
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(PerformanceMonitor));
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PerfmormanceMonitor"/> class.
+        /// Initializes a new instance of the <see cref="PerformanceMonitor"/> class.
         /// Creates an instance of the class.
         /// </summary>
         /// <param name="categoryName">The name of the performance counter category.</param>
         /// <param name="categoryHelp">The category help.</param>
-        public PerfmormanceMonitor(string categoryName, string categoryHelp)
+        public PerformanceMonitor(string categoryName, string categoryHelp)
         {
             _categoryName = categoryName;
             _categoryHelp = categoryHelp;
@@ -269,7 +268,7 @@ namespace EMG.widgets.ui
                 Logger.Info("Creating the counters");
             }
 
-            var monitor = new PerfmormanceMonitor(CategoryName, CategoryHelp);
+            var monitor = new PerformanceMonitor(CategoryName, CategoryHelp);
             monitor.AddCounter(AlertDelegateFillCounter, "Total number of AlertHeadlineDelegate's fill commands", PerformanceCounterType.NumberOfItems64);
             monitor.AddCounter(AlertDelegateFillAverageTime, "Average duration per operation of alert_headline_widget_delegate fill command", PerformanceCounterType.NumberOfItems64);
             

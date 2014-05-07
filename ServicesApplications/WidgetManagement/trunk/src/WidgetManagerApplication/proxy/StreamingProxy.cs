@@ -13,10 +13,10 @@ namespace EMG.widgets.ui.proxy
     /// </summary>
     public class SteamingProxy : IHttpAsyncHandler
     {
-        private const int BUFFER_SIZE = 8*1024;
+        private const int BufferSize = 8*1024;
 
-        private PipeStream _PipeStream;
-        private Stream _ResponseStream;
+        private PipeStream _pipeStream;
+        private Stream _responseStream;
 
         #region IHttpAsyncHandler Members
 
@@ -36,7 +36,7 @@ namespace EMG.widgets.ui.proxy
             {
                 if (context.Cache[url] != null)
                 {
-                    CachedContent content = context.Cache[url] as CachedContent;
+                    var content = context.Cache[url] as CachedContent;
                     if (content!=null)
                     {
                        if (!string.IsNullOrEmpty(content.ContentEncoding))
@@ -64,7 +64,7 @@ namespace EMG.widgets.ui.proxy
                     request.ContentType = contentType;
 
                 using (new TimedLog("StreamingProxy\tTotal GetResponse and transmit data"))
-                using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
+                using (var response = request.GetResponse() as HttpWebResponse)
                 {
                     DownloadData(request, response, context, cacheDuration);
                 }
@@ -101,9 +101,11 @@ namespace EMG.widgets.ui.proxy
                 if (context.Cache[url] != null)
                 {
                     // We have response to this URL already cached
-                    SyncResult result = new SyncResult();
-                    result.Context = context;
-                    result.Content = context.Cache[url] as CachedContent;
+                    var result = new SyncResult
+                                 {
+                                     Context = context, 
+                                     Content = context.Cache[url] as CachedContent
+                                 };
                     return result;
                 }
             }
@@ -116,11 +118,14 @@ namespace EMG.widgets.ui.proxy
             if (!string.IsNullOrEmpty(contentType))
                 request.ContentType = contentType;
 
-            AsyncState state = new AsyncState();
-            state.Context = context;
-            state.Url = url;
-            state.CacheDuration = cacheDuration;
-            state.Request = request;
+            var state = new AsyncState
+                        {
+                            Context = context, 
+                            Url = url, 
+                            CacheDuration = cacheDuration, 
+                            Request = request
+                        };
+
             return request.BeginGetResponse(cb, state);
         }
 
@@ -133,30 +138,32 @@ namespace EMG.widgets.ui.proxy
             if (result.CompletedSynchronously)
             {
                 // Content is already available in the cache and can be delivered from cache
-                SyncResult syncResult = result as SyncResult;
-                if (syncResult != null)
+                var syncResult = result as SyncResult;
+                if (syncResult == null)
                 {
-                    syncResult.Context.Response.ContentType = syncResult.Content.ContentType;
-                    syncResult.Context.Response.AppendHeader("Content-Encoding", syncResult.Content.ContentEncoding);
-                    syncResult.Context.Response.AppendHeader("Content-Length", syncResult.Content.ContentLength);
-
-                    syncResult.Content.Content.Seek(0, SeekOrigin.Begin);
-                    syncResult.Content.Content.WriteTo(syncResult.Context.Response.OutputStream);
+                    return;
                 }
+                syncResult.Context.Response.ContentType = syncResult.Content.ContentType;
+                syncResult.Context.Response.AppendHeader("Content-Encoding", syncResult.Content.ContentEncoding);
+                syncResult.Context.Response.AppendHeader("Content-Length", syncResult.Content.ContentLength);
+
+                syncResult.Content.Content.Seek(0, SeekOrigin.Begin);
+                syncResult.Content.Content.WriteTo(syncResult.Context.Response.OutputStream);
             }
             else
             {
                 // Content is not available in cache and needs to be downloaded from external source
-                AsyncState state = result.AsyncState as AsyncState;
-                if (state != null)
+                var state = result.AsyncState as AsyncState;
+                if (state == null)
                 {
-                    state.Context.Response.Buffer = false;
-                    HttpWebRequest request = state.Request;
+                    return;
+                }
+                state.Context.Response.Buffer = false;
+                var request = state.Request;
 
-                    using (HttpWebResponse response = request.EndGetResponse(result) as HttpWebResponse)
-                    {
-                        DownloadData(request, response, state.Context, state.CacheDuration);
-                    }
+                using (var response = request.EndGetResponse(result) as HttpWebResponse)
+                {
+                    DownloadData(request, response, state.Context, state.CacheDuration);
                 }
             }
         }
@@ -172,7 +179,7 @@ namespace EMG.widgets.ui.proxy
         /// <param name="cacheDuration">The cache duration.</param>
         private void DownloadData(HttpWebRequest request, HttpWebResponse response, HttpContext context, int cacheDuration)
         {
-            MemoryStream responseBuffer = new MemoryStream();
+            var responseBuffer = new MemoryStream();
             context.Response.Buffer = false;
 
             try
@@ -202,11 +209,13 @@ namespace EMG.widgets.ui.proxy
                             #region Cache Response in memory
 
                             // Cache the content on server for specific duration
-                            CachedContent cache = new CachedContent();
-                            cache.Content = responseBuffer;
-                            cache.ContentEncoding = contentEncoding;
-                            cache.ContentLength = contentLength;
-                            cache.ContentType = response.ContentType;
+                            var cache = new CachedContent
+                                        {
+                                            Content = responseBuffer, 
+                                            ContentEncoding = contentEncoding, 
+                                            ContentLength = contentLength, 
+                                            ContentType = response.ContentType
+                                        };
 
                             context.Cache.Insert(request.RequestUri.ToString(), cache, null,
                                                  Cache.NoAbsoluteExpiration,
@@ -294,41 +303,41 @@ namespace EMG.widgets.ui.proxy
         /// <returns></returns>
         private int TransmitDataAsyncOptimized(HttpContext context, Stream readStream, MemoryStream responseBuffer)
         {
-            _ResponseStream = readStream;
+            _responseStream = readStream;
 
-            _PipeStream = new PipeStreamBlock(10000);
+            _pipeStream = new PipeStreamBlock(10000);
             //_PipeStream = new Utility.PipeStream(10000);
 
-            byte[] buffer = new byte[BUFFER_SIZE];
+            var buffer = new byte[BufferSize];
 
             // Asynchronously read content form response stream
-            Thread readerThread = new Thread(ReadData);
+            var readerThread = new Thread(ReadData);
             readerThread.Start();
             //ThreadPool.QueueUserWorkItem(new WaitCallback(this.ReadData));
 
             // Write to response 
-            int totalBytesWritten = 0;
+            var totalBytesWritten = 0;
 
-            byte[] outputBuffer = new byte[BUFFER_SIZE];
-            int responseBufferPos = 0;
+            var outputBuffer = new byte[BufferSize];
+            var responseBufferPos = 0;
 
             using (new TimedLog("StreamingProxy\tTotal read and write"))
             {
                 int dataReceived;
-                while ((dataReceived = _PipeStream.Read(buffer, 0, BUFFER_SIZE)) > 0)
+                while ((dataReceived = _pipeStream.Read(buffer, 0, BufferSize)) > 0)
                 {
                     // if about to overflow, transmit the response buffer and restart
-                    int bufferSpaceLeft = BUFFER_SIZE - responseBufferPos;
+                    int bufferSpaceLeft = BufferSize - responseBufferPos;
 
                     if (bufferSpaceLeft < dataReceived)
                     {
                         Buffer.BlockCopy(buffer, 0, outputBuffer, responseBufferPos, bufferSpaceLeft);
 
-                        using (new TimedLog("StreamingProxy\tWrite " + BUFFER_SIZE + " to response"))
+                        using (new TimedLog("StreamingProxy\tWrite " + BufferSize + " to response"))
                         {
-                            context.Response.OutputStream.Write(outputBuffer, 0, BUFFER_SIZE);
-                            responseBuffer.Write(outputBuffer, 0, BUFFER_SIZE);
-                            totalBytesWritten += BUFFER_SIZE;
+                            context.Response.OutputStream.Write(outputBuffer, 0, BufferSize);
+                            responseBuffer.Write(outputBuffer, 0, BufferSize);
+                            totalBytesWritten += BufferSize;
                         }
 
                         // Initialize response buffer and copy the bytes that were not sent
@@ -355,9 +364,9 @@ namespace EMG.widgets.ui.proxy
                 }
             }
 
-            Logger.WriteEntry("StreamingProxy\tSocket read " + _PipeStream.TotalWrite + " bytes and response written " + totalBytesWritten + " bytes");
+            Logger.WriteEntry("StreamingProxy\tSocket read " + _pipeStream.TotalWrite + " bytes and response written " + totalBytesWritten + " bytes");
 
-            _PipeStream.Dispose();
+            _pipeStream.Dispose();
 
             return totalBytesWritten;
         }
@@ -393,17 +402,17 @@ namespace EMG.widgets.ui.proxy
 
         private void ReadData()
         {
-            byte[] buffer = new byte[BUFFER_SIZE];
-            int totalBytesFromSocket = 0;
+            var buffer = new byte[BufferSize];
+            var totalBytesFromSocket = 0;
 
             using (new TimedLog("StreamingProxy\tTotal Read from socket"))
             {
                 try
                 {
                     int dataReceived;
-                    while ((dataReceived = _ResponseStream.Read(buffer, 0, BUFFER_SIZE)) > 0)
+                    while ((dataReceived = _responseStream.Read(buffer, 0, BufferSize)) > 0)
                     {
-                        _PipeStream.Write(buffer, 0, dataReceived);
+                        _pipeStream.Write(buffer, 0, dataReceived);
                         totalBytesFromSocket += dataReceived;
                     }
                 }
@@ -414,8 +423,8 @@ namespace EMG.widgets.ui.proxy
                 finally
                 {
                     Logger.WriteEntry("Total bytes read from socket " + totalBytesFromSocket + " bytes");
-                    _ResponseStream.Dispose();
-                    _PipeStream.Flush();
+                    _responseStream.Dispose();
+                    _pipeStream.Flush();
                 }
             }
         }

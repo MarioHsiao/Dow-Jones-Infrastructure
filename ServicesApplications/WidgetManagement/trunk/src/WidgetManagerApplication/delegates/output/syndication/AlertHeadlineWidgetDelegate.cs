@@ -961,11 +961,7 @@ namespace EMG.widgets.ui.delegates.output.syndication
             {
                 return String.Format("{0:##.0K}", Math.Round((double)count / 1000, 1));
             }
-            if (count <= 999999)
-            {
-                return String.Format("{0:###K}", Math.Round((double)count / 1000));
-            }
-            return String.Format("{0}M", new NumberFormatter().Format(Math.Round((double)count / 1000000, 1), NumberFormatType.Precision));
+            return count <= 999999 ? String.Format("{0:###K}", Math.Round((double)count / 1000)) : String.Format("{0}M", new NumberFormatter().Format(Math.Round((double)count / 1000000, 1), NumberFormatType.Precision));
         }
 
         /// <summary>
