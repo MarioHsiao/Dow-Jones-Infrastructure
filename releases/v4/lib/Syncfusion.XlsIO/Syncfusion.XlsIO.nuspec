@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>Syncfusion.XlsIO</id>
+        <version>7.102.0.21</version>
+        <title>Syncfusion Essential XlsIO</title>
+        <description>Create standards compliant Excel (Legacy, Office 2007 and Office 2010) reports from any .NET platform</description>
+        <authors>Syncfusion (package managed by Dow Jones Platform Integration Team)</authors>
+        <tags>DowJones,Syncfusion</tags>
+        <language>en-US</language>
+        <projectUrl>http://www.syncfusion.com/products/reporting-edition/xlsio</projectUrl>
+        <licenseUrl>http://www.syncfusion.com/products/reporting-edition/xlsio</licenseUrl>
+    </metadata>
+    <files>
+        <file src="Syncfusion.Core.dll" target="lib"/>
+        <file src="Syncfusion.Compression.Base.dll" target="lib"/>
+        <file src="Syncfusion.XlsIO.Web.dll" target="lib"/>
+    </files>
+</package>

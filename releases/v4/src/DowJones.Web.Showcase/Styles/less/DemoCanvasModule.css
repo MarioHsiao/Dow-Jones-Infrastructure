@@ -1,0 +1,32 @@
+/***  DemoCanvasModule  ***/
+.DemoCanvasModule {
+  float: left;
+  width: 230px;
+  margin: 10px;
+  padding: 20px;
+  border: 1px groove;
+}
+.DemoCanvasModule p {
+  width: 100%;
+  clear: both;
+  padding: 5px 0;
+}
+.DemoCanvasModule label {
+  display: block;
+  float: left;
+  width: 110px;
+  font-weight: bold;
+}
+.DemoCanvasModule span {
+  display: block;
+  float: left;
+}
+.DemoCanvasModule .actions-container {
+  margin: 20px 0 0;
+  padding: 10px;
+  font-size: 110%;
+  text-align: center;
+}
+.DemoCanvasModule button {
+  padding: 3px 10px;
+}

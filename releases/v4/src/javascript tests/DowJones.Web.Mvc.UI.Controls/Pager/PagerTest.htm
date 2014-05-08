@@ -1,0 +1,942 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <title>Pager Mock Test Page</title>
+    <link href="../../../DowJones.Web.Mvc/Resources/css/base.css" rel="Stylesheet" />
+    <link href="../../../DowJones.Web.Mvc/Resources/css/reset.css" rel="Stylesheet" />
+    <link href="../../../DowJones.Web.Mvc/Resources/css/960.css" rel="Stylesheet" />
+    <link href="../../../DowJones.Web.Showcase/content/emg_default.css" type="text/css"
+        rel="stylesheet" />
+    <link href="../../../DowJones.Web.Showcase/content/emg_grid.css" type="text/css"
+        rel="stylesheet" />
+    <link href="../../../DowJones.Web.Showcase/content/emg_layout.css" type="text/css"
+        rel="stylesheet" />
+    <link href="../../../DowJones.Web.Showcase/content/emg_text.css" type="text/css"
+        rel="stylesheet" />
+    <link href="../../../DowJones.Web.Showcase/content/showcasestyle.css" type="text/css"
+        rel="stylesheet" />
+    <link href="../../../DowJones.Web.Mvc.UI.Components/Pager/Pager.css" type="text/css"
+        rel="stylesheet" />
+    <link rel='stylesheet' href='css/module.css' type='text/css' media='screen' />
+    <style type="text/css">
+        .module-pager .pager-link
+        {
+            background-image: url(../../../DowJones.Web.Mvc.UI.Components/Pager/images/nav_dots.png);
+        }
+        .module-pager .pager-linkNew
+        {
+            width: 8px;
+            height: 8px;
+            background-image: url(images/nav_dots2.png);
+            background-position: 0px 0px;
+            display: -moz-inline-stack; /* required for ff2 */
+            display: inline-block;
+            vertical-align: top;
+            margin-right: 4px;
+            margin-left: 4px;
+        }
+        
+        .module-pager .pager-linkNew.pager-active
+        {
+            background-position: 0px -8px;
+        }
+    </style>
+</head>
+<body>
+    <div id="module1" class="module-core">
+        <h2>
+            Module 1</h2>
+        <div class="module-content">
+            <ul class="module-content-pages">
+                <li>
+                    <div class="module-content-page">
+                        <b>Page 1</b>
+                        <div class="module-row clearfix">
+                            <div class="module-col one-third first-col">
+                                <div class="module-col-wrap standard-padding">
+                                    <div class="module-col-wrap standard-padding" style="min-height: 300px;">
+                                        <!-- 
+	    DEV-NOTE: below is a sample article group markup a rss module column
+	-->
+                                        <div class="article-group">
+                                            <h3 class="module-col-title article-group-title">
+                                                <a href="#">
+                                                    <img title="" src="" class="article-group-title-img"><!-- favicon -->
+                                                    RSS/ATOM SOURCE TITLE </a>
+                                            </h3>
+                                            <ul class="article-list">
+                                                <li>
+                                                    <div class="article-wrap">
+                                                        <div class="article-meta">
+                                                            <span class="date-stamp">December 15, 2010</span> - <span class="time-stamp">6:47pm</span>
+                                                        </div>
+                                                        <h4 class="article-headline">
+                                                            <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a> <span
+                                                                class="fi"></span>
+                                                        </h4>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="article-wrap">
+                                                        <div class="article-meta">
+                                                            <span class="date-stamp">December 15, 2010</span> - <span class="time-stamp">6:47pm</span>
+                                                        </div>
+                                                        <h4 class="article-headline">
+                                                            <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a> <span
+                                                                class="fi"></span>
+                                                        </h4>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="article-wrap">
+                                                        <div class="article-meta">
+                                                            <span class="date-stamp">December 15, 2010</span> - <span class="time-stamp">6:47pm</span>
+                                                        </div>
+                                                        <h4 class="article-headline">
+                                                            <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a> <span
+                                                                class="fi"></span>
+                                                        </h4>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="article-wrap">
+                                                        <div class="article-meta">
+                                                            <span class="date-stamp">December 15, 2010</span> - <span class="time-stamp">6:47pm</span>
+                                                        </div>
+                                                        <h4 class="article-headline">
+                                                            <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a> <span
+                                                                class="fi"></span>
+                                                        </h4>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                            <!-- end: .article-list -->
+                                            <ul class="dc_list">
+                                                <li class="dc_item"><a class="dashboard-control dc_btn dc_btn-1" href="#">View All</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- end: .article-group -->
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end: .module-col -->
+                            <div class="module-col one-third">
+                                <div class="module-col-wrap standard-padding">
+                                    <!-- 
+	    DEV-NOTE: below is a sample article group markup a rss module column
+	-->
+                                    <div class="article-group">
+                                        <h3 class="module-col-title article-group-title">
+                                            <a href="#">
+                                                <img title="" src="" class="article-group-title-img"><!-- favicon -->
+                                                RSS/ATOM SOURCE TITLE </a>
+                                        </h3>
+                                        <ul class="article-list">
+                                            <li>
+                                                <div class="article-wrap">
+                                                    <div class="article-meta">
+                                                        <span class="date-stamp">December 15, 2010</span> - <span class="time-stamp">6:47pm</span>
+                                                    </div>
+                                                    <h4 class="article-headline">
+                                                        <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a> <span
+                                                            class="fi"></span>
+                                                    </h4>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="article-wrap">
+                                                    <div class="article-meta">
+                                                        <span class="date-stamp">December 15, 2010</span> - <span class="time-stamp">6:47pm</span>
+                                                    </div>
+                                                    <h4 class="article-headline">
+                                                        <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a> <span
+                                                            class="fi"></span>
+                                                    </h4>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="article-wrap">
+                                                    <div class="article-meta">
+                                                        <span class="date-stamp">December 15, 2010</span> - <span class="time-stamp">6:47pm</span>
+                                                    </div>
+                                                    <h4 class="article-headline">
+                                                        <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a> <span
+                                                            class="fi"></span>
+                                                    </h4>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="article-wrap">
+                                                    <div class="article-meta">
+                                                        <span class="date-stamp">December 15, 2010</span> - <span class="time-stamp">6:47pm</span>
+                                                    </div>
+                                                    <h4 class="article-headline">
+                                                        <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a> <span
+                                                            class="fi"></span>
+                                                    </h4>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <!-- end: .article-list -->
+                                        <ul class="dc_list">
+                                            <li class="dc_item"><a class="dashboard-control dc_btn dc_btn-1" href="#">View All</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- end: .article-group -->
+                                </div>
+                            </div>
+                            <!-- end: .module-col -->
+                            <div class="module-col one-third">
+                                <div class="module-col-wrap standard-padding">
+                                    <!-- 
+	    DEV-NOTE: below is a sample article group markup a rss module column
+	-->
+                                    <div class="article-group">
+                                        <h3 class="module-col-title article-group-title">
+                                            <a href="#">
+                                                <img title="" src="" class="article-group-title-img"><!-- favicon -->
+                                                RSS/ATOM SOURCE TITLE </a>
+                                        </h3>
+                                        <ul class="article-list">
+                                            <li>
+                                                <div class="article-wrap">
+                                                    <div class="article-meta">
+                                                        <span class="date-stamp">December 15, 2010</span> - <span class="time-stamp">6:47pm</span>
+                                                    </div>
+                                                    <h4 class="article-headline">
+                                                        <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a> <span
+                                                            class="fi"></span>
+                                                    </h4>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="article-wrap">
+                                                    <div class="article-meta">
+                                                        <span class="date-stamp">December 15, 2010</span> - <span class="time-stamp">6:47pm</span>
+                                                    </div>
+                                                    <h4 class="article-headline">
+                                                        <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a> <span
+                                                            class="fi"></span>
+                                                    </h4>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="article-wrap">
+                                                    <div class="article-meta">
+                                                        <span class="date-stamp">December 15, 2010</span> - <span class="time-stamp">6:47pm</span>
+                                                    </div>
+                                                    <h4 class="article-headline">
+                                                        <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a> <span
+                                                            class="fi"></span>
+                                                    </h4>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="article-wrap">
+                                                    <div class="article-meta">
+                                                        <span class="date-stamp">December 15, 2010</span> - <span class="time-stamp">6:47pm</span>
+                                                    </div>
+                                                    <h4 class="article-headline">
+                                                        <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a> <span
+                                                            class="fi"></span>
+                                                    </h4>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <!-- end: .article-list -->
+                                        <ul class="dc_list">
+                                            <li class="dc_item"><a class="dashboard-control dc_btn dc_btn-1" href="#">View All</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- end: .article-group -->
+                                </div>
+                            </div>
+                            <div class="module-col one-third">
+                                <div class="module-col-wrap standard-padding">
+                                    <!-- 
+	    DEV-NOTE: below is a sample article group markup a rss module column
+	-->
+                                    <div class="article-group">
+                                        <h3 class="module-col-title article-group-title">
+                                            <a href="#">
+                                                <img title="" src="" class="article-group-title-img"><!-- favicon -->
+                                                RSS/ATOM SOURCE TITLE </a>
+                                        </h3>
+                                        <ul class="article-list">
+                                            <li>
+                                                <div class="article-wrap">
+                                                    <div class="article-meta">
+                                                        <span class="date-stamp">December 15, 2010</span> - <span class="time-stamp">6:47pm</span>
+                                                    </div>
+                                                    <h4 class="article-headline">
+                                                        <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a> <span
+                                                            class="fi"></span>
+                                                    </h4>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="article-wrap">
+                                                    <div class="article-meta">
+                                                        <span class="date-stamp">December 15, 2010</span> - <span class="time-stamp">6:47pm</span>
+                                                    </div>
+                                                    <h4 class="article-headline">
+                                                        <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a> <span
+                                                            class="fi"></span>
+                                                    </h4>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="article-wrap">
+                                                    <div class="article-meta">
+                                                        <span class="date-stamp">December 15, 2010</span> - <span class="time-stamp">6:47pm</span>
+                                                    </div>
+                                                    <h4 class="article-headline">
+                                                        <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a> <span
+                                                            class="fi"></span>
+                                                    </h4>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="article-wrap">
+                                                    <div class="article-meta">
+                                                        <span class="date-stamp">December 15, 2010</span> - <span class="time-stamp">6:47pm</span>
+                                                    </div>
+                                                    <h4 class="article-headline">
+                                                        <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a> <span
+                                                            class="fi"></span>
+                                                    </h4>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <!-- end: .article-list -->
+                                        <ul class="dc_list">
+                                            <li class="dc_item"><a class="dashboard-control dc_btn dc_btn-1" href="#">View All</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- end: .article-group -->
+                                </div>
+                            </div>
+                            <div class="module-col one-third">
+                                <div class="module-col-wrap standard-padding">
+                                    <!-- 
+	    DEV-NOTE: below is a sample article group markup a rss module column
+	-->
+                                    <div class="article-group">
+                                        <h3 class="module-col-title article-group-title">
+                                            <a href="#">
+                                                <img title="" src="" class="article-group-title-img"><!-- favicon -->
+                                                RSS/ATOM SOURCE TITLE </a>
+                                        </h3>
+                                        <ul class="article-list">
+                                            <li>
+                                                <div class="article-wrap">
+                                                    <div class="article-meta">
+                                                        <span class="date-stamp">December 15, 2010</span> - <span class="time-stamp">6:47pm</span>
+                                                    </div>
+                                                    <h4 class="article-headline">
+                                                        <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a> <span
+                                                            class="fi"></span>
+                                                    </h4>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="article-wrap">
+                                                    <div class="article-meta">
+                                                        <span class="date-stamp">December 15, 2010</span> - <span class="time-stamp">6:47pm</span>
+                                                    </div>
+                                                    <h4 class="article-headline">
+                                                        <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a> <span
+                                                            class="fi"></span>
+                                                    </h4>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="article-wrap">
+                                                    <div class="article-meta">
+                                                        <span class="date-stamp">December 15, 2010</span> - <span class="time-stamp">6:47pm</span>
+                                                    </div>
+                                                    <h4 class="article-headline">
+                                                        <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a> <span
+                                                            class="fi"></span>
+                                                    </h4>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="article-wrap">
+                                                    <div class="article-meta">
+                                                        <span class="date-stamp">December 15, 2010</span> - <span class="time-stamp">6:47pm</span>
+                                                    </div>
+                                                    <h4 class="article-headline">
+                                                        <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a> <span
+                                                            class="fi"></span>
+                                                    </h4>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <!-- end: .article-list -->
+                                        <ul class="dc_list">
+                                            <li class="dc_item"><a class="dashboard-control dc_btn dc_btn-1" href="#">View All</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- end: .article-group -->
+                                </div>
+                            </div>
+                            <div class="module-col one-third">
+                                <div class="module-col-wrap standard-padding">
+                                    <!-- 
+	    DEV-NOTE: below is a sample article group markup a rss module column
+	-->
+                                    <div class="article-group">
+                                        <h3 class="module-col-title article-group-title">
+                                            <a href="#">
+                                                <img title="" src="" class="article-group-title-img"><!-- favicon -->
+                                                RSS/ATOM SOURCE TITLE </a>
+                                        </h3>
+                                        <ul class="article-list">
+                                            <li>
+                                                <div class="article-wrap">
+                                                    <div class="article-meta">
+                                                        <span class="date-stamp">December 15, 2010</span> - <span class="time-stamp">6:47pm</span>
+                                                    </div>
+                                                    <h4 class="article-headline">
+                                                        <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a> <span
+                                                            class="fi"></span>
+                                                    </h4>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="article-wrap">
+                                                    <div class="article-meta">
+                                                        <span class="date-stamp">December 15, 2010</span> - <span class="time-stamp">6:47pm</span>
+                                                    </div>
+                                                    <h4 class="article-headline">
+                                                        <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a> <span
+                                                            class="fi"></span>
+                                                    </h4>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="article-wrap">
+                                                    <div class="article-meta">
+                                                        <span class="date-stamp">December 15, 2010</span> - <span class="time-stamp">6:47pm</span>
+                                                    </div>
+                                                    <h4 class="article-headline">
+                                                        <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a> <span
+                                                            class="fi"></span>
+                                                    </h4>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="article-wrap">
+                                                    <div class="article-meta">
+                                                        <span class="date-stamp">December 15, 2010</span> - <span class="time-stamp">6:47pm</span>
+                                                    </div>
+                                                    <h4 class="article-headline">
+                                                        <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a> <span
+                                                            class="fi"></span>
+                                                    </h4>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <!-- end: .article-list -->
+                                        <ul class="dc_list">
+                                            <li class="dc_item"><a class="dashboard-control dc_btn dc_btn-1" href="#">View All</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- end: .article-group -->
+                                </div>
+                            </div>
+                            <!-- end: .module-col -->
+                        </div>
+                        <!-- end: .module-row -->
+                    </div>
+                    <!-- end: .module-content-page -->
+                </li>
+            </ul>
+            <!-- end: .module-content-pages -->
+        </div>
+        <div class="module-footer">
+        </div>
+        <!-- end: .module-content -->
+    </div>
+    <!--- end: .module-core -->
+    <div id="module2" class="module-core">
+        <h2>
+            Module 2</h2>
+        <div class="module-content">
+            <ul class="module-content-pages">
+                <li>
+                    <div class="module-content-page">
+                        <b>Page 1</b>
+                        <div class="module-row clearfix">
+                            <div class="module-col one-third first-col">
+                                <div class="module-col-wrap standard-padding">
+                                    <div class="module-col-wrap standard-padding" style="min-height: 300px;">
+                                        <!-- 
+	    DEV-NOTE: below is a sample article group markup a rss module column
+	-->
+                                        <div class="article-group">
+                                            <h3 class="module-col-title article-group-title">
+                                                <a href="#">
+                                                    <img title="" src="" class="article-group-title-img"><!-- favicon -->
+                                                    RSS/ATOM SOURCE TITLE </a>
+                                            </h3>
+                                            <ul class="article-list">
+                                                <li>
+                                                    <div class="article-wrap">
+                                                        <div class="article-meta">
+                                                            <span class="date-stamp">December 15, 2010</span> - <span class="time-stamp">6:47pm</span>
+                                                        </div>
+                                                        <h4 class="article-headline">
+                                                            <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a> <span
+                                                                class="fi"></span>
+                                                        </h4>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="article-wrap">
+                                                        <div class="article-meta">
+                                                            <span class="date-stamp">December 15, 2010</span> - <span class="time-stamp">6:47pm</span>
+                                                        </div>
+                                                        <h4 class="article-headline">
+                                                            <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a> <span
+                                                                class="fi"></span>
+                                                        </h4>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="article-wrap">
+                                                        <div class="article-meta">
+                                                            <span class="date-stamp">December 15, 2010</span> - <span class="time-stamp">6:47pm</span>
+                                                        </div>
+                                                        <h4 class="article-headline">
+                                                            <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a> <span
+                                                                class="fi"></span>
+                                                        </h4>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="article-wrap">
+                                                        <div class="article-meta">
+                                                            <span class="date-stamp">December 15, 2010</span> - <span class="time-stamp">6:47pm</span>
+                                                        </div>
+                                                        <h4 class="article-headline">
+                                                            <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a> <span
+                                                                class="fi"></span>
+                                                        </h4>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                            <!-- end: .article-list -->
+                                            <ul class="dc_list">
+                                                <li class="dc_item"><a class="dashboard-control dc_btn dc_btn-1" href="#">View All</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- end: .article-group -->
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end: .module-col -->
+                            <div class="module-col one-third">
+                                <div class="module-col-wrap standard-padding">
+                                    <!-- 
+	    DEV-NOTE: below is a sample article group markup a rss module column
+	-->
+                                    <div class="article-group">
+                                        <h3 class="module-col-title article-group-title">
+                                            <a href="#">
+                                                <img title="" src="" class="article-group-title-img"><!-- favicon -->
+                                                RSS/ATOM SOURCE TITLE </a>
+                                        </h3>
+                                        <ul class="article-list">
+                                            <li>
+                                                <div class="article-wrap">
+                                                    <div class="article-meta">
+                                                        <span class="date-stamp">December 15, 2010</span> - <span class="time-stamp">6:47pm</span>
+                                                    </div>
+                                                    <h4 class="article-headline">
+                                                        <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a> <span
+                                                            class="fi"></span>
+                                                    </h4>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="article-wrap">
+                                                    <div class="article-meta">
+                                                        <span class="date-stamp">December 15, 2010</span> - <span class="time-stamp">6:47pm</span>
+                                                    </div>
+                                                    <h4 class="article-headline">
+                                                        <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a> <span
+                                                            class="fi"></span>
+                                                    </h4>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="article-wrap">
+                                                    <div class="article-meta">
+                                                        <span class="date-stamp">December 15, 2010</span> - <span class="time-stamp">6:47pm</span>
+                                                    </div>
+                                                    <h4 class="article-headline">
+                                                        <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a> <span
+                                                            class="fi"></span>
+                                                    </h4>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="article-wrap">
+                                                    <div class="article-meta">
+                                                        <span class="date-stamp">December 15, 2010</span> - <span class="time-stamp">6:47pm</span>
+                                                    </div>
+                                                    <h4 class="article-headline">
+                                                        <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a> <span
+                                                            class="fi"></span>
+                                                    </h4>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <!-- end: .article-list -->
+                                        <ul class="dc_list">
+                                            <li class="dc_item"><a class="dashboard-control dc_btn dc_btn-1" href="#">View All</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- end: .article-group -->
+                                </div>
+                            </div>
+                            <!-- end: .module-col -->
+                            <div class="module-col one-third">
+                                <div class="module-col-wrap standard-padding">
+                                    <!-- 
+	    DEV-NOTE: below is a sample article group markup a rss module column
+	-->
+                                    <div class="article-group">
+                                        <h3 class="module-col-title article-group-title">
+                                            <a href="#">
+                                                <img title="" src="" class="article-group-title-img"><!-- favicon -->
+                                                RSS/ATOM SOURCE TITLE </a>
+                                        </h3>
+                                        <ul class="article-list">
+                                            <li>
+                                                <div class="article-wrap">
+                                                    <div class="article-meta">
+                                                        <span class="date-stamp">December 15, 2010</span> - <span class="time-stamp">6:47pm</span>
+                                                    </div>
+                                                    <h4 class="article-headline">
+                                                        <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a> <span
+                                                            class="fi"></span>
+                                                    </h4>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="article-wrap">
+                                                    <div class="article-meta">
+                                                        <span class="date-stamp">December 15, 2010</span> - <span class="time-stamp">6:47pm</span>
+                                                    </div>
+                                                    <h4 class="article-headline">
+                                                        <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a> <span
+                                                            class="fi"></span>
+                                                    </h4>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="article-wrap">
+                                                    <div class="article-meta">
+                                                        <span class="date-stamp">December 15, 2010</span> - <span class="time-stamp">6:47pm</span>
+                                                    </div>
+                                                    <h4 class="article-headline">
+                                                        <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a> <span
+                                                            class="fi"></span>
+                                                    </h4>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="article-wrap">
+                                                    <div class="article-meta">
+                                                        <span class="date-stamp">December 15, 2010</span> - <span class="time-stamp">6:47pm</span>
+                                                    </div>
+                                                    <h4 class="article-headline">
+                                                        <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a> <span
+                                                            class="fi"></span>
+                                                    </h4>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <!-- end: .article-list -->
+                                        <ul class="dc_list">
+                                            <li class="dc_item"><a class="dashboard-control dc_btn dc_btn-1" href="#">View All</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- end: .article-group -->
+                                </div>
+                            </div>
+                            <div class="module-col one-third">
+                                <div class="module-col-wrap standard-padding">
+                                    <!-- 
+	    DEV-NOTE: below is a sample article group markup a rss module column
+	-->
+                                    <div class="article-group">
+                                        <h3 class="module-col-title article-group-title">
+                                            <a href="#">
+                                                <img title="" src="" class="article-group-title-img"><!-- favicon -->
+                                                RSS/ATOM SOURCE TITLE </a>
+                                        </h3>
+                                        <ul class="article-list">
+                                            <li>
+                                                <div class="article-wrap">
+                                                    <div class="article-meta">
+                                                        <span class="date-stamp">December 15, 2010</span> - <span class="time-stamp">6:47pm</span>
+                                                    </div>
+                                                    <h4 class="article-headline">
+                                                        <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a> <span
+                                                            class="fi"></span>
+                                                    </h4>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="article-wrap">
+                                                    <div class="article-meta">
+                                                        <span class="date-stamp">December 15, 2010</span> - <span class="time-stamp">6:47pm</span>
+                                                    </div>
+                                                    <h4 class="article-headline">
+                                                        <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a> <span
+                                                            class="fi"></span>
+                                                    </h4>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="article-wrap">
+                                                    <div class="article-meta">
+                                                        <span class="date-stamp">December 15, 2010</span> - <span class="time-stamp">6:47pm</span>
+                                                    </div>
+                                                    <h4 class="article-headline">
+                                                        <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a> <span
+                                                            class="fi"></span>
+                                                    </h4>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="article-wrap">
+                                                    <div class="article-meta">
+                                                        <span class="date-stamp">December 15, 2010</span> - <span class="time-stamp">6:47pm</span>
+                                                    </div>
+                                                    <h4 class="article-headline">
+                                                        <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a> <span
+                                                            class="fi"></span>
+                                                    </h4>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <!-- end: .article-list -->
+                                        <ul class="dc_list">
+                                            <li class="dc_item"><a class="dashboard-control dc_btn dc_btn-1" href="#">View All</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- end: .article-group -->
+                                </div>
+                            </div>
+                            <div class="module-col one-third">
+                                <div class="module-col-wrap standard-padding">
+                                    <!-- 
+	    DEV-NOTE: below is a sample article group markup a rss module column
+	-->
+                                    <div class="article-group">
+                                        <h3 class="module-col-title article-group-title">
+                                            <a href="#">
+                                                <img title="" src="" class="article-group-title-img"><!-- favicon -->
+                                                RSS/ATOM SOURCE TITLE </a>
+                                        </h3>
+                                        <ul class="article-list">
+                                            <li>
+                                                <div class="article-wrap">
+                                                    <div class="article-meta">
+                                                        <span class="date-stamp">December 15, 2010</span> - <span class="time-stamp">6:47pm</span>
+                                                    </div>
+                                                    <h4 class="article-headline">
+                                                        <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a> <span
+                                                            class="fi"></span>
+                                                    </h4>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="article-wrap">
+                                                    <div class="article-meta">
+                                                        <span class="date-stamp">December 15, 2010</span> - <span class="time-stamp">6:47pm</span>
+                                                    </div>
+                                                    <h4 class="article-headline">
+                                                        <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a> <span
+                                                            class="fi"></span>
+                                                    </h4>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="article-wrap">
+                                                    <div class="article-meta">
+                                                        <span class="date-stamp">December 15, 2010</span> - <span class="time-stamp">6:47pm</span>
+                                                    </div>
+                                                    <h4 class="article-headline">
+                                                        <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a> <span
+                                                            class="fi"></span>
+                                                    </h4>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="article-wrap">
+                                                    <div class="article-meta">
+                                                        <span class="date-stamp">December 15, 2010</span> - <span class="time-stamp">6:47pm</span>
+                                                    </div>
+                                                    <h4 class="article-headline">
+                                                        <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a> <span
+                                                            class="fi"></span>
+                                                    </h4>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <!-- end: .article-list -->
+                                        <ul class="dc_list">
+                                            <li class="dc_item"><a class="dashboard-control dc_btn dc_btn-1" href="#">View All</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- end: .article-group -->
+                                </div>
+                            </div>
+                            <div class="module-col one-third">
+                                <div class="module-col-wrap standard-padding">
+                                    <!-- 
+	    DEV-NOTE: below is a sample article group markup a rss module column
+	-->
+                                    <div class="article-group">
+                                        <h3 class="module-col-title article-group-title">
+                                            <a href="#">
+                                                <img title="" src="" class="article-group-title-img"><!-- favicon -->
+                                                RSS/ATOM SOURCE TITLE </a>
+                                        </h3>
+                                        <ul class="article-list">
+                                            <li>
+                                                <div class="article-wrap">
+                                                    <div class="article-meta">
+                                                        <span class="date-stamp">December 15, 2010</span> - <span class="time-stamp">6:47pm</span>
+                                                    </div>
+                                                    <h4 class="article-headline">
+                                                        <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a> <span
+                                                            class="fi"></span>
+                                                    </h4>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="article-wrap">
+                                                    <div class="article-meta">
+                                                        <span class="date-stamp">December 15, 2010</span> - <span class="time-stamp">6:47pm</span>
+                                                    </div>
+                                                    <h4 class="article-headline">
+                                                        <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a> <span
+                                                            class="fi"></span>
+                                                    </h4>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="article-wrap">
+                                                    <div class="article-meta">
+                                                        <span class="date-stamp">December 15, 2010</span> - <span class="time-stamp">6:47pm</span>
+                                                    </div>
+                                                    <h4 class="article-headline">
+                                                        <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a> <span
+                                                            class="fi"></span>
+                                                    </h4>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="article-wrap">
+                                                    <div class="article-meta">
+                                                        <span class="date-stamp">December 15, 2010</span> - <span class="time-stamp">6:47pm</span>
+                                                    </div>
+                                                    <h4 class="article-headline">
+                                                        <a href="#">Dow Jones Builds Largest Solar Energy Field on the East Coast</a> <span
+                                                            class="fi"></span>
+                                                    </h4>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <!-- end: .article-list -->
+                                        <ul class="dc_list">
+                                            <li class="dc_item"><a class="dashboard-control dc_btn dc_btn-1" href="#">View All</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- end: .article-group -->
+                                </div>
+                            </div>
+                            <!-- end: .module-col -->
+                        </div>
+                        <!-- end: .module-row -->
+                    </div>
+                    <!-- end: .module-content-page -->
+                </li>
+            </ul>
+            <!-- end: .module-content-pages -->
+        </div>
+        <div class="module-footer">
+        </div>
+        <!-- end: .module-content -->
+    </div>
+    <!--- end: .module-core -->
+    <div>
+        <a href="javascript:void(0)" onclick="return ShowHidePager(1, true); ">Show Pager 1</a>
+        <a href="javascript:void(0)" onclick="return ShowHidePager(1, false);">Hide Pager 1</a>
+        <a href="javascript:void(0)" onclick="return ShowHidePager(2, true);">Show Pager 2</a>
+        <a href="javascript:void(0)" onclick="return ShowHidePager(2, false);">Hide Pager 2</a>
+    </div>
+</body>
+<script src="../../../DowJones.Web.Mvc/Resources/js/jquery.js"></script>
+<script src="../../../DowJones.Web.Mvc.UI.Components/Pager/jquery.cycle.all.js"></script>
+<script src="../../../DowJones.Web.Mvc/Resources/js/common.js"></script>
+<script src="../../../DowJones.Web.Mvc.UI.Components/Pager/Pager.chirp.js"></script>
+<script type="text/javascript">
+    function PagerClickHandler(sender, index) {
+        $dj.debug('Page# ' + index + ' of ' + sender.$element.parent('.module-core')[0].id + ' clicked ');
+    };
+
+    function ShowHidePager(pager, show) {
+        if (pager == 1) {
+            if (!pager1) return false;
+            else { show ? pager1.data('dj_Pager')._showPager() : pager1.data('dj_Pager')._hidePager(); }
+        }
+
+        if (pager == 2) {
+            if (!pager2) return false;
+            else { show ? pager2.data('dj_Pager')._showPager() : pager2.data('dj_Pager')._hidePager(); }
+        }
+
+        return false;
+    };
+</script>
+<script type="text/javascript">
+    var pager1, pager2;
+    $(document).ready(function () {
+        pager1 = $('#module1 .module-footer').dj_Pager({
+            "options": {
+                "totalPages": 3,
+                "pagerLinkClass": "pager-linkNew",
+            }
+        });
+
+        pager2 = $('#module2 .module-footer').dj_Pager({
+            "options": {
+                "activePage": 3,
+                "totalPages": 5
+            }
+        });
+
+        $dj.subscribe('dj.PagerClick', PagerClickHandler);
+    })
+</script>
+</html>

@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Factiva.Gateway.Messages.Search.V2_0" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Factiva.Gateway.Messages.Search.V2_0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://fdevweb3.win.dowjones.net/PALService?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="StructuredSearch">
+    <xs:sequence>
+      <xs:element name="__formatting" nillable="true" type="tns:ResultFormatting" />
+      <xs:element name="__linguistics" nillable="true" type="tns:Linguistics" />
+      <xs:element name="__query" nillable="true" type="tns:StructuredQuery" />
+      <xs:element name="__version" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="StructuredSearch" nillable="true" type="tns:StructuredSearch" />
+  <xs:complexType name="ResultFormatting">
+    <xs:sequence>
+      <xs:element name="__blendHeadlines" type="xs:boolean" />
+      <xs:element name="__blendHeadlinesSpecified" type="xs:boolean" />
+      <xs:element name="__clusterMode" type="tns:ClusterMode" />
+      <xs:element name="__clusterModeSpecified" type="xs:boolean" />
+      <xs:element name="__deduplicationMode" type="tns:DeduplicationMode" />
+      <xs:element name="__deduplicationModeSpecified" type="xs:boolean" />
+      <xs:element name="__extendedFields" type="xs:boolean" />
+      <xs:element name="__extendedFieldsSpecified" type="xs:boolean" />
+      <xs:element name="__featuredContentControl" nillable="true" type="tns:FeaturedContentControl" />
+      <xs:element name="__freshnessDate" type="xs:dateTime" />
+      <xs:element name="__freshnessDateSpecified" type="xs:boolean" />
+      <xs:element name="__freshnessTime" type="xs:dateTime" />
+      <xs:element name="__freshnessTimeSpecified" type="xs:boolean" />
+      <xs:element name="__groupByCollection" type="xs:boolean" />
+      <xs:element name="__groupByCollectionSpecified" type="xs:boolean" />
+      <xs:element name="__keywordFilter" nillable="true" type="tns:KeywordFilter" />
+      <xs:element name="__markupType" type="tns:MarkupType" />
+      <xs:element name="__markupTypeSpecified" type="xs:boolean" />
+      <xs:element name="__snippetType" type="tns:SnippetType" />
+      <xs:element name="__snippetTypeSpecified" type="xs:boolean" />
+      <xs:element name="__sortOrder" type="tns:ResultSortOrder" />
+      <xs:element name="__sortOrderSpecified" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ResultFormatting" nillable="true" type="tns:ResultFormatting" />
+  <xs:simpleType name="ClusterMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Off" />
+      <xs:enumeration value="LabelsOnly" />
+      <xs:enumeration value="On" />
+      <xs:enumeration value="Deduplication" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ClusterMode" nillable="true" type="tns:ClusterMode" />
+  <xs:simpleType name="DeduplicationMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Off" />
+      <xs:enumeration value="Similar" />
+      <xs:enumeration value="NearExact" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DeduplicationMode" nillable="true" type="tns:DeduplicationMode" />
+  <xs:complexType name="FeaturedContentControl">
+    <xs:sequence>
+      <xs:element name="__maxFeaturedHeadlines" type="xs:int" />
+      <xs:element name="__maxFeaturedHeadlinesSpecified" type="xs:boolean" />
+      <xs:element name="__returnFeaturedHeadlines" type="xs:boolean" />
+      <xs:element name="__returnFeaturedHeadlinesSpecified" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FeaturedContentControl" nillable="true" type="tns:FeaturedContentControl" />
+  <xs:complexType name="KeywordFilter">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" name="__blackListTermCollection" nillable="true" type="q1:ArrayOfstring" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="KeywordFilter" nillable="true" type="tns:KeywordFilter" />
+  <xs:simpleType name="MarkupType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Highlight" />
+      <xs:enumeration value="All" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="MarkupType" nillable="true" type="tns:MarkupType" />
+  <xs:simpleType name="SnippetType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Fixed" />
+      <xs:enumeration value="Contextual" />
+      <xs:enumeration value="DocumentSection" />
+      <xs:enumeration value="TrackHits" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="SnippetType" nillable="true" type="tns:SnippetType" />
+  <xs:simpleType name="ResultSortOrder">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="PublicationDateChronological" />
+      <xs:enumeration value="PublicationDateReverseChronological" />
+      <xs:enumeration value="Relevance" />
+      <xs:enumeration value="RelevanceMediumFreshness" />
+      <xs:enumeration value="RelevanceHighFreshness" />
+      <xs:enumeration value="ArrivalTime" />
+      <xs:enumeration value="FreshnessDateChronological" />
+      <xs:enumeration value="FreshnessDateReverseChronological" />
+      <xs:enumeration value="FIFO" />
+      <xs:enumeration value="LIFO" />
+      <xs:enumeration value="BestDateChronological" />
+      <xs:enumeration value="BestDateReverseChronological" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ResultSortOrder" nillable="true" type="tns:ResultSortOrder" />
+  <xs:complexType name="Linguistics">
+    <xs:sequence>
+      <xs:element name="__lemmatizationOn" type="xs:boolean" />
+      <xs:element name="__lemmatizationOnSpecified" type="xs:boolean" />
+      <xs:element name="__nameRecognitionMode" type="tns:LinguisticsMode" />
+      <xs:element name="__nameRecognitionModeSpecified" type="xs:boolean" />
+      <xs:element name="__queryLanguage" nillable="true" type="xs:string" />
+      <xs:element name="__spellCheckMode" type="tns:LinguisticsMode" />
+      <xs:element name="__spellCheckModeSpecified" type="xs:boolean" />
+      <xs:element name="__symbolRecognitionMode" type="tns:LinguisticsMode" />
+      <xs:element name="__symbolRecognitionModeSpecified" type="xs:boolean" />
+      <xs:element name="__synonymsOn" type="xs:boolean" />
+      <xs:element name="__synonymsOnSpecified" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Linguistics" nillable="true" type="tns:Linguistics" />
+  <xs:simpleType name="LinguisticsMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Off" />
+      <xs:enumeration value="Suggest" />
+      <xs:enumeration value="Modify" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="LinguisticsMode" nillable="true" type="tns:LinguisticsMode" />
+  <xs:complexType name="StructuredQuery">
+    <xs:sequence>
+      <xs:element name="__accessionNumberFilter" nillable="true" type="tns:AccessionNumberFilter" />
+      <xs:element name="__collectionCollection" nillable="true" type="tns:ArrayOfSearchCollection" />
+      <xs:element name="__dates" nillable="true" type="tns:Dates" />
+      <xs:element name="__folderId" nillable="true" type="tns:FolderId" />
+      <xs:element name="__maxResultsControl" nillable="true" type="tns:MaxResultsControl" />
+      <xs:element name="__rankSearchStringCollection" nillable="true" type="tns:ArrayOfRankSearchString" />
+      <xs:element name="__resultWindow" nillable="true" type="tns:ResultWindow" />
+      <xs:element name="__searchStringCollection" nillable="true" type="tns:ArrayOfSearchString" />
+      <xs:element name="__searchUncodedContent" type="xs:boolean" />
+      <xs:element name="__searchUncodedContentSpecified" type="xs:boolean" />
+      <xs:element name="__similarityFilter" nillable="true" type="tns:SimilarityFilter" />
+      <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" name="__sourceTypeCollectionCollection" nillable="true" type="q2:ArrayOfstring" />
+      <xs:element name="__uncodedContent" type="tns:UncodedContent" />
+      <xs:element name="__uncodedContentSpecified" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="StructuredQuery" nillable="true" type="tns:StructuredQuery" />
+  <xs:complexType name="AccessionNumberFilter">
+    <xs:sequence>
+      <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" name="__accessionNumberCollection" nillable="true" type="q3:ArrayOfstring" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AccessionNumberFilter" nillable="true" type="tns:AccessionNumberFilter" />
+  <xs:complexType name="ArrayOfSearchCollection">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SearchCollection" type="tns:SearchCollection" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSearchCollection" nillable="true" type="tns:ArrayOfSearchCollection" />
+  <xs:simpleType name="SearchCollection">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Publications" />
+      <xs:enumeration value="Newspapers" />
+      <xs:enumeration value="Magazines" />
+      <xs:enumeration value="Wires" />
+      <xs:enumeration value="PublicationsMisc" />
+      <xs:enumeration value="WebSites" />
+      <xs:enumeration value="NewsSites" />
+      <xs:enumeration value="WebSitesMisc" />
+      <xs:enumeration value="Pictures" />
+      <xs:enumeration value="Multimedia" />
+      <xs:enumeration value="Audio" />
+      <xs:enumeration value="Video" />
+      <xs:enumeration value="Summary" />
+      <xs:enumeration value="Internal" />
+      <xs:enumeration value="Blogs" />
+      <xs:enumeration value="AlistBlogs" />
+      <xs:enumeration value="BlogsMisc" />
+      <xs:enumeration value="Boards" />
+      <xs:enumeration value="CustomerDoc" />
+      <xs:enumeration value="Assets" />
+      <xs:enumeration value="ABlogs" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="SearchCollection" nillable="true" type="tns:SearchCollection" />
+  <xs:complexType name="Dates">
+    <xs:sequence>
+      <xs:element name="__after" nillable="true" type="xs:string" />
+      <xs:element name="__all" type="xs:boolean" />
+      <xs:element name="__allSpecified" type="xs:boolean" />
+      <xs:element name="__before" nillable="true" type="xs:string" />
+      <xs:element name="__equals" nillable="true" type="xs:string" />
+      <xs:element name="__format" type="tns:DateFormat" />
+      <xs:element name="__formatSpecified" type="xs:boolean" />
+      <xs:element name="__range" nillable="true" type="tns:DateRange" />
+      <xs:element name="__type" type="tns:DateType" />
+      <xs:element name="__typeSpecified" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Dates" nillable="true" type="tns:Dates" />
+  <xs:simpleType name="DateFormat">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="MMDDCCYY" />
+      <xs:enumeration value="DDMMCCYY" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DateFormat" nillable="true" type="tns:DateFormat" />
+  <xs:complexType name="DateRange">
+    <xs:sequence>
+      <xs:element name="__from" nillable="true" type="xs:string" />
+      <xs:element name="__to" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DateRange" nillable="true" type="tns:DateRange" />
+  <xs:simpleType name="DateType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Publication" />
+      <xs:enumeration value="Accession" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DateType" nillable="true" type="tns:DateType" />
+  <xs:complexType name="FolderId">
+    <xs:sequence>
+      <xs:element name="__allFolderHits" type="xs:boolean" />
+      <xs:element name="__allFolderHitsSpecified" type="xs:boolean" />
+      <xs:element name="__value" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FolderId" nillable="true" type="tns:FolderId" />
+  <xs:complexType name="MaxResultsControl">
+    <xs:sequence>
+      <xs:element name="__maxResultsCollectionCollection" nillable="true" type="tns:ArrayOfMaxResultsCollection" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MaxResultsControl" nillable="true" type="tns:MaxResultsControl" />
+  <xs:complexType name="ArrayOfMaxResultsCollection">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MaxResultsCollection" nillable="true" type="tns:MaxResultsCollection" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMaxResultsCollection" nillable="true" type="tns:ArrayOfMaxResultsCollection" />
+  <xs:complexType name="MaxResultsCollection">
+    <xs:sequence>
+      <xs:element name="__collection" type="tns:SearchCollection" />
+      <xs:element name="__collectionSpecified" type="xs:boolean" />
+      <xs:element name="__maxResults" type="xs:int" />
+      <xs:element name="__maxResultsSpecified" type="xs:boolean" />
+      <xs:element name="__minResults" type="xs:int" />
+      <xs:element name="__minResultsSpecified" type="xs:boolean" />
+      <xs:element name="__sourceTypeCollection" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MaxResultsCollection" nillable="true" type="tns:MaxResultsCollection" />
+  <xs:complexType name="ArrayOfRankSearchString">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RankSearchString" nillable="true" type="tns:RankSearchString" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRankSearchString" nillable="true" type="tns:ArrayOfRankSearchString" />
+  <xs:complexType name="RankSearchString">
+    <xs:sequence>
+      <xs:element name="__Value" nillable="true" type="xs:string" />
+      <xs:element name="__boost" nillable="true" type="xs:string" />
+      <xs:element name="__id" nillable="true" type="xs:string" />
+      <xs:element name="__mode" type="tns:SearchMode" />
+      <xs:element name="__modeSpecified" type="xs:boolean" />
+      <xs:element name="__scope" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RankSearchString" nillable="true" type="tns:RankSearchString" />
+  <xs:simpleType name="SearchMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="All" />
+      <xs:enumeration value="Any" />
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Phrase" />
+      <xs:enumeration value="Simple" />
+      <xs:enumeration value="Advanced" />
+      <xs:enumeration value="Traditional" />
+      <xs:enumeration value="Unified" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="SearchMode" nillable="true" type="tns:SearchMode" />
+  <xs:complexType name="ResultWindow">
+    <xs:sequence>
+      <xs:element name="__from" nillable="true" type="xs:string" />
+      <xs:element name="__to" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ResultWindow" nillable="true" type="tns:ResultWindow" />
+  <xs:complexType name="ArrayOfSearchString">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SearchString" nillable="true" type="tns:SearchString" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSearchString" nillable="true" type="tns:ArrayOfSearchString" />
+  <xs:complexType name="SearchString">
+    <xs:sequence>
+      <xs:element name="__Value" nillable="true" type="xs:string" />
+      <xs:element name="__combine" type="xs:boolean" />
+      <xs:element name="__combineSpecified" type="xs:boolean" />
+      <xs:element name="__filter" type="xs:boolean" />
+      <xs:element name="__filterSpecified" type="xs:boolean" />
+      <xs:element name="__id" nillable="true" type="xs:string" />
+      <xs:element name="__mode" type="tns:SearchMode" />
+      <xs:element name="__modeSpecified" type="xs:boolean" />
+      <xs:element name="__scope" nillable="true" type="xs:string" />
+      <xs:element name="__type" type="tns:SearchType" />
+      <xs:element name="__typeSpecified" type="xs:boolean" />
+      <xs:element name="__validate" type="xs:boolean" />
+      <xs:element name="__validateSpecified" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SearchString" nillable="true" type="tns:SearchString" />
+  <xs:simpleType name="SearchType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Free" />
+      <xs:enumeration value="Controlled" />
+      <xs:enumeration value="Fixed" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="SearchType" nillable="true" type="tns:SearchType" />
+  <xs:complexType name="SimilarityFilter">
+    <xs:sequence>
+      <xs:element name="__Value" nillable="true" type="xs:string" />
+      <xs:element name="__accessionNumber" nillable="true" type="xs:string" />
+      <xs:element name="__excludeOriginal" type="xs:boolean" />
+      <xs:element name="__excludeOriginalSpecified" type="xs:boolean" />
+      <xs:element name="__sortBy" type="xs:boolean" />
+      <xs:element name="__sortBySpecified" type="xs:boolean" />
+      <xs:element name="__type" type="tns:SimilarityType" />
+      <xs:element name="__typeSpecified" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SimilarityFilter" nillable="true" type="tns:SimilarityFilter" />
+  <xs:simpleType name="SimilarityType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Find" />
+      <xs:enumeration value="Refine" />
+      <xs:enumeration value="Exclude" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="SimilarityType" nillable="true" type="tns:SimilarityType" />
+  <xs:simpleType name="UncodedContent">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Exclude" />
+      <xs:enumeration value="Include" />
+      <xs:enumeration value="IncludeWithCodeExpansion" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="UncodedContent" nillable="true" type="tns:UncodedContent" />
+</xs:schema>

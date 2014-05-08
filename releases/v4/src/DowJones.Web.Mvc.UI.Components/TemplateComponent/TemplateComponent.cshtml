@@ -1,0 +1,25 @@
+﻿@* /*
+Component model, defined in step 2
+*/ *@
+@model TemplateComponentModel
+
+@* /*
+Name of the client plugin, should match with plugin name defined in step 3 - Javascript Code
+*/ *@
+@ClientPlugin dj_TemplateComponent
+
+@* /*
+Templates are defined in step 4 - ClientTemplates
+TemplateId's (error, success) will be available in javascript code as this.templates.error, this.templates.success
+*/ *@
+@ClientTemplate RelativeResourceName=ClientTemplates.Error.html, TemplateId=error
+@ClientTemplate RelativeResourceName=ClientTemplates.Success.html, TemplateId=success
+
+@* /*
+The component't JS file defined in step 3
+*/ *@
+@ScriptResource RelativeResourceName=TemplateComponent.js
+@{ 
+    // CSS class that will be added to the component's container
+    CssClass = "dj_TemplateComponent";
+}

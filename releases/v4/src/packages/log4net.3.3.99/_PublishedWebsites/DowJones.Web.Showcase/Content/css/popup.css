@@ -1,0 +1,90 @@
+.dj-popup-window {
+    position:absolute;
+    top:0;
+    left:0;
+    border:1px solid #bfbfc1;
+    border:1px solid #ccc; /* IE fix */
+    border:1px solid rgba(0,0,0,0.3);
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.2);
+    display:none;
+    z-index:2000;
+}
+
+.dj-popup-window.visible {
+    display:block;
+}
+
+.dj-popup-window .dj-popup-header {
+    background-color:#262626;
+    background-image:url(<%=WebResource("DowJones.Web.Mvc.UI.Controls.CalloutPopup.images.window_header_bg.png")%>);
+    background-repeat:repeat-x;
+    -moz-border-radius-topright:4px;
+    -webkit-border-top-right-radius:4px;
+    border-top-left-radius:4px;
+    -moz-border-radius-topleft:4px;
+    -webkit-border-top-right-radius:4px;
+}
+
+.dj-popup-window .dj-popup-body,
+.dj-popup-window .dj-popup-title {
+    width:330px;
+    padding-left:10px;
+    padding-right:10px;
+}
+
+.dj-popup-window .dj-popup-title {
+    height:36px;
+    color: #fff;
+    line-height:36px;
+    font-size:14px;
+    font-weight:bold;
+}
+
+.dj-popup-window .dj-popup-body {
+    padding-top:15px;
+    padding-bottom:15px;
+    background-color:#FFF;
+    -moz-border-radius-bottomright:4px;
+    -webkit-border-bottom-right-radius:4px;
+    border-bottom-left-radius:4px;
+    -moz-border-radius-bottomleft:4px;
+    -webkit-border-bottom-right-radius:4px;
+	overflow-y:auto;
+}
+
+.dj-popup-window.dj-loading .dj-popup-body {
+    background:#FFF url(<%=WebResource("DowJones.Web.Mvc.UI.Controls.CalloutPopup.images.icon_module.col.loading.gif")%>) center center no-repeat;
+}
+
+.dj-popup-window .dj-popup-arrow {
+    display:none;
+    position:absolute;
+    width:12px;
+    height:26px;
+}
+
+.dj-popup-window .dj-popup-arrow-right {
+    display:block;
+    right:-12px;
+    background-image:url(<%=WebResource("DowJones.Web.Mvc.UI.Controls.CalloutPopup.images.menu_outer_arrow_right.png")%>);
+}
+
+.dj-popup-window .dj-popup-arrow-left {
+    display:block;
+    left:-12px;
+    background-image:url(<%=WebResource("DowJones.Web.Mvc.UI.Controls.CalloutPopup.images.menu_outer_arrow_left.png")%>);
+}
+
+/*
+.ie6 .dj-popup-window .dj-popup-arrow-right {
+    background-image:url(i/ie6/menu_outer_arrow_right.gif); /* IE6 */
+/*}
+
+.ie6 .dj-popup-window .dj-popup-arrow-left {
+    background-image:url(i/ie6/menu_outer_arrow_left.gif); /* IE6 */
+/*}*/

@@ -1,0 +1,138 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <title>Tweet Lines Mock with Template Databinding</title>
+    <link href="../../../DowJones.Web.Showcase/styles/css/socialMediaStyles.css" type="text/css"
+        rel="stylesheet" />
+</head>
+<body>
+    <div class="dj_TweetLines stream-container1">
+        <div class="dj_more-tweets dj_new-tweets">
+            <span>@Html.DJ().Token("loadNewTweets")</span>
+        </div>
+        <ul class="dj_twitter-recent-tweets">
+        </ul>
+        <div class="dj_more-tweets dj_old-tweets "><span>@Html.DJ().Token("loadMoreTweets")</span></div>
+    </div>
+    <hr />
+    <hr />
+    <div class="dj_TweetLines stream-container2">
+        <div class="dj_more-tweets dj_new-tweets">
+            <span>@Html.DJ().Token("loadNewTweets")</span>
+        </div>
+        <ul class="dj_twitter-recent-tweets">
+        </ul>
+        <div class="dj_more-tweets dj_old-tweets "><span>@Html.DJ().Token("loadMoreTweets")</span></div>
+    </div>
+</body>
+<script src="../../../DowJones.Web.Mvc/Resources/js/jquery.js"></script>
+<script src="../../../DowJones.Web.Mvc/Resources/js/dj-jquery-ext.js"></script>
+<script src="../../../DowJones.Web.Mvc/Resources/js/jquery.timeago.js"></script>
+<script src="../../../DowJones.Web.Mvc/Resources/js/require.js"></script>
+<script src="../../../DowJones.Web.Mvc/Resources/js/underscore.js"></script>
+<script src="../../../DowJones.Web.Mvc/Resources/js/common.js"></script>
+<script src="../../../DowJones.Web.Mvc/Resources/js/pubsub.js"></script>
+<script type="text/javascript" src="https://raw.github.com/olado/doT/master/doT.js"></script>
+<script type="text/javascript" src="MockFeedData.js"></script>
+<script type="text/javascript" src="../../../DowJones.Web.Mvc.UI.Components/TweetLines/TweetLines.js"></script>
+<script type="text/template" id="templ">
+<%  var tweetId, userId, screenName, reTweetId, fullName, profileUrl, profileHashUrl, profileImageUrl, tweetText, tweetTimeStamp, tweetTimeStampRaw,
+        tweets = self.tweets, options = self.options;
+
+    for (var i = 0, len = Math.min(tweets.length, options.maxTweetsToShow); i < len; i++) { 
+        t = tweets[i]; 
+        tweetId = t.id; 
+        tweetText = t.text; 
+        sourceText = t.sourceText;
+        reTweetId = t.reTweetId;
+        isoTimeStamp = t.isoTimeStamp;
+        userId = t.user.id; 
+        screenName = t.user.screenName; 
+        fullName = t.user.name; 
+        profileImageUrl = t.user.profileImageUrl;
+        profileUrl = t.profileUrl; 
+        profileHashUrl = t.profileHashUrl;
+%>
+    <li data-tweet-id="<%= tweetId %>" data-user-id="<%= userId %>" data-screen-name="<%= screenName %>" data-retweet-id="<%= reTweetId %>" class="dj_tweet-item">
+        <img data-user-id="<%= userId %>" alt="<%= fullName %>" src="<%= profileImageUrl %>">
+        <div class="dj_tweet-content">
+            <div class='dj_tweet-meta'>
+                <a title="<%= fullName %>" href="<%= profileHashUrl %>" data-user-id="<%= userId %>" class="dj_full-name">
+                    <%= fullName %>
+                </a>
+                <a href="<%= profileHashUrl %>" title="<%= fullName %>" class="dj_screen-name">
+                    @<%= screenName %>
+                </a>
+                <span class="dj_time-stamp" data-time="<%= isoTimeStamp %>"><abbr title="<%= isoTimeStamp %>">
+                        </abbr> 
+                        <% if(sourceText) { %>
+                            via <%= sourceText %>
+                        <% } %>
+                        </span>
+                <ul class="dj_post-processing">
+                    <li class="dj_follow" data-action="follow">Follow</li>
+                    <li class="dj_reply" data-action="reply">Reply</li>
+                    <li class="dj_retweet" data-action="retweet">ReTweet</li>
+                    <li class="dj_favorite" data-action="favorite">Favorite</li>
+                    <li class="dj_details" data-action="details">Details</li>
+                </ul>
+            </div>
+            <p class="dj_tweet">
+                <%= tweetText %>
+            </p>
+        </div>
+    </li>
+<% } %>
+
+</script>
+<script type="text/javascript">
+    doT.templateSettings = {
+        evaluate: /<%([\s\S]+?)%>/g,
+        interpolate: /<%=([\s\S]+?)%>/g,
+        encode: /<%!([\s\S]+?)%>/g,
+        use: /<%#([\s\S]+?)%>/g,
+        define: /<%##\s*([\w\.$]+)\s*(\:|=)([\s\S]+?)#%>/g,
+        varname: 'self',
+        strip: true,
+        append: true
+    };
+</script>
+<script type="text/javascript">
+    $(function () {
+        $.extend(DJ.UI.TweetLines.prototype.templates, { tweetlines: doT.template($('#templ').html()) });
+        //var html = templ({ tweets: mockTweets.data, options: { maxTweetsToShow: 20} });
+        //$('div.stream').html(html);
+
+        //$(".retweet-action").click(function () { alert('call pop up') });
+
+        $('div.stream-container1').dj_TweetLines({ data: { tweets: mockTweets.data }, options: { maxTweetsToShow: 10} });
+        $('div.stream-container2').dj_TweetLines({ data: { tweets: mockTweets.data }, options: { maxTweetsToShow: 10} });
+
+        // event specfic handler
+        $dj.subscribe('loadNewTweets.dj.tweetLines', function () {
+            $dj.info('Global TweetLine click handler 1:', arguments);
+        });
+
+        // instance specifc handlers
+        // method 1
+        var tweetLines1 = $('div.stream-container1').findComponent(DJ.UI.TweetLines);
+        tweetLines1.on('loadNewTweets.dj.tweetLines', function () {
+            $dj.info('TweetLine click handler 1:', arguments);
+        }).on('loadNewTweets.dj.tweetLines', function () {
+            $dj.info('TweetLine click handler 2:', arguments);
+        });
+
+        // method 2 (shorter version of method 1)
+        $('div.stream-container2').findComponent(DJ.UI.TweetLines).on('loadNewTweets.dj.tweetLines', function () {
+            $dj.info('TweetLine click handler 3:', arguments);
+        }).on('loadNewTweets.dj.tweetLines', function () {
+            $dj.info('TweetLine click handler 4:', arguments);
+        });
+
+
+        // remove all handlers
+        tweetLines1.off('loadNewTweets.dj.tweetLines');
+
+    });
+</script>
+</html>

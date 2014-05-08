@@ -1,0 +1,38 @@
+﻿@using DowJones.Web.Mvc.Search.UI.Components.Filters
+@inherits DowJones.Web.Mvc.UI.CompositeComponent<SearchNavigator>
+@ClientPlugin dj_SearchNavigator
+@ScriptResource RelativeResourceName=SearchNavigator.js
+@{ CssClass = "dj_SearchNavigator"; }
+
+<input type="hidden" class="primaryGroupInput" name="primaryGroup" value="@Model.PrimaryGroupId" />
+<input type="hidden" class="secondaryGroupInput" name="secondaryGroup" value="@Model.SecondaryGroupId" />
+<input type="hidden" name="layout" id="layout" value="@Model.Layout.ToString().ToLower()" />
+<div class="dj_search-source-groups ui-component js_search-source-groups">
+
+    <ul class="source-list">
+            
+        <li class="toggle-view" title="@DJ.Token("clickToToggleFrames")">
+            <span class="dj_icon"></span>
+        </li>
+            
+        @foreach (var group in Model.PrimarySourceGroups) {
+            <li title="@group.DisplayName" data-group="@group.GroupCode" class="source source-@group.GroupTag @(group.HasCount ? string.Empty : "no-count") @(group.IsSelected ? "active" : string.Empty)">
+                <span class="dj_icon"></span>
+                <h5>@group.DisplayName</h5>
+                @if (group.HasCount) {
+                    <span class="count">(@Format(group.ResultCount))</span>
+                }
+            </li>
+        }
+    </ul>
+
+</div>
+
+@if (Model.HasAdditionalFilters) {
+<div class="dj_Filters dj_search-additional-filters ui-component">
+    <h3 class="filters-title">@DJ.Token("additionalFilters")</h3>
+
+    @(ComponentFactory.RenderComponent<SearchNavigatorTree>(Model.AdditionalFilters, new { @class = "root dj_browse-tree" }))
+    
+</div>
+}

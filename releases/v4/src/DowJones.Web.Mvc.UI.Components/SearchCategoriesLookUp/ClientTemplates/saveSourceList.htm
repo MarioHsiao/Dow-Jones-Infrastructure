@@ -1,0 +1,56 @@
+﻿<div class="dj_modal dj_list-editor" style="display:block;">
+    <div class="dj_modal-header">
+        <h3 class="dj_modal-title"><%= Token('createEditSourceList') %></h3>
+        <p class="dj_modal-close">
+            <a href="javascript:void(0);"></a>
+        </p>
+    </div>
+    <div class="dj_modal-content">
+        <div class="dj_modal-content-wrap">
+            <div class="modal-content">
+                <div class="list-editor-form dj_select-box-alt">
+                    <fieldset>
+                        <div class="dj_form-field">
+                            <ul class="inline clearfix">
+                                <li>
+                                    <input type="radio" name="sourceListRadio"/><label></label>
+                                </li>
+                                <li>
+                                    <select class="dj_selectbox dj_selectbox-small">
+                                        <option value="" selected="selected">
+                                            <%= Token("chooseList") %></option>
+                                    </select>
+                                    <input type="text" class="hidden add-margin"  maxlength="25" />
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="dj_form-field">
+                            <ul class="inline clearfix">
+                                <li>
+                                    <input type="radio" name="sourceListRadio" checked="checked" /><label><%= Token("createNewList") %></label></li>
+                                <li>
+                                    <input type="text" maxlength="25" /></li>
+                            </ul>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="filterList" style="display:none;">
+                    <p><%= Token('sourceSelectionDesc') %></p>
+                    <div class="filter-items source">
+			            <div class="wrap">
+				            <ul class="dj_pill-list yellow clearfix"></ul>
+                            <ul class="dj_pill-list not-filter red clearfix" style="display:none;">
+                                <li class="dj_pill not"><span><%= Token("notLabel") %></span> </li>
+                            </ul>
+			            </div>
+                    </div>
+                </div>
+			    <div class="footer">
+                    <span class="dj_btn dj_btn-drk-gray cancelBtn">
+                        <%= Token("cancel") %></span> <span class="dj_btn dj_btn-blue no-margin saveBtn">
+                            <%= Token("save") %></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
