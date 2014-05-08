@@ -1,6 +1,7 @@
 ﻿using DowJones.Web.Mvc.Search.Managers.Preferences;
 using DowJones.Web.Mvc.Search.Requests.Common;
 using DowJones.Web.Mvc.Search.UI.Components.Builders;
+using Ninject.Web.Common;
 
 namespace DowJones.Web.Mvc.Search
 {

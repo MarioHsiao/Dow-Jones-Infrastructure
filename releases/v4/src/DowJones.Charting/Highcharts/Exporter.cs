@@ -200,11 +200,10 @@ namespace DowJones.Charting.Highcharts
             SvgDocument svgDoc;
 
             // Create a MemoryStream from SVG string.
-            using (var streamSvg = new MemoryStream(
-                Encoding.UTF8.GetBytes(Svg)))
+            using (var streamSvg = new MemoryStream(Encoding.UTF8.GetBytes(Svg)))
             {
                 // Create and return SvgDocument from stream.
-                svgDoc = SvgDocument.Open(streamSvg);
+				svgDoc = SvgDocument.Open<SvgDocument>(streamSvg);
             }
 
             // Scale SVG document to requested width.

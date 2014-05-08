@@ -1,0 +1,117 @@
+﻿ /*Translate article page: Begin*/
+ .dj_translate_title
+{
+    background-color: #5C87B2;
+    color: #FFFFFF;
+    margin-bottom: 2px;
+    padding-right: 5px;
+    width: 100%;
+    border-width: 0px;
+}
+.dj_translate_title td
+{
+    height: 29px;
+    vertical-align: middle;
+}
+.dj_translate_title_langcode
+{
+    background-image: url('../images/translateTitleLanguageCodeBackground.png');
+    background-repeat: no-repeat;
+    width: 30px;
+    text-transform: uppercase;
+    font-size: 100%;
+    text-align: center;
+    font-family: Georgia;
+    font-size: 13px;
+    border-width: 0px;
+    padding-left:0px;
+}
+.dj_translate_title_langtext
+{
+    padding-left: 10px;
+    font-size: 11px;
+    font-weight: bold;
+    text-align: left;
+    border-width: 0px;
+}
+.dj_translate_title_rating_td
+{
+    text-align: right;
+    align:right;
+    border-width: 0px;
+}
+.dj_translate_title_rating
+{
+	vertical-align:baseline;
+	text-align:right;
+	height:16px;
+}
+.dj_translate_disclaimer
+{
+    font-family: Tahoma, Geneva, Sans-Serif;
+    background-color: #EAF3FD;
+    border: solid 1px #9AB3CC;
+    color: #333333;
+    padding: 7px 7px 7px 7px;
+    margin-bottom: 10px;
+}
+.dj_translate_disclaimer_text
+{
+    /*text-transform: uppercase;*/
+}
+.dj_translate_disclaimer_text a
+{
+    text-transform: none;
+}
+.dj_translate_disclaimer_translator
+{
+    font-style: italic;
+}
+.dj_translate_translatingmsg
+{
+    /* to do */     
+}
+.dj_translate_buttons a, .dj_translate_disclaimer a, .dj_translate_buttons a:hover, .dj_translate_disclaimer a:hover
+{
+    color: #336699;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.dj_translate_copyright_ruler
+{
+    background-color: #CCCCCC;
+    height: 1px;
+    margin-top: 10px;
+}
+.dj_translate_headline
+{
+	font-weight:bold;
+	padding-bottom:10px;
+}
+.dj_translate_highlight
+{
+	font-weight:bold;
+}
+.dj_translate_eref_link
+{
+	border-bottom:1px dotted #000000;
+	color:#000000;
+	text-decoration:none;
+}
+#dj_translate_ratestatus
+{
+	display:inline;
+	float:right;
+	vertical-align:baseline;
+	height:16px;
+	padding-top:4px;
+}
+.multiField
+{
+	display:inline;
+	float:right;
+}
+.dj_speaker_button_img
+{
+padding-top:2px;	
+}

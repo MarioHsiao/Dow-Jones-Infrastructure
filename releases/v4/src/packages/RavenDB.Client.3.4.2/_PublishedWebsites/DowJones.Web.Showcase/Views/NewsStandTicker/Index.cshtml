@@ -1,0 +1,15 @@
+﻿@using DowJones.Web.Mvc.UI.Components.NewsStandTicker;
+
+@{
+    ViewBag.Title = "News Stand Ticker";
+}
+
+<script type="text/javascript">
+    function SourceTitleClick(sender, data) {
+        alert(data.descriptor + " Clicked");
+    }
+</script>
+
+@Html.DJ().Render(Model)
+
+@Html.DJ().ScriptRegistry().Include("~/Scripts/NewsStandTicker.js")

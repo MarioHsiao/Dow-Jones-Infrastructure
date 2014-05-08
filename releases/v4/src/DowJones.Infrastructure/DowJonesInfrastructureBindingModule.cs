@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.Routing;
 using DowJones.Articles;
 using DowJones.DependencyInjection;
-using DowJones.Extensions.Web;
 using DowJones.Globalization;
 using DowJones.Infrastructure;
 using DowJones.Loggers;
@@ -15,7 +14,6 @@ using DowJones.Managers.Search;
 using DowJones.Managers.Search.Preference;
 using DowJones.Mapping;
 using DowJones.Preferences;
-using DowJones.Properties;
 using DowJones.Security;
 using DowJones.Session;
 using DowJones.Token;
@@ -29,6 +27,7 @@ using Ninject.Activation;
 using DowJones.Web.ClientResources;
 using DowJones.Managers.SocialMedia.TweetRiver;
 using DowJones.Managers.SocialMedia;
+using Ninject.Web.Common;
 
 namespace DowJones
 {
@@ -47,8 +46,9 @@ namespace DowJones
             Bind<ITransactionTimer>().To<BasicTransactionTimer>().InSingletonScope();
 
             Bind<IUserContext>().To<UserContext>().InTransientScope();
-            
-            BindToFactory<ReferringProduct, ReferringProductFactory>().InRequestScope();
+
+			// TODO: IOC: Update with SimpleInjector Equivalent
+            //BindToFactory<ReferringProduct, ReferringProductFactory>().InRequestScope();
 
             Bind<IMapper>().ToConstant(Mapper.Instance).InTransientScope();
 
@@ -79,7 +79,8 @@ namespace DowJones
             
             Bind<IClientSideObjectWriterFactory>().To<ClientSideObjectWriterFactory>().InSingletonScope();
 
-            BindToFactory<ClientConfiguration, ClientConfigurationFactory>().InRequestScope();
+			// TODO: IOC: Update with SimpleInjector Equivalent
+            //BindToFactory<ClientConfiguration, ClientConfigurationFactory>().InRequestScope();
 
             Bind<IContentCache>().To<WebContentCache>();
 
@@ -89,7 +90,8 @@ namespace DowJones
 
             Bind<ITokenRegistry>().To<TokenRegistry>().InRequestScope();
 
-            BindToFactory<IResourceTextManager, ResourceTextManagerFactory>().InThreadScope();
+			// TODO: IOC: Update with SimpleInjector Equivalent
+            //BindToFactory<IResourceTextManager, ResourceTextManagerFactory>().InThreadScope();
 
             Bind<ISearchService>().To<SearchService>().InRequestScope();
 

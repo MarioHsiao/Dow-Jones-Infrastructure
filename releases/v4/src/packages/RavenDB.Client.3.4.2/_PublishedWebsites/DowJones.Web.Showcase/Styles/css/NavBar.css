@@ -1,0 +1,215 @@
+/*------------------------------------------------------------------------------
+	default styles based on SnapShot styles
+------------------------------------------------------------------------------*/
+
+.tabbar-container-wrap {
+	position: relative;
+}
+
+.scrollabletabbar {
+	height: 40px;
+}
+
+.scrollabletabbar .tabs-container {
+	overflow: hidden;
+	float: left;
+	position: relative;
+	/*display: none;*/
+}
+
+.scrollabletabbar .tabs-container .floating-actionitems {
+	float: left;
+}
+
+.scrollabletabbar .actionitems-container {
+	float: right;
+	display: none;
+}
+
+.ie7 .scrollabletabbar .actionitems-container 
+{
+    display: block;
+    visibility: hidden;
+}
+
+.scrollabletabbar .actionitems-container.actionitems-container-left {
+	float: left;
+}
+
+.scrollabletabbar .tabs {
+	height: 40px;
+	float: left;
+}
+
+.scrollabletabbar .actionitems-container{
+	
+}
+
+.scrollabletabbar .tabs .tab-container, .scrollabletabbar .actionitems .actionitem-container {
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	vertical-align: middle;
+	float: left;
+	position: relative;
+	padding-right: 4px;
+}
+
+.scrollabletabbar .tabs .tab, .scrollabletabbar .actionitems .actionitem, .scrollabletabbar .floating-actionitems .actionitem {
+	height: 40px;
+	line-height: 40px;
+	display: -moz-inline-stack; /* required for ff2 */
+	display: inline-block;
+	vertical-align: middle;
+	color: #999;
+	font-size: 15px;
+	overflow: visible;
+	text-decoration: none;
+	background-color: #3e3e3e;
+	box-shadow: inset 0px 1px 0px #666666;
+    -webkit-box-shadow: inset 0px 1px 0px #666666;
+    -moz-box-shadow: inset 0px 1px 0px #666666;
+	cursor: pointer;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	background: -webkit-gradient(linear,left top,left bottom,from(#3e3e3e),to(#2e2e2e));
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	background: -moz-linear-gradient(top,#3e3e3e,#2e2e2e);
+	text-shadow: 0px -1px 0px #202020
+}
+
+.scrollabletabbar .tab .tab-content, .scrollabletabbar .actionitem .actionitem-content {
+	padding-left: 12px;
+	padding-right: 12px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	background-repeat: no-repeat;
+	background-position: right -75px;
+	height: 40px;
+}
+
+.scrollabletabbar .tab-container.active .tab-content {
+	background-position: top right;
+}
+
+.scrollabletabbar .tab-container.published .tab-content {
+	background-image: url(../images/tab_published.png);
+}
+
+.scrollabletabbar .tab-container.subscribed .tab-content {
+	background-image: url(../images/tab_subscribed.png);
+}
+
+.scrollabletabbar .tabs .tab .icon {
+	display: none;
+}
+
+.scrollabletabbar .tabs .tab-container.active .tab, .scrollabletabbar .actionitem-container.active .actionitem {
+	color: #666;
+	background: #f2fafd;
+	border-bottom: none;
+	box-shadow: none;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	text-shadow: 0px -1px 0px transparent;
+	cursor: auto;
+}
+
+.scrollabletabbar .tabs .tab-container .tab .label, .scrollabletabbar .actionitem .label {
+	font-weight: bold;
+	white-space: nowrap;
+	float: left;
+}
+
+.scrollabletabbar .tabs .tab-container.active .tab .label {
+	display: block;
+	white-space: nowrap;
+}
+
+.scrollabletabbar .tabs .tab-container.active .tab .icon, .scrollabletabbar .actionitem .icon {
+	display: block;
+	float: left;
+	margin-top: 3px;
+	margin-left: 5px;
+	height: 40px;
+	width: 16px;
+	line-height: 40px;
+}
+
+.scrollabletabbar .no-label .actionitem .icon {
+	margin-left:0px;
+}
+
+.scrollabletabbar .tabs .tab-container.active .tab .icon .fi {
+	position: absolute;
+	margin-top: 8px;
+	cursor: pointer;
+}
+
+.scrollabletabbar .actionitem .icon .fi {
+	position: absolute;
+	margin-top: 8px;
+	cursor: pointer;
+}
+
+.scrollabletabbar .tabs-fade-left {
+	height: 40px;
+	width: 20px;
+	background-image: url(../images/tabbar_fade_left.png);
+	background-position: top;
+	position: absolute;
+	z-index: 2000;
+	cursor: pointer;
+	display: none;
+}
+
+.scrollabletabbar .tabs-fade-left:hover {
+	background-position:0px -40px;
+}
+
+.scrollabletabbar .tabs-fade-right {
+	height: 40px;
+	width: 20px;
+	background-image: url(../images/tabbar_fade_right.png);
+	background-position: top;
+	position: absolute;
+	z-index: 2000;
+	cursor: pointer;
+    display: none;
+
+}
+
+.scrollabletabbar .tabs-fade-right:hover {
+	background-position:0px -40px;
+}
+
+.actionitem-content .fi.fi_circle-plus {
+	background-position: 0 -120px;
+}
+
+.actionitem-content .fi.fi_d-double-arrow {
+	background-position: 0 -160px;
+}
+
+.actionitem-content .fi.fi_expand {
+	background-position: 0 -920px;
+}
+
+.actionitem-content .fi.fi_collapse {
+	background-position: 0 -880px;
+}
+
+.tab-content.fi.fi_gear {
+	background-position: 0 -80px;
+}
+
+
+#dj_canvas_nav #tabbar {
+	position: absolute;
+	top: -40px;
+}
+#dj_canvas_nav {
+	position: relative;
+}

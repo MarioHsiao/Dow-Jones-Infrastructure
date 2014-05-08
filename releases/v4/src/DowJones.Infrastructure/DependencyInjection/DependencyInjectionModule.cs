@@ -86,19 +86,19 @@ namespace DowJones.DependencyInjection
             }
         }
 
-        public IBindingInSyntax<T> BindToFactory<T, TFactory>() 
-            where TFactory : IFactory
-        {
-            var provider = new FactoryProvider<TFactory>();
-            return Bind<T>().ToProvider(provider);
-        }
+		//public IBindingInSyntax<T> BindToFactory<T, TFactory>() 
+		//	where TFactory : IFactory
+		//{
+		//	var provider = new FactoryProvider<TFactory>();
+		//	return Bind<T>().ToProvider(provider);
+		//}
 
-        public IBindingInSyntax<T> RebindToFactory<T, TFactory>() 
-            where TFactory : IFactory
-        {
-            Unbind<T>();
-            return BindToFactory<T, TFactory>();
-        }
+		//public IBindingInSyntax<T> RebindToFactory<T, TFactory>() 
+		//	where TFactory : IFactory
+		//{
+		//	Unbind<T>();
+		//	return BindToFactory<T, TFactory>();
+		//}
 
         protected abstract void OnLoad();
     }

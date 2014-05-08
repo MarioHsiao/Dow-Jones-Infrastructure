@@ -1,6 +1,7 @@
 using DowJones.Web.ClientResources;
 using DowJones.Web.Mvc.UI.Canvas.Modules.ScriptModule;
 using DowJones.Web.Mvc.UI.Canvas.Modules.ScriptModule.ClientResources;
+using Ninject.Web.Common;
 
 namespace DowJones.Web.Mvc.UI.Canvas
 {

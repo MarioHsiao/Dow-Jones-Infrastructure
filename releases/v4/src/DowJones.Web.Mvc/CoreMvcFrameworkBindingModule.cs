@@ -3,6 +3,7 @@ using DowJones.DependencyInjection;
 using DowJones.Web.Mvc.Infrastructure;
 using DowJones.Web.Mvc.Routing;
 using DowJones.Web.Mvc.UI;
+using Ninject.Web.Common;
 using Ninject.Web.Mvc;
 using Ninject.Web.Mvc.Filter;
 using Ninject.Web.Mvc.Validation;

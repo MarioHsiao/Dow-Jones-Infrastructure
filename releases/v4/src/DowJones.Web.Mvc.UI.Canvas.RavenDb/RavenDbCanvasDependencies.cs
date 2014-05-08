@@ -2,6 +2,7 @@ using DowJones.Pages;
 using DowJones.Pages.Modules.Templates;
 using DowJones.Web.Mvc.UI.Canvas.RavenDb;
 using Ninject;
+using Ninject.Web.Common;
 using Raven.Client;
 using Raven.Client.Document;
 

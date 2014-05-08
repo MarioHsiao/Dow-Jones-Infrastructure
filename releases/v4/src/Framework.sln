@@ -58,6 +58,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Web.Mvc.UI.Canvas.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Web.Mvc.UI.Canvas.RavenDb.Tests", "DowJones.Web.Mvc.UI.Canvas.RavenDb.Tests\DowJones.Web.Mvc.UI.Canvas.RavenDb.Tests.csproj", "{C1045E7A-593D-4615-9854-EA90074DA51C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{E32C9EC1-6AE6-43EC-B333-270F56A8B358}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
 		SccNumberOfProjects = 18

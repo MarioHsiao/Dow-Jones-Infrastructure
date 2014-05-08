@@ -23,6 +23,7 @@ using DowJones.Web.Navigation;
 using DowJones.Web.Showcase.Connections;
 using DowJones.Web.Showcase.Connections.RealTimeAlerts;
 using DowJones.Web.Showcase.Mocks;
+using Ninject.Web.Common;
 using SignalR.Hosting.AspNet.Routing;
 
 namespace DowJones.Web.Showcase
@@ -35,10 +36,10 @@ namespace DowJones.Web.Showcase
             RouteTable.Routes.MapConnection<RealTimeAlertsConnection>("realtimealertsconnection", "realtimealertsconnection/{*operation}");
             RouteTable.Routes.MapConnection<MyConnection>("echo", "echo/{*operation}");
             
-            BindToFactory<IPrinciple, PrincipleFactory>().InRequestScope();
-            BindToFactory<IControlData, ControlDataFactory>().InRequestScope();
-            BindToFactory<IPreferences, PreferencesFactory>().InRequestScope();
-            BindToFactory<IUserSession, DevelopmentSessionFactory>().InRequestScope();
+           // BindToFactory<IPrinciple, PrincipleFactory>().InRequestScope();
+           // BindToFactory<IControlData, ControlDataFactory>().InRequestScope();
+           // BindToFactory<IPreferences, PreferencesFactory>().InRequestScope();
+           // BindToFactory<IUserSession, DevelopmentSessionFactory>().InRequestScope();
 //            RebindToFactory<IPreferenceService, CachedPreferenceServiceFactory>().InRequestScope();
 
             Bind<IMenuDataSource>().To<ShowcaseMenuDataSource>().InSingletonScope();
