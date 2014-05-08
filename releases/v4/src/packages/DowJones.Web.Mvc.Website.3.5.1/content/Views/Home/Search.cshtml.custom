@@ -1,8 +1,0 @@
-﻿@{
-    ViewBag.Title = "Search";
-}
-
-<h2>Search</h2>
-<section>
-    @DJ.Render(Model)
-</section>

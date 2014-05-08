@@ -1,0 +1,5 @@
+# ignore .dll files in this folder nor in any of its sub-folders
+*.dll
+
+# ignore packages folder since NuGet package restore is enabled
+packages
