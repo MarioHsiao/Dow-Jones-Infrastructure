@@ -53,8 +53,10 @@
     <Reference Include="Argotic.Web">
       <HintPath>..\packages\Argotic.Web.2008.0.2.0\lib\Net35\Argotic.Web.dll</HintPath>
     </Reference>
-    <Reference Include="encryption, Version=1.0.2949.19938, Culture=neutral">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="CachingWrapper">
+      <HintPath>..\packages\Factiva.Gateway.Caching.1.5.2526\lib\CachingWrapper.dll</HintPath>
+    </Reference>
+    <Reference Include="encryption">
       <HintPath>..\packages\Factiva.Gateway.Encryption.1.0.2949.19938\lib\encryption.dll</HintPath>
     </Reference>
     <Reference Include="factiva.gateway.messages">
