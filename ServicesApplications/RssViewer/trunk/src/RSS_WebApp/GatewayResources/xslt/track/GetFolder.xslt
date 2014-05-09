@@ -26,9 +26,11 @@
       <pamAssetType>
         <xsl:value-of select="@pamAssetType"/>
       </pamAssetType>
-      <pressClipSrcBlk>
-        <xsl:value-of select="@pressClipSrcBlk"/>
-      </pressClipSrcBlk>
+      <xsl:if test="string-length(normalize-space(@pressClipSrcBlk))&gt; 0">
+        <pressClipSrcBlk>
+          <xsl:value-of select="@pressClipSrcBlk"/>
+        </pressClipSrcBlk>
+      </xsl:if>
       <clientTypeCode>
         <xsl:value-of select="@clientTypeCode"/>
       </clientTypeCode>
@@ -59,6 +61,11 @@
           <xsl:otherwise>Online</xsl:otherwise>
         </xsl:choose>
       </deliveryMethod>
+      <xsl:if test="Delivery/@ftype">
+          <deduplicationLevel>
+            <xsl:value-of select="Delivery/@ftype"/>
+          </deduplicationLevel>
+       </xsl:if>
       <xsl:if test="Delivery/@deliveryMethod != 'online'">
         <email>
           <xsl:value-of select="Delivery/@email"/>
@@ -84,11 +91,7 @@
             </xsl:choose>
           </dispositionType>
         </xsl:if>
-        <xsl:if test="Delivery/@ftype">
-          <deduplicationLevel>
-            <xsl:value-of select="Delivery/@ftype"/>
-          </deduplicationLevel>
-        </xsl:if>
+        
         <wirelessfriendly>
           <xsl:choose>
             <xsl:when test="Delivery/@wirelessfriendly='y'">true</xsl:when>

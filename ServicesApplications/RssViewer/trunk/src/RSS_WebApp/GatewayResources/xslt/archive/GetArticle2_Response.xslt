@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:user="user" extension-element-prefixes="msxsl" exclude-result-prefixes="user">
-  <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="no"/>
+  <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="no" cdata-section-elements="text partText"/>
   <xsl:param name="tranResponse"/>
   <msxsl:script language="JScript" implements-prefix="user">
     <![CDATA[
@@ -53,12 +53,14 @@
         <xsl:element name="GetArticleResponse">
           <xsl:apply-templates select="Status"/>
           <xsl:apply-templates select="ResultSet"/>
+          <xsl:apply-templates select="Metering"/>
         </xsl:element>
       </xsl:when>
       <xsl:otherwise>
         <xsl:element name="{$tranResponse}">
           <xsl:apply-templates select="Status"/>
           <xsl:apply-templates select="ResultSet"/>
+          <xsl:apply-templates select="Metering"/>
         </xsl:element>
       </xsl:otherwise>
     </xsl:choose>
@@ -74,6 +76,24 @@
       <xsl:apply-templates select="./Result"/>
     </articleResponseSet>
   </xsl:template>
+  <xsl:template match="Metering">
+    <xsl:element name="meteringInfo">
+      <xsl:copy-of select="Limit"/>
+      <xsl:copy-of select="TimePeriod"/>
+      <xsl:element name="GracePeriod">
+        <xsl:choose>
+          <xsl:when test="GracePeriod ='Y' or GracePeriod= 'Yes'">true</xsl:when>
+          <xsl:otherwise>false</xsl:otherwise>
+        </xsl:choose>
+      </xsl:element>
+      <xsl:copy-of select="Email"/>
+      <xsl:copy-of select="DocCount"/>
+      <xsl:copy-of select="CreditLimit"/>
+      <xsl:element name="MeteringCount">
+        <xsl:value-of select="MeteredCount"/>
+      </xsl:element>
+    </xsl:element>
+  </xsl:template>
   <xsl:template match="//Result">
     <article>
       <status>
@@ -85,140 +105,169 @@
       </status>
       <xsl:choose>
         <xsl:when test="number(@status)=0">
-          
-       
-        <reference>
-          distdoc:archive/ArchiveDoc::Article/<xsl:value-of select="@accessionno"/>
-        </reference>
-        <xsl:apply-templates select="./Art"/>
-        <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='accessionno']"/>
-        <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='baselang']"/>
-        <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='doctype']"/>
-        <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='pubedition']"/>
-        <xsl:if test="./PropertySet[@group='docdata']/Property[@name='pubpage']">
-          <pages>
-            <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='pubpage']"/>
-          </pages>
-        </xsl:if>
-        <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='pubdate']"/>
-        <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='pubtime']"/>
-        <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='pubgroupn']"/>
-        <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='pubgroupc']"/>
-        <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='publishern']"/>
-        <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='ipdocid']"/>
-        <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='charcount']"/>
-        <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='loaddate']"/>
-        <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='loadtime']"/>
-        <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='moddate']"/>
-        <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='modtime']"/>
-        <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='origsource']"/>
-        <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='revisionno']"/>
-        <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='editor']"/>
-        <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='authorlist']"/>
-        <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='srccode']"/>
-        <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='attribcode']"/>
-        <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='ipid']"/>
-        <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='srcname']"/>
-        <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='srcprimarytype']"/>
-        <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='srcsecondarytype']"/>
-        <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='srcrightstype']"/>
-        <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='allowtranslation']"/>
-        <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='circulation']"/>
-        <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='webhits']"/>
-        <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='firstdate']"/>
-        <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='regionoforigin']"/>
-        <xsl:choose>
-          <xsl:when test="./PropertySet[@group='pubdata']/Property[@name='logoimage']">
-            <sourceLogo>
-              <xsl:attribute name="image">
-                <xsl:value-of select="normalize-space(./PropertySet[@group='pubdata']/Property[@name='logoimage']/@value)"/>
+
+
+          <reference>
+            distdoc:archive/ArchiveDoc::Article/<xsl:value-of select="@accessionno"/>
+          </reference>
+          <xsl:apply-templates select="./Art"/>
+          <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='accessionno']"/>
+          <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='baselang']"/>
+          <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='doctype']"/>
+          <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='pubedition']"/>
+          <xsl:if test="./PropertySet[@group='docdata']/Property[@name='pubpage']">
+            <pages>
+              <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='pubpage']"/>
+            </pages>
+          </xsl:if>
+          <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='allowtranslation']"/>
+          <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='pubdate']"/>
+          <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='pubtime']"/>
+          <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='pubgroupn']"/>
+          <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='pubgroupc']"/>
+          <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='publishern']"/>
+          <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='ipdocid']"/>
+          <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='charcount']"/>
+          <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='loaddate']"/>
+          <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='loadtime']"/>
+          <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='moddate']"/>
+          <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='modtime']"/>
+          <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='origsource']"/>
+          <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='revisionno']"/>
+          <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='editor']"/>
+          <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='authorlist']"/>
+          <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='srccode']"/>
+          <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='attribcode']"/>
+          <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='ipid']"/>
+          <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='srcname']"/>
+          <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='srcprimarytype']"/>
+          <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='srcsecondarytype']"/>
+          <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='srcrightstype']"/>
+          <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='allowtranslation']"/>
+
+          <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='circulation']"/>
+          <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='webhits']"/>
+          <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='firstdate']"/>
+          <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='regionoforigin']"/>
+          <xsl:choose>
+            <xsl:when test="./PropertySet[@group='pubdata']/Property[@name='logoimage']">
+              <sourceLogo>
+                <xsl:attribute name="image">
+                  <xsl:value-of select="normalize-space(./PropertySet[@group='pubdata']/Property[@name='logoimage']/@value)"/>
+                </xsl:attribute>
+                <xsl:attribute name="link">
+                  <xsl:value-of select="normalize-space(./PropertySet[@group='pubdata']/Property[@name='logolink']/@value)"/>
+                </xsl:attribute>
+                <xsl:attribute name="source">
+                  <xsl:value-of select="normalize-space(./PropertySet[@group='pubdata']/Property[@name='logosrc']/@value)"/>
+                </xsl:attribute>
+              </sourceLogo>
+            </xsl:when>
+          </xsl:choose>
+          <xsl:apply-templates select="./Byline"/>
+          <xsl:apply-templates select="./Credit"/>
+          <xsl:variable name="CSetCount">
+            <xsl:value-of select="count(./Codes/CodeSet)"/>
+          </xsl:variable>
+          <xsl:variable name="CodeSetCount">
+            <xsl:value-of select="count(./CodeSets/CSet)"/>
+          </xsl:variable>
+
+          <xsl:variable name="DirectCodeSetCountValue">
+            <xsl:value-of select="count(CodeSet)"/>
+          </xsl:variable>
+
+          <xsl:if test="number($CSetCount)>0 or number($CodeSetCount)>0 or number($DirectCodeSetCountValue)">
+            <indexingCodeSets>
+              <xsl:attribute name="count">
+                <xsl:value-of select="$CSetCount + $CodeSetCount + $DirectCodeSetCountValue"/>
               </xsl:attribute>
-              <xsl:attribute name="link">
-                <xsl:value-of select="normalize-space(./PropertySet[@group='pubdata']/Property[@name='logolink']/@value)"/>
-              </xsl:attribute>
-              <xsl:attribute name="source">
-                <xsl:value-of select="normalize-space(./PropertySet[@group='pubdata']/Property[@name='logosrc']/@value)"/>
-              </xsl:attribute>
-            </sourceLogo>
-          </xsl:when>
-        </xsl:choose>
-        <xsl:apply-templates select="./Byline"/>
-        <xsl:apply-templates select="./Credit"/>
-        <xsl:variable name="CSetCount">
-          <xsl:value-of select="count(./Codes/CodeSet)"/>
-        </xsl:variable>
-        <xsl:variable name="CodeSetCount">
-          <xsl:value-of select="count(./CodeSets/CSet)"/>
-        </xsl:variable>
-        <xsl:if test="number($CSetCount)>0 or number($CodeSetCount)>0">
-          <indexingCodeSets>
-            <xsl:attribute name="count">
-              <xsl:value-of select="$CSetCount + $CodeSetCount"/>
-            </xsl:attribute>
-            <xsl:if test="count(./Codes/CodeSet) > 0">
-              <xsl:apply-templates select="./Codes/CodeSet"/>
-            </xsl:if>
-            <xsl:if test="count(./CodeSets/CSet) > 0">
-              <xsl:apply-templates select="./CodeSets/CSet"/>
-            </xsl:if>
-          </indexingCodeSets>
-        </xsl:if>
-        <xsl:apply-templates select="./ColumnName"/>
-        <xsl:apply-templates select="./Contact"/>
-        <xsl:apply-templates select="./Copyright"/>
-        <xsl:apply-templates select="./Corrections"/>
-        <xsl:apply-templates select="./Headline"/>
-        <xsl:apply-templates select="./LeadPara"/>
-        <xsl:apply-templates select="./TailParas "/>
-        <xsl:apply-templates select="./Notes"/>
-        <xsl:apply-templates select="./SectionName"/>
-        <xsl:apply-templates select="./Fields"/>
-        <xsl:apply-templates select="./Dict"/>
-        <xsl:apply-templates select="./Property[@name='snippet']/Snippet"/>
-        <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='pubvol']"/>
-        <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='wordcount']"/>
-        <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='bestdate']"/>
-        <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='besttime']"/>
-        <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='url']"/>
-        <xsl:apply-templates select="./PropertySet[@group='replyitem']/Property[@name='snippet']/Snippet"/>
-        <xsl:apply-templates select="./AdocTOC"/>
-        <xsl:if test="string-length(normalize-space(@auxcount)) &gt; 0">
-          <auxiliaryDocCount>
-            <xsl:value-of select="normalize-space(string(@auxcount))"/>
-          </auxiliaryDocCount>
-        </xsl:if>
-        <xsl:if test="string-length(normalize-space(@parent)) &gt; 0">
-          <parentAccesionNumber>
-            <xsl:value-of select="normalize-space(string(@parent))"/>
-          </parentAccesionNumber>
-        </xsl:if>
-        <xsl:if test="count(@segment) > 0 and string-length(normalize-space(@segment)) &gt; 0">
-          <segmentIDs>
-            <xsl:call-template name="splitSegment">
-              <xsl:with-param name="string" select="normalize-space(string(@segment))"/>
-            </xsl:call-template>
-          </segmentIDs>
-        </xsl:if>
-        <xsl:if test="string-length(normalize-space(@auxtype)) &gt; 0">
-          <xsl:variable name="auxtype" select="normalize-space(string(@auxtype))"/>
-          <auxiliaryDocType>
-            <xsl:choose>
-              <xsl:when test="$auxtype = 's'">Summary</xsl:when>
-              <xsl:when test="$auxtype = 'r'">RelatedLink</xsl:when>
-              <xsl:otherwise>Unknown</xsl:otherwise>
-            </xsl:choose>
-          </auxiliaryDocType>
-        </xsl:if>
-        <!--//Apply metadataPT container-->
-        <xsl:apply-templates select="./MetadataPT"/>
-        <xsl:apply-templates select="./ArchiveDoc/Article"/>
-        <xsl:apply-templates select="./DistDoc"/>
-        <xsl:apply-templates select="./DocData"/>
-        <xsl:apply-templates select="./PubData"/>
-        <xsl:if test="./Properties">
-          <xsl:apply-templates select="./Properties"/>
-        </xsl:if>
-        <xsl:apply-templates select="./ReplyItem"/>
+              <xsl:if test="count(./Codes/CodeSet) > 0">
+                <xsl:apply-templates select="./Codes/CodeSet"/>
+              </xsl:if>
+              <xsl:if test="count(./CodeSets/CSet) > 0">
+                <xsl:apply-templates select="./CodeSets/CSet"/>
+              </xsl:if>
+              <xsl:if test="count(CodeSet) > 0">
+                <xsl:apply-templates select="CodeSet" mode="entire"/>
+              </xsl:if>
+            </indexingCodeSets>
+          </xsl:if>
+
+          <xsl:apply-templates select="./ColumnName"/>
+          <xsl:apply-templates select="./Contact"/>
+          <xsl:apply-templates select="./Copyright"/>
+          <xsl:apply-templates select="./Corrections"/>
+          <xsl:apply-templates select="./Headline"/>
+          <xsl:apply-templates select="./LeadPara"/>
+          <xsl:apply-templates select="./TailParas "/>
+          <xsl:apply-templates select="./Notes"/>
+          <xsl:apply-templates select="./SectionName"/>
+          <xsl:apply-templates select="./Fields"/>
+          <xsl:apply-templates select="./Dict"/>
+          <xsl:apply-templates select="./Property[@name='snippet']/Snippet"/>
+          <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='pubvol']"/>
+          <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='wordcount']"/>
+          <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='bestdate']"/>
+          <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='besttime']"/>
+          <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='url']"/>
+          <xsl:apply-templates select="./PropertySet[@group='replyitem']/Property[@name='snippet']/Snippet"/>
+          <xsl:apply-templates select="./AdocTOC"/>
+          <xsl:if test="string-length(normalize-space(@auxcount)) &gt; 0">
+            <auxiliaryDocCount>
+              <xsl:value-of select="normalize-space(string(@auxcount))"/>
+            </auxiliaryDocCount>
+          </xsl:if>
+          <xsl:if test="string-length(normalize-space(@parent)) &gt; 0">
+            <parentAccesionNumber>
+              <xsl:value-of select="normalize-space(string(@parent))"/>
+            </parentAccesionNumber>
+          </xsl:if>
+          <xsl:if test="count(@segment) > 0 and string-length(normalize-space(@segment)) &gt; 0">
+            <segmentIDs>
+              <xsl:call-template name="splitSegment">
+                <xsl:with-param name="string" select="normalize-space(string(@segment))"/>
+              </xsl:call-template>
+            </segmentIDs>
+          </xsl:if>
+          <xsl:if test="string-length(normalize-space(@auxtype)) &gt; 0">
+            <xsl:variable name="auxtype" select="normalize-space(string(@auxtype))"/>
+            <auxiliaryDocType>
+              <xsl:choose>
+                <xsl:when test="$auxtype = 's'">Summary</xsl:when>
+                <xsl:when test="$auxtype = 'r'">RelatedLink</xsl:when>
+                <xsl:otherwise>Unknown</xsl:otherwise>
+              </xsl:choose>
+            </auxiliaryDocType>
+          </xsl:if>
+          <!--//Apply metadataPT container-->
+          <xsl:apply-templates select="./MetadataPT"/>
+          <xsl:apply-templates select="./ArchiveDoc/Article"/>
+          <xsl:apply-templates select="./DistDoc"/>
+          <xsl:apply-templates select="./DocData"/>
+          <xsl:apply-templates select="./PubData"/>
+          <xsl:if test="./Properties">
+            <xsl:apply-templates select="./Properties"/>
+          </xsl:if>
+          <xsl:apply-templates select="./ReplyItem"/>
+
+          <xsl:choose>
+            <xsl:when test="count(PropertySet) >0">
+              <xsl:if test="count(PropertySet[@group='pubdata']) > 0 or count(PropertySet[@group='docdata']) > 0">
+                <xsl:element name="properties">
+                  <xsl:apply-templates select="PropertySet" mode="entire"></xsl:apply-templates>
+                </xsl:element>
+              </xsl:if>
+            </xsl:when>
+            <xsl:when test="count(Properties) >0">
+              <xsl:if test="count(Properties/PropertySet[@group='pubdata']) > 0 or count(Properties/PropertySet[@group='docdata']) > 0">
+                <xsl:element name="properties">
+                  <xsl:apply-templates select="Properties/PropertySet" mode="entire"></xsl:apply-templates>
+                </xsl:element>
+              </xsl:if>
+            </xsl:when>
+          </xsl:choose>
+
         </xsl:when>
         <xsl:otherwise>
           <accessionNo>
@@ -286,6 +335,7 @@
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='srcsecondarytype']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='srcrightstype']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='allowtranslation']"/>
+    <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='allowtranslation']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='circulation']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='webhits']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='firstdate']"/>
@@ -444,6 +494,7 @@
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='srcsecondarytype']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='srcrightstype']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='allowtranslation']"/>
+    <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='allowtranslation']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='circulation']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='webhits']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='firstdate']"/>
@@ -552,6 +603,7 @@
         <xsl:apply-templates select="./PubData"/>
       </xsl:otherwise>
     </xsl:choose>
+
   </xsl:template>
   <xsl:template match="MetadataPT">
     <xsl:apply-templates select="./Art"/>
@@ -652,6 +704,7 @@
         <xsl:apply-templates select="./PubData"/>
       </xsl:otherwise>
     </xsl:choose>
+
   </xsl:template>
   <xsl:template match="Properties">
     <xsl:choose>
@@ -875,6 +928,7 @@
       </xsl:when>
     </xsl:choose>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='allowtranslation']"/>
+    <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='allowtranslation']"/>
     <xsl:choose>
       <xsl:when test="./PropertySet[@group='pubdata']/Property[@name='circulation']">
         <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='circulation']"/>
@@ -983,7 +1037,38 @@
         <xsl:apply-templates select="./property[@group='docdata' and @name='snippet']/Snippet"/>
       </xsl:when>
     </xsl:choose>
+
+
   </xsl:template>
+
+  <xsl:template match="PropertySet" mode="entire">
+    <xsl:if test ="@group='pubdata'or @group='docdata'">
+      <xsl:variable name ="groupName">
+        <xsl:value-of select="@group"/>
+      </xsl:variable>
+      <xsl:element name="propertySet">
+        <xsl:attribute name="group">
+          <xsl:value-of select="$groupName"/>
+        </xsl:attribute>
+        <xsl:apply-templates select="Property" mode="entire" ></xsl:apply-templates>
+      </xsl:element>
+    </xsl:if>
+  </xsl:template>
+
+
+  <xsl:template match="Property" mode="entire">
+    <xsl:element name="property">
+      <xsl:attribute name="name">
+        <xsl:value-of select="@name"/>
+      </xsl:attribute>
+
+      <xsl:attribute name="value">
+        <xsl:value-of select="@value"/>
+      </xsl:attribute>
+    </xsl:element>
+  </xsl:template>
+
+
   <xsl:template match="Fields">
     <xsl:if test="string-length(normalize-space(.)) &gt; 0">
       <fields>
@@ -1699,6 +1784,18 @@
       </xsl:choose>
     </isTranslationAllowedBySource>
   </xsl:template>
+  <xsl:template match="PropertySet[@group='docdata']/Property[@name='allowtranslation']">
+    <isTranslationAllowedBySource>
+      <xsl:choose>
+        <xsl:when test="normalize-space(@value) = 'Y'">
+          true
+        </xsl:when>
+        <xsl:otherwise>
+          false
+        </xsl:otherwise>
+      </xsl:choose>
+    </isTranslationAllowedBySource>
+  </xsl:template>
   <xsl:template match="PropertySet[@group='pubdata']/Property[@name='circulation']">
     <xsl:if test="string-length(normalize-space(@value)) &gt; 0">
       <circulation>
@@ -1842,8 +1939,37 @@
       </xsl:attribute>
       <xsl:apply-templates select="CodeD"/>
       <xsl:apply-templates select="CodeI"/>
+      <xsl:apply-templates select ="CodeImportLvl" mode="entire"></xsl:apply-templates>
     </code>
   </xsl:template>
+
+  <xsl:template match="CodeSet" mode ="entire">
+    <xsl:element name="codeSet">
+      <xsl:attribute name="codeCategory">
+        <xsl:value-of select="@codeCat"/>
+      </xsl:attribute>
+      <xsl:apply-templates select="Code" mode="entire"></xsl:apply-templates>
+    </xsl:element>
+  </xsl:template>
+
+  <xsl:template match="Code" mode="entire">
+    <xsl:element name="code">
+      <xsl:attribute name="value">
+        <xsl:value-of select="@value"/>
+      </xsl:attribute>
+      <xsl:attribute name="cat">
+        <xsl:value-of select="@subCat"/>
+      </xsl:attribute>
+      <xsl:apply-templates select ="CodeImportLvl" mode="entire"></xsl:apply-templates>
+    </xsl:element>
+  </xsl:template>
+
+  <xsl:template match="CodeImportLvl" mode="entire">
+    <xsl:element name="codeImportLvl">
+      <xsl:value-of  select="." />
+    </xsl:element>
+  </xsl:template>
+
   <xsl:template match="CodeD">
     <xsl:if test="string-length(normalize-space(.)) &gt; 0">
       <codeDescription>
@@ -1866,6 +1992,8 @@
       </codeDJNCode>
     </xsl:if>
   </xsl:template>
+
+
   <xsl:template match="ColumnName">
     <xsl:if test="string-length(normalize-space(.)) &gt; 0">
       <columnName>
@@ -2107,6 +2235,7 @@
               <text>
                 <xsl:value-of select="."/>
               </text>
+              <xsl:call-template name="articleContentElink"></xsl:call-template>
             </eLink>
           </xsl:if>
           <xsl:if test="@type='company'">
@@ -2118,6 +2247,7 @@
                 <xsl:value-of select="@ref"/>
               </xsl:attribute>
               <xsl:call-template name="articleContent"/>
+              <xsl:call-template name="articleContentElink"></xsl:call-template>
             </eLink>
           </xsl:if>
           <xsl:if test="@type='pro'">
@@ -2145,6 +2275,7 @@
                 <xsl:value-of select="@ref"/>
               </xsl:attribute>
               <xsl:call-template name="articleContent"/>
+              <xsl:call-template name="articleContentElink"></xsl:call-template>
             </eLink>
           </xsl:if>
         </xsl:when>
@@ -2201,6 +2332,24 @@
           <text>
             <xsl:value-of select="."/>
           </text>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:for-each>
+  </xsl:template>
+  <xsl:template name="articleContentElink">
+    <xsl:for-each select="child::node()">
+      <xsl:choose>
+        <xsl:when test="((local-name()='hlt1') or (local-name()='hlt'))">
+          <hlt>
+            <text>
+              <xsl:value-of select="."/>
+            </text>
+          </hlt>
+        </xsl:when>
+        <xsl:otherwise>
+          <partText>
+            <xsl:value-of select="."/>
+          </partText>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:for-each>
@@ -2285,4 +2434,7 @@
       <xsl:value-of select="@ref"/>
     </xsl:attribute>
   </xsl:template>
+
+
+
 </xsl:stylesheet>

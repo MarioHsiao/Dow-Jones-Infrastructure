@@ -35,6 +35,8 @@
       <xsl:when test="$providerId = 'DJGN'">Generate</xsl:when>
       <xsl:when test="$providerId = 'IUSA'">IUSA</xsl:when>
       <xsl:when test="$providerId = 'FACSET'">FACSET</xsl:when>
+      <xsl:when test="$providerId = 'DJPM'">DowJonesVenture</xsl:when>
+      <xsl:when test="$providerId = 'DJRC'">DJX</xsl:when>
       <xsl:otherwise>Unknown</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
@@ -66,6 +68,8 @@
       <xsl:when test="$fvsProviderId = 'Generate'">Generate, Inc.</xsl:when>
       <xsl:when test="$fvsProviderId = 'IUSA'">InfoUSA</xsl:when>
       <xsl:when test="$fvsProviderId = 'FACSET'">FactSet</xsl:when>
+      <xsl:when test="$fvsProviderId = 'DowJonesVenture'">Dow Jones VentureSource</xsl:when>
+      <xsl:when test="$fvsProviderId = 'DJX'">DJX</xsl:when>
     </xsl:choose>
 	</xsl:template>
 	<xsl:template name="ProviderLongName">
@@ -96,6 +100,8 @@
       <xsl:when test="$fvsProviderId = 'Generate'">Dow Jones Generate</xsl:when>
       <xsl:when test="$fvsProviderId = 'IUSA'">InfoUSA</xsl:when>
       <xsl:when test="$fvsProviderId = 'FACSET'">FactSet Research Systems Inc.</xsl:when>
+      <xsl:when test="$fvsProviderId = 'DowJonesVenture'">Dow Jones VentureSource</xsl:when>
+      <xsl:when test="$fvsProviderId = 'DJX'">DJX</xsl:when>
     </xsl:choose>
 	</xsl:template>
 

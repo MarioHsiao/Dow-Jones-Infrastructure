@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:msxsl="urn:schemas-microsoft-com:xslt"  xmlns:user="user" extension-element-prefixes="msxsl" exclude-result-prefixes="user">
-  <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="no"/>
+  <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="no" cdata-section-elements="text partText"/>
   <msxsl:script language="JScript" implements-prefix="user">
     <![CDATA[
 		
@@ -51,10 +51,11 @@
 		]]>
   </msxsl:script>
   <xsl:template match="/GetArchiveObjectResponse">
-    <GetArticleWithLimitResponse>
+    <GetArticleWithLimitResponse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
       <xsl:apply-templates select="Status"/>
       <xsl:apply-templates select="ResultSet"/>
       <xsl:apply-templates select="ContinuationContext" />
+      <xsl:apply-templates select="Metering"/>
     </GetArticleWithLimitResponse>
   </xsl:template>
 
@@ -75,6 +76,25 @@
     <rawData>
       <xsl:value-of select="normalize-space(.)"/>
     </rawData>
+  </xsl:template>
+
+  <xsl:template match="Metering">
+    <xsl:element name="meteringInfo">
+      <xsl:copy-of select="Limit"/>
+      <xsl:copy-of select="TimePeriod"/>
+      <xsl:element name="GracePeriod">
+        <xsl:choose>
+          <xsl:when test="GracePeriod ='Y' or GracePeriod= 'Yes'">true</xsl:when>
+          <xsl:otherwise>false</xsl:otherwise>
+        </xsl:choose>
+      </xsl:element>
+      <xsl:copy-of select="Email"/>
+      <xsl:copy-of select="DocCount"/>
+      <xsl:copy-of select="CreditLimit"/>
+      <xsl:element name="MeteringCount">
+        <xsl:value-of select="MeteredCount"/>
+      </xsl:element>
+    </xsl:element>
   </xsl:template>
 
   <xsl:template match="//Result">
@@ -132,6 +152,7 @@
         <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='srcsecondarytype']"/>
         <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='srcrightstype']"/>
         <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='allowtranslation']"/>
+        <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='allowtranslation']"/>
         <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='circulation']"/>
         <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='webhits']"/>
         <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='firstdate']"/>
@@ -161,16 +182,23 @@
         <xsl:variable name="CodeSetCount">
           <xsl:value-of select="count(./CodeSets/CSet)"/>
         </xsl:variable>
-        <xsl:if test="number($CSetCount)>0 or number($CodeSetCount)>0">
+        <xsl:variable name="DirectCodeSetCountValue">
+          <xsl:value-of select="count(CodeSet)"/>
+        </xsl:variable>
+
+        <xsl:if test="number($CSetCount)>0 or number($CodeSetCount)>0 or number($DirectCodeSetCountValue)">
           <indexingCodeSets>
             <xsl:attribute name="count">
-              <xsl:value-of select="$CSetCount + $CodeSetCount"/>
+              <xsl:value-of select="$CSetCount + $CodeSetCount + $DirectCodeSetCountValue"/>
             </xsl:attribute>
             <xsl:if test="count(./Codes/CodeSet) > 0">
               <xsl:apply-templates select="./Codes/CodeSet"/>
             </xsl:if>
             <xsl:if test="count(./CodeSets/CSet) > 0">
               <xsl:apply-templates select="./CodeSets/CSet"/>
+            </xsl:if>
+            <xsl:if test="count(CodeSet) > 0">
+              <xsl:apply-templates select="CodeSet" mode="entire"/>
             </xsl:if>
           </indexingCodeSets>
         </xsl:if>
@@ -238,6 +266,24 @@
         </xsl:if>
         <xsl:apply-templates select="./ReplyItem"></xsl:apply-templates>
       </xsl:if>
+
+      <xsl:choose>
+        <xsl:when test="count(PropertySet) >0">
+          <xsl:if test="count(PropertySet[@group='pubdata']) > 0 or count(PropertySet[@group='docdata']) > 0">
+            <xsl:element name="properties">
+              <xsl:apply-templates select="PropertySet" mode="entire"></xsl:apply-templates>
+            </xsl:element>
+          </xsl:if>
+        </xsl:when>
+        <xsl:when test="count(Properties) >0">
+          <xsl:if test="count(Properties/PropertySet[@group='pubdata']) > 0 or count(Properties/PropertySet[@group='docdata']) > 0">
+            <xsl:element name="properties">
+              <xsl:apply-templates select="Properties/PropertySet" mode="entire"></xsl:apply-templates>
+            </xsl:element>
+          </xsl:if>
+        </xsl:when>
+      </xsl:choose>
+
     </article>
 
   </xsl:template>
@@ -304,6 +350,7 @@
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='srcsecondarytype']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='srcrightstype']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='allowtranslation']"/>
+    <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='allowtranslation']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='circulation']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='webhits']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='firstdate']"/>
@@ -477,6 +524,7 @@
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='srcsecondarytype']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='srcrightstype']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='allowtranslation']"/>
+    <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='allowtranslation']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='circulation']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='webhits']"/>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='firstdate']"/>
@@ -925,6 +973,7 @@
       </xsl:when>
     </xsl:choose>
     <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='allowtranslation']"/>
+    <xsl:apply-templates select="./PropertySet[@group='docdata']/Property[@name='allowtranslation']"/>
     <xsl:choose>
       <xsl:when test="./PropertySet[@group='pubdata']/Property[@name='circulation']">
         <xsl:apply-templates select="./PropertySet[@group='pubdata']/Property[@name='circulation']"/>
@@ -1033,7 +1082,37 @@
         <xsl:apply-templates select="./property[@group='docdata' and @name='snippet']/Snippet"/>
       </xsl:when>
     </xsl:choose>
+
   </xsl:template>
+
+  <xsl:template match="PropertySet" mode="entire">
+    <xsl:if test ="@group='pubdata'or @group='docdata'">
+      <xsl:variable name ="groupName">
+        <xsl:value-of select="@group"/>
+      </xsl:variable>
+      <xsl:element name="propertySet">
+        <xsl:attribute name="group">
+          <xsl:value-of select="$groupName"/>
+        </xsl:attribute>
+        <xsl:apply-templates select="Property" mode="entire" ></xsl:apply-templates>
+      </xsl:element>
+    </xsl:if>
+  </xsl:template>
+
+
+  <xsl:template match="Property" mode="entire">
+    <xsl:element name="property">
+      <xsl:attribute name="name">
+        <xsl:value-of select="@name"/>
+      </xsl:attribute>
+
+      <xsl:attribute name="value">
+        <xsl:value-of select="@value"/>
+      </xsl:attribute>
+    </xsl:element>
+  </xsl:template>
+
+
   <xsl:template match="Fields">
     <xsl:if test="string-length(normalize-space(.)) &gt; 0">
       <fields>
@@ -1349,7 +1428,7 @@
         <xsl:value-of select="normalize-space(string(@value))"/>
       </url>
     </xsl:if>
-  </xsl:template>  
+  </xsl:template>
   <xsl:template match="property[@group='docdata' and @name='url']">
     <xsl:if test="string-length(normalize-space(@value)) &gt; 0">
       <url>
@@ -1749,6 +1828,18 @@
       </xsl:choose>
     </isTranslationAllowedBySource>
   </xsl:template>
+  <xsl:template match="PropertySet[@group='docdata']/Property[@name='allowtranslation']">
+    <isTranslationAllowedBySource>
+      <xsl:choose>
+        <xsl:when test="normalize-space(@value) = 'Y'">
+          true
+        </xsl:when>
+        <xsl:otherwise>
+          false
+        </xsl:otherwise>
+      </xsl:choose>
+    </isTranslationAllowedBySource>
+  </xsl:template>
   <xsl:template match="PropertySet[@group='pubdata']/Property[@name='circulation']">
     <xsl:if test="string-length(normalize-space(@value)) &gt; 0">
       <circulation>
@@ -1892,6 +1983,7 @@
       </xsl:attribute>
       <xsl:apply-templates select="CodeD"/>
       <xsl:apply-templates select="CodeI"/>
+      <xsl:apply-templates select="CodeImportLvl" mode="entire"/>
     </code>
   </xsl:template>
   <xsl:template match="CodeD">
@@ -1916,6 +2008,34 @@
       </codeDJNCode>
     </xsl:if>
   </xsl:template>
+
+  <xsl:template match="CodeSet" mode ="entire">
+    <xsl:element name="codeSet">
+      <xsl:attribute name="codeCategory">
+        <xsl:value-of select="@codeCat"/>
+      </xsl:attribute>
+      <xsl:apply-templates select="Code" mode="entire"></xsl:apply-templates>
+    </xsl:element>
+  </xsl:template>
+
+  <xsl:template match="Code" mode="entire">
+    <xsl:element name="code">
+      <xsl:attribute name="value">
+        <xsl:value-of select="@value"/>
+      </xsl:attribute>
+      <xsl:attribute name="cat">
+        <xsl:value-of select="@subCat"/>
+      </xsl:attribute>
+      <xsl:apply-templates select ="CodeImportLvl" mode="entire"></xsl:apply-templates>
+    </xsl:element>
+  </xsl:template>
+
+  <xsl:template match="CodeImportLvl" mode="entire">
+    <xsl:element name="codeImportLvl">
+      <xsl:value-of  select="." />
+    </xsl:element>
+  </xsl:template>
+
   <xsl:template match="ColumnName">
     <xsl:if test="string-length(normalize-space(.)) &gt; 0">
       <columnName>
@@ -2157,6 +2277,7 @@
               <text>
                 <xsl:value-of select="."/>
               </text>
+              <xsl:call-template name="articleContentElink"></xsl:call-template>
             </eLink>
           </xsl:if>
           <xsl:if test="@type='company'">
@@ -2168,6 +2289,7 @@
                 <xsl:value-of select="@ref"/>
               </xsl:attribute>
               <xsl:call-template name="articleContent"/>
+              <xsl:call-template name="articleContentElink" />
             </eLink>
           </xsl:if>
           <xsl:if test="@type='pro'">
@@ -2195,6 +2317,7 @@
                 <xsl:value-of select="@ref"/>
               </xsl:attribute>
               <xsl:call-template name="articleContent"/>
+              <xsl:call-template name="articleContentElink" />
             </eLink>
           </xsl:if>
         </xsl:when>
@@ -2245,12 +2368,30 @@
           </entityRef>
         </xsl:when>
         <xsl:when test="(local-name()='ev' or local-name()='Ev')">
-           <xsl:apply-templates select="."/>
+          <xsl:apply-templates select="."/>
         </xsl:when>
         <xsl:otherwise>
           <text>
             <xsl:value-of select="."/>
           </text>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:for-each>
+  </xsl:template>
+  <xsl:template name="articleContentElink">
+    <xsl:for-each select="child::node()">
+      <xsl:choose>
+        <xsl:when test="((local-name()='hlt1') or (local-name()='hlt'))">
+          <hlt>
+            <text>
+              <xsl:value-of select="."/>
+            </text>
+          </hlt>
+        </xsl:when>
+        <xsl:otherwise>
+          <partText>
+            <xsl:value-of select="."/>
+          </partText>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:for-each>
