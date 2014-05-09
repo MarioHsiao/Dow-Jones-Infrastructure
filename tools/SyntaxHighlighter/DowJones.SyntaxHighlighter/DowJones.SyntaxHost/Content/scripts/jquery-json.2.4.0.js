@@ -280,6 +280,6 @@
     };
 
     // ###################### INSTALL in jQuery ##
-    $.jsonp = jsonp;
+    $.dj_jsonp = jsonp;
 
 })(jQuery);

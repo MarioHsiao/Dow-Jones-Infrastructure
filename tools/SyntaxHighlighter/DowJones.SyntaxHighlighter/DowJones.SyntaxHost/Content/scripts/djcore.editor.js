@@ -165,12 +165,19 @@
             format: 'json'
         };
 
-        //Initialize Autocomplete
-        function djEditor(o) {
+        var dEvents = {
+            onChange: $.noop,
+            onBlur: $.noop
+        }
+        
+
+        //Initialize Autocomplete w/options and events
+        function djEditor(o, e, tokens) {
             var self = this;
             self._o = o;
             self.$editor = $('#' + o.id);
             self._o.originalHeight = self.$editor.height();
+            self.events = u.mixin({}, dEvents, e);
             self.settings = u.mixin({}, dSettings, o.settings);
             self.serviceOptions = u.mixin({}, dServiceOptions, o.serviceOptions);
             self.langTools = ace.require("ace/ext/language_tools");
@@ -190,17 +197,17 @@
 
             self.editor.commands.on("afterExec", function (e) {
                 //if (e.command.name == "insertstring" && /^[\w|\s|=.]$/.test(e.args)) {
-               /* switch (e.command.name.toLowerCase()) {
+               switch (e.command.name.toLowerCase()) {
                     case 'insertstring':
-                        if (e.args && e.args.length <= 1) {
-                            self.editor.execCommand("startAutocomplete");
-                        }
+                        //self.editor.execCommand("startAutocomplete");
                         break;
-                    case 'space':
-                    //case 'backspace':
-                        self.editor.execCommand("startAutocomplete");
+                   case 'space':
+                        //self.editor.execCommand("startAutocomplete");
+                       break;
+                    case 'backspace':
+                        //self.editor.execCommand("startAutocomplete");
                         break;
-                }*/
+                }
             });
 
             var autoCompleter = {
@@ -209,18 +216,24 @@
                       c = pos.column,
                       curToken = session.getTokenAt(r, c);
                     if (curToken.start === 0) {
+                        if (curToken.type == "keyword.fii") {
+
+                            return curToken.value;
+                        }
+
                         return undefined;
                     }
 
                     log("getCategory");
-                    log(curToken);
                     if (curToken) {
+                        log(curToken);
                         if (curToken.type == "paren.lparen" ||
                             curToken.type == "keyword.equals" || 
                             curToken.type == 'keyword.operator' || 
                             curToken.type == 'text') {
                             return this.getCategory(session, { row: pos.row, column: curToken.start - 1 });
                         }
+
                         if (curToken.type == "keyword.fii") {
                             
                             return curToken.value;
@@ -233,22 +246,27 @@
                     var r = pos.row,
                         c = pos.column,
                         curToken = session.getTokenAt(r, c),
-                        includeCategory = true,
-                        category = this.getCategory(session, { row: pos.row, column: curToken.start - 1 });
-
-                    if (curToken.type === 'text') {
-                        if (category === 'la') {
-                            callback(null, languageList);
-                            return;
-                        }
-                    }
-
+                        includeCategory = true;
+                    
+               
                     if (curToken.type === 'phrase' || curToken.token === 'keyword.equals') {
                         callback(null, []);
                         return;
                     }
 
                     if (curToken.type === 'text') {
+                        var category = this.getCategory(session, { row: pos.row, column: curToken.start});
+                  
+                        if (category === 'la') {
+                            callback(null, languageList);
+                            return;
+                        }
+
+                        if (!category) {
+                            callback(null, coreOperators.concat(dateOperators));
+                            return;
+                        }
+
                         var query = $.trim(curToken.value),
                              opts = {
                                  id: o.id,
@@ -256,6 +274,7 @@
                                  extraParams: self._setExtraParams(query)
                              }
 
+                        console.log(query);
                         if (query.startsWith('"') || query.startsWith('/') ||
                             query.startsWith('-') || query.startsWith('+')) {
                             return;
@@ -265,26 +284,21 @@
                         if (category) {
                             opts.extraParams.categories = catMap[category];
                             includeCategory = false;
-                        }
-                        
-                        if (query && query.length > 0) {
-                            deferredRequest(
-                                query,
-                                opts,
-                                function(data) {
-                                    callback(null, self._filter(opts.extraParams.categories.split('|'), data, includeCategory));
-                                },
-                                function(err) { callback(null, coreOperators.concat(dateOperators)); }
-                            );
-                            return;
+                            
+                            if (query && query.length > 0) {
+                                deferredRequest(
+                                    query,
+                                    opts,
+                                    function(data) {
+                                        callback(null, self._filter(opts.extraParams.categories.split('|'), data, includeCategory));
+                                    },
+                                    function(err) { callback(null, coreOperators.concat(dateOperators)); }
+                                );
+                                return;
+                            }
                         }
                     }
 
-                    if (prefix.length === 0) {
-                        callback(null, coreOperators.concat(dateOperators));
-                        return;
-                    }
-                    
                     return;
                 }
             } 
@@ -316,7 +330,7 @@
                     }
                 }
 
-                switch(cat.toLowerCase()) {
+                switch (cat.toLowerCase()) {
                     case 'company':
                         return 'fds=' + code;
                     case 'newssubject':
@@ -402,7 +416,7 @@
                 ];
 
                 $.each(items, function (i, item) {
-                    log(item.name)
+                    log(item.name);
                     self.editor.commands.addCommands([
                         {
                             name: item.name,
@@ -440,6 +454,7 @@
                 self.editor.getSession().on("change", function(e) {
                     //logEvent('change', e);
                     self.updateHeight();
+                    self.events.onChange(self.editor.getValue().replace(/\s{2,}/g, ' '));
                 });
 
                 self.editor.getSession().on("tokenizerUpdate", function (e) {
@@ -448,6 +463,7 @@
 
                 self.editor.on("blur", function (e) {
                     logEvent('blur', e);
+                    self.events.onBlur(e);
                 });
 
                 self.editor.on("tokenizerUpdate", function (e) {
@@ -485,6 +501,11 @@
                   serviceOptions = self.serviceOptions;
 
                 log('done --> initialization');
+            },
+
+            setValue: function(val, cursorPos) {
+                var self = this;
+                self.editor.getValue();
             },
 
             updateHeight: function() {
@@ -525,6 +546,7 @@
                     autocompletionType: settings.autocompletionType,
                     searchText: text
                 };
+
                 var p = $.extend({}, paramsObj, serviceOptions);
                 return p;
             },
@@ -555,7 +577,7 @@
 
                     if (isUrlGenerated === true) {
                         //Call the transaction and get the authentication token
-                        $.jsonp({
+                        $.dj_jsonp({
                             url: authenticationUrl,
                             callbackParameter: "callback",
                             success: function (data) {
@@ -643,7 +665,7 @@
                 }
             }
 
-            $.jsonp({
+            $.dj_jsonp({
                 // try to leverage ajaxQueue plug-in to abort previous requests
                 mode: "abort",
                 cache: false,

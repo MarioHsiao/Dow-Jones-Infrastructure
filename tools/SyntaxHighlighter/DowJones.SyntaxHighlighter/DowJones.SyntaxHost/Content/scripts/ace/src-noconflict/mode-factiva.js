@@ -54,13 +54,19 @@ ace.define('ace/mode/factiva', ['require', 'exports', 'module', 'ace/lib/oop', '
 
         this.$rules = {
             "start": [
-                {
+                /*{
                     token: "comment",
                     regex: "\\/\\*.*?\\*\\/"
-                },
+                },*/
                 {
                     token: "constant.character.asterisk",
                     regex: "\\b\\w\\w+\\*"
+                }, {
+                    token: "constant.character.first",
+                    regex: "\\/F[1-9][0-9]*\\/"
+                }, {
+                    token: "constant.character.within",
+                    regex: "\\/F[1-9][0-9]*\\/"
                 }, {
                     token: "constant.character.question",
                     regex: "\\b\\w+\\?[\\w+\\?*]*"
@@ -112,6 +118,12 @@ ace.define('ace/mode/factiva', ['require', 'exports', 'module', 'ace/lib/oop', '
                 }, {
                     token: "paren.rparen",
                     regex: "[\\)]"
+                }, {
+                    token: "paren.lbracket",
+                    regex: "[\\[]"
+                }, {
+                    token: "paren.rbracket",
+                    regex: "[\\]]"
                 }, {
                     token: ["keyword.fii", "keyword.equals"],
                     regex: "\\b(fds|in|ns|re|la|sc)(=)"
@@ -207,6 +219,42 @@ ace.define('ace/mode/behaviour/fstyle', ['require', 'exports', 'module', 'ace/li
             }
         });
 
+        this.add("brackets", "insertion", function (state, action, editor, session, text) {
+            if (text == '[') {
+                initContext(editor);
+                var selection = editor.getSelectionRange();
+                var selected = session.doc.getTextRange(selection);
+                if (selected !== "" && editor.getWrapBehavioursEnabled()) {
+                    return {
+                        text: '[' + selected + ']',
+                        selection: false
+                    };
+                } else if (FstyleBehaviour.isSaneInsertion(editor, session)) {
+                    FstyleBehaviour.recordAutoInsert(editor, session, ")");
+                    return {
+                        text: '[] ',
+                        selection: [1, 1]
+                    };
+                }
+            } else if (text == ']') {
+                initContext(editor);
+                var cursor = editor.getCursorPosition();
+                var line = session.doc.getLine(cursor.row);
+                var rightChar = line.substring(cursor.column, cursor.column + 1);
+                if (rightChar == ']') {
+                    var matching = session.$findOpeningBracket(')', { column: cursor.column + 1, row: cursor.row });
+                    if (matching !== null && FstyleBehaviour.isAutoInsertedClosing(cursor, line, text)) {
+                        FstyleBehaviour.popAutoInsertedClosing();
+                        return {
+                            text: '',
+                            selection: [1, 1]
+                        };
+                    }
+                }
+            }
+            return undefined;
+        });
+
         this.add("parens", "deletion", function (state, action, editor, session, range) {
             var selected = session.doc.getTextRange(range);
             if (!range.isMultiLine() && selected == '(') {
@@ -218,6 +266,21 @@ ace.define('ace/mode/behaviour/fstyle', ['require', 'exports', 'module', 'ace/li
                     return range;
                 }
             }
+            return undefined;
+        });
+
+        this.add("brackets", "deletion", function (state, action, editor, session, range) {
+            var selected = session.doc.getTextRange(range);
+            if (!range.isMultiLine() && selected == '[') {
+                initContext(editor);
+                var line = session.doc.getLine(range.start.row);
+                var rightChar = line.substring(range.start.column + 1, range.start.column + 2);
+                if (rightChar == ']') {
+                    range.end.column++;
+                    return range;
+                }
+            }
+            return undefined;
         });
 
         this.add("string_dquotes", "insertion", function(state, action, editor, session, text) {
@@ -272,6 +335,7 @@ ace.define('ace/mode/behaviour/fstyle', ['require', 'exports', 'module', 'ace/li
                     }
                 }
             }
+            return undefined;
         });
 
         this.add("string_dquotes", "deletion", function(state, action, editor, session, range) {
@@ -284,7 +348,8 @@ ace.define('ace/mode/behaviour/fstyle', ['require', 'exports', 'module', 'ace/li
                     range.end.column++;
                     return range;
                 }
-            }
+            }return undefined;
+
         });
     };
 

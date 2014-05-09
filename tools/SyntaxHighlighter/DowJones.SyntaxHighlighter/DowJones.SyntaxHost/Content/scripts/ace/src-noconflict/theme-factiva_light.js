@@ -41,7 +41,7 @@ width: 1px;\
 background: #e8e8e8\
 }\
 .ace-factiva-light {\
-background-color: #FDF6E3;\
+background-color: #fff;\
 color: #586E75\
 }\
 .ace-factiva-light .ace_cursor {\
@@ -62,58 +62,75 @@ margin: -1px 0 0 -1px;\
 border: 1px solid rgba(147, 161, 161, 0.50)\
 }\
 .ace-factiva-light .ace_marker-layer .ace_active-line {\
-background: #EEE8D5\
+background: #fff5e3\
 }\
 .ace-factiva-light .ace_gutter-active-line {\
-background-color : #EDE5C1\
+background-color : #333\
 }\
 .ace-factiva-light .ace_marker-layer .ace_selected-word {\
-border: 1px solid #073642\
+border: 1px solid #ccc\
 }\
-.ace-factiva-light .ace_invisible {\
-color: rgba(147, 161, 161, 0.50)\
-}\
+.ace-factiva-light .ace_entity.ace_name.ace_tag,\
 .ace-factiva-light .ace_keyword,\
-.ace-factiva-light .ace_meta,\
-.ace-factiva-light .ace_support.ace_class,\
-.ace-factiva-light .ace_support.ace_type {\
-color: #859900\
+.ace-factiva-light .ace_meta.ace_tag,\
+.ace-factiva-light .ace_storage {\
+color: #7766e7\
+}\
+.ace-factiva-light .ace_punctuation,\
+.ace-factiva-light .ace_punctuation.ace_tag {\
+color: #fff\
 }\
 .ace-factiva-light .ace_constant.ace_character,\
+.ace-factiva-light .ace_constant.ace_language,\
+.ace-factiva-light .ace_constant.ace_numeric,\
 .ace-factiva-light .ace_constant.ace_other {\
-color: #CB4B16\
+color: #88CCEE\
 }\
-.ace-factiva-light .ace_constant.ace_language {\
-color: #B58900\
+.ace-factiva-light .ace_invalid {\
+color: #F8F8F0;\
+background-color: #F92672\
 }\
-.ace-factiva-light .ace_constant.ace_numeric {\
-color: #D33682\
+.ace-factiva-light .ace_invalid.ace_deprecated {\
+color: #F8F8F0;\
+background-color: #AE81FF\
+}\
+.ace-factiva-light .ace_support.ace_constant,\
+.ace-factiva-light .ace_support.ace_function {\
+color: #88ccee\
 }\
 .ace-factiva-light .ace_fold {\
-background-color: #268BD2;\
-border-color: #586E75\
+background-color: #A6E22E;\
+border-color: #F8F8F2\
+}\
+.ace-factiva-light .ace_storage.ace_type,\
+.ace-factiva-light .ace_support.ace_class,\
+.ace-factiva-light .ace_support.ace_type {\
+color: #66D9EF\
 }\
 .ace-factiva-light .ace_entity.ace_name.ace_function,\
-.ace-factiva-light .ace_entity.ace_name.ace_tag,\
-.ace-factiva-light .ace_support.ace_function,\
-.ace-factiva-light .ace_variable,\
-.ace-factiva-light .ace_variable.ace_language {\
-color: #268BD2\
+.ace-factiva-light .ace_entity.ace_other,\
+.ace-factiva-light .ace_entity.ace_other.ace_attribute-name,\
+.ace-factiva-light .ace_variable {\
+color: #A6E22E\
 }\
-.ace-factiva-light .ace_storage {\
-color: #073642\
+.ace-factiva-light .ace_variable.ace_parameter {\
+color: #FD971F\
+}\
+.ace-factiva-light .ace_paren {\
+color: #ddcc77\
 }\
 .ace-factiva-light .ace_string {\
-color: #2AA198\
+color: #E6DB74\
 }\
-.ace-factiva-light .ace_string.ace_regexp {\
-color: #D30102\
+.ace-factiva-light .ace_operator {\
+color: #aa4499\
 }\
-.ace-factiva-light .ace_comment,\
-.ace-factiva-light .ace_entity.ace_other.ace_attribute-name {\
-color: #93A1A1\
+.ace-factiva-light .ace_comment {\
+color: #75715E\
 }\
-.ace-factiva-light .ace_indent-guide {\
+.ace-factiva-light .ace_constant.ace_character.ace_asterisk{\
+color: #117733\
+}\.ace-factiva-light .ace_indent-guide {\
 background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAEklEQVQImWNgYGBgYHjy8NJ/AAjgA5fzQUmBAAAAAElFTkSuQmCC) right repeat-y\
 }";
 

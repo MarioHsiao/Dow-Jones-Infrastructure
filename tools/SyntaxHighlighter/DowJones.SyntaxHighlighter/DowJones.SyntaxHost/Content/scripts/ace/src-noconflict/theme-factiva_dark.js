@@ -30,9 +30,9 @@
 
 ace.define('ace/theme/factiva_dark', ['require', 'exports', 'module' , 'ace/lib/dom'], function(require, exports, module) {
 
-exports.isDark = true;
-exports.cssClass = "ace-factiva-dark";
-exports.cssText = ".ace-factiva-dark .ace_gutter {\
+    exports.isDark = true;
+    exports.cssClass = "ace-factiva-dark";
+    exports.cssText = ".ace-factiva-dark .ace_gutter {\
 background: #2F3129;\
 color: #8F908A\
 }\
@@ -41,17 +41,17 @@ width: 1px;\
 background: #555651\
 }\
 .ace-factiva-dark {\
-background-color: #272822;\
+background-color: #000;\
 color: #F8F8F2\
 }\
 .ace-factiva-dark .ace_cursor {\
 color: #F8F8F0\
 }\
 .ace-factiva-dark .ace_marker-layer .ace_selection {\
-background: #49483E\
+background: #555\
 }\
 .ace-factiva-dark.ace_multiselect .ace_selection.ace_start {\
-box-shadow: 0 0 3px 0px #272822;\
+box-shadow: 0 0 3px 0px #000;\
 border-radius: 2px\
 }\
 .ace-factiva-dark .ace_marker-layer .ace_step {\
@@ -62,7 +62,7 @@ margin: -1px 0 0 -1px;\
 border: 1px solid #49483E\
 }\
 .ace-factiva-dark .ace_marker-layer .ace_active-line {\
-background: #202020\
+background: #333\
 }\
 .ace-factiva-dark .ace_gutter-active-line {\
 background-color: #272727\
@@ -77,7 +77,7 @@ color: #52524d\
 .ace-factiva-dark .ace_keyword,\
 .ace-factiva-dark .ace_meta.ace_tag,\
 .ace-factiva-dark .ace_storage {\
-color: #F92672\
+color: #7766e7\
 }\
 .ace-factiva-dark .ace_punctuation,\
 .ace-factiva-dark .ace_punctuation.ace_tag {\
@@ -87,7 +87,7 @@ color: #fff\
 .ace-factiva-dark .ace_constant.ace_language,\
 .ace-factiva-dark .ace_constant.ace_numeric,\
 .ace-factiva-dark .ace_constant.ace_other {\
-color: #AE81FF\
+color: #88CCEE\
 }\
 .ace-factiva-dark .ace_invalid {\
 color: #F8F8F0;\
@@ -99,7 +99,7 @@ background-color: #AE81FF\
 }\
 .ace-factiva-dark .ace_support.ace_constant,\
 .ace-factiva-dark .ace_support.ace_function {\
-color: #66D9EF\
+color: #88ccee\
 }\
 .ace-factiva-dark .ace_fold {\
 background-color: #A6E22E;\
@@ -108,7 +108,6 @@ border-color: #F8F8F2\
 .ace-factiva-dark .ace_storage.ace_type,\
 .ace-factiva-dark .ace_support.ace_class,\
 .ace-factiva-dark .ace_support.ace_type {\
-font-style: italic;\
 color: #66D9EF\
 }\
 .ace-factiva-dark .ace_entity.ace_name.ace_function,\
@@ -118,16 +117,23 @@ color: #66D9EF\
 color: #A6E22E\
 }\
 .ace-factiva-dark .ace_variable.ace_parameter {\
-font-style: italic;\
 color: #FD971F\
+}\
+.ace-factiva-dark .ace_paren {\
+color: #ddcc77\
 }\
 .ace-factiva-dark .ace_string {\
 color: #E6DB74\
 }\
+.ace-factiva-dark .ace_operator {\
+color: #aa4499\
+}\
 .ace-factiva-dark .ace_comment {\
 color: #75715E\
 }\
-.ace-factiva-dark .ace_indent-guide {\
+.ace-factiva-dark .ace_constant.ace_character.ace_asterisk{\
+color: #117733\
+}\.ace-factiva-dark .ace_indent-guide {\
 background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAEklEQVQImWPQ0FD0ZXBzd/wPAAjVAoxeSgNeAAAAAElFTkSuQmCC) right repeat-y\
 }";
 

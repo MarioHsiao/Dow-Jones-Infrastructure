@@ -131,11 +131,11 @@
     <Content Include="Content\nancy-vertical-bf-tb.png" />
     <Content Include="Content\scripts\ace\src-noconflict\theme-factiva_dark.js" />
     <Content Include="Content\scripts\ace\src-noconflict\theme-factiva_light.js" />
-    <Content Include="Content\scripts\editor.js" />
+    <Content Include="Content\scripts\djcore.editor.js" />
     <Content Include="Content\scripts\highlight.min.js" />
     <Content Include="Content\scripts\jquery-json.2.4.0.min.js" />
     <Content Include="Content\scripts\jquery-json.2.4.0.js" />
-    <Content Include="Content\scripts\suggestTransport.js" />
+    <Content Include="Content\scripts\djcore.js" />
     <Content Include="Content\scripts\ace\src-noconflict\ace.js" />
     <Content Include="Content\scripts\ace\src-noconflict\ext-chromevox.js" />
     <Content Include="Content\scripts\ace\src-noconflict\ext-elastic_tabstops_lite.js" />

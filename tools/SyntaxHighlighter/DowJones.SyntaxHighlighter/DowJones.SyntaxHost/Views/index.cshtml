@@ -70,17 +70,18 @@
             </div>
             
             <div class="btn-group" data-toggle="buttons">
-                <label class="btn btn-primary" id="lightTheme">
-                    <input type="radio" name="options"> Light Theme
+                <label class="btn btn-primary active" id="lightTheme">
+                    <input type="radio" name="options" checked=""> Light Theme
                 </label>
-                <label class="btn btn-primary active" id="darkTheme" data-toggle="button">
-                    <input type="radio" name="options" checked=""> Dark Theme
+                <label class="btn btn-primary" id="darkTheme" data-toggle="button">
+                    <input type="radio" name="options"> Dark Theme
                 </label>
             </div>
 
             <div class="comments">
                 Type in a word like "will" below and press ctrl+space or alt+space to get "auto-complete completion"
             </div>
+
             <div></div>
             <div class="table-responsive">
                 <table class="table">
@@ -487,24 +488,30 @@
             </div>
         </div>
 
-        <script src="@Url.Content("~/content/scripts/suggestTransport.js")" type="text/javascript" charset="utf-8"></script>
         <script src="@Url.Content("~/content/scripts/ace/src-noconflict/ace.js")" type="text/javascript" charset="utf-8"></script>
         <script src="@Url.Content("~/content/scripts/ace/src-noconflict/ext-language_tools.js")" type="text/javascript" charset="utf-8"></script>
         <script src="@Url.Content("~/content/scripts/jquery-json.2.4.0.js")" type="text/javascript" charset="utf-8"></script>
-        <script src="@Url.Content("~/content/scripts/editor.js")" type="text/javascript" charset="utf-8"></script>
+        <script src="@Url.Content("~/content/scripts/djcore.js")" type="text/javascript" charset="utf-8"></script>
+        <script src="@Url.Content("~/content/scripts/djcore.editor.js")" type="text/javascript" charset="utf-8"></script>
         <script>
 
             var editor = new djCore.Editor({
                 id: 'editor',
-                theme: 'ace/theme/factiva_dark',
+                theme: 'ace/theme/factiva_light',
                 mode: 'ace/mode/factiva',
-              
+                
                 settings: {
-                    authType: 'EncryptedToken'
+                    url: '//suggest.int.factiva.com/Search/1.0',
+                    authType: 'SuggestContext'
                 },
                 serviceOptions: {
-                    authToken: 'S00ZGF91tNqYWRyMTZyMTMvOD2mNpItMtmm5DN9RcF0WEbBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB'
+                    suggestContext: '2sPxdr_2BLo1X304wufe7rgN4vyU56PHbRdfvQOxhdz2tUbaqg059Beu3fZF9sUnJt1Qz_2B2esRWkJYRseZSi7rIJac6WSoyBkx|2'
                 }
+            },
+            {
+              onChange: function(val) {
+                  console.log(val);
+              }  
             });
 
             $('#darkTheme').click(function (e) {

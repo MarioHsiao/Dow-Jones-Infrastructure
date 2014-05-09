@@ -981,7 +981,7 @@ var Autocomplete = function() {
     this.mousewheelListener = this.mousewheelListener.bind(this);
 
     this.changeTimer = lang.delayedCall(function() {
-        this.updateCompletions(true);
+        this.updateCompletions(false);
     }.bind(this));
 };
 
@@ -1088,17 +1088,24 @@ var Autocomplete = function() {
             if (this.completions.filterText) {
                 var position = this.editor.getCursorPosition();
                 var token = this.editor.session.getTokenAt(position.row, position.column);
-                var start = token.start + getWhitespaceCount(token.value);
-                var end = token.start + token.value.length;
-                var Range = require('ace/range').Range,
-                    range = new Range(position.row, start, position.row, end);
-                this.editor.session.remove(range);
 
-                /*var ranges = this.editor.session.selection.getAllRanges();
-                for (var i = 0, range; range = ranges[i]; i++) {
-                    range.start.column -= this.completions.filterText.length;
+                if (token && token.start == 0 && token.index == 0) {
+
+                    var ranges = this.editor.session.selection.getAllRanges();
+                    for (var i = 0, range; range = ranges[i]; i++) {
+                        range.start.column -= this.completions.filterText.length;
+                        this.editor.session.remove(range);
+                    }
+
+                } else {
+
+                    var start = token.start + getWhitespaceCount(token.value);
+                    var end = token.start + token.value.length;
+                    var Range = require('ace/range').Range,
+                        range = new Range(position.row, start, position.row, end);
                     this.editor.session.remove(range);
-                }*/
+                }
+
             }
             if (data.snippet)
                 snippetManager.insertSnippet(this.editor, data.snippet + " ");
@@ -1176,18 +1183,21 @@ var Autocomplete = function() {
         if (keepPopupPosition && this.base && this.completions) {
             var pos = this.editor.getCursorPosition();
             var prefix = this.editor.session.getTextRange({start: this.base, end: pos});
-            if (prefix == this.completions.filterText)
+            if (prefix == this.completions.filterText) {
                 return;
+            }
             this.completions.setFilter(prefix);
-            if (!this.completions.filtered.length)
-                return this.detach();
+            if (!this.completions.filtered.length) {
+                 return this.detach();
+            }
             this.openPopup(this.editor, prefix, keepPopupPosition);
             return;
         }
         this.gatherCompletions(this.editor, function(err, results) {
             var matches = results && results.matches;
-            if (!matches || !matches.length)
+            if (!matches || !matches.length) {
                 return this.detach();
+            }
 
             this.completions = new FilteredList(matches);
             this.completions.setFilter(results.prefix);
@@ -1250,7 +1260,8 @@ var FilteredList = function(array, filterText, mutateData) {
         
         this.filtered = matches;
     };
-    this.filterCompletions = function(items, needle) {
+    this.filterCompletions = function (items, needle) {
+        console.log(needle);
         var results = [];
         var upper = needle.toUpperCase();
         var lower = needle.toLowerCase();
