@@ -10,18 +10,19 @@ namespace DowJones.Web.Mvc.UI.Canvas.Mapping
     {
         protected abstract Func<ITypeMapper> CreateMapperFactory(Type targetType);
 
-        protected override void OnLoad()
+        protected override void OnLoad(IContainer container)
         {
             var targetTypes = AssemblyRegistry.GetConcreteTypesDerivingFrom(typeof(TMappingTarget));
 
             var genericMappings = targetTypes.ToGenericBaseTypeMappings();
 
-            var mappingDefinitions =
-                from mapping in genericMappings
-                let targetType = mapping.DeclaringType
-                select new TypeMapperDefinition(mapping) {
-                                                             Factory = CreateMapperFactory(targetType)
-                                                         };
+	        var mappingDefinitions =
+		        from mapping in genericMappings
+		        let targetType = mapping.DeclaringType
+		        select new TypeMapperDefinition(mapping)
+		        {
+			        Factory = CreateMapperFactory(targetType)
+		        };
 
             Mapper.Instance.Register(mappingDefinitions);
         }

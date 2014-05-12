@@ -1,5 +1,5 @@
 ﻿using System;
-using Ninject;
+using DowJones.DependencyInjection;
 
 namespace DowJones.Infrastructure
 {
@@ -16,8 +16,8 @@ namespace DowJones.Infrastructure
 
     public abstract class Factory<T> : IFactory<T>
     {
-        [DependencyInjection.Inject("Avoding derived constructors having to know about Ninject")]
-        public IKernel Kernel { get; set; }
+        [Inject("Avoding derived constructors having to know about IoC container")]
+		public IContainer Kernel { get; set; }
 
         object IFactory.Create()
         {

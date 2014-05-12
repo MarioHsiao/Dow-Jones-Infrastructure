@@ -1,5 +1,4 @@
-﻿using NinjectIInitializable = Ninject.IInitializable;
-
+﻿
 namespace DowJones.DependencyInjection
 {
     /// <summary>
@@ -10,7 +9,7 @@ namespace DowJones.DependencyInjection
     /// Pass-through interface to Ninject.IInitializable
     /// to provide remove direct dependence on Ninject
     /// </remarks>
-    public interface IInitializable : NinjectIInitializable
+    public interface IInitializable
     {
     }
 }

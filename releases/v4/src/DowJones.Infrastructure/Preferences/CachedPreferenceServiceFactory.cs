@@ -1,6 +1,5 @@
 ﻿using DowJones.Infrastructure;
 using Factiva.Gateway.Messages.Preferences.V1_0;
-using Ninject;
 
 namespace DowJones.Preferences
 {
@@ -8,7 +7,7 @@ namespace DowJones.Preferences
     {
         public override IPreferenceService Create()
         {
-            var baseService = Kernel.Get<PreferenceService>();
+            var baseService = Kernel.GetInstance<PreferenceService>();
             var primedCache = GeneratePrimedCacheResponse(baseService);
 
             return new CachedPreferenceService(baseService, primedCache);

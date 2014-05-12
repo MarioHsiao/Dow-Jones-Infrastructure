@@ -7,7 +7,6 @@ using log4net.Config;
 using DowJones.DependencyInjection;
 using DowJones.Infrastructure;
 using DowJones.Properties;
-using Ninject.Activation.Caching;
 
 namespace DowJones.Web
 {
@@ -62,11 +61,12 @@ namespace DowJones.Web
 
         private static void HttpApplication_EndRequest(object sender, EventArgs e)
         {
-            if (!(ServiceLocator.Current is NinjectServiceLocator))
-                throw new ApplicationException("Service locator instance is not a Ninject Service Locator");
+			// TODO: Delete after verifying: simpleinjector doesn't have caching, so we probably don't need this.
+			//if (!(ServiceLocator.Current is SimpleServiceLocator))
+			//	throw new ApplicationException("Service locator instance is not a Ninject Service Locator");
 
-            var kernel = ((NinjectServiceLocator)ServiceLocator.Current).Kernel;
-            kernel.Components.Get<ICache>().Clear(HttpContext.Current);
+			//var kernel = ((NinjectServiceLocator)ServiceLocator.Current).Kernel;
+			//kernel.Components.Get<ICache>().Clear(HttpContext.Current);
         }
 
         protected virtual void OnApplicationStopped()

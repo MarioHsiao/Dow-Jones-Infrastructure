@@ -1,19 +1,21 @@
-﻿using Ninject;
+﻿using DowJones.DependencyInjection;
 
 namespace DowJones.Mapping
 {
     /// <summary>
     /// Locates and registers all of the TypeMappers that exist in the AssemblyRegistry
     /// </summary>
-    public class TypeMappingRegistrationModule : DependencyInjection.DependencyInjectionModule
+    public class TypeMappingRegistrationModule : DependencyInjectionModule
     {
-        protected override void OnLoad()
+        protected override void OnLoad(IContainer container)
         {
-            var locator = Kernel.Get<TypeMappingLocator>();
-            
-            var mapperDefinitions = locator.Locate(mapperType => (ITypeMapper)Kernel.Get(mapperType));
+			// with SimpleInjector, GetInstance will lock the container, preventing further registrations.
+			//var locator = Container.GetInstance<TypeMappingLocator>();
+			var locator = new TypeMappingLocator(AssemblyRegistry);
 
-            Mapper.Instance.Register(mapperDefinitions);
+			var mapperDefinitions = locator.Locate(mapperType => (ITypeMapper)Container.GetInstance(mapperType));
+
+			Mapper.Instance.Register(mapperDefinitions);
         }
     }
 }

@@ -67,15 +67,22 @@
       <HintPath>..\packages\log4net.1.2.99\lib\2.0\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Ninject">
-      <HintPath>..\packages\Ninject.3.2.2.0\lib\net40\Ninject.dll</HintPath>
+    <Reference Include="SimpleInjector">
+      <HintPath>..\packages\SimpleInjector.2.5.0\lib\net40-client\SimpleInjector.dll</HintPath>
     </Reference>
-    <Reference Include="Ninject.Web.Common">
-      <HintPath>..\packages\Ninject.Web.Common.3.2.1.0\lib\net40-full\Ninject.Web.Common.dll</HintPath>
+    <Reference Include="SimpleInjector.Diagnostics">
+      <HintPath>..\packages\SimpleInjector.2.5.0\lib\net40-client\SimpleInjector.Diagnostics.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleInjector.Integration.Web">
+      <HintPath>..\packages\SimpleInjector.Integration.Web.2.5.0\lib\net40\SimpleInjector.Integration.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleInjector.Packaging">
+      <HintPath>..\packages\SimpleInjector.Packaging.2.5.0\lib\net40-client\SimpleInjector.Packaging.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -162,6 +169,9 @@
     <Compile Include="Caching\ICacheKey.cs" />
     <Compile Include="Caching\Properties\Settings.cs" />
     <Compile Include="Converters\JsonEnumConverter.cs" />
+    <Compile Include="DependencyInjection\DowJonesDependencyInjectionSettings.cs" />
+    <Compile Include="DependencyInjection\SimpleInjector\SimpleInjectServiceLocator.cs" />
+    <Compile Include="DependencyInjection\SimpleInjector\SimpleInjectServiceLocatorFactory.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\NumberExtensions.cs" />
     <Compile Include="GeoLocation\Country.cs" />
@@ -170,7 +180,9 @@
     <Compile Include="GeoLocation\LookupService.cs" />
     <Compile Include="GeoLocation\Region.cs" />
     <Compile Include="GeoLocation\RegionName.cs" />
+    <Compile Include="DependencyInjection\IContainer.cs" />
     <Compile Include="Infrastructure\NameValuePair.cs" />
+    <Compile Include="DependencyInjection\SimpleInjectContainer.cs" />
     <Compile Include="Managers\Authorization\AuthorizationManager.cs" />
     <Compile Include="Managers\Multimedia\MediaContents.cs" />
     <Compile Include="Managers\Multimedia\MultimediaManager.cs" />
@@ -367,8 +379,6 @@
     <Compile Include="Infrastructure\Mapper.cs" />
     <Compile Include="Mapping\TypeMapper.cs" />
     <Compile Include="Mapping\TypeMappingNotFoundException.cs" />
-    <Compile Include="DependencyInjection\Ninject\FactoryProvider.cs" />
-    <Compile Include="DependencyInjection\Ninject\NinjectServiceLocatorFactory.cs" />
     <Compile Include="DependencyInjection\IServiceLocatorFactory.cs" />
     <Compile Include="Extensions\CaseInsensitiveComparer.cs" />
     <Compile Include="Globalization\CultureManager.cs" />
@@ -534,13 +544,10 @@
     <Compile Include="Token\EnumTokenResolver.cs" />
     <Compile Include="Token\TokenRegistry.cs" />
     <Compile Include="DependencyInjection\DependencyInjectionModule.cs" />
-    <Compile Include="DependencyInjection\Ninject\DowJonesNinjectSettings.cs" />
     <Compile Include="DependencyInjection\InjectAttribute.cs" />
-    <Compile Include="DependencyInjection\Ninject\NinjectServiceLocator.cs" />
     <Compile Include="DependencyInjection\ServiceLocator.cs" />
     <Compile Include="Web\Extensions\HttpContextBaseExtensions.cs" />
     <Compile Include="Web\Extensions\HttpRequestBaseExtensions.cs" />
-    <Compile Include="Infrastructure\BootstrapperTaskAutoBinder.cs" />
     <Compile Include="Infrastructure\AssemblyRegistry.cs" />
     <Compile Include="Infrastructure\CustomAttributeProvider.cs" />
     <Compile Include="Infrastructure\Enum.cs" />

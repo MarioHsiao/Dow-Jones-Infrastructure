@@ -1,4 +1,5 @@
 ﻿using System;
+using DowJones.DependencyInjection.SimpleInjector;
 
 namespace DowJones.DependencyInjection
 {
@@ -6,9 +7,8 @@ namespace DowJones.DependencyInjection
     {
         void Inject(object target);
         object Resolve(Type type);
-        TService Resolve<TService>();
-        TService Resolve<TService>(string name);
-        IServiceLocator Register<TService>(TService service);
+		TService Resolve<TService>() where TService : class;
+		IServiceLocator Register<TService>(TService service) where TService : class;
         IServiceLocator Register<TService>(Func<IServiceLocator, TService> factory);
     }
 
@@ -18,7 +18,7 @@ namespace DowJones.DependencyInjection
 
         public static void Initialize()
         {
-            Initialize(new Ninject.NinjectServiceLocatorFactory());
+            Initialize(new SimpleInjectServiceLocatorFactory());
         }
 
         public static void Initialize(IServiceLocatorFactory factory)
@@ -35,7 +35,7 @@ namespace DowJones.DependencyInjection
             return serviceLocator.Resolve(targetType);
         }
 
-        public static T Resolve<T>()
+        public static T Resolve<T>() where T : class
         {
             var serviceLocator = Current;
 
@@ -43,15 +43,7 @@ namespace DowJones.DependencyInjection
 
             return serviceLocator.Resolve<T>();
         }
-
-        public static T Resolve<T>(string name)
-        {
-            var serviceLocator = Current;
-
-            EnsureServiceLocatorInitialized(serviceLocator);
-
-            return serviceLocator.Resolve<T>(name);
-        }
+		
 
         public static T Resolve<T>(Type targetType)
         {
