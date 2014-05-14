@@ -222,7 +222,7 @@
         </fsInterface>
       </xsl:if>
       <xsl:if test="boolean(AUTH_MATRIX/PMKTS)">
-          <pmkts>
+        <pmkts>
           <xsl:apply-templates select="AUTH_MATRIX/PMKTS/*" />
         </pmkts>
       </xsl:if>
@@ -243,9 +243,9 @@
       </xsl:if>
       <xsl:if test="boolean(AUTH_MATRIX/MADE)">
         <communicator>
-            <xsl:apply-templates select="AUTH_MATRIX/MADE/*" />
-          </communicator>
-        </xsl:if>
+          <xsl:apply-templates select="AUTH_MATRIX/MADE/*" />
+        </communicator>
+      </xsl:if>
       <xsl:if test="boolean(AUTH_MATRIX/OASEARCH)">
         <oaSearch>
           <xsl:apply-templates select="AUTH_MATRIX/OASEARCH/*" />
@@ -309,6 +309,37 @@
       </xsl:choose>
     </externalReaderFlag>
 
+    <idleTimeout>
+      <xsl:value-of select="IDLE_TIMEOUT"/>
+    </idleTimeout>
+
+    <maxSessions>
+      <xsl:value-of select="MAX_SESSIONS"/>
+    </maxSessions>
+
+    <usedSessions>
+      <xsl:value-of select="USED_SESSIONS"/>
+    </usedSessions>
+    
+    <clientBillingAllow>
+      <xsl:choose>
+        <xsl:when test="ClientBillingAllowed='Y'">true</xsl:when>
+        <xsl:otherwise>false</xsl:otherwise>
+      </xsl:choose>
+    </clientBillingAllow>
+    <xsl:apply-templates select="UUID"></xsl:apply-templates>
+  <xsl:apply-templates select="EID"></xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template match="UUID">
+    <xsl:element name="UUID" >
+      <xsl:value-of select="."/>
+    </xsl:element>
+  </xsl:template>
+  <xsl:template match="EID">
+    <xsl:element name="EID" >
+      <xsl:value-of select="."/>
+    </xsl:element>
   </xsl:template>
   
   <xsl:template match="AC1">
@@ -456,6 +487,11 @@
     <DAE>
       <xsl:value-of select="." />
     </DAE>
+  </xsl:template>
+  <xsl:template match="FTODE">
+    <FTODE>
+      <xsl:value-of select="." />
+    </FTODE>
   </xsl:template>
   <xsl:template match="DAEDITGRP">
     <xsl:value-of disable-output-escaping="yes" select="user:CommaSeparatedToList(normalize-space(string(.)),'DAEDITGroup')"/>

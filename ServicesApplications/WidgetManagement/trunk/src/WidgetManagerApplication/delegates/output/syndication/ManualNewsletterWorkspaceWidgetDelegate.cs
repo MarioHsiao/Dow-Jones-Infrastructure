@@ -401,8 +401,18 @@ namespace EMG.widgets.ui.delegates.output.syndication
 
                     foreach (Section section in manualWorkspace.SectionCollection)
                     {
-                        sectionCollection.Add(ProcessNewsletterSections(section, ref headlineUtility, ref contentHeadlineStruct, ref dict, SectionType.Main));
-                        sectionCollection.AddRange(section.SubSectionCollection.Select(subSection => ProcessNewsletterSections(subSection, ref headlineUtility, ref contentHeadlineStruct, ref dict, SectionType.Sub)));
+                        //exclude empty sections
+                        if (section.ItemCollection != null && section.ItemCollection.Count > 0)
+                        {
+                            sectionCollection.Add(ProcessNewsletterSections(section, ref headlineUtility,
+                                                                            ref contentHeadlineStruct, ref dict,
+                                                                            SectionType.Main));
+                            sectionCollection.AddRange(
+                                section.SubSectionCollection.Select(
+                                    subSection =>
+                                    ProcessNewsletterSections(subSection, ref headlineUtility, ref contentHeadlineStruct,
+                                                              ref dict, SectionType.Sub)));
+                        }
                     }
                 }
                 workspaceInfo.Sections = sectionCollection.ToArray();
@@ -465,6 +475,10 @@ namespace EMG.widgets.ui.delegates.output.syndication
                     {
                         var imageItem = item as ImageItem;
                         headlineInfos.Add(GetHeadlineInfoForImageItem(headlineUtility, imageItem));
+                    } else if (item is ChartImageItem)
+                    {
+                        var chartImageItem = item as ChartImageItem;
+                        headlineInfos.Add(GetHeadlineInfoForChartImageItem(headlineUtility, chartImageItem));
                     }
                 }
             }
@@ -498,6 +512,11 @@ namespace EMG.widgets.ui.delegates.output.syndication
         {
             HeadlineInfo headlineInfo = headlineUtility.ConvertToHeadlineInfo(item);
             return headlineInfo; 
+        }
+
+        private static HeadlineInfo GetHeadlineInfoForChartImageItem(HeadlineUtility headlineUtility, ChartImageItem item)
+        {
+            return headlineUtility.ConvertToHeadlineInfo(item);
         }
 
         /// <summary>

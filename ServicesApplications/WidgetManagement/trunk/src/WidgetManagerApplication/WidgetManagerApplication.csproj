@@ -150,6 +150,12 @@
     <Content Include="img\plotdot.png" />
     <Content Include="img\RegionsChart.PNG" />
     <Content Include="img\SubjectsChart.png" />
+    <Content Include="img\syndication\hl\chart\horizontalbar.png" />
+    <Content Include="img\syndication\hl\chart\line.png" />
+    <Content Include="img\syndication\hl\chart\overlay.png" />
+    <Content Include="img\syndication\hl\chart\pie.png" />
+    <Content Include="img\syndication\hl\chart\stackbar.png" />
+    <Content Include="img\syndication\hl\chart\verticalbar.png" />
     <Content Include="iworks\bvd\config.xml" />
     <Content Include="iworks\bvd\config_bc.xml" />
     <Content Include="iworks\bvd\config_beta.xml" />
@@ -1372,15 +1378,14 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>49573</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost/consumer.widgets</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://skdfuiweb7.dev.us.factiva.com/widgetmanagement/default.aspx</CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

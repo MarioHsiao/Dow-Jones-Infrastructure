@@ -11,11 +11,16 @@
       <xsl:copy-of select="//lastName"/>
       <xsl:copy-of select="//accountId"/>
       <xsl:copy-of select="//companyName"/>
-      <xsl:copy-of select="//isoCountryCode"/>
+      <!--There is a temporary fix for ZZ issue coming from Memebership backend for state and country code incase of null. Needs to be removed once this is resolved from backend-->
+      <xsl:if test="//isoCountryCode != 'ZZ'">
+        <xsl:copy-of select="//isoCountryCode"/>
+      </xsl:if>
+      <!--There is a temporary fix for ZZ issue coming from Memebership backend for state and country code incase of null. Needs to be removed once this is resolved from backend-->
+      <xsl:if test="//state != 'ZZ'">
       <xsl:copy-of select="//state"/>
+      </xsl:if>
     </xsl:element>
 	</xsl:template>
-	
 	<xsl:template name="GetError">
 		<xsl:element name="ERROR_CODE">
 			<xsl:value-of select="//ERROR_CODE"/>

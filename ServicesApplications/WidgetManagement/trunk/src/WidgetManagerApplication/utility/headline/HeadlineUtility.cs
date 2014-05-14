@@ -172,6 +172,29 @@ namespace EMG.widgets.ui.utility.headline
             return headlineInfo;
         }
 
+        public HeadlineInfo ConvertToHeadlineInfo(ChartImageItem chartImageItem)
+        {
+            if (chartImageItem == null)
+                return null;
+            var dt = String.Format("{0} {1} {2}",
+                                   _dateTimeFormatter.FormatDate(chartImageItem.DateRange.From),
+                                   _resourceText.GetString("to"),
+                                   _dateTimeFormatter.FormatDate(chartImageItem.DateRange.To));
+            return new HeadlineInfo
+                       {
+                           AccessionNumber = chartImageItem.chartItemId.ToString(),
+                           Text = chartImageItem.Title,
+                           Comment = chartImageItem.Comment,
+                           Snippet = string.Empty,
+                           WordCount = string.Empty,
+                           Importance = chartImageItem.Importance,
+                           PubDateTime = dt,
+                           ContentType = "chart",
+                           IconUrl = GetHeadlineIcon(chartImageItem)
+                           //TODO map graph type will be added once gateway is updated
+                           };
+        }
+
         /// <summary>
         /// Converts the specified headline info.
         /// </summary>
@@ -305,6 +328,7 @@ namespace EMG.widgets.ui.utility.headline
                 case "multimedia":
                     imgPath += "/img/syndication/hl/multimedia.gif";
                     break;
+                
                 default:
                     imgPath += "/img/syndication/hl/html.gif";
                     break;
@@ -381,6 +405,28 @@ namespace EMG.widgets.ui.utility.headline
                     case "article":
                         imgPath += "/img/syndication/hl/articles.gif";
                         break;
+                    //TODO chart icon needed
+                    case "verticalbar":
+                        imgPath += "/img/syndication/hl/chart/verticalbar.png";
+                        break;
+                    case "horizontalbar":
+                        imgPath += "/img/syndication/hl/chart/horizontalbar.png";
+                        break;
+                    case "line":
+                        imgPath += "/img/syndication/hl/chart/line.png";
+                        break;
+                    case "pie":
+                        imgPath += "/img/syndication/hl/chart/pie.png";
+                        break;
+                    case "overlay":
+                        imgPath += "/img/syndication/hl/chart/overlay.png";
+                        break;
+                    case "stackedbar":
+                        imgPath += "/img/syndication/hl/chart/stackedbar.png";
+                        break;
+                    case "tagcloud":
+                        imgPath += "/img/syndication/hl/chart/tagcloud.png";
+                        break;
                 }
             }
             if (!string.IsNullOrEmpty(imgPath) && !(string.IsNullOrEmpty(imgPath.Trim())))
@@ -388,6 +434,55 @@ namespace EMG.widgets.ui.utility.headline
                 UrlBuilder urlBuilder = new UrlBuilder();
                 urlBuilder.BaseUrl = imgPath;
                 urlBuilder.OutputType = UrlBuilder.UrlOutputType.Absolute;
+                return urlBuilder.ToString();
+            }
+            return imgPath;
+        }
+
+        protected static string GetHeadlineIcon(ChartImageItem chartImageItem)
+        {
+            string imgPath;
+            if (HttpContext.Current != null)
+            {
+                imgPath = HttpContext.Current.Request.Url.Scheme + "://"
+                    + HttpContext.Current.Request.Url.Authority
+                    + HttpContext.Current.Request.ApplicationPath;
+            }
+            else
+            {
+                imgPath = "~";
+            }
+
+            if (chartImageItem != null)
+            {
+                switch (chartImageItem.GraphType)
+                {
+                    case GraphType.VerticalBar:
+                        imgPath += "/img/syndication/hl/chart/verticalbar.png";
+                        break;
+                    case GraphType.HorizontalBar:
+                        imgPath += "/img/syndication/hl/chart/horizontalbar.png";
+                        break;
+                    case GraphType.Line:
+                        imgPath += "/img/syndication/hl/chart/line.png";
+                        break;
+                    case GraphType.Pie:
+                        imgPath += "/img/syndication/hl/chart/pie.png";
+                        break;
+                    case GraphType.Overlay:
+                        imgPath += "/img/syndication/hl/chart/overlay.png";
+                        break;
+                    case GraphType.StackedBar:
+                        imgPath += "/img/syndication/hl/chart/stackedbar.png";
+                        break;
+                    case GraphType.Tagcloud:
+                        imgPath += "/img/syndication/hl/chart/tagcloud.png";
+                        break;
+                }
+            }
+            if (!string.IsNullOrEmpty(imgPath) && !(string.IsNullOrEmpty(imgPath.Trim())))
+            {
+                var urlBuilder = new UrlBuilder {BaseUrl = imgPath, OutputType = UrlBuilder.UrlOutputType.Absolute};
                 return urlBuilder.ToString();
             }
             return imgPath;
@@ -581,6 +676,10 @@ namespace EMG.widgets.ui.utility.headline
 
             //Append omniture tracking code
             ub.Append("mod", "newsletter_widget");
+
+            //chart item append ct=ci
+            if ("chart".Equals(headline.ContentType, StringComparison.InvariantCultureIgnoreCase))
+                ub.Append("ct", "ci");
 
             return ub.ToString(null);
         }
