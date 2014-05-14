@@ -1649,42 +1649,11 @@ namespace FactivaRssManager_2_0
                         {
                             foreach (var contentItem in section.ItemCollection)
                             {
-                                object objGetItem = contentItem;
-
-                                if (objGetItem.GetType().ToString().Contains("LinkItem"))
+                                var objectTypeString = contentItem.GetType().ToString().Replace("Factiva.Gateway.Messages.Assets.Common.V2_0.", string.Empty);
+                                switch (objectTypeString)
                                 {
-                                    var linkItem = (Factiva.Gateway.Messages.Assets.Common.V2_0.LinkItem) contentItem;
-                                    documentCollection.Add(new document
-                                                           {
-                                                               headline = linkItem.Title,
-                                                               snippet = (linkItem.Type == LinkType.RssHeadlineUrl) ? string.Empty : linkItem.Description,
-                                                               publicationDate = linkItem.PublicationDate.ToUniversalTime(),
-                                                               language = linkItem.language,
-                                                               sourceName = linkItem.sourceName,
-                                                               uri = linkItem.Uri,
-                                                               position = linkItem.Position
-                                                           });
-                                }
-                                else if (objGetItem.GetType().ToString().Contains("ImageItem"))
-                                {
-                                    var imageItem = (Factiva.Gateway.Messages.Assets.Common.V2_0.ImageItem) contentItem;
-                                    documentCollection.Add(new document
-                                                               {
-                                                                   headline = imageItem.Title,
-                                                                   uri = imageItem.PostbackUri,
-                                                                   position = imageItem.Position
-                                                               });
-                                }
-                            }
-                            foreach (var subSection in section.SubSectionCollection)
-                            {
-                                foreach (var contentItem in subSection.ItemCollection)
-                                {
-                                    object objGetItem = contentItem;
-
-                                    if (objGetItem.GetType().ToString().Contains("LinkItem"))
-                                    {
-                                        var linkItem = (Factiva.Gateway.Messages.Assets.Common.V2_0.LinkItem)contentItem;
+                                    case "LinkItem":
+                                        var linkItem = (Factiva.Gateway.Messages.Assets.Common.V2_0.LinkItem) contentItem;
                                         documentCollection.Add(new document
                                         {
                                             headline = linkItem.Title,
@@ -1695,16 +1664,69 @@ namespace FactivaRssManager_2_0
                                             uri = linkItem.Uri,
                                             position = linkItem.Position
                                         });
-                                    }
-                                    else if (objGetItem.GetType().ToString().Contains("ImageItem"))
-                                    {
-                                        var imageItem = (Factiva.Gateway.Messages.Assets.Common.V2_0.ImageItem)contentItem;
+                                        break;
+                                    case "ImageItem":
+                                        var imageItem = (Factiva.Gateway.Messages.Assets.Common.V2_0.ImageItem) contentItem;
                                         documentCollection.Add(new document
                                         {
                                             headline = imageItem.Title,
                                             uri = imageItem.PostbackUri,
                                             position = imageItem.Position
                                         });
+                                        break;
+                                    case "ChartImageItem":
+                                        var chartImageItem = (Factiva.Gateway.Messages.Assets.Common.V2_0.ChartImageItem) contentItem;
+                                        documentCollection.Add(new document
+                                        {
+                                            headline = chartImageItem.Title,
+                                            snippet = chartImageItem.Description,
+                                            accessionNumber = chartImageItem.chartItemId.ToString(CultureInfo.InvariantCulture),
+                                            position = chartImageItem.Position,
+                                            category = "chartImageItem"
+                                        });
+                                        break;
+                                }
+                            }
+                            foreach (var subSection in section.SubSectionCollection)
+                            {
+                                foreach (var contentItem in subSection.ItemCollection)
+                                {
+                                    var objectTypeString = contentItem.GetType().ToString().Replace("Factiva.Gateway.Messages.Assets.Common.V2_0.", string.Empty);
+                                    switch (objectTypeString)
+                                    {
+                                        case "LinkItem":
+                                            var linkItem = (Factiva.Gateway.Messages.Assets.Common.V2_0.LinkItem) contentItem;
+                                            documentCollection.Add(new document
+                                            {
+                                                headline = linkItem.Title,
+                                                snippet = (linkItem.Type == LinkType.RssHeadlineUrl) ? string.Empty : linkItem.Description,
+                                                publicationDate = linkItem.PublicationDate.ToUniversalTime(),
+                                                language = linkItem.language,
+                                                sourceName = linkItem.sourceName,
+                                                uri = linkItem.Uri,
+                                                position = linkItem.Position
+                                            });
+                                            break;
+                                        case "ImageItem":
+                                            var imageItem = (Factiva.Gateway.Messages.Assets.Common.V2_0.ImageItem) contentItem;
+                                            documentCollection.Add(new document
+                                            {
+                                                headline = imageItem.Title,
+                                                uri = imageItem.PostbackUri,
+                                                position = imageItem.Position
+                                            });
+                                            break;
+                                        case "ChartImageItem":
+                                            var chartImageItem = (Factiva.Gateway.Messages.Assets.Common.V2_0.ChartImageItem) contentItem;
+                                            documentCollection.Add(new document
+                                            {
+                                                headline = chartImageItem.Title,
+                                                snippet = chartImageItem.Description,
+                                                accessionNumber = chartImageItem.chartItemId.ToString(CultureInfo.InvariantCulture),
+                                                position = chartImageItem.Position,
+                                                category = "chartImageItem"
+                                            });
+                                            break;
                                     }
                                 }
                             }
@@ -1821,6 +1843,7 @@ namespace FactivaRssManager_2_0
         }
 
         #region << Helper Functions >>
+
         public void Log(Logger.Level level, string logMsg)
         {
             if (ConfigurationSettings.AppSettings["logging"] == "On" || level >= Logger.Level.ERROR)
@@ -1974,6 +1997,7 @@ namespace FactivaRssManager_2_0
             }
             return position;
         }
+
         public int getItemPositionFromAN(string accessionNumber, AutomaticWorkspace automaticWorkspace)
         {
             var position = -1;
@@ -2000,7 +2024,6 @@ namespace FactivaRssManager_2_0
             }
             return position;
         }
-
         
         #endregion
     }

@@ -430,8 +430,11 @@ namespace FactivaRssManager
                                 case "board":
                                     AdocTOCURL = "o";
                                     break;
+                                case "chartImageItem":
+                                    AdocTOCURL = "ci";
+                                    break;
                             }
-                            urlBuilder.Append("cat", AdocTOCURL);
+                            urlBuilder.Append(AdocTOC.Equals("chartImageItem") ? "ct" : "cat", AdocTOCURL);
                             urlBuilder.Append("nldtl", nldtl);
 
                             switch (product)
