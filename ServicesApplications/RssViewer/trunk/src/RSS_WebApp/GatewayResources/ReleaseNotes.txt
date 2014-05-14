@@ -1428,3 +1428,8 @@ Added DeleteEditions Transactions
 Release Version 7.5.0.162
 ============================================================================================================================
 Add code and test methods for ChartImage
+
+Release Version 7.5.0.163
+============================================================================================================================
+Add code and test methods for Workspace - ChartImageType - new property GraphType and DateRange
+Add Code and test methods for new module -- VideosNewspageModule
