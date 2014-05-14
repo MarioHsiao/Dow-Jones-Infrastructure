@@ -1,0 +1,1591 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rss>
+	<products>
+		<product version='g1'> <!-- Factiva.com Alert Folders -->
+			<!-- Params Required for the Data Retriever Transactions -->
+			<transactionParams>
+				<numberOfHeadlines>20</numberOfHeadlines>
+				<lwUserID>RSSFEED1</lwUserID>
+				<lwPassword>RSSFEED1</lwPassword>
+				<lwNameSpace>16</lwNameSpace>
+				<AccessPointCode>z</AccessPointCode>
+				<ClientTypeCode>M</ClientTypeCode>
+			</transactionParams>
+			<!-- Validation keys to validate from the Request -->
+			<validate>
+				<eid>
+					<params>
+						<param>folderid</param>
+					</params>
+				</eid>
+			</validate>
+			<!-- Information required for the RSS Channel -->
+			<rssChannel>
+				<channelHeader>
+					<channelName>
+						<suffix>- Factiva Alerts</suffix>
+						<param type='eid'>fname</param>
+					</channelName>
+					<channelDesc>
+						<prefix><![CDATA[Dow Jones Factiva is the only information solution that combines the comprehensive global news and business information you need with the sophisticated tools and technologies that help your entire organization make better decisions faster.]]></prefix>
+						<param type='eid'></param>
+					</channelDesc>
+				</channelHeader>
+				<factivaChannelLink>http://www.solutions.dowjones.com</factivaChannelLink>
+				<factivaCustomerServiceLink>www.solutions.dowjones.com </factivaCustomerServiceLink>
+				<factivaCopyright>© 2014 Factiva, Inc.  All rights reserved.</factivaCopyright>
+				<!--- Argotic is handling this -->
+				<!--<rssChannelDocs>http://backend.userland.com/rss</rssChannelDocs>-->
+				<rssChannelLanguage>en-us</rssChannelLanguage>
+				<rssChannelImage>
+					<url>http://rss.dev.factiva.com/images/Dow_Jones.jpg</url>
+					<height>32</height>
+					<width>96</width>
+				</rssChannelImage>
+				<rssChannelAuthor>Dow Jones Factiva</rssChannelAuthor>
+				<!--<rssChannelttl>60</rssChannelttl>-->
+			</rssChannel>
+			<!-- How do I the build the target URL to fetch the article? -->
+			<TopLevelNode nsPrefix="ns1" nsURI="http://types.factiva.com/search">Result</TopLevelNode>
+			<articleURL>
+				<DirectURL><![CDATA[http://mobile.dev.factiva.com/redir/default.aspx?]]></DirectURL>
+				<WSJDirectURL><![CDATA[http://online.wsj.com/article/]]></WSJDirectURL>
+				<eid>
+					<!-- EID values which need to appear in the article url -->
+					<params>
+						<!--common names for factiva.com and search 2.0 -->
+						<param mapTo="aid">accountid</param>
+						<param mapTo="ns">namespace</param>
+						<param mapTo="fid">folderid</param>
+						<param mapTo="fn">fname</param>
+						<param mapTo="od">od</param>
+						<!-- Unique to factiva.com - Commented since nobody is using this value
+						<param mapTo="tu">tu</param>
+						-->
+					</params>
+				</eid>
+				<predefined>
+					<!-- hardcoded values which need to appear in the article url -->
+					<params>
+						<param>p=sta</param>
+						<param>napc=z</param>
+						<param>ep=AL</param>
+						<param>ft=g</param>
+					</params>
+				</predefined>
+			</articleURL>
+			<!-- RSS Headlines Information (data from the backend output only - does not support EID & predefined) -->
+      <rssDetail>
+        <TopLevelNode nsPrefix="ns1" nsURI="http://types.factiva.com/search">document</TopLevelNode>
+        <articleURL>
+          <params>
+            <param>
+              <urlName>an</urlName>
+              <fldName>accessionNumber</fldName>
+            </param>
+          </params>
+        </articleURL>
+        <rssMapping>
+          <title connector=" ">
+            <params>
+              <param>headline</param>
+            </params>
+          </title>
+          <source connector=":">
+            <params>
+              <param>sourceName</param>
+            </params>
+          </source>
+          <description connector=" ">
+            <params>
+              <param>snippet</param>
+            </params>
+          </description>
+          <url connector=" ">
+            <params>
+              <param>uri</param>
+            </params>
+          </url>
+          <date connector="">
+            <params>
+              <param>publicationDate</param>
+            </params>
+          </date>
+          <enclosure connector="|">
+            <params>
+              <param>accessionNo</param>
+            </params>
+          </enclosure>
+        </rssMapping>
+      </rssDetail>
+			<!-- Error Tokens -->
+			<tokens>
+				<en>
+					<token name="NO_RESULT_FOUND">No Results found.</token>
+				</en>
+			</tokens>
+			<!-- Transaction Custom Actions eg. Editor's Choice BSS-->
+			<Custom>
+				<params>
+					<param name="pcast"></param>
+				</params>
+			</Custom>
+		</product>
+		<product version='g2'>
+			<!-- Search 2.0 -->
+			<!-- Params Required for the Data Retriever Transactions -->
+			<transactionParams>
+				<numberOfHeadlines>20</numberOfHeadlines>
+				<lwUserID>RSSFEED1</lwUserID>
+				<lwPassword>RSSFEED1</lwPassword>
+				<lwNameSpace>16</lwNameSpace>
+				<AccessPointCode>z</AccessPointCode>
+				<ClientTypeCode>D</ClientTypeCode>
+			</transactionParams>
+			<!-- Validation keys to validate from the Request -->
+			<validate>
+				<eid>
+					<params>
+						<param>folderid</param>
+					</params>
+				</eid>
+			</validate>
+			<!-- Information required for the RSS Channel -->
+			<rssChannel>
+				<channelHeader>
+					<channelName>
+						<suffix>- Factiva Alerts </suffix>
+						<param type='eid'>fname</param>
+					</channelName>
+					<channelDesc>
+						<prefix><![CDATA[Dow Jones Factiva is the only information solution that combines the comprehensive global news and business information you need with the sophisticated tools and technologies that help your entire organization make better decisions faster.]]></prefix>
+						<param type='eid'></param>
+					</channelDesc>
+				</channelHeader>
+				<factivaChannelLink>http://www.solutions.dowjones.com</factivaChannelLink>
+				<factivaCustomerServiceLink>www.solutions.dowjones.com </factivaCustomerServiceLink>
+				<factivaCopyright>© 2014 Factiva, Inc.  All rights reserved.</factivaCopyright>
+				<!--- Argotic is handling this -->
+				<!--<rssChannelDocs>http://backend.userland.com/rss</rssChannelDocs>-->
+				<rssChannelLanguage>en-us</rssChannelLanguage>
+				<rssChannelImage>
+					<url>http://rss.dev.factiva.com/images/Dow_Jones.jpg</url>
+					<height>32</height>
+					<width>96</width>
+				</rssChannelImage>
+				<rssChannelAuthor>Dow Jones Factiva</rssChannelAuthor>
+				<!--<rssChannelttl>60</rssChannelttl>-->
+			</rssChannel>
+			<!-- How do I the build the target URL to fetch the article? -->
+			<articleURL>
+        <DirectURL><![CDATA[http://mobile.dev.factiva.com/redir/default.aspx?]]></DirectURL>
+        <eid> <!-- EID values which need to appear in the article url -->
+					<params>
+						<param mapTo="ns">namespace</param>
+						<param mapTo="fid">folderid</param>
+						<param mapTo="aid">accountid</param>
+						<param mapTo="fn">fname</param>
+						<param mapTo="od">od</param>
+					</params>
+				</eid>
+				<predefined> <!-- hardcoded values which need to appear in the article url -->
+					<params>
+					<param>p=sta</param>
+					<param>napc=z</param>         
+					<param>ep=AL</param>
+					<param>ft=g</param>
+					</params>
+				</predefined>
+			</articleURL>
+			<!-- RSS Headlines Information (data from the backend output only - does not support EID & predefined) -->
+      <rssDetail>
+        <TopLevelNode nsPrefix="ns1" nsURI="http://types.factiva.com/search">document</TopLevelNode>
+        <articleURL>
+          <params>
+            <param>
+              <urlName>an</urlName>
+              <fldName>accessionNumber</fldName>
+            </param>
+          </params>
+        </articleURL>
+        <rssMapping>
+          <title connector=" ">
+            <params>
+              <param>headline</param>
+            </params>
+          </title>
+          <source connector=":">
+            <params>
+              <param>sourceName</param>
+            </params>
+          </source>
+          <description connector=" ">
+            <params>
+              <param>snippet</param>
+            </params>
+          </description>
+          <url connector=" ">
+            <params>
+              <param>uri</param>
+            </params>
+          </url>
+          <date connector="">
+            <params>
+              <param>publicationDate</param>
+            </params>
+          </date>
+          <enclosure connector="|">
+            <params>
+              <param>accessionNo</param>
+            </params>
+          </enclosure>
+        </rssMapping>
+      </rssDetail>
+			<!-- Error Tokens -->
+			<tokens>
+				<en>
+					<token name="NO_RESULT_FOUND">No Results found.</token>
+				</en>
+			</tokens>
+			<!-- Transaction Custom Actions eg. Editor's Choice BSS-->
+			<Custom>
+				<params>
+					<param name="pcast"></param>
+				</params>
+			</Custom>
+		</product>
+		<product version='fce1'> <!-- F C and E Alert Folders -->
+			<!-- Params Required for the Data Retriever Transactions -->
+			<transactionParams>
+				<numberOfHeadlines>20</numberOfHeadlines>
+				<lwUserID>RSSFEED1</lwUserID>
+				<lwPassword>RSSFEED1</lwPassword>
+				<lwNameSpace>16</lwNameSpace>
+				<AccessPointCode>z</AccessPointCode>
+				<ClientTypeCode>M</ClientTypeCode>
+			</transactionParams>
+			<!-- Validation keys to validate from the Request -->
+			<validate>
+				<eid>
+					<params>
+						<param>folderid</param>
+					</params>
+				</eid>
+			</validate>
+			<!-- Information required for the RSS Channel -->
+			<rssChannel>
+				<channelHeader>
+					<channelName>
+						<suffix>- Factiva Alerts </suffix>
+						<param type='eid'>fname</param>
+					</channelName>
+					<channelDesc>
+						<prefix><![CDATA[Dow Jones Factiva is the only information solution that combines the comprehensive global news and business information you need with the sophisticated tools and technologies that help your entire organization make better decisions faster.]]></prefix>
+						<param type='eid'></param>
+					</channelDesc>
+				</channelHeader>
+				<factivaChannelLink>http://www.solutions.dowjones.com</factivaChannelLink>
+				<factivaCustomerServiceLink>www.solutions.dowjones.com </factivaCustomerServiceLink>
+				<factivaCopyright>© 2014 Factiva, Inc.  All rights reserved.</factivaCopyright>
+				<!--- Argotic is handling this -->
+				<!--<rssChannelDocs>http://backend.userland.com/rss</rssChannelDocs>-->
+				<rssChannelLanguage>en-us</rssChannelLanguage>
+				<rssChannelImage>
+					<url>http://rss.dev.factiva.com/images/Dow_Jones.jpg</url>
+					<height>32</height>
+					<width>96</width>
+				</rssChannelImage>
+				<rssChannelAuthor>Dow Jones Factiva</rssChannelAuthor>
+				<!--<rssChannelttl>60</rssChannelttl>-->
+			</rssChannel>
+			<!-- How do I the build the target URL to fetch the article? -->
+			<TopLevelNode nsPrefix="ns1" nsURI="http://types.factiva.com/search">Result</TopLevelNode>
+			<articleURL>
+				<DirectURL><![CDATA[http://mobile.dev.factiva.com/redir/default.aspx?]]></DirectURL>
+				<eid>
+					<!-- EID values which need to appear in the article url -->
+					<params>
+						<param mapTo="aid">accountid</param>
+						<param mapTo="ns">namespace</param>
+						<param mapTo="fn">fname</param>
+						<param mapTo="fid">folderid</param>
+						<param mapTo="od">od</param>
+						<!--Commented since nobody is using this value
+						<param mapTo="tu">tu</param>
+						-->
+					</params>
+				</eid>
+				<predefined>
+					<!-- hardcoded values which need to appear in the article url -->
+					<params>
+						<param>p=sta</param>
+						<param>napc=z</param>
+						<param>ft=f</param>
+					</params>
+				</predefined>
+			</articleURL>
+			<!-- RSS Headlines Information (data from the backend output only - does not support EID & predefined) -->
+      <rssDetail>
+        <TopLevelNode nsPrefix="ns1" nsURI="http://types.factiva.com/search">document</TopLevelNode>
+        <articleURL>
+          <params>
+            <param>
+              <urlName>an</urlName>
+              <fldName>accessionNumber</fldName>
+            </param>
+          </params>
+        </articleURL>
+        <rssMapping>
+          <title connector=" ">
+            <params>
+              <param>headline</param>
+            </params>
+          </title>
+          <source connector=":">
+            <params>
+              <param>sourceName</param>
+            </params>
+          </source>
+          <description connector=" ">
+            <params>
+              <param>snippet</param>
+            </params>
+          </description>
+          <url connector=" ">
+            <params>
+              <param>uri</param>
+            </params>
+          </url>
+          <date connector="">
+            <params>
+              <param>publicationDate</param>
+            </params>
+          </date>
+          <enclosure connector="|">
+            <params>
+              <param>accessionNo</param>
+            </params>
+          </enclosure>
+        </rssMapping>
+      </rssDetail>
+			<!-- Error Tokens -->
+			<tokens>
+				<en>
+					<token name="NO_RESULT_FOUND">No Results found.</token>
+				</en>
+			</tokens>
+			<!-- Transaction Custom Actions eg. Editor's Choice BSS-->
+			<Custom>
+				<params>
+					<param name="pcast"></param>
+				</params>
+			</Custom>
+		</product>
+		<product version='fdk'>
+			<!--  FDK Search Headlines -->
+			<!-- Params Required for the Data Retriever Transactions -->
+			<transactionParams>
+				<numberOfHeadlines>20</numberOfHeadlines>
+				<lwUserID>RSSFEED1</lwUserID>
+				<lwPassword>RSSFEED1</lwPassword>
+				<lwNameSpace>16</lwNameSpace>
+				<AccessPointCode>z</AccessPointCode>
+				<ClientTypeCode>M</ClientTypeCode>
+			</transactionParams>
+			<!-- Validation keys to validate from the Request -->
+			<validate>
+				<eid>
+					<params>
+						<param>folderid</param>
+					</params>
+				</eid>
+			</validate>
+			<!-- Information required for the RSS Channel -->
+			<rssChannel>
+				<channelHeader>
+					<channelName>
+						<suffix>- Factiva Alerts </suffix>
+						<param type='eid'>fname</param>
+					</channelName>
+					<channelDesc>
+						<prefix><![CDATA[Dow Jones Factiva is the only information solution that combines the comprehensive global news and business information you need with the sophisticated tools and technologies that help your entire organization make better decisions faster.]]></prefix>
+						<param type='eid'></param>
+					</channelDesc>
+				</channelHeader>
+				<factivaChannelLink>http://www.solutions.dowjones.com</factivaChannelLink>
+				<factivaCustomerServiceLink>www.solutions.dowjones.com </factivaCustomerServiceLink>
+				<factivaCopyright>© 2014 Factiva, Inc.  All rights reserved.</factivaCopyright>
+				<!--- Argotic is handling this -->
+				<!--<rssChannelDocs>http://backend.userland.com/rss</rssChannelDocs>-->
+				<rssChannelLanguage>en-us</rssChannelLanguage>
+				<rssChannelImage>
+					<url>http://rss.dev.factiva.com/images/Dow_Jones.jpg</url>
+					<height>32</height>
+					<width>96</width>
+				</rssChannelImage>
+				<rssChannelAuthor>Dow Jones Factiva</rssChannelAuthor>
+				<!--<rssChannelttl>60</rssChannelttl>-->
+			</rssChannel>
+			<!-- How do I the build the target URL to fetch the article? -->
+			<TopLevelNode nsPrefix="ns1" nsURI="http://types.factiva.com/search">Result</TopLevelNode>
+			<articleURL>
+				<DirectURL><![CDATA[http://mobile.dev.factiva.com/redir/default.aspx?]]></DirectURL>
+				<eid> <!-- EID values which need to appear in the article url -->
+					<params>
+						<param mapTo="aid">accountid</param>
+						<param mapTo="ns">namespace</param>
+						<param mapTo="fn">fname</param>
+						<param mapTo="fid">folderid</param>
+						<param mapTo="od">od</param>
+						<!-- Commented since nobody is using this value
+						<param mapTo="tu">tu</param>
+						-->
+					</params>
+				</eid>
+				<predefined> <!-- hardcoded values which need to appear in the article url -->
+					<params>
+						<param>p=sta</param>
+						<param>napc=z</param>
+						<param>ep=fdkrss</param>
+						<param>ft=f</param>
+					</params>
+				</predefined>
+			</articleURL>
+			<!-- RSS Headlines Information (data from the backend output only - does not support EID & predefined) -->
+      <rssDetail>
+        <TopLevelNode nsPrefix="ns1" nsURI="http://types.factiva.com/search">document</TopLevelNode>
+        <articleURL>
+          <params>
+            <param>
+              <urlName>an</urlName>
+              <fldName>accessionNumber</fldName>
+            </param>
+          </params>
+        </articleURL>
+        <rssMapping>
+          <title connector=" ">
+            <params>
+              <param>headline</param>
+            </params>
+          </title>
+          <source connector=":">
+            <params>
+              <param>sourceName</param>
+            </params>
+          </source>
+          <description connector=" ">
+            <params>
+              <param>snippet</param>
+            </params>
+          </description>
+          <url connector=" ">
+            <params>
+              <param>uri</param>
+            </params>
+          </url>
+          <date connector="">
+            <params>
+              <param>publicationDate</param>
+            </params>
+          </date>
+          <enclosure connector="|">
+            <params>
+              <param>accessionNo</param>
+            </params>
+          </enclosure>
+        </rssMapping>
+      </rssDetail>
+			<!-- Error Tokens -->
+			<tokens>
+				<en>
+					<token name="NO_RESULT_FOUND">No Results found.</token>
+				</en>
+			</tokens>
+			<!-- Transaction Custom Actions eg. Editor's Choice BSS-->
+			<Custom>
+				<params>
+					<param name="pcast"></param>
+				</params>
+			</Custom>
+		</product>
+		<product version='g3'> <!--global.factiva.com Editor Choice-->
+			<!-- Params Required for the Data Retriever Transactions -->
+			<transactionParams>
+				<numberOfHeadlines>20</numberOfHeadlines>
+				<lwUserID>RSSFEED1</lwUserID>
+				<lwPassword>RSSFEED1</lwPassword>
+				<lwNameSpace>16</lwNameSpace>
+				<AccessPointCode>z</AccessPointCode>
+				<ClientTypeCode>M</ClientTypeCode>
+			</transactionParams>
+			<!-- Validation keys to validate from the Request -->
+			<validate>
+				<eid>
+					<params>
+						<param>feed</param>
+					</params>
+				</eid>
+			</validate>
+			<!-- Information required for the RSS Channel -->
+			<rssChannel>
+				<channelHeader>
+					<channelName>
+						<suffix>- Suggested Reading</suffix>
+						<param type='eid'>title</param>
+					</channelName>
+					<channelDesc>
+						<prefix><![CDATA[Dow Jones Factiva is the only information solution that combines the comprehensive global news and business information you need with the sophisticated tools and technologies that help your entire organization make better decisions faster.]]></prefix>
+						<param type='eid'></param>
+					</channelDesc>
+				</channelHeader>
+				<factivaChannelLink>http://www.solutions.dowjones.com</factivaChannelLink>
+				<factivaCustomerServiceLink>www.solutions.dowjones.com </factivaCustomerServiceLink>
+				<factivaCopyright>© 2014 Factiva, Inc.  All rights reserved.</factivaCopyright>
+				<!--- Argotic is handling this -->
+				<!--<rssChannelDocs>http://backend.userland.com/rss</rssChannelDocs>-->
+				<rssChannelLanguage>en-us</rssChannelLanguage>
+				<rssChannelImage>
+					<url>http://rss.dev.factiva.com/images/Dow_Jones.jpg</url>
+					<height>32</height>
+					<width>96</width>
+				</rssChannelImage>
+				<rssChannelAuthor>Dow Jones Factiva</rssChannelAuthor>
+				<!--<rssChannelttl>60</rssChannelttl>-->
+			</rssChannel>
+			<!-- How do I the build the target URL to fetch the article? -->
+			<TopLevelNode nsPrefix="ns1" nsURI="http://types.factiva.com/search">Result</TopLevelNode>
+			<articleURL>
+				<DirectURL><![CDATA[http://mobile.dev.factiva.com/redir/default.aspx?]]></DirectURL>
+				<eid>
+					<!-- EID values which need to appear in the article url -->
+					<params>
+						<param mapTo="aid">accountid</param>
+						<param mapTo="ns">namespace</param>
+						<param mapTo="od">od</param>
+						<!-- Added in the Input Collection at DataRetriever (Does not come in the EID)-->
+						<!--Commented since nobody is using this value
+						<param mapTo="tu">tu</param>
+						-->
+					</params>
+				</eid>
+				<predefined>
+					<!-- hardcoded values which need to appear in the article url -->
+					<params>
+						<param>p=sa</param>
+						<param>napc=z</param>
+						<param>ep=rss</param>
+					</params>
+				</predefined>
+			</articleURL>
+			<!-- RSS Headlines Information (data from the backend output only - does not support EID & predefined) -->
+			<rssDetail>
+				<TopLevelNode nsPrefix="ns1" nsURI="http://types.factiva.com/search">Result</TopLevelNode>
+				<articleURL>
+					<params>
+						<param>
+							<!-- milind -->
+							<urlName>an</urlName>
+							<fldName>ReplyItem/AccessionNo[@fid='an']/@value</fldName>
+						</param>
+					</params>
+				</articleURL>
+				<rssMapping>
+					<title connector="-">
+						<params>
+							<param>ReplyItem/Title[@fid='hl']/Headline[@fid='hd']</param>
+						</params>
+					</title>
+					<source connector=":">
+						<params>
+							<param>ReplyItem/SrcName[@fid='sn']</param>
+						</params>
+					</source>
+					<description connector="*">
+						<params>
+							<param>ReplyItem/Snippet</param>
+						</params>
+					</description>
+					<date connector=",">
+						<params>
+							<param>ReplyItem/Date[@fid='pd']/@value</param>
+							<param>ReplyItem/Time[@fid='et']/@value</param>
+						</params>
+					</date>
+					<enclosure connector="|">
+						<params>
+							<param>ReplyItem/AccessionNo[@fid='an']/@value</param>
+						</params>
+					</enclosure>
+					<url connector="*">
+						<params>
+							<param>items/url</param>
+						</params>
+					</url>
+				</rssMapping>
+			</rssDetail>
+			<EditorsChoices>
+				<EditorsChoice urlParam="527s" display="false" maxheadlines="099">
+					<title>527’s</title>
+					<bss>(527’s) and (la=en)</bss>
+		    </EditorsChoice>
+
+				<EditorsChoice urlParam="bobney" display="false" maxheadlines="099">
+					<title>Bob Ney</title>
+					<bss>(Bob Ney or Robert Ney or Congressman Ney or Rep. Ney or Representative Ney) and (la=en)</bss>
+				</EditorsChoice>
+
+				<EditorsChoice urlParam="accounting" display="true" maxheadlines="020">
+					<title>Accounting/Consulting</title>
+					<bss ns="REQRAC" la="en" date="date after -365">(ns=REQRAC and la=en and date after -365)</bss>
+				</EditorsChoice>
+
+				<EditorsChoice urlParam="advertising" display="true" maxheadlines="020" >
+					<title>Advertising/Public Relations</title>
+					<bss ns="REQRAC" la="en" date="date after -365">(ns=REQRAP and la=en and date after -365)</bss>
+				</EditorsChoice>
+
+				<EditorsChoice urlParam="aerospace" display="true" maxheadlines="020" >
+					<title>Aerospace/Defense</title>
+					<bss ns="REQRAC" la="en" date="date after -365">(ns=REQRAD and la=en and date after -365)</bss>
+				</EditorsChoice>
+
+				<EditorsChoice urlParam="agriculture" display="true" maxheadlines="020" >
+					<title>Agriculture/Forestry</title>
+					<bss ns="REQRAC" la="en" date="date after -365">(ns=REQRAF and la=en and date after -365)</bss>
+				</EditorsChoice>
+        
+				<EditorsChoice urlParam="airlines" display="true" maxheadlines="020" >
+					<title>Airlines</title>
+					<bss ns="REQRAC" la="en" date="date after -365">(ns=REQRAI and la=en and date after -365)</bss>
+				</EditorsChoice>
+
+        <EditorsChoice urlParam="automobiles" display="true" maxheadlines="020" >
+					<title>Automobiles</title>
+					<bss ns="REQRAC" la="en" date="date after -365">(ns=REQRAU and la=en and date after -365)</bss>
+				</EditorsChoice>
+
+				<EditorsChoice urlParam="banking" display="true" maxheadlines="020" >
+					<title>Banking/Credit</title>
+					<bss ns="REQRBC" la="en" date="date after -365">(ns=REQRBC and la=en and date after -365)</bss>
+				</EditorsChoice>
+        
+        <EditorsChoice urlParam="business" display="true" maxheadlines="020" >
+					<title>Business/Consumer Services</title>
+					<bss ns="REQBCS" la="en" date="date after -365">(ns=REQBCS and la=en and date after -365)</bss>
+				</EditorsChoice>  
+        
+        <EditorsChoice urlParam="biotechnology" display="true" maxheadlines="020" >
+					<title>Biotechnology</title>
+					<bss ns="REQBIO" la="en" date="date after -365">(ns=REQBIO and la=en and date after -365)</bss>
+				</EditorsChoice>
+
+				<EditorsChoice urlParam="chemicals" display="true" maxheadlines="099" >
+					<title>Chemicals</title>
+					<bss ns="REQRCH" la="en" date="date after -365">(ns=REQRCH and la=en and date after -365)</bss>
+				</EditorsChoice>
+
+				<EditorsChoice urlParam="clothing" display="true" maxheadlines="020" >
+					<title>Clothing/Textiles</title>
+					<bss ns="REQRCT" la="en" date="date after -365">(ns=REQRCT and la=en and date after -365)</bss>
+				</EditorsChoice>
+
+				<EditorsChoice urlParam="computers" display="true" maxheadlines="020" >
+					<title>Computers</title>
+					<bss ns="REQRCM" la="en" date="date after -365">(ns=REQRCM and la=en and date after -365)</bss>
+				</EditorsChoice>
+
+				<EditorsChoice urlParam="construction" display="true" maxheadlines="020" >
+					<title>Construction/Real Estate</title>
+					<bss ns="REQRCR" la="en" date="date after -365">(ns=REQRCR and la=en and date after -365)</bss>
+				</EditorsChoice>
+
+				<EditorsChoice urlParam="consumerproducts" display="true" maxheadlines="020" >
+					<title>Consumer Products</title>
+					<bss ns="REQRCP" la="en" date="date after -365">(ns=REQRCP and la=en and date after -365)</bss>
+				</EditorsChoice>
+
+				<EditorsChoice urlParam="energy" display="true" maxheadlines="020" >
+					<title>Energy</title>
+					<bss ns="REQREN" la="en" date="date after -365">(ns=REQREN and la=en and date after -365)</bss>
+				</EditorsChoice>
+        
+        <EditorsChoice urlParam="environment" display="true" maxheadlines="020" >
+					<title>Environment &amp; Waste Management       </title>
+					<bss ns="REQEVR" la="en" date="date after -365">(ns=REQEVR and la=en and date after -365)</bss>
+				</EditorsChoice>
+
+				<EditorsChoice urlParam="food" display="true" maxheadlines="020" >
+					<title>Food/Beverages/Tobacco</title>
+					<bss ns="REQRFB" la="en" date="date after -365">(ns=REQRFB and la=en and date after -365)</bss>
+				</EditorsChoice>
+
+				<EditorsChoice urlParam="healthcare" display="true" maxheadlines="020" >
+					<title>Health Care</title>
+					<bss ns="REQRHC" la="en" date="date after -365">(ns=REQRHC and la=en and date after -365)</bss>
+				</EditorsChoice>
+
+				<EditorsChoice urlParam="hotels" display="true" maxheadlines="020" >
+					<title>Hotels/Restaurants/Casinos</title>
+					<bss ns="REQRHR" la="en" date="date after -365">(ns=REQRHR and la=en and date after -365)</bss>
+				</EditorsChoice>
+
+				<EditorsChoice urlParam="insurance" display="true" maxheadlines="020" >
+					<title>Insurance</title>
+					<bss ns="REQRIN" la="en" date="date after -365">(ns=REQRIN and la=en and date after -365)</bss>
+				</EditorsChoice>
+
+				<EditorsChoice urlParam="internet" display="true" maxheadlines="020" >
+					<title>Internet/Online Services</title>
+					<bss ns="REQRIO" la="en" date="date after -365">(ns=REQRIO and la=en and date after -365)</bss>
+				</EditorsChoice>
+
+				<EditorsChoice urlParam="investing" display="true" maxheadlines="020" >
+					<title>Investing/Securities</title>
+					<bss ns="REQRIS" la="en" date="date after -365">(ns=REQRIS and la=en and date after -365)</bss>
+				</EditorsChoice>
+        
+        <EditorsChoice urlParam="leisure" display="true" maxheadlines="020" >
+					<title>Leisure/Arts</title>
+					<bss ns="REQLEA" la="en" date="date after -365">(ns=REQLEA and la=en and date after -365)</bss>
+				</EditorsChoice>
+
+				<EditorsChoice urlParam="media" display="true" maxheadlines="020" >
+					<title>Media</title>
+					<bss ns="REQRME" la="en" date="date after -365">(ns=REQRME and la=en and date after -365)</bss>
+				</EditorsChoice>
+
+        <EditorsChoice urlParam="machinery" display="true" maxheadlines="020" >
+					<title>Machinery/Industrial Goods</title>
+					<bss ns="REQMIG" la="en" date="date after -365">(ns=REQMIG and la=en and date after -365)</bss>
+				</EditorsChoice>
+        
+				<EditorsChoice urlParam="metals" display="true" maxheadlines="020" >
+					<title>Metals/Mining</title>
+					<bss ns="REQRMM" la="en" date="date after -365">(ns=REQRMM and la=en and date after -365)</bss>
+				</EditorsChoice>
+        
+        <EditorsChoice urlParam="paper" display="true" maxheadlines="020" >
+					<title>Paper/Packaging</title>
+					<bss ns="REQPAP" la="en" date="date after -365">(ns=REQPAP and la=en and date after -365)</bss>
+				</EditorsChoice>
+
+				<EditorsChoice urlParam="pharma" display="true" maxheadlines="020" >
+					<title>Pharmaceuticals</title>
+					<bss ns="REQRPH" la="en" date="date after -365">(ns=REQRPH and la=en and date after -365)</bss>
+				</EditorsChoice>
+
+				<EditorsChoice urlParam="retail" display="true" maxheadlines="020" >
+					<title>Retail</title>
+					<bss ns="REQRRE" la="en" date="date after -365">(ns=REQRRE and la=en and date after -365)</bss>
+				</EditorsChoice>
+
+				<EditorsChoice urlParam="telecommunications" display="true" maxheadlines="020" >
+					<title>Telecommunications</title>
+					<bss ns="REQRAC" la="en" date="date after -365">(ns=REQRTE and la=en and date after -365)</bss>
+				</EditorsChoice>
+
+				<EditorsChoice urlParam="transportation" display="true" maxheadlines="020" >
+					<title>Transportation/Shipping</title>
+					<bss ns="REQRTS" la="en" date="date after -365">(ns=REQRTS and la=en and date after -365)</bss>
+				</EditorsChoice>
+
+			</EditorsChoices>
+			<!-- Error Tokens -->
+			<tokens>
+				<en>
+					<token name="NO_RESULT_FOUND">No Results found.</token>
+				</en>
+			</tokens>
+			<!-- Transaction Custom Actions eg. Editor's Choice BSS-->
+			<Custom>
+				<params>
+					<param name="pcast"></param>
+				</params>
+			</Custom>
+		</product>
+    <product version='pcast'>
+      <!-- Podcast 2.0 -->
+      <!-- Params Required for the Data Retriever Transactions -->
+      <transactionParams>
+        <numberOfHeadlines>20</numberOfHeadlines>
+        <lwUserID>pcastfeed1</lwUserID>
+        <lwPassword>Pa55wd</lwPassword>
+        <lwNameSpace>16</lwNameSpace>
+        <AccessPointCode>z</AccessPointCode>
+        <ClientTypeCode>D</ClientTypeCode>
+      </transactionParams>
+      <!-- Validation keys to validate from the Request -->
+      <validate>
+        <eid>
+          <params>
+            <param>contid</param>
+          </params>
+        </eid>
+      </validate>
+      <!-- Information required for the RSS Channel -->
+      <rssChannel>
+        <channelHeader>
+          <channelName>
+            <prefix>Factiva Podcast – Proof of Concept </prefix>
+          </channelName>
+          <channelDesc>
+            <prefix>Factiva Podcast – Proof of Concept </prefix>
+          </channelDesc>
+        </channelHeader>
+        <factivaChannelLink>http://www.solutions.dowjones.com</factivaChannelLink>
+        <factivaCustomerServiceLink>www.solutions.dowjones.com </factivaCustomerServiceLink>
+        <factivaCopyright>© 2014 Factiva, Inc.  All rights reserved.</factivaCopyright>
+        <!--- Argotic is handling this -->
+        <!--<rssChannelDocs>http://backend.userland.com/rss</rssChannelDocs>-->
+        <rssChannelLanguage>en-us</rssChannelLanguage>
+        <rssChannelImage>
+          <url>http://rss.dev.factiva.com/images/Dow_Jones.jpg</url>
+          <height>32</height>
+          <width>96</width>
+        </rssChannelImage>
+        <rssChannelAuthor>Dow Jones Factiva</rssChannelAuthor>
+        <!--<rssChannelttl>60</rssChannelttl>-->
+      </rssChannel>
+      <!-- How do I the build the target URL to fetch the article? -->
+      <articleURL>
+        <DirectURL><![CDATA[http://mobile.dev.factiva.com/redir/default.aspx?]]></DirectURL>
+        <eid>
+          <!-- EID values which need to appear in the article url -->
+          <params>
+            <param mapTo="ns">namespace</param>
+            <param mapTo="contid">contid</param>
+            <param mapTo="aid">accountid</param>
+            <param mapTo="fname">fname</param>
+          </params>
+        </eid>
+        <predefined>
+          <!-- hardcoded values which need to appear in the article url -->
+          <params>
+            <param>p=sta</param>
+            <param>napc=z</param>
+            <param>ep=rss</param>
+            <param>ft=g</param>
+          </params>
+        </predefined>
+      </articleURL>
+      <!-- RSS Headlines Information (data from the backend output only - does not support EID & predefined) -->
+      <rssDetail>
+        <TopLevelNode nsPrefix="ns1" nsURI="http://types.factiva.com/search">Result</TopLevelNode>
+        <articleURL>
+          <params>
+            <param>
+              <!-- milind -->
+              <urlName>an</urlName>
+              <fldName>ReplyItem/AccessionNo[@fid='an']/@value</fldName>
+            </param>
+          </params>
+        </articleURL>
+        <rssMapping>
+          <title connector="-">
+            <params>
+              <param>ReplyItem/Title[@fid='hl']/Headline[@fid='hd']</param>
+            </params>
+          </title>
+          <source connector=":">
+            <params>
+              <param>ReplyItem/SrcName[@fid='sn']</param>
+            </params>
+          </source>
+          <description connector="*">
+            <params>
+              <param>ReplyItem/Snippet</param>
+            </params>
+          </description>
+          <url connector="*">
+            <params>
+              <param>items/url</param>
+            </params>
+          </url>
+
+          <date connector=",">
+            <params>
+              <param>ReplyItem/Date[@fid='pd']/@value</param>
+              <param>ReplyItem/Time[@fid='et']/@value</param>
+            </params>
+          </date>
+          <enclosure connector="|">
+            <params>
+              <param>ReplyItem/AccessionNo[@fid='an']/@value</param>
+            </params>
+          </enclosure>
+
+        </rssMapping>
+      </rssDetail>
+      <!-- Error Tokens -->
+      <tokens>
+        <en>
+          <token name="NO_RESULT_FOUND">No Results found.</token>
+        </en>
+      </tokens>
+      <StyleSheet>
+        <name>IndexSearch.xsl</name>
+      </StyleSheet>
+      <!-- Transaction Custom Actions eg. Editor's Choice BSS-->
+      <Custom>
+        <params>
+          <param name="pcast"></param>
+        </params>
+      </Custom>
+    </product>
+
+
+    <!-- Modified for Bucket 1 2009 to support Workspace Model-->
+    <product version='nl1'>
+
+      <!-- Params Required for the Data Retriever Transactions -->
+      <transactionParams>
+        <numberOfHeadlines>20</numberOfHeadlines>
+        <lwUserID>RSSFEED1</lwUserID>
+        <lwPassword>RSSFEED1</lwPassword>
+        <lwNameSpace>16</lwNameSpace>
+        <AccessPointCode>2</AccessPointCode>
+        <ClientTypeCode>M</ClientTypeCode>
+        <RefferingURL>rss.factiva.com</RefferingURL>
+        <CallingURL>http://rss.factiva.com</CallingURL>
+      </transactionParams>
+      <!-- Validation keys to validate from the Request -->
+      <validate>
+        <eid>
+          <params>
+            <param>NLID</param>
+          </params>
+        </eid>
+      </validate>
+      <!-- Information required for the RSS Channel -->
+      <rssChannel>
+        <channelHeader>
+          <channelName>
+            <suffix>- Factiva Newsletter</suffix>
+            <param type='eid'>fname</param>
+          </channelName>
+          <channelDesc>
+            <prefix><![CDATA[Dow Jones Factiva is the only information solution that combines the comprehensive global news and business information you need with the sophisticated tools and technologies that help your entire organization make better decisions faster.]]></prefix>
+            <param type='eid'></param>
+          </channelDesc>
+        </channelHeader>
+        <factivaChannelLink>http://www.solutions.dowjones.com</factivaChannelLink>
+        <factivaCustomerServiceLink>www.solutions.dowjones.com </factivaCustomerServiceLink>
+        <factivaCopyright>© 2009 Factiva, Inc.  All rights reserved.</factivaCopyright>
+        <!--- Argotic is handling this -->
+        <!--<rssChannelDocs>http://backend.userland.com/rss</rssChannelDocs>-->
+        <rssChannelLanguage>en-us</rssChannelLanguage>
+        <rssChannelImage>
+          <url>http://rss.dev.factiva.com/images/Dow_Jones.jpg</url>
+          <height>32</height>
+          <width>96</width>
+        </rssChannelImage>
+        <rssChannelAuthor>Dow Jones Factiva</rssChannelAuthor>
+        <!--<rssChannelttl>60</rssChannelttl>-->
+      </rssChannel>
+      <!-- How do I the build the target URL to fetch the article? -->
+      <TopLevelNode nsPrefix="ns1" nsURI="http://types.factiva.com/search">document</TopLevelNode>
+      <articleURL>
+        <DirectURL><![CDATA[http://global.int.factiva.com/redir/default.aspx?]]></DirectURL>
+        <eid>
+          <!-- EID values which need to appear in the article url -->
+          <params>
+            <param mapTo="mi">MI</param>
+          </params>
+        </eid>
+        <predefined>
+          <!-- hardcoded values which need to appear in the article url -->
+          <params>
+            <param>p=sa</param>
+            <param>ep=NL</param>
+            <param>v=1.0</param>
+            <param>napc=RN</param>
+          </params>
+        </predefined>
+      </articleURL>
+      <!-- RSS Headlines Information (data from the backend output only - does not support EID & predefined) -->
+      <rssDetail>
+        <TopLevelNode nsPrefix="ns1" nsURI="http://types.factiva.com/search">document</TopLevelNode>
+        <articleURL>
+          <params>
+            <param>
+              <urlName>accessionNumber</urlName>
+              <fldName>accessionNumber</fldName>
+            </param>
+          </params>
+        </articleURL>
+        <rssMapping>
+          <title connector=" ">
+            <params>
+              <param>headline</param>
+            </params>
+          </title>
+          <source connector=":">
+            <params>
+              <param>sourceName</param>
+            </params>
+          </source>
+          <description connector=" ">
+            <params>
+              <param>snippet</param>
+            </params>
+          </description>
+          <url connector=" ">
+            <params>
+              <param>uri</param>
+            </params>
+          </url>
+          <date connector="">
+            <params>
+              <param>publicationDate</param>
+            </params>
+          </date>
+          <enclosure connector="|">
+            <params>
+              <param>accessionNumber</param>
+            </params>
+          </enclosure>
+        </rssMapping>
+      </rssDetail>
+      <!-- Error Tokens -->
+      <tokens>
+        <en>
+          <token name="NO_RESULT_FOUND">No Results found.</token>
+        </en>
+      </tokens>
+      <StyleSheet>
+        <name>IndexSearch.xsl</name>
+      </StyleSheet>
+      <Custom>
+        <params>
+          <param name="pcast"></param>
+        </params>
+      </Custom>
+    </product>
+
+    <!-- EID5-->
+    <product version='nl2'>
+
+      <!-- Params Required for the Data Retriever Transactions -->
+			<transactionParams>
+				<numberOfHeadlines>20</numberOfHeadlines>
+				<lwUserID>RSSFEED1</lwUserID>
+				<lwPassword>RSSFEED1</lwPassword>
+				<lwNameSpace>16</lwNameSpace>
+				<AccessPointCode>2</AccessPointCode>
+				<ClientTypeCode>M</ClientTypeCode>
+				<RefferingURL>rss.factiva.com</RefferingURL>
+				<CallingURL>http://rss.factiva.com</CallingURL>
+			</transactionParams>
+			<!-- Validation keys to validate from the Request -->
+			<validate>
+				<eid>
+					<params>
+						<param>WSID</param>
+					</params>
+				</eid>
+			</validate>
+			<!-- Information required for the RSS Channel -->
+			<rssChannel>
+				<channelHeader>
+					<channelName>
+						<suffix>- Factiva Newsletter</suffix>
+						<param type='eid'>fname</param>
+					</channelName>
+					<channelDesc>
+						<prefix><![CDATA[Dow Jones Factiva is the only information solution that combines the comprehensive global news and business information you need with the sophisticated tools and technologies that help your entire organization make better decisions faster.]]></prefix>
+						<param type='eid'></param>
+					</channelDesc>
+				</channelHeader>
+				<factivaChannelLink>http://www.solutions.dowjones.com</factivaChannelLink>
+				<factivaCustomerServiceLink>www.solutions.dowjones.com </factivaCustomerServiceLink>
+				<factivaCopyright>© 2009 Factiva, Inc.  All rights reserved.</factivaCopyright>
+				<!--- Argotic is handling this -->
+				<!--<rssChannelDocs>http://backend.userland.com/rss</rssChannelDocs>-->
+				<rssChannelLanguage>en-us</rssChannelLanguage>
+				<rssChannelImage>
+					<url>http://rss.dev.factiva.com/images/Dow_Jones.jpg</url>
+					<height>32</height>
+					<width>96</width>
+				</rssChannelImage>
+				<rssChannelAuthor>Dow Jones Factiva</rssChannelAuthor>
+				<!--<rssChannelttl>60</rssChannelttl>-->
+			</rssChannel>
+			<!-- How do I the build the target URL to fetch the article? -->
+			<TopLevelNode nsPrefix="ns1" nsURI="http://types.factiva.com/search">document</TopLevelNode>
+			<articleURL>
+				<DirectURL><![CDATA[http://global.int.factiva.com/redir/default.aspx?]]></DirectURL>
+				<eid>
+					<!-- EID values which need to appear in the article url -->
+					<params>
+						<param mapTo="mi">MI</param>
+					</params>
+				</eid>
+				<predefined>
+					<!-- hardcoded values which need to appear in the article url -->
+					<params>
+						<param>p=sa</param>
+						<param>ep=NL</param>
+						<param>v=1.0</param>
+						<param>napc=RN</param>
+					</params>
+				</predefined>
+			</articleURL>
+			<!-- RSS Headlines Information (data from the backend output only - does not support EID & predefined) -->
+			<rssDetail>
+				<TopLevelNode nsPrefix="ns1" nsURI="http://types.factiva.com/search">document</TopLevelNode>
+				<articleURL>
+					<params>
+						<param>
+							<urlName>accessionNumber</urlName>
+							<fldName>accessionNumber</fldName>
+						</param>
+					</params>
+				</articleURL>
+				<rssMapping>
+					<title connector=" ">
+						<params>
+							<param>headline</param>
+						</params>
+					</title>
+					<source connector=":">
+						<params>
+							<param>sourceName</param>
+						</params>
+					</source>
+					<description connector=" ">
+						<params>
+							<param>snippet</param>
+						</params>
+					</description>
+					<url connector=" ">
+						<params>
+							<param>uri</param>
+						</params>
+					</url>
+					<date connector="">
+						<params>
+							<param>publicationDate</param>
+						</params>
+					</date>
+					<enclosure connector="|">
+						<params>
+							<param>accessionNumber</param>
+						</params>
+					</enclosure>
+				</rssMapping>
+			</rssDetail>
+			<!-- Error Tokens -->
+			<tokens>
+				<en>
+					<token name="NO_RESULT_FOUND">No Results found.</token>
+				</en>
+			</tokens>
+			<StyleSheet>
+				<name>IndexSearch.xsl</name>
+			</StyleSheet>
+			<Custom>
+				<params>
+					<param name="pcast"></param>
+				</params>
+			</Custom>
+		</product>
+		<product version='ws1'>	
+			
+      <!-- Params Required for the Data Retriever Transactions -->
+      <transactionParams>
+        <numberOfHeadlines>20</numberOfHeadlines>
+        <lwUserID>RSSFEED1</lwUserID>
+        <lwPassword>RSSFEED1</lwPassword>
+        <lwNameSpace>16</lwNameSpace>
+        <AccessPointCode>2</AccessPointCode>
+        <ClientTypeCode>M</ClientTypeCode>
+        <RefferingURL>rss.factiva.com</RefferingURL>
+        <CallingURL>http://rss.factiva.com</CallingURL>
+      </transactionParams>
+      <!-- Validation keys to validate from the Request -->
+      <validate>
+        <eid>
+          <params>
+            <param>WSID</param>
+          </params>
+        </eid>
+      </validate>
+      <!-- Information required for the RSS Channel -->
+      <rssChannel>
+        <channelHeader>
+          <channelName>
+            <suffix>- Factiva Workspace</suffix>
+            <param type='eid'>fname</param>
+          </channelName>
+          <channelDesc>
+            <prefix><![CDATA[Dow Jones Factiva is the only information solution that combines the comprehensive global news and business information you need with the sophisticated tools and technologies that help your entire organization make better decisions faster.]]></prefix>
+            <param type='eid'></param>
+          </channelDesc>
+        </channelHeader>
+        <factivaChannelLink>http://www.solutions.dowjones.com</factivaChannelLink>
+        <factivaCustomerServiceLink>www.solutions.dowjones.com </factivaCustomerServiceLink>
+        <factivaCopyright>© 2009 Factiva, Inc.  All rights reserved.</factivaCopyright>
+        <!--- Argotic is handling this -->
+        <!--<rssChannelDocs>http://backend.userland.com/rss</rssChannelDocs>-->
+        <rssChannelLanguage>en-us</rssChannelLanguage>
+        <rssChannelImage>
+          <url>http://rss.dev.factiva.com/images/Dow_Jones.jpg</url>
+          <height>32</height>
+          <width>96</width>
+        </rssChannelImage>
+        <rssChannelAuthor>Dow Jones Factiva</rssChannelAuthor>
+        <!--<rssChannelttl>60</rssChannelttl>-->
+      </rssChannel>
+      <!-- How do I the build the target URL to fetch the article? -->
+      <articleURL>
+        <DirectURL><![CDATA[http://global.int.factiva.com/redir/default.aspx?]]></DirectURL>
+        <eid>
+          <!-- EID values which need to appear in the article url -->
+          <params>
+            <param mapTo="mi">MI</param>
+          </params>
+        </eid>
+        <predefined>
+          <!-- hardcoded values which need to appear in the article url -->
+          <params>
+            <param>p=sa</param>
+            <param>ep=WS</param>
+            <param>v=1.0</param>
+            <param>napc=RW</param>
+          </params>
+        </predefined>
+      </articleURL>
+      <!-- RSS Headlines Information (data from the backend output only - does not support EID & predefined) -->
+      <rssDetail>
+        <TopLevelNode nsPrefix="ns1" nsURI="http://types.factiva.com/search">document</TopLevelNode>
+        <articleURL>
+          <params>
+            <param>
+              <urlName>accessionNumber</urlName>
+              <fldName>accessionNumber</fldName>
+            </param>
+          </params>
+        </articleURL>
+        <rssMapping>
+          <title connector=" ">
+            <params>
+              <param>headline</param>
+            </params>
+          </title>
+          <source connector=":">
+            <params>
+              <param>sourceName</param>
+            </params>
+          </source>
+          <description connector=" ">
+            <params>
+              <param>snippet</param>
+            </params>
+          </description>
+          <url connector=" ">
+            <params>
+              <param>uri</param>
+            </params>
+          </url>
+          <date connector="">
+            <params>
+              <param>publicationDate</param>
+            </params>
+          </date>
+          <enclosure connector="|">
+            <params>
+              <param>accessionNo</param>
+            </params>
+          </enclosure>
+        </rssMapping>
+      </rssDetail>
+      <!-- Error Tokens -->
+      <tokens>
+        <en>
+          <token name="NO_RESULT_FOUND">No Results found.</token>
+        </en>
+      </tokens>
+      <StyleSheet>
+        <name>IndexSearch.xsl</name>
+      </StyleSheet>
+      <Custom>
+        <params>
+          <param name="pcast"></param>
+        </params>
+      </Custom>
+    </product>
+
+    <product version='ws1pcast'>
+      <!-- Podcast 2.0 -->
+      <!-- Params Required for the Data Retriever Transactions -->
+      <transactionParams>
+        <numberOfHeadlines>20</numberOfHeadlines>
+        <lwUserID>pcastfeed1</lwUserID>
+        <lwPassword>Pa55wd</lwPassword>
+        <lwNameSpace>16</lwNameSpace>
+        <AccessPointCode>z</AccessPointCode>
+        <ClientTypeCode>D</ClientTypeCode>
+      </transactionParams>
+      <!-- Validation keys to validate from the Request -->
+      <validate>
+        <eid>
+          <params>
+            <param>WSID</param>
+          </params>
+        </eid>
+      </validate>
+      <!-- Information required for the RSS Channel -->
+      <rssChannel>
+        <channelHeader>
+          <channelName>
+            <suffix>- Factiva Workspace Podcast </suffix>
+            <param type='eid'>fname</param>
+          </channelName>
+          <channelDesc>
+            <prefix><![CDATA[Dow Jones Factiva is the only information solution that combines the comprehensive global news and business information you need with the sophisticated tools and technologies that help your entire organization make better decisions faster.]]></prefix>
+          </channelDesc>
+        </channelHeader>
+        <factivaChannelLink>http://www.solutions.dowjones.com</factivaChannelLink>
+        <factivaCustomerServiceLink>www.solutions.dowjones.com </factivaCustomerServiceLink>
+        <factivaCopyright>© 2009 Factiva, Inc.  All rights reserved.</factivaCopyright>
+        <!--- Argotic is handling this -->
+        <!--<rssChannelDocs>http://backend.userland.com/rss</rssChannelDocs>-->
+        <rssChannelLanguage>en-us</rssChannelLanguage>
+        <rssChannelImage>
+          <url>http://rss.dev.factiva.com/images/Dow_Jones.jpg</url>
+          <height>32</height>
+          <width>96</width>
+        </rssChannelImage>
+        <rssChannelAuthor>Dow Jones Factiva</rssChannelAuthor>
+        <!--<rssChannelttl>60</rssChannelttl>-->
+      </rssChannel>
+      <!-- How do I the build the target URL to fetch the article? -->
+      <articleURL>
+        <DirectURL><![CDATA[http://global.int.factiva.com/redir/default.aspx?]]></DirectURL>
+        <eid>
+          <!-- EID values which need to appear in the article url -->
+          <params>
+          </params>
+        </eid>
+        <predefined>
+          <!-- hardcoded values which need to appear in the article url -->
+          <params>
+            <param>p=sta</param>
+            <param>napc=RW</param>
+            <param>ep=WS</param>
+            <param>ft=g</param>
+          </params>
+        </predefined>
+      </articleURL>
+      <!-- RSS Headlines Information (data from the backend output only - does not support EID & predefined) -->
+      <rssDetail>
+        <TopLevelNode nsPrefix="ns1" nsURI="http://types.factiva.com/search">document</TopLevelNode>
+        <articleURL>
+          <params>
+            <param>
+              <urlName>accessionNumber</urlName>
+              <fldName>accessionNumber</fldName>
+            </param>
+          </params>
+        </articleURL>
+        <rssMapping>
+          <title connector=" ">
+            <params>
+              <param>headline</param>
+            </params>
+          </title>
+          <source connector=":">
+            <params>
+              <param>sourceName</param>
+            </params>
+          </source>
+          <description connector=" ">
+            <params>
+              <param>snippet</param>
+            </params>
+          </description>
+          <url connector=" ">
+            <params>
+              <param>uri</param>
+            </params>
+          </url>
+          <date connector="">
+            <params>
+              <param>publicationDate</param>
+            </params>
+          </date>
+          <enclosure connector="|">
+            <params>
+              <param>accessionNumber</param>
+            </params>
+          </enclosure>
+        </rssMapping>
+      </rssDetail>
+      <!-- Error Tokens -->
+      <tokens>
+        <en>
+          <token name="NO_RESULT_FOUND">No Results found.</token>
+        </en>
+      </tokens>
+      <StyleSheet>
+        <name>IndexSearch.xsl</name>
+      </StyleSheet>
+      <!-- Transaction Custom Actions eg. Editor's Choice BSS-->
+      <Custom>
+        <params>
+          <param name="ws1pcast"></param>
+        </params>
+      </Custom>
+    </product>
+    <product version='nl2pcast'>
+      <!-- Podcast 2.0 -->
+      <!-- Params Required for the Data Retriever Transactions -->
+      <transactionParams>
+        <numberOfHeadlines>20</numberOfHeadlines>
+        <lwUserID>pcastfeed1</lwUserID>
+        <lwPassword>Pa55wd</lwPassword>
+        <lwNameSpace>16</lwNameSpace>
+        <AccessPointCode>z</AccessPointCode>
+        <ClientTypeCode>D</ClientTypeCode>
+      </transactionParams>
+      <!-- Validation keys to validate from the Request -->
+      <validate>
+        <eid>
+          <params>
+            <param>WSID</param>
+          </params>
+        </eid>
+      </validate>
+      <!-- Information required for the RSS Channel -->
+      <rssChannel>
+        <channelHeader>
+          <channelName>
+            <suffix>- Factiva Newsletter Podcast</suffix>
+            <param type='eid'>fname</param>
+          </channelName>
+          <channelDesc>
+            <prefix><![CDATA[Dow Jones Factiva is the only information solution that combines the comprehensive global news and business information you need with the sophisticated tools and technologies that help your entire organization make better decisions faster.]]></prefix>
+          </channelDesc>
+        </channelHeader>
+        <factivaChannelLink>http://www.solutions.dowjones.com</factivaChannelLink>
+        <factivaCustomerServiceLink>www.solutions.dowjones.com </factivaCustomerServiceLink>
+        <factivaCopyright>© 2009 Factiva, Inc.  All rights reserved.</factivaCopyright>
+        <!--- Argotic is handling this -->
+        <!--<rssChannelDocs>http://backend.userland.com/rss</rssChannelDocs>-->
+        <rssChannelLanguage>en-us</rssChannelLanguage>
+        <rssChannelImage>
+          <url>http://rss.dev.factiva.com/images/Dow_Jones.jpg</url>
+          <height>32</height>
+          <width>96</width>
+        </rssChannelImage>
+        <rssChannelAuthor>Dow Jones Factiva</rssChannelAuthor>
+        <!--<rssChannelttl>60</rssChannelttl>-->
+      </rssChannel>
+      <!-- How do I the build the target URL to fetch the article? -->
+      <articleURL>
+        <DirectURL><![CDATA[http://global.int.factiva.com/redir/default.aspx?]]></DirectURL>
+        <eid>
+          <!-- EID values which need to appear in the article url -->
+          <params>
+          </params>
+        </eid>
+        <predefined>
+          <!-- hardcoded values which need to appear in the article url -->
+          <params>
+            <param>p=sta</param>
+            <param>napc=RN</param>
+            <param>ep=NL</param>
+            <param>ft=g</param>
+          </params>
+        </predefined>
+      </articleURL>
+      <!-- RSS Headlines Information (data from the backend output only - does not support EID & predefined) -->
+      <rssDetail>
+        <TopLevelNode nsPrefix="ns1" nsURI="http://types.factiva.com/search">document</TopLevelNode>
+        <articleURL>
+          <params>
+            <param>
+              <urlName>accessionNumber</urlName>
+              <fldName>accessionNumber</fldName>
+            </param>
+          </params>
+        </articleURL>
+        <rssMapping>
+          <title connector=" ">
+            <params>
+              <param>headline</param>
+              <param>items/title</param>
+            </params>
+          </title>
+          <source connector=":">
+            <params>
+              <param>sourceName</param>
+            </params>
+          </source>
+          <description connector=" ">
+            <params>
+              <param>snippet</param>
+            </params>
+          </description>
+          <url connector=" ">
+            <params>
+              <param>uri</param>
+            </params>
+          </url>
+          <date connector="">
+            <params>
+              <param>publicationDate</param>
+            </params>
+          </date>
+          <enclosure connector="|">
+            <params>
+              <param>accessionNumber</param>
+            </params>
+          </enclosure>
+        </rssMapping>
+      </rssDetail>
+      <!-- Error Tokens -->
+      <tokens>
+        <en>
+          <token name="NO_RESULT_FOUND">No Results found.</token>
+        </en>
+      </tokens>
+      <StyleSheet>
+        <name>IndexSearch.xsl</name>
+      </StyleSheet>
+      <!-- Transaction Custom Actions eg. Editor's Choice BSS-->
+      <Custom>
+        <params>
+          <param name="nl2pcast"></param>
+        </params>
+      </Custom>
+		</product>
+		
+	
+	</products>
+	<Error>
+		<rssChannel>
+			<channelName>Factiva</channelName>
+			<channelDesc>Factiva</channelDesc>
+			<factivaChannelLink>www.factiva.com/rss</factivaChannelLink>
+			<factivaCustomerServiceLink>http://customer.factiva.com</factivaCustomerServiceLink>
+			<factivaCopyright>© 2014 Factiva, Inc.  All rights reserved.</factivaCopyright>
+			<rssChannelDocs>http://backend.userland.com/rss</rssChannelDocs>
+			<rssChannelLanguage>en-us</rssChannelLanguage>
+			<rssChannelAuthor>Dow Jones Factiva</rssChannelAuthor>
+			<!--<rssChannelttl>60</rssChannelttl>-->
+			<rssChannelImage>
+				<url>http://rss.dev.factiva.com/images/Dow_Jones.jpg</url>
+				<height>32</height>
+				<width>96</width>
+			</rssChannelImage>
+		</rssChannel>
+	</Error>
+	<!-- Validation Tokens -->
+	<tokens>
+		<en>
+			<token name="FEED_NOT_SPECIFIED">Feed value is not specified.</token>
+			<token name="INVALID_FEED_VALUE">Invalid Feed value.</token>
+		</en>
+	</tokens>
+</rss>
