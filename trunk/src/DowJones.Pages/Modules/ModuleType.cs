@@ -79,6 +79,9 @@ namespace DowJones.Pages.Modules
         NewsstandSourcesNewspageModule,
 
         [EnumMember]
-        ChartsNewspageModule
+        ChartsNewspageModule,
+
+        [EnumMember]
+        VideosNewspageModule
     }
 }
