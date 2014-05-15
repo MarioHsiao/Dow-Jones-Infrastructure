@@ -51,7 +51,7 @@ namespace DowJones.Tools.Charting.Tests
                             };
 
             Console.Write(chart.ToJson());
-            Assert.AreEqual(chart.ToJson(), "{chart: {\"renderTo\":\"container\",\"defaultSeriesType\":\"column\"},credits: { enabled: false },plotOptions: { series: {\"events\":{\"click\":function(event){ alert('hi dave'); }},\"stacking\":\"normal\"} },title: {\"text\":\"Stacked Column Chart\"},exporting: {\"enabled\":false},xAxis: [{\"categories\":[\"One\",\"Two\",\"Three\",\"Four\",\"Five\"],\"title\":{\"text\":\"\"}}],series: [{\"data\":[29.9,71.5,106.4,29.2,144.0],\"stack\":0},{\"data\":[30.0,176.5,135.4,148.2,216.4],\"stack\":0},{\"data\":[29.9,71.5,106.4,29.2,144.0],\"stack\":1},{\"data\":[29.9,71.5,106.4,29.2,144.0],\"stack\":1}]}");
+            Assert.AreEqual("{chart: {\"renderTo\":\"container\",\"defaultSeriesType\":\"column\"},credits: {\"enabled\":false},plotOptions: { series: {\"events\":{\"click\":function(event){ alert('hi dave'); }},\"stacking\":\"normal\"} },title: {\"text\":\"Stacked Column Chart\"},exporting: {\"enabled\":false},xAxis: [{\"categories\":[\"One\",\"Two\",\"Three\",\"Four\",\"Five\"],\"title\":{\"text\":\"\"}}],series: [{\"data\":[29.9,71.5,106.4,29.2,144.0],\"stack\":0},{\"data\":[30.0,176.5,135.4,148.2,216.4],\"stack\":0},{\"data\":[29.9,71.5,106.4,29.2,144.0],\"stack\":1},{\"data\":[29.9,71.5,106.4,29.2,144.0],\"stack\":1}]}", chart.ToJson());
         }
 
         [Test]
@@ -153,7 +153,7 @@ namespace DowJones.Tools.Charting.Tests
                             };
 
             Console.Write(chart.ToJson());
-            Assert.AreEqual(chart.ToJson(), "{chart: {\"renderTo\":\"container\",\"defaultSeriesType\":\"line\",\"marginRight\":130,\"marginBottom\":25},credits: { enabled: false },plotOptions: { series: {} },title: {\"text\":\"Monthly Average Temperature\",\"x\":-20},exporting: {\"enabled\":false},series: []}");
+            Assert.AreEqual("{chart: {\"renderTo\":\"container\",\"defaultSeriesType\":\"line\",\"marginRight\":130,\"marginBottom\":25},credits: {\"enabled\":false},plotOptions: { series: {} },title: {\"text\":\"Monthly Average Temperature\",\"x\":-20},exporting: {\"enabled\":false},series: []}", chart.ToJson());
         }
     }
 }
