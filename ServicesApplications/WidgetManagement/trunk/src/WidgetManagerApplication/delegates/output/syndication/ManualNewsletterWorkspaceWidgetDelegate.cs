@@ -401,17 +401,29 @@ namespace EMG.widgets.ui.delegates.output.syndication
 
                     foreach (Section section in manualWorkspace.SectionCollection)
                     {
-                        //exclude empty sections
-                        if (section.ItemCollection != null && section.ItemCollection.Count > 0)
+                        if (section.ItemCollection != null)
                         {
-                            sectionCollection.Add(ProcessNewsletterSections(section, ref headlineUtility,
-                                                                            ref contentHeadlineStruct, ref dict,
-                                                                            SectionType.Main));
-                            sectionCollection.AddRange(
-                                section.SubSectionCollection.Select(
-                                    subSection =>
-                                    ProcessNewsletterSections(subSection, ref headlineUtility, ref contentHeadlineStruct,
-                                                              ref dict, SectionType.Sub)));
+                            //LeiH: add the logic to drop empty section
+                            var _nsSection = ProcessNewsletterSections(section, ref headlineUtility,
+                                                                    ref contentHeadlineStruct, ref dict,
+                                                                    SectionType.Main);
+
+                            var _nsSubSections = section.SubSectionCollection.Select(
+                                subSection =>
+                                ProcessNewsletterSections(subSection, ref headlineUtility, ref contentHeadlineStruct,
+                                                          ref dict, SectionType.Sub)).Where(s=>s.Headlines != null && s.Headlines.Count()>0).ToArray();
+
+                            if (_nsSubSections.Count() > 0)
+                            {
+                                //if any subsection contains headlines, need to display the section even though it has no headline
+                                sectionCollection.Add(_nsSection);
+                                sectionCollection.AddRange(_nsSubSections);
+                            }else
+                            {
+                                //drop the section if no headline, no subsections
+                                if (_nsSection.Headlines != null && _nsSection.Headlines.Count() > 0)
+                                    sectionCollection.Add(_nsSection);
+                            }
                         }
                     }
                 }
