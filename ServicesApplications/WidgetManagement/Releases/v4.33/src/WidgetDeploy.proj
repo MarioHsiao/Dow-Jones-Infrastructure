@@ -13,12 +13,12 @@
     <VersionNumber>$(ProductVersion)</VersionNumber>
     <BuildDir>\\sbkntsfap05.dowjones.net\Client_Share\WidgetManageBuilds\builds\Releases\</BuildDir>
   </PropertyGroup>
-  
+
 
 
   <!-- Because TFS Build needs it -->
   <Target Name="Clean" />
-  
+
   <Target Name="MoveConfig">
     <Move SourceFiles="$(YourSourceDirectory)\lib\WidgetUiResources.dll" DestinationFiles="$(YourSourceDirectory)\bin\WidgetUiResources.dll" />
     <Move SourceFiles="$(YourSourceDirectory)\lib\de\WidgetUiResources.resources.dll" DestinationFiles="$(YourSourceDirectory)\bin\de\WidgetUiResources.resources.dll" />
