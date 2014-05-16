@@ -1621,6 +1621,8 @@ namespace FactivaRssManager_2_0
                 }
                 else
                 {
+                    ProcessItemsPosition(manualWorkspace);
+
                     var factivaItems = GetManualNewsletterWorkspaceItems(controlData,manualWorkspace);
                     var headlineInfo = new HeadlineInfo();
                     var documentCollection = new documentCollection();
@@ -1972,25 +1974,25 @@ namespace FactivaRssManager_2_0
             {
                 foreach (var section in manualWorkspace.SectionCollection)
                 {
-                    foreach (var item in section.ItemCollection)
+                    foreach (var item in from item in section.ItemCollection let objGetItem = item where objGetItem.GetType().ToString().Contains("ArticleItem") let articleItem = (Factiva.Gateway.Messages.Assets.Common.V2_0.ArticleItem)item where articleItem.AccessionNumber == accessionNumber select item)
                     {
-                        object objGetItem = item;
-
-                        if (objGetItem.GetType().ToString().Contains("ArticleItem"))
-                        {
-                            var articleItem = (Factiva.Gateway.Messages.Assets.Common.V2_0.ArticleItem)item;
-
-                            if (articleItem.AccessionNumber == accessionNumber)
-                            {
-                                position = item.Position;
-                                itemFound = true;
-                                break;
-                            }
-                        }
+                        position = item.Position;
+                        itemFound = true;
+                        break;
                     }
                     if (itemFound) break;
-                }
 
+                    foreach (var subSection in section.SubSectionCollection)
+                    {
+                        foreach (var item in from item in subSection.ItemCollection let objGetItem = item where objGetItem.GetType().ToString().Contains("ArticleItem") let articleItem = (Factiva.Gateway.Messages.Assets.Common.V2_0.ArticleItem)item where articleItem.AccessionNumber == accessionNumber select item)
+                        {
+                            position = item.Position;
+                            itemFound = true;
+                            break;
+                        }
+                        if (itemFound) break;
+                    }
+                }
             }
             catch (Exception)
             {
@@ -2024,7 +2026,37 @@ namespace FactivaRssManager_2_0
             }
             return position;
         }
-        
+
+        private static void ProcessItemsPosition(ManualWorkspace manualWorkspace)
+        {
+            var sectionPosition = 100000;
+            var subSectionPosition = 1000;
+
+            foreach (var section in manualWorkspace.SectionCollection)
+            {
+                section.Position = sectionPosition;
+
+                // Process Items in Item Collection
+                foreach (var item in section.ItemCollection)
+                {
+                    item.Position += section.Position;
+                }
+
+                foreach (var subSection in section.SubSectionCollection)
+                {
+                    subSection.Position = section.Position + subSectionPosition;
+
+                    // Process Items in Item Collection
+                    foreach (var item in subSection.ItemCollection)
+                    {
+                        item.Position += subSection.Position;
+                    }
+                    subSectionPosition += 1000;
+                }
+                sectionPosition += 100000;
+            }
+        }
+
         #endregion
     }
     #region << HeadlineInfo >>
