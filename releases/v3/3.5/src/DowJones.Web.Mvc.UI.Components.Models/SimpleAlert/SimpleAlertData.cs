@@ -18,6 +18,14 @@ namespace DowJones.Web.Mvc.UI.Components.SimpleAlert
         private List<Option> _deliveryTimes;
         private List<Option> _emailFormats;
         private List<Option> _duplicates;
+        private List<Option> _resultsDisplayFormats;
+
+        /// <summary>
+        /// Gets or sets the flag determining whether the alert 
+        /// highlighting feature is enabled
+        /// </summary>
+        [JsonProperty("highlightFieldEnabled")]
+        public bool HighlightFieldEnabled { get; set; }
 
         /// <summary>
         /// Gets or sets the Source List.
@@ -66,6 +74,27 @@ namespace DowJones.Web.Mvc.UI.Components.SimpleAlert
                 return _emailFormats;
             }
             set { _emailFormats = value; }
+        }
+
+        /// <summary>
+        /// Gets or Sets the email formats
+        /// </summary>
+        [JsonProperty("resultsDisplayFormats")]
+        public List<Option> ResultsDisplayFormats
+        {
+            get
+            {
+                if (_resultsDisplayFormats == null)
+                {
+                    _resultsDisplayFormats = new List<Option>();
+                    _resultsDisplayFormats.Add(new Option { Id = ((int)ResultsDisplayFormat.HeadlinesContextual).ToString(), Name = _resources.GetString("headlinesContextual") });
+                    _resultsDisplayFormats.Add(new Option { Id = ((int)ResultsDisplayFormat.HeadlinesTraditional).ToString(), Name = _resources.GetString("headlinesTraditional") });
+                    _resultsDisplayFormats.Add(new Option { Id = ((int)ResultsDisplayFormat.FullText).ToString(), Name = _resources.GetString("fulltextDocs") });
+                    _resultsDisplayFormats.Add(new Option { Id = ((int)ResultsDisplayFormat.FullTextIndexing).ToString(), Name = _resources.GetString("fulltextDocsIdx") });
+                }
+                return _resultsDisplayFormats;
+            }
+            set { _resultsDisplayFormats = value; }
         }
 
         /// <summary>

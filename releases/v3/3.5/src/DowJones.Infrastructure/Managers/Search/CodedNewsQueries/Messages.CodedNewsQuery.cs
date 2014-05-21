@@ -291,6 +291,23 @@ namespace DowJones.Managers.Search.CodedNewsQueries
     }
 
     /// <remarks/>
+    public enum ResultsDisplayFormat
+    {
+
+        /// <remarks/>
+        HeadlinesContextual,
+
+        /// <remarks/>
+        HeadlinesTraditional,
+
+        /// <remarks/>
+        FullText,
+
+        /// <remarks/>
+        FullTextIndexing
+    }
+
+    /// <remarks/>
     public enum TruncationType
     {
 
