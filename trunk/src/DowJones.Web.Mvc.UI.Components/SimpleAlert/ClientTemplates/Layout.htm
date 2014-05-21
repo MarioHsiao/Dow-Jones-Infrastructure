@@ -1,12 +1,12 @@
 ﻿
 <div>
     <div class="title"></div>
-    <table cellspacing="0" cellpadding="0" width="100%">
+    <table cellspacing="0" cellpadding="0">
         <tbody>
             <tr>
-                <td class="first"><%= Token("enterFldrName")%>:
+                <td class="first" style="width:5%;"><%= Token("enterFldrName")%>:
                 </td>
-                <td>
+                <td style="width:60%;">
                     <input type="text" class="folderName" maxlength="25" />
                 </td>
             </tr>
@@ -45,6 +45,48 @@
                     <input type="text" disabled="disabled" class="emailAddress" />
                 </td>
             </tr>
+            <% 
+            if(self.highlightFieldEnabled){ 
+            %>
+            <tr>
+                <td class="first"><%= Token("selectDeliveryTime")%>:
+                </td>
+                <td>
+                    <select class="deliveryTime">
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="first"><%= Token("emailFmt")%>:
+                </td>
+                <td>
+                    <select class="emailFormat">
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="first"><%= Token("resDisplayFormat")%> <span class="fl info-icon resDspFmtInfIcon" style="vertical-align:middle"></span>:
+                </td>
+                <td style="padding-top:10px;">
+                    <select class="resDispFormat">
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="first"><%= Token("hlSearchTrmEml")%>:
+                </td>
+                <td style="padding-top:10px;">
+                    <label style="padding-right:20px;">
+                        <input type="radio" name="grp1" value="Yes" checked="checked"/><%= Token("yes")%>
+                    </label>
+                    <label>
+                        <input type="radio" name="grp1" value="No"/><%= Token("no")%>
+                    </label>
+                </td>
+            </tr>
+            <% 
+            } else {
+            %>
             <tr>
                 <td class="first"><%= Token("emailFmt")%>:
                 </td>
@@ -61,6 +103,9 @@
                     </select>
                 </td>
             </tr>
+            <%
+            }
+            %>
             <tr>
                 <td class="first"><%= Token("removeDuplicateArticles")%>:
                 </td>

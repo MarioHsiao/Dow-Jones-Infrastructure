@@ -3,7 +3,6 @@
 */
 
 DJ.UI.SimpleAlert = DJ.UI.Component.extend({
-
     selectors: {
         title: 'div.title',
         folderName: 'input.folderName',
@@ -12,6 +11,7 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
         emailAddress: 'input.emailAddress',
         emailFormat: 'select.emailFormat',
         deliveryTime: 'select.deliveryTime',
+        resDispFormat: 'select.resDispFormat',
         removeDuplicate: 'select.removeDuplicate',
         saveBtn: 'a.dc_btn-1',
         cancelBtn: 'a.dc_btn-3',
@@ -22,7 +22,8 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
         filter: 'span.filter',
         selectedOption: 'option:selected',
         includeSM: 'input.includeSM',
-        filterCloseEx: 'span.fi-two.fi_remove.fi_d-gear'
+        filterCloseEx: 'span.fi-two.fi_remove.fi_d-gear',
+        resDspFmtInfIcon: 'span.resDspFmtInfIcon'
     },
 
     defaults: {
@@ -32,7 +33,8 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
 
     events: {
         onSaveClick: 'onSaveClick.dj.SimpleAlert',
-        onCancelClick: 'onCancelClick.dj.SimpleAlert'
+        onCancelClick: 'onCancelClick.dj.SimpleAlert',
+        onRDFInfoIconClick: 'onRDFInfoIconClick.dj.SimpleAlert'
     },
 
     init: function (element, meta) {
@@ -42,7 +44,7 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
         this._super(element, $meta);
 
         //Bind the layout template
-        $(this.$element).html(this.templates.layout);
+        $(this.$element).html(this.templates.layout({ highlightFieldEnabled: this.data.highlightFieldEnabled }));
 
         this._initializeControls();
 
@@ -54,6 +56,7 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
         $.extend(this._delegates, {
             OnSaveClick: $dj.delegate(this, this._onSaveClick),
             OnCancelClick: $dj.delegate(this, this._onCancelClick),
+            OnRDFInfoIconClick: $dj.delegate(this, this._onRDFInfoIconClick),
             OnDeliveryTimeChange: $dj.delegate(this, this._onDeliveryTimeChange)
         });
     },
@@ -67,7 +70,8 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
             emailFormat: $(this.selectors.emailFormat, this.$element),
             deliveryTime: $(this.selectors.deliveryTime, this.$element),
             removeDuplicate: $(this.selectors.removeDuplicate, this.$element),
-            includeSM: $(this.selectors.includeSM, this.$element)
+            includeSM: $(this.selectors.includeSM, this.$element),
+            resDispFormat: $(this.selectors.resDispFormat, this.$element)
         }
         this.$title = $(this.selectors.title, this.$element);
         this.$newsFilter = $(this.selectors.newsFilter, this.$element);
@@ -77,6 +81,7 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
     _initializeEventHandlers: function () {
         $(this.selectors.saveBtn, this.$element).unbind('click').click(this._delegates.OnSaveClick);
         $(this.selectors.cancelBtn, this.$element).unbind('click').click(this._delegates.OnCancelClick);
+        $(this.selectors.resDspFmtInfIcon, this.$element).unbind('click').click(this._delegates.OnRDFInfoIconClick);
     },
 
     _clearData: function () {
@@ -87,6 +92,7 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
         this.$input.emailAddress.val('').attr("disabled", true);
         this.$input.emailFormat.html('').attr("disabled", true);
         this.$input.deliveryTime.html('');
+        this.$input.resDispFormat.html('');
         this.$input.sourceList.html('');
         this.$newsFilterContainer.html('');
         this.$newsFilter.hide();
@@ -153,6 +159,9 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
 
             //Duplicates
             this.$input.removeDuplicate.append(this.templates.options({ items: d.duplicates }));
+
+            //Results Display Format
+            this.$input.resDispFormat.append(this.templates.options({ items: d.resultsDisplayFormats }));
 
             //Include Social Media
             if (d.includeSocialMedia) {
@@ -269,6 +278,11 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
     _onCancelClick: function () {
         //Trigger the cancel event
         this.$element.triggerHandler(this.events.onCancelClick);
+    },
+
+    _onRDFInfoIconClick: function() {
+        //Trigger the info icon click event
+        this.$element.triggerHandler(this.events.onRDFInfoIconClick, { rdfInfoIconSel: this.selectors.resDspFmtInfIcon });
     },
 
     _getNewsFilter: function () {
