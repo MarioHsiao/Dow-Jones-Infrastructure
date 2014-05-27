@@ -8,12 +8,15 @@ using EMG.widgets.ui.Properties;
 
 namespace EMG.widgets.ui.controls.navigation
 {
+    /// <summary>
+    /// FlashObjectDelegate : Note this must always be lowercase
+    /// </summary>
     internal class FlashObjectDelegate
     {
-        public string Source;
-        public string Width;
-        public string Height;
-        public string TargetFlashPlayerVersion;
+        public string source;
+        public string width;
+        public string height;
+        public string targetFlashPlayerVersion;
     }
 
     /// <summary>
@@ -54,10 +57,10 @@ namespace EMG.widgets.ui.controls.navigation
             // Create a Javascript FlashObjectDelegate
             var flashObjectDelegate = new FlashObjectDelegate
                                       {
-                                          Source = Settings.Default.MarketingFlashMovie_Source, 
-                                          Width = Settings.Default.MarketingFlashMovie_Width, 
-                                          Height = Settings.Default.MarketingFlashMovie_Height, 
-                                          TargetFlashPlayerVersion = Settings.Default.MarketingFlashMovie_TargetVersion
+                                          source = Settings.Default.MarketingFlashMovie_Source, 
+                                          width = Settings.Default.MarketingFlashMovie_Width, 
+                                          height = Settings.Default.MarketingFlashMovie_Height, 
+                                          targetFlashPlayerVersion = Settings.Default.MarketingFlashMovie_TargetVersion
                                       };
             // Label 
             var serializer = new JavaScriptSerializer();

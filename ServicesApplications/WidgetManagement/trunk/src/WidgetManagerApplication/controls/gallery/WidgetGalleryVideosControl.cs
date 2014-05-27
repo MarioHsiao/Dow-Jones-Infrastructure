@@ -49,10 +49,10 @@ namespace EMG.widgets.ui.controls.navigation
             // Create a Javascript FlashObjectDelegate
             var flashObjectDelegate = new FlashObjectDelegate
                                       {
-                                          Source = Settings.Default.MarketingFlashMovie_Source, 
-                                          Width = Settings.Default.MarketingFlashMovie_Width, 
-                                          Height = Settings.Default.MarketingFlashMovie_Height, 
-                                          TargetFlashPlayerVersion = Settings.Default.MarketingFlashMovie_TargetVersion
+                                          source = Settings.Default.MarketingFlashMovie_Source, 
+                                          width = Settings.Default.MarketingFlashMovie_Width, 
+                                          height = Settings.Default.MarketingFlashMovie_Height, 
+                                          targetFlashPlayerVersion = Settings.Default.MarketingFlashMovie_TargetVersion
                                       };
 
             // Label 
