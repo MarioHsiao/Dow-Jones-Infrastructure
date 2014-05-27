@@ -82,6 +82,7 @@ namespace DowJones.Pages.Modules
         ChartsNewspageModule,
 
         [EnumMember]
+        [IRTCode("mvid")]
         VideosNewspageModule
     }
 }
