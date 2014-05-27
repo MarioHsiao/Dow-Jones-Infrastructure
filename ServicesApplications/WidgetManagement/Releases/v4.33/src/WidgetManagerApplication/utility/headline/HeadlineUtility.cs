@@ -176,9 +176,8 @@ namespace EMG.widgets.ui.utility.headline
         {
             if (chartImageItem == null)
                 return null;
-            var dt = String.Format("{0} {1} {2}",
+            var dt = String.Format("{0} &mdash; {1}",
                                    _dateTimeFormatter.FormatDate(chartImageItem.DateRange.From),
-                                   _resourceText.GetString("to"),
                                    _dateTimeFormatter.FormatDate(chartImageItem.DateRange.To));
             return new HeadlineInfo
                        {
@@ -191,7 +190,6 @@ namespace EMG.widgets.ui.utility.headline
                            PubDateTime = dt,
                            ContentType = "chart",
                            IconUrl = GetHeadlineIcon(chartImageItem)
-                           //TODO map graph type will be added once gateway is updated
                            };
         }
 
