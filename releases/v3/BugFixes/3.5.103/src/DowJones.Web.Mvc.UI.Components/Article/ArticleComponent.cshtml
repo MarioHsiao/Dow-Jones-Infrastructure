@@ -1,0 +1,583 @@
+﻿@using Articles;
+@using DowJones.Infrastructure;
+@using DowJones.Extensions;
+@using Ajax.Article;
+@using Article;
+@using Extensions
+@using VideoPlayer
+@using PostProcessingOptions = PostProcessing.PostProcessingOptions
+@model ArticleModel
+@ClientPlugin dj_Article
+@ScriptResource RelativeResourceName=Article.js
+@{ CssClass = "dj_Article"; }
+@if (Model.ArticleDataSet != null)
+{
+    var showIndexing = Model.ArticleDisplayOptions == DisplayOptions.Indexing || Model.ArticleDisplayOptions == DisplayOptions.Headline;
+    if (Model.ArticleDataSet.Status == 0)
+    {
+    <div class="dj_article-container dj_article_display_@(Model.ArticleDisplayOptions.ToString()) dj_article_lang_@(Model.ArticleDataSet.LanguageCode.ToLower())" data-ref="@Model.ArticleRef.ToJson().EscapeForHtml()">
+        
+        @if (Model != null && Model.VideoPlayer != null) 
+        {
+             <div class="multimediaPlayer">
+                <div class="player">
+                    @(CreateChildControl<VideoPlayerComponent>(Model.VideoPlayer))
+                </div>   
+            </div>
+            if (Model.ArticleDataSet != null)
+            {
+                <ul class="article-list">
+                    <li class="dj_entry">
+                        <div class="article-wrap">
+                            <h4 class="article-headline">
+                                <span class="article-view-trigger">@(Model.ArticleDataSet.MediaTitle)</span>
+                            </h4>                                       
+                            <div class="article-meta">
+                                <span class="media-icon @(Model.ArticleDataSet.ContentSubCategoryDescriptor.ToLower())-player"></span>
+                                <span class="media-length">[@(Model.ArticleDataSet.MediaLength)]</span>
+                            </div>  
+                        </div>
+                    </li>
+                </ul>
+            }
+        }
+        else if (Model != null && Model.ArticleDataSet != null)
+        {
+            
+@*Begin logo section*@
+            <div class="dj_article_image article-logo">
+                @{
+            var largeImgUrl = (Model.ArticleDataSet.Head.FirstOrDefault(h => h.ItemMarkUp == MarkUpType.HeadImageLarge) ?? new RenderItem()).ItemText;
+                }
+
+                @foreach (var renderItem in Model.ArticleDataSet.Head)
+                {
+                    switch (renderItem.ItemMarkUp)
+                    {
+                        case MarkUpType.HeadLogo:
+                            <img onerror="this.style.visibility='hidden'; this.style.display='none'; this.style.height=0;"
+                                 onabort="this.style.visibility='hidden'; this.style.display='none'; this.style.height=0;" 
+                                 src="@renderItem.ItemValue" alt="@renderItem.ItemText"/>
+                                                             break;
+                        case MarkUpType.HeadImageLarge:
+                                                             if (Model.ArticleDataSet.PictureSize == PictureSize.Large)
+                                                             {
+                                <p class="dj_article_paragraph">
+                                    <img class="largeImage" src="@renderItem.ItemValue" alt=""/>
+                                </p>
+                                                             }
+                                                             break;
+                        default:
+                                                             if (renderItem.ItemMarkUp == MarkUpType.HeadImageSmall && Model.ArticleDataSet.PictureSize == PictureSize.Small)
+                                                             {
+                                <p class="dj_article_paragraph">
+                                    <img class="smallImage" src="@renderItem.ItemValue" data-ref="@largeImgUrl" alt=""/>
+                                </p>
+                                                             }
+                                                             else
+                                                             {
+                                                                 if (renderItem.ItemMarkUp == MarkUpType.HeadImageXSmall && Model.ArticleDataSet.PictureSize == PictureSize.XSmall)
+                                                                 {
+                                <p class="dj_article_paragraph">
+                                    <img class="xsmallImage" src="@renderItem.ItemValue" data-ref="@largeImgUrl" alt=""/>
+                                </p>
+                                                                 }
+                                                             }
+                                                             break;
+                    }
+                }
+            </div>
+@*End logo section*@
+    
+            <div class="dj_article_meta">
+                @if (!Model.ArticleDataSet.ColumnName.IsNullOrEmpty())
+                {
+                    if (showIndexing)
+                    {
+                        <div class="dj_article_index">CLM</div>
+                    }
+                    <div class="dj_article_clm dj_article_section">
+                        @foreach (var renderItem in Model.ArticleDataSet.ColumnName)
+                        {
+                            switch (renderItem.ItemMarkUp)
+                            {
+                                case MarkUpType.Plain:
+                                    {@renderItem.ItemText}
+                                    break;
+                                case MarkUpType.ArticleHighlight:
+                                    {<span class="highlight">@renderItem.ItemText</span>}
+                                    break;
+                            }
+                        }
+                    </div>
+                }
+                
+                @if (!Model.ArticleDataSet.SectionName.IsNullOrEmpty())
+                {
+                    if (showIndexing)
+                    {
+                        <div class="dj_article_index">SE</div>
+                    }
+                    <div class="dj_article_se dj_article_section">
+                        @foreach (var renderItem in Model.ArticleDataSet.SectionName)
+                        {
+                            switch (renderItem.ItemMarkUp)
+                            {
+                                case MarkUpType.Plain:
+                                    {@renderItem.ItemText}
+                                    break;
+                                case MarkUpType.ArticleHighlight:
+                                    {<span class="highlight">@renderItem.ItemText</span>}
+                                    break;
+                            }
+                        }
+                    </div>
+                }
+
+                @if (!Model.ArticleDataSet.Headline.IsNullOrEmpty())
+                {
+                    if (showIndexing)
+                    {
+                        <div class="dj_article_index">HD</div>
+                    }
+            
+                    <h4 class="dj_article_hd dj_article_section headline" data-meta="@Model.ArticleDataSet.AccessionNo">
+                        @foreach (var renderItem in Model.ArticleDataSet.Headline)
+                        {
+                            switch (renderItem.ItemMarkUp)
+                            {
+                                case MarkUpType.Plain:
+                                    @renderItem.ItemText
+                               break;
+                                case MarkUpType.Anchor:
+                                    <a class="dj_article_headline_link" href="javascript:void(0)">@renderItem.ItemText</a>
+                                                                                             break;
+                            }
+                        }
+                    </h4>
+                }
+                <div class="meta">
+                    @if (showIndexing)
+                    {
+                        <div class="dj_article_index">SN</div>
+                    }
+
+                    <div class="dj_article_sn dj_article_section">
+                        @if (Model.ShowSourceLinks && Model.PostProcessing == DowJones.Infrastructure.PostProcessing.UnSpecified)
+                        {
+                            foreach (var renderItem in Model.ArticleDataSet.Source)
+                            {
+                                <span class="value source drop-down-button" data-dd-type="source">
+                                    @switch (renderItem.ItemMarkUp)
+                                    {
+                                        case MarkUpType.EntityLink:
+                                            <span class="dj_article_source" data-entity="@renderItem.ItemEntityData.ToJson().EscapeForHtml()">@renderItem.ItemEntityData.Name</span>
+                                                                                                                                         break;
+                                        case MarkUpType.Span:
+                                            @renderItem.ItemText
+                                       break;
+                                    }
+                                </span>
+                            }
+                        }
+                        else
+                        {
+                            if (!Model.ArticleDataSet.SourceName.IsNullOrEmpty())
+                            {
+                                <span class="value source drop-down-button" data-dd-type="source">
+                                    @Model.ArticleDataSet.SourceName </span><span class="dj_article_comma">,</span>                        
+                            }
+                        }
+                    </div>
+
+
+                    @if (!Model.ArticleDataSet.ByLine.IsNullOrEmpty())
+                    {
+                        if (showIndexing)
+                        {
+                            <div class="dj_article_index">BY</div>
+                        }
+                        
+                        <div class="dj_article_by dj_article_section">
+                            @if (Model.ShowAuthorLinks &&
+                                 !Model.ArticleDataSet.Authors.IsNullOrEmpty() &&
+                                 Model.PostProcessing == DowJones.Infrastructure.PostProcessing.UnSpecified)
+                            {
+                                for (int idx=0; idx < Model.ArticleDataSet.Authors.Count; idx++)
+                                {
+                                    DowJones.Ajax.Article.RenderItem renderItem = Model.ArticleDataSet.Authors[idx];
+                                    <span class="value author drop-down-button" data-dd-type="author">
+                                        <span class="dj_article_author" data-entity="@renderItem.ItemEntityData.ToJson().EscapeForHtml()">@renderItem.ItemEntityData.Name</span>
+                                    </span>
+                                    if (renderItem.ItemEntityData.Name!=null && renderItem.ItemEntityData.Name.Trim() != string.Empty && idx != Model.ArticleDataSet.Authors.Count-1)
+                                    {
+                                        <span>, </span>
+                                    }
+                                }
+                                
+                                if (Model.ArticleDataSet.ByLine.Count > 0)
+                                { 
+                                    <br />
+                                    <span class="dj_article_index">By</span>
+                                    foreach (var renderItem in Model.ArticleDataSet.ByLine)
+                                    {
+                                        var highlight = renderItem.ItemMarkUp == MarkUpType.ArticleHighlight ? " highlight" : "";
+                                        <span class="value dj_article_index" data-dd-type="author">@renderItem.ItemText.Trim()</span><span class="dj_article_comma">, </span>  
+                                    }
+                                }
+
+                                if (Model.ArticleDataSet.ByLine.Count > 0)
+                                { 
+                                    <br />
+                                    <span class="dj_article_index">By</span>
+                                    foreach (var renderItem in Model.ArticleDataSet.ByLine)
+                                    {
+                                        var highlight = renderItem.ItemMarkUp == MarkUpType.ArticleHighlight ? " highlight" : "";
+                                        <span class="value dj_article_index" data-dd-type="author">@renderItem.ItemText.Trim()</span><span class="dj_article_comma">, </span>  
+                                    }
+                                }
+
+                            }
+                            else
+                            {
+                                foreach (var renderItem in Model.ArticleDataSet.ByLine)
+                                {
+                                    var highlight = renderItem.ItemMarkUp == MarkUpType.ArticleHighlight ? " highlight" : "";
+                                    <span class="value author drop-down-button@(highlight)" data-dd-type="author">@renderItem.ItemText.Trim()</span><span class="dj_article_comma">, </span>  
+                                }
+                            }
+                        </div>
+                    }
+
+                    @if (!Model.ArticleDataSet.Credit.IsNullOrEmpty())
+                    {
+                        if (showIndexing)
+                        {
+                            <div class="dj_article_index">CR</div>
+                        }
+                        
+                        <div class="dj_article_cr dj_article_section">
+                            @foreach (var renderItem in Model.ArticleDataSet.Credit)
+                            {
+                                <span class="credit">@renderItem.ItemText</span><span class="dj_article_comma">, </span> 
+                            }
+                        </div>
+                    }
+
+                    <div class="dj_meta_group">
+                        @if (showIndexing)
+                        {
+                            <div class="dj_article_index">PD</div>
+                        }
+
+                        <div class="date-stamp dj_article_pd dj_article_section">
+                            @if (!string.IsNullOrEmpty(Model.ArticleDataSet.PublicationDate))
+                            {
+                                @(string.Format("{0}", Model.ArticleDataSet.PublicationDate))
+                                if (!string.IsNullOrEmpty(Model.ArticleDataSet.PublicationTime))
+                                {
+                                    @(string.Format(" {0}", Model.ArticleDataSet.PublicationTime))
+                                }
+                            }<span class="dj_article_comma">, </span>
+                        </div>
+
+                        @if (Model.ArticleDataSet.WordCount > 0 && Model.ArticleDataSet.Html.IsNullOrEmpty())
+                        {
+                            if (showIndexing)
+                            {
+                                <div class="dj_article_index">WC</div>
+                            }
+                            <div class="dj_article_wc dj_article_section">
+                                @(string.Format("{0} {1}", Model.ArticleDataSet.WordCount, DJ.Token("words")))<span class="dj_article_comma">, </span>
+                            </div>
+                        }
+                        @if (!string.IsNullOrEmpty(Model.ArticleDataSet.Language))
+                        {
+                            if (showIndexing)
+                            {
+                                <div class="dj_article_index">LA</div>
+                            }
+                            <div class="dj_article_la dj_article_section">
+                                @Model.ArticleDataSet.Language<span class="dj_article_comma">, </span>
+                            </div>
+                        }
+                        @if (!Model.ArticleDataSet.Source.IsNullOrEmpty() &&
+                             Model.ArticleDataSet.Source.Any(s => s.ItemEntityData != null))
+                        {
+                            if (showIndexing)
+                            {
+                                <div class="dj_article_index">SC</div>
+                            }
+                            <div class="dj_article_sc dj_article_section">
+                                @foreach (var renderItem in Model.ArticleDataSet.Source.Where(s => s.ItemEntityData != null))
+                                {
+                                    @renderItem.ItemEntityData.Code
+                                }<span class="dj_article_comma">, </span>
+                            </div>
+                        }
+                        @if (!Model.ArticleDataSet.Pages.IsNullOrEmpty())
+                        {
+                            if (showIndexing)
+                            {
+                                <div class="dj_article_index">PG</div>
+                            }
+                            <div class="dj_article_pg dj_article_section">
+                                @foreach (var page in Model.ArticleDataSet.Pages)
+                                {
+                                    @page
+                                }<span class="dj_article_comma">,</span>
+                            </div>
+                        }
+                    </div>
+
+                    @if (!Model.ArticleDataSet.Copyright.IsNullOrEmpty())
+                    {
+                        if (showIndexing)
+                        {
+                            <div class="dj_article_index">CY</div>
+                        }
+                        <div class="copyright dj_article_cy dj_article_section">
+                            @foreach (var renderItem in Model.ArticleDataSet.Copyright.Where(renderItem => renderItem.ItemMarkUp == MarkUpType.Plain))
+                            {
+                                @renderItem.ItemText
+                            }
+                        </div>
+                    }
+                </div>
+
+                @if (Model.ShowPostProcessing)
+                {
+                    if (!Model.PostProcessingOptions.IsNullOrEmpty())
+                    {
+                        var tList = Model.PostProcessingOptions.ToList();
+                        if (Model.ArticleDataSet.SubType.IsNullOrEmpty() ||
+                            Model.ArticleDataSet.SubType.ToLower() != "nlapressclip")
+                        {
+                            tList.RemoveAll(x => x == PostProcessingOptions.PressClips);
+                        }
+                            
+                        <ul class="dj_PostProcessing actions clearfix">
+                            @if (Model.ShowHoverTextOnPostProcessingIcons)
+                            {
+                                foreach (var item in tList)
+                                {
+                                    var text = DJ.Token(DJ.GetAssignedAttribute<PostProcessingOptions>(item.ToString()));
+                                    <li class="@(item.ToString().ToLower()) action" data-ref="@(item.ToString().ToLower())"><i class="dj_icon dj_icon-@(item.ToString().ToLower())" title="@(text)"></i><span data-workflow="@(item.ToString().ToLower())">@(text)</span></li>
+                                }
+                            }
+                            else
+                            {
+                                foreach (var item in tList)
+                                {
+                                    <li class="@(item.ToString().ToLower()) action" data-ref="@(item.ToString().ToLower())"><i class="dj_icon dj_icon-@(item.ToString().ToLower())"></i><span data-workflow="@(item.ToString().ToLower())">@(DJ.Token(DJ.GetAssignedAttribute<PostProcessingOptions>(item.ToString())))</span></li>
+                                }
+                            }
+                        </ul>
+                    }
+                        
+@*Build social buttons/ speakers/ translation*@
+                    if (Model.HasSocialNetworks)
+                    {
+                        @(CreateChildControl<SocialButtons.SocialButtonsComponent>(Model.SocialButtons))
+                    }
+
+                    if (Model.HasTranslator)
+                    {
+                        <div id="articleTranslateControlsContainer">
+                            @(CreateChildControl<ArticleTranslator.ArticleTranslatorComponent>(Model.Translator))
+                        </div>
+                    }    
+@*Ends Build social buttons and speakers/ translation*@
+                }
+            </div>        
+            
+@*Start of embeded Html Section*@                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+                if (!Model.ArticleDataSet.Html.IsNullOrEmpty())
+                {
+            <div class="dj_rawContent">
+                @foreach (var renderItem in Model.ArticleDataSet.Html.Where(renderItem => renderItem.ItemMarkUp == MarkUpType.Html))
+                {
+                    @Html.Raw(renderItem.ItemText)
+                }
+            </div>
+                }  
+@*End of embeded Html Section*@                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+
+                       
+@*Start body Section*@ 
+<div class="dj_article_article_body">
+@if (!Model.ArticleDataSet.Correction.IsNullOrEmpty())
+{
+    foreach (KeyValuePair<string, List<RenderItem>> kvc in Model.ArticleDataSet.Correction.SelectMany(dci => dci))
+    {@(kvc.Key.Equals("pre") ? CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(kvc.Value, "pre", "dj_article_paragraph"))
+                                : CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(kvc.Value, "p", "dj_article_paragraph")))}
+}
+@if (!Model.ArticleDataSet.LeadParagraph.IsNullOrEmpty())
+{
+    if (showIndexing)
+    {
+<div class="dj_article_index">LP</div>
+    }                    
+<div class="dj_article_lp dj_article_section">
+    @if (!Model.ArticleDataSet.LeadParagraph.IsNullOrEmpty())
+    {
+        foreach (var kvc in Model.ArticleDataSet.LeadParagraph.SelectMany(dci => dci))
+        {@(kvc.Key.Equals("pre") ? CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(kvc.Value, "pre", "dj_article_paragraph"))
+                            : CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(kvc.Value, "p", "dj_article_paragraph")))}
+    }
+</div>
+}
+@if (!Model.ArticleDataSet.TailParagraphs.IsNullOrEmpty() && Model.ArticleDisplayOptions != DisplayOptions.Headline)
+{
+    if (showIndexing)
+    {
+<div class="dj_article_index">TD</div>
+    }
+<div class="dj_article_td dj_article_section">
+    @foreach (var kvc in Model.ArticleDataSet.TailParagraphs.SelectMany(dci => dci))
+    {@(kvc.Key.Equals("pre") ? CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(kvc.Value, "pre", "dj_article_paragraph"))
+                        : CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(kvc.Value, "p", "dj_article_paragraph")))}
+</div>
+}
+           
+@* Tail Fields *@
+                @if (Model.ArticleDisplayOptions != DisplayOptions.Headline)
+                {
+                    if (!Model.ArticleDataSet.Contact.IsNullOrEmpty())
+                    {
+                        if (showIndexing)
+                        {
+                    <div class="dj_article_index">CT</div>
+                        }
+                
+                    <div class="dj_article_ct dj_article_section">
+                        @(CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(Model.ArticleDataSet.Contact, "p", "dj_article_paragraph")))
+                    </div>
+                    }
+
+                    if (!Model.ArticleDataSet.Notes.IsNullOrEmpty() && Model.ArticleDisplayOptions != DisplayOptions.Headline)
+                    {
+                        if (showIndexing)
+                        {
+                    <div class="dj_article_index">RF</div>
+                        }
+                
+                    <div class="dj_article_rf dj_article_section">
+                        @foreach (var kvc in Model.ArticleDataSet.Notes.SelectMany(dci => dci))
+                        {
+                            @(kvc.Key.Equals("pre") ? CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(kvc.Value, "pre", "dj_article_paragraph"))
+                                                        : CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(kvc.Value, "p", "dj_article_paragraph")))
+                        }
+                    </div>
+                    }
+
+                    if (!Model.ArticleDataSet.ArtWorks.IsNullOrEmpty())
+                    {
+                        if (showIndexing)
+                        {
+                    <div class="dj_article_index">ART</div>
+                        }
+                    <div class="dj_article_art dj_article_section">
+                        @(CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(Model.ArticleDataSet.ArtWorks, "p", "dj_article_paragraph")))
+                    </div>
+                    }
+                }
+                @if (!Model.ArticleDataSet.IndexingCodeSets.IsNullOrEmpty() && showIndexing)
+                {
+                    foreach (var set in Model.ArticleDataSet.IndexingCodeSets)
+                    {
+                        if (showIndexing)
+                        {
+                    <div class="dj_article_index">@set.Key.ToUpper()</div>
+                        }
+                    
+                    <div class="dj_article_@(set.Key.ToLower()) dj_article_section">
+                        <p class="dj_article_paragraph">
+                            @foreach (var code in set.Value)
+                            {
+                                @(string.Format("{0} : {1} {2} ", code.Key, code.Value, code.Equals(set.Value.Last()) ? string.Empty : "|"))
+                            }
+                        </p>
+                    </div>
+                    }
+                }
+                @if (!Model.ArticleDataSet.Ipcs.IsNullOrEmpty() && showIndexing)
+                {
+                    if (showIndexing)
+                    {
+                    <div class="dj_article_index">IPC</div>
+                    }
+                    <div class="dj_article_ipc dj_article_section">
+                        <p class="dj_article_paragraph">
+                            @Model.ArticleDataSet.Ipcs.ToArray().Join(" | ")
+                        </p>
+                    </div>
+                }
+                @if (!Model.ArticleDataSet.Ipds.IsNullOrEmpty() && showIndexing)
+                {
+                    if (showIndexing)
+                    {
+                    <div class="dj_article_index">IPD</div>
+                    }
+                    <div class="dj_article_ipd dj_article_section">
+                        <p class="dj_article_paragraph">
+                            @Model.ArticleDataSet.Ipds.ToArray().Join(" | ")
+                        </p>
+                    </div>
+                }
+                @if (!string.IsNullOrEmpty(Model.ArticleDataSet.PublisherName))
+                {
+                    if (showIndexing)
+                    {
+                    <div class="dj_article_index">PUB</div>
+                    }                    
+                    <div class="dj_article_pub dj_article_section">
+                        <p class="dj_article_paragraph">
+                            @string.Format("{0} ", Model.ArticleDataSet.PublisherName)
+                        </p>
+                    </div>
+                }
+                @if (Model.ArticleDataSet.AccessionNo != null)
+                {
+                    if (showIndexing)
+                    {
+                    <div class="dj_article_index">AN</div>
+                    }
+                    <div class="dj_article_an dj_article_section">
+                        <p class="dj_article_paragraph">
+                            @Html.DJ().Token("document")&nbsp;@Model.ArticleDataSet.AccessionNo
+                        </p>
+                    </div>
+                }
+                @if (Model.ArticleDataSet.ContentCategory == Ajax.ContentCategory.Picture)
+                {
+                    <div class="dj_article_clear"></div>
+                }
+            </div>
+@*End body Section*@
+        }
+    </div>
+    }
+    else
+    {
+    <div class="dj_article_body">
+        <div class="dj_article_articleError error">@(DJ.Token("error"))
+            <span class="errorNum">@Model.ArticleDataSet.Status</span>: <span class="errorMessage">@Html.DJ().TokenForErrorNumber(Model.ArticleDataSet.Status)</span></div>
+
+        @if (Model.ArticleDataSet.AccessionNo != null)
+        {
+            if (showIndexing)
+            {
+            <div class="dj_article_index">AN</div>
+            }
+            <div class="dj_article_an dj_article_section">
+                @Html.DJ().Token("document")&nbsp;@Model.ArticleDataSet.AccessionNo
+            </div>
+        }
+    </div>
+    }
+}
+else
+{
+    <div>@DJ.Token("articleNotAvailable")</div>
+}

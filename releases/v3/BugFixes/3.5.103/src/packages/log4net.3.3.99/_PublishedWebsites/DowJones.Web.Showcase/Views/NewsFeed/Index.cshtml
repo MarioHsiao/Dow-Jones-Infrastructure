@@ -1,0 +1,79 @@
+﻿@{
+    ViewBag.Title = "NewsFeed";
+}
+
+<h2 id="subtitle">Join the chat</h2>
+    <div>
+        <script src="@Url.Content( "~/Scripts/jquery.signalR.js" )"></script>
+        <script src="@Url.Content( "~/signalr/hubs" )"></script>  
+        <script type="text/javascript">
+            $(function () {
+                var connection = $.connection('@Url.Content( "~/RealTimeAlertsConnection" )');
+                var clientName ='';
+ 
+                var send = function () {
+                    if ($('#msg').val() !=='') {
+                        connection.send("{Message: '"
+                            + $('#msg').val()
+                            + "', ClientName: \'"
+                            + clientName + "'}");
+                        $("#msg").val('');
+                    }
+                };
+ 
+                var startChatting = function () {
+                    if ($('#name').val() !== '') {
+                        clientName = $('#name').val();
+                        $("#info").toggle();
+                        $("#chat").toggle();
+                        $('#msg').focus();
+                        $('#subtitle').html("Now chatting");
+                    }
+                };
+ 
+                $("#chat").toggle();
+                $('#name').focus();
+ 
+                connection.received(function (data) {
+                    $('#messages').append('<li>' + data + '</li>');
+                });
+ 
+                $("#broadcast").click(function () {
+                    send();
+                });
+ 
+                $("#start").click(function () {
+                    startChatting();
+                });
+ 
+                $('#chatform').submit(function () {
+                    send();
+                    return false;
+                });
+ 
+                $('#startform').submit(function () {
+                    startChatting();
+                    return false;
+                });
+ 
+                connection.start({transport:'longPolling'});
+            });
+        </script>
+ 
+    <div id="info">
+        <form id="startform">  
+            Enter your name:
+            <input type="text" id="name"  />
+            <input type="button" id="start" value="Start chatting" />
+        </form>
+    </div>
+ 
+   
+    <div id="chat">
+        <form id="chatform">    
+            <ul id="messages"></ul>
+            <input type="text" id="msg"  />
+            <input type="button" id="broadcast" value="Send" />
+        </form>
+    </div>
+</div>

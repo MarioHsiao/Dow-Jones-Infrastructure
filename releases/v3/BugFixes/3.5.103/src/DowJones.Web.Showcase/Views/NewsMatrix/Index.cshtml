@@ -1,0 +1,23 @@
+﻿@using DowJones.Extensions
+@{
+    Layout = "~/Views/Shared/_Layout_ComponentExplorer.cshtml";
+    ViewBag.Title = "News Matrix";
+    
+}
+<link rel="stylesheet" href="@Url.Content("~/Styles/css/newsMatrix.css")"/>
+<style>
+    .djWidgetMatrix90 .djMatrixCategory {
+        position: relative;
+        
+    }
+</style>
+<div class="dj_NewsMatrixControl">
+    @Html.DJ().Render(Model)
+</div>
+
+<div id="sampleData" style="display: none;">
+	<h3>sample data</h3>
+	<textarea style="width: 972px; height: 500px;">
+    @Html.Raw(ObjectExtensions.ToJson(Model))
+    </textarea>
+</div>

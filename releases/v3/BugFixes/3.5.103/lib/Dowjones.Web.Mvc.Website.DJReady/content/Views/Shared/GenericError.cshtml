@@ -1,0 +1,98 @@
+﻿@using DowJones.Managers.Core
+@using DowJones.Globalization
+@using System.Reflection
+    
+@{
+    Layout = "";
+}
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <!-- Specify the url of product logo -->
+        <link rel="icon" type="image/png" href="@Url.Content("productLogo.png")" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title><!-- Specify the product title --></title>
+        <style type="text/css">
+            body
+            {
+            	font-family:Arial;
+                /*background:#F2FAFD*/
+            }
+            .product-logo, .footer
+            {
+	            padding-left:10px;
+            }
+            .dj_header-logo{
+                /* Specify the url of product logo */
+	            background: url("@Url.Content("productLogo.png")") no-repeat scroll 0 0 transparent;
+                height: 23px;
+                margin-top: 15px;
+                text-indent: -9999px;
+                width: 210px;
+            }
+            .footer
+            {
+	            padding-top:5px;
+	            color: #969595;
+                font-size:13px;
+            }
+            table
+            {
+            	width:100%;
+            }
+            div.errorMsg
+            {
+                -moz-border-radius: 5px;
+                background-color: #FFFFFF;
+                font-family: verdana;
+                font-size: 11px;
+                text-align: center;
+                border: 2px solid #555555;
+                padding: 20px 30px 15px;
+                width:650px;
+            }
+        </style>
+        <script type="text/javascript">
+            function setPageContentSize() {
+                try {
+                    var dEH, bH;
+                    if (document.documentElement)
+                        dEH = document.documentElement.clientHeight;
+                    var h = document.body.clientHeight;
+                    if (dEH && h < dEH)
+                        h = dEH;
+                    document.getElementsByTagName("table")[0].style.height = (h - 120) + 'px';
+                } catch (e) {
+                    document.getElementsByTagName("table")[0].style.height = "400px";
+                }
+            }
+        </script>
+    </head>
+    <body onload="setPageContentSize();">
+        <div class="product-logo">
+            <h1 class="dj_header-logo">Factiva</h1>
+        </div>
+        <div style="margin:auto 0px;">  
+            <table>
+                <tr>
+                    <td valign="middle" align="center">
+                        <div class="errorMsg">
+                            @{
+                                string errorCode = "-1";
+                                var properties = Model.GetType().GetProperties();
+                                foreach(PropertyInfo p in properties){
+                                    if(p.Name == "ErrorCode"){
+                                        errorCode = p.GetValue(Model, null); 
+                                    }
+                                }
+                            }
+                            @Html.DJ().Token("error") @errorCode: @Html.DJ().Token(errorCode)
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="footer">Footer</div>
+    </body>
+</html>

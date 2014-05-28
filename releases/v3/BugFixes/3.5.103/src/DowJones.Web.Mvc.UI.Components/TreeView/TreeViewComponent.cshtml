@@ -1,0 +1,8 @@
+﻿@model TreeView.TreeViewModel
+@ClientPlugin dj_TreeView
+@ClientTemplate RelativeResourceName=ClientTemplates.TreeView.htm, TemplateId=treeView
+@ClientTemplate RelativeResourceName=ClientTemplates.TreeViewNode.htm, TemplateId=treeViewNode
+@ScriptResource RelativeResourceName=TreeView.js
+@{ 
+    CssClass = "dj_treeViewContainer";
+}

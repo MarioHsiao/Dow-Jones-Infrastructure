@@ -1,0 +1,13 @@
+﻿@{ 
+    ViewBag.Title = "Logged Action"; 
+	var logMessages = TempData["LogMessages"] as IList<string>;
+}
+
+<h1>This action was logged!</h1>
+
+<h2>Log Messages</h2>
+<ul>
+@foreach(var message in logMessages) {
+	<li>@message</li>
+}
+</ul>

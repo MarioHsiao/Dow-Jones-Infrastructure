@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Ninject</id>
+    <version>2.2.0.0</version>
+    <title>Ninject</title>
+    <authors>Nate Kohari, Ian Davis, Remo Gloor, Joe Wasson, Daniel Marbach</authors>
+    <owners>Nate Kohari, Ian Davis, Remo Gloor, Joe Wasson, Daniel Marbach</owners>
+    <licenseUrl>https://github.com/ninject/ninject/blob/master/LICENSE.txt</licenseUrl>
+    <projectUrl>http://ninject.org</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Stop writing monolithic applications that make you feel like you have to move mountains to make the simplest of changes. Ninject helps you use the technique of dependency injection to break your applications into loosely-coupled, highly-cohesive components, and then glue them back together in a flexible manner.</description>
+    <summary>Stop writing monolithic applications that make you feel like you have to move mountains to make the simplest of changes. Ninject helps you use the technique of dependency injection to break your applications into loosely-coupled, highly-cohesive components, and then glue them back together in a flexible manner.</summary>
+  </metadata>
+</package>

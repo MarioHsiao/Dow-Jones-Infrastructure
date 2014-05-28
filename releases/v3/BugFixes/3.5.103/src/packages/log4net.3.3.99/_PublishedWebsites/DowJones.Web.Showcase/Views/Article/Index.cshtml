@@ -1,0 +1,25 @@
+﻿@{
+    Layout = "~/Views/Shared/_SignalR.cshtml";
+    ViewBag.Title = "Article"; 
+}
+
+<style type="text/css">
+    .dj_article_index { position:absolute; width: 35px; text-align: right; }
+    .dj_article_index + .dj_article_section { margin:0; margin-left: 45px; position: relative; }
+    .dj_article_paragraph {padding-bottom:5px; margin:0; margin-top:0 !important;}
+    .dj_article_highlight { font-weight: bolder !important; }
+    p.dj_article_paragraph img 
+    {
+    	float:right;
+        margin: 0 0 1.5em 0;      
+    }
+    
+</style>
+<script type="text/javascript">
+    function EnlargeImageClicked(e) {
+        var s;
+    }
+</script>
+@Html.DJ().Render(Model)
+
+

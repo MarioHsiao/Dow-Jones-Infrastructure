@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Tools.Charting", "DowJones.Tools.Charting\DowJones.Tools.Charting.csproj", "{4DEBAA69-496A-4710-9D3D-AA21966BF6EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowJones.Tools.Charting.Tests", "DowJones.Tools.Charting.Tests\DowJones.Tools.Charting.Tests.csproj", "{DE6AD2AF-FFD5-4948-A6AE-54526BA09843}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://sbknwstfs1:8080/tfs/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = DowJones.Tools.Charting\\DowJones.Tools.Charting.csproj
+		SccProjectName1 = DowJones.Tools.Charting
+		SccLocalPath1 = DowJones.Tools.Charting
+		SccProjectUniqueName2 = DowJones.Tools.Charting.Tests\\DowJones.Tools.Charting.Tests.csproj
+		SccProjectName2 = DowJones.Tools.Charting.Tests
+		SccLocalPath2 = DowJones.Tools.Charting.Tests
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4DEBAA69-496A-4710-9D3D-AA21966BF6EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DEBAA69-496A-4710-9D3D-AA21966BF6EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DEBAA69-496A-4710-9D3D-AA21966BF6EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DEBAA69-496A-4710-9D3D-AA21966BF6EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE6AD2AF-FFD5-4948-A6AE-54526BA09843}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE6AD2AF-FFD5-4948-A6AE-54526BA09843}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE6AD2AF-FFD5-4948-A6AE-54526BA09843}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE6AD2AF-FFD5-4948-A6AE-54526BA09843}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
