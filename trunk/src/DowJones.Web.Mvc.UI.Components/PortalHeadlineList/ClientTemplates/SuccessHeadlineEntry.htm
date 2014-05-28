@@ -19,18 +19,18 @@
 		</h4>
 		<% if (showSource || showPublicationDateTime || showWordCount) { %>
 		<div class="article-meta">
-			<% if (showSource) { 
+			<% if (showSource && x.sourceDescriptor) { 
 			if (options.sourceClickable) { %>
 			<span class="article-source source-clickable" rel="<%= x.sourceCode %>"><%= x.sourceDescriptor %></span><br />
 			<% } else { %>
 			<span class="article-source"><%= x.sourceDescriptor %></span><br />
 			<% } %>
 			<% } 
-			if (showPublicationDateTime) { %>
+			if (showPublicationDateTime && x.publicationDateTimeDescriptor) { %>
 			<span class="date-stamp"><%= x.publicationDateTimeDescriptor %></span><br/>
 		    <% } %>
 		    <%
-            if (showWordCount) { %>
+            if (showWordCount && x.wordCountDescriptor) { %>
 			<span class="words"><%= x.wordCountDescriptor %></span>
 			<% } %>
 		</div>
@@ -42,23 +42,30 @@
 				for (var j = 0, jCnt = x.codedAuthors.length; j < jCnt ; j++) {
 					var author = x.codedAuthors[j]; 
 					for (var k = 0, kCnt = author.items.length; k < kCnt ; k++) { 
-						var item = author.items[k];
-						switch(item.entityTypeDescriptor.toLowerCase()) {
-							case "person":
-							case "author": %>
-								<span class="article-author article-clickable" rel="<%= item.guid %>"><%= item.value %></span>
-								<%  break;
-							case "textual":
-							default: %>
-								<span class="article-author"><%= item.value %></span>
-								<%  break;
-						}
+		                var item = author.items[k];
+                        if (item.value) {
+						    switch(item.entityTypeDescriptor.toLowerCase()) {
+							    case "person":
+							    case "author": %>
+								    <span class="article-author article-clickable" rel="<%= item.guid %>"><%= item.value %></span>
+								    <%  break;
+							    case "textual":
+							    default: %>
+								    <span class="article-author"><%= item.value %></span>
+								    <%  break;
+		                    }
+                        }
 					}       
 				} 
 			} 
-			else { %>
-			<span class="author"><%= x.authors.join(', ') %></span>
-			<% } %>
+			else { 
+                var authors = x.authors ? x.authors.join(', ') : '';
+                if (authors) {
+                %>
+                <span class="author"><%= x.authors.join(', ') %></span>
+                <% 
+                }
+            } %>
 		</div>
 		<% } 
 	/* if we have a snippet and mode is anything but none, render the first snippet only if mode is hybrid; else render all snippets if mode is inline --> */ 
