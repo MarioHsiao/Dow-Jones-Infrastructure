@@ -104,6 +104,15 @@ namespace DowJones.Web.Mvc.UI.Canvas
             set { _showAuthor = value; }
         }
 
+        private bool _alignViewAlls = true;
+
+        [ClientProperty("_alignViewAlls")]
+        public bool AlignViewAlls
+        {
+            get { return _alignViewAlls; }
+            set { _alignViewAlls = value; }
+        }
+
         protected Module()
         {
             NeedsClientData = true;
