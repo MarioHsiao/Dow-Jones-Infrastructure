@@ -9,7 +9,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Net;
 using System.Web;
 using System.Web.Caching;
@@ -27,20 +26,15 @@ namespace DowJones.Web.Handlers.Proxy
     /// </summary>
     public class RegularProxyHandler : IHttpHandler
     {
-        private readonly List<string> _whiteListedDomains = new List<string>(new[]
-                                                                             {
-                                                                                 "dowjones.net", 
-                                                                                 "m.wsj.net", "i.mktw.net",
-                                                                                 "factiva.com", "dowjones.com"
-                                                                             });
+        private readonly List<string> _whiteListedDomains;
+        private readonly List<string> _contentTypes;
 
-        private readonly List<string> _contentTypes = new List<string>(new[]
-                                                                       {
-                                                                           "image/png", "image/jpeg", 
-                                                                           "image/gif", "application/json", 
-                                                                           "text/css", "text/javascript", 
-                                                                           "application/javascript", "application/x-shockwave-flash", "text/html"
-                                                                       });
+        public RegularProxyHandler()
+        {
+            _whiteListedDomains = Settings.Default.ProxyWhiteListedDomains.Cast<string>().ToList();
+            _contentTypes = Settings.Default.ProxyContentTypes.Cast<string>().ToList();
+        }
+        
         /// <summary>
         /// Gets a value indicating whether another request can use the <see cref="T:System.Web.IHttpHandler"/> instance.
         /// </summary>
@@ -206,17 +200,12 @@ namespace DowJones.Web.Handlers.Proxy
         private bool IsValidUrl(string url)
         {
             var uri = new Uri(url);
-            if (!Settings.Default.EnableProxyBlocking)
-            {
-                return true;
-            }
-
-            return _whiteListedDomains.Any(uri.Host.ToLowerInvariant().Contains);
+            return !Settings.Default.EnableProxyBlocking || _whiteListedDomains.Any(uri.Host.ToLowerInvariant().Contains);
         }
 
         private bool IsValidContentType(string contentType)
         {
-            var len = contentType.IndexOf(";"); 
+            var len = contentType.IndexOf(";", System.StringComparison.Ordinal); 
             if ( len > -1) {
                 contentType = contentType.Substring(0, len).Trim().ToLowerInvariant();
             }
