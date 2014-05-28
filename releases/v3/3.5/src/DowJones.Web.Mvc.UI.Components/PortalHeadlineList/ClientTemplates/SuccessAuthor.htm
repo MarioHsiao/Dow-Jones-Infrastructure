@@ -19,35 +19,42 @@
                             var author = x.codedAuthors[j]; 
                             for (var k = 0, kCnt = author.items.length; k < kCnt ; k++) { 
                                 var item = author.items[k];
-                                switch(item.entityTypeDescriptor.toLowerCase()) {
-                                    case "person":
-                                    case "author": %>
-                                        <span class="article-author article-clickable" rel="<%= item.guid %>"><%= item.value %></span>                                    
-                                    <%  break;
-                                    case "textual":
-                                    default: %>
-                                        <span class="article-author"><%= item.value %></span>
-                                    <%  break;
+                                if (item.value) {
+                                    switch(item.entityTypeDescriptor.toLowerCase()) {
+                                        case "person":
+                                        case "author": %>
+                                            <span class="article-author article-clickable" rel="<%= item.guid %>"><%= item.value %></span>                                    
+                                        <%  break;
+                                        case "textual":
+                                        default: %>
+                                            <span class="article-author"><%= item.value %></span>
+                                        <%  break;
+                                    }
                                 }
                             }       
                         } 
                     } 
-                    else { %>
+                    else { 
+                        var authors = x.authors ? x.authors.join(', ') : '';
+                        if (authors) {
+                        %>
                         <span class="author"><%= x.authors.join(', ') %></span>
-                 <% } %>
+                        <% 
+                        }
+                    } %>
                 </h3>
             <% } 
             
             if (showSource || showPublicationDateTime) { %>
                 <div class="article-meta">
-                    <% if (showSource) { 
+                    <% if (showSource && x.sourceDescriptor) { 
                         if (options.sourceClickable) { %>
                             <span class="article-source source-clickable" rel="<%= x.sourceCode %>"><%= x.sourceDescriptor %></span><br />
                      <% } else { %>
                             <span class="article-source"><%= x.sourceDescriptor %></span><br />
                      <% } %>
                     <% } 
-                       if (showPublicationDateTime) { %>
+                       if (showPublicationDateTime && x.publicationDateTimeDescriptor) { %>
                         <span class="date-stamp"><%= x.publicationDateTimeDescriptor %></span>
                     <% } %>
                 </div>

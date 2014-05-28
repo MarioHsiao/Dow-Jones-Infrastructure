@@ -8,8 +8,11 @@ $.extend(DJ.$dj, {
 
         if (this.length < 1) { return; }
         this.selector.ele = options.trig;
-
-        $(this.selector.ele).popupBalloon('destroy').popupBalloon(
+        var $el = $(this.selector.ele);
+        if ($el.data('ui.popupBalloon')) {
+            $el.popupBalloon('destroy');
+        }
+        $el.popupBalloon(
             $.extend({}, {
                 popupClass: (options.popupClass + ' dj-loading'),
                 onHide: options.close,

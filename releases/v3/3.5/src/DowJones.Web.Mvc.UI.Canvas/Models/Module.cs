@@ -95,6 +95,15 @@ namespace DowJones.Web.Mvc.UI.Canvas
         [ClientProperty("title")]
         public string Title { get; set; }
 
+        private bool _showAuthor = true;
+
+        [ClientProperty("showAuthor")]
+        public bool ShowAuthor
+        {
+            get { return _showAuthor; }
+            set { _showAuthor = value; }
+        }
+
         protected Module()
         {
             NeedsClientData = true;
