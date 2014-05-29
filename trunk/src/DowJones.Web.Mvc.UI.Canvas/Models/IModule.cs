@@ -16,5 +16,7 @@ namespace DowJones.Web.Mvc.UI.Canvas
         int Position { get; set; }
         List<string> TagCollection { get; set; }
         string Title { get; set; }
+        bool ShowAuthor { get; set; }
+        bool AlignViewAlls { get; set; }
     }
 }
