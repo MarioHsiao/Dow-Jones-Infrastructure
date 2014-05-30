@@ -94,8 +94,12 @@ namespace DowJones.Json.Gateway.Exceptions
                 var jsonGatewayError = JsonGatewayError.Parse(json);
                 return new JsonGatewayException(jsonGatewayError.Error.Code, jsonGatewayError.Error.Message);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                if (Log.IsErrorEnabled)
+                {
+                    Log.Error(ex);
+                }
                 return null;
             }
         }

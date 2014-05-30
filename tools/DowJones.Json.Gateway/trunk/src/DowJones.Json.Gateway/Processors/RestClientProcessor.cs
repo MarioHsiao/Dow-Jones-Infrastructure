@@ -23,7 +23,15 @@ namespace DowJones.Json.Gateway.Processors
         public RestResponse<TRes> GenerateErrorResponse<TRes>(string content, long code, string message)
             where TRes : IJsonRestResponse, new()
         {
+            Log.Error("------- GenerateErrorResponse Data Start: -------");
+            Log.ErrorFormat("content: {0}", content);
+            Log.ErrorFormat("code: {0}", code);
+            Log.ErrorFormat("message: {0}", message);
+            Log.Error("------- GenerateErrorResponse Data End: -------");
+
             if (content.IsNullOrEmpty())
+            {
+                Log.Error("found-empty content");
                 return new RestResponse<TRes>
                        {
                            ReturnCode = code,
@@ -33,10 +41,12 @@ namespace DowJones.Json.Gateway.Processors
                                        Message = message,
                                    }
                        };
+            }
 
             var error = JsonGatewayException.Parse(content);
             if (error != null && error.ReturnCode != JsonGatewayException.GenericError)
             {
+                Log.ErrorFormat("error is null or equals GenericError {0}", JsonGatewayException.GenericError);
                 return new RestResponse<TRes>
                        {
                            ReturnCode = error.ReturnCode,
@@ -47,7 +57,8 @@ namespace DowJones.Json.Gateway.Processors
                                    }
                        };
             }
-            
+
+            Log.Error("able to parse error and it is valid");
             return new RestResponse<TRes>
                    {
                        ReturnCode = code,
@@ -93,6 +104,10 @@ namespace DowJones.Json.Gateway.Processors
         protected internal RestResponse<TRes> GenerateGenericError<TRes>(Exception ex)
             where TRes : IJsonRestResponse, new()
         {
+            
+            Log.Error(ex);
+            Log.Error(ex.Message);
+
             return new RestResponse<TRes>
                    {
                        ReturnCode = JsonGatewayException.GenericError,
