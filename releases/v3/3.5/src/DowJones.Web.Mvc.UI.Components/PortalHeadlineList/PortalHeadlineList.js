@@ -16,6 +16,8 @@ DJ.UI.PortalHeadlineList = DJ.UI.Component.extend({
     defaults: {
         displayHeadlineTooltip: false,
         displayNoResultsToken: true,
+        showFlag: false,
+        showComment: false,
         displaySnippets: 3,
         extension: "",
         layout: 0,

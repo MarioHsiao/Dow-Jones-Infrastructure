@@ -179,5 +179,19 @@ namespace DowJones.Ajax.PortalHeadlineList
         [DataMember(Name = "isFree")]
         [JsonProperty("isFree")]
         public bool IsFree { get; set; }
+
+        /// <summary>
+        /// Gets or sets comment/note for the content.
+        /// </summary>
+        [DataMember(Name = "comment")]
+        [JsonProperty("comment")]
+        public string Comment { get; set; }
+
+        /// <summary>
+        /// Gets or sets flag (Breaking, New, Must Read etc) for the content.
+        /// </summary>
+        [DataMember(Name = "flag")]
+        [JsonProperty("flag")]
+        public string Flag { get; set; }
     }
 }

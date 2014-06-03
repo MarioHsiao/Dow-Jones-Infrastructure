@@ -75,8 +75,21 @@
 				<span class="dj_text" rel=""><%= x.snippets[j] %></span>
 			</p>
 			<%  } 
-		} %>
-		<% if (multimediaMode) { %>
+	    } %>
+        
+	    <% if(options.showFlag && x.flag) { %>
+	    <div class="article-flag">
+	        <span class="dj_text"><%= x.flag %></span>
+	    </div>
+	    <% } %>
+        
+	    <% if(options.showComment && x.comment) { %>
+	    <div class="article-comment">
+	        <span class="dj_text"><%= x.comment %></span>
+	    </div>
+	    <% } %>
+
+	    <% if (multimediaMode) { %>
 			<div class="article-meta">
 				<span class="fi fi_<%= x.contentSubCategoryDescriptor %>"></span>
 				<span class="media-length">[<%= x.mediaLength %>]</span>
