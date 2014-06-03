@@ -193,6 +193,18 @@ namespace DowJones.Web.Mvc.UI.Components.PortalHeadlineList
         /// </summary>
         [ClientProperty("showWordCount")]
         public bool ShowWordCount { get; set; }
+
+        /// <summary>
+        /// Gets or Sets a value indicating whether 'Comment' should be rendered.
+        /// </summary>
+        [ClientProperty("showComment")]
+        public bool ShowComment { get; set; }
+
+        /// <summary>
+        /// Gets or Sets a value indicating whether 'flag' should be rendered.
+        /// </summary>
+        [ClientProperty("showFlag")]
+        public bool ShowFlag { get; set; }
         #endregion
 
 
@@ -252,6 +264,8 @@ namespace DowJones.Web.Mvc.UI.Components.PortalHeadlineList
             DisplaySnippets = SnippetDisplayType.Hover;
             ExtraCssClass = "";
             ShowWordCount = false;
+            ShowComment = false;
+            ShowFlag = false;
         }
 
         public PortalHeadlineListModel()
