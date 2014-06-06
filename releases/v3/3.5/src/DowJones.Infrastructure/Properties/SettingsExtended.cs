@@ -307,5 +307,44 @@ namespace DowJones.Properties
         {
             get { return (string)this["CrossDomainTransport"]; }
         }
+
+        [ApplicationScopedSetting, DebuggerNonUserCode, SettingsSerializeAs(SettingsSerializeAs.Xml)]
+        [DefaultSettingValue(
+              @"<ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema\"">
+                        <string>image/png</string>
+                        <string>image/jpeg</string>
+                        <string>image/gif</string> 
+                        <string>application/json</string> 
+                        <string>text/css</string> 
+                        <string>text/javascript</string> 
+                        <string>application/javascript</string> 
+                        <string>application/x-shockwave-flash</string> 
+                        <string>text/html</string>
+                </ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection ProxyContentTypes
+        {
+            get
+            {
+                return ((global::System.Collections.Specialized.StringCollection)(this["ProxyContentTypes"]));
+            }
+        }
+
+        [ApplicationScopedSetting, DebuggerNonUserCode, SettingsSerializeAs(SettingsSerializeAs.Xml)]
+        [DefaultSettingValue(
+              @"<ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema\"">
+                        <string>m.wsj.net</string>
+                        <string>i.mktw.net</string>
+                        <string>factiva.com</string> 
+                        <string>dowjones.com</string> 
+                        <string>foxnews.com</string> 
+                        <string>dowjones.com</string> 
+                </ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection ProxyWhiteListedDomains
+        {
+            get
+            {
+                return ((global::System.Collections.Specialized.StringCollection)(this["ProxyWhiteListedDomains"]));
+            }
+        }
     }
 }

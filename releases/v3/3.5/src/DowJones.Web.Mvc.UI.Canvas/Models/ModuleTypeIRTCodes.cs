@@ -29,9 +29,11 @@ namespace DowJones.Web.Mvc.UI.Canvas.Mapping
         TopNewsNewspageModule,
         
         TrendingNewsPageModule,
-        
+
         SummaryNewspageModule,
 
         CompanyOverviewNewspageModule,
+
+        VideosNewspageModule
     }
 }

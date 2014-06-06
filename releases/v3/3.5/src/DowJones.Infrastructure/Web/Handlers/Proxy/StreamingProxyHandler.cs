@@ -26,20 +26,8 @@ namespace DowJones.Web.Handlers.Proxy
     public class StreamingProxyHandler : IHttpAsyncHandler
     {
         private const int BufferSize = 8 * 1024;
-        private readonly List<string> _whiteListedDomains = new List<string>(new[]
-                                                                             {
-                                                                                 "dowjones.net", "foxnews.com",
-                                                                                 "m.wsj.net", "i.mktw.net",
-                                                                                 "factiva.com", "dowjones.com"
-                                                                             });
-
-        private readonly List<string> _contentTypes = new List<string>(new[]
-                                                                       {
-                                                                           "image/png", "image/jpeg", 
-                                                                           "image/gif", "application/json", 
-                                                                           "text/css", "text/javascript", 
-                                                                           "application/javascript", "application/x-shockwave-flash", "text/html"
-                                                                       });
+        private readonly List<string> _whiteListedDomains;
+        private readonly List<string> _contentTypes;
        
         private PipeStream _pipeStream;
         private Stream _responseStream;
@@ -138,6 +126,8 @@ namespace DowJones.Web.Handlers.Proxy
         public StreamingProxyHandler()
         {
             IncludeContentDisposition = true;
+            _whiteListedDomains = Settings.Default.ProxyWhiteListedDomains.Cast<string>().ToList();
+            _contentTypes = Settings.Default.ProxyContentTypes.Cast<string>().ToList();
         }
 
 
@@ -321,21 +311,21 @@ namespace DowJones.Web.Handlers.Proxy
                         {
                             // Cache the content on server for specific duration
                             var cache = new CachedContent
-                                            {
-                                                Content = responseBuffer,
-                                                ContentEncoding = contentEncoding,
-                                                ContentDisposition = contentDisposition,
-                                                ContentLength = contentLength,
-                                                ContentType = response.ContentType,
-                                            };
+                                        {
+                                            Content = responseBuffer,
+                                            ContentEncoding = contentEncoding,
+                                            ContentDisposition = contentDisposition,
+                                            ContentLength = contentLength,
+                                            ContentType = response.ContentType,
+                                        };
 
                             context.Cache.Insert(
-                                request.RequestUri.ToString(), 
-                                cache, 
+                                request.RequestUri.ToString(),
+                                cache,
                                 null,
                                 Cache.NoAbsoluteExpiration,
                                 TimeSpan.FromMinutes(cacheDuration),
-                                CacheItemPriority.Normal, 
+                                CacheItemPriority.Normal,
                                 null);
                         }
                     }
@@ -484,17 +474,13 @@ namespace DowJones.Web.Handlers.Proxy
         private bool IsValidUrl(string url)
         {
             var uri = new Uri(url);
-            if (!Settings.Default.EnableProxyBlocking)
-            {
-                return true;
-            }
-
-            return _whiteListedDomains.Any(uri.Host.ToLowerInvariant().Contains);
+            return !Settings.Default.EnableProxyBlocking || _whiteListedDomains.Any(uri.Host.ToLowerInvariant().Contains);
         }
 
         private bool IsValidContentType(string contentType)
         {
-            var len = contentType.IndexOf(";");
+            var len = contentType.IndexOf(";", StringComparison.Ordinal);
+            
             if (len > -1)
             {
                 contentType = contentType.Substring(0, len).Trim().ToLowerInvariant();

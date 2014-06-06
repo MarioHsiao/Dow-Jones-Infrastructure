@@ -10,7 +10,6 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Web.Script.Serialization;
 using DowJones.DependencyInjection;
 using DowJones.Extensions;
 using DowJones.Infrastructure;
@@ -24,7 +23,6 @@ namespace DowJones.Web.UI
     /// </summary>
     public class ClientSideObjectWriter : IClientSideObjectWriter
     {
-        // TODO: Move to resources
         private const string YouMustHaveToCallStartPriorCallingThisMethod = "YouMustHaveToCallStartPriorCallingThisMethod";
         private const string YouCannotCallStartMoreThanOnce = "YouCannotCallStartMoreThanOnce";
 
@@ -123,16 +121,16 @@ namespace DowJones.Web.UI
 
             serializedPairsValueBuilder.AppendFormat("{0}: {{ ", name);
 
-            foreach (var keyValuePair in pairs)
+            var valuePairs = pairs as KeyValuePair<string, TValue>[] ?? pairs.ToArray();
+            foreach (var keyValuePair in valuePairs.Where(keyValuePair => keyValuePair.Value != null))
             {
-                if (null != keyValuePair.Value)
-                    serializedPairsValueBuilder
-                        .AppendFormat("{0}: {1}, ",
-                                      keyValuePair.Key,
-                                      SerializeWithJsonNet(keyValuePair.Value));
+                serializedPairsValueBuilder
+                    .AppendFormat("{0}: {1}, ",
+                        keyValuePair.Key,
+                        SerializeWithJsonNet(keyValuePair.Value));
             }
 
-            if (pairs.Any())
+            if (valuePairs.Any())
                 serializedPairsValueBuilder.Remove(serializedPairsValueBuilder.Length - 2, 2);
 
             serializedPairsValueBuilder.Append(" }");
@@ -150,12 +148,10 @@ namespace DowJones.Web.UI
         /// <returns></returns>
         public IClientSideObjectWriter Append(string name, string value)
         {
-            if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(value))
-            {
-                string formattedValue = QuoteString(value);
+            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(value)) return this;
+            var formattedValue = QuoteString(value);
 
-                Append("{0}:'{1}'".FormatWith(name, formattedValue));
-            }
+            Append("{0}:'{1}'".FormatWith(name, formattedValue));
 
             return this;
         }
@@ -331,72 +327,78 @@ namespace DowJones.Web.UI
         /// </summary>
         public IClientSideObjectWriter AppendDatesOnly(string name, IEnumerable<DateTime> collection)
         {
-            if (collection.Count() > 0)
+            var dateTimes = collection as DateTime[] ?? collection.ToArray();
+            
+            if (dateTimes.Count() <= 0)
             {
-                List<DateTime> dates = collection.ToList();
-                dates.Sort();
+                return this;
+            }
 
-                StringBuilder builder = new StringBuilder();
+            var dates = dateTimes.ToList();
+            dates.Sort();
 
-                int year = -1;
-                int month = -1;
-                bool yearAppended = false;
-                bool monthAppended = false;
+            var builder = new StringBuilder();
 
-                foreach (DateTime date in dates)
+            var year = -1;
+            var month = -1;
+            var yearAppended = false;
+            var monthAppended = false;
+
+            foreach (var date in dates)
+            {
+                if (year != date.Year)
                 {
-                    if (year != date.Year)
-                    {
-                        if (yearAppended)
-                        {
-                            if (monthAppended)
-                            {
-                                builder.Append("]");
-                            }
-                            builder.Append("}");
-                            builder.Append(",");
-                            yearAppended = false;
-                        }
-                        builder.Append("'");
-                        builder.Append(date.Year);
-                        builder.Append("':{");
-
-                        monthAppended = false;
-                    }
-                    if (month != date.Month)
+                    if (yearAppended)
                     {
                         if (monthAppended)
                         {
                             builder.Append("]");
-                            builder.Append(",");
-                            monthAppended = false;
                         }
-                        builder.Append("'");
-                        builder.Append(date.Month - 1);
-                        builder.Append("':[");
-                    }
-
-                    if (year == date.Year && month == date.Month)
-                    {
+                        builder.Append("}");
                         builder.Append(",");
+                        yearAppended = false;
                     }
-                    builder.Append(date.Day);
+                    builder.Append("'");
+                    builder.Append(date.Year);
+                    builder.Append("':{");
 
-                    if (month != date.Month)
-                    {
-                        month = date.Month;
-                        monthAppended = true;
-                    }
-
-                    if (year != date.Year)
-                    {
-                        year = date.Year;
-                        yearAppended = true;
-                    }
+                    monthAppended = false;
                 }
-                builder.Append("]}");
-                Append("{0}:{{{1}}}".FormatWith(name, builder.ToString()));
+                if (month != date.Month)
+                {
+                    if (monthAppended)
+                    {
+                        builder.Append("]");
+                        builder.Append(",");
+                        monthAppended = false;
+                    }
+                    builder.Append("'");
+                    builder.Append(date.Month - 1);
+                    builder.Append("':[");
+                }
+
+                if (year == date.Year && month == date.Month)
+                {
+                    builder.Append(",");
+                }
+                builder.Append(date.Day);
+
+                if (month != date.Month)
+                {
+                    month = date.Month;
+                    monthAppended = true;
+                }
+
+                if (year == date.Year)
+                {
+                    continue;
+                }
+
+                year = date.Year;
+                yearAppended = true;
             }
+            builder.Append("]}");
+            Append("{0}:{{{1}}}".FormatWith(name, builder.ToString()));
 
             return this;
         }
@@ -426,17 +428,15 @@ namespace DowJones.Web.UI
         /// <returns></returns>
         public IClientSideObjectWriter Append(string name, IList<string> values)
         {
-            if (!string.IsNullOrEmpty(name) && !values.IsNullOrEmpty())
+            if (string.IsNullOrEmpty(name) || values.IsNullOrEmpty())
             {
-                List<string> stringValues = new List<string>(values.Count);
-
-                foreach (string value in values)
-                {
-                    stringValues.Add("'{0}'".FormatWith(QuoteString(value)));
-                }
-
-                Append("{0}:[{1}]".FormatWith(name, string.Join(",", stringValues.ToArray())));
+                return this;
             }
+
+            var stringValues = new List<string>(values.Count);
+            stringValues.AddRange(values.Select(value => "'{0}'".FormatWith(QuoteString(value))));
+
+            Append("{0}:[{1}]".FormatWith(name, string.Join(",", stringValues.ToArray())));
 
             return this;
         }
@@ -451,14 +451,7 @@ namespace DowJones.Web.UI
         {
             if (!string.IsNullOrEmpty(name) && !values.IsNullOrEmpty())
             {
-                List<string> stringValues = new List<string>();
-
-                foreach (int value in values)
-                {
-                    stringValues.Add(value.ToString(Culture));
-                }
-
-                Append("{0}:[{1}]".FormatWith(name, string.Join(",", stringValues.ToArray())));
+                Append("{0}:[{1}]".FormatWith(name, string.Join(",", values.Select(value => value.ToString(Culture)).ToArray())));
             }
 
             return this;
@@ -559,79 +552,81 @@ namespace DowJones.Web.UI
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity", Justification = "Needs refactoring")]
         private string QuoteString(string value)
         {
-            StringBuilder result = new StringBuilder();
+            var result = new StringBuilder();
 
-            if (!string.IsNullOrEmpty(value))
+            if (string.IsNullOrEmpty(value))
             {
-                int startIndex = 0;
-                int count = 0;
+                return result.ToString();
+            }
 
-                for (int i = 0; i < value.Length; i++)
+            var startIndex = 0;
+            var count = 0;
+
+            for (var i = 0; i < value.Length; i++)
+            {
+                var c = value[i];
+
+                if (c == '\r' || c == '\t' || c == '\"' || c == '\'' || c == '<' || c == '>' ||
+                    c == '\\' || c == '\n' || c == '\b' || c == '\f' || c < ' ')
                 {
-                    char c = value[i];
-
-                    if (c == '\r' || c == '\t' || c == '\"' || c == '\'' || c == '<' || c == '>' ||
-                        c == '\\' || c == '\n' || c == '\b' || c == '\f' || c < ' ')
+                    if (count > 0)
                     {
-                        if (count > 0)
+                        result.Append(value, startIndex, count);
+                    }
+
+                    startIndex = i + 1;
+                    count = 0;
+                }
+
+                switch (c)
+                {
+                    case '\r':
+                        result.Append("\\r");
+                        break;
+                    case '\t':
+                        result.Append("\\t");
+                        break;
+                    case '\"':
+                        result.Append("\\\"");
+                        break;
+                    case '\\':
+                        result.Append("\\\\");
+                        break;
+                    case '\n':
+                        result.Append("\\n");
+                        break;
+                    case '\b':
+                        result.Append("\\b");
+                        break;
+                    case '\f':
+                        result.Append("\\f");
+                        break;
+                    case '\'':
+                    case '>':
+                    case '<':
+                        AppendAsUnicode(result, c);
+                        break;
+                    default:
+                        if (c < ' ')
                         {
-                            result.Append(value, startIndex, count);
+                            AppendAsUnicode(result, c);
+                        }
+                        else
+                        {
+                            count++;
                         }
 
-                        startIndex = i + 1;
-                        count = 0;
-                    }
-
-                    switch (c)
-                    {
-                        case '\r':
-                            result.Append("\\r");
-                            break;
-                        case '\t':
-                            result.Append("\\t");
-                            break;
-                        case '\"':
-                            result.Append("\\\"");
-                            break;
-                        case '\\':
-                            result.Append("\\\\");
-                            break;
-                        case '\n':
-                            result.Append("\\n");
-                            break;
-                        case '\b':
-                            result.Append("\\b");
-                            break;
-                        case '\f':
-                            result.Append("\\f");
-                            break;
-                        case '\'':
-                        case '>':
-                        case '<':
-                            AppendAsUnicode(result, c);
-                            break;
-                        default:
-                            if (c < ' ')
-                            {
-                                AppendAsUnicode(result, c);
-                            }
-                            else
-                            {
-                                count++;
-                            }
-
-                            break;
-                    }
+                        break;
                 }
+            }
 
-                if (result.Length == 0)
-                {
-                    result.Append(value);
-                }
-                else if (count > 0)
-                {
-                    result.Append(value, startIndex, count);
-                }
+            if (result.Length == 0)
+            {
+                result.Append(value);
+            }
+            else if (count > 0)
+            {
+                result.Append(value, startIndex, count);
             }
 
             return result.ToString();
@@ -653,7 +648,7 @@ namespace DowJones.Web.UI
 
         private string SerializeWithJsonNet(object data)
         {
-            using (StringWriter stringWriter = new StringWriter())
+            using (var stringWriter = new StringWriter())
             {
                 _jsonWriter.Serialize(stringWriter, data);
                 return stringWriter.ToString();
