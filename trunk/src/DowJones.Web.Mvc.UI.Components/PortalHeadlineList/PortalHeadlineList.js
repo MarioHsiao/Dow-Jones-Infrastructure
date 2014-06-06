@@ -1,4 +1,5 @@
-﻿/*
+﻿/*global $: false, _: false, DJ: false, $dj: false, window: false, document: false*/
+/*
 *  Portal Headline List Control
 */
 
@@ -91,7 +92,7 @@ DJ.UI.PortalHeadlineList = DJ.UI.Component.extend({
 
         else { // SnippetDisplayType = HybridHover
             if ((me.options.displaySnippets === 4) && headline.snippets && headline.snippets.length > 0) {
-                if (i != 0) {
+                if (i !== 0) {
                     me._renderSnippets(headline, tLi);
                 }
                 else {
@@ -143,11 +144,13 @@ DJ.UI.PortalHeadlineList = DJ.UI.Component.extend({
 
     goToPage: function (pageIndex, disableAnimation, disableEvent) {
         // Only enabled if pagination is turned on and there are more than 1 pages
-        if (!this._isPaginationOn())
+        if (!this._isPaginationOn()) {
             return;
+        }
 
-        if (!this.$pages || this.$pages.length < 2)
+        if (!this.$pages || this.$pages.length < 2) {
             return;
+        }
 
         var slideDirection = pageIndex - this.currentPageIndex;
 
@@ -168,8 +171,9 @@ DJ.UI.PortalHeadlineList = DJ.UI.Component.extend({
                     $targetPage = $prevSiblings.eq(absSlideDirection - 1);
                 }
                 else {
-                    if (!this.options.circularPaging)
+                    if (!this.options.circularPaging) {
                         return;
+                    }
 
                     // need to move things from the end to the beginning, so the target page is on the left of current page
                     this.$carouselInner.find(".slidePanel").slice(slideDirection + $prevSiblings.length).detach().prependTo(this.$carouselInner);
@@ -185,8 +189,9 @@ DJ.UI.PortalHeadlineList = DJ.UI.Component.extend({
                     $targetPage = $nextSiblings.eq(slideDirection - 1);
                 }
                 else {
-                    if (!this.options.circularPaging)
+                    if (!this.options.circularPaging) {
                         return;
+                    }
 
                     // need to move things from the beginning to the end, so the target page is on the right of current page
                     this.$carouselInner.find(".slidePanel").slice(0, slideDirection - $nextSiblings.length).detach().appendTo(this.$carouselInner);
@@ -233,6 +238,10 @@ DJ.UI.PortalHeadlineList = DJ.UI.Component.extend({
         var me = this;
         var $currentPage = this.getPageByIndex(this.currentPageIndex);
 
+        if (typeof me.isIE7 !== 'boolean') {
+            me.isIE7 = $.browser.msie && $.browser.version === '7.0';
+        }
+
         // if there are images, need to wait for them to load before setting height/width
         if (!imagesAreLoaded) {
             var $images = this.$element.find("img");
@@ -250,6 +259,9 @@ DJ.UI.PortalHeadlineList = DJ.UI.Component.extend({
         if ($hiddenParents.length > 0) {
             $hiddenParents.addClass("dj_show");
             containerWidth = this.$element.width();
+            if (this.isIE7 && !containerWidth) {
+                containerWidth = this.$carousel[0].scrollWidth;
+            }
             this.$pages.width(containerWidth);
             this.$carouselInner.width(this._getCarouselWidth(containerWidth));
             this._setCarouselWidthAndHeight($currentPage.width(), $currentPage.height(), disableAnimation);
@@ -257,11 +269,19 @@ DJ.UI.PortalHeadlineList = DJ.UI.Component.extend({
         }
         else {
             containerWidth = this.$element.width();
+            if (this.isIE7 && !containerWidth) {
+                containerWidth = this.$carousel[0].scrollWidth;
+            }
             this.$pages.width(containerWidth);
             this.$carouselInner.width(this._getCarouselWidth(containerWidth));
             this._setCarouselWidthAndHeight($currentPage.width(), $currentPage.height(), disableAnimation);
         }
 
+        if (this.isIE7) {
+            window.setTimeout(function () {
+                document.body.className = document.body.className;
+            }, 100);
+        }
         if (onCompleted) {
             onCompleted();
         }
@@ -299,7 +319,7 @@ DJ.UI.PortalHeadlineList = DJ.UI.Component.extend({
             snippetStr += "<div>" + snippet + "</div>";
         });
         $(this.selectors.headline, tLi).attr("title", snippetStr);
-        
+
         // to handle Arabic content via CSS, add language css class
         $(this.selectors.headline, tLi).dj_simpleTooltip("tooltip dj_" + headline.baseLanguage);
     },
@@ -348,12 +368,7 @@ DJ.UI.PortalHeadlineList = DJ.UI.Component.extend({
     },
 
     _setData: function (data) {
-   
-        if (data && data.resultSet)
-            this.bindOnSuccess(data.resultSet);
-        else
-            this.bindOnSuccess({});
-
+        this.bindOnSuccess((data && data.resultSet) ? data.resultSet : {});
     },
 
     bindOnSuccess: function (data) {
