@@ -45,6 +45,7 @@ using ShareScope = Factiva.Gateway.Messages.Assets.V1_0.ShareScope;
 using SortBy = Factiva.Gateway.Messages.Assets.Pages.V1_0.SortBy;
 using SortOrder = Factiva.Gateway.Messages.Assets.Common.V2_0.SortOrder;
 using GWModule = Factiva.Gateway.Messages.Assets.Pages.V1_0.Module;
+using ModuleProperties = Factiva.Gateway.Messages.Assets.Pages.V1_0.ModuleProperties;
 using QueryFilters = Factiva.Gateway.Messages.Assets.Pages.V1_0.QueryFilters;
 
 namespace DowJones.Pages
@@ -1595,9 +1596,12 @@ namespace DowJones.Pages
                     InterfaceLanguage = moduleListInfo.InterfaceLanguage.ToString() // Mapper.Map<string>(moduleListInfo.InterfaceLanguage),
                 };
 
-                if (moduleListInfo.ModuleProperties != null)
+
+                var moduleEx = moduleListInfo.Module as ModuleEx;
+                var moduleProperties = moduleEx != null ? moduleEx.ModuleProperties : moduleListInfo.ModuleProperties;
+                if (moduleProperties != null)
                 {
-                    moduleIdByMetadata.MetaData = AssemblePageModuleMetadata(moduleListInfo.ModuleProperties.ModuleMetaData);
+                    moduleIdByMetadata.MetaData = AssemblePageModuleMetadata(moduleProperties.ModuleMetaData);
                 }
 
                 moduleIdByMetadataList.Add(moduleIdByMetadata);
