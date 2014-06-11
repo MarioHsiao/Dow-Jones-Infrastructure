@@ -985,7 +985,7 @@ namespace FactivaRssManager_2_0
                                                             language = linkItem.language,
                                                             sourceName = linkItem.sourceName,
                                                             uri = linkItem.Uri,
-                                                            position = linkItem.Position,
+                                                            position = linkItem.Position
                                                         };
 
                                     documentCollection.Add(document);
@@ -1663,7 +1663,8 @@ namespace FactivaRssManager_2_0
                                             publicationDate = linkItem.PublicationDate.ToUniversalTime(),
                                             language = linkItem.language,
                                             sourceName = linkItem.sourceName,
-                                            uri = linkItem.Uri,
+                                            //uri = linkItem.Uri,
+                                            accessionNumber = linkItem.Id.ToString(CultureInfo.InvariantCulture),
                                             position = linkItem.Position
                                         });
                                         break;
@@ -1705,7 +1706,8 @@ namespace FactivaRssManager_2_0
                                                 publicationDate = linkItem.PublicationDate.ToUniversalTime(),
                                                 language = linkItem.language,
                                                 sourceName = linkItem.sourceName,
-                                                uri = linkItem.Uri,
+                                                //uri = linkItem.Uri,
+                                                accessionNumber = linkItem.Id.ToString(CultureInfo.InvariantCulture),
                                                 position = linkItem.Position
                                             });
                                             break;
