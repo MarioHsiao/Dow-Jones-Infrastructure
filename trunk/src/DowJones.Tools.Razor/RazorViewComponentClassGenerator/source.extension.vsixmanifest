@@ -3,7 +3,7 @@
 	<Identifier Id="98B6471D-B3EC-48B9-805E-37D1F7D9C0A1">
 		<Name>Dow Jones Razor View Component Generator</Name>
 		<Author>Dow Jones Corporation</Author>
-		<Version>2.1.0</Version>
+		<Version>2.1.1</Version>
 		<Description xml:space="preserve">Custom Tool to generate C# code for Razor-based Dow Jones View Components.
 
 Based off of the Single File Generator for Razor View files (.cshtml files) located at: https://bitbucket.org/davidebbo/razorsinglefilegenerator</Description>
@@ -15,6 +15,11 @@ Based off of the Single File Generator for Razor View files (.cshtml files) loca
 				<Edition>Pro</Edition>
 			</VisualStudio>
 			<VisualStudio Version="11.0">
+				<Edition>Ultimate</Edition>
+				<Edition>Premium</Edition>
+				<Edition>Pro</Edition>
+			</VisualStudio>
+			<VisualStudio Version="12.0">
 				<Edition>Ultimate</Edition>
 				<Edition>Premium</Edition>
 				<Edition>Pro</Edition>
