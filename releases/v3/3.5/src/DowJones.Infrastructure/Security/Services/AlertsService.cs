@@ -146,7 +146,7 @@ namespace DowJones.Security.Services
         /// </summary>
         internal override sealed void Initialize()
         {
-            IsTrackAdministrator = _matrixTrackService.ac1.ContainsAtAnyIndex("-1");
+            IsTrackAdministrator = _matrixTrackService.ac7.ContainsAtAnyIndex("-1");
             //TODO: Decide which user-type takes precedence for multiple cross values
             //IsDMMUser = _matrixTrackService.ac8.ContainsAtAnyIndex("m");
             //IsSelectFullUser = _matrixTrackService.ac8.ContainsAtAnyIndex("t");
