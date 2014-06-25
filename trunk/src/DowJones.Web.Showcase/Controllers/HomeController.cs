@@ -44,9 +44,15 @@ namespace DowJones.Web.Showcase.Controllers
         }
 
         [AspCompat("home/apartmentstate/sta")]
-        public ActionResult ApartmentState()
+        public ActionResult Sta()
         {
-            return View();
+            return View("ApartmentState");
+        }
+
+        [Route("home/apartmentstate/mta")]
+        public ActionResult Mta()
+        {
+            return View("ApartmentState");
         }
 
         [Route("error")]

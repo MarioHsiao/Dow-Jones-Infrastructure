@@ -21,7 +21,7 @@ namespace DowJones.Assemblers.Search
             var baseObject = searchQuery as AbstractSearchQuery;
             Map(baseObject, groups);
 
-            FilterGroup andFilterGroup = GetGroup(GroupOperator.And, groups).FilterGroup;
+            var andFilterGroup = GetGroup(GroupOperator.And, groups).FilterGroup;
 
             #region AUTHOR
 
@@ -190,13 +190,11 @@ namespace DowJones.Assemblers.Search
                         Operator = Operator.Or//Since Sources are always OR'ed
                     };
                     var includedEntities = new SourceEntitiesCollection();
-                    foreach (SourceQueryFilterEntities queryFilter in searchQuery.Source.Include)
+                    foreach (var queryFilter1 in searchQuery.Source.Include)
                     {
+                        var queryFilter = (SourceQueryFilterEntities) queryFilter1;
                         var eachPill = new SourceEntityCollection();
-                        foreach (var eachSubItem in queryFilter.Select(entity => new SourceEntity { Type = Map(entity.SourceType), Value = entity.SourceCode }))
-                        {
-                            eachPill.Add(eachSubItem);
-                        }
+                        eachPill.AddRange(queryFilter.Select(entity => new SourceEntity {Type = Map(entity.SourceType), Value = entity.SourceCode}));
                         includedEntities.Add(new SourceEntities() { SourceEntityCollection = eachPill });
                     }
                     sf.SourceEntitiesCollection = includedEntities;
@@ -210,24 +208,26 @@ namespace DowJones.Assemblers.Search
                     };
 
                     var excludedEntities = new SourceEntitiesCollection();
-                    foreach (SourceQueryFilterEntities queryFilter in searchQuery.Source.Exclude)
+                    foreach (var queryFilter1 in searchQuery.Source.Exclude)
                     {
+                        var queryFilter = (SourceQueryFilterEntities) queryFilter1;
                         var eachPill = new SourceEntityCollection();
-                        foreach (var eachSubItem in queryFilter.Select(entity => new SourceEntity { Type = Map(entity.SourceType), Value = entity.SourceCode }))
-                        {
-                            eachPill.Add(eachSubItem);
-                        }
-                        excludedEntities.Add(new SourceEntities() { SourceEntityCollection = eachPill });
+                        eachPill.AddRange(queryFilter.Select(entity => new SourceEntity {Type = Map(entity.SourceType), Value = entity.SourceCode}));
+                        excludedEntities.Add(new SourceEntities
+                                             {
+                                                 SourceEntityCollection = eachPill
+                                             });
                     }
                     sf.SourceEntitiesCollection = excludedEntities;
                     andFilterGroup.Filters.Add(sf);
                 }
                 if (!String.IsNullOrEmpty(searchQuery.Source.ListId)) // Assume ID means source list!
                 {
-                    var listIdFilter = new SourceEntityListIDFilter();
-                    listIdFilter.Operator = Operator.Or;
-                    listIdFilter.IdCollectionCollection = new IdCollectionCollection();
-                    listIdFilter.IdCollectionCollection.Add(searchQuery.Source.ListId);
+                    var listIdFilter = new SourceEntityListIDFilter
+                                       {
+                                           Operator = Operator.Or, 
+                                           IdCollectionCollection = new IdCollectionCollection {searchQuery.Source.ListId}
+                                       };
                     andFilterGroup.Filters.Add(listIdFilter);
                 }
             }
@@ -330,17 +330,18 @@ namespace DowJones.Assemblers.Search
                 case SearchDateRange.LastSixMonths:
                 case SearchDateRange.LastYear:
                 case SearchDateRange.LastTwoYears:
+                case SearchDateRange.LastFiveYears:
                     andFilterGroup.Filters.Add(GetDaysFilter(searchQuery.DateRange));
                     break;
                 case SearchDateRange.Custom:
                     andFilterGroup.Filters.Add(GetCustomDateFilter(searchQuery.CustomDateRange));
                     break;
-                default:
-                    break;
             }
 
-            var unCodedContentFilter = new SearchUnCodedContentFilter();
-            unCodedContentFilter.IncludeUncodedContent = searchQuery.Inclusions != null && searchQuery.Inclusions.Any(x => x == InclusionFilter.SocialMedia);
+            var unCodedContentFilter = new SearchUnCodedContentFilter
+                                       {
+                                           IncludeUncodedContent = searchQuery.Inclusions != null && searchQuery.Inclusions.Any(x => x == InclusionFilter.SocialMedia)
+                                       };
             andFilterGroup.Filters.Add(unCodedContentFilter);
 
             #endregion
@@ -363,19 +364,22 @@ namespace DowJones.Assemblers.Search
 
             #region NEWS FILTERS
 
-            SearchAdditionalFilters newsFilter = GetNewsFilter(searchQuery.Filters);
+            var newsFilter = GetNewsFilter(searchQuery.Filters);
             if (newsFilter != null)
             {
                 filterCollection.Add(newsFilter);
             }
-            if (filterCollection.Count() > 0 )
+            
+            if (!filterCollection.Any())
             {
-                if(group.FilterGroup == null)
-                {
-                    group.FilterGroup = new AndFilterGroup();
-                }
-                group.FilterGroup.Filters = filterCollection;
+                return;
             }
+
+            if(@group.FilterGroup == null)
+            {
+                @group.FilterGroup = new AndFilterGroup();
+            }
+            @group.FilterGroup.Filters = filterCollection;
 
             #endregion
         }
@@ -541,8 +545,6 @@ namespace DowJones.Assemblers.Search
                     case "AR":
                         list.Add(SearchLanguageCode.Arabic);
                         break;
-                    default:
-                        break;
                 }
             }
 
@@ -601,24 +603,29 @@ namespace DowJones.Assemblers.Search
             #region Source Filter
 
             var src = newsFilter.Source;
-            if (src != null)
+            if (src == null)
             {
-                var sourceFilters = new SearchAdditionalSourceFilterItems() {SourceCollection = new SearchAdditionalSourceFilterItemCollection()};
-                foreach (var queryFilter in src)
-                {
-                    var item = new SearchAdditionalSourceFilterItem
-                                   {
-                                       Code = queryFilter.SourceCode,
-                                       SearchFormatCategory =
-                                           (queryFilter.SourceType == SourceFilterType.ProductDefineCode)
-                                               ? SearchFormatCategory.ProductDefineCode
-                                               : SearchFormatCategory.Restrictor
-                                   };
-                    
-                    sourceFilters.SourceCollection.Add(item);
-                }
-                filters.SourceFilters = sourceFilters;
+                return filters;
             }
+
+            var sourceFilters = new SearchAdditionalSourceFilterItems
+                                {
+                                    SourceCollection = new SearchAdditionalSourceFilterItemCollection()
+                                };
+
+            foreach (var item in src.Select(queryFilter => new SearchAdditionalSourceFilterItem
+                                                           {
+                                                               Code = queryFilter.SourceCode,
+                                                               SearchFormatCategory =
+                                                                   (queryFilter.SourceType == SourceFilterType.ProductDefineCode)
+                                                                       ? SearchFormatCategory.ProductDefineCode
+                                                                       : SearchFormatCategory.Restrictor
+                                                           }))
+            {
+                sourceFilters.SourceCollection.Add(item);
+            }
+            filters.SourceFilters = sourceFilters;
+
             #endregion
 
             return filters;

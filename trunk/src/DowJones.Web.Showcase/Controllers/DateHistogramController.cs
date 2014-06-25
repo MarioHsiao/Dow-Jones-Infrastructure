@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 using System.Web.Mvc;
 using DowJones.Managers.Search;
@@ -6,7 +7,6 @@ using DowJones.Models.Search;
 using DowJones.Search;
 using DowJones.Search.Attributes;
 using DowJones.Web.Mvc.UI.Components.DateHistogram;
-using DowJones.Web.Mvc.UI.Components.Discovery;
 using Factiva.Gateway.Messages.Search.V2_0;
 using ControllerBase = DowJones.Web.Mvc.ControllerBase;
 using DeduplicationMode = Factiva.Gateway.Messages.Search.V2_0.DeduplicationMode;   
@@ -53,7 +53,7 @@ namespace DowJones.Web.Showcase.Controllers
             request.StructuredSearch.Formatting.ClusterMode = ClusterMode.On;
             request.StructuredSearch.Formatting.FreshnessDate = DateTime.Now;
             request.StructuredSearch.Formatting.SortOrder = ResultSortOrder.RelevanceHighFreshness;
-            request.StructuredSearch.Query.Dates = this.ProcessDates(SearchDateRange.LastThreeMonths);
+            request.StructuredSearch.Query.Dates = ProcessDates(SearchDateRange.LastThreeMonths);
             request.NavigationControl.TimeNavigatorMode = TimeNavigatorMode.AutoDetect;
 
             return request;
@@ -61,10 +61,10 @@ namespace DowJones.Web.Showcase.Controllers
 
         public string GetTimeSlice<T>( T value )
         {
-            Type enumType = typeof( T );
-            string fieldName = value.ToString();
+            var enumType = typeof( T );
+            var fieldName = value.ToString();
             var attribute = ( TimeSlice ) Attribute.GetCustomAttribute( enumType.GetField( fieldName ), typeof( TimeSlice ) );
-            return attribute != null ? attribute.Slice.ToString() : null;
+            return attribute != null ? attribute.Slice.ToString(CultureInfo.InvariantCulture) : null;
         }
 
         private Dates ProcessDates( SearchDateRange dateRange )
@@ -81,7 +81,7 @@ namespace DowJones.Web.Showcase.Controllers
                 case SearchDateRange.Custom:
                     break;
                 default:
-                    string timeSlice = GetTimeSlice( dateRange );
+                    var timeSlice = GetTimeSlice( dateRange );
                     if( timeSlice != null )
                     {
                         dates.After = timeSlice;
@@ -93,25 +93,23 @@ namespace DowJones.Web.Showcase.Controllers
 
         private DateHistogramModel GetBasicModel()
         {
-            var manager = new SearchManager(this.ControlData, this.TransactionTimer, this.Preferences);   
-            var request = new PerformContentSearchRequest();
+            var manager = new SearchManager(ControlData, TransactionTimer, this.Preferences);   
             var result  = manager.PerformContentSearch<PerformContentSearchResponse>(GetPerformContentSearchRequest("obama"));
 
-            if (result.ContentSearchResult != null &&
-                result.ContentSearchResult.TimeNavigatorSet != null &&
-                result.ContentSearchResult.TimeNavigatorSet.Count > 0)
+            if (result.ContentSearchResult == null || 
+                result.ContentSearchResult.TimeNavigatorSet == null || 
+                result.ContentSearchResult.TimeNavigatorSet.Count <= 0)
             {
-                var nav = result.ContentSearchResult.TimeNavigatorSet.NavigatorCollection.First();
-                  var temp = new DateHistogramModel
-                    {
-                        BarColor = "#FF0000",
-                        Histogram = Mapper.Map<Histogram>(nav),
-                    };         
-             
-                    return temp;
+                throw new NullReferenceException();
             }
-
-             throw new NullReferenceException();
+            var nav = result.ContentSearchResult.TimeNavigatorSet.NavigatorCollection.First();
+            var temp = new DateHistogramModel
+                       {
+                           BarColor = "#FF0000",
+                           Histogram = Mapper.Map<Histogram>(nav),
+                       };         
+             
+            return temp;
         }
 
     }

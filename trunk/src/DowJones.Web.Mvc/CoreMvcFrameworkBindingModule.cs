@@ -27,9 +27,11 @@ namespace DowJones
             Bind<IRouteGenerator>().To<RouteGenerator>().InSingletonScope();
 
             Bind<StylesheetRegistryBuilder>().ToSelf().InRequestScope();
+
             Bind<IStylesheetRegistry>().To<StylesheetRegistry>().InRequestScope();
 
             Bind<ScriptRegistryBuilder>().ToSelf().InRequestScope();
+
             Bind<IScriptRegistry>().To<ScriptRegistry>().InRequestScope();
 
             Bind<IScriptRegistryWriter>().To<ScriptRegistryWriter>().InRequestScope();

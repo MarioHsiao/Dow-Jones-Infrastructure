@@ -62,6 +62,8 @@ namespace DowJones.Web.Mvc.Search.Managers.Preferences
                     return SearchDateRange.LastYear;
                 case DefaultSimpleSearchDateRange.Last2Years:
                     return SearchDateRange.LastTwoYears;
+                case DefaultSimpleSearchDateRange.Last5Years:
+                    return SearchDateRange.LastTwoYears;
                 case DefaultSimpleSearchDateRange.Last3Months:
                     return SearchDateRange.LastThreeMonths;
                 case DefaultSimpleSearchDateRange.All:
@@ -129,6 +131,8 @@ namespace DowJones.Web.Mvc.Search.Managers.Preferences
                     return SearchDateRange.LastYear;
                 case PreferenceSearchDateRange.LastTwoYears:
                     return SearchDateRange.LastTwoYears;
+                case PreferenceSearchDateRange.LastFiveYears:
+                    return SearchDateRange.LastFiveYears;
                 case PreferenceSearchDateRange.LastThreeMonths:
                     return SearchDateRange.LastThreeMonths;
                 case PreferenceSearchDateRange.AllDates:

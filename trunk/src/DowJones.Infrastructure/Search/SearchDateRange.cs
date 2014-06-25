@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using DowJones.Attributes;
 using DowJones.Converters;
@@ -48,11 +49,18 @@ namespace DowJones.Search
         [AssignedToken("dateRangeLastYear")]
         LastYear,
         /// <summary>
-        /// Last two Year. Corresponds to last 367 days.
+        /// Last two Year. Corresponds to last 734 days.
         /// </summary>
         [TimeSlice(-734)] // done for leap year
         [AssignedToken("dateRangeLast2Years")]
         LastTwoYears,
+
+        /// <summary>
+        /// Last two Year. Corresponds to last 1835 days.
+        /// </summary>
+        [TimeSlice(-1835)] // done for leap year 367 * 5 days
+        [AssignedToken("dateRangeLast5Years")]
+        LastFiveYears,
 
         /// <summary>
         /// All date range
@@ -74,34 +82,37 @@ namespace DowJones.Search
 
             IEnumerable<KeyValuePair<string, string>> dateRange = new[]
                                     {
-                                        new KeyValuePair<string, string>(((int)SearchDateRange.LastDay).ToString(), 
+                                        new KeyValuePair<string, string>(((int)SearchDateRange.LastDay).ToString(CultureInfo.InvariantCulture), 
                                             SearchDateRange.LastDay.GetAssignedToken().ToTokenTranslation()),
 
-                                        new KeyValuePair<string, string>(((int)SearchDateRange.LastWeek).ToString(), 
+                                        new KeyValuePair<string, string>(((int)SearchDateRange.LastWeek).ToString(CultureInfo.InvariantCulture), 
                                             SearchDateRange.LastWeek.GetAssignedToken().ToTokenTranslation()),
 
-                                        new KeyValuePair<string, string>(((int)SearchDateRange.LastMonth).ToString(), 
+                                        new KeyValuePair<string, string>(((int)SearchDateRange.LastMonth).ToString(CultureInfo.InvariantCulture), 
                                             SearchDateRange.LastMonth.GetAssignedToken().ToTokenTranslation()),
 
-                                        new KeyValuePair<string, string>(((int)SearchDateRange.LastThreeMonths).ToString(), 
+                                        new KeyValuePair<string, string>(((int)SearchDateRange.LastThreeMonths).ToString(CultureInfo.InvariantCulture), 
                                             SearchDateRange.LastThreeMonths.GetAssignedToken().ToTokenTranslation()),
 
-                                        new KeyValuePair<string, string>(((int)SearchDateRange.LastSixMonths).ToString(), 
+                                        new KeyValuePair<string, string>(((int)SearchDateRange.LastSixMonths).ToString(CultureInfo.InvariantCulture), 
                                             SearchDateRange.LastSixMonths.GetAssignedToken().ToTokenTranslation()),
 
-                                        new KeyValuePair<string, string>(((int)SearchDateRange.LastYear).ToString(), 
+                                        new KeyValuePair<string, string>(((int)SearchDateRange.LastYear).ToString(CultureInfo.InvariantCulture), 
                                             SearchDateRange.LastYear.GetAssignedToken().ToTokenTranslation()),
 
-                                        new KeyValuePair<string, string>(((int)SearchDateRange.LastTwoYears).ToString(), 
-                                            SearchDateRange.LastTwoYears.GetAssignedToken().ToTokenTranslation())
+                                        new KeyValuePair<string, string>(((int)SearchDateRange.LastTwoYears).ToString(CultureInfo.InvariantCulture), 
+                                            SearchDateRange.LastTwoYears.GetAssignedToken().ToTokenTranslation()),
+
+                                        new KeyValuePair<string, string>(((int)SearchDateRange.LastFiveYears).ToString(CultureInfo.InvariantCulture), 
+                                            SearchDateRange.LastFiveYears.GetAssignedToken().ToTokenTranslation())
                                     };
 
             if (addAllDate)
             {
                 dateRange = dateRange.Concat(new[]
                                        {
-                                          new KeyValuePair<string, string>(((int)SearchDateRange.All).ToString(), 
-                                            SearchDateRange.All.GetAssignedToken().ToTokenTranslation()), 
+                                          new KeyValuePair<string, string>(((int)SearchDateRange.All).ToString(CultureInfo.InvariantCulture), 
+                                            SearchDateRange.All.GetAssignedToken().ToTokenTranslation())
                                 });
             }
 
@@ -109,9 +120,9 @@ namespace DowJones.Search
             {
                 dateRange = dateRange.Concat(new[]
                                        {
-                                          new KeyValuePair<string, string>(((int)SearchDateRange.Custom).ToString(), 
-                                            SearchDateRange.Custom.GetAssignedToken().ToTokenTranslation()), 
-                                });
+                                          new KeyValuePair<string, string>(((int)SearchDateRange.Custom).ToString(CultureInfo.InvariantCulture), 
+                                            SearchDateRange.Custom.GetAssignedToken().ToTokenTranslation())
+                                       });
             }
 
             return dateRange;

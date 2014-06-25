@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using DowJones.Extensions;
 using DowJones.Infrastructure;
 using DowJones.Search;
@@ -23,15 +22,16 @@ namespace DowJones.Assemblers.Search
                 return;
             }
 
-            SearchDeduplicationFilter dups = filters.OfType<SearchDeduplicationFilter>().FirstOrDefault();
-            if (dups != null)
+            var enumerable = filters as object[] ?? filters.Cast<object>().ToArray();
+            var deduplicationFilter = enumerable.OfType<SearchDeduplicationFilter>().FirstOrDefault();
+            if (deduplicationFilter != null)
             {
-                searchQuery.Duplicates = MapDuplicate(dups.DeduplicationType);
+                searchQuery.Duplicates = MapDuplicate(deduplicationFilter.DeduplicationType);
             }
 
             #region NEWS FILTERS
 
-            SearchAdditionalFilters newsFilter = filters.OfType<SearchAdditionalFilters>().FirstOrDefault();
+            SearchAdditionalFilters newsFilter = enumerable.OfType<SearchAdditionalFilters>().FirstOrDefault();
             if (newsFilter != null)
             {
                 searchQuery.Filters = GetNewsFilter(newsFilter);
@@ -53,30 +53,31 @@ namespace DowJones.Assemblers.Search
 
             #region LANGUAGES
 
-            ContentLanguageFilter langs = filters.OfType<ContentLanguageFilter>().FirstOrDefault();
-            if (langs != null && !langs.IsAllLanguages && langs.LanguageCodes != null)
+            var enumerable = filters as object[] ?? filters.Cast<object>().ToArray();
+            var contentLanguagesFilter = enumerable.OfType<ContentLanguageFilter>().FirstOrDefault();
+            if (contentLanguagesFilter  != null && !contentLanguagesFilter.IsAllLanguages && contentLanguagesFilter.LanguageCodes != null)
             {
-                searchQuery.ContentLanguages = langs.LanguageCodes.Select(GetSearchLanguageCode).WhereNotNullOrEmpty();
+                searchQuery.ContentLanguages = contentLanguagesFilter.LanguageCodes.Select(GetSearchLanguageCode).WhereNotNullOrEmpty();
             }
 
             #endregion
 
             #region DATE FILTER
 
-            DaysFilter daysFilter = filters.OfType<DaysFilter>().FirstOrDefault();
+            var daysFilter = enumerable.OfType<DaysFilter>().FirstOrDefault();
             searchQuery.DateRange = SearchDateRange.All;
             if (daysFilter != null)
             {
                 searchQuery.DateRange = MapDateRange(daysFilter.SinceDays);
             }
-            DateFilter dateFilter = filters.OfType<DateFilter>().FirstOrDefault();
+            var dateFilter = enumerable.OfType<DateFilter>().FirstOrDefault();
             if (dateFilter != null)
             {
                 searchQuery.CustomDateRange = MapDateRange(dateFilter);
                 searchQuery.DateRange = SearchDateRange.Custom;
             }
 
-            var unCodedContentFilter = filters.OfType<SearchUnCodedContentFilter>().FirstOrDefault();
+            var unCodedContentFilter = enumerable.OfType<SearchUnCodedContentFilter>().FirstOrDefault();
             if (unCodedContentFilter != null)
             {
                 searchQuery.Inclusions = MapUnCodedContent(unCodedContentFilter.IncludeUncodedContent);
@@ -103,18 +104,20 @@ namespace DowJones.Assemblers.Search
 
             #region AUTHORS
 
-            var authorFilters = filters.OfType<AuthorCodeFilter>().WhereNotNull();
-            if (authorFilters.Count() > 0)
+            var enumerable = filters as object[] ?? filters.Cast<object>().ToArray();
+            var authorFilters = enumerable.OfType<AuthorCodeFilter>().WhereNotNull();
+            var authorCodeFilters = authorFilters as IList<AuthorCodeFilter> ?? authorFilters.ToList();
+            if (authorCodeFilters.Any())
             {
                 var q = new CompoundQueryFilter();
                 
-                AuthorCodeFilter codeFilter = GetIncludedFilter(authorFilters);
+                var codeFilter = GetIncludedFilter(authorCodeFilters);
                 if (codeFilter != null)
                 {
                     q.Include = GetCompoundQueryFilter(EntityType.Author, codeFilter.PersonCodes);
                     q.Operator = MapOperator(codeFilter.Operator);
                 }
-                codeFilter = GetExcludedFilter(authorFilters);
+                codeFilter = GetExcludedFilter(authorCodeFilters);
                 if (codeFilter != null)
                 {
                     q.Exclude = GetCompoundQueryFilter(EntityType.Author, codeFilter.PersonCodes);
@@ -127,18 +130,19 @@ namespace DowJones.Assemblers.Search
 
             #region EXECUTIVE
 
-            var executiveFilters = filters.OfType<DJPersonCodeFilter>().WhereNotNull();
-            if (executiveFilters.Count() > 0)
+            var executiveFilters = enumerable.OfType<DJPersonCodeFilter>().WhereNotNull();
+            var djPersonCodeFilters = executiveFilters as DJPersonCodeFilter[] ?? executiveFilters.ToArray();
+            if (djPersonCodeFilters.Any())
             {
                 var q = new CompoundQueryFilter();
 
-                DJPersonCodeFilter codeFilter = GetIncludedFilter(executiveFilters);
+                var codeFilter = GetIncludedFilter(djPersonCodeFilters);
                 if (codeFilter != null)
                 {
                     q.Include = GetCompoundQueryFilter(EntityType.Executive, codeFilter.PersonCodes);
                     q.Operator = MapOperator(codeFilter.Operator);
                 }
-                codeFilter = GetExcludedFilter(executiveFilters);
+                codeFilter = GetExcludedFilter(djPersonCodeFilters);
                 if (codeFilter != null)
                 {
                     q.Exclude = GetCompoundQueryFilter(EntityType.Executive, codeFilter.PersonCodes);
@@ -151,18 +155,19 @@ namespace DowJones.Assemblers.Search
 
             #region COMPANY
 
-            IEnumerable<DJOrganizationCodeFilter> coFilters = filters.OfType<DJOrganizationCodeFilter>().WhereNotNull();
-            if (coFilters.Count() > 0)
+            var coFilters = enumerable.OfType<DJOrganizationCodeFilter>().WhereNotNull();
+            var djOrganizationCodeFilters = coFilters as DJOrganizationCodeFilter[] ?? coFilters.ToArray();
+            if (djOrganizationCodeFilters.Any())
             {
                 var q = new CompoundQueryFilter();
                 
-                DJOrganizationCodeFilter codeFilter = GetIncludedFilter(coFilters);
+                DJOrganizationCodeFilter codeFilter = GetIncludedFilter(djOrganizationCodeFilters);
                 if (codeFilter != null)
                 {
                     q.Include = GetCompoundQueryFilter(EntityType.Company, codeFilter.CompanyNewsQueries.Select(a => a.djOrgCode));
                     q.Operator = MapOperator(codeFilter.Operator);
                 }
-                codeFilter = GetExcludedFilter(coFilters);
+                codeFilter = GetExcludedFilter(djOrganizationCodeFilters);
                 if (codeFilter != null)
                 {
                     q.Exclude = GetCompoundQueryFilter(EntityType.Company, codeFilter.CompanyNewsQueries.Select(a => a.djOrgCode));
@@ -174,18 +179,19 @@ namespace DowJones.Assemblers.Search
             #endregion
 
             #region INDUSTRY
-            var industryCodeFilters = filters.OfType<IndustryCodeFilter>().WhereNotNull();
-            if (industryCodeFilters.Count() > 0)
+            var industryCodeFilters = enumerable.OfType<IndustryCodeFilter>().WhereNotNull();
+            var codeFilters = industryCodeFilters as IndustryCodeFilter[] ?? industryCodeFilters.ToArray();
+            if (codeFilters.Any())
             {
                 var q = new CompoundQueryFilter();
 
-                var codeFilter = GetIncludedFilter(industryCodeFilters);
+                var codeFilter = GetIncludedFilter(codeFilters);
                 if (codeFilter != null)
                 {
                     q.Include = GetCompoundQueryFilter(EntityType.Industry, codeFilter.CodeCollection);
                     q.Operator = MapOperator(codeFilter.Operator);
                 }
-                codeFilter = GetExcludedFilter(industryCodeFilters);
+                codeFilter = GetExcludedFilter(codeFilters);
                 if (codeFilter != null)
                 {
                     q.Exclude = GetCompoundQueryFilter(EntityType.Industry, codeFilter.CodeCollection);
@@ -196,18 +202,19 @@ namespace DowJones.Assemblers.Search
             #endregion
 
             #region Region
-            var regionCodeFilters = filters.OfType<RegionCodeFilter>().WhereNotNull();
-            if (regionCodeFilters.Count() > 0)
+            var regionCodeFilters = enumerable.OfType<RegionCodeFilter>().WhereNotNull();
+            var regionCodeFilters1 = regionCodeFilters as RegionCodeFilter[] ?? regionCodeFilters.ToArray();
+            if (regionCodeFilters1.Any())
             {
                 var q = new CompoundQueryFilter();
 
-                var codeFilter = GetIncludedFilter(regionCodeFilters);
+                var codeFilter = GetIncludedFilter(regionCodeFilters1);
                 if (codeFilter != null)
                 {
                     q.Include = GetCompoundQueryFilter(EntityType.Region, codeFilter.CodeCollection);
                     q.Operator = MapOperator(codeFilter.Operator);
                 }
-                codeFilter = GetExcludedFilter(regionCodeFilters);
+                codeFilter = GetExcludedFilter(regionCodeFilters1);
                 if (codeFilter != null)
                 {
                     q.Exclude = GetCompoundQueryFilter(EntityType.Region, codeFilter.CodeCollection);
@@ -218,18 +225,19 @@ namespace DowJones.Assemblers.Search
             #endregion
 
             #region SUBJECT
-            var subjectCodeFilters = filters.OfType<NewsSubjectCodeFilter>().WhereNotNull();
-            if (subjectCodeFilters.Count() > 0)
+            var subjectCodeFilters = enumerable.OfType<NewsSubjectCodeFilter>().WhereNotNull();
+            var newsSubjectCodeFilters = subjectCodeFilters as NewsSubjectCodeFilter[] ?? subjectCodeFilters.ToArray();
+            if (newsSubjectCodeFilters.Any())
             {
                 var q = new CompoundQueryFilter();
 
-                var codeFilter = GetIncludedFilter(subjectCodeFilters);
+                var codeFilter = GetIncludedFilter(newsSubjectCodeFilters);
                 if (codeFilter != null)
                 {
                     q.Include = GetCompoundQueryFilter(EntityType.Subject, codeFilter.CodeCollection);
                     q.Operator = MapOperator(codeFilter.Operator);
                 }
-                codeFilter = GetExcludedFilter(subjectCodeFilters);
+                codeFilter = GetExcludedFilter(newsSubjectCodeFilters);
                 if (codeFilter != null)
                 {
                     q.Exclude = GetCompoundQueryFilter(EntityType.Subject, codeFilter.CodeCollection);
@@ -240,19 +248,20 @@ namespace DowJones.Assemblers.Search
             #endregion
 
             #region SOURCES
-            IEnumerable<SourceEntityFilter> sourceEntityFilters = filters.OfType<SourceEntityFilter>().WhereNotNull();
-            if (sourceEntityFilters.Count() > 0)
+            var sourceEntityFilters = enumerable.OfType<SourceEntityFilter>().WhereNotNull();
+            var entityFilters = sourceEntityFilters as SourceEntityFilter[] ?? sourceEntityFilters.ToArray();
+            if (entityFilters.Any())
             {
                var q = new CompoundQueryFilter();
 
-               SourceEntityFilter codeFilter = GetIncludedFilter(sourceEntityFilters);
+               var codeFilter = GetIncludedFilter(entityFilters);
                if (codeFilter != null)
                {
                    q.Include = GetSourceEntityFilters(codeFilter.SourceEntitiesCollection);
                    q.Operator = SearchOperator.Or;
                }
 
-               codeFilter = GetExcludedFilter(sourceEntityFilters);
+               codeFilter = GetExcludedFilter(entityFilters);
                if (codeFilter != null)
                {
                    q.Exclude = GetSourceEntityFilters(codeFilter.SourceEntitiesCollection);
@@ -262,17 +271,17 @@ namespace DowJones.Assemblers.Search
             }
 
             //Source list
-            SourceEntityListIDFilter entityListIdFilter = filters.OfType<SourceEntityListIDFilter>().FirstOrDefault();
+            SourceEntityListIDFilter entityListIdFilter = enumerable.OfType<SourceEntityListIDFilter>().FirstOrDefault();
             if (entityListIdFilter != null && entityListIdFilter.IdCollectionCollection.Any())
             {
-                searchQuery.Source = new CompoundQueryFilter() {ListId = entityListIdFilter.IdCollectionCollection[0]};
+                searchQuery.Source = new CompoundQueryFilter {ListId = entityListIdFilter.IdCollectionCollection[0]};
             }
 
 
             #endregion
 
             #region EXCLUSION
-            var ef = filters.OfType<SearchExclusionFilter>().FirstOrDefault();
+            var ef = enumerable.OfType<SearchExclusionFilter>().FirstOrDefault();
             if (ef != null)
             {
                 var list = new List<ExclusionFilter>();
@@ -384,13 +393,13 @@ namespace DowJones.Assemblers.Search
 
         private static SearchDateRange MapDateRange(int sinceDays)
         {
-            Type t = typeof (SearchDateRange);
-            string[] a = Enum.GetNames(t);
-            foreach (string s in a)
+            var t = typeof (SearchDateRange);
+            var a = Enum.GetNames(t);
+            foreach (var s in a)
             {
-                FieldInfo field = t.GetField(s);
+                var field = t.GetField(s);
                 var attribute = (TimeSlice) field.GetCustomAttributes(typeof (TimeSlice), false).FirstOrDefault();
-                if (attribute.Slice == sinceDays)
+                if (attribute != null && attribute.Slice == sinceDays)
                 {
                     return (SearchDateRange) Enum.Parse(typeof (SearchDateRange), s);
                 }
