@@ -12,12 +12,12 @@ using DowJones.Web.Mvc.Search.Requests;
 using DowJones.Web.Mvc.Search.Requests.Filters;
 using DowJones.Web.Mvc.Search.Requests.Freetext;
 using DowJones.Web.Mvc.Search.ViewModels;
-using DowJones.Web.Mvc.UI.Components.Common;
 using DowJones.Web.Mvc.UI.Components.HeadlineList;
 using System.Web.Configuration;
 using Factiva.Gateway.Messages.Assets.Queries.V1_0;
 using DowJones.Web.Mvc.UI.Components.SearchBuilder;
 using DowJones.Web.Mvc.UI.Components.Search;
+using QueryFilter = DowJones.Web.Mvc.Search.Requests.Filters.QueryFilter;
 
 namespace DowJones.Web.Mvc.Search.Controllers
 {
@@ -148,74 +148,72 @@ namespace DowJones.Web.Mvc.Search.Controllers
             if (searchFilter != null && (searchFilter.Include != null || searchFilter.Exclude != null))
             {
                 var list = new FilterList<SourceFilterItem>();
-                List<SourceFilterItem> lstFilterItem;
-                if (searchFilter.Include != null)
+                if (searchFilter.Include == null)
                 {
-                    lstFilterItem = new List<SourceFilterItem>();
-                    foreach (var filter in searchFilter.Include)
-                    {
-                        if (filter != null)
-                        {
-                            var item = new SourceFilterItem();
-                            foreach (var f in filter)
-                            {
-                                if (f != null)
-                                {
-                                    item.Add(new FilterItem { Code = f.Code, Desc = f.Name });
-                                }
-                            }
-                            lstFilterItem.Add(item);
-                        }
-                    }
-                    list.Include = lstFilterItem;
+                    return list;
                 }
+
+                var lstFilterItem = new List<SourceFilterItem>();
+                foreach (var filter in searchFilter.Include)
+                {
+                    if (filter == null)
+                    {
+                        continue;
+                    }
+
+                    var item = new SourceFilterItem();
+                    item.AddRange(from f in filter where f != null select new FilterItem {Code = f.Code, Desc = f.Name});
+                    lstFilterItem.Add(item);
+                }
+                list.Include = lstFilterItem;
                 return list;
             }
             return null;
         }
 
-        private SearchNewsFilters GetNewsFilter(QueryFilters newsFilters)
+        private SearchNewsFilters GetNewsFilter(ICollection<QueryFilter> newsFilters)
         {
-            if (newsFilters != null && newsFilters.Count > 0)
+            if (newsFilters == null || newsFilters.Count <= 0)
             {
-                var searchNewsFilters = new SearchNewsFilters();
-                foreach (var newsFilter in newsFilters)
-                {
-                    var filterItem = new FilterItem { Code = newsFilter.Code, Desc = newsFilter.Name };
-                    switch (newsFilter.Category)
-                    {
-                        case NewsFilterCategory.Company:
-                            searchNewsFilters.Company = (searchNewsFilters.Company ?? Enumerable.Empty<FilterItem>()).Concat(new[] { filterItem });
-                            break;
-                        case NewsFilterCategory.Author:
-                            searchNewsFilters.Author = (searchNewsFilters.Author ?? Enumerable.Empty<FilterItem>()).Concat(new[] { filterItem });
-                            break;
-                        case NewsFilterCategory.Executive:
-                            searchNewsFilters.Executive = (searchNewsFilters.Executive ?? Enumerable.Empty<FilterItem>()).Concat(new[] { filterItem });
-                            break;
-                        case NewsFilterCategory.Subject:
-                            searchNewsFilters.Subject = (searchNewsFilters.Subject ?? Enumerable.Empty<FilterItem>()).Concat(new[] { filterItem });
-                            break;
-                        case NewsFilterCategory.Industry:
-                            searchNewsFilters.Industry = (searchNewsFilters.Industry ?? Enumerable.Empty<FilterItem>()).Concat(new[] { filterItem });
-                            break;
-                        case NewsFilterCategory.Region:
-                            searchNewsFilters.Region = (searchNewsFilters.Region ?? Enumerable.Empty<FilterItem>()).Concat(new[] { filterItem });
-                            break;
-                        case NewsFilterCategory.Source:
-                            searchNewsFilters.Source = (searchNewsFilters.Source ?? Enumerable.Empty<FilterItem>()).Concat(new[] { filterItem });
-                            break;
-                        case NewsFilterCategory.DateRange:
-                            searchNewsFilters.DateRange = filterItem;
-                            break;
-                        case NewsFilterCategory.Keyword:
-                            searchNewsFilters.Keyword = (searchNewsFilters.Keyword ?? Enumerable.Empty<string>()).Concat(new[] { newsFilter.Name });
-                            break;
-                    }
-                }
-                return searchNewsFilters;
+                return null;
             }
-            return null;
+
+            var searchNewsFilters = new SearchNewsFilters();
+            foreach (var newsFilter in newsFilters)
+            {
+                var filterItem = new FilterItem { Code = newsFilter.Code, Desc = newsFilter.Name };
+                switch (newsFilter.Category)
+                {
+                    case NewsFilterCategory.Company:
+                        searchNewsFilters.Company = (searchNewsFilters.Company ?? Enumerable.Empty<FilterItem>()).Concat(new[] { filterItem });
+                        break;
+                    case NewsFilterCategory.Author:
+                        searchNewsFilters.Author = (searchNewsFilters.Author ?? Enumerable.Empty<FilterItem>()).Concat(new[] { filterItem });
+                        break;
+                    case NewsFilterCategory.Executive:
+                        searchNewsFilters.Executive = (searchNewsFilters.Executive ?? Enumerable.Empty<FilterItem>()).Concat(new[] { filterItem });
+                        break;
+                    case NewsFilterCategory.Subject:
+                        searchNewsFilters.Subject = (searchNewsFilters.Subject ?? Enumerable.Empty<FilterItem>()).Concat(new[] { filterItem });
+                        break;
+                    case NewsFilterCategory.Industry:
+                        searchNewsFilters.Industry = (searchNewsFilters.Industry ?? Enumerable.Empty<FilterItem>()).Concat(new[] { filterItem });
+                        break;
+                    case NewsFilterCategory.Region:
+                        searchNewsFilters.Region = (searchNewsFilters.Region ?? Enumerable.Empty<FilterItem>()).Concat(new[] { filterItem });
+                        break;
+                    case NewsFilterCategory.Source:
+                        searchNewsFilters.Source = (searchNewsFilters.Source ?? Enumerable.Empty<FilterItem>()).Concat(new[] { filterItem });
+                        break;
+                    case NewsFilterCategory.DateRange:
+                        searchNewsFilters.DateRange = filterItem;
+                        break;
+                    case NewsFilterCategory.Keyword:
+                        searchNewsFilters.Keyword = (searchNewsFilters.Keyword ?? Enumerable.Empty<string>()).Concat(new[] { newsFilter.Name });
+                        break;
+                }
+            }
+            return searchNewsFilters;
         }
     }
 }

@@ -245,6 +245,8 @@ namespace DowJones.Web.Mvc.Search.Requests.Common
                     return SearchDateRange.LastYear;
                 case DefaultSimpleSearchDateRange.Last2Years:
                     return SearchDateRange.LastTwoYears;
+                case DefaultSimpleSearchDateRange.Last5Years:
+                    return SearchDateRange.LastTwoYears;
                 case DefaultSimpleSearchDateRange.Last3Months:
                     return SearchDateRange.LastThreeMonths;
                 case DefaultSimpleSearchDateRange.All:

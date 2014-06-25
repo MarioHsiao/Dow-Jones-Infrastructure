@@ -73,13 +73,13 @@
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="factiva.gateway.messages, Version=7.5.0.158, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="factiva.gateway.messages, Version=7.5.0.171, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.158\lib\factiva.gateway.messages.dll</HintPath>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.171\lib\factiva.gateway.messages.dll</HintPath>
     </Reference>
     <Reference Include="FactivaGateway, Version=1.6.0.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.158\lib\FactivaGateway.dll</HintPath>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.171\lib\FactivaGateway.dll</HintPath>
     </Reference>
     <Reference Include="Glimpse.Core">
       <HintPath>..\packages\Glimpse.0.86\lib\net40\Glimpse.Core.dll</HintPath>
@@ -90,9 +90,11 @@
     <Reference Include="Glimpse.Mvc3">
       <HintPath>..\packages\Glimpse.Mvc3.0.86\lib\net40\Glimpse.Mvc3.dll</HintPath>
     </Reference>
-    <Reference Include="Interop.FCMLib">
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.158\lib\Interop.FCMLib.dll</HintPath>
+    <Reference Include="Interop.FCMLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.171\lib\Interop.FCMLib.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.1.2.99\lib\2.0\log4net.dll</HintPath>
@@ -189,7 +191,6 @@
     <Compile Include="Controllers\PreferencesController.cs" />
     <Compile Include="Controllers\SearchBuilderController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
-    <Compile Include="Areas\Sandbox\SandboxAreaRegistration.cs" />
     <Compile Include="Components\SourcesFilter\SourcesFilterComponent.cs" />
     <Compile Include="Components\SourcesFilter\SourcesFilterModel.cs" />
     <Compile Include="Components\CompanyHeadlines\CompanyHeadlinesComponent.cs" />
@@ -1124,9 +1125,6 @@
     <Content Include="Content\syntaxhighlighter\sh.js" />
     <Content Include="Content\syntaxhighlighter\shCore.css" />
     <Content Include="Content\syntaxhighlighter\shThemeDefault.css" />
-    <Content Include="Areas\Sandbox\Views\Web.config" />
-    <Content Include="Areas\Sandbox\_viewstart.cshtml" />
-    <Content Include="Areas\Sandbox\Views\Shared\_Layout.cshtml" />
     <Content Include="GatewayResources\config\UserEventRecorderService.config" />
     <Content Include="GatewayResources\config\Triggers.config" />
     <Content Include="GatewayResources\config\TrackService.config" />
@@ -1564,10 +1562,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Browsers\Devices\" />
-    <Folder Include="Areas\Sandbox\Content\" />
-    <Folder Include="Areas\Sandbox\Controllers\" />
-    <Folder Include="Areas\Sandbox\Models\" />
-    <Folder Include="Areas\Sandbox\Scripts\" />
     <Folder Include="Data\" />
     <Folder Include="Scripts\PhantomJs\tmp\" />
   </ItemGroup>
@@ -1587,10 +1581,6 @@
     <ProjectReference Include="..\DowJones.Pages\DowJones.Pages.csproj">
       <Project>{60BFCFAB-61ED-4AB5-9803-D8AAAF1184E4}</Project>
       <Name>DowJones.Pages</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DowJones.Web.Mvc.Diagnostics\DowJones.Web.Mvc.Diagnostics.csproj">
-      <Project>{DC6F4246-50E5-4E2E-A90B-70E4BECA1EB6}</Project>
-      <Name>DowJones.Web.Mvc.Diagnostics</Name>
     </ProjectReference>
     <ProjectReference Include="..\DowJones.Web.Mvc.Search\DowJones.Web.Mvc.Search.csproj">
       <Project>{1E5B6A24-ED92-4ABE-AD3B-9889E16CB01F}</Project>

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DowJones.Attributes;
-using DowJones.DependencyInjection;
 using DowJones.Extensions;
 using DowJones.Managers.Search.Preference;
 using DowJones.Managers.SearchContext;
@@ -36,8 +35,8 @@ namespace DowJones.Managers.Search
         private readonly IPreferences _preferences;
         private readonly ISearchQueryResourceManager _searchQueryResourceManager;
         private string _productCode;
-        private ISearchPreferenceService _searchPreferenceService;
-        private SearchContextManager _searchContextManager;
+        private readonly ISearchPreferenceService _searchPreferenceService;
+        private readonly SearchContextManager _searchContextManager;
 
         public SearchQueryBuilder(IPreferences preferences, ISearchQueryResourceManager searchQueryResourceManager, ISearchPreferenceService searchPreferenceService, SearchContextManager searchContextService)
         {
@@ -50,27 +49,33 @@ namespace DowJones.Managers.Search
         public T GetRequest<T>(AbstractBaseSearchQuery request) where T : IPerformContentSearchRequest, new()
         {
             _productCode = request.ProductId;
-            if (request is SimpleSearchQuery)
+
+            var query = request as SimpleSearchQuery;
+            if (query != null)
             {
-                return GetRequest<T>((SimpleSearchQuery)request);
+                return GetRequest<T>(query);
             }
-            if (request is FreeTextSearchQuery)
+            
+            var searchQuery = request as FreeTextSearchQuery;
+            if (searchQuery != null)
             {
-                return GetRequest<T>((FreeTextSearchQuery)request);
+                return GetRequest<T>(searchQuery);
             }
-            if (request is SearchFormSearchQuery)
+            
+            var formSearchQuery = request as SearchFormSearchQuery;
+            if (formSearchQuery != null)
             {
-                return GetRequest<T>((SearchFormSearchQuery)request);
+                return GetRequest<T>(formSearchQuery);
             }
-            if (request is ModuleSearchQuery)
+
+            var moduleSearchQuery = request as ModuleSearchQuery;
+            if (moduleSearchQuery != null)
             {
-                return GetBaseRequest<T>((ModuleSearchQuery)request);
+                return GetBaseRequest<T>(moduleSearchQuery);
             }
-            if (request is AbstractSearchQuery)
-            {
-                return GetBaseRequest<T>((AbstractSearchQuery)request);
-            }
-            return GetBaseSearchQuery<T>(request);
+
+            var abstractSearchQuery = request as AbstractSearchQuery;
+            return abstractSearchQuery != null ? GetBaseRequest<T>(abstractSearchQuery) : GetBaseSearchQuery<T>(request);
         }
 
         private T GetRequest<T>(SimpleSearchQuery request) where T : IPerformContentSearchRequest, new()
@@ -102,11 +107,17 @@ namespace DowJones.Managers.Search
                         searchRequest.StructuredSearch.Query.SearchStringCollection.Add(searchString);
                     }
                 }
-                else if (pst.Count() > 0)
+                else
                 {
-                    searchRequest.StructuredSearch.Query.SearchStringCollection.Add(CreateSearchString("pst=(" + pst.Join(" OR ") + ")"));
+                    var enumerable = pst as string[] ?? pst.ToArray();
+                    if (!enumerable.Any())
+                    {
+                        return searchRequest;
+                    }
+
+                    searchRequest.StructuredSearch.Query.SearchStringCollection.Add(CreateSearchString("pst=(" + enumerable.Join(" OR ") + ")"));
                     searchRequest.NavigationControl.CollectionCountControl.SourceTypeCollection.Clear();
-                    searchRequest.NavigationControl.CollectionCountControl.SourceTypeCollection.AddRange(pst);
+                    searchRequest.NavigationControl.CollectionCountControl.SourceTypeCollection.AddRange(enumerable);
                 }
             }
             return searchRequest;
@@ -190,6 +201,7 @@ namespace DowJones.Managers.Search
                 {
                     includeSearchString = Join(SearchOperator.Or, request.Source.Include.OfType<SourceQueryFilterEntities>().Select(GetSourceQueryFilter).Where(str => str != null));
                 }
+
                 if (hasExclude)
                 {
                     excludeSearchString = Join(SearchOperator.Or, request.Source.Exclude.OfType<SourceQueryFilterEntities>().Select(GetSourceQueryFilter).Where(str => str != null));
@@ -205,11 +217,11 @@ namespace DowJones.Managers.Search
                             includeSearchString, excludeSearchString)
                     };
                 }
-                else if (hasInclude && !hasExclude)
+                else if (hasInclude)
                 {
                     sourceSearchString = new SearchString { Mode = SearchMode.Traditional, Id = "BSSSource", Value = string.Format("({0})", includeSearchString) };
                 }
-                else if (!hasInclude && hasExclude)
+                else if (hasExclude)
                 {
                     var sourceTypes = Join(SearchOperator.Or, searchRequest.StructuredSearch.Query.SourceTypeCollection.Where(t => t != null));
                     //Empty the collection since we are adding it in the search string
