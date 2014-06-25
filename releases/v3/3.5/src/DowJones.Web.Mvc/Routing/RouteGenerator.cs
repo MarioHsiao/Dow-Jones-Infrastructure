@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Script.Serialization;
@@ -7,6 +9,7 @@ using DowJones.DependencyInjection;
 using DowJones.Extensions;
 using DowJones.Web.Mvc.Infrastructure;
 using DowJones.Web.Mvc.Threading;
+using Filter = Factiva.Gateway.Filters.V1_0.Filter;
 
 namespace DowJones.Web.Mvc.Routing
 {
@@ -43,7 +46,7 @@ namespace DowJones.Web.Mvc.Routing
                 let routeInfo = new RouteInfo(action.Controller, action.Action)
                 let defaults = GetDefaults(attribute, routeInfo)
                 let constraints = GetConstraints(attribute)
-                let routeUrl = GetRouteUrl(routeInfo, attribute)
+                let routeUrl = GetRouteUrl(routeInfo, attribute, action.Controller, action.Action)
                 let handler = GetRouteHandler(action)
                 select new Route(routeUrl, defaults, constraints, handler);
 
@@ -58,6 +61,12 @@ namespace DowJones.Web.Mvc.Routing
 
             routeDefaults.Merge(attributeDefaults ?? new object());
 
+            if (attribute.Pattern.IsNullOrEmpty())
+            {
+                routeDefaults.Add("Id", UrlParameter.Optional);    
+            }
+            
+
             return routeDefaults;
         }
 
@@ -69,11 +78,17 @@ namespace DowJones.Web.Mvc.Routing
             return new RouteValueDictionary(constraints ?? new object());
         }
 
-        private string GetRouteUrl(RouteInfo routeInfo, RouteAttribute attribute)
+        private string GetRouteUrl(RouteInfo routeInfo, RouteAttribute attribute, Type controller, MethodInfo methodInfo)
         {
             var iisVersion = _requestContext.HttpContext.Request.GetIISVersion();
 
-            var routeUrl = routeInfo.ResolveRoute(attribute.Pattern, _routes, _requestContext, iisVersion);
+            var pattern = attribute.Pattern;
+            if (pattern.IsNullOrEmpty())
+            {
+                pattern = string.Format("{0}/{{action}}/{{id}}", controller.Name.Replace("Controller",""));
+            }
+
+            var routeUrl = routeInfo.ResolveRoute(pattern, _routes, _requestContext, iisVersion);
 
             return routeUrl;
         }
