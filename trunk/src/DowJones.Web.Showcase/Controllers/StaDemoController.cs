@@ -10,12 +10,12 @@ namespace DowJones.Web.Showcase.Controllers
     {
         public ActionResult Index()
         {
-            return View("ApartmentState", new { ActionName = "Index" });
+            return View("ApartmentState", new { ActionName = "Index", Items = new List<string>() }.ToExpando());
         }
 
         public ActionResult Test1()
         {
-            return View("ApartmentState", new { ActionName = "Test1" });
+            return View("ApartmentState", new { ActionName = "Test1", Items = new List<string>() }.ToExpando());
         }
 
         public ActionResult Test2([ModelBinder(typeof(CommaStringSplitModelBinder))]string[] syms)
