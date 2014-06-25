@@ -63,7 +63,7 @@ namespace DowJones.Web.Mvc.Routing
 
             if (attribute.Pattern.IsNullOrEmpty())
             {
-                routeDefaults.Add("Id", UrlParameter.Optional);    
+                routeDefaults.Add("Id", UrlParameter.Optional);
             }
             
 

@@ -12,7 +12,7 @@ namespace DowJones.Web.Mvc
     public class HttpApplication : DowJonesHttpApplication
     {
         private static bool customRoutesInitialized;
-        private ILog _logger = LogManager.GetLogger(typeof (HttpApplication));
+        private readonly ILog _logger = LogManager.GetLogger(typeof (HttpApplication));
 
         [Inject("No access to constructor injection")]
         public IDependencyResolver CustomDependencyResolver { get; set; }
@@ -81,6 +81,15 @@ namespace DowJones.Web.Mvc
                 foreach (var route in routeBases)
                 {
                     RouteTable.Routes.Insert(0, route);
+                }
+
+                if (_logger.IsDebugEnabled)
+                {
+                    foreach (var t in from Route t in routeBases where t != null select t)
+                    {
+                        _logger.Debug(t.Url);
+                        _logger.Debug(t.RouteHandler.ToString());
+                    }
                 }
 
                 customRoutesInitialized = true;

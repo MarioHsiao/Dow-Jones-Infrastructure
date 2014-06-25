@@ -177,6 +177,7 @@
     <Compile Include="Controllers\CompanyProfileController.cs" />
     <Compile Include="Controllers\DiscoveryFiltersController.cs" />
     <Compile Include="Controllers\GaugeController.cs" />
+    <Compile Include="Controllers\MtaDemoController.cs" />
     <Compile Include="Controllers\NewsMatrixController.cs" />
     <Compile Include="Controllers\DateHistogramController.cs" />
     <Compile Include="Controllers\DateSliderController.cs" />
