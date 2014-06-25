@@ -56,6 +56,8 @@ namespace DowJones.Web.Mvc.Search.Managers.Preferences
                     return SearchDateRange.LastWeek;
                 case DefaultSimpleSearchDateRange.LastMonth:
                     return SearchDateRange.LastMonth;
+                case DefaultSimpleSearchDateRange.Last3Months:
+                    return SearchDateRange.LastThreeMonths;
                 case DefaultSimpleSearchDateRange.Last6Months:
                     return SearchDateRange.LastSixMonths;
                 case DefaultSimpleSearchDateRange.LastYear:
@@ -63,9 +65,7 @@ namespace DowJones.Web.Mvc.Search.Managers.Preferences
                 case DefaultSimpleSearchDateRange.Last2Years:
                     return SearchDateRange.LastTwoYears;
                 case DefaultSimpleSearchDateRange.Last5Years:
-                    return SearchDateRange.LastTwoYears;
-                case DefaultSimpleSearchDateRange.Last3Months:
-                    return SearchDateRange.LastThreeMonths;
+                    return SearchDateRange.LastFiveYears;
                 case DefaultSimpleSearchDateRange.All:
                     return SearchDateRange.All;
                 default:
@@ -125,6 +125,8 @@ namespace DowJones.Web.Mvc.Search.Managers.Preferences
                     return SearchDateRange.LastWeek;
                 case PreferenceSearchDateRange.LastMonth:
                     return SearchDateRange.LastMonth;
+                case PreferenceSearchDateRange.LastThreeMonths:
+                    return SearchDateRange.LastThreeMonths;
                 case PreferenceSearchDateRange.LastSixMonths:
                     return SearchDateRange.LastSixMonths;
                 case PreferenceSearchDateRange.LastYear:
@@ -133,8 +135,6 @@ namespace DowJones.Web.Mvc.Search.Managers.Preferences
                     return SearchDateRange.LastTwoYears;
                 case PreferenceSearchDateRange.LastFiveYears:
                     return SearchDateRange.LastFiveYears;
-                case PreferenceSearchDateRange.LastThreeMonths:
-                    return SearchDateRange.LastThreeMonths;
                 case PreferenceSearchDateRange.AllDates:
                     return SearchDateRange.All;
                 default:
