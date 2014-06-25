@@ -10,6 +10,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Dynamic;
 using System.Linq;
 using System.Reflection;
 using System.Xml;
@@ -66,21 +67,23 @@ namespace DowJones.Extensions
         /// <returns>The target type</returns>
         public static T ConvertTo<T>(this object value, T defaultValue)
         {
-            if (value != null)
+            if (value == null)
             {
-                var targetType = typeof(T);
+                return defaultValue;
+            }
 
-                var converter = TypeDescriptor.GetConverter(value);
-                if (converter.CanConvertTo(targetType))
-                {
-                    return (T)converter.ConvertTo(value, targetType);
-                }
+            var targetType = typeof(T);
 
-                converter = TypeDescriptor.GetConverter(targetType);
-                if (converter.CanConvertFrom(value.GetType()))
-                {
-                    return (T)converter.ConvertFrom(value);
-                }
+            var converter = TypeDescriptor.GetConverter(value);
+            if (converter.CanConvertTo(targetType))
+            {
+                return (T)converter.ConvertTo(value, targetType);
+            }
+
+            converter = TypeDescriptor.GetConverter(targetType);
+            if (converter.CanConvertFrom(value.GetType()))
+            {
+                return (T)converter.ConvertFrom(value);
             }
 
             return defaultValue;
@@ -96,19 +99,18 @@ namespace DowJones.Extensions
         /// <returns>The target type</returns>
         public static T ConvertTo<T>(this object value, T defaultValue, bool ignoreException)
         {
-            if (ignoreException)
+            if (!ignoreException)
             {
-                try
-                {
-                    return value.ConvertTo<T>();
-                }
-                catch
-                {
-                    return defaultValue;
-                }
+                return value.ConvertTo<T>();
             }
-
-            return value.ConvertTo<T>();
+            try
+            {
+                return value.ConvertTo<T>();
+            }
+            catch
+            {
+                return defaultValue;
+            }
         }
 
         /// <summary>
@@ -121,24 +123,21 @@ namespace DowJones.Extensions
         /// </returns>
         public static bool CanConvertTo<T>(this object value)
         {
-            if (value != null)
+            if (value == null)
             {
-                var targetType = typeof(T);
-
-                var converter = TypeDescriptor.GetConverter(value);
-                if (converter.CanConvertTo(targetType))
-                {
-                    return true;
-                }
-
-                converter = TypeDescriptor.GetConverter(targetType);
-                if (converter.CanConvertFrom(value.GetType()))
-                {
-                    return true;
-                }
+                return false;
             }
 
-            return false;
+            var targetType = typeof(T);
+
+            var converter = TypeDescriptor.GetConverter(value);
+            if (converter.CanConvertTo(targetType))
+            {
+                return true;
+            }
+
+            converter = TypeDescriptor.GetConverter(targetType);
+            return converter.CanConvertFrom(value.GetType());
         }
 
         /// <summary>
@@ -146,7 +145,7 @@ namespace DowJones.Extensions
         /// </summary>
         /// <typeparam name="T">Any generic type.</typeparam>
         /// <param name="value">The value.</param>
-        /// <returns>An universal converter suppliying additional target conversion methods</returns>
+        /// <returns>An universal converter supplying additional target conversion methods</returns>
         /// <example><code>
         /// var value = "123";
         /// var numeric = value.Convert().ToInt32();
@@ -511,6 +510,18 @@ namespace DowJones.Extensions
             NullValueHandling = NullValueHandling.Ignore,
             TypeNameHandling = TypeNameHandling.None,
         };
+
+        public static ExpandoObject ToExpando(this object anonymousObject)
+        {
+            IDictionary<string, object> expando = new ExpandoObject();
+            foreach (PropertyDescriptor propertyDescriptor in TypeDescriptor.GetProperties(anonymousObject))
+            {
+                var obj = propertyDescriptor.GetValue(anonymousObject);
+                expando.Add(propertyDescriptor.Name, obj);
+            }
+
+            return (ExpandoObject)expando;
+        }
 
         /// <summary>
         /// Serializes object to json string.

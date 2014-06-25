@@ -1,5 +1,7 @@
-﻿using System.Web.Mvc;
-using DowJones.Web.Mvc.Infrastructure;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
+using DowJones.Extensions;
+using DowJones.Web.Mvc.ModelBinders;
 using DowJones.Web.Mvc.Threading;
 
 namespace DowJones.Web.Showcase.Controllers
@@ -16,9 +18,10 @@ namespace DowJones.Web.Showcase.Controllers
             return View("ApartmentState", new { ActionName = "Test1" });
         }
 
-        public ActionResult Test2()
+        public ActionResult Test2([ModelBinder(typeof(CommaStringSplitModelBinder))]string[] syms)
         {
-            return View("ApartmentState", new { ActionName = "Test2" });
+            var items = new List<string>(syms ?? new[] { "reggr", "carsvc", "cmdbnn", "rgrc", "stgtec", "precos", "comasc" });
+            return View("ApartmentState", new { ActionName = "Test2", Items = items }.ToExpando());
         }
 
         protected override void OnActionExecuted(ActionExecutedContext filterContext)

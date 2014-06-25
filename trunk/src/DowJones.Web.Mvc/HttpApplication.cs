@@ -4,6 +4,7 @@ using System.Web.Routing;
 using DowJones.DependencyInjection;
 using DowJones.Web.Mvc.Mobile;
 using DowJones.Web.Mvc.Routing;
+using log4net;
 using DowJonesHttpApplication = DowJones.Web.HttpApplication;
 
 namespace DowJones.Web.Mvc
@@ -11,6 +12,7 @@ namespace DowJones.Web.Mvc
     public class HttpApplication : DowJonesHttpApplication
     {
         private static bool customRoutesInitialized;
+        private ILog _logger = LogManager.GetLogger(typeof (HttpApplication));
 
         [Inject("No access to constructor injection")]
         public IDependencyResolver CustomDependencyResolver { get; set; }
@@ -74,8 +76,9 @@ namespace DowJones.Web.Mvc
                 if (customRoutesInitialized) return;
                 var routeGenerator = ServiceLocator.Resolve<IRouteGenerator>();
                 var customRoutes = routeGenerator.Generate();
+                var routeBases = customRoutes as RouteBase[] ?? customRoutes.ToArray();
 
-                foreach (var route in customRoutes)
+                foreach (var route in routeBases)
                 {
                     RouteTable.Routes.Insert(0, route);
                 }

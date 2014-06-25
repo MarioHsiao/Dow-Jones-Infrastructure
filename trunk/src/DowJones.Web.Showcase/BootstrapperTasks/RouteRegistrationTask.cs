@@ -23,7 +23,12 @@ namespace DowJones.Web.Showcase.BootstrapperTasks
 				"article/{accessionNumber}",
 				new { controller = "Article", action = "Article" },
 				new { accessionNumber = new NotEqual("ComponentExplorerDemo") });
-		
+
+            _routes.MapRoute(
+                "StaDemo", // Route name
+                "StaDemo/{action}/{id}", // URL with parameters
+                new { controller = "StaDemo", action = "Index", id = UrlParameter.Optional } // Parameter defaults
+                );
             _routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters

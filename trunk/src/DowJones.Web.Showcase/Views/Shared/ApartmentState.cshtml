@@ -1,28 +1,41 @@
-﻿@{
-	Html.DJ().StylesheetRegistry()
-		.Add("#main div", "padding: 1em 0")
-		.Add(".apartment-state", "font-weight: bold")
-		.Add("#main", "font-size: 110%; text-align: center;")
-		.Add("#main", "margin-top: 2em");
+﻿@model dynamic
+@{
+    Html.DJ().StylesheetRegistry()
+        .Add("#main div", "padding: 1em 0")
+        .Add(".apartment-state", "font-weight: bold")
+        .Add("#main", "font-size: 110%; text-align: center;")
+        .Add("#main", "margin-top: 2em");
 }
 
 
 <div>
-	<label>Current Apartment State:</label>
-	<span class="apartment-state">@ViewData["ApartmentState"].ToString()</span>
+<label>Current Apartment State:</label>
+<span class="apartment-state">@ViewData["ApartmentState"].ToString()</span>
+@{
+    var items =((List<string>) Model.Items);
+}
+
+<table>
+    @if (items != null)
+    {
+        foreach (var item in items)
+        {
+             <tr><td>@item</td> </tr>
+        }
+    }
+</table>
+<div>
+    <h2>Home Controller</h2>
+    <p><em>View the same Action via different Routes</em></p>
+    @Html.ActionLink("AspCompat (with MTA route)", "Mta", "Home") | @Html.ActionLink("AspCompat (with STA route)", "Sta", "Home")
 </div>
 
 <div>
-	<h2>Home Controller</h2>
-	<p><em>View the same Action via different Routes</em></p>
-	@Html.ActionLink("AspCompat (with MTA route)", "Mta", "Home") | @Html.ActionLink("AspCompat (with STA route)", "Sta", "Home")
+    <h2>STA Demo Controller</h2>
+    <p><em>All Actions should be in STA due to Controller-level [AspCompat]</em></p>
+    @Html.ActionLink("STA Demo: Index", "Index", "StaDemo") |
+    @Html.ActionLink("STA Demo: Test 1", "Test1", "StaDemo") |
+    @Html.ActionLink("STA Demo: Test 2", "Test2", "StaDemo")
+
 </div>
-
-<div>
-	<h2>STA Demo Controller</h2>
-	<p><em>All Actions should be in STA due to Controller-level [AspCompat]</em></p>
-	@Html.ActionLink("STA Demo: Index", "Index", "StaDemo") |
-	@Html.ActionLink("STA Demo: Test 1", "Test1", "StaDemo") |
-	@Html.ActionLink("STA Demo: Test 2", "Test2", "StaDemo")
-
 </div>

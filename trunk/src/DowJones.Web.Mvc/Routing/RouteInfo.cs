@@ -2,8 +2,6 @@
 using System.Reflection;
 using System.Web.Routing;
 using DowJones.Infrastructure;
-using DowJones.Web.Mvc.Extensions;
-using DowJones.Web.Mvc.Infrastructure;
 
 namespace DowJones.Web.Mvc.Routing
 {
@@ -43,14 +41,23 @@ namespace DowJones.Web.Mvc.Routing
             Guard.IsNotNull(iisVersion, "iisVersion");
 
             // An explict URL trumps everything
-            string routeUrl = explicitUrl;
+            var routeUrl = explicitUrl;
 
             // If one doesn't exist, try to figure it out
             if (string.IsNullOrEmpty(routeUrl))
-                routeUrl = routes.GetVirtualPath(requestContext, Defaults).VirtualPath;
+            {
+                var virtualPathData = routes.GetVirtualPath(requestContext, Defaults);
+                if (virtualPathData != null)
+                {
+                    routeUrl = virtualPathData.VirtualPath;
+                }
+            }
 
             if ((routeUrl ?? string.Empty).StartsWith("/"))
-                routeUrl = routeUrl.Substring(1);
+                if (routeUrl != null)
+                {
+                    routeUrl = routeUrl.Substring(1);
+                }
 
             routeUrl = ApplyRoutingExtension(routeUrl, iisVersion);
 
@@ -61,21 +68,23 @@ namespace DowJones.Web.Mvc.Routing
         {
             Guard.IsNotNull(iisVersion, "iisVersion");
 
-            string routeUrl = route;
+            var routeUrl = route;
 
             if (string.IsNullOrWhiteSpace(routeUrl))
             {
                 return routeUrl;
             }
 
-            if (!iisVersion.SupportsRouting)
+            if (iisVersion.SupportsRouting)
             {
-                int firstSlash = routeUrl.IndexOf('/', 1);
-                if (firstSlash <= 0)
-                    routeUrl = routeUrl + DefaultControllerExtension;
-                else
-                    routeUrl = routeUrl.Insert(firstSlash, DefaultControllerExtension);
+                return routeUrl;
             }
+
+            var firstSlash = routeUrl.IndexOf('/', 1);
+            if (firstSlash <= 0)
+                routeUrl = routeUrl + DefaultControllerExtension;
+            else
+                routeUrl = routeUrl.Insert(firstSlash, DefaultControllerExtension);
 
             return routeUrl;
         }
