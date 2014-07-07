@@ -10,7 +10,7 @@
 				for (var index = 0; index < data.headlines.length; index++) { 
 					x = data.headlines[index]; 
 					title = x.truncatedTitle || x.title;
-                    imgSrc = x.thumbnailImage?x.thumbnailImage.uri:"";
+                    imgSrc = x.thumbnailImage && x.thumbnailImage.uri?x.thumbnailImage.uri:"";
                     if (imgSrc.length > 0 && $dj.proxyUri)
                     {
                         imgSrc = $dj.proxyUri(imgSrc);

@@ -138,9 +138,11 @@
     <Compile Include="ActionFilters\SessionTimeoutExceptionFilter.cs" />
     <Compile Include="ActionFilters\SetThreadCultureToInterfaceLanguageFilter.cs" />
     <Compile Include="ActionFilters\ValidateSessionIDWithSecureHash.cs" />
+    <Compile Include="ActionResults\NegotiatedResult.cs" />
     <Compile Include="ActionResults\NewtonSoftJsonResult.cs" />
     <Compile Include="ActionResults\RedirectToAuthenticationServerActionResult.cs" />
     <Compile Include="ActionResults\XmlResult.cs" />
+    <Compile Include="Extensions\NegotiatedResultExtensions.cs" />
     <Compile Include="ModelBinders\XmlModelBinder.cs" />
     <Compile Include="Properties\Controllers\AuthenticationControllerBase.cs" />
     <Compile Include="Extensions\HtmlExtensions.cs" />

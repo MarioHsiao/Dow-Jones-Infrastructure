@@ -9,7 +9,6 @@ using DowJones.DependencyInjection;
 using DowJones.Extensions;
 using DowJones.Web.Mvc.Infrastructure;
 using DowJones.Web.Mvc.Threading;
-using Filter = Factiva.Gateway.Filters.V1_0.Filter;
 
 namespace DowJones.Web.Mvc.Routing
 {
@@ -63,7 +62,7 @@ namespace DowJones.Web.Mvc.Routing
 
             if (attribute.Pattern.IsNullOrEmpty())
             {
-                routeDefaults.Add("Id", UrlParameter.Optional);    
+                routeDefaults.Add("Id", UrlParameter.Optional);
             }
             
 
@@ -85,7 +84,7 @@ namespace DowJones.Web.Mvc.Routing
             var pattern = attribute.Pattern;
             if (pattern.IsNullOrEmpty())
             {
-                pattern = string.Format("{0}/{{action}}/{{id}}", controller.Name.Replace("Controller",""));
+                pattern = string.Format("{0}/{1}/{{id}}", controller.Name.Replace("Controller","").ToLowerInvariant(), methodInfo.Name.ToLowerInvariant());
             }
 
             var routeUrl = routeInfo.ResolveRoute(pattern, _routes, _requestContext, iisVersion);

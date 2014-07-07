@@ -5,6 +5,8 @@ using System.Reflection;
 using System.Web.Mvc;
 using DowJones.DependencyInjection;
 using DowJones.Infrastructure;
+using Factiva.Gateway.Messages.FCE.Assets.V1_0;
+using Type = System.Type;
 
 namespace DowJones.Web.Mvc.Infrastructure
 {
@@ -84,7 +86,25 @@ namespace DowJones.Web.Mvc.Infrastructure
                     .GetMethods(actionMethodBindingFlags)
                     .Where(method => method.DeclaringType == controller);
 
-            return actionMethods;
+
+            var methodInfos = actionMethods as MethodInfo[] ?? actionMethods.ToArray();
+            var actions = new List<MethodInfo>(methodInfos);
+
+            // Custom Sorting to ensure that index is the initial action that gets processed
+            actions.Sort((s1, s2) =>
+                         {
+                             if (s1.Name.Equals(s2.Name, StringComparison.OrdinalIgnoreCase))
+                             {
+                                 return 0;
+                             }
+
+                             if (s1.Name.Equals("index", StringComparison.OrdinalIgnoreCase))
+                             {
+                                 return -1;
+                             }
+                             return String.Compare(s1.Name, s2.Name, StringComparison.OrdinalIgnoreCase);
+                         });
+            return methodInfos;
         }
     }
 }

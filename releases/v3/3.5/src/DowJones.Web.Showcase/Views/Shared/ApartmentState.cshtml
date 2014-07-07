@@ -9,33 +9,46 @@
 
 
 <div>
-<label>Current Apartment State:</label>
-<span class="apartment-state">@ViewData["ApartmentState"].ToString()</span>
-@{
-    var items =((List<string>) Model.Items);
-}
-
-<table>
-    @if (items != null)
-    {
-        foreach (var item in items)
+    <label>Current Apartment State:</label>
+    <span class="apartment-state">@ViewData["ApartmentState"].ToString()</span>
+    <table>
+        @if (Model != null && Model.Items != null)
         {
-             <tr><td>@item</td> </tr>
+            var items = ((List<string>)Model.Items);
+
+
+            if (items != null)
+            {
+                foreach (var item in items)
+                {
+                    <tr><td>@item</td> </tr>
+                }
+            }
         }
-    }
-</table>
-<div>
-    <h2>Home Controller</h2>
-    <p><em>View the same Action via different Routes</em></p>
-    @Html.ActionLink("AspCompat (with MTA route)", "Mta", "Home") | @Html.ActionLink("AspCompat (with STA route)", "Sta", "Home")
-</div>
 
-<div>
-    <h2>STA Demo Controller</h2>
-    <p><em>All Actions should be in STA due to Controller-level [AspCompat]</em></p>
-    @Html.ActionLink("STA Demo: Index", "Index", "StaDemo") |
-    @Html.ActionLink("STA Demo: Test 1", "Test1", "StaDemo") |
-    @Html.ActionLink("STA Demo: Test 2", "Test2", "StaDemo")
+    </table>
+        <div>
+            <h2>Home Controller</h2>
+            <p><em>View the same Action via different Routes</em></p>
+            @Html.ActionLink("AspCompat (with MTA route)", "Mta", "Home") | @Html.ActionLink("AspCompat (with STA route)", "Sta", "Home")
+        </div>
 
-</div>
+    <div>
+        <h2>STA Demo Controller</h2>
+        <p><em>All Actions should be in STA due to Controller-level [AspCompat]</em></p>
+        @Html.ActionLink("STA Demo: Index", "Index", "StaDemo") |
+        @Html.ActionLink("STA Demo: Test 1", "Test1", "StaDemo") |
+        @Html.ActionLink("STA Demo: Test 2", "Test2", "StaDemo")
+
+    </div>
+    
+    <div>
+        <h2>MTA Demo Controller</h2>
+        <p><em>All Actions should be in MTA</em></p>
+        @Html.ActionLink("MTA Demo: Index", "ATest", "MtaDemo") |
+        @Html.ActionLink("MTA Demo: Index", "Index", "MtaDemo") |
+        @Html.ActionLink("MTA Demo: Test 1", "Test1", "MtaDemo") |
+        @Html.ActionLink("MTA Demo: Test 2", "Test2", "MtaDemo")
+
+    </div>
 </div>

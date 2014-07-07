@@ -24,5 +24,11 @@ namespace DowJones.Web.Showcase.Controllers
             headlineListManager.PerformSearch(q, mode);
             return View("Index");
         }
+
+
+        public JsonResult Email()
+        {
+            return new JsonResult { Data = new { deliveryNumber = 4, email = "david.dacosta@dowjones.com" } };
+        }
     }
 }

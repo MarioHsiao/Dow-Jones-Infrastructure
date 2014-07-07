@@ -11,8 +11,8 @@ namespace DowJones.Web.Mvc
 {
     public class HttpApplication : DowJonesHttpApplication
     {
-        private static bool customRoutesInitialized;
-        private ILog _logger = LogManager.GetLogger(typeof (HttpApplication));
+        private static bool _customRoutesInitialized;
+        private readonly ILog _logger = LogManager.GetLogger(typeof (HttpApplication));
 
         [Inject("No access to constructor injection")]
         public IDependencyResolver CustomDependencyResolver { get; set; }
@@ -70,10 +70,10 @@ namespace DowJones.Web.Mvc
 
         private void RegisterCustomRouteAttributes()
         {
-            if (customRoutesInitialized) return;
+            if (_customRoutesInitialized) return;
             lock (RouteTable.Routes)
             {
-                if (customRoutesInitialized) return;
+                if (_customRoutesInitialized) return;
                 var routeGenerator = ServiceLocator.Resolve<IRouteGenerator>();
                 var customRoutes = routeGenerator.Generate();
                 var routeBases = customRoutes as RouteBase[] ?? customRoutes.ToArray();
@@ -83,7 +83,16 @@ namespace DowJones.Web.Mvc
                     RouteTable.Routes.Insert(0, route);
                 }
 
-                customRoutesInitialized = true;
+                if (_logger.IsDebugEnabled)
+                {
+                    foreach (var t in from Route t in routeBases where t != null select t)
+                    {
+                        _logger.Debug(t.Url);
+                        _logger.Debug(t.RouteHandler.ToString());
+                    }
+                }
+
+                _customRoutesInitialized = true;
             }
         }
     }
