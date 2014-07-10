@@ -15,9 +15,10 @@ using System.Xml.Serialization;
 using System.Xml.Xsl;
 using Data;
 using EMG.Utility.Formatters.Globalization;
+using EMG.Utility.Managers.CacheService;
 using EMG.Utility.Managers.Search.Requests;
 using EMG.Utility.Managers.Search.Responses;
-using EMG.Utility.Managers.CacheService;
+using EMG.Utility.Managers.Track;
 using Factiva.BusinessLayerLogic.Exceptions;
 using Factiva.BusinessLayerLogic.Managers.V2_0;
 using Factiva.Gateway.Messages.Assets.Common.V2_0;
@@ -31,9 +32,8 @@ using Factiva.Gateway.V1_0;
 using FactivaRssManager;
 using FCMLib;
 using Common_V2 = Factiva.Gateway.Messages.Assets.Common.V2_0;
-using SearchManager=EMG.Utility.Managers.Search.SearchManager;
-using EMG.Utility.Managers.Track;
 using PerformContentSearchRequest = Factiva.Gateway.Messages.Search.V2_0.PerformContentSearchRequest;
+using SearchManager = EMG.Utility.Managers.Search.SearchManager;
 using SortBy = EMG.Utility.Managers.Search.Requests.SortBy;
 
 //using Factiva.Gateway
@@ -109,7 +109,7 @@ namespace FactivaRssManager_2_0
                         bResetSessionMark = false,
                         bPreviewHeadlines = true,
                         viewType = HeadlinesViewType.ViewAll,
-                        
+
                         folderRequestItems = new[]
                         {
                             new FolderRequestItem
@@ -129,7 +129,7 @@ namespace FactivaRssManager_2_0
                                     SortOrder = ResultSortOrder.ArrivalTime
                                 },
                                 Query = new StructuredQuery
-                                {                                    
+                                {
                                     SearchCollectionCollection = new SearchCollectionCollection
                                     {
                                         SearchCollection.Publications,
@@ -144,10 +144,10 @@ namespace FactivaRssManager_2_0
                     {
                         request.searchQuery.StructuredSearch.Query.SearchCollectionCollection.Add(SearchCollection.Assets);
                     }
-                    
+
                     if (!string.IsNullOrEmpty(strHashkey))
                     {
-                        request.hashKeys = new [] {strHashkey};
+                        request.hashKeys = new[] { strHashkey };
                     }
 
                     var serviceResponse = FactivaServices.Invoke<GetAlertHeadlinesForRss2Response>(controlData, request);
@@ -915,7 +915,7 @@ namespace FactivaRssManager_2_0
                         var serviceResponse = NewsletterContentService.GetNewsletterById(cloneControlData(_controlData), getNewsletterByIdRequest);
                         object getNewsletterByIdResp;
                         serviceResponse.GetResponse(ServiceResponse.ResponseFormat.Object, out getNewsletterByIdResp);
-                        var getNewsLetterIdResponse = (GetNewsletterByIdResponse) getNewsletterByIdResp;
+                        var getNewsLetterIdResponse = (GetNewsletterByIdResponse)getNewsletterByIdResp;
 
                         Log(Logger.Level.INFO, string.Format("_getEditionByIdRequest Response [9934993] {0}", getNewsLetterIdResponse.newsletter.id));
                         var strEditionId = getNewsLetterIdResponse.newsletter.properties.latestPublishedEditionForRSS.editionId.ToString(CultureInfo.InvariantCulture);
@@ -931,12 +931,12 @@ namespace FactivaRssManager_2_0
                         serviceResponse = Factiva.Gateway.Services.V2_0.EditionService.GetEditionById(cloneControlData(_controlData), getEditionRequest);
                         object getEditionByIdResp;
                         serviceResponse.GetResponse(ServiceResponse.ResponseFormat.Object, out getEditionByIdResp);
-                        var getEditionIdResponse = (Factiva.Gateway.Messages.Assets.Editions.V2_0.GetEditionByIdResponse) getEditionByIdResp;
+                        var getEditionIdResponse = (Factiva.Gateway.Messages.Assets.Editions.V2_0.GetEditionByIdResponse)getEditionByIdResp;
                         var workspaceId = getEditionIdResponse.Edition.Properties.ParentWorkspaceId.ToString(CultureInfo.InvariantCulture);
 
                         var workspaceManager = new WorkspaceManager(cloneControlData(_controlData), "en");
                         var manualWorkspace = workspaceManager.GetManualWorkspaceById(long.Parse(workspaceId));
-                       
+
                         var workspaceAudience = manualWorkspace.Properties.Audience;
                         var audienceObject = serialize(workspaceAudience);
                         inputData.data.Add("audience", audienceObject);
@@ -949,7 +949,7 @@ namespace FactivaRssManager_2_0
                         var documentCollection = new documentCollection();
 
                         // Article Items Only
-                        foreach(var item in factivaItems.Values)
+                        foreach (var item in factivaItems.Values)
                         {
                             if ((item.HasBeenFound))
                             {
@@ -962,7 +962,7 @@ namespace FactivaRssManager_2_0
                                     PopulateDocument(document, item.ContentHeadline);
                                     documentCollection.Add(document);
                                 }
-                                    
+
                             }
                         }
 
@@ -975,7 +975,7 @@ namespace FactivaRssManager_2_0
 
                                 if (objGetItem.GetType().ToString().Contains("LinkItem"))
                                 {
-                                    var linkItem = (Factiva.Gateway.Messages.Assets.Common.V2_0.LinkItem) contentItem;
+                                    var linkItem = (Factiva.Gateway.Messages.Assets.Common.V2_0.LinkItem)contentItem;
 
                                     var document = new document
                                                         {
@@ -992,7 +992,7 @@ namespace FactivaRssManager_2_0
                                 }
                                 else if (objGetItem.GetType().ToString().Contains("ImageItem"))
                                 {
-                                    var imageItem = (Factiva.Gateway.Messages.Assets.Common.V2_0.ImageItem) contentItem;
+                                    var imageItem = (Factiva.Gateway.Messages.Assets.Common.V2_0.ImageItem)contentItem;
                                     documentCollection.Add(new document
                                                                {
                                                                    headline = imageItem.Title,
@@ -1015,9 +1015,9 @@ namespace FactivaRssManager_2_0
                                 "NLID_" + strEditionId + "_en", 4); // cache to database
                         Log(Logger.Level.INFO,
                             "getNewsLetter [XML RESPONSE](828832-399495) :: " + response);
-                        
 
-                        }
+
+                    }
                 }
             }
             catch (COMException ce)
@@ -1073,7 +1073,7 @@ namespace FactivaRssManager_2_0
                 control.Add("FCS_CD_NETWORK_PARTNER_ID", "");
 
                 //Modified to support both existing Newsletters and Manual Workspace Newsletters
-                if (inputData.getItem("tk")!=null)
+                if (inputData.getItem("tk") != null)
                     control.Add("FCS_CD_ENCRYPTED_LOGIN", inputData.getItem("tk"));
                 else
                 {
@@ -1081,7 +1081,7 @@ namespace FactivaRssManager_2_0
                     control.Add("FCS_CD_USER_PASSWORD", configData.getItem("//transactionParams/lwPassword"));
                     control.Add("FCS_CD_PRODUCT_ID", configData.getItem("//transactionParams/lwNameSpace"));
                     control.Add("FSS_PROXY_USER_ID", inputData.getItem("userid"));
-                    control.Add("FSS_PROXY_NAMESPACE", inputData.getItem("ns"));                    
+                    control.Add("FSS_PROXY_NAMESPACE", inputData.getItem("ns"));
                 }
                 control.Add("FCS_CD_IP_ADDRESS", _remoteHost);
                 control.Add("referringURL", configData.getItem("//transactionParams/RefferingURL"));
@@ -1167,7 +1167,7 @@ namespace FactivaRssManager_2_0
                 throw;
             }
         }
-        
+
         //private bool ckeckFolderStatus(string xmlData, ref int StatusCode)
         //{
         //    bool boolStatusCode = true;
@@ -1229,11 +1229,11 @@ namespace FactivaRssManager_2_0
         public CacheNameSpace getCacheNameSpaceFromId(int nameSpace)
         {
             Log(Logger.Level.INFO, "FCL::getCacheNameSpaceFromId");
-            
+
             var cacheNamespace = CacheNameSpace.PodCast;
             try
             {
-                
+
                 switch (nameSpace)
                 {
                     case 2:
@@ -1264,7 +1264,7 @@ namespace FactivaRssManager_2_0
                 Log(Logger.Level.ERROR, "FCL::getCacheNameSpaceFromId" + e);
 
             }
-            return cacheNamespace;                
+            return cacheNamespace;
 
         }
 
@@ -1378,10 +1378,10 @@ namespace FactivaRssManager_2_0
         //        throw ex;
         //    }
         //}
-        
+
         private static AccessionNumberSearchResponse GetAutomaticWorkspaceItems(ControlData userControlData, AutomaticWorkspace autoWorkspace)
         {
-            
+
             var searchManager = new SearchManager(userControlData, "en");
 
             var requestDTO = new AccessionNumberSearchRequestDTO
@@ -1412,7 +1412,7 @@ namespace FactivaRssManager_2_0
 
 
             requestDTO.SearchCollectionCollection = searchCollections;
-            
+
 
             if (requestDTO.IsValid())
             {
@@ -1536,7 +1536,7 @@ namespace FactivaRssManager_2_0
                     if (articleItem != null && !accessionNos.Contains(articleItem.AccessionNumber))
                     {
                         accessionNos.Add(articleItem.AccessionNumber);
-                    }                   
+                    }
                 }
                 foreach (var subSection in section.SubSectionCollection)
                 {
@@ -1580,7 +1580,7 @@ namespace FactivaRssManager_2_0
             }
             return accessionNos;
         }
-        
+
         public string getManualWorkpaceForNewsLetter(InputData inputData, ConfigData configData)
         {
             Log(Logger.Level.INFO, "FCL::getManualWorkpaceForNewsLetter");
@@ -1613,7 +1613,7 @@ namespace FactivaRssManager_2_0
                 {
                     return "<HeadlineInfo></HeadlineInfo>";
                 }
-                
+
                 var cacheManualWorkspaceForNewsLetterRss = GetCacheData("WSID_" + inputData.getItem("WSID") + "_en", 4);
                 if (cacheManualWorkspaceForNewsLetterRss != "")
                 {
@@ -1623,12 +1623,12 @@ namespace FactivaRssManager_2_0
                 {
                     ProcessItemsPosition(manualWorkspace);
 
-                    var factivaItems = GetManualNewsletterWorkspaceItems(controlData,manualWorkspace);
+                    var factivaItems = GetManualNewsletterWorkspaceItems(controlData, manualWorkspace);
                     var headlineInfo = new HeadlineInfo();
                     var documentCollection = new documentCollection();
 
                     // Article Items Only
-                    foreach(var item in factivaItems.Values)
+                    foreach (var item in factivaItems.Values)
                     {
                         if ((item.HasBeenFound) && (IsArticlePodcastable(item, inputData.getItem("from").ToLower()) == "1"))
                         {
@@ -1636,7 +1636,7 @@ namespace FactivaRssManager_2_0
                             {
                                 var document = new document
                                                    {
-                                                        position = getItemPositionFromAN(item.AccessionNumber, manualWorkspace)
+                                                       position = getItemPositionFromAN(item.AccessionNumber, manualWorkspace)
                                                    };
                                 PopulateDocument(document, item.ContentHeadline);
                                 documentCollection.Add(document);
@@ -1655,7 +1655,7 @@ namespace FactivaRssManager_2_0
                                 switch (objectTypeString)
                                 {
                                     case "LinkItem":
-                                        var linkItem = (Factiva.Gateway.Messages.Assets.Common.V2_0.LinkItem) contentItem;
+                                        var linkItem = (Factiva.Gateway.Messages.Assets.Common.V2_0.LinkItem)contentItem;
                                         documentCollection.Add(new document
                                         {
                                             headline = linkItem.Title,
@@ -1669,7 +1669,7 @@ namespace FactivaRssManager_2_0
                                         });
                                         break;
                                     case "ImageItem":
-                                        var imageItem = (Factiva.Gateway.Messages.Assets.Common.V2_0.ImageItem) contentItem;
+                                        var imageItem = (Factiva.Gateway.Messages.Assets.Common.V2_0.ImageItem)contentItem;
                                         documentCollection.Add(new document
                                         {
                                             headline = imageItem.Title,
@@ -1678,7 +1678,7 @@ namespace FactivaRssManager_2_0
                                         });
                                         break;
                                     case "ChartImageItem":
-                                        var chartImageItem = (Factiva.Gateway.Messages.Assets.Common.V2_0.ChartImageItem) contentItem;
+                                        var chartImageItem = (Factiva.Gateway.Messages.Assets.Common.V2_0.ChartImageItem)contentItem;
                                         documentCollection.Add(new document
                                         {
                                             headline = chartImageItem.Title,
@@ -1698,7 +1698,7 @@ namespace FactivaRssManager_2_0
                                     switch (objectTypeString)
                                     {
                                         case "LinkItem":
-                                            var linkItem = (Factiva.Gateway.Messages.Assets.Common.V2_0.LinkItem) contentItem;
+                                            var linkItem = (Factiva.Gateway.Messages.Assets.Common.V2_0.LinkItem)contentItem;
                                             documentCollection.Add(new document
                                             {
                                                 headline = linkItem.Title,
@@ -1712,7 +1712,7 @@ namespace FactivaRssManager_2_0
                                             });
                                             break;
                                         case "ImageItem":
-                                            var imageItem = (Factiva.Gateway.Messages.Assets.Common.V2_0.ImageItem) contentItem;
+                                            var imageItem = (Factiva.Gateway.Messages.Assets.Common.V2_0.ImageItem)contentItem;
                                             documentCollection.Add(new document
                                             {
                                                 headline = imageItem.Title,
@@ -1721,7 +1721,7 @@ namespace FactivaRssManager_2_0
                                             });
                                             break;
                                         case "ChartImageItem":
-                                            var chartImageItem = (Factiva.Gateway.Messages.Assets.Common.V2_0.ChartImageItem) contentItem;
+                                            var chartImageItem = (Factiva.Gateway.Messages.Assets.Common.V2_0.ChartImageItem)contentItem;
                                             documentCollection.Add(new document
                                             {
                                                 headline = chartImageItem.Title,
@@ -1784,7 +1784,7 @@ namespace FactivaRssManager_2_0
                 var audienceObject = serialize(workspaceAudience);
                 inputData.data.Add("audience", audienceObject);
 
-                inputData.data.Add("workspaceID",automaticWorkspace.Id.ToString());
+                inputData.data.Add("workspaceID", automaticWorkspace.Id.ToString());
                 inputData.data.Add("workspaceName", automaticWorkspace.Properties.Name);
 
                 var cacheAutomaticWorkspaceRss = GetCacheData("WSID_" + inputData.getItem("WSID") + "_en", 4);
@@ -1799,7 +1799,7 @@ namespace FactivaRssManager_2_0
                     var headlineInfo = new HeadlineInfo();
                     var documentCollection = new documentCollection();
 
-                    if( (searchResponse!=null) && (searchResponse.AccessionNumberBasedContentItemSet != null))
+                    if ((searchResponse != null) && (searchResponse.AccessionNumberBasedContentItemSet != null))
                     {
                         foreach (var item in searchResponse.AccessionNumberBasedContentItemSet.AccessionNumberBasedContentItemCollection)
                         {
@@ -1828,7 +1828,7 @@ namespace FactivaRssManager_2_0
 
                     response =
                         AddCacheData(
-                            MyxmlParser(configData,  response ),
+                            MyxmlParser(configData, response),
                             "WSID_" + inputData.getItem("WSID") + "_en", 4); // cache to database
                 }
                 Log(Logger.Level.INFO,
@@ -1847,7 +1847,6 @@ namespace FactivaRssManager_2_0
         }
 
         #region << Helper Functions >>
-
         public void Log(Logger.Level level, string logMsg)
         {
             if (ConfigurationSettings.AppSettings["logging"] == "On" || level >= Logger.Level.ERROR)
@@ -1863,7 +1862,7 @@ namespace FactivaRssManager_2_0
             var xmlTextWriter = new XmlTextWriter(memoryStream, Encoding.UTF8);
 
             xs.Serialize(xmlTextWriter, obj);
-            memoryStream = (MemoryStream) xmlTextWriter.BaseStream;
+            memoryStream = (MemoryStream)xmlTextWriter.BaseStream;
             XmlizedString = UTF8ByteArrayToString(memoryStream.ToArray());
             var stringToRemove = "?<?xml version='1.0' encoding='utf-8'?>";
             return XmlizedString.Remove(0, stringToRemove.Length);
@@ -1876,9 +1875,9 @@ namespace FactivaRssManager_2_0
             return (constructedString);
         }
 
-        public static string IsArticlePodcastable(AccessionNumberBasedContentItem contentItem,string product)
+        public static string IsArticlePodcastable(AccessionNumberBasedContentItem contentItem, string product)
         {
-            if (( product ==  "nl2pcast") || ( product ==  "ws1pcast"))
+            if ((product == "nl2pcast") || (product == "ws1pcast"))
             {
                 const string supportedLangs = "en,de,fr,es,it";
                 const int wordCountSupported = 5000;
@@ -1913,7 +1912,7 @@ namespace FactivaRssManager_2_0
             return ret;
         }
 
-        public static bool IsWordCountOK(int wordCountArticle,int wordCountSupported)
+        public static bool IsWordCountOK(int wordCountArticle, int wordCountSupported)
         {
             var ret = false;
             try
@@ -1935,8 +1934,8 @@ namespace FactivaRssManager_2_0
             {
                 if (contentItem != null &&
                     contentItem.ContentHeadline != null &&
-                    contentItem.ContentHeadline.ContentItems !=null &&
-                    contentItem.ContentHeadline.ContentItems.ContentType !=null &&
+                    contentItem.ContentHeadline.ContentItems != null &&
+                    contentItem.ContentHeadline.ContentItems.ContentType != null &&
                     (contentItem.ContentHeadline.ContentItems.ContentType.ToLower() == "article" ||
                     contentItem.ContentHeadline.ContentItems.ContentType.ToLower() == "articlewithgraphics"))
                 {
@@ -1958,8 +1957,8 @@ namespace FactivaRssManager_2_0
                 {
                     _controlData.AccessPointCode = controlData.AccessPointCode;
                     _controlData.EncryptedLogin = controlData.EncryptedLogin;
-                    _controlData.ReferringUrl= controlData.ReferringUrl;
-                    _controlData.CallingUrl=    controlData.CallingUrl;
+                    _controlData.ReferringUrl = controlData.ReferringUrl;
+                    _controlData.CallingUrl = controlData.CallingUrl;
                 }
             }
             catch (Exception)
@@ -1968,7 +1967,7 @@ namespace FactivaRssManager_2_0
             return _controlData;
         }
 
-        public int getItemPositionFromAN(string accessionNumber,ManualWorkspace manualWorkspace)
+        public int getItemPositionFromAN(string accessionNumber, ManualWorkspace manualWorkspace)
         {
             var position = -1;
             var itemFound = false;
@@ -2058,14 +2057,12 @@ namespace FactivaRssManager_2_0
                 sectionPosition += 100000;
             }
         }
-
         #endregion
     }
     #region << HeadlineInfo >>
     [XmlRoot(ElementName = "headlineInfo", Namespace = "", IsNullable = false), Serializable]
     public class HeadlineInfo
     {
-
         [XmlElement(Type = typeof(documentCollection), ElementName = "documentList", IsNullable = false, Form = XmlSchemaForm.Qualified, Namespace = "")]
         [EditorBrowsable(EditorBrowsableState.Advanced)]
         public documentCollection __documentList;
@@ -2077,6 +2074,7 @@ namespace FactivaRssManager_2_0
             set { __documentList = value; }
         }
     }
+
     [Serializable]
     public class documentCollection : List<document>
     {
@@ -2086,7 +2084,6 @@ namespace FactivaRssManager_2_0
     [EditorBrowsable(EditorBrowsableState.Advanced)]
     public class document
     {
-
         [XmlElement(ElementName = "accessionNumber", IsNullable = false, Form = XmlSchemaForm.Qualified, DataType = "string", Namespace = "")]
         [EditorBrowsable(EditorBrowsableState.Advanced)]
         public string __accessionNumber;
@@ -2131,7 +2128,6 @@ namespace FactivaRssManager_2_0
             set { __sourceCode = value; }
         }
 
-
         [XmlElement(ElementName = "sourceName", IsNullable = false, Form = XmlSchemaForm.Qualified, DataType = "string", Namespace = "")]
         [EditorBrowsable(EditorBrowsableState.Advanced)]
         public string __sourceName;
@@ -2169,7 +2165,6 @@ namespace FactivaRssManager_2_0
             set { __category = value; }
         }
 
-
         [XmlElement(ElementName = "language", IsNullable = false, Form = XmlSchemaForm.Qualified, DataType = "string", Namespace = "")]
         [EditorBrowsable(EditorBrowsableState.Advanced)]
         public string __language;
@@ -2181,7 +2176,6 @@ namespace FactivaRssManager_2_0
             set { __language = value; }
         }
 
-
         [XmlElement(ElementName = "words", IsNullable = false, Form = XmlSchemaForm.Qualified, DataType = "int", Namespace = "")]
         [EditorBrowsable(EditorBrowsableState.Advanced)]
         public int __words;
@@ -2192,7 +2186,6 @@ namespace FactivaRssManager_2_0
             get { return __words; }
             set { __words = value; }
         }
-
 
         [XmlElement(ElementName = "uri", IsNullable = false, Form = XmlSchemaForm.Qualified, DataType = "string", Namespace = "")]
         [EditorBrowsable(EditorBrowsableState.Advanced)]
@@ -2226,7 +2219,6 @@ namespace FactivaRssManager_2_0
             get { return __reference; }
             set { __reference = value; }
         }
-
     }
-#endregion 
+    #endregion
 }

@@ -22,7 +22,7 @@ using utils = Data.utils;
 
 namespace FactivaRssManager
 {
-    
+
     /// <summary>
     /// Summary description for RssGeneratorBase.
     /// </summary>
@@ -31,13 +31,10 @@ namespace FactivaRssManager
         private string xmlTopLevelNode = "";
         private string[] fldTitles;
         private string fldTitleConnector;
-
         private string[] fldDescriptions;
         private string fldDescriptionConnector;
-
         private string[] fldSources;
         private string fldSourceConnector;
-
         private string[] fldDates;
         private string fldDateConnector;
         private string[] fldDirectUrls;
@@ -68,22 +65,39 @@ namespace FactivaRssManager
         }
 
         public string TranName { get; set; }
+
         public string ArticleUrl { get; set; }
+
         public string ChannelTitle { get; set; }
+
         public string ChannelDesc { get; set; }
+
         public string ChannelLink { get; set; }
+
         public string ChannelId { get; set; }
+
         public string ChannelUrlParam { get; set; }
+
         public string ChannelLastBuildDate { get; set; }
+
         public string ChannelLanguage { get; set; }
+
         public string ChannelCopyright { get; set; }
+
         public string ChannelDocs { get; set; }
+
         public string ChannelManagingEditor { get; set; }
+
         public string ChannelImageHeight { get; set; }
+
         public string ChannelImageWidth { get; set; }
+
         public string ChannelRssChannelImage { get; set; }
+
         public string Channelttl { get; set; }
+
         public string ChannelAuthor { get; set; }
+
         public bool IsPodCast { get; set; }
 
         public virtual string Convert(XmlDocument xmlHeadlines, ConfigData configData, InputData inputData)
@@ -208,7 +222,7 @@ namespace FactivaRssManager
                 rssFeed.Channel.Generator = string.Empty;
                 if (IsPodCast)
                 {
-                    var itemITunesExtension = new ITunesSyndicationExtension {Context = {Author = ChannelAuthor}};
+                    var itemITunesExtension = new ITunesSyndicationExtension { Context = { Author = ChannelAuthor } };
                     rssFeed.Channel.AddExtension(itemITunesExtension);
                 }
 
@@ -238,8 +252,8 @@ namespace FactivaRssManager
                     return "xrdr";
             }
         }
-        
-         private static string GetWorkspaceOperationalDataMemento(string workspaceID, string workspaceName,Audience audience,bool isPodcast)
+
+        private static string GetWorkspaceOperationalDataMemento(string workspaceID, string workspaceName, Audience audience, bool isPodcast)
         {
             var disseminationMethod = isPodcast ? DisseminationMethod.PodCast : DisseminationMethod.Rss;
 
@@ -254,7 +268,7 @@ namespace FactivaRssManager
             return opData.GetMemento;
         }
 
-        private static string GetNewsletterOperationalDataMemento(string newsletterID, string newsletterName, Audience audience,bool isPodcast)
+        private static string GetNewsletterOperationalDataMemento(string newsletterID, string newsletterName, Audience audience, bool isPodcast)
         {
             var disseminationMethod = isPodcast ? DisseminationMethod.PodCast : DisseminationMethod.Rss;
 
@@ -278,8 +292,12 @@ namespace FactivaRssManager
             var _type = string.Empty;
             var nldtl = string.Empty;
 
+            var isMct = false;
+
             if (null != inputData)
             {
+                bool.TryParse(inputData.getItem("isMCT"), out isMct);
+
                 if (!string.IsNullOrEmpty(inputData.getItem("from")))
                 {
                     switch (inputData.getItem("from").ToLower())
@@ -295,9 +313,7 @@ namespace FactivaRssManager
                         case "nl1":
                         case "nl2":
                         case "nl2pcast":
-                            // For now, all Newsletter RSS will only be Factiva Newsletter.
-                            // Until MCT Newsletter support RSS, the value will always be NL
-                            _type = "NL";
+                            _type = isMct ? "MCT" : "NL";
                             if (!string.IsNullOrEmpty(inputData.getItem("newsletterID")))
                             {
                                 nldtl = GetNLDTLToken(inputData.getItem("newsletterID"), _type);
@@ -392,22 +408,32 @@ namespace FactivaRssManager
                             AdocTOC = headlinesData.getItem("category", headlineNode);
 
                             for (var i = 0; i < fldArticleURL.Count; i++)
-                                accessionNumber= headlinesData.getItem(fldArticleURL[i], headlineNode);
-
-                            var properties = new UserProperties(inputData.getItem("accountid"), inputData.getItem("ns"), inputData.getItem("userid"));
+                                accessionNumber = headlinesData.getItem(fldArticleURL[i], headlineNode);
 
                             var urlBuilder = new UrlBuilder(ArticleUrl);
-                            urlBuilder.Add(AudienceManager.GetDictionaryForNonTrackArticleCycloneLink(
-                                accessionNumber, audience, properties));
-                            //_urlBuilder.BaseUrl = articleURL;
-                            urlBuilder.Append("AN",accessionNumber);
+
+                            var properties = new UserProperties(inputData.getItem("accountid"),
+                                isMct ? audience.ProxyCredentials.Namespace : inputData.getItem("ns"),
+                                isMct ? audience.ProxyCredentials.UserId : inputData.getItem("userid"));
+
+                            var audienceParams = AudienceManager.GetDictionaryForNonTrackArticleCycloneLink(accessionNumber, audience, properties);
+
+                            if (isMct)
+                            {
+                                if (null != audienceParams && audienceParams.ContainsKey("f")) { audienceParams["f"] = "nv"; }
+                                if (null != urlBuilder && null != urlBuilder.QueryString && urlBuilder.QueryString.ContainsKey("napc")) { urlBuilder.QueryString["napc"] = "MC"; }
+                            }
+
+                            urlBuilder.Add(audienceParams);
+
+                            urlBuilder.Append("AN", accessionNumber);
 
                             //CAT=I|picture, CAT=W|webpage, CAT=A |Publications(is the default)
                             switch (AdocTOC)
                             {
                                 case "articlewithgraphics":
                                 case "article":
-                                    AdocTOCURL = "a" ;
+                                    AdocTOCURL = "a";
                                     break;
                                 case "webpage":
                                     AdocTOCURL = "w";
@@ -440,7 +466,7 @@ namespace FactivaRssManager
                             switch (product)
                             {
                                 case "ws1":
-                                    operationalDataMemento = GetWorkspaceOperationalDataMemento(inputData.getItem("workspaceID"),inputData.getItem("workspaceName"), audience,false);
+                                    operationalDataMemento = GetWorkspaceOperationalDataMemento(inputData.getItem("workspaceID"), inputData.getItem("workspaceName"), audience, false);
                                     urlBuilder.Append("mod", "workspace_rss");
                                     break;
                                 case "ws1pcast":
@@ -449,7 +475,7 @@ namespace FactivaRssManager
                                     break;
                                 case "nl2":
                                 case "nl1":
-                                    operationalDataMemento = GetNewsletterOperationalDataMemento(inputData.getItem("newsletterID"),inputData.getItem("newsletterName"), audience,false);
+                                    operationalDataMemento = GetNewsletterOperationalDataMemento(inputData.getItem("newsletterID"), inputData.getItem("newsletterName"), audience, false);
                                     urlBuilder.Append("mod", "newsletter_rss");
                                     break;
                                 case "nl2pcast":
@@ -554,7 +580,7 @@ namespace FactivaRssManager
                         }
                         #endregion
                         break;
-                        // similar to above
+                    // similar to above
                     default:
                         if (fldDirectUrls.Length > 0)
                         {
@@ -567,11 +593,12 @@ namespace FactivaRssManager
                         {
                             AdocTOC = headlinesData.getItem(@"AdocTOC/@adoctype", headlineNode);
 
-                            if (!string.IsNullOrEmpty(inputData.getItem("app")) && inputData.getItem("app").ToUpper()=="WSJ")  //app is WSJ
+                            if (!string.IsNullOrEmpty(inputData.getItem("app")) && inputData.getItem("app").ToUpper() == "WSJ")  //app is WSJ
                             {
                                 strCompleteURL = ArticleUrl;
-                                if (!string.IsNullOrEmpty(headlinesData.getItem(fldArticleURL[0], headlineNode))){
-                                    strCompleteURL = strCompleteURL + (headlinesData.getItem(fldArticleURL[0], headlineNode).Split(" ").Length>1 ? headlinesData.getItem(fldArticleURL[0], headlineNode).Split(" ")[1] : headlinesData.getItem(fldArticleURL[0], headlineNode).Split(" ")[0]) + ".html";
+                                if (!string.IsNullOrEmpty(headlinesData.getItem(fldArticleURL[0], headlineNode)))
+                                {
+                                    strCompleteURL = strCompleteURL + (headlinesData.getItem(fldArticleURL[0], headlineNode).Split(" ").Length > 1 ? headlinesData.getItem(fldArticleURL[0], headlineNode).Split(" ")[1] : headlinesData.getItem(fldArticleURL[0], headlineNode).Split(" ")[0]) + ".html";
                                 }
                             }
                             else
@@ -683,8 +710,7 @@ namespace FactivaRssManager
             return item.ToString();
         }
 
-
-        protected virtual RssItem CreateItem(string title, string description, string date, string source, string articleURL, string guid, string an, InputData inputData,string operationalDataMemento)
+        protected virtual RssItem CreateItem(string title, string description, string date, string source, string articleURL, string guid, string an, InputData inputData, string operationalDataMemento)
         {
             //var xmlDoc = new XmlDocument();
             var uid = string.Empty;
@@ -836,7 +862,6 @@ namespace FactivaRssManager
             }
             return item;
         }
-
 
         /// <summary>
         /// Serializes the specified feed.
@@ -991,10 +1016,9 @@ namespace FactivaRssManager
         {
             const string ercPubKey = "3x4e10e4";
             var enc = new FactivaEncryption.encryption();
-            var nvp = new NameValueCollection(1) {{"nlId", newsletterId}, {"nt", _type}};
+            var nvp = new NameValueCollection(1) { { "nlId", newsletterId }, { "nt", _type } };
 
             return HttpUtility.UrlEncode(enc.encrypt(nvp, ercPubKey));
         }
     }
-
 }
