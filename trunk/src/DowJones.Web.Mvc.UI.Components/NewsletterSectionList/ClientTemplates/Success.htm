@@ -1,0 +1,16 @@
+﻿<ul id="sections">
+    <%
+    for (var i = 0; i < self.data.sections.length; i++) {
+    x = self.data.sections[i];
+    %>
+    <li class="section">
+        <div class="clearfix">
+            <h5><%=x.name%></h5>
+            <div class="inline-tools section-tools pull-right" style="display: block;">
+                <button class="btn btn-inverse action-btn delete-entry" title="" data-original-title="<%=Token('addToSection')"
+                        data-index="<%=x.index%>" data-pi="<%=x.positionIndicator%>"></button>
+            </div>
+        </div>
+    </li>
+    <% } %>
+</ul>

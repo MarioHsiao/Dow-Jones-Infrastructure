@@ -1,0 +1,33 @@
+﻿<%
+    var x;
+	var options = self.options,
+		newsletters = self.newsletters;
+%>
+
+<table border="0" class="tablesorter nlTable" id="editionTable">
+    <thead>
+        <tr>
+            <th sorter="text" class="header"><%=Token("newsletterName")%></th>
+            <th sorter="date" class="header headerSortUp"><%=Token("date")%></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <%
+        for (var i = 0; i < newsletters.length; i++) {
+            x = newsletters[i];
+        %>
+        <tr class="NLEdition" onmouseover="HighlightEditionPlusT(this,true,'11071');return false;" onmouseout="HighlightEditionPlusT(this,false,'11071');return false;" id="edition_11071">
+            <td width="35%" valign="middle"><span class="NLEditionName"><span nowrap="wrap"><%=x.name%></span></span></td>
+            <td width="20%" nowrap="nowrap" valign="middle"><span style="display:none;"><%=x.lastModifiedDate%></span><span class="NLEditionDate"><span><%=x.lastModifiedDateDescriptor%></span></span></td>
+            <td valign="middle">
+                <span nowrap="nowrap" class="NLInvi">
+                    <span><a class="nlShowlinksXYZ" href="#"><%=Token("add")%></a></span>
+                    <span><a class="nlShowlinksXYZ" href="#"><%=Token("clear")%></a></span>
+                    <span><a class="nlShowlinksXYZ" href="#"><%=Token("gotoNewsletter")%></a></span>
+                </span>
+            </td>
+        </tr>
+        <% } %>
+    </tbody>
+</table>

@@ -99,6 +99,8 @@
     <Compile Include="CompanyInfo\CompanyInfoModel.cs" />
     <Compile Include="CompositeAuthor\CompositeAuthorModel.cs" />
     <Compile Include="CompositeOutlet\CompositeOutletModel.cs" />
+    <Compile Include="NewsletterList\NewsletterListModel.cs" />
+    <Compile Include="NewsletterSectionList\NewsletterSectionListModel.cs" />
     <Compile Include="TemplateComponent\TemplateComponentData.cs" />
     <Compile Include="TemplateComponent\TemplateComponentModel.cs" />
     <Compile Include="TreeView\TreeViewModel.cs" />

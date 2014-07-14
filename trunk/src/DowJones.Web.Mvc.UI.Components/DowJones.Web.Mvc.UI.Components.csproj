@@ -208,6 +208,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="NewsletterList\NewsletterListComponent.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewsletterListComponent.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="NewsletterSectionList\NewsletterSectionListComponent.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewsletterSectionListComponent.cshtml</DependentUpon>
+    </Compile>
     <Compile Include="NewsMatrix\NewsMatrixComponent.cs">
       <DependentUpon>NewsMatrixComponent.cshtml</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -616,6 +626,15 @@
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>Gauge.cs</LastGenOutput>
     </None>
+    <None Include="NewsletterList\NewsletterListComponent.cshtml">
+      <SubType>Code</SubType>
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>NewsletterListComponent.cs</LastGenOutput>
+    </None>
+    <None Include="NewsletterSectionList\NewsletterSectionListComponent.cshtml">
+      <Generator>RazorViewComponentClassGenerator</Generator>
+      <LastGenOutput>NewsletterSectionListComponent.cs</LastGenOutput>
+    </None>
     <None Include="NewsMatrix\NewsMatrixComponent.cshtml">
       <Generator>RazorViewComponentClassGenerator</Generator>
       <LastGenOutput>NewsMatrixComponent.cs</LastGenOutput>
@@ -987,10 +1006,21 @@
   <ItemGroup>
     <EmbeddedResource Include="TemplateComponent\TemplateComponent.js" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="NewsletterList\ClientTemplates\Error.htm" />
+    <Content Include="NewsletterList\ClientTemplates\SuccessNewsletters.htm" />
+    <Content Include="NewsletterList\ClientTemplates\NoData.htm" />
+    <Content Include="NewsletterSectionList\ClientTemplates\Error.htm" />
+    <Content Include="NewsletterSectionList\ClientTemplates\NoData.htm" />
+    <Content Include="NewsletterSectionList\ClientTemplates\Success.htm" />
+    <EmbeddedResource Include="NewsletterSectionList\NewsletterSectionList.js" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="TemplateComponent\ClientTemplates\Error.html" />
     <EmbeddedResource Include="TemplateComponent\ClientTemplates\Success.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="NewsletterList\NewsletterList.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
