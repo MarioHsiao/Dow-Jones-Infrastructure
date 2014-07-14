@@ -74,6 +74,7 @@ namespace DowJones.Web.Mvc.Resources
         [ScriptResource(ResourceName = JQueryJScrollPane, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "jquery-scrollpane")]
         [ScriptResource(ResourceName = JQueryJson, DependencyLevel = ClientResourceDependencyLevel.Core, Name = "jquery-json")]
         [ScriptResource(ResourceName = JQueryPopupBalloon, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "jquery-popupballon")]
+        [ScriptResource(ResourceName = JQueryTableSorter, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "jquery-tablesorter")]
         [ScriptResource(ResourceName = JQueryTimeAgo, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "jquery-timeago")]
         [ScriptResource(ResourceName = JQueryTools, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "jquery-tools")]
         [ScriptResource(ResourceName = JQueryTouchMin, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "jquery-touch")]
@@ -123,6 +124,8 @@ namespace DowJones.Web.Mvc.Resources
             public const string JQueryJson = JsRoot + "jquery-json.js";
             public const string JQueryPopupBalloon = JsRoot + "jquery.popupballoon.js";
             public const string JQueryPopupBalloonMin = JsRoot + "jquery.popupballoon.js";
+            public const string JQueryTableSorter = JsRoot + "jquery.tablesorter.js";
+            public const string JQueryTableSorterMin = JsRoot + "jquery.tablesorter.js";
             public const string JQueryTimeAgo = JsRoot + "jquery.timeago.js";
             public const string JQueryTimeAgoMin = JsRoot + "jquery.timeago.js";
             public const string JQueryTools = JsRoot + "jquery.tools.min.js";
