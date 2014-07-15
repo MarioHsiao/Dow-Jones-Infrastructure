@@ -26,7 +26,7 @@ namespace DowJones.Web.Mvc.UI.Components.NewsletterSectionList
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 07/14/2014 09:46 AM
+    // Last Generated Timestamp: 07/15/2014 09:11 AM
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.NewsletterSectionList.ClientTemplates.Error.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="error", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.NewsletterSectionList.NewsletterSectionListComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.NewsletterSectionList.ClientTemplates.NoData.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="noData", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.NewsletterSectionList.NewsletterSectionListComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.NewsletterSectionList.ClientTemplates.Success.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="success", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.NewsletterSectionList.NewsletterSectionListComponent))]

@@ -1007,12 +1007,12 @@
     <EmbeddedResource Include="TemplateComponent\TemplateComponent.js" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="NewsletterList\ClientTemplates\Error.htm" />
-    <Content Include="NewsletterList\ClientTemplates\SuccessNewsletters.htm" />
-    <Content Include="NewsletterList\ClientTemplates\NoData.htm" />
-    <Content Include="NewsletterSectionList\ClientTemplates\Error.htm" />
-    <Content Include="NewsletterSectionList\ClientTemplates\NoData.htm" />
-    <Content Include="NewsletterSectionList\ClientTemplates\Success.htm" />
+    <EmbeddedResource Include="NewsletterList\ClientTemplates\Error.htm" />
+    <EmbeddedResource Include="NewsletterList\ClientTemplates\SuccessNewsletters.htm" />
+    <EmbeddedResource Include="NewsletterList\ClientTemplates\NoData.htm" />
+    <EmbeddedResource Include="NewsletterSectionList\ClientTemplates\Error.htm" />
+    <EmbeddedResource Include="NewsletterSectionList\ClientTemplates\NoData.htm" />
+    <EmbeddedResource Include="NewsletterSectionList\ClientTemplates\Success.htm" />
     <EmbeddedResource Include="NewsletterSectionList\NewsletterSectionList.js" />
   </ItemGroup>
   <ItemGroup>

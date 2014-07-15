@@ -8,7 +8,7 @@ namespace DowJones.Web.Mvc.UI.Components.NewsletterList
 {
     public class NewsletterListModel: ViewComponentModel
     {
-        [ClientProperty("newsletters")]
+        [JsonProperty("newsletters")]
         public IEnumerable<Newsletter> Newsletters { get; set; }
 
         public NewsletterListModel()
@@ -19,19 +19,19 @@ namespace DowJones.Web.Mvc.UI.Components.NewsletterList
 
     public class Newsletter
     {
-        [ClientProperty("code")]
+        [JsonProperty("code")]
         public string Code { get; set; }
 
-        [ClientProperty("id")]
+        [JsonProperty("id")]
         public long Id { get; set; }
 
-        [ClientProperty("name")]
+        [JsonProperty("name")]
         public string Name { get; set; }
 
-        [ClientProperty("lastModifiedDate")]
+        [JsonProperty("lastModifiedDate")]
         public DateTime LastModifiedDate { get; set; }
 
-        [ClientProperty("lastModifiedDateDescriptor")]
+        [JsonProperty("lastModifiedDateDescriptor")]
         public string LastModifiedDateDescriptor { get; set; }
     }
 }
