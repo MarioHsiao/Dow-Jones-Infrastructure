@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Globalization;
 using System.Reflection;
 using System.Text;
 using System.Web;
@@ -229,8 +230,11 @@ namespace EMG.widgets.ui.utility.headline
             headlineInfo.SrcCode = "custom";
             headlineInfo.SrcName = item.sourceName;
             headlineInfo.Snippet = (item.Type == LinkType.RssHeadlineUrl) ? string.Empty : item.Description;
-            headlineInfo.Url = item.Uri;
-            headlineInfo.IsFactivaContent = false;
+            
+            //link item to landing page
+            //headlineInfo.Url = item.Uri;
+            headlineInfo.AccessionNumber = item.Id.ToString(CultureInfo.InvariantCulture);
+            headlineInfo.IsFactivaContent = true;
         }
 
         /// <summary>
@@ -635,8 +639,8 @@ namespace EMG.widgets.ui.utility.headline
             ub.Append("od", GetOperationalDataMemento(definition, workspaceInfo, tokenProperties, integrationTarget));
 
             // map category
-            ub.Append("cat", MapContentTypeToCat(headline.ContentType));
-
+            if (!String.IsNullOrEmpty(headline.ContentType))
+                ub.Append("cat", MapContentTypeToCat(headline.ContentType));
 
             switch (distributionType)
             {
