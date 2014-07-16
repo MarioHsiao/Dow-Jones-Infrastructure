@@ -21,5 +21,7 @@ namespace EMG.widgets.ui.encryption
         public static readonly string CONTENT_CATEGORY = "cat";
 
         public static readonly string TIME_TO_LIVE = "ttl";
-     }
+
+        public static readonly string IS_MCT = "im";
+    }
 }

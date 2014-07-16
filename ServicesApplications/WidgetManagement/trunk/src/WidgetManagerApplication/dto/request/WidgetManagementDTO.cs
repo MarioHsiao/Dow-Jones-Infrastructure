@@ -78,6 +78,11 @@ namespace EMG.widgets.ui.dto.request
         public string sortOrder = "[[2,1]]";
 
         /// <summary>
+        /// 
+        /// </summary>
+        [ParameterName("im")] public int isMct = 0;
+
+        /// <summary>
         /// Loads this instance.
         /// </summary>
         public override void Load()
@@ -233,6 +238,7 @@ namespace EMG.widgets.ui.dto.request
             ub.Append(UrlBuilder.GetParameterName(typeof (WidgetManagementDTO), "action"), (int) action);
             ub.Append(UrlBuilder.GetParameterName(typeof (WidgetManagementDTO), "assetIds"), assetIds);
             ub.Append(UrlBuilder.GetParameterName(typeof (WidgetManagementDTO), "refererProduct"), (int) refererProduct);
+            ub.Append(UrlBuilder.GetParameterName(typeof (WidgetManagementDTO), "isMct"), (int) isMct);
             ub.Append(UrlBuilder.GetParameterName(typeof (WidgetManagementDTO), "widgetType"), (int) widgetType);
             ub.Append(UrlBuilder.GetParameterName(typeof (WidgetManagementDTO), "widgetSortBy"), (int) widgetSortBy);
             ub.Append(UrlBuilder.GetParameterName(typeof (WidgetManagementDTO), "SA_FROM"), SA_FROM);

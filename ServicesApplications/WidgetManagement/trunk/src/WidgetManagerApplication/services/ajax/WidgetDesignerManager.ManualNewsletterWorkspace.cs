@@ -175,7 +175,7 @@ namespace EMG.widgets.services
         [WebMethod]
         [ScriptMethod]
         [GenerateScriptType(typeof(GetWidgetCodeResponseDelegate))]
-        public GetWidgetCodeResponseDelegate GetManualNewsletterWorkspaceWidgetScriptCode(string widgetId, UpdateManualNewsletterWorkspaceWidgetDelegate updateManualNewsletterWorkspaceWidgetDelegate, string accessPointCode, string interfaceLanguage, string productPrefix)
+        public GetWidgetCodeResponseDelegate GetManualNewsletterWorkspaceWidgetScriptCode(string widgetId, UpdateManualNewsletterWorkspaceWidgetDelegate updateManualNewsletterWorkspaceWidgetDelegate, string accessPointCode, string interfaceLanguage, string productPrefix, int isMct)
         {
             if (updateManualNewsletterWorkspaceWidgetDelegate != null)
             {
@@ -190,7 +190,7 @@ namespace EMG.widgets.services
             }
             using (new TransactionLogger(Log, MethodBase.GetCurrentMethod()))
             {
-                return GetWidgetScriptCode(widgetId, accessPointCode, interfaceLanguage, productPrefix);
+                return GetWidgetScriptCode(widgetId, accessPointCode, interfaceLanguage, productPrefix, isMct);
             }
         }
     }

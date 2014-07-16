@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Web;
@@ -335,11 +336,12 @@ namespace EMG.widgets.services
         /// <param name="accessPointCode">The access point code.</param>
         /// <param name="interfaceLanguage">The interface language.</param>
         /// <param name="productPrefix">The overridden product prefix.</param>
+        /// <param name="isMct">The flag to identify MCT Newsletter.</param>
         /// <returns></returns>
         [WebMethod]
         [ScriptMethod]
         [GenerateScriptType(typeof(GetWidgetCodeResponseDelegate))]
-        public GetWidgetCodeResponseDelegate GetWidgetScriptCode(string widgetId, string accessPointCode, string interfaceLanguage, string productPrefix)
+        public GetWidgetCodeResponseDelegate GetWidgetScriptCode(string widgetId, string accessPointCode, string interfaceLanguage, string productPrefix, int isMct = 0)
         {
             using (new TransactionLogger(Log, MethodBase.GetCurrentMethod()))
             {
@@ -363,6 +365,9 @@ namespace EMG.widgets.services
                                                           { RenderWidgetEncryptionConfiguration.ACCOUNT_ID, SessionData.Instance().AccountId }, 
                                                           { RenderWidgetEncryptionConfiguration.NAMESPACE, SessionData.Instance().ProductId }
                                                       };
+
+                        if (1 == isMct)
+                            nameValueCollection.Add(RenderWidgetEncryptionConfiguration.IS_MCT, isMct.ToString(CultureInfo.InvariantCulture));
 
                         // Set the easy parameters
                         getWidgetResponseDelegate.Token = encryption.encrypt(nameValueCollection, RenderWidgetEncryptionConfiguration.ENCRYPTION_KEY);

@@ -632,7 +632,7 @@ namespace EMG.widgets.ui.utility.headline
                              BaseUrl = Settings.Default.Cyclone_Redirection_URL
                          };
             ub.Append("an", headline.AccessionNumber);
-            ub.Append("napc", "WN");
+            ub.Append("napc", tokenProperties.IsMct ? "MC" : "WN");
 
             // Add ep
             ub.Append("ep", "NL");
@@ -651,6 +651,7 @@ namespace EMG.widgets.ui.utility.headline
                     break;
                 case WidgetDistributionType.TTLProxyAccount:
                     ub.Append("p", "sa");
+                    if (tokenProperties.IsMct) ub.Append("f", "nv");
                     if (definition.AuthenticationCredentials != null && !string.IsNullOrEmpty(definition.AuthenticationCredentials.EncryptedToken))
                     {
                         ub.Append("eid4", GetTTLProxyTokenForArticleView(headline.AccessionNumber, definition.AuthenticationCredentials.EncryptedToken));
@@ -658,11 +659,10 @@ namespace EMG.widgets.ui.utility.headline
                     break;
                 case WidgetDistributionType.ExternalReader:
                     ub.Append("p", "er");
-                    ub.Append("f", "s");
+                    ub.Append("f", tokenProperties.IsMct ? "nv" : "s");
                     if (definition.AuthenticationCredentials != null && !string.IsNullOrEmpty(definition.AuthenticationCredentials.ProfileId))
                     {
-                        var externalReaderToken = GetEncryptedExternalReaderToken(definition.AuthenticationCredentials.ProfileId,
-                                                                                     tokenProperties);
+                        var externalReaderToken = GetEncryptedExternalReaderToken(definition.AuthenticationCredentials.ProfileId, tokenProperties);
                         ub.Append("erc", externalReaderToken);
                     }
                     break;
@@ -781,11 +781,17 @@ namespace EMG.widgets.ui.utility.headline
         private static string GetEncryptedExternalReaderToken(string profileId, WidgetTokenProperties tokenProperties)
         {
             // Use factiva encription to encode into a token name/value pairs
-            Encryption encryption = new Encryption();
-            NameValueCollection nvp = new NameValueCollection(3);
+            var encryption = new Encryption();
+            var nvp = new NameValueCollection(3);
+            var userId = tokenProperties.UserId;
+            if (tokenProperties.IsMct)
+            {
+                userId = userId.Replace("NLE", "NLP").Replace("NLC", "NLP");
+            }
             nvp.Add("ppid", tokenProperties.NameSpace);
-            nvp.Add("puid", tokenProperties.UserId);
+            nvp.Add("puid", userId);
             nvp.Add("cpid", profileId);
+
             return encryption.encrypt(nvp, ExternalReaderPublicKey);
         }
 

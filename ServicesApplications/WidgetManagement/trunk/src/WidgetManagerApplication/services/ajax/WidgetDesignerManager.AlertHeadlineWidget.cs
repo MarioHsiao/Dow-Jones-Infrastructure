@@ -195,7 +195,7 @@ namespace EMG.widgets.services
             }
             using (new TransactionLogger(Log, MethodBase.GetCurrentMethod()))
             {
-                return GetWidgetScriptCode(widgetId, accessPointCode, interfaceLanguage, productPrefix);
+                return GetWidgetScriptCode(widgetId, accessPointCode, interfaceLanguage, productPrefix, 0);
             }
         }
         

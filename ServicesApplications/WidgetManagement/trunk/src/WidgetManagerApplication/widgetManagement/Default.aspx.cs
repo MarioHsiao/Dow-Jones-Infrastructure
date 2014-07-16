@@ -390,7 +390,7 @@ namespace EMG.widgets.ui.widgetManagement
         private void AddCreateSlashUpdateWidgetControls()
         {
             // Add javascript to tell client script what page this is 
-            ClientScript.RegisterClientScriptBlock(GetType(), "identifier", GetClientScriptIdentifier("designer", _widgetManagementDTO.widgetType, _widgetManagementDTO.secondaryAction));
+            ClientScript.RegisterClientScriptBlock(GetType(), "identifier", GetClientScriptIdentifier("designer", _widgetManagementDTO.widgetType, _widgetManagementDTO.secondaryAction, _widgetManagementDTO.isMct));
 
             // Add sub navigation control
             ContentTop.Controls.Add(AddTabs());
@@ -745,7 +745,7 @@ namespace EMG.widgets.ui.widgetManagement
         /// <returns>
         /// The get client script identifier.
         /// </returns>
-        private static string GetClientScriptIdentifier(string identifier, WidgetType widgetType, WidgetManagementSecondaryAction secondaryAction)
+        private static string GetClientScriptIdentifier(string identifier, WidgetType widgetType, WidgetManagementSecondaryAction secondaryAction, int isMct)
         {
             var ub = new UrlBuilder("~/services/chart.ashx");
             var sb = new StringBuilder();
@@ -757,6 +757,7 @@ namespace EMG.widgets.ui.widgetManagement
             sb.AppendFormat("var emg_screenAction = \"{0}\";", secondaryAction);
             sb.AppendFormat("var emg_baseChartingUrl = \"{0}\";", ub.ToString());
             sb.AppendFormat("var emg_selectedTab = \"{0}\";", 1);
+            sb.AppendFormat("var emg_im = \"{0}\";", isMct);
             sb.Append("\n// -->\n</script>");
             return sb.ToString();
         }

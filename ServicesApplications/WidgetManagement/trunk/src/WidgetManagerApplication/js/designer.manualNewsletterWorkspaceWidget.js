@@ -363,6 +363,7 @@ function fireUpdateManualNewsletterWorkspaceWidgetAndGetScriptCode (){
                 accessPointCode,
                 interfaceLanguage,
                 sa_from,
+                emg_im,
                 getScriptCode_success,
                 generic_failure, 
                 null);  

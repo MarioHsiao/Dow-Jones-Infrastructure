@@ -1021,6 +1021,7 @@ function closeUpdate() {
             accessPointCode,
             interfaceLanguage,
             sa_from,
+            emg_im,
             getScriptCode_success,
             generic_failure, 
             null);            
@@ -1206,6 +1207,7 @@ function onWidgetPublish(sender, eventArgs) {
             accessPointCode,
             interfaceLanguage,
             sa_from,
+            emg_im,
             getScriptCode_success,
             generic_failure, 
             {"sender":sender,"eventArgs":eventArgs});     

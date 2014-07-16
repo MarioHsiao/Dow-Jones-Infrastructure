@@ -58,6 +58,11 @@ namespace EMG.widgets.ui.dto.request
         public string randomKey;
 
         /// <summary>
+        /// 
+        /// </summary>
+        [ParameterName("im")] public int isMct = 0;
+
+        /// <summary>
         /// Determines whether this instance is valid.
         /// </summary>
         /// <returns>

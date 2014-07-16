@@ -14,6 +14,7 @@ namespace EMG.widgets.ui.encryption
         private readonly string m_NameSpace;
         private readonly string m_UserId;
         private readonly string m_WidgetId;
+        private readonly string m_im;
         private readonly string m_OriginalToken;
 
         /// <summary>
@@ -34,6 +35,7 @@ namespace EMG.widgets.ui.encryption
                 m_UserId = GetValueFromCollection(RenderWidgetEncryptionConfiguration.USER_ID);
                 m_AccountId = GetValueFromCollection(RenderWidgetEncryptionConfiguration.ACCOUNT_ID);
                 m_NameSpace = GetValueFromCollection(RenderWidgetEncryptionConfiguration.NAMESPACE);
+                m_im = GetValueFromCollection(RenderWidgetEncryptionConfiguration.IS_MCT);
             }
         }
 
@@ -81,6 +83,15 @@ namespace EMG.widgets.ui.encryption
         public string OriginalToken
         {
             get { return m_OriginalToken; }
+        }
+
+        /// <summary>
+        /// Gets the MCT flag.
+        /// </summary>
+        /// <value>The MCT flag.</value>
+        public bool IsMct
+        {
+            get { return (!string.IsNullOrEmpty(m_im) && "1" == m_im); }
         }
     }
 }
