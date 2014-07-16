@@ -91,6 +91,12 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ajax\Newsletter\NewsletterInfo.cs" />
+    <Compile Include="Ajax\Newsletter\NewsletterListDataResult.cs" />
+    <Compile Include="Ajax\Newsletter\NewsletterListResultSet.cs" />
+    <Compile Include="Ajax\Newsletter\NewsletterSectionInfo.cs" />
+    <Compile Include="Ajax\Newsletter\NewsletterSectionListDataResult.cs" />
+    <Compile Include="Ajax\Newsletter\NewsletterSectionListResultSet.cs" />
     <Compile Include="Ajax\PortalArticle\ArticleRef.cs" />
     <Compile Include="Ajax\PortalArticle\AuthorItem.cs" />
     <Compile Include="Ajax\PortalArticle\ContactItem.cs" />
