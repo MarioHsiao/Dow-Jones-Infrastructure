@@ -25,11 +25,11 @@ namespace DowJones.Web.Mvc.UI.Components.NewsletterSectionList
         [JsonProperty("name")]
         public string Name { get; set; }
 
-        [JsonProperty("index")]
-        public int Index { get; set; }
+        [JsonProperty("position")]
+        public int Position { get; set; }
 
-        [JsonProperty("positionIndicator")]
-        public string PositionIndicator { get; set; }
+        [JsonProperty("subSections")]
+        public IEnumerable<Section> SubSections { get; set; }
     }
 
 }

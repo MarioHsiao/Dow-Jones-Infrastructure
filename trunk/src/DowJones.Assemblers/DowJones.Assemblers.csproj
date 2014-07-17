@@ -140,6 +140,7 @@
     <Compile Include="Newsletters\GetWorkspacesPropertiesListResponseConverter.cs" />
     <Compile Include="Newsletters\NewsletterListConversionManager.cs" />
     <Compile Include="Newsletters\NewsletterSectionListConversionManager.cs" />
+    <Compile Include="Newsletters\SectionConverter.cs" />
     <Compile Include="Quotes\QuoteAssembler.cs" />
     <Compile Include="RelationshipMapping\AbstractRelationshipMappingResultConverter.cs" />
     <Compile Include="RelationshipMapping\ConnectionResultsConversionManager.cs" />

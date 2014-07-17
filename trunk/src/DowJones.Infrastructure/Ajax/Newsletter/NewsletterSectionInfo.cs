@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
 
 namespace DowJones.Ajax.Newsletter
@@ -9,12 +10,12 @@ namespace DowJones.Ajax.Newsletter
         [JsonProperty("name")]
         public string Name { get; set; }
 
-        [DataMember(Name = "index")]
-        [JsonProperty("index")]
-        public int Index { get; set; }
+        [DataMember(Name = "position")]
+        [JsonProperty("position")]
+        public int Position { get; set; }
 
-        [DataMember(Name = "positionIndicator")]
-        [JsonProperty("positionIndicator")]
-        public string PositionIndicator { get; set; }
+        [DataMember(Name = "subSections")]
+        [JsonProperty("subSections")]
+        public IEnumerable<NewsletterSectionInfo> SubSections { get; set; }
     }
 }
