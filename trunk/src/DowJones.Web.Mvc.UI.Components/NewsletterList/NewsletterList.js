@@ -6,9 +6,9 @@
         selectors: {
             newsletterTable: '#editionTable',
             noResultSpan: 'span.dj_noResults',
-            addBtn: 'a.add-to-newsletter',
-            clearBtn: 'a.clear-newsletter',
-            gotoBtn: 'a.goto-newsletter'
+            addBtn: 'a.add-to-newsletter-btn',
+            clearBtn: 'a.clear-newsletter-btn',
+            gotoBtn: 'a.open-newsletter-btn'
         },
 
         events: {
@@ -24,7 +24,9 @@
             this._super(element, $.extend({ name: "NewsletterList" }, meta));
 
             // Initialize component if we got data from server
-            this._setData(this.data);
+            if (this.data) {
+                this._setData(this.data);
+            }
         },
         
         _initializeSortable: function () {
@@ -32,8 +34,8 @@
                 cssHeader: "header",
                 cssAsc: "headerSortUp",
                 cssDesc: "headerSortDown",
-                sortList: [[2, 1]],
-                headers: { 0: { sorter: false }, 3: { sorter: false } },
+                sortList: [[1, 0]],
+                headers: { 2: { sorter: false }},
                 widgets: ['zebra'],
                 dateFormat: 'd,MM,yy'
             });
@@ -42,24 +44,31 @@
         _initializeNewsletter: function () {
             var self = this;
             self._initializeSortable();
-
-            self.$element.on('click', self.selectors.addBtn, function () {
-                $dj.publish(self.events.addClick, { nid: $(this).attr('id') });
+            self.$addBtn = self.$element.find(self.selectors.addBtn);
+            self.$clearBtn = self.$element.find(self.selectors.clearBtn);
+            self.$gotoBtn = self.$element.find(self.selectors.gotoBtn);
+            
+            self.$element.on('click', self.$addBtn, function (e) {
+                $dj.publish(self.events.addClick, { nid: $(e.target).parent().data('nlid') });
             });
 
-            self.$element.on('click', self.selectors.clearBtn, function () {
-                $dj.publish(self.events.clearClick, { nid: $(this).attr('id') });
+            self.$element.on('click', self.$clearBtn, function (e) {
+                $dj.publish(self.events.clearClick, { nid: $(e.target).parent().data('nlid') });
             });
 
-            self.$element.on('click', self.selectors.gotoBtn, function () {
-                $dj.publish(self.events.gotoNewsletterClick, { nid: $(this).attr('id') });
+            self.$element.on('click', self.$gotoBtn, function (e) {
+                $dj.publish(self.events.gotoNewsletterClick, { nid: $(e.target).parent().data('nlid') });
             });
+        },
+
+        _initializeEventHandlers: function(){
+
         },
 
         _setData: function (data) {
 
-            if (data && data.newsletters)
-                this.bindOnSuccess(data.newsletters);
+            if (data)
+                this.bindOnSuccess(data);
             else
                 this.bindOnSuccess({});
         },
@@ -68,9 +77,9 @@
             var self = this;
             try {
                 self.$element.html("");
-                if (data && data.length > 0) {
+                if (data && data.resultSet && data.resultSet.count.value > 0) {
                     // call to bind and append html to ul in one shot
-                    self.$element.append(this.templates.successNewsletters(data));
+                    self.$element.append(this.templates.successNewsletters(data.resultSet));
 
                     // bind events and perform other wiring up
                     this._initializeNewsletter();

@@ -8,29 +8,33 @@
         },
 
         events: {
-            addClick: "addClick.dj.NewsletterList"
+            addClick: "addClick.dj.NewsletterSectionList"
         },
 
         init: function (element, meta) {
             // Call the base constructor
             this._super(element, $.extend({ name: "NewsletterSectionList" }, meta));
-
-            this._setData(this.data);
+            
+            if (this.data) {
+                this._setData(this.data);
+            }
         },
         
         _initializeNewsletterSections: function () {
             var self = this;
-
-            self.$element.on('click', self.selectors.addBtn, function () {
-                var $this = $(this);
-                $dj.publish(self.events.addClick, { nlid: self.data.nlid, ind: $this.data('index'), positionIndicator: $this.data('pi') });
+            self.$addBtn = self.$element.find(self.selectors.addBtn);
+            self.$element.on('click', self.$addBtn, function (e) {
+                var t = $(e.target).parent();
+                $dj.publish(self.events.addClick, { nlid: self.data.nlid, ind: t.data('index'), positionIndicator: t.data('pi') });
             });
         },
 
         _setData: function (data) {
 
-            if (data && data.newsletters)
-                this.bindOnSuccess(data.newsletters);
+            if (data) {
+                this.data = data;
+                this.bindOnSuccess(data);
+            }
             else
                 this.bindOnSuccess({});
         },
@@ -39,7 +43,7 @@
             var self = this;
             try {
                 self.$element.html("");
-                if (data && data.length > 0) {
+                if (data && data.sections && data.sections.length > 0) {
                     // call to bind and append html to ul in one shot
                     self.$element.append(this.templates.success(data));
 

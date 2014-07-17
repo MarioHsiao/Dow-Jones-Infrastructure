@@ -4,30 +4,36 @@
 		newsletters = self.newsletters;
 %>
 
-<table border="0" class="tablesorter nlTable" id="editionTable">
-    <thead>
-        <tr>
-            <th sorter="text" class="header"><%=Token("newsletterName")%></th>
-            <th sorter="date" class="header headerSortUp"><%=Token("date")%></th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        <%
-        for (var i = 0; i < newsletters.length; i++) {
+    <table border="0" class="tablesorter nlTable" id="editionTable">
+        <thead>
+            <tr>
+                <th sorter="text" class="header" width="50%"><%=Token("newsletterName")%></th>
+                <th sorter="date" class="header headerSortUp" width="25%"><%=Token("date")%></th>
+                <th><%=Token("actions")%></th>
+            </tr>
+        </thead>
+        <tbody>
+            <%
+            for (var i = 0; i < newsletters.length; i++) {
             x = newsletters[i];
-        %>
-        <tr class="NLEdition" onmouseover="HighlightEditionPlusT(this,true,'11071');return false;" onmouseout="HighlightEditionPlusT(this,false,'11071');return false;" id="edition_11071">
-            <td width="35%" valign="middle"><span class="NLEditionName"><span nowrap="wrap"><%=x.name%></span></span></td>
-            <td width="20%" nowrap="nowrap" valign="middle"><span style="display:none;"><%=x.lastModifiedDate%></span><span class="NLEditionDate"><span><%=x.lastModifiedDateDescriptor%></span></span></td>
-            <td valign="middle">
-                <span nowrap="nowrap" class="NLInvi">
-                    <span><a class="nlShowlinksXYZ" href="#"><%=Token("add")%></a></span>
-                    <span><a class="nlShowlinksXYZ" href="#"><%=Token("clear")%></a></span>
-                    <span><a class="nlShowlinksXYZ" href="#"><%=Token("gotoNewsletter")%></a></span>
-                </span>
-            </td>
-        </tr>
-        <% } %>
-    </tbody>
-</table>
+            %>
+            <tr class="NLEdition">
+                <td valign="middle"><span class="NLEditionName"><span nowrap="wrap"><%=x.name%></span></span></td>
+                <td nowrap="nowrap" valign="middle"><span style="display:none;"><%=x.lastModifiedDate%></span><span class="NLEditionDate"><span><%=x.lastModifiedDateDescriptor%></span></span></td>
+                <td valign="middle">
+                    <div class="inline-tools nl-pps-actions" style="display: block">
+                        <a class="btn add-to-newsletter-btn" href="javascript:void(0);" data-nlid="<%=x.id%>" title="<%=Token(" addtonewsletter")%>">
+                            <i class="icon-plus icon-small"></i>
+                        </a>
+                        <a class="btn clear-newsletter-btn" href="javascript:void(0);" data-nlid="<%=x.id%>" title="<%=Token(" clearnewsletter")%>">
+                            <i class="icon-remove icon-small"></i>
+                        </a>
+                        <a class="btn open-newsletter-btn" href="javascript:void(0);" data-nlid="<%=x.id%>" title="<%=Token(" gotonewsletter")%>">
+                            <i class="icon-link icon-small"></i>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            <% } %>
+        </tbody>
+    </table>

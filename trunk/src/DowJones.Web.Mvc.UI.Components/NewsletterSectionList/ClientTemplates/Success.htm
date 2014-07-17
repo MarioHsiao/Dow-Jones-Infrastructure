@@ -1,14 +1,17 @@
-﻿<ul id="sections">
+﻿<div class="clearfix nl-pps-instruction"><%=Token("addSelectedItemsToSection")%></div>
+<ul id="nl-pps-sections">
     <%
-    for (var i = 0; i < self.data.sections.length; i++) {
-    x = self.data.sections[i];
+    for (var i = 0; i < self.sections.length; i++) {
+    x = self.sections[i];
     %>
-    <li class="section">
+    <li class="nl-pps-section">
         <div class="clearfix">
             <h5><%=x.name%></h5>
-            <div class="inline-tools section-tools pull-right" style="display: block;">
-                <button class="btn btn-inverse action-btn delete-entry" title="" data-original-title="<%=Token('addToSection')"
-                        data-index="<%=x.index%>" data-pi="<%=x.positionIndicator%>"></button>
+            <div class="inline-tools nl-pps-actions pull-right" style="display: block;">
+                <a class="btn add-to-section" href="javascript:void(0);" title="<%=Token('addToSection')%>"
+                   data-index="<%=x.index%>" data-pi="<%=x.positionIndicator%>">
+                    <i class="icon-plus icon-small"></i>
+                </a>
             </div>
         </div>
     </li>
