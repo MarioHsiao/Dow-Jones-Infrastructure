@@ -9,7 +9,7 @@ namespace DowJones.Assemblers.Newsletters
 {
     public class NewsletterListConversionManager: ITypeMapper<GetWorkspacesPropertiesListResponse, NewsletterListDataResult>
     {
-        private readonly DateTimeFormatter _datetimeFormatter;
+        public DateTimeFormatter DatetimeFormatter { get; set; }
 
         /// <summary>
         /// 
@@ -17,7 +17,11 @@ namespace DowJones.Assemblers.Newsletters
         /// <param name="dateTimeFormatter"></param>
         public NewsletterListConversionManager(DateTimeFormatter dateTimeFormatter)
         {
-            _datetimeFormatter = dateTimeFormatter;
+            DatetimeFormatter = dateTimeFormatter;
+        }
+        public NewsletterListConversionManager(DowJones.Preferences.IPreferences preferences)
+        {
+            DatetimeFormatter = new DateTimeFormatter(preferences);
         }
 
         /// <summary>
@@ -37,7 +41,7 @@ namespace DowJones.Assemblers.Newsletters
         /// <returns>NewsletterListDataResult</returns>
         public NewsletterListDataResult Process(GetWorkspacesPropertiesListResponse response)
         {
-            var converter = new GetWorkspacesPropertiesListResponseConverter(response, _datetimeFormatter);
+            var converter = new GetWorkspacesPropertiesListResponseConverter(response, DatetimeFormatter);
             return (NewsletterListDataResult)converter.Process();
         }
 
