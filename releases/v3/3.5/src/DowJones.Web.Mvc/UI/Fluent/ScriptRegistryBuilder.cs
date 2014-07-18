@@ -196,6 +196,12 @@ namespace DowJones.Web.Mvc.UI
             return this;
         }
 
+        public virtual ScriptRegistryBuilder WithJQueryTableSorter(bool enabled = true)
+        {
+            RegisterFrameworkWebResource(EmbeddedResources.Js.JQueryTableSorter, ClientResourceDependencyLevel.MidLevel, enabled);
+            return this;
+        }
+
         public virtual ScriptRegistryBuilder WithJQueryTimeAgo(bool enabled = true)
         {
             RegisterFrameworkWebResource(EmbeddedResources.Js.JQueryTimeAgo, ClientResourceDependencyLevel.MidLevel, enabled);

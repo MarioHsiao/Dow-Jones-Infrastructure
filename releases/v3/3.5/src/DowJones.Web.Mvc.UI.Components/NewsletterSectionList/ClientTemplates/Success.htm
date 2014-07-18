@@ -1,0 +1,66 @@
+﻿<%
+var hasNoSection = self.count.value === 1;
+%>
+<div class="clearfix nl-pps-instruction">
+    <div class="pull-left"><span class="note"><%=Token("addSelectedItemsToSection")%></span></div>
+    <div class="pull-right"><a class="back-to-newsletter"><%=Token("backToNewsletter")%></a></div>
+</div>
+<ul class="nl-pps-sections">
+    <li class="nl-pps-section">
+        <div class="clearfix">
+            <div class="pull-left"><span class="section-name"><%=Token("addToTopSection")%></span></div>
+            <div class="inline-tools nl-pps-actions pull-right" style="display: block;">
+                <a class="btn add-to-section" href="javascript:void(0);" title="<%=Token('addToSection')%>"
+                    data-position="0" data-pi="a">
+                    <i class="icon-plus icon-small"></i>
+                </a>
+            </div>
+        </div>
+    </li>
+    <%if (hasNoSection) {%>
+    <li class="nl-pps-section">
+        <div class="clearfix">
+            <div class="pull-left"><span class="section-name"><%=Token("addToBottomSection")%></span></div>
+            <div class="inline-tools nl-pps-actions pull-right" style="display: block;">
+                <a class="btn add-to-section" href="javascript:void(0);" title="<%=Token('addToSection')%>"
+                   data-position="0" data-pi="p">
+                    <i class="icon-plus icon-small"></i>
+                </a>
+            </div>
+        </div>
+    </li>
+    <% }
+    for (var i = 1; i < self.newsletterSections.length; i++) {
+        x = self.newsletterSections[i];
+    %>
+    <li class="nl-pps-section">
+        <div class="clearfix">
+            <div class="pull-left"><span class="section-name"><%=x.name%></span></div>
+            <div class="inline-tools nl-pps-actions pull-right" style="display: block;">
+                <a class="btn add-to-section" href="javascript:void(0);" title="<%=Token('addToSection')%>"
+                   data-index="<%=x.position%>" data-pi="a">
+                    <i class="icon-plus icon-small"></i>
+                </a>
+            </div>
+        </div>
+        <%if (x.subSections && x.subSections.length > 0 ) { %>
+        <ul class="nl-pps-subsections">
+            <%for (var j = 0; j < x.subSections.length; j++) {
+            sub = x.subSections[j];    %>
+            <li class="nl-pps-section">
+                <div class="clearfix">
+                    <div class="pull-left"><span class="section-name"><%=sub.name%></span></div>
+                    <div class="inline-tools nl-pps-actions pull-right" style="display: block;">
+                        <a class="btn add-to-section" href="javascript:void(0);" title="<%=Token('addToSection')%>"
+                           data-position="<%=sub.position%>" data-pi="a">
+                            <i class="icon-plus icon-small"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+            <% } %>
+        </ul>
+        <% } %>
+    </li>
+    <% } %>
+    </ul>

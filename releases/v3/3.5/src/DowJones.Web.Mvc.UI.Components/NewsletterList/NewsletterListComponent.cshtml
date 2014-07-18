@@ -1,0 +1,8 @@
+﻿@model DowJones.Web.Mvc.UI.Components.NewsletterList.NewsletterListModel
+@ClientPlugin dj_NewsletterList
+@ClientTemplate  RelativeResourceName=ClientTemplates.Error.htm, TemplateId=error
+@ClientTemplate RelativeResourceName=ClientTemplates.NoData.htm, TemplateId=noData
+@ClientTemplate RelativeResourceName=ClientTemplates.SuccessNewsletters.htm, TemplateId=successNewsletters
+@ScriptResource RelativeResourceName=NewsletterList.js, DependsOn=jquery-tablesorter
+@StylesheetResource RelativeResourceName=NewsletterList.css
+@{ CssClass = "dj_NewsletterList"; }

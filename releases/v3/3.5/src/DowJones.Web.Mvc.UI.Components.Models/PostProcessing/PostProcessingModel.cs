@@ -58,6 +58,10 @@ namespace DowJones.Web.Mvc.UI.Components.PostProcessing
         PDF,
         [AssignedToken("downloadAsRTF")]
         RTF,
+        [AssignedToken("newsletterPPS")]
+        Newsletter,
+        [AssignedToken("workspacePPS")]
+        Workspace
     }
 
     public enum HeadlineSaveOptions
