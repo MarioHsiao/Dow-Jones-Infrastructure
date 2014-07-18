@@ -235,7 +235,7 @@ namespace EMG.widgets.ui.widgetManagement
         private void AddGalleryControls(IEnumerable modules)
         {
             // Add javascript to tell client script what page this is 
-            ClientScript.RegisterClientScriptBlock(GetType(), "identifier", GetClientScriptIdentifier("gallery"));
+            ClientScript.RegisterClientScriptBlock(GetType(), "identifier", GetClientScriptIdentifier("gallery", _widgetManagementDTO.isMct));
 
             // Add sub navigation control
             ContentTop.Controls.Add(AddTabs());
@@ -430,7 +430,7 @@ namespace EMG.widgets.ui.widgetManagement
         private void AddListWidgetsControls()
         {
             // Add javascript to tell client script what page this is 
-            ClientScript.RegisterClientScriptBlock(GetType(), "identifier", GetClientScriptIdentifier("management"));
+            ClientScript.RegisterClientScriptBlock(GetType(), "identifier", GetClientScriptIdentifier("management", _widgetManagementDTO.isMct));
 
             // Add sub navigation control
             ContentMain.Controls.Add(AddTabs());
@@ -711,12 +711,13 @@ namespace EMG.widgets.ui.widgetManagement
         /// The get client script identifier.
         /// </summary>
         /// <param name="identifier">
+        /// <param name="isMct">
         /// The identifier.
         /// </param>
         /// <returns>
         /// The get client script identifier.
         /// </returns>
-        private static string GetClientScriptIdentifier(string identifier)
+        private static string GetClientScriptIdentifier(string identifier, int isMct)
         {
             var ub = new UrlBuilder("~/services/chart.ashx");
             var sb = new StringBuilder();
@@ -726,6 +727,7 @@ namespace EMG.widgets.ui.widgetManagement
             sb.AppendFormat("var emg_baseScreen = \"{0}\";", identifier);
             sb.AppendFormat("var emg_selectedTab = \"{0}\";", 1);
             sb.AppendFormat("var emg_baseChartingUrl = \"{0}\";", ub.ToString());
+            sb.AppendFormat("var emg_im = \"{0}\";", isMct);
             sb.Append("\n// -->\n</script>");
             return sb.ToString();
         }
