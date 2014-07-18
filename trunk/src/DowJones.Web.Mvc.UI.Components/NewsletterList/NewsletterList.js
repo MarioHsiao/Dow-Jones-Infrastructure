@@ -38,7 +38,7 @@
                 sortList: [[1, 0]],
                 headers: { 2: { sorter: false }},
                 widgets: ['zebra'],
-                dateFormat: 'd,MM,yy'
+                dateFormat: 'd MM yyyy'
             });
         },
 
@@ -47,22 +47,22 @@
             self._initializeSortable();
             
             self.$element.on('click', self.selectors.addBtn, function (e) {
-                $dj.publish(self.events.addClick, { nid: $(e.target).parent().data('nlid') });
+                $dj.publish(self.events.addClick, { nid: $(this).data('nlid') });
                 return false;
             });
 
             self.$element.on('click', self.selectors.clearBtn, function (e) {
-                $dj.publish(self.events.clearClick, { nid: $(e.target).parent().data('nlid') });
+                $dj.publish(self.events.clearClick, { nid: $(this).data('nlid') });
                 return false;
             });
 
             self.$element.on('click', self.selectors.gotoBtn, function (e) {
-                $dj.publish(self.events.gotoNewsletterClick, { nid: $(e.target).parent().data('nlid') });
+                $dj.publish(self.events.gotoNewsletterClick, { nid: $(this).data('nlid') });
                 return false;
             });
 
             self.$element.on('click', self.selectors.editBtn, function (e) {
-                $dj.publish(self.events.editWorkspaceClick, { nid: $(e.target).parent().data('nlid') });
+                $dj.publish(self.events.editWorkspaceClick, { nid: $(this).data('nlid') });
                 return false;
             });
         },
