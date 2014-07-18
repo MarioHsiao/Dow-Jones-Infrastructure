@@ -1,35 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using Newtonsoft.Json;
+using DowJones.Ajax.Newsletter;
 
 namespace DowJones.Web.Mvc.UI.Components.NewsletterSectionList
 {
+    [DataContract(Name = "newsletterSectionListModel", Namespace = "")]
     public class NewsletterSectionListModel : ViewComponentModel
     {
         [JsonProperty("nlid")]
         public long NewsletterId { get; set; }
 
-        [JsonProperty("sections")]
-        public IEnumerable<Section> Sections { get; set; }
-
-        public NewsletterSectionListModel()
-        {
-            Sections = Enumerable.Empty<Section>();
-        }
+        [ClientData]
+        [DataMember(Name="result")]
+        [JsonProperty("result")]
+        public NewsletterSectionListDataResult Result { get; set; }
     }
-
-    public class Section
-    {
-        [JsonProperty("name")]
-        public string Name { get; set; }
-
-        [JsonProperty("position")]
-        public int Position { get; set; }
-
-        [JsonProperty("subSections")]
-        public IEnumerable<Section> SubSections { get; set; }
-    }
-
 }

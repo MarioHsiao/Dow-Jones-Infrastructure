@@ -8,16 +8,17 @@
             noResultSpan: 'span.dj_noResults',
             addBtn: 'a.add-to-newsletter-btn',
             clearBtn: 'a.clear-newsletter-btn',
-            gotoBtn: 'a.open-newsletter-btn'
+            gotoBtn: 'a.open-newsletter-btn',
+            editBtn: 'a.edit-workspace-btn'
         },
 
         events: {
             addClick: "addClick.dj.NewsletterList",
             clearClick: "clearClick.dj.NewsletterList",
             gotoNewsletterClick: "gotoNewsletterClick.dj.NewsletterList",
-            newsletterEntryClick: "newsletterEntryClick.dj.NewsletterList"
+            newsletterEntryClick: "newsletterEntryClick.dj.NewsletterList",
+            editWorkspaceClick: "editWorkspaceClick.dj.NewsletterList"
         },
-
 
         init: function (element, meta) {
             // Call the base constructor
@@ -44,20 +45,25 @@
         _initializeNewsletter: function () {
             var self = this;
             self._initializeSortable();
-            self.$addBtn = self.$element.find(self.selectors.addBtn);
-            self.$clearBtn = self.$element.find(self.selectors.clearBtn);
-            self.$gotoBtn = self.$element.find(self.selectors.gotoBtn);
             
-            self.$element.on('click', self.$addBtn, function (e) {
+            self.$element.on('click', self.selectors.addBtn, function (e) {
                 $dj.publish(self.events.addClick, { nid: $(e.target).parent().data('nlid') });
+                return false;
             });
 
-            self.$element.on('click', self.$clearBtn, function (e) {
+            self.$element.on('click', self.selectors.clearBtn, function (e) {
                 $dj.publish(self.events.clearClick, { nid: $(e.target).parent().data('nlid') });
+                return false;
             });
 
-            self.$element.on('click', self.$gotoBtn, function (e) {
+            self.$element.on('click', self.selectors.gotoBtn, function (e) {
                 $dj.publish(self.events.gotoNewsletterClick, { nid: $(e.target).parent().data('nlid') });
+                return false;
+            });
+
+            self.$element.on('click', self.selectors.editBtn, function (e) {
+                $dj.publish(self.events.editWorkspaceClick, { nid: $(e.target).parent().data('nlid') });
+                return false;
             });
         },
 
@@ -66,7 +72,7 @@
         },
 
         _setData: function (data) {
-
+            this.data = data;
             if (data)
                 this.bindOnSuccess(data);
             else
@@ -77,9 +83,10 @@
             var self = this;
             try {
                 self.$element.html("");
-                if (data && data.resultSet && data.resultSet.count.value > 0) {
+                if (data && data.result && data.result.resultSet && data.result.resultSet.count.value > 0) {
                     // call to bind and append html to ul in one shot
-                    self.$element.append(this.templates.successNewsletters(data.resultSet));
+                    data.result.resultSet.options = { type: self.options.type };
+                    self.$element.append(this.templates.successNewsletters(data.result.resultSet));
 
                     // bind events and perform other wiring up
                     this._initializeNewsletter();

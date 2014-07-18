@@ -4,11 +4,13 @@
 
     DJ.UI.NewsletterSectionList = DJ.UI.Component.extend({
         selectors: {
-            addBtn: 'a.add-to-section'
+            addBtn: 'a.add-to-section',
+            backBtn: '.back-to-newsletter'
         },
 
         events: {
-            addClick: "addClick.dj.NewsletterSectionList"
+            addClick: "addClick.dj.NewsletterSectionList",
+            backBtnClick: "backBtnClick.dj.NewsletterSectionList"
         },
 
         init: function (element, meta) {
@@ -22,17 +24,22 @@
         
         _initializeNewsletterSections: function () {
             var self = this;
-            self.$addBtn = self.$element.find(self.selectors.addBtn);
-            self.$element.on('click', self.$addBtn, function (e) {
+            self.$element.on('click', self.selectors.addBtn, function (e) {
                 var t = $(e.target).parent();
-                $dj.publish(self.events.addClick, { nlid: self.data.nlid, ind: t.data('index'), positionIndicator: t.data('pi') });
+                $dj.publish(self.events.addClick, { nlid: self.data.nlid, ind: t.data('position'), positionIndicator: t.data('pi') });
+                return false;
+            });
+
+            self.$element.on('click', self.selectors.backBtn, function () {
+                $dj.publish(self.events.backBtnClick);
+                return false;
             });
         },
 
         _setData: function (data) {
+            this.data = data;
 
             if (data) {
-                this.data = data;
                 this.bindOnSuccess(data);
             }
             else
@@ -43,9 +50,9 @@
             var self = this;
             try {
                 self.$element.html("");
-                if (data && data.sections && data.sections.length > 0) {
+                if (data && data.result && data.result.resultSet && data.result.resultSet.count.value > 0) {
                     // call to bind and append html to ul in one shot
-                    self.$element.append(this.templates.success(data));
+                    self.$element.append(this.templates.success(data.result.resultSet));
 
                     // bind events and perform other wiring up
                     this._initializeNewsletterSections();
