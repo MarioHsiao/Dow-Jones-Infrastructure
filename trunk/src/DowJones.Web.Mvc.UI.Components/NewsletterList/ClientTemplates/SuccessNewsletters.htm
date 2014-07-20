@@ -22,23 +22,19 @@
                 <td nowrap="nowrap" valign="middle"><span style="display:none;"><%=x.lastModifiedDate%></span><span class="NLEditionDate"><span><%=x.lastModifiedDateDescriptor%></span></span></td>
                 <td valign="middle">
                     <div class="inline-tools nl-pps-actions" style="display: block">
-                        <a class="btn add-to-newsletter-btn" href="javascript:void(0);" data-nlid="<%=x.id%>" title="<%=Token(" addtonewsletter")%>
-                            ">
+                        <a class="btn add-to-newsletter-btn" href="javascript:void(0);" data-nlid="<%=x.id%>" title="<%=Token("add")%>">
                             <i class="icon-plus icon-small"></i>
                         </a>
                         <%if (self.options.type === 'auto') {%>
-                        <a class="btn edit-workspace-btn" href="javascript:void(0);" data-nlid="<%=x.id%>" title="<%=Token(" clearnewsletter")%>
-                            ">
+                        <a class="btn edit-workspace-btn" href="javascript:void(0);" data-nlid="<%=x.id%>" title="<%=Token("edit")%>">
                             <i class="icon-edit icon-small"></i>
                         </a>
                         <%} else {%>
-                        <a class="btn clear-newsletter-btn" href="javascript:void(0);" data-nlid="<%=x.id%>" title="<%=Token(" clearnewsletter")%>
-                            ">
+                        <a class="btn clear-newsletter-btn" href="javascript:void(0);" data-nlid="<%=x.id%>" title="<%=Token("clear")%>">
                             <i class="icon-remove icon-small"></i>
                         </a>
                         <%}%>
-                        <a class="btn open-newsletter-btn" href="javascript:void(0);" data-nlid="<%=x.id%>" title="<%=Token(" gotonewsletter")%>
-                            ">
+                        <a class="btn open-newsletter-btn" href="javascript:void(0);" data-nlid="<%=x.id%>" title="<%=Token("goToNewsletter")%>">
                             <i class="icon-open icon-small"></i>
                         </a>
                     </div>
