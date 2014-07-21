@@ -8,6 +8,15 @@
             backBtn: '.back-to-newsletter'
         },
 
+        tokens: {
+            placeSelectedItems: '<%=Token("placeSelectedItems")%>',
+            back: '<%=Token("back")%>',
+            topOfEdition: '<%=Token("topOfEdition")%>',
+            bottomOfEdition: '<%=Token("bottomOfEdition")%>',
+            addActionTooltip: "<%=Token('add')%>",
+            noDataMessage: ""
+        },
+
         events: {
             addClick: "addClick.dj.NewsletterSectionList",
             backBtnClick: "backBtnClick.dj.NewsletterSectionList"

@@ -1,15 +1,16 @@
 ﻿<%
     var x;
-	var options = self.options,
+    var options = this.options,
+        tokens = this.tokens,
 		newsletters = self.newsletters;
 %>
 
     <table border="0" class="tablesorter nlTable" id="editionTable">
         <thead>
             <tr>
-                <th sorter="text" class="header" width="50%"><%=Token("name")%></th>
-                <th sorter="date" class="header headerSortUp" width="25%"><%=Token("date")%></th>
-                <th><%=Token("actions")%></th>
+                <th sorter="text" class="header" width="50%"><%=tokens.nameColumnLabel%></th>
+                <th sorter="date" class="header headerSortUp" width="25%"><%=tokens.dateColumnLabel%></th>
+                <th><%=tokens.actionsColumnLabel%></th>
             </tr>
         </thead>
         <tbody>
@@ -22,21 +23,26 @@
                 <td nowrap="nowrap" valign="middle"><span style="display:none;"><%=x.lastModifiedDate%></span><span class="NLEditionDate"><span><%=x.lastModifiedDateDescriptor%></span></span></td>
                 <td valign="middle">
                     <div class="inline-tools nl-pps-actions" style="display: block">
-                        <a class="btn add-to-newsletter-btn" href="javascript:void(0);" data-nlid="<%=x.id%>" title="<%=Token("add")%>">
+                        <%if (options.showAddAction) {%>
+                        <a class="btn add-to-newsletter-btn" href="javascript:void(0);" data-nlid="<%=x.id%>" title="<%=tokens.addLinkTooltip%>">
                             <i class="icon-plus icon-small"></i>
                         </a>
-                        <%if (self.options.type === 'auto') {%>
-                        <a class="btn edit-workspace-btn" href="javascript:void(0);" data-nlid="<%=x.id%>" title="<%=Token("edit")%>">
+                        <%}%>
+                        <%if (options.showEditAction) {%>
+                        <a class="btn edit-workspace-btn" href="javascript:void(0);" data-nlid="<%=x.id%>" title="<%=tokens.editLinkTooltip%>">
                             <i class="icon-edit icon-small"></i>
                         </a>
-                        <%} else {%>
-                        <a class="btn clear-newsletter-btn" href="javascript:void(0);" data-nlid="<%=x.id%>" title="<%=Token("clear")%>">
+                        <%}%>
+                        <%if (options.showClearAction) {%>
+                        <a class="btn clear-newsletter-btn" href="javascript:void(0);" data-nlid="<%=x.id%>" title="<%=tokens.clearLinkTooltip%>">
                             <i class="icon-remove icon-small"></i>
                         </a>
                         <%}%>
-                        <a class="btn open-newsletter-btn" href="javascript:void(0);" data-nlid="<%=x.id%>" title="<%=Token("goToNewsletter")%>">
+                        <%if (options.showGotoAction) {%>
+                        <a class="btn open-newsletter-btn" href="javascript:void(0);" data-nlid="<%=x.id%>" title="<%=tokens.gotoLinkTooltip%>">
                             <i class="icon-open icon-small"></i>
                         </a>
+                        <%}%>
                     </div>
                 </td>
             </tr>

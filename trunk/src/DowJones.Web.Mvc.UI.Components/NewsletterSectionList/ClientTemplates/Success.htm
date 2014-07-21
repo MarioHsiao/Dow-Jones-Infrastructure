@@ -1,16 +1,17 @@
 ﻿<%
 var hasNoSection = self.count.value === 1;
+var tokens = this.tokens;
 %>
 <div class="clearfix nl-pps-instruction">
-    <div class="pull-left"><span class="note"><%=Token("placeSelectedItems")%></span></div>
-    <div class="pull-right"><a class="back-to-newsletter"><%=Token("back")%></a></div>
+    <div class="pull-left"><span class="note"><%=tokens.placeSelectedItems%></span></div>
+    <div class="pull-right"><a class="back-to-newsletter"><%=tokens.back%></a></div>
 </div>
 <ul class="nl-pps-sections">
     <li class="nl-pps-section">
         <div class="clearfix">
-            <div class="pull-left"><span class="section-name"><%=Token("topOfEdition")%></span></div>
+            <div class="pull-left"><span class="section-name"><%=tokens.topOfEdition%></span></div>
             <div class="inline-tools nl-pps-actions pull-right" style="display: block;">
-                <a class="btn add-to-section" href="javascript:void(0);" title="<%=Token('add')%>"
+                <a class="btn add-to-section" href="javascript:void(0);" title="<%=tokens.addActionTooltip%>"
                    data-position="0" data-pi="a">
                     <i class="icon-plus icon-small"></i>
                 </a>
@@ -20,9 +21,9 @@ var hasNoSection = self.count.value === 1;
     <%if (hasNoSection) {%>
     <li class="nl-pps-section">
         <div class="clearfix">
-            <div class="pull-left"><span class="section-name"><%=Token("bottomOfEdition")%></span></div>
+            <div class="pull-left"><span class="section-name"><%=tokens.bottomOfEdition%></span></div>
             <div class="inline-tools nl-pps-actions pull-right" style="display: block;">
-                <a class="btn add-to-section" href="javascript:void(0);" title="<%=Token('add')%>"
+                <a class="btn add-to-section" href="javascript:void(0);" title="<%=tokens.addActionTooltip%>"
                    data-position="0" data-pi="p">
                     <i class="icon-plus icon-small"></i>
                 </a>
@@ -37,7 +38,7 @@ var hasNoSection = self.count.value === 1;
         <div class="clearfix">
             <div class="pull-left"><span class="section-name"><%=x.name%></span></div>
             <div class="inline-tools nl-pps-actions pull-right" style="display: block;">
-                <a class="btn add-to-section" href="javascript:void(0);" title="<%=Token('add')%>"
+                <a class="btn add-to-section" href="javascript:void(0);" title="<%=tokens.addActionTooltip%>"
                    data-index="<%=x.position%>" data-pi="a">
                     <i class="icon-plus icon-small"></i>
                 </a>
@@ -51,7 +52,7 @@ var hasNoSection = self.count.value === 1;
                 <div class="clearfix">
                     <div class="pull-left"><span class="section-name"><%=sub.name%></span></div>
                     <div class="inline-tools nl-pps-actions pull-right" style="display: block;">
-                        <a class="btn add-to-section" href="javascript:void(0);" title="<%=Token('add')%>"
+                        <a class="btn add-to-section" href="javascript:void(0);" title="<%=tokens.addActionTooltip%>"
                            data-position="<%=sub.position%>" data-pi="a">
                             <i class="icon-plus icon-small"></i>
                         </a>

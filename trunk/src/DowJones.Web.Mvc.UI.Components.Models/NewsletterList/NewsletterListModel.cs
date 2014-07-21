@@ -15,6 +15,18 @@ namespace DowJones.Web.Mvc.UI.Components.NewsletterList
         [ClientProperty("type")]
         public string Type { get; set; }
 
+        [ClientProperty("showAddAction")]
+        public bool ShowAddAction { get; set; }
+
+        [ClientProperty("showEditAction")]
+        public bool ShowEditAction { get; set; }
+
+        [ClientProperty("showClearAction")]
+        public bool ShowClearAction { get; set; }
+
+        [ClientProperty("showGotoAction")]
+        public bool ShowGotoNewsletter { get; set; }
+
         [ClientData]
         [DataMember(Name="result")]
         [JsonProperty("result")]

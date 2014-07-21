@@ -12,6 +12,24 @@
             editBtn: 'a.edit-workspace-btn'
         },
 
+        defaults: {
+            showAddAction: true,
+            showEditAction: false,
+            showClearAction: true,
+            showGotoAction: true
+        },
+
+        tokens: {
+            nameColumnLabel: "<%=Token('name')%>",
+            dateColumnLabel: "<%=Token('date')%>",
+            actionsColumnLabel: "<%=Token('actions')%>",
+            addLinkTooltip: "<%=Token('add')%>",
+            clearLinkTooltip: "<%=Token('clear')%>",
+            editLinkTooltip: "<%=Token('edit')%>",
+            gotoLinkTooltip: "<%=Token('goToNewsletter')%>",
+            noDataMessage: "<%=Token('newsletterIntroVerbeage'%>"
+        },
+
         events: {
             addClick: "addClick.dj.NewsletterList",
             clearClick: "clearClick.dj.NewsletterList",
