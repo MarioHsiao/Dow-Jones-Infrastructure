@@ -420,7 +420,13 @@ namespace FactivaRssManager
 
                             if (isMct)
                             {
-                                if (null != audienceParams && audienceParams.ContainsKey("f")) { audienceParams["f"] = "nv"; }
+                                if (null != audienceParams)
+                                {
+                                    if (audienceParams.ContainsKey("f"))
+                                        audienceParams["f"] = "nv";
+                                    else
+                                        audienceParams.Add("f", "nv");
+                                }
                                 if (null != urlBuilder && null != urlBuilder.QueryString && urlBuilder.QueryString.ContainsKey("napc")) { urlBuilder.QueryString["napc"] = "MC"; }
                             }
 
