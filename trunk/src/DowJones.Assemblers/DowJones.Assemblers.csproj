@@ -191,6 +191,8 @@
     <Compile Include="Triggers\TriggerListConversionManager.cs" />
     <Compile Include="Triggers\TriggerManager.cs" />
     <Compile Include="Triggers\TriggerSearchResponseConverter.cs" />
+    <Compile Include="Workspaces\IWorkspaceRequestConversionManager.cs" />
+    <Compile Include="Workspaces\WorkspaceRequestConversionManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DowJones.Infrastructure\DowJones.Infrastructure.csproj">
