@@ -53,11 +53,15 @@
                 "bPaginate": false,
                 "sScrollY": "260px",
                 "bDeferRender": true,
+                "oLanguage": {
+                    "sSearch": ""
+                },
                 'aoColumnDefs': [{
                     'bSortable': false,
                     'aTargets': [-1] /* 1st one, start by the right */
                 }]
             });
+            $('div.dataTables_filter input', this.$element).attr('placeholder', 'Filter...');
         },
 
         _initializeNewsletter: function () {
