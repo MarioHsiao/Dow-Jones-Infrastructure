@@ -4,13 +4,11 @@
 
     DJ.UI.NewsletterSectionList = DJ.UI.Component.extend({
         selectors: {
-            addBtn: 'a.add-to-section',
-            backBtn: '.back-to-newsletter'
+            addBtn: 'a.add-to-section'
         },
 
         tokens: {
             placeSelectedItems: '<%=Token("placeSelectedItems")%>',
-            back: '<%=Token("back")%>',
             topOfEdition: '<%=Token("topOfEdition")%>',
             bottomOfEdition: '<%=Token("bottomOfEdition")%>',
             addActionTooltip: "<%=Token('add')%>",
@@ -19,7 +17,6 @@
 
         events: {
             addClick: "addClick.dj.NewsletterSectionList",
-            backBtnClick: "backBtnClick.dj.NewsletterSectionList"
         },
 
         init: function (element, meta) {
@@ -36,11 +33,6 @@
             self.$element.on('click', self.selectors.addBtn, function (e) {
                 var t = $(e.target).parent();
                 $dj.publish(self.events.addClick, { nlid: self.data.nlid, ind: t.data('position'), positionIndicator: t.data('pi') });
-                return false;
-            });
-
-            self.$element.on('click', self.selectors.backBtn, function () {
-                $dj.publish(self.events.backBtnClick);
                 return false;
             });
         },

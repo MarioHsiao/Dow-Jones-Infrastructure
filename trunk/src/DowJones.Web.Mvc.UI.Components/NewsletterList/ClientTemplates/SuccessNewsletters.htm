@@ -5,12 +5,12 @@
 		newsletters = self.newsletters;
 %>
 
-    <table border="0" class="tablesorter nlTable" id="editionTable">
+    <table border="0" class="nlTable" id="editionTable">
         <thead>
             <tr>
-                <th sorter="text" class="header" width="50%"><%=tokens.nameColumnLabel%></th>
-                <th sorter="date" class="header headerSortUp" width="25%"><%=tokens.dateColumnLabel%></th>
-                <th><%=tokens.actionsColumnLabel%></th>
+                <th class="name header"><%=tokens.nameColumnLabel%></th>
+                <th class="date header headerSortUp"><%=tokens.dateColumnLabel%></th>
+                <th class="actions"><%=tokens.actionsColumnLabel%></th>
             </tr>
         </thead>
         <tbody>
@@ -18,10 +18,10 @@
             for (var i = 0; i < newsletters.length; i++) {
             x = newsletters[i];
             %>
-            <tr class="NLEdition">
-                <td valign="middle"><span class="NLEditionName"><span nowrap="wrap"><%=x.name%></span></span></td>
-                <td nowrap="nowrap" valign="middle"><span style="display:none;"><%=x.lastModifiedDate%></span><span class="NLEditionDate"><span><%=x.lastModifiedDateDescriptor%></span></span></td>
-                <td valign="middle">
+            <tr class="NLEdition" data-nlid="<%=x.id%>">
+                <td class="name" valign="middle"><span class="NLEditionName"><span nowrap="wrap"><%=x.name%></span></span></td>
+                <td class="date" nowrap="nowrap" valign="middle"><span style="display:none;"><%=x.lastModifiedDate%></span><span class="NLEditionDate"><span><%=x.lastModifiedDateDescriptor%></span></span></td>
+                <td class="actions" valign="middle">
                     <div class="inline-tools nl-pps-actions" style="display: block">
                         <%if (options.showAddAction) {%>
                         <a class="btn btn-link add-to-newsletter-btn" href="javascript:void(0);" data-nlid="<%=x.id%>" title="<%=tokens.addLinkTooltip%>">

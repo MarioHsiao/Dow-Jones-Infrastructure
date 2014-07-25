@@ -4,12 +4,11 @@ var tokens = this.tokens;
 %>
 <div class="clearfix nl-pps-instruction">
     <div class="pull-left"><span class="note"><%=tokens.placeSelectedItems%></span></div>
-    <div class="pull-right"><a class="back-to-newsletter"><%=tokens.back%></a></div>
 </div>
 <ul class="nl-pps-sections">
     <li class="nl-pps-section">
         <div class="clearfix">
-            <div class="pull-left"><span class="section-name"><%=tokens.topOfEdition%></span></div>
+            <div class="pull-left"><span class="section-name default"><%=tokens.topOfEdition%></span></div>
             <div class="inline-tools nl-pps-actions pull-right" style="display: block;">
                 <a class="btn btn-link add-to-section" href="javascript:void(0);" title="<%=tokens.addActionTooltip%>"
                    data-position="0" data-pi="a">
@@ -21,7 +20,7 @@ var tokens = this.tokens;
     <%if (hasNoSection) {%>
     <li class="nl-pps-section">
         <div class="clearfix">
-            <div class="pull-left"><span class="section-name"><%=tokens.bottomOfEdition%></span></div>
+            <div class="pull-left"><span class="section-name default"><%=tokens.bottomOfEdition%></span></div>
             <div class="inline-tools nl-pps-actions pull-right" style="display: block;">
                 <a class="btn btn-link add-to-section" href="javascript:void(0);" title="<%=tokens.addActionTooltip%>"
                    data-position="0" data-pi="p">
@@ -50,7 +49,7 @@ var tokens = this.tokens;
             sub = x.subSections[j];    %>
             <li class="nl-pps-section">
                 <div class="clearfix">
-                    <div class="pull-left"><span class="section-name"><%=sub.name%></span></div>
+                    <div class="pull-left">-&nbsp;<span class="section-name subsection"><%=sub.name%></span></div>
                     <div class="inline-tools nl-pps-actions pull-right" style="display: block;">
                         <a class="btn btn-link add-to-section" href="javascript:void(0);" title="<%=tokens.addActionTooltip%>"
                            data-position="<%=sub.position%>" data-pi="a">

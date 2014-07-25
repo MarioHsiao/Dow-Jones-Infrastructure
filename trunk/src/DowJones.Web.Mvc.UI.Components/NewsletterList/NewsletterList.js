@@ -49,14 +49,14 @@
         },
         
         _initializeSortable: function () {
-            this.$element.find(this.selectors.newsletterTable).tablesorter({
-                cssHeader: "header",
-                cssAsc: "headerSortUp",
-                cssDesc: "headerSortDown",
-                sortList: [[1, 0]],
-                headers: { 2: { sorter: false }},
-                widgets: ['zebra'],
-                dateFormat: 'd MM yyyy'
+            this.$element.find(this.selectors.newsletterTable).dataTable({
+                "bPaginate": false,
+                "sScrollY": "260px",
+                "bDeferRender": true,
+                'aoColumnDefs': [{
+                    'bSortable': false,
+                    'aTargets': [-1] /* 1st one, start by the right */
+                }]
             });
         },
 
@@ -95,6 +95,14 @@
                 this.bindOnSuccess(data);
             else
                 this.bindOnSuccess({});
+        },
+
+        _setSectionsData: function(newsletterId, sectionsHtml) {
+            var nlRow = $('table#editionTable', this.$element).find("tr[data-nlid='" + newsletterId + "']");
+            //$('td.actions a.add-to-newsletter-btn', this.$element).show();
+            //$('td.actions a.add-to-newsletter-btn', nlRow).hide();
+            $('table#editionTable', this.$element).find('tr#sections').remove();
+            $("<tr id='sections'><td colspan='3'>" + sectionsHtml + "</td></tr>").insertAfter(nlRow);
         },
 
         bindOnSuccess: function (data) {
