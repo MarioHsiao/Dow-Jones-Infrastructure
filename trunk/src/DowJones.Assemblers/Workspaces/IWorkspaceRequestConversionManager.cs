@@ -8,6 +8,6 @@ namespace DowJones.Assemblers.Workspaces
 {
     public interface IWorkspaceRequestConversionManager
     {
-        AddItemsToWorkspaceRequest AddWorkspaceItem(AutomaticWorkspace workspaceContent, WorkspaceRequestDto workspaceRequestDto, int maxHeadlinesInWorkspace);
+        AddItemsToWorkspaceRequest AddWorkspaceItem(AutomaticWorkspace workspaceContent, WorkspaceRequestDto workspaceRequestDto);
     }
 }

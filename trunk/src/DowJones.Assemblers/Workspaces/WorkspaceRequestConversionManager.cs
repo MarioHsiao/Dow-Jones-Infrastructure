@@ -21,22 +21,22 @@ namespace DowJones.Assemblers.Workspaces
         {
             _resourceTextManager = resourceTextManager;
         }
-        public AddItemsToWorkspaceRequest AddWorkspaceItem(AutomaticWorkspace workspaceContent, WorkspaceRequestDto workspaceRequestDto, int maxHeadlinesInWorkspace)
+        public AddItemsToWorkspaceRequest AddWorkspaceItem(AutomaticWorkspace workspaceContent, WorkspaceRequestDto workspaceRequestDto)
         {
-            /*if (workspaceRequestDto.SelectedContentItems.Count == 0)
-                throw new DowJonesUtilitiesException(_resourceTextManager.GetString("noAccessionNumbers"));*/  
+            if (workspaceRequestDto.ContentItemsToAdd.Count == 0)
+                throw new DowJonesUtilitiesException(_resourceTextManager.GetString("noAccessionNumbers"));  //TODO add in translate db 
             
             var contentItemCollection = new ContentItemCollection();
 
-            for (var i = 0; i < workspaceRequestDto.SelectedContentItems.Count; i++)
+            for (var i = 0; i < workspaceRequestDto.ContentItemsToAdd.Count; i++)
             {
-                var item = workspaceRequestDto.SelectedContentItems.ElementAt(i);
+                var item = workspaceRequestDto.ContentItemsToAdd.ElementAt(i);
                 if (!isItemExistInCollection(item.Key, workspaceContent.ItemsCollection))
                 {
                     var articleItem = new ArticleItem
                     {
                         AccessionNumber = item.Key,
-                        ContentCategory = item.Value
+                        ContentCategory = MapContentCategory(item.Value)
                     };
                     contentItemCollection.Add(articleItem);
                 }
@@ -79,15 +79,40 @@ namespace DowJones.Assemblers.Workspaces
             return request;
         }
 
-        private bool isItemExistInCollection(string an, ContentItemCollection itemCollection)
+        private bool isItemExistInCollection(string an, IEnumerable<ContentItem> itemCollection)
         {
             return itemCollection.Cast<ArticleItem>().Any(item => item.AccessionNumber.Equals(an));
+        }
+
+        private ContentCategory MapContentCategory(
+            DowJones.Ajax.ContentCategory searchContentCategory)
+        {
+            switch (searchContentCategory)
+            {
+                case DowJones.Ajax.ContentCategory.Publication:
+                    return ContentCategory.Publications;
+                case DowJones.Ajax.ContentCategory.Website:
+                    return ContentCategory.WebSites;
+                case DowJones.Ajax.ContentCategory.Picture:
+                    return ContentCategory.Pictures;
+                case DowJones.Ajax.ContentCategory.Multimedia:
+                    return ContentCategory.Multimedia;
+                //TODO case DowJones.Ajax.ContentCategory.External: 
+                case DowJones.Ajax.ContentCategory.Blog:
+                    return ContentCategory.Blogs;
+                case DowJones.Ajax.ContentCategory.Board:
+                    return ContentCategory.Boards;
+                //TODO case DowJones.Ajax.ContentCategory.CustomerDoc:
+                case DowJones.Ajax.ContentCategory.Internal:
+                    return ContentCategory.CustomerDoc;
+            }
+            return ContentCategory.Unspecified;
         }
     }
 
     public class WorkspaceRequestDto
     {
-        public Dictionary<string, ContentCategory> SelectedContentItems { get; set; }
+        public Dictionary<string, DowJones.Ajax.ContentCategory> ContentItemsToAdd { get; set; }
     }
    
 }
