@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using DowJones.Ajax.Newsletter;
 using DowJones.Exceptions;
@@ -24,7 +25,7 @@ namespace DowJones.Assemblers.Workspaces
         public AddItemsToWorkspaceRequest AddWorkspaceItem(AutomaticWorkspace workspaceContent, WorkspaceRequestDto workspaceRequestDto)
         {
             if (workspaceRequestDto.ContentItemsToAdd.Count == 0)
-                throw new DowJonesUtilitiesException(_resourceTextManager.GetString("noAccessionNumbers"));  //TODO add in translate db 
+                throw new DowJonesUtilitiesException(_resourceTextManager.GetString("noAccessionNumbers"), ConversionErrors.NoAccessionNumbers); 
             
             var contentItemCollection = new ContentItemCollection();
 
@@ -42,20 +43,20 @@ namespace DowJones.Assemblers.Workspaces
                 }
                 else
                 {
-                    throw new DowJonesUtilitiesException(_resourceTextManager.GetString("itemAlreadyExists"));  
+                    throw new DowJonesUtilitiesException(_resourceTextManager.GetString("itemAlreadyExists"), ConversionErrors.ItemAlreadyExists);  
                 }
             }
 
             //Check if workspace already has 100 items
             if (workspaceContent.ItemsCollection.Count >= Properties.Settings.Default.MaxHeadlinesInWorkspace) 
             {
-                throw new DowJonesUtilitiesException(_resourceTextManager.GetString("alreadyHaveMaxAllowed"));  
+                throw new DowJonesUtilitiesException(_resourceTextManager.GetString("alreadyHaveMaxAllowed"), ConversionErrors.AlreadyHaveMaxAllowed);  
             }
 
             //Check if more than 100 articles are being added to the existing workspace
             if (contentItemCollection.Count > Properties.Settings.Default.MaxHeadlinesInWorkspace)  
             {
-                throw new DowJonesUtilitiesException(_resourceTextManager.GetString("selectMoreThanAllowed"));
+                throw new DowJonesUtilitiesException(_resourceTextManager.GetString("selectMoreThanAllowed"), ConversionErrors.SelectMoreThanAllowed);
             }
 
             //Check if sum of existing items and items to be added exceeds 100
@@ -64,7 +65,7 @@ namespace DowJones.Assemblers.Workspaces
             {
                 var errorMessage = string.Format("{0} {1} {2}", _resourceTextManager.GetString("newsletterMaxHeadlines-1a"), finalCount,
                     _resourceTextManager.GetString("newsletterMaxHeadlines-2"));
-                throw new DowJonesUtilitiesException(errorMessage); 
+                throw new DowJonesUtilitiesException(errorMessage, ConversionErrors.NewsletterMaxHeadlines); 
             }
 
             var addItemsToAutomaticWorkspaceDto = new AddItemsToAutomaticWorkspaceDTO();
@@ -114,5 +115,13 @@ namespace DowJones.Assemblers.Workspaces
     {
         public Dictionary<string, DowJones.Ajax.ContentCategory> ContentItemsToAdd { get; set; }
     }
-   
+
+    public class ConversionErrors
+    {
+        public static long NoAccessionNumbers = 210811; 
+        public static long ItemAlreadyExists = 210812;
+        public static long AlreadyHaveMaxAllowed = 210813;
+        public static long SelectMoreThanAllowed = 210814;
+        public static long NewsletterMaxHeadlines = 210815;
+    }
 }
