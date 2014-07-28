@@ -1022,5 +1022,8 @@
   <ItemGroup>
     <EmbeddedResource Include="NewsletterList\NewsletterList.js" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="NewsletterList\ClientTemplates\Notification.htm" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

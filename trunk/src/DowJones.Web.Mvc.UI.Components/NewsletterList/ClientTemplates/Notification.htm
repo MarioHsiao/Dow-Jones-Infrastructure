@@ -1,0 +1,8 @@
+﻿<%
+   var statusType = self.statusType.toLowerCase();
+%>
+<div class="alert-box alert-box-<%= statusType%>">
+    <div class="alert-box-icon-<%= statusType%>"></div>
+    <div class="alert-message"><%=self.statusMessage%></div>
+    <div class="alert-box-close alert-box-close-icon-<%= statusType%>"></div>
+</div>
