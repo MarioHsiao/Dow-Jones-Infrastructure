@@ -16,7 +16,8 @@
             showAddAction: true,
             showEditAction: false,
             showClearAction: true,
-            showGotoAction: true
+            showGotoAction: true,
+            allowFilter: true
         },
 
         tokens: {
@@ -49,9 +50,11 @@
         },
         
         _initializeSortable: function () {
+            var self = this;
             this.$element.find(this.selectors.newsletterTable).dataTable({
+                "bFilter": self.options.allowFilter,
                 "bPaginate": false,
-                "sScrollY": "260px",
+                "sScrollY": self.options.allowFilter ? "260px" : "300px",
                 "bDeferRender": true,
                 "oLanguage": {
                     "sSearch": ""

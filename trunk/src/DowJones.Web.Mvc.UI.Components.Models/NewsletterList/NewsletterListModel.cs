@@ -27,6 +27,9 @@ namespace DowJones.Web.Mvc.UI.Components.NewsletterList
         [ClientProperty("showGotoAction")]
         public bool ShowGotoNewsletter { get; set; }
 
+        [ClientProperty("allowFilter")]
+        public bool AllowFilter { get; set; }
+
         [ClientData]
         [DataMember(Name="result")]
         [JsonProperty("result")]
