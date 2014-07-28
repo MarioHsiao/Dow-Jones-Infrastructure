@@ -93,7 +93,8 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
         });
 
         self.$element.on('click', self.selectors.alertCloseBtn, function (e) {
-            $(this).parent().remove();
+            var alertBox = $(this).parent();
+            $(alertBox).fadeOut(500, function () { $(alertBox).remove(); });
         });
     },
 
@@ -146,8 +147,13 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
     },
 
     updateStatus: function (data) {
-        this.$element.find('.alert-box').remove();
-        $('.dataTables_wrapper', this.$element).prepend(this.templates.notification(data));
+        var self = this;
+        self.$element.find('.alert-box').remove();
+        $('.dataTables_wrapper', self.$element).prepend(self.templates.notification(data));
+        setTimeout(function () {
+            var alertBox = self.$element.find('.alert-box');
+            $(alertBox).fadeOut(500, function () { $(alertBox).remove(); });
+        }, 3000);
     },
 
     setErrorTemplate: function (markup) {
