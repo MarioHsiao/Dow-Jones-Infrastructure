@@ -22,7 +22,7 @@ namespace DowJones.Assemblers.Workspaces
         {
             _resourceTextManager = resourceTextManager;
         }
-        public AddItemsToWorkspaceRequest AddWorkspaceItem(AutomaticWorkspace workspaceContent, WorkspaceRequestDto workspaceRequestDto)
+        public AddItemsToWorkspaceRequest AddWorkspaceItem(AutomaticWorkspace workspaceContent, WorkspaceRequestDto workspaceRequestDto, int maxHeadlinesInWorkspace)
         {
             if (workspaceRequestDto.ContentItemsToAdd.Count == 0)
                 throw new DowJonesUtilitiesException(_resourceTextManager.GetString("noAccessionNumbers")); 
@@ -48,20 +48,20 @@ namespace DowJones.Assemblers.Workspaces
             }
 
             //Check if workspace already has 100 items
-            if (workspaceContent.ItemsCollection.Count >= Properties.Settings.Default.MaxHeadlinesInWorkspace) 
+            if (workspaceContent.ItemsCollection.Count >= maxHeadlinesInWorkspace) 
             {
                 throw new DowJonesUtilitiesException(_resourceTextManager.GetString("alreadyHaveMaxAllowed"));  
             }
 
             //Check if more than 100 articles are being added to the existing workspace
-            if (contentItemCollection.Count > Properties.Settings.Default.MaxHeadlinesInWorkspace)  
+            if (contentItemCollection.Count > maxHeadlinesInWorkspace)  
             {
                 throw new DowJonesUtilitiesException(_resourceTextManager.GetString("selectMoreThanAllowed"));
             }
 
             //Check if sum of existing items and items to be added exceeds 100
             var finalCount = contentItemCollection.Count + workspaceContent.ItemsCollection.Count;
-            if (finalCount > Properties.Settings.Default.MaxHeadlinesInWorkspace)
+            if (finalCount > maxHeadlinesInWorkspace)
             {
                 var errorMessage = string.Format("{0} {1} {2}", _resourceTextManager.GetString("newsletterMaxHeadlines-1a"), finalCount,
                     _resourceTextManager.GetString("newsletterMaxHeadlines-2"));
@@ -80,12 +80,7 @@ namespace DowJones.Assemblers.Workspaces
             return request;
         }
 
-        private bool isItemExistInCollection(string an, IEnumerable<ContentItem> itemCollection)
-        {
-            return itemCollection.Cast<ArticleItem>().Any(item => item.AccessionNumber.Equals(an));
-        }
-
-        private ContentCategory MapContentCategory(
+        public ContentCategory MapContentCategory(
             DowJones.Ajax.ContentCategory searchContentCategory)
         {
             switch (searchContentCategory)
@@ -109,10 +104,17 @@ namespace DowJones.Assemblers.Workspaces
             }
             return ContentCategory.Unspecified;
         }
+
+        private bool isItemExistInCollection(string an, IEnumerable<ContentItem> itemCollection)
+        {
+            return itemCollection.Cast<ArticleItem>().Any(item => item.AccessionNumber.Equals(an));
+        }
     }
 
     public class WorkspaceRequestDto
     {
         public Dictionary<string, DowJones.Ajax.ContentCategory> ContentItemsToAdd { get; set; }
+        public string PositionIndicator { get; set; }  //For adding items to newsletter
+        public string SectionSubsectionIndex { get; set; }  //For adding items to newsletter
     }
 }

@@ -138,7 +138,9 @@
     <Compile Include="NewsEntities\NewsEntitiesConversionManager.cs" />
     <Compile Include="Newsletters\AbstractNewsletterListDataResultConverter.cs" />
     <Compile Include="Newsletters\GetWorkspacesPropertiesListResponseConverter.cs" />
+    <Compile Include="Newsletters\INewsletterRequestConversionManager.cs" />
     <Compile Include="Newsletters\NewsletterListConversionManager.cs" />
+    <Compile Include="Newsletters\NewsletterRequestConversionManager.cs" />
     <Compile Include="Newsletters\NewsletterSectionListConversionManager.cs" />
     <Compile Include="Newsletters\SectionConverter.cs" />
     <Compile Include="Quotes\QuoteAssembler.cs" />

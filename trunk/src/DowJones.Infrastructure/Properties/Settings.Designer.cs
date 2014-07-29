@@ -521,14 +521,5 @@ namespace DowJones.Properties {
                 return ((global::System.Collections.Specialized.StringCollection)(this["Dave"]));
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("100")]
-        public int MaxHeadlinesInWorkspace {
-            get {
-                return ((int)(this["MaxHeadlinesInWorkspace"]));
-            }
-        }
     }
 }
