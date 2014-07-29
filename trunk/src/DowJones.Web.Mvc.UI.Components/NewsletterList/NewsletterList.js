@@ -29,7 +29,16 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
         clearLinkTooltip: "<%=Token('clear')%>",
         editLinkTooltip: "<%=Token('edit')%>",
         gotoLinkTooltip: "<%=Token('goToNewsletter')%>",
-        noDataMessage: "<%=Token('newsletterIntroVerbeage'%>"
+        noDataMessage: "<%=Token('newsletterIntroVerbeage'%>",
+        filterText: "<%=Token('filter')%>",
+        filteredText: "<%=Token('filtered')%>",
+        emptyRecordsText: "<%=Token('emptyRecordsTitle')%>",
+        showingText: "<%=Token('showing')%>",
+        toText: "<%=Token('to')%>",
+        fromText: "<%=Token('from')%>",
+        totalText: "<%=Token('totalLabel')%>",
+        ofText: "<%=Token('of')%>",
+        entriesText: "<%=Token('entries')%>"
     },
 
     events: {
@@ -52,20 +61,31 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
 
     _initializeSortable: function () {
         var self = this;
+        var sInfoText = self.tokens.showingText + " _START_ "
+            + self.tokens.toText + " _END_ "
+            + self.tokens.ofText + " _TOTAL_ "
+            + self.tokens.entriesText;
+        var sInfoFilteredText = " (" + self.tokens.filteredText + " "
+                                + self.tokens.fromText.toLowerCase() + " _MAX_ "
+                                + self.tokens.totalText.toLowerCase() + " "
+                                + self.tokens.entriesText + ")";
         this.$element.find(this.selectors.newsletterTable).dataTable({
             "bFilter": self.options.allowFilter,
             "bPaginate": false,
             "sScrollY": self.options.allowFilter ? "260px" : "300px",
             "bDeferRender": true,
             "oLanguage": {
-                "sSearch": ""
+                "sSearch": "",
+                "sInfo": sInfoText,
+                "sZeroRecords": self.tokens.emptyRecordsText,
+                "sInfoFiltered": sInfoFilteredText
             },
             'aoColumnDefs': [{
                 'bSortable': false,
                 'aTargets': [-1] /* 1st one, start by the right */
             }]
         });
-        $('div.dataTables_filter input', this.$element).attr('placeholder', 'Filter...');
+        $('div.dataTables_filter input', this.$element).attr('placeholder', self.tokens.filterText + '...');
     },
 
     _initializeNewsletter: function () {
