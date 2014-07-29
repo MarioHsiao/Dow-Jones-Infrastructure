@@ -25,7 +25,7 @@ namespace DowJones.Assemblers.Workspaces
         public AddItemsToWorkspaceRequest AddWorkspaceItem(AutomaticWorkspace workspaceContent, WorkspaceRequestDto workspaceRequestDto)
         {
             if (workspaceRequestDto.ContentItemsToAdd.Count == 0)
-                throw new DowJonesUtilitiesException(_resourceTextManager.GetString("noAccessionNumbers"), ConversionErrors.NoAccessionNumbers); 
+                throw new DowJonesUtilitiesException(_resourceTextManager.GetString("noAccessionNumbers")); 
             
             var contentItemCollection = new ContentItemCollection();
 
@@ -43,20 +43,20 @@ namespace DowJones.Assemblers.Workspaces
                 }
                 else
                 {
-                    throw new DowJonesUtilitiesException(_resourceTextManager.GetString("itemAlreadyExists"), ConversionErrors.ItemAlreadyExists);  
+                    throw new DowJonesUtilitiesException(_resourceTextManager.GetString("itemAlreadyExists"));  
                 }
             }
 
             //Check if workspace already has 100 items
             if (workspaceContent.ItemsCollection.Count >= Properties.Settings.Default.MaxHeadlinesInWorkspace) 
             {
-                throw new DowJonesUtilitiesException(_resourceTextManager.GetString("alreadyHaveMaxAllowed"), ConversionErrors.AlreadyHaveMaxAllowed);  
+                throw new DowJonesUtilitiesException(_resourceTextManager.GetString("alreadyHaveMaxAllowed"));  
             }
 
             //Check if more than 100 articles are being added to the existing workspace
             if (contentItemCollection.Count > Properties.Settings.Default.MaxHeadlinesInWorkspace)  
             {
-                throw new DowJonesUtilitiesException(_resourceTextManager.GetString("selectMoreThanAllowed"), ConversionErrors.SelectMoreThanAllowed);
+                throw new DowJonesUtilitiesException(_resourceTextManager.GetString("selectMoreThanAllowed"));
             }
 
             //Check if sum of existing items and items to be added exceeds 100
@@ -65,7 +65,7 @@ namespace DowJones.Assemblers.Workspaces
             {
                 var errorMessage = string.Format("{0} {1} {2}", _resourceTextManager.GetString("newsletterMaxHeadlines-1a"), finalCount,
                     _resourceTextManager.GetString("newsletterMaxHeadlines-2"));
-                throw new DowJonesUtilitiesException(errorMessage, ConversionErrors.NewsletterMaxHeadlines); 
+                throw new DowJonesUtilitiesException(errorMessage); 
             }
 
             var addItemsToAutomaticWorkspaceDto = new AddItemsToAutomaticWorkspaceDTO();
@@ -114,14 +114,5 @@ namespace DowJones.Assemblers.Workspaces
     public class WorkspaceRequestDto
     {
         public Dictionary<string, DowJones.Ajax.ContentCategory> ContentItemsToAdd { get; set; }
-    }
-
-    public class ConversionErrors
-    {
-        public static long NoAccessionNumbers = 210811; 
-        public static long ItemAlreadyExists = 210812;
-        public static long AlreadyHaveMaxAllowed = 210813;
-        public static long SelectMoreThanAllowed = 210814;
-        public static long NewsletterMaxHeadlines = 210815;
     }
 }
