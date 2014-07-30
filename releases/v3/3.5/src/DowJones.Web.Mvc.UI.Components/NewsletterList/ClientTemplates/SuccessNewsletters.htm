@@ -1,15 +1,16 @@
 ﻿<%
     var x;
-	var options = self.options,
+    var options = this.options,
+        tokens = this.tokens,
 		newsletters = self.newsletters;
 %>
 
-    <table border="0" class="tablesorter nlTable" id="editionTable">
+    <table border="0" class="nlTable" id="editionTable">
         <thead>
             <tr>
-                <th sorter="text" class="header" width="50%"><%=Token("name")%></th>
-                <th sorter="date" class="header headerSortUp" width="25%"><%=Token("date")%></th>
-                <th><%=Token("actions")%></th>
+                <th class="name header"><%=tokens.nameColumnLabel%></th>
+                <th class="date header headerSortUp"><%=tokens.dateColumnLabel%></th>
+                <th class="actions"><%=tokens.actionsColumnLabel%></th>
             </tr>
         </thead>
         <tbody>
@@ -17,30 +18,31 @@
             for (var i = 0; i < newsletters.length; i++) {
             x = newsletters[i];
             %>
-            <tr class="NLEdition">
-                <td valign="middle"><span class="NLEditionName"><span nowrap="wrap"><%=x.name%></span></span></td>
-                <td nowrap="nowrap" valign="middle"><span style="display:none;"><%=x.lastModifiedDate%></span><span class="NLEditionDate"><span><%=x.lastModifiedDateDescriptor%></span></span></td>
-                <td valign="middle">
+            <tr class="NLEdition" data-nlid="<%=x.id%>">
+                <td class="name" valign="middle"><span class="NLEditionName"><span nowrap="wrap"><%=x.name%></span></span></td>
+                <td class="date" nowrap="nowrap" valign="middle"><span style="display:none;"><%=x.lastModifiedDate%></span><span class="NLEditionDate"><span><%=x.lastModifiedDateDescriptor%></span></span></td>
+                <td class="actions" valign="middle">
                     <div class="inline-tools nl-pps-actions" style="display: block">
-                        <a class="btn add-to-newsletter-btn" href="javascript:void(0);" data-nlid="<%=x.id%>" title="<%=Token(" addtonewsletter")%>
-                            ">
+                        <%if (options.showAddAction) {%>
+                        <a class="btn btn-link add-to-newsletter-btn" href="javascript:void(0);" data-nlid="<%=x.id%>" title="<%=tokens.addLinkTooltip%>">
                             <i class="icon-plus icon-small"></i>
                         </a>
-                        <%if (self.options.type === 'auto') {%>
-                        <a class="btn edit-workspace-btn" href="javascript:void(0);" data-nlid="<%=x.id%>" title="<%=Token(" clearnewsletter")%>
-                            ">
+                        <%}%>
+                        <%if (options.showEditAction) {%>
+                        <a class="btn btn-link edit-workspace-btn" href="javascript:void(0);" data-nlid="<%=x.id%>" title="<%=tokens.editLinkTooltip%>">
                             <i class="icon-edit icon-small"></i>
                         </a>
-                        <%} else {%>
-                        <a class="btn clear-newsletter-btn" href="javascript:void(0);" data-nlid="<%=x.id%>" title="<%=Token(" clearnewsletter")%>
-                            ">
+                        <%}%>
+                        <%if (options.showClearAction) {%>
+                        <a class="btn btn-link clear-newsletter-btn" href="javascript:void(0);" data-nlid="<%=x.id%>" title="<%=tokens.clearLinkTooltip%>">
                             <i class="icon-remove icon-small"></i>
                         </a>
                         <%}%>
-                        <a class="btn open-newsletter-btn" href="javascript:void(0);" data-nlid="<%=x.id%>" title="<%=Token(" gotonewsletter")%>
-                            ">
+                        <%if (options.showGotoAction) {%>
+                        <a class="btn btn-link open-newsletter-btn" href="javascript:void(0);" data-nlid="<%=x.id%>" title="<%=tokens.gotoLinkTooltip%>">
                             <i class="icon-open icon-small"></i>
                         </a>
+                        <%}%>
                     </div>
                 </td>
             </tr>

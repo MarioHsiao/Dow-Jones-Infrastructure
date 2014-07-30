@@ -480,6 +480,18 @@
       <DependentUpon>jquery.tablesorter.js</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\dataTables.scroller.js" />
+    <EmbeddedResource Include="Resources\js\jquery.dataTables.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\dataTables.scroller.min.js">
+      <DependentUpon>dataTables.scroller.js</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\js\jquery.dataTables.min.js">
+      <DependentUpon>jquery.dataTables.js</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>

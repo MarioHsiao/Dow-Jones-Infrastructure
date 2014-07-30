@@ -27,6 +27,10 @@ using DowJones.Web.Mvc.Resources;
 [assembly: WebResource(EmbeddedResources.Js.JQueryJson, KnownMimeTypes.JavaScript)]
 [assembly: WebResource(EmbeddedResources.Js.JQueryPopupBalloon, KnownMimeTypes.JavaScript)]
 [assembly: WebResource(EmbeddedResources.Js.JQueryPopupBalloonMin, KnownMimeTypes.JavaScript)]
+[assembly: WebResource(EmbeddedResources.Js.JQueryDataTables, KnownMimeTypes.JavaScript)]
+[assembly: WebResource(EmbeddedResources.Js.JQueryDataTablesMin, KnownMimeTypes.JavaScript)]
+[assembly: WebResource(EmbeddedResources.Js.DataTablesScroller, KnownMimeTypes.JavaScript)]
+[assembly: WebResource(EmbeddedResources.Js.DataTablesScrollerMin, KnownMimeTypes.JavaScript)]
 [assembly: WebResource(EmbeddedResources.Js.JQueryTimeAgo, KnownMimeTypes.JavaScript)]
 [assembly: WebResource(EmbeddedResources.Js.JQueryTimeAgoMin, KnownMimeTypes.JavaScript)]
 [assembly: WebResource(EmbeddedResources.Js.JQueryTools, KnownMimeTypes.JavaScript)]
@@ -75,6 +79,8 @@ namespace DowJones.Web.Mvc.Resources
         [ScriptResource(ResourceName = JQueryJson, DependencyLevel = ClientResourceDependencyLevel.Core, Name = "jquery-json")]
         [ScriptResource(ResourceName = JQueryPopupBalloon, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "jquery-popupballon")]
         [ScriptResource(ResourceName = JQueryTableSorter, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "jquery-tablesorter")]
+        [ScriptResource(ResourceName = JQueryDataTables, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "jquery-datatables")]
+        [ScriptResource(ResourceName = DataTablesScroller, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "jquery-datatablescroller")]
         [ScriptResource(ResourceName = JQueryTimeAgo, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "jquery-timeago")]
         [ScriptResource(ResourceName = JQueryTools, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "jquery-tools")]
         [ScriptResource(ResourceName = JQueryTouchMin, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "jquery-touch")]
@@ -126,6 +132,10 @@ namespace DowJones.Web.Mvc.Resources
             public const string JQueryPopupBalloonMin = JsRoot + "jquery.popupballoon.js";
             public const string JQueryTableSorter = JsRoot + "jquery.tablesorter.js";
             public const string JQueryTableSorterMin = JsRoot + "jquery.tablesorter.js";
+            public const string JQueryDataTables = JsRoot + "jquery.dataTables.js";
+            public const string JQueryDataTablesMin = JsRoot + "jquery.dataTables.min.js";
+            public const string DataTablesScroller = JsRoot + "dataTables.scroller.js";
+            public const string DataTablesScrollerMin = JsRoot + "dataTables.scroller.min.js";
             public const string JQueryTimeAgo = JsRoot + "jquery.timeago.js";
             public const string JQueryTimeAgoMin = JsRoot + "jquery.timeago.js";
             public const string JQueryTools = JsRoot + "jquery.tools.min.js";
