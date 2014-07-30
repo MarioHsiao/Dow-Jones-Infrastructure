@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GetMultipleReportListResponse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:factiva:fcp:v2_0">
+  <reportListResult contentRestricted="false">
+    <reportCategoryResult>
+      <reports category="Category" count="0" first="0" hasAnalyst="false" hasRegulatory="false" last="0" total="0">
+        <report accessionno="Accessionno" lang="en" lastUpdated="LastUpdated">
+          <AdocTOC adoctype="">
+            <Item billtype="Billtype" mimetype="Mimetype" size="11" subtype="Subtype" type="Type" co="CoFcode">1212</Item>
+          </AdocTOC>
+          <ReplyItem>
+            <Num fid="Fid" value="12" />
+          </ReplyItem>
+          <Restrictor>
+            <Code value="111" />
+          </Restrictor>
+        </report>
+      </reports>
+    </reportCategoryResult>
+  </reportListResult>
+</GetMultipleReportListResponse>

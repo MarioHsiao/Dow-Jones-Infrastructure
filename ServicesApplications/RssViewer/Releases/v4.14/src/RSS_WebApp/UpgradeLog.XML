@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GetArticleResponse>
+	<Status value="00000000" />
+	<articleResponseSet count="1">
+		<article>
+			<status value="0">
+				<type />
+				<message />
+			</status>
+			<reference>
+				distdoc:archive/ArchiveDoc::Article/J000000020080628e46s0001r
+			</reference>
+			<indexingCodeSets count="6">
+				<codeSet codeCategory="re">
+					<code value="usa">
+						<codeDescription lang="en">united states</codeDescription>
+					</code>
+					<code value="namz">
+						<codeDescription lang="en">north american countries regions</codeDescription>
+					</code>
+				</codeSet>
+				<codeSet codeCategory="ns">
+					<code value="gdef">
+						<codeDescription lang="en">armed forces</codeDescription>
+					</code>
+					<code value="gedu">
+						<codeDescription lang="en">education</codeDescription>
+					</code>
+					<code value="gpol">
+						<codeDescription lang="en">domestic politics</codeDescription>
+					</code>
+					<code value="gvcng">
+						<codeDescription lang="en">legislative branch</codeDescription>
+					</code>
+					<code value="gvdef">
+						<codeDescription lang="en">defense department</codeDescription>
+					</code>
+					<code value="gvexe">
+						<codeDescription lang="en">executive branch</codeDescription>
+					</code>
+					<code value="gcat">
+						<codeDescription lang="en">political general news</codeDescription>
+					</code>
+					<code value="gcns">
+						<codeDescription lang="en">crime national security</codeDescription>
+					</code>
+					<code value="gpir">
+						<codeDescription lang="en">politics international relations</codeDescription>
+					</code>
+					<code value="gvbod">
+						<codeDescription lang="en">government bodies</codeDescription>
+					</code>
+				</codeSet>
+				<codeSet codeCategory="re">
+					<code value="usa" />
+					<code value="namz" />
+				</codeSet>
+				<codeSet codeCategory="ns">
+					<code value="gdef" />
+					<code value="gedu" />
+					<code value="gpol" />
+					<code value="gvcng" />
+					<code value="gvdef" />
+					<code value="gvexe" />
+					<code value="gcat" />
+					<code value="gcns" />
+					<code value="gpir" />
+					<code value="gvbod" />
+				</codeSet>
+				<codeSet codeCategory="re">
+					<code value="usa">
+						<codeDescription lang="en">United States</codeDescription>
+					</code>
+					<code value="namz">
+						<codeDescription lang="en">North American Countries/Regions</codeDescription>
+					</code>
+				</codeSet>
+				<codeSet codeCategory="ns">
+					<code value="gdef">
+						<codeDescription lang="en">Armed Forces</codeDescription>
+					</code>
+					<code value="gedu">
+						<codeDescription lang="en">Education</codeDescription>
+					</code>
+					<code value="gpol">
+						<codeDescription lang="en">Domestic Politics</codeDescription>
+					</code>
+					<code value="gvcng">
+						<codeDescription lang="en">Legislative Branch</codeDescription>
+					</code>
+					<code value="gvdef">
+						<codeDescription lang="en">Defense Department</codeDescription>
+					</code>
+					<code value="gvexe">
+						<codeDescription lang="en">Executive Branch</codeDescription>
+					</code>
+					<code value="gcat">
+						<codeDescription lang="en">Political/General News</codeDescription>
+					</code>
+					<code value="gcns">
+						<codeDescription lang="en">Crime/National Security</codeDescription>
+					</code>
+					<code value="gpir">
+						<codeDescription lang="en">Politics/International Relations</codeDescription>
+					</code>
+					<code value="gvbod">
+						<codeDescription lang="en">Government Bodies</codeDescription>
+					</code>
+				</codeSet>
+			</indexingCodeSets>
+		</article>
+	</articleResponseSet>
+</GetArticleResponse>
