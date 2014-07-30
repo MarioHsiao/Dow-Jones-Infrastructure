@@ -668,7 +668,7 @@
                     }
                 }
 
-                $content.children().show();
+                $content.children(':visible').show();
             }
 
         },

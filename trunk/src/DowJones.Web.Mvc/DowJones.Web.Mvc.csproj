@@ -296,6 +296,9 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Resources\js\jquery.popupballoon.min.js.map">
+      <DependentUpon>jquery.popupballoon.min.js</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Mobile\Extensions\" />
