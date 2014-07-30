@@ -5,6 +5,7 @@ using System.Text;
 using DowJones.Ajax.Newsletter;
 using DowJones.Assemblers.Workspaces;
 using DowJones.Exceptions;
+using DowJones.Extensions;
 using DowJones.Globalization;
 using Factiva.Gateway.Messages.Assets.Common.V2_0;
 using Factiva.Gateway.Messages.Assets.Workspaces.V2_0;
@@ -67,53 +68,64 @@ namespace DowJones.Assemblers.Newsletters
                 throw new DowJonesUtilitiesException(errorMessage);
             }
 
-            //1st element is the index of section and the 2nd element is the index of the sub-section
-            string[] itemIndex = newsletterRequestDto.SectionSubsectionIndex.Split('_');
-            int secIndex = Convert.ToInt32(itemIndex[0]);
-
-            //If chosen section is out of range, insert in the last section.  make sure sections[secIndex] is not null
-            if (secIndex >= sections.Count && sections.Count > 0)
+            //UI will pass empty SectionSubsectionIndex where there are no sections in the newsletter
+            if (newsletterRequestDto.SectionSubsectionIndex.IsNullOrEmpty())
             {
-                secIndex = sections.Count - 1;
-            }
-
-            //If there are no articles in the newsletter, create a section and insert an article
-            if (sections.Count == 0)
-            {
-                sections.Add(new Section());
-                sections[0].ItemCollection = InsertAccessionNumbersAnteOrPost(new ItemCollection(), newsletterRequestDto);
-            }
-            //To insert in the sub-section
-            else if (itemIndex.Length > 1)
-            {
-                int subSecIndex = Convert.ToInt32(itemIndex[1]);
-
-                //If chosen subsection is out of range, 
-                if (subSecIndex >= sections[secIndex].SubSectionCollection.Count)
+                //If there are no sections, create a section and insert an article
+                if (sections.Count == 0)
                 {
-                    //insert in the last sub-section of that section (if exists)
-                    if (sections[secIndex].SubSectionCollection.Count > 0)
-                    {
-                        subSecIndex = sections[secIndex].SubSectionCollection.Count - 1;
-                        AddToSubSection(sections[secIndex].SubSectionCollection[subSecIndex], newsletterRequestDto);
-                    }
-                    //If there are no sub-sections, insert in the section
-                    else
-                    {
-                        AddToSection(sections[secIndex], newsletterRequestDto);
-                    }
+                    sections.Add(new Section());
+                    AddToSection(sections[0], newsletterRequestDto);
                 }
+                //Else, insert in the top section
                 else
                 {
-                    AddToSubSection(sections[secIndex].SubSectionCollection[subSecIndex], newsletterRequestDto);
+                    AddToSection(sections[0], newsletterRequestDto);
                 }
             }
-            //To insert in the section
             else
             {
-                AddToSection(sections[secIndex], newsletterRequestDto);
-            }
+                //1st element is the index of section and the 2nd element is the index of the sub-section
+                string[] itemIndex = newsletterRequestDto.SectionSubsectionIndex.Split('_');
+                int secIndex = Convert.ToInt32(itemIndex[0]);
 
+                //If chosen section is out of range, insert in the last section.  make sure sections[secIndex] is not null
+                if (secIndex >= sections.Count && sections.Count > 0)
+                {
+                    secIndex = sections.Count - 1;
+                }
+
+                //To insert in the sub-section
+                if (itemIndex.Length > 1)
+                {
+                    int subSecIndex = Convert.ToInt32(itemIndex[1]);
+
+                    //If chosen subsection is out of range, 
+                    if (subSecIndex >= sections[secIndex].SubSectionCollection.Count)
+                    {
+                        //insert in the last sub-section of that section (if exists)
+                        if (sections[secIndex].SubSectionCollection.Count > 0)
+                        {
+                            subSecIndex = sections[secIndex].SubSectionCollection.Count - 1;
+                            AddToSubSection(sections[secIndex].SubSectionCollection[subSecIndex], newsletterRequestDto);
+                        }
+                        //If there are no sub-sections, insert in the section
+                        else
+                        {
+                            AddToSection(sections[secIndex], newsletterRequestDto);
+                        }
+                    }
+                    else
+                    {
+                        AddToSubSection(sections[secIndex].SubSectionCollection[subSecIndex], newsletterRequestDto);
+                    }
+                }
+                //To insert in the section
+                else
+                {
+                    AddToSection(sections[secIndex], newsletterRequestDto);
+                }
+            }
             var updateWorkspaceRequest = new UpdateWorkspaceRequest
             {
                 Workspace = newsletterContent,
