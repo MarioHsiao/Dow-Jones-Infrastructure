@@ -10,7 +10,8 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
         clearBtn: 'a.clear-newsletter-btn',
         gotoBtn: 'a.open-newsletter-btn',
         editBtn: 'a.edit-workspace-btn',
-        alertCloseBtn: 'div.alert-box-close'
+        alertCloseBtn: 'div.alert-box-close',
+        createWorkspaceBtn: 'button.btn-save'
     },
 
     defaults: {
@@ -49,6 +50,7 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
         clearClick: "clearClick.dj.NewsletterList",
         gotoNewsletterClick: "gotoNewsletterClick.dj.NewsletterList",
         newsletterEntryClick: "newsletterEntryClick.dj.NewsletterList",
+        createWorkspaceClick: "createWorkspaceClick.dj.NewsletterList",
         editWorkspaceClick: "editWorkspaceClick.dj.NewsletterList"
     },
 
@@ -100,6 +102,11 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
             return false;
         });
 
+        self.$element.on('click', self.selectors.createWorkspaceBtn, function (e) {
+            $dj.publish(self.events.createWorkspaceClick, $(this).siblings('.text-createWorkspace').val());
+            return false;
+        });
+
         self.$element.on('click', self.selectors.clearBtn, function (e) {
             $dj.publish(self.events.clearClick, { nid: $(this).data('nlid') });
             return false;
@@ -146,18 +153,18 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
             if (data && data.result && data.result.resultSet && data.result.resultSet.count.value > 0) {
                 // call to bind and append html to ul in one shot
                 data.result.resultSet.options = { type: self.options.type };
-                self.$element.append(this.templates.successNewsletters(data.result.resultSet));
-
-                // bind events and perform other wiring up
-                this._initializeNewsletter();
+                self.$element.append(this.templates.successNewsletters(data.result.resultSet)).removeClass('add-workspace');
+                
             }
             else {
                 if (type && type.toLowerCase() === "workspace") {
-                    this.$element.append(this.templates.createWorkspace());
+                    this.$element.append(this.templates.createWorkspace()).addClass('add-workspace');
                 };
                 // display no data
                 //this.$element.append(this.templates.noData());
             }
+            // bind events and perform other wiring up
+            this._initializeNewsletter();
         } catch (e) {
             $dj.error('Error in NewsletterList.bindOnSuccess:', e);
         }
