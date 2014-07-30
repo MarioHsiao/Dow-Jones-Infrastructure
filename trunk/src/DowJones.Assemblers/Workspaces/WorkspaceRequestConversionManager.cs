@@ -22,7 +22,7 @@ namespace DowJones.Assemblers.Workspaces
         {
             _resourceTextManager = resourceTextManager;
         }
-        public AddItemsToWorkspaceRequest AddWorkspaceItem(AutomaticWorkspace workspaceContent, WorkspaceRequestDto workspaceRequestDto, int maxHeadlinesInWorkspace)
+        public AddItemsToWorkspaceRequest AddWorkspaceItem(AutomaticWorkspace workspaceContent, WorkspaceRequestDto workspaceRequestDto, int maxHeadlinesInWorkspace = 100)
         {
             if (workspaceRequestDto.ContentItemsToAdd.Count == 0)
                 throw new DowJonesUtilitiesException(_resourceTextManager.GetString("noAccessionNumbers")); 
