@@ -39,13 +39,6 @@ namespace DowJones.Assemblers.Newsletters
 
             SectionCollection section = newsletterContent.SectionCollection;
             
-            //Check if selected accession number already exists in the newsletter
-            var alreadyExists = CheckIfItemAlreadyExists(section, newsletterRequestDto);
-            if (alreadyExists)
-            {
-                throw new DowJonesUtilitiesException(_resourceTextManager.GetString("itemAlreadyExists"));    
-            }
-
             //Check if newsletter already has 200 items
             if (_noOfHeadlines >= maxHeadlinesInNewsletter)
             {
@@ -62,9 +55,16 @@ namespace DowJones.Assemblers.Newsletters
             var finalCount = _noOfHeadlines + newsletterRequestDto.ContentItemsToAdd.Count;
             if (finalCount > maxHeadlinesInNewsletter)
             {
-                var errorMessage = string.Format("{0} {1} {2}", _resourceTextManager.GetString("newsletterMaxHeadlines-1a"), finalCount,
-                    _resourceTextManager.GetString("newsletterMaxHeadlines-2"));  //TODO
+                var errorMessage = string.Format("{0} {1} {2} {3} {4}", _resourceTextManager.GetString("newsletterMaxHeadlines-1a"), finalCount,
+                    _resourceTextManager.GetString("newsletterMaxHeadlines-2a"), maxHeadlinesInNewsletter, _resourceTextManager.GetString("newsletterMaxHeadlines-2b"));
                 throw new DowJonesUtilitiesException(errorMessage);
+            }
+
+            //Check if selected accession number already exists in the newsletter
+            var alreadyExists = CheckIfItemAlreadyExists(section, newsletterRequestDto);
+            if (alreadyExists)
+            {
+                throw new DowJonesUtilitiesException(_resourceTextManager.GetString("itemAlreadyExists"));
             }
 
             //If section doesn't exist at the chosen index, insert in the last section

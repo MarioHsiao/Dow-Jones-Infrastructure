@@ -63,8 +63,8 @@ namespace DowJones.Assemblers.Workspaces
             var finalCount = contentItemCollection.Count + workspaceContent.ItemsCollection.Count;
             if (finalCount > maxHeadlinesInWorkspace)
             {
-                var errorMessage = string.Format("{0} {1} {2}", _resourceTextManager.GetString("newsletterMaxHeadlines-1a"), finalCount,
-                    _resourceTextManager.GetString("newsletterMaxHeadlines-2"));
+                var errorMessage = string.Format("{0} {1} {2} {3} {4}", _resourceTextManager.GetString("newsletterMaxHeadlines-1a"), finalCount,
+                    _resourceTextManager.GetString("newsletterMaxHeadlines-2a"), maxHeadlinesInWorkspace, _resourceTextManager.GetString("newsletterMaxHeadlines-2b"));
                 throw new DowJonesUtilitiesException(errorMessage); 
             }
 
