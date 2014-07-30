@@ -1025,5 +1025,8 @@
   <ItemGroup>
     <EmbeddedResource Include="NewsletterList\ClientTemplates\Notification.htm" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="NewsletterList\ClientTemplates\CreateWorkspace.htm" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

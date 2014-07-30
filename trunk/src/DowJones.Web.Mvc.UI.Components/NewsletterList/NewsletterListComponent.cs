@@ -11,6 +11,8 @@
 [assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.NewsletterList.ClientTemplates.Notification.htm", "text/html")]
 [assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.NewsletterList.ClientTemplates.Error.htm", "text/html")]
 [assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.NewsletterList.ClientTemplates.NoData.htm", "text/html")]
+[assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.NewsletterList.ClientTemplates.CreateWorkspace.htm" +
+    "", "text/html")]
 [assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.NewsletterList.ClientTemplates.SuccessNewsletters." +
     "htm", "text/html")]
 [assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.NewsletterList.NewsletterList.js", "text/javascript")]
@@ -28,10 +30,12 @@ namespace DowJones.Web.Mvc.UI.Components.NewsletterList
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 07/28/2014 02:19 PM
+    // Last Generated Timestamp: 07/29/2014 02:16 PM
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.NewsletterList.ClientTemplates.Notification.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="notification", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.NewsletterList.NewsletterListComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.NewsletterList.ClientTemplates.Error.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="error", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.NewsletterList.NewsletterListComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.NewsletterList.ClientTemplates.NoData.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="noData", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.NewsletterList.NewsletterListComponent))]
+    [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.NewsletterList.ClientTemplates.CreateWorkspace.htm" +
+        "", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="createWorkspace", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.NewsletterList.NewsletterListComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.NewsletterList.ClientTemplates.SuccessNewsletters." +
         "htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="successNewsletters", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.NewsletterList.NewsletterListComponent))]
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.NewsletterList.NewsletterList.js", DependsOn=new string[] {
@@ -54,6 +58,7 @@ namespace DowJones.Web.Mvc.UI.Components.NewsletterList
         }
         public override void ExecuteTemplate()
         {
+
 
 
 

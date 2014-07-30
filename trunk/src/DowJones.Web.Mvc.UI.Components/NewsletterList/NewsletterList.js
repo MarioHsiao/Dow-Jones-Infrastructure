@@ -38,7 +38,10 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
         fromText: "<%=Token('from')%>",
         totalText: "<%=Token('totalLabel')%>",
         ofText: "<%=Token('of')%>",
-        entriesText: "<%=Token('entries')%>"
+        entriesText: "<%=Token('entries')%>",
+        createWorkspaceDesc: "<%=Token('createWorkspaceDesc')%>",
+        briefcaseName: "<%=Token('briefcaseName')%>",
+        save: "<%=Token('save')%>"
     },
 
     events: {
@@ -120,10 +123,10 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
 
     _initializeEventHandlers: function () { },
 
-    _setData: function (data) {
+    _setData: function (data, type) {
         this.data = data;
         if (data)
-            this.bindOnSuccess(data);
+            this.bindOnSuccess(data, type);
         else
             this.bindOnSuccess({});
     },
@@ -136,7 +139,7 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
         $("<tr id='sections'><td colspan='3'>" + sectionsHtml + "</td></tr>").insertAfter(nlRow);
     },
 
-    bindOnSuccess: function (data) {
+    bindOnSuccess: function (data, type) {
         var self = this;
         try {
             self.$element.html("");
@@ -149,8 +152,11 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
                 this._initializeNewsletter();
             }
             else {
+                if (type && type.toLowerCase() === "workspace") {
+                    this.$element.append(this.templates.createWorkspace());
+                };
                 // display no data
-                this.$element.append(this.templates.noData());
+                //this.$element.append(this.templates.noData());
             }
         } catch (e) {
             $dj.error('Error in NewsletterList.bindOnSuccess:', e);
