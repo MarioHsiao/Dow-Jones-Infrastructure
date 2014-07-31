@@ -5,6 +5,7 @@ using System.Text;
 using DowJones.Ajax.Newsletter;
 using DowJones.Assemblers.Workspaces;
 using DowJones.Exceptions;
+using DowJones.Extensions;
 using DowJones.Globalization;
 using Factiva.Gateway.Messages.Assets.Common.V2_0;
 using Factiva.Gateway.Messages.Assets.Workspaces.V2_0;
@@ -15,79 +16,120 @@ namespace DowJones.Assemblers.Newsletters
     {
         private readonly IResourceTextManager _resourceTextManager;
         private readonly IWorkspaceRequestConversionManager _workspaceRequestConversionManager;
-        private int _noOfHeadlines = 0;
-
+        private int _existingHeadlinesCount = 0;
+        
         public NewsletterRequestConversionManager(IResourceTextManager resourceTextManager, IWorkspaceRequestConversionManager workspaceRequestConversionManager)
         {
             _resourceTextManager = resourceTextManager;
             _workspaceRequestConversionManager = workspaceRequestConversionManager;
         }
-        public UpdateWorkspaceRequest GetUpdateWorkspaceRequest(ManualWorkspace newsletterContent, WorkspaceRequestDto newsletterRequestDto, int maxHeadlinesInNewsletter)
+        public UpdateWorkspaceRequest GetUpdateWorkspaceRequest(ManualWorkspace newsletterContent, WorkspaceRequestDto newsletterRequestDto, int maxHeadlinesInNewsletter = 200)
         {
+            var errorMessage = "";
             if (newsletterRequestDto == null || newsletterContent == null)
             {
                 throw new DowJonesUtilitiesException();
             }
-            if (newsletterRequestDto.ContentItemsToAdd.Count <= 0)
+            if (newsletterRequestDto.ContentItemsToAdd.Count == 0)
             {
-                throw new DowJonesUtilitiesException();
-            }
-           
-            //1st element is the index of section and the 2nd element is the index of the sub-section
-            string[] itemIndex = newsletterRequestDto.SectionSubsectionIndex.Split('_');
-            int secIndex = Convert.ToInt32(itemIndex[0]);
-
-            SectionCollection section = newsletterContent.SectionCollection;
-            
-            //Check if newsletter already has 200 items
-            if (_noOfHeadlines >= maxHeadlinesInNewsletter)
-            {
-                throw new DowJonesUtilitiesException(_resourceTextManager.GetString("alreadyHaveMaxAllowed"));   
+                throw new DowJonesUtilitiesException(_resourceTextManager.GetString("noAccessionNumbers"));
             }
 
             //Check if more than 200 articles are being added to the existing newsletter
-            if (newsletterRequestDto.ContentItemsToAdd.Count >= maxHeadlinesInNewsletter)
+            if (newsletterRequestDto.ContentItemsToAdd.Count > maxHeadlinesInNewsletter)
             {
-                throw new DowJonesUtilitiesException(_resourceTextManager.GetString("selectMoreThanAllowed"));
+                errorMessage = string.Format("{0} {1} {2} {3}{4}", _resourceTextManager.GetString("selectMoreThanAllowed-1a"), maxHeadlinesInNewsletter,
+                    _resourceTextManager.GetString("selectMoreThanAllowed-1b"), maxHeadlinesInNewsletter, _resourceTextManager.GetString("period"));
+                throw new DowJonesUtilitiesException(errorMessage);
             }
 
-            //Check if sum of existing items and items to be added exceeds 100
-            var finalCount = _noOfHeadlines + newsletterRequestDto.ContentItemsToAdd.Count;
+            SectionCollection sections = newsletterContent.SectionCollection;
+
+            //Set _existingHeadlinesCount in the newsletter and Check if selected accession number already exists in the newsletter
+            if (sections.Count > 0)
+            {
+                var alreadyExists = CheckIfItemAlreadyExists(sections, newsletterRequestDto);
+                if (alreadyExists)
+                {
+                    throw new DowJonesUtilitiesException(_resourceTextManager.GetString("articleAlreadyExists"));
+                }
+            }
+
+            //Check if newsletter already has 200 items
+            if (_existingHeadlinesCount >= maxHeadlinesInNewsletter)
+            {
+                errorMessage = string.Format("{0} {1} {2}", _resourceTextManager.GetString("alreadyHaveMaxAllowed-1a"), maxHeadlinesInNewsletter,
+                    _resourceTextManager.GetString("alreadyHaveMaxAllowed-1b"));
+                throw new DowJonesUtilitiesException(errorMessage);
+            }
+
+            //Check if sum of existing items and items to be added exceeds 200
+            var finalCount = _existingHeadlinesCount + newsletterRequestDto.ContentItemsToAdd.Count;
             if (finalCount > maxHeadlinesInNewsletter)
             {
-                var errorMessage = string.Format("{0} {1} {2} {3} {4}", _resourceTextManager.GetString("newsletterMaxHeadlines-1a"), finalCount,
+                errorMessage = string.Format("{0} {1} {2} {3} {4}", _resourceTextManager.GetString("newsletterMaxHeadlines-1a"), finalCount,
                     _resourceTextManager.GetString("newsletterMaxHeadlines-2a"), maxHeadlinesInNewsletter, _resourceTextManager.GetString("newsletterMaxHeadlines-2b"));
                 throw new DowJonesUtilitiesException(errorMessage);
             }
 
-            //Check if selected accession number already exists in the newsletter
-            var alreadyExists = CheckIfItemAlreadyExists(section, newsletterRequestDto);
-            if (alreadyExists)
+            //UI will pass empty SectionSubsectionIndex where there are no sections in the newsletter
+            if (newsletterRequestDto.SectionSubsectionIndex.IsNullOrEmpty())
             {
-                throw new DowJonesUtilitiesException(_resourceTextManager.GetString("itemAlreadyExists"));
+                //If there are no sections, create a section and insert an article
+                if (sections.Count == 0)
+                {
+                    sections.Add(new Section());
+                    AddToSection(sections[0], newsletterRequestDto);
+                }
+                //Else, insert in the top section
+                else
+                {
+                    AddToSection(sections[sections.Count - 1], newsletterRequestDto);
+                }
             }
-
-            //If section doesn't exist at the chosen index, insert in the last section
-            if (secIndex >= section.Count && section.Count > 0)
-            {
-                secIndex = section.Count - 1;
-            }
-
-            //To insert in the sub-section
-            if (itemIndex.Length > 1)
-            {
-                int subSecIndex = Convert.ToInt32(itemIndex[1]);
-                section[secIndex].SubSectionCollection[subSecIndex].ItemCollection = InsertAccessionNumbersAnteOrPost(section[secIndex].SubSectionCollection[subSecIndex].ItemCollection, newsletterRequestDto);
-                SetPosition(section[secIndex].SubSectionCollection[subSecIndex].ItemCollection, newsletterRequestDto.PositionIndicator);
-            }
-
-            //To insert in the section
             else
             {
-                section[secIndex].ItemCollection = InsertAccessionNumbersAnteOrPost(section[secIndex].ItemCollection, newsletterRequestDto);
-                SetPosition(section[secIndex].ItemCollection, newsletterRequestDto.PositionIndicator);
+                //1st element is the index of section and the 2nd element is the index of the sub-section
+                string[] itemIndex = newsletterRequestDto.SectionSubsectionIndex.Split('_');
+                int secIndex = Convert.ToInt32(itemIndex[0]);
+
+                //If chosen section is out of range, insert in the last section.  make sure sections[secIndex] is not null
+                if (secIndex >= sections.Count && sections.Count > 0)
+                {
+                    secIndex = sections.Count - 1;
+                }
+
+                //To insert in the sub-section
+                if (itemIndex.Length > 1)
+                {
+                    int subSecIndex = Convert.ToInt32(itemIndex[1]);
+
+                    //If chosen subsection is out of range, 
+                    if (subSecIndex >= sections[secIndex].SubSectionCollection.Count)
+                    {
+                        //insert in the last sub-section of that section (if exists)
+                        if (sections[secIndex].SubSectionCollection.Count > 0)
+                        {
+                            subSecIndex = sections[secIndex].SubSectionCollection.Count - 1;
+                            AddToSubSection(sections[secIndex].SubSectionCollection[subSecIndex], newsletterRequestDto);
+                        }
+                        //If there are no sub-sections, insert in the section
+                        else
+                        {
+                            AddToSection(sections[secIndex], newsletterRequestDto);
+                        }
+                    }
+                    else
+                    {
+                        AddToSubSection(sections[secIndex].SubSectionCollection[subSecIndex], newsletterRequestDto);
+                    }
+                }
+                //To insert in the section
+                else
+                {
+                    AddToSection(sections[secIndex], newsletterRequestDto);
+                }
             }
-                
             var updateWorkspaceRequest = new UpdateWorkspaceRequest
             {
                 Workspace = newsletterContent,
@@ -121,7 +163,19 @@ namespace DowJones.Assemblers.Newsletters
         private void GetExistingAccessionNumbersList(ItemCollection itemCollection, List<string> existingAns)
         {
             existingAns.AddRange(itemCollection.OfType<ArticleItem>().Select(articleItem => articleItem.AccessionNumber));
-            _noOfHeadlines = _noOfHeadlines + itemCollection.Count;
+            _existingHeadlinesCount = _existingHeadlinesCount + itemCollection.Count;
+        }
+
+        private void AddToSection(Section section, WorkspaceRequestDto newsletterRequestDto)
+        {
+            section.ItemCollection = InsertAccessionNumbersAnteOrPost(section.ItemCollection, newsletterRequestDto);
+            SetPosition(section.ItemCollection, newsletterRequestDto.PositionIndicator);
+        }
+
+        private void AddToSubSection(SubSection subSection, WorkspaceRequestDto newsletterRequestDto)
+        {
+            subSection.ItemCollection = InsertAccessionNumbersAnteOrPost(subSection.ItemCollection, newsletterRequestDto);
+            SetPosition(subSection.ItemCollection, newsletterRequestDto.PositionIndicator);
         }
 
         private ItemCollection InsertAccessionNumbersAnteOrPost(ItemCollection itemCollection, WorkspaceRequestDto newsletterRequestDto)

@@ -11,7 +11,7 @@ var tokens = this.tokens;
             <div class="pull-left"><span class="section-name default"><%=tokens.topOfEdition%></span></div>
             <div class="inline-tools nl-pps-actions pull-right" style="display: block;">
                 <a class="btn btn-link add-to-section" href="javascript:void(0);" title="<%=tokens.addActionTooltip%>"
-                   data-position="0" data-pi="a">
+                   data-index="0" data-pi="a">
                     <i class="icon-plus icon-small"></i>
                 </a>
             </div>
@@ -23,7 +23,7 @@ var tokens = this.tokens;
             <div class="pull-left"><span class="section-name default"><%=tokens.bottomOfEdition%></span></div>
             <div class="inline-tools nl-pps-actions pull-right" style="display: block;">
                 <a class="btn btn-link add-to-section" href="javascript:void(0);" title="<%=tokens.addActionTooltip%>"
-                   data-position="0" data-pi="p">
+                   data-index="0" data-pi="p">
                     <i class="icon-plus icon-small"></i>
                 </a>
             </div>
@@ -52,7 +52,7 @@ var tokens = this.tokens;
                     <div class="pull-left">-&nbsp;<span class="section-name subsection"><%=sub.name%></span></div>
                     <div class="inline-tools nl-pps-actions pull-right" style="display: block;">
                         <a class="btn btn-link add-to-section" href="javascript:void(0);" title="<%=tokens.addActionTooltip%>"
-                           data-position="<%=sub.position%>" data-pi="a">
+                           data-index="<%=x.position%>_<%=sub.position%>" data-pi="a">
                             <i class="icon-plus icon-small"></i>
                         </a>
                     </div>

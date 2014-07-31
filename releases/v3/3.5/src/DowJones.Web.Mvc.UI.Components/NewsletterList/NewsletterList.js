@@ -7,10 +7,12 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
         newsletterTable: '#editionTable',
         noResultSpan: 'span.dj_noResults',
         addBtn: 'a.add-to-newsletter-btn',
+        addSectionBtn: "a.add-to-section",
         clearBtn: 'a.clear-newsletter-btn',
         gotoBtn: 'a.open-newsletter-btn',
         editBtn: 'a.edit-workspace-btn',
-        alertCloseBtn: 'div.alert-box-close'
+        alertCloseBtn: 'div.alert-box-close',
+        createWorkspaceBtn: 'button.btn-save'
     },
 
     defaults: {
@@ -41,14 +43,17 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
         entriesText: "<%=Token('entries')%>",
         createWorkspaceDesc: "<%=Token('createWorkspaceDesc')%>",
         briefcaseName: "<%=Token('briefcaseName')%>",
-        save: "<%=Token('save')%>"
+        save: "<%=Token('save')%>",
+        saving: "<%=Token('saving')%>"
     },
 
     events: {
         addClick: "addClick.dj.NewsletterList",
+        addSectionClick: "addSectionClick.dj.NewsletterList",
         clearClick: "clearClick.dj.NewsletterList",
         gotoNewsletterClick: "gotoNewsletterClick.dj.NewsletterList",
         newsletterEntryClick: "newsletterEntryClick.dj.NewsletterList",
+        createWorkspaceClick: "createWorkspaceClick.dj.NewsletterList",
         editWorkspaceClick: "editWorkspaceClick.dj.NewsletterList"
     },
 
@@ -63,7 +68,8 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
     },
 
     _initializeSortable: function () {
-        var self = this;
+        var self = this,
+            newsletterTable = this.$element.find(this.selectors.newsletterTable);
         var sInfoText = self.tokens.showingText + " _START_ "
             + self.tokens.toText + " _END_ "
             + self.tokens.ofText + " _TOTAL_ "
@@ -72,7 +78,7 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
                                 + self.tokens.fromText.toLowerCase() + " _MAX_ "
                                 + self.tokens.totalText.toLowerCase() + " "
                                 + self.tokens.entriesText + ")";
-        this.$element.find(this.selectors.newsletterTable).dataTable({
+        var table = $(newsletterTable).dataTable({
             "bFilter": self.options.allowFilter,
             "bPaginate": false,
             "sScrollY": self.options.allowFilter ? "260px" : "300px",
@@ -89,6 +95,19 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
             }]
         });
         $('div.dataTables_filter input', this.$element).attr('placeholder', self.tokens.filterText + '...');
+
+        //Row Highlighting
+        $('tbody', newsletterTable)
+        .on('mouseover', 'td', function () {
+                if ($(this).parent().attr('id') != "sections") {
+                    $('tbody td', table).removeClass('highlight');
+                    $(this).addClass('highlight');
+                    $(this).siblings().addClass('highlight');
+                }
+            })
+        .on('mouseleave', function () {
+            $('tbody td', table).removeClass('highlight');
+        });
     },
 
     _initializeNewsletter: function () {
@@ -97,6 +116,18 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
 
         self.$element.on('click', self.selectors.addBtn, function (e) {
             $dj.publish(self.events.addClick, { nid: $(this).data('nlid') });
+            return false;
+        });
+
+        self.$element.on('click', self.selectors.addSectionBtn, function (e) {
+            var nlId = $(this).closest('tr#sections').prev('tr').data('nlid');
+            $dj.publish(self.events.addSectionClick, { nlid: nlId, ind: $(this).data('index'), positionIndicator: $(this).data('pi') });
+            return false;
+        });
+
+        self.$element.on('click', self.selectors.createWorkspaceBtn, function (e) {
+            $(this).attr('disabled', 'disabled').addClass('disabled').text(self.tokens.saving + "...");
+            $dj.publish(self.events.createWorkspaceClick, $(this).siblings('.text-createWorkspace').val());
             return false;
         });
 
@@ -146,18 +177,18 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
             if (data && data.result && data.result.resultSet && data.result.resultSet.count.value > 0) {
                 // call to bind and append html to ul in one shot
                 data.result.resultSet.options = { type: self.options.type };
-                self.$element.append(this.templates.successNewsletters(data.result.resultSet));
+                self.$element.append(this.templates.successNewsletters(data.result.resultSet)).removeClass('add-workspace');
 
-                // bind events and perform other wiring up
-                this._initializeNewsletter();
             }
             else {
                 if (type && type.toLowerCase() === "workspace") {
-                    this.$element.append(this.templates.createWorkspace());
+                    this.$element.append(this.templates.createWorkspace()).addClass('add-workspace');
                 };
                 // display no data
                 //this.$element.append(this.templates.noData());
             }
+            // bind events and perform other wiring up
+            this._initializeNewsletter();
         } catch (e) {
             $dj.error('Error in NewsletterList.bindOnSuccess:', e);
         }
