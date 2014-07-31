@@ -80,7 +80,7 @@ namespace DowJones.Assemblers.Newsletters
                 //Else, insert in the top section
                 else
                 {
-                    AddToSection(sections[0], newsletterRequestDto);
+                    AddToSection(sections[sections.Count - 1], newsletterRequestDto);
                 }
             }
             else
