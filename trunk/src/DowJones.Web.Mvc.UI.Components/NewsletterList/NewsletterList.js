@@ -42,7 +42,8 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
         entriesText: "<%=Token('entries')%>",
         createWorkspaceDesc: "<%=Token('createWorkspaceDesc')%>",
         briefcaseName: "<%=Token('briefcaseName')%>",
-        save: "<%=Token('save')%>"
+        save: "<%=Token('save')%>",
+        saving: "<%=Token('saving')%>"
     },
 
     events: {
@@ -103,6 +104,7 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
         });
 
         self.$element.on('click', self.selectors.createWorkspaceBtn, function (e) {
+            $(this).attr('disabled', 'disabled').addClass('disabled').text(self.tokens.saving + "...");
             $dj.publish(self.events.createWorkspaceClick, $(this).siblings('.text-createWorkspace').val());
             return false;
         });
