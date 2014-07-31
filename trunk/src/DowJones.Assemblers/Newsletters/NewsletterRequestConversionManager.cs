@@ -25,7 +25,7 @@ namespace DowJones.Assemblers.Newsletters
         }
         public UpdateWorkspaceRequest GetUpdateWorkspaceRequest(ManualWorkspace newsletterContent, WorkspaceRequestDto newsletterRequestDto, int maxHeadlinesInNewsletter = 200)
         {
-
+            var errorMessage = "";
             if (newsletterRequestDto == null || newsletterContent == null)
             {
                 throw new DowJonesUtilitiesException();
@@ -36,9 +36,11 @@ namespace DowJones.Assemblers.Newsletters
             }
 
             //Check if more than 200 articles are being added to the existing newsletter
-            if (newsletterRequestDto.ContentItemsToAdd.Count >= maxHeadlinesInNewsletter)
+            if (newsletterRequestDto.ContentItemsToAdd.Count > maxHeadlinesInNewsletter)
             {
-                throw new DowJonesUtilitiesException(_resourceTextManager.GetString("selectMoreThanAllowed"));
+                errorMessage = string.Format("{0} {1} {2} {3}{4}", _resourceTextManager.GetString("selectMoreThanAllowed-1a"), maxHeadlinesInNewsletter,
+                    _resourceTextManager.GetString("selectMoreThanAllowed-1b"), maxHeadlinesInNewsletter, _resourceTextManager.GetString("period"));
+                throw new DowJonesUtilitiesException(errorMessage);
             }
 
             SectionCollection sections = newsletterContent.SectionCollection;
@@ -49,21 +51,23 @@ namespace DowJones.Assemblers.Newsletters
                 var alreadyExists = CheckIfItemAlreadyExists(sections, newsletterRequestDto);
                 if (alreadyExists)
                 {
-                    throw new DowJonesUtilitiesException(_resourceTextManager.GetString("itemAlreadyExists"));
+                    throw new DowJonesUtilitiesException(_resourceTextManager.GetString("articleAlreadyExists"));
                 }
             }
 
             //Check if newsletter already has 200 items
-            if (_existingHeadlinesCount > maxHeadlinesInNewsletter)
+            if (_existingHeadlinesCount >= maxHeadlinesInNewsletter)
             {
-                throw new DowJonesUtilitiesException(_resourceTextManager.GetString("alreadyHaveMaxAllowed"));
+                errorMessage = string.Format("{0} {1} {2}", _resourceTextManager.GetString("alreadyHaveMaxAllowed-1a"), maxHeadlinesInNewsletter,
+                    _resourceTextManager.GetString("alreadyHaveMaxAllowed-1b"));
+                throw new DowJonesUtilitiesException(errorMessage);
             }
 
             //Check if sum of existing items and items to be added exceeds 200
             var finalCount = _existingHeadlinesCount + newsletterRequestDto.ContentItemsToAdd.Count;
             if (finalCount > maxHeadlinesInNewsletter)
             {
-                var errorMessage = string.Format("{0} {1} {2} {3} {4}", _resourceTextManager.GetString("newsletterMaxHeadlines-1a"), finalCount,
+                errorMessage = string.Format("{0} {1} {2} {3} {4}", _resourceTextManager.GetString("newsletterMaxHeadlines-1a"), finalCount,
                     _resourceTextManager.GetString("newsletterMaxHeadlines-2a"), maxHeadlinesInNewsletter, _resourceTextManager.GetString("newsletterMaxHeadlines-2b"));
                 throw new DowJonesUtilitiesException(errorMessage);
             }
