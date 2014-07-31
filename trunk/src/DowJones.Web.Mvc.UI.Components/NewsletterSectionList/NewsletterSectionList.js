@@ -3,9 +3,7 @@
  */
 
     DJ.UI.NewsletterSectionList = DJ.UI.Component.extend({
-        selectors: {
-            addBtn: 'a.add-to-section'
-        },
+        selectors: {},
 
         tokens: {
             placeSelectedItems: '<%=Token("placeSelectedItems")%>',
@@ -15,9 +13,7 @@
             noDataMessage: ""
         },
 
-        events: {
-            addClick: "addClick.dj.NewsletterSectionList",
-        },
+        events: {},
 
         init: function (element, meta) {
             // Call the base constructor
@@ -28,14 +24,7 @@
             }
         },
         
-        _initializeNewsletterSections: function () {
-            var self = this;
-            self.$element.on('click', self.selectors.addBtn, function (e) {
-                var t = $(e.target).parent();
-                $dj.publish(self.events.addClick, { nlid: self.data.nlid, ind: t.data('position'), positionIndicator: t.data('pi') });
-                return false;
-            });
-        },
+        _initializeNewsletterSections: function (){},
 
         _setData: function (data) {
             this.data = data;

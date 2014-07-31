@@ -7,6 +7,7 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
         newsletterTable: '#editionTable',
         noResultSpan: 'span.dj_noResults',
         addBtn: 'a.add-to-newsletter-btn',
+        addSectionBtn: "a.add-to-section",
         clearBtn: 'a.clear-newsletter-btn',
         gotoBtn: 'a.open-newsletter-btn',
         editBtn: 'a.edit-workspace-btn',
@@ -48,6 +49,7 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
 
     events: {
         addClick: "addClick.dj.NewsletterList",
+        addSectionClick: "addSectionClick.dj.NewsletterList",
         clearClick: "clearClick.dj.NewsletterList",
         gotoNewsletterClick: "gotoNewsletterClick.dj.NewsletterList",
         newsletterEntryClick: "newsletterEntryClick.dj.NewsletterList",
@@ -100,6 +102,12 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
 
         self.$element.on('click', self.selectors.addBtn, function (e) {
             $dj.publish(self.events.addClick, { nid: $(this).data('nlid') });
+            return false;
+        });
+
+        self.$element.on('click', self.selectors.addSectionBtn, function (e) {
+            var nlId = $(this).closest('tr#sections').prev('tr').data('nlid');
+            $dj.publish(self.events.addSectionClick, { nlid: nlId, ind: $(this).data('index'), positionIndicator: $(this).data('pi') });
             return false;
         });
 
