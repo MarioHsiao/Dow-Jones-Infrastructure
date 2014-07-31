@@ -68,7 +68,8 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
     },
 
     _initializeSortable: function () {
-        var self = this;
+        var self = this,
+            newsletterTable = this.$element.find(this.selectors.newsletterTable);
         var sInfoText = self.tokens.showingText + " _START_ "
             + self.tokens.toText + " _END_ "
             + self.tokens.ofText + " _TOTAL_ "
@@ -77,7 +78,7 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
                                 + self.tokens.fromText.toLowerCase() + " _MAX_ "
                                 + self.tokens.totalText.toLowerCase() + " "
                                 + self.tokens.entriesText + ")";
-        this.$element.find(this.selectors.newsletterTable).dataTable({
+        var table = $(newsletterTable).dataTable({
             "bFilter": self.options.allowFilter,
             "bPaginate": false,
             "sScrollY": self.options.allowFilter ? "260px" : "300px",
@@ -94,6 +95,19 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
             }]
         });
         $('div.dataTables_filter input', this.$element).attr('placeholder', self.tokens.filterText + '...');
+
+        //Row Highlighting
+        $('tbody', newsletterTable)
+        .on('mouseover', 'td', function () {
+                if ($(this).parent().attr('id') != "sections") {
+                    $('tbody td', table).removeClass('highlight');
+                    $(this).addClass('highlight');
+                    $(this).siblings().addClass('highlight');
+                }
+            })
+        .on('mouseleave', function () {
+            $('tbody td', table).removeClass('highlight');
+        });
     },
 
     _initializeNewsletter: function () {
@@ -164,7 +178,7 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
                 // call to bind and append html to ul in one shot
                 data.result.resultSet.options = { type: self.options.type };
                 self.$element.append(this.templates.successNewsletters(data.result.resultSet)).removeClass('add-workspace');
-                
+
             }
             else {
                 if (type && type.toLowerCase() === "workspace") {
