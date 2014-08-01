@@ -12,7 +12,9 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
         gotoBtn: 'a.open-newsletter-btn',
         editBtn: 'a.edit-workspace-btn',
         alertCloseBtn: 'div.alert-box-close',
-        createWorkspaceBtn: 'button.btn-save'
+        createWorkspaceBtn: 'button.btn-save',
+        createNewsletterBtn: 'button.btn_create-newsletter',
+        getMoreInfoBtn: 'button.btn_get-moreInfo'
     },
 
     defaults: {
@@ -44,7 +46,10 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
         createWorkspaceDesc: "<%=Token('createWorkspaceDesc')%>",
         briefcaseName: "<%=Token('briefcaseName')%>",
         save: "<%=Token('save')%>",
-        saving: "<%=Token('saving')%>"
+        saving: "<%=Token('saving')%>",
+        createNewNewsletter: "<%=Token('createNewNewsletter')%>",
+        getMoreInfo: "<%=Token('getMoreInfo')%>",
+        newsletterIntroVerbeage: "<%=Token('newsletterIntroVerbeage')%>"
     },
 
     events: {
@@ -54,7 +59,9 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
         gotoNewsletterClick: "gotoNewsletterClick.dj.NewsletterList",
         newsletterEntryClick: "newsletterEntryClick.dj.NewsletterList",
         createWorkspaceClick: "createWorkspaceClick.dj.NewsletterList",
-        editWorkspaceClick: "editWorkspaceClick.dj.NewsletterList"
+        editWorkspaceClick: "editWorkspaceClick.dj.NewsletterList",
+        createNewsletterClick: "createNewsletterClick.dj.NewsletterList",
+        getMoreInfoClick: "getMoreInfoClick.dj.NewsletterList"
     },
 
     init: function (element, meta) {
@@ -131,6 +138,17 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
             return false;
         });
 
+
+        self.$element.on('click', self.selectors.createNewsletterBtn, function (e) {
+            $dj.publish(self.events.createNewsletterClick);
+            return false;
+        });
+
+        self.$element.on('click', self.selectors.getMoreInfoBtn, function (e) {
+            $dj.publish(self.events.getMoreInfoClick);
+            return false;
+        });
+
         self.$element.on('click', self.selectors.clearBtn, function (e) {
             $dj.publish(self.events.clearClick, { nid: $(this).data('nlid') });
             return false;
@@ -177,18 +195,18 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
             if (data && data.result && data.result.resultSet && data.result.resultSet.count.value > 0) {
                 // call to bind and append html to ul in one shot
                 data.result.resultSet.options = { type: self.options.type };
-                self.$element.append(this.templates.successNewsletters(data.result.resultSet)).removeClass('add-workspace');
+                self.$element.append(self.templates.successNewsletters(data.result.resultSet)).removeClass('add-workspace');
 
             }
             else {
                 if (type && type.toLowerCase() === "workspace") {
-                    this.$element.append(this.templates.createWorkspace()).addClass('add-workspace');
-                };
-                // display no data
-                //this.$element.append(this.templates.noData());
+                    self.$element.append(self.templates.createWorkspace()).addClass('add-workspace');
+                } else {
+                    self.$element.append(self.templates.createNewsletter()).addClass('add-newsletter');;
+                }
             }
             // bind events and perform other wiring up
-            this._initializeNewsletter();
+            self._initializeNewsletter();
         } catch (e) {
             $dj.error('Error in NewsletterList.bindOnSuccess:', e);
         }
@@ -211,14 +229,6 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
             var alertBox = self.$element.find('.alert-box');
             $(alertBox).fadeOut(500, function () { $(alertBox).remove(); });
         }, 3000);
-    },
-
-    setErrorTemplate: function (markup) {
-        this.templates.error = _.template(markup);
-    },
-
-    setNoDataTemplate: function (markup) {
-        this.templates.noData = _.template(markup);
     },
 
     EOF: null  // Final property placeholder (without a comma) to allow easier moving of functions
