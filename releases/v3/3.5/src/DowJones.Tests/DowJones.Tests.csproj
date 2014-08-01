@@ -132,7 +132,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractUnitTest.cs" />
+    <Compile Include="Assemblers\Newsletters\NewsletterRequestConversionManagerTest.cs" />
     <Compile Include="Assemblers\Session\CookieBasedUserSessionFactoryTests.cs" />
+    <Compile Include="Assemblers\Workspaces\WorkspaceRequestConversionManagerTest.cs" />
     <Compile Include="Infrastructure\Ajax\SocialMedia\TweetTest.cs" />
     <Compile Include="Infrastructure\Converters\EntitiesConverterTests.cs" />
     <Compile Include="Infrastructure\EnumHelperTests.cs" />

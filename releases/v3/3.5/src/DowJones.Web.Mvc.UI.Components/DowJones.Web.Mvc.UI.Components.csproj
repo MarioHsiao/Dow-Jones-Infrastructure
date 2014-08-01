@@ -1009,7 +1009,7 @@
   <ItemGroup>
     <EmbeddedResource Include="NewsletterList\ClientTemplates\Error.htm" />
     <EmbeddedResource Include="NewsletterList\ClientTemplates\SuccessNewsletters.htm" />
-    <EmbeddedResource Include="NewsletterList\ClientTemplates\NoData.htm" />
+    <EmbeddedResource Include="NewsletterList\ClientTemplates\CreateNewsletter.htm" />
     <EmbeddedResource Include="NewsletterSectionList\ClientTemplates\Error.htm" />
     <EmbeddedResource Include="NewsletterSectionList\ClientTemplates\NoData.htm" />
     <EmbeddedResource Include="NewsletterSectionList\ClientTemplates\Success.htm" />

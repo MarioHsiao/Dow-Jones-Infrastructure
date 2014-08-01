@@ -26,11 +26,7 @@ namespace DowJones.Assemblers.Newsletters
         public UpdateWorkspaceRequest GetUpdateWorkspaceRequest(ManualWorkspace newsletterContent, WorkspaceRequestDto newsletterRequestDto, int maxHeadlinesInNewsletter = 200)
         {
             var errorMessage = "";
-            if (newsletterRequestDto == null || newsletterContent == null)
-            {
-                throw new DowJonesUtilitiesException();
-            }
-            if (newsletterRequestDto.ContentItemsToAdd.Count == 0)
+            if (newsletterRequestDto == null || newsletterRequestDto.ContentItemsToAdd == null || newsletterRequestDto.ContentItemsToAdd.Count == 0)
             {
                 throw new DowJonesUtilitiesException(_resourceTextManager.GetString("noAccessionNumbers"));
             }

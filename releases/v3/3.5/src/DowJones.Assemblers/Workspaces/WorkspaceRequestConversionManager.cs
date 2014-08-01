@@ -87,7 +87,7 @@ namespace DowJones.Assemblers.Workspaces
             return request;
         }
 
-        public ContentCategory MapContentCategory(
+        public Factiva.Gateway.Messages.Assets.Common.V2_0.ContentCategory MapContentCategory(
             DowJones.Ajax.ContentCategory searchContentCategory)
         {
             switch (searchContentCategory)
@@ -105,7 +105,7 @@ namespace DowJones.Assemblers.Workspaces
                     return ContentCategory.Blogs;
                 case DowJones.Ajax.ContentCategory.Board:
                     return ContentCategory.Boards;
-                //TODO case DowJones.Ajax.ContentCategory.CustomerDoc:
+                case DowJones.Ajax.ContentCategory.CustomerDoc:
                 case DowJones.Ajax.ContentCategory.Internal:
                     return ContentCategory.CustomerDoc;
             }
