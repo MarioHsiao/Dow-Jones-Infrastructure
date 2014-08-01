@@ -182,8 +182,6 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
 
     _setSectionsData: function (newsletterId, sectionsHtml) {
         var nlRow = $('table#editionTable', this.$element).find("tr[data-nlid='" + newsletterId + "']");
-        //$('td.actions a.add-to-newsletter-btn', this.$element).show();
-        //$('td.actions a.add-to-newsletter-btn', nlRow).hide();
         $('table#editionTable', this.$element).find('tr#sections').remove();
         $("<tr id='sections'><td colspan='3'>" + sectionsHtml + "</td></tr>").insertAfter(nlRow);
     },
