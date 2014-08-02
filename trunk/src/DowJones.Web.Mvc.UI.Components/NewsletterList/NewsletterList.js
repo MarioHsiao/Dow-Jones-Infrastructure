@@ -49,7 +49,8 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
         saving: "<%=Token('saving')%>",
         createNewNewsletter: "<%=Token('createNewNewsletter')%>",
         getMoreInfo: "<%=Token('getMoreInfo')%>",
-        newsletterIntroVerbeage: "<%=Token('newsletterIntroVerbeage')%>"
+        newsletterIntroVerbeage: "<%=Token('newsletterIntroVerbeage')%>",
+        processing: "<%=Token('processing')%>"
     },
 
     events: {
@@ -115,6 +116,19 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
         .on('mouseleave', function () {
             $('tbody td', table).removeClass('highlight');
         });
+
+        //Add processing template
+        self.$element.find("#editionTable_wrapper").prepend(self.templates.processing());
+    },
+
+    _showLoading: function (show, message) {
+        var self = this;
+        if (show) {
+            self.$element.find('.alert-box').remove();
+            this.$element.find('.dj_processing').removeClass('dj_hide');
+        } else {
+            this.$element.find('.dj_processing').addClass('dj_hide');
+        }
     },
 
     _initializeNewsletter: function () {
@@ -200,7 +214,7 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
                 if (type && type.toLowerCase() === "workspace") {
                     self.$element.append(self.templates.createWorkspace()).addClass('add-workspace');
                 } else {
-                    self.$element.append(self.templates.createNewsletter()).addClass('add-newsletter');;
+                    self.$element.append(self.templates.createNewsletter()).addClass('add-newsletter');
                 }
             }
             // bind events and perform other wiring up

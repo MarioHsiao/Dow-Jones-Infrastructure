@@ -10,6 +10,7 @@
 
 [assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.NewsletterList.ClientTemplates.Notification.htm", "text/html")]
 [assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.NewsletterList.ClientTemplates.Error.htm", "text/html")]
+[assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.NewsletterList.ClientTemplates.Processing.htm", "text/html")]
 [assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.NewsletterList.ClientTemplates.CreateNewsletter.ht" +
     "m", "text/html")]
 [assembly: System.Web.UI.WebResourceAttribute("DowJones.Web.Mvc.UI.Components.NewsletterList.ClientTemplates.CreateWorkspace.htm" +
@@ -31,9 +32,10 @@ namespace DowJones.Web.Mvc.UI.Components.NewsletterList
     using System.Web.UI;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 08/01/2014 11:57 AM
+    // Last Generated Timestamp: 08/02/2014 11:04 AM
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.NewsletterList.ClientTemplates.Notification.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="notification", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.NewsletterList.NewsletterListComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.NewsletterList.ClientTemplates.Error.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="error", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.NewsletterList.NewsletterListComponent))]
+    [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.NewsletterList.ClientTemplates.Processing.htm", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="processing", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.NewsletterList.NewsletterListComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.NewsletterList.ClientTemplates.CreateNewsletter.ht" +
         "m", ResourceKind=DowJones.Web.ClientResourceKind.ClientTemplate, TemplateId="createNewsletter", DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.NewsletterList.NewsletterListComponent))]
     [DowJones.Web.ClientTemplateResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.NewsletterList.ClientTemplates.CreateWorkspace.htm" +
@@ -60,6 +62,7 @@ namespace DowJones.Web.Mvc.UI.Components.NewsletterList
         }
         public override void ExecuteTemplate()
         {
+
 
 
 
