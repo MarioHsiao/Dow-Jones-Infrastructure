@@ -40,19 +40,18 @@
     </DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="factiva.gateway.messages, Version=7.5.0.171, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="factiva.gateway.messages, Version=7.5.0.179, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.171\lib\factiva.gateway.messages.dll</HintPath>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.179\lib\factiva.gateway.messages.dll</HintPath>
     </Reference>
     <Reference Include="FactivaGateway, Version=1.6.0.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.171\lib\FactivaGateway.dll</HintPath>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.179\lib\FactivaGateway.dll</HintPath>
     </Reference>
     <Reference Include="Interop.FCMLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.171\lib\Interop.FCMLib.dll</HintPath>
       <Private>True</Private>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.179\lib\Interop.FCMLib.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.1.2.99\lib\2.0\log4net.dll</HintPath>
@@ -214,6 +213,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="DowJones.Web.Mvc.UI.Components.Models.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>

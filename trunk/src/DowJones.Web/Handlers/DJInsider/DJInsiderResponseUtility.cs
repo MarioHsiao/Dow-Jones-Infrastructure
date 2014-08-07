@@ -1,4 +1,4 @@
-using Factiva.Gateway.V1_0;
+/*using Factiva.Gateway.V1_0;
 using log4net;
 
 namespace DowJones.Web.Handlers.DJInsider
@@ -30,4 +30,4 @@ namespace DowJones.Web.Handlers.DJInsider
             return responseObject;
         }
     }
-}
+}*/

@@ -320,7 +320,7 @@
     <usedSessions>
       <xsl:value-of select="USED_SESSIONS"/>
     </usedSessions>
-
+    
     <clientBillingAllow>
       <xsl:choose>
         <xsl:when test="ClientBillingAllowed='Y'">true</xsl:when>
@@ -328,7 +328,9 @@
       </xsl:choose>
     </clientBillingAllow>
     <xsl:apply-templates select="UUID"></xsl:apply-templates>
-    <xsl:apply-templates select="EID"></xsl:apply-templates>
+  <xsl:apply-templates select="EID"></xsl:apply-templates>
+  <xsl:apply-templates select="WSJ_TYPE"/>
+
   </xsl:template>
 
   <xsl:template match="UUID">
@@ -341,7 +343,7 @@
       <xsl:value-of select="."/>
     </xsl:element>
   </xsl:template>
-
+  
   <xsl:template match="AC1">
     <ac1>
       <xsl:value-of select="." />
@@ -709,7 +711,23 @@
       <xsl:value-of select="."/>
     </connectMe>
   </xsl:template>
+  
+  <xsl:template match="WSJ_TYPE">
+    <wsjType>
+      <xsl:choose>
+        <xsl:when  test=".='S'">S</xsl:when>
+        <xsl:when  test=".='B'">B</xsl:when>
+        <xsl:otherwise>Unspecified</xsl:otherwise>
+      </xsl:choose>
+    </wsjType>
 
+    <isAllowedWsjAccess>
+      <xsl:choose>
+        <xsl:when test=".='S' or .='B'">true</xsl:when>
+        <xsl:otherwise>false</xsl:otherwise>
+      </xsl:choose>
+    </isAllowedWsjAccess>
+  </xsl:template>
   <!--<xsl:template match="RCENTER">
     <rCenter>
       <xsl:choose>

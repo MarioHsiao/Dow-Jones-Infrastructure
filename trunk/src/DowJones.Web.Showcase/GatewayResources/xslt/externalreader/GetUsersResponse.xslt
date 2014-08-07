@@ -12,6 +12,8 @@
 	<xsl:template match="Result">
 		<xsl:copy-of select="profileId"/>
 		<xsl:copy-of select="accountId"/>
+    <xsl:copy-of select="skipCount"/>
+    <xsl:copy-of select="totCount"/>
 		<xsl:apply-templates select="allocated"/>
 		<xsl:copy-of select="user"/>
 	</xsl:template>

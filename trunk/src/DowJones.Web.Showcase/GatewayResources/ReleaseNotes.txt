@@ -1291,3 +1291,207 @@ Release Version 7.5.0.123
 Release Version 7.5.0.125
 =============================================================================================================================
 4/18/2013 Divya: Added new transactions AddSubItemsToItem and DeleteSubItemsOnItem in Asset Item.
+
+Release Version 7.5.0.126
+=============================================================================================================================
+4/22/2013 Divya: In workspaces assests, changed the namespace declaration of items to CommonDeclarations that are refering from Common assets.
+4/23/2013 Divya: Implemented changes in SyndicationNewspageModule object to change the type of syndicationFeedID
+4/25/2013 Divya: Modified xslt and the Core.cs to include userSessions, idleTimeout and maxSessions in GetUserAuthorizationsResponse.
+				 Added new singleItem preference DismissRSSImportMessagewith iD 185
+				 Implemented the changes for Kahuna emails in ODE V2
+
+Release Version 7.5.0.128
+=============================================================================================================================
+05/05/2013 Divya: Factiva.Gateway.Messages.Preferences.GroupAdmin.V1_0.AddGroupsResponse and AddGroupResponse.xslt updated to return GroupCollection object	
+
+Release Version 7.5.0.129
+=============================================================================================================================
+05/09/2013 Divya: Added new elements to DeliveryInfo,WorkspaceProperties, NewsletterWorkspaceProperties and GetWorkspacesPropertiesList in Workspace asset.
+				  Added new ShareProperties object to NL Template, replaced shareScope with ShareProperties in Template object.
+				  
+Release Version 7.5.0.131
+=============================================================================================================================
+05/20/2013 Divya: Added new element publicaionDate to WorkspacePropertiesItem, changed datatype ofdate fields from string to Datetime.
+
+Release Version 7.5.0.132
+=============================================================================================================================
+05/21/2013 Divya: Added/Modified preference enum values of DeliveryContentType , PreferenceSetHomePage , PreferenceSearchFormatCategory 
+05/22/2013 Divya: Added new preference item class SrchSummaryExport and updated PreferenceClassID enum “182” with new class 
+05/24/2013 Divya: Removed UTC date fields that added for WidgetSentDate,RssSentDate,EmailSentDate in Workspace asset
+
+Release Version 7.5.0.135
+=============================================================================================================================
+06/04/2013 Divya: Added new request parameter ReturnMeteringInfo and response parameter MeteringInfo for the Archive transactions GetArticle,GetArticleWithLimit and GetBinary
+06/08/2013 Himmat: Added new PCM aggregaion transaction "CreateMultipleSyndicationItemEx" and Item Service transaction "CreateItemIfNotExistsEx" to create Syndication items.
+
+Release Version 7.5.0.136
+=============================================================================================================================
+06/13/2013 Divya: Created new service CIBSService and new transaction GetOnlineMeter
+06/14/2013 Divya: Modified GetOnlineMeter to derive from XMLMessage instead of SOAPMessage and changed enum name CIBSCheck to MeteringType
+
+Release Version 7.5.0.137
+=============================================================================================================================
+06/14/2013 Divya: Modified GetOnlineMeter to replace enum graceElig with he boolean GracePeriod in CIBS. 
+06/14/2013 Divya: Aded new item DocCount to MeteringInfo object in Archive_V2_0
+
+Release Version 7.5.0.139
+=============================================================================================================================
+06/28/2013 Divya: Modified GetOnlineMeter to replace enum values, Changed TimePeriod in Archive to enum, added meteringInfo to GetBinary as well
+06/28/2013 Divya: Created new customer service transactions in PreferenceService and 2 new preferences SalesMessageInfo and SalesMessageLastDisplayed 
+
+Release Version 7.5.0.140
+=============================================================================================================================
+07/01/2013 Divya: Modified SalesMessageInfo preference properties based on the blob provided
+07/11/2013 Divya: Added ContactInfo to the SalesMessageInfo preference object.
+
+Release Version 7.5.0.141
+=============================================================================================================================
+07/16/2013 Divya: Added new transaction GetAccessionsForEmail in Factiva.Gateway.Messages.EmailDeliverySettings.V2_0
+07/17/2013 Divya: Implemented the changes to the GetAccessionsForEmail  transaction
+07/17/2013 Divya: Implemented the changes to the Preference transactions CSGetITem, CSAddItem, CSUpdateItem and CSDeleteItem
+07/19/2013 Divya: Added 2 new transactions GetMeterCreditHistory and SetMeteringCredits to CIBSService
+07/19/2013 Divya: Added creditLimit to MeteringInfo in CIBS and aRchive. Modfied archive xslts as well.
+07/22/2013 Divya: Added new objects codeImportLvl and properties GetArticle and GetArticleWithLimit responses .
+Release Version 7.5.0.143
+=============================================================================================================================
+07/24/2013 Divya: Modifed GetArticle and GetArticleWithLimit responses to populate CodeSet and PropertySet details based on custom and non-custon responses .
+07/25/2013 Divya: Added RequestedBy field to GetMeterCreditHistory and SetMeteringCredits in CIBSService
+
+Release Version 7.5.0.144
+=============================================================================================================================
+
+07/31/2013 Divya: Added MeteringCount to MeteringInfo object GetArticle and GetArticleWithLimit responses in Archive service
+
+Release Version 7.5.0.145
+============================================================================================================================
+07/31/2013 Divya: Added Paging to GetItemsDetailsListRequest object in Item Asset.
+
+Release Version 7.5.0.147
+============================================================================================================================
+08/28/2013 Himmat: Added Paging to GetItemsDetailsListRequest object in Item Asset.
+
+Release Version 7.5.0.148
+============================================================================================================================
+09/10/2013 Divya: Added new fields AllowChat, AccountLevelAllowChat, AllowPasswordChange, EmailLanguage to GetUserProfileResponse object 
+				  and fields AllowPasswordChange, EmailLanguage to UpdateUserProfileRequest 
+
+Release Version 7.5.0.149
+============================================================================================================================
+09/12/2013 Sudhakar: Updated new fields AllowChat, AccountLevelAllowChat, AllowPasswordChange in GetUserProfileResponse object to
+				  return default values when not returned from backend 
+09/17/2013 Divya: Added new boolean fields EmailFromFactiva, EmailFromDJProducts ,EmailFromThirdParty  ,PrivacyPolicyAccepted to SendEmailToUserRequest
+				  im Membership service
+
+Release Version 7.5.0.150
+============================================================================================================================
+09/30/2013 Divya: Added UUID and EID to GetUserProfileResponse and GetUserAuthorizationsResponse  in Membership service
+10/01/2013 Himmat: Updated ClientCodeSpecificationPreferenceItem to allow  "InstanceName" to be set for Group Items.
+
+Release Version 7.5.0.152
+============================================================================================================================
+12/03/2013 Praveen: Added ClientBillingAllowed to GetUserAuthorizationsResponse  in Membership service
+
+
+Release Version 7.5.0.154
+============================================================================================================================
+Added Languages to NavigatorType
+
+Release Version 7.5.0.155
+============================================================================================================================
+Added Item Service V2.0
+
+Release Version 7.5.0.156
+============================================================================================================================
+Extended NewsFilters to include language and languageExcluded filter item list
+
+
+Release Version 7.5.0.157
+============================================================================================================================
+Work Space Changes
+
+Release Version 7.5.0.158
+============================================================================================================================
+Added FTODE to the MatrixEmailService
+
+Release Version 7.5.0.159
+============================================================================================================================
+Added Favorites to Workspaces
+
+Release Version 7.5.0.160
+============================================================================================================================
+Added DeleteEditions Transactions
+
+Release Version 7.5.0.161
+============================================================================================================================
+Added DeleteEditions Transactions
+
+Release Version 7.5.0.162
+============================================================================================================================
+Add code and test methods for ChartImage
+
+Release Version 7.5.0.163
+============================================================================================================================
+Add code and test methods for Workspace - ChartImageType - new property GraphType and DateRange
+Add Code and test methods for new module -- VideosNewspageModule
+
+Release Version 7.5.0.164
+============================================================================================================================
+Added CTXT as a new value for DocumentType
+
+Release Version 7.5.0.165
+============================================================================================================================
+1. Adding new method in track service to get select feed folder list by select service ID
+1.1 - New request xslt
+1.2 - New response xslt
+2. Adding missing fields in ClientCodeSpecificationData for "Rules"
+2.1 Fixing if condition check, copy paste error
+3. Fixing get map list response and xslt to propegate list items
+4.Fixing preference response for select service ID
+
+Release Version 7.5.0.166
+============================================================================================================================
+1. Adding new fields, 1)Owner 2) revisionPrivileges to FolderList response
+
+Release Version 7.5.0.167
+============================================================================================================================
+1. Adding deliveryType field for GetAccessionsForEmail transaction response
+
+Release Version 7.5.0.168
+============================================================================================================================
+1. Clent Billing chnages for ASP page conversion in UI
+
+Release Version 7.5.0.173 (Some one missed the releases)
+============================================================================================================================
+1. Added WSJ Type to GetUserAuthorizations object.
+
+Release Version 7.5.0.174
+============================================================================================================================
+1. Added IsFutureContentFiltered to the Exclude object.
+
+Release Version 7.5.0.175
+============================================================================================================================
+1. Changed the name of the preference item, ID 185, from DismissRSSImportMessage to AssistedSearch.
+2. Added the new preference item class AssistedSearch.
+3. Added unit tests for the new preference item class AssistedSearch.
+
+Release Version 7.5.0.176
+============================================================================================================================
+1. Changed the name of the preference item, ID 136, from DowJonesInsiderState to SeenAssistedSearchInstructions.
+2. Added the new preference item class SeenAssistedSearchInstructions.
+3. Added unit tests for the new preference item class SeenAssistedSearchInstructions.
+4. Commented out the DJInsiderHandler at emg.utility.
+
+Release Version 7.5.0.177
+============================================================================================================================
+1. Updated Membership External Reader Get Users Response to expose totalcount.
+
+Release Version 7.5.0.178
+============================================================================================================================
+1. Added caching to getItem in itemhandler - Dave
+2. Updated references in projects - Dave
+3. Added FlibboardAssetsLists prefererence - Olga
+4. Set the AssistedSearch.Theme = Light as default. - Ting
+
+Release Version 7.5.0.179
+============================================================================================================================
+1. Added MatrixProductXService to AuthorizationMatrix to access productx AC values

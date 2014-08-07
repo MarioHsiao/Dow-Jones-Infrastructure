@@ -63,15 +63,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="factiva.gateway.messages">
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.171\lib\factiva.gateway.messages.dll</HintPath>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.179\lib\factiva.gateway.messages.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="FactivaGateway">
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.171\lib\FactivaGateway.dll</HintPath>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.179\lib\FactivaGateway.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Interop.FCMLib">
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.171\lib\Interop.FCMLib.dll</HintPath>
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.179\lib\Interop.FCMLib.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
@@ -488,6 +488,13 @@
     <Content Include="GatewayResources\xslt\preference\AddItemsToCategoryResponse.xslt" />
     <Content Include="GatewayResources\xslt\preference\AddMapResponse.xslt" />
     <Content Include="GatewayResources\xslt\preference\AddUsersToGroupsResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\CSAddItemRequest.xslt" />
+    <Content Include="GatewayResources\xslt\preference\CSAddItemResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\CSDeleteItemRequest.xslt" />
+    <Content Include="GatewayResources\xslt\preference\CSGetItemRequest.xslt" />
+    <Content Include="GatewayResources\xslt\preference\CSGetItemResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\CSItemRequest.xslt" />
+    <Content Include="GatewayResources\xslt\preference\CSUpdateItemRequest.xslt" />
     <Content Include="GatewayResources\xslt\preference\DeleteCategoryResponse.xslt" />
     <Content Include="GatewayResources\xslt\preference\DeleteGroupFolderAccountResponse.xslt" />
     <Content Include="GatewayResources\xslt\preference\DeleteGroupsResponse.xslt" />
@@ -638,6 +645,8 @@
     <Content Include="GatewayResources\xslt\track\GetFolderListNoBillingResponse.xslt" />
     <Content Include="GatewayResources\xslt\track\GetFolderListResponse.xslt" />
     <Content Include="GatewayResources\xslt\track\GetFolderResponse.xslt" />
+    <Content Include="GatewayResources\xslt\track\GetSelectFeedFolderListRequest.xslt" />
+    <Content Include="GatewayResources\xslt\track\GetSelectFeedFolderListResponse.xslt" />
     <Content Include="GatewayResources\xslt\track\RealTimeAlerts_GetFolderListResponse.xslt" />
     <Content Include="GatewayResources\xslt\track\RealTimeAlerts_GetFolderResponse.xslt" />
     <Content Include="GatewayResources\xslt\track\ReviseFolderResponse.xslt" />
@@ -660,6 +669,7 @@
     <None Include="GatewayResources\config\Asset.Edition.config" />
     <None Include="GatewayResources\config\Asset.FCPService.config" />
     <None Include="GatewayResources\config\Asset.Items.config" />
+    <None Include="GatewayResources\config\Asset.Items_v2.config" />
     <None Include="GatewayResources\config\Asset.Lists.config" />
     <None Include="GatewayResources\config\Asset.NewsletterContentService.config" />
     <None Include="GatewayResources\config\Asset.NewsletterTemplateService.config" />
@@ -675,6 +685,7 @@
     <None Include="GatewayResources\config\Brokers.CompliantWorkspace.config" />
     <None Include="GatewayResources\config\Brokers.Job.config" />
     <None Include="GatewayResources\config\Brokers.Query.config" />
+    <None Include="GatewayResources\config\CIBSService.config" />
     <None Include="GatewayResources\config\CVDService.config" />
     <None Include="GatewayResources\config\DJComm.Activity.config" />
     <None Include="GatewayResources\config\DJComm.Author.config" />

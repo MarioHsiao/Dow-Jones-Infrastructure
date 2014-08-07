@@ -41,7 +41,7 @@
   }
 		]]>
   </msxsl:script>
-  <xsl:template match="@productType">
+  <xsl:template match="@productType|@producttype">
     <xsl:if test="string-length(normalize-space(.)) &gt; 0">
       <productType>
         <xsl:choose>
@@ -82,4 +82,13 @@
     </xsl:if>
   </xsl:template>
 
+  <xsl:template name="TrackReviseTypeMapper">
+    <xsl:param name="type">Owner</xsl:param>
+    <xsl:choose>
+      <xsl:when test="$type = 'G'">Administrator</xsl:when>
+      <xsl:otherwise>Owner</xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+ 
 </xsl:stylesheet>
