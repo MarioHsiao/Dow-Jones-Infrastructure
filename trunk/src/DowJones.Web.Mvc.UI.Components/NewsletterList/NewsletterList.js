@@ -77,7 +77,7 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
         }
     },
 
-    _initializeSortable: function () {
+    _initializeDataTables: function () {
         var self = this,
             newsletterTable = this.$element.find(this.selectors.newsletterTable);
         var sInfoText = self.tokens.showingText + " _START_ "
@@ -135,7 +135,7 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
 
     _registerDynamicEvents: function () {
         var self = this;
-        self._initializeSortable();
+        self._initializeDataTables();
         self.$element.on('click', self.selectors.addSectionBtn, function (e) {
             var nlId = $(this).closest('tr#sections').prev('tr').data('nlid');
             $dj.publish(self.events.addSectionClick, { nlid: nlId, ind: $(this).data('index'), positionIndicator: $(this).data('pi') });
@@ -145,8 +145,8 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
 
     _initializeNewsletter: function () {
         var self = this;
-        
         self.$element.on('click', self.selectors.addBtn, function (e) {
+            
             $dj.publish(self.events.addClick, { nid: $(this).data('nlid') });
             return false;
         });
@@ -202,7 +202,11 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
     _setSectionsData: function (newsletterId, sectionsHtml) {
         var nlRow = $('table#editionTable', this.$element).find("tr[data-nlid='" + newsletterId + "']");
         $('table#editionTable', this.$element).find('tr#sections').remove();
-        $("<tr id='sections'><td colspan='3'>" + sectionsHtml + "</td></tr>").insertAfter(nlRow);
+        $("<tr id='sections' class='hide'><td colspan='3'>" + sectionsHtml + "</td></tr>").insertAfter(nlRow);
+
+        if (this.$element.find('ul.nl-pps-sections').length > 0) {
+            this.$element.find('tr#sections').removeClass('hide');
+        }
     },
 
     bindOnSuccess: function (data, type) {
