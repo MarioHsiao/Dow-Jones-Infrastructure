@@ -32,6 +32,7 @@ namespace DowJones.Security.Services
         /// The main authorization component.
         /// </summary>
         private readonly MatrixInterfaceService _matrixInterfaceService;
+        private readonly MatrixProductXService _matrixProductxService;
 
         private readonly Dictionary<string, string> _authComponents;
 
@@ -42,10 +43,11 @@ namespace DowJones.Security.Services
         /// <summary>
         /// Initializes a new instance of the <see cref="InterfaceService"/> class.
         /// </summary>
-        internal InterfaceService(bool isInterfaceServiceOn, MatrixInterfaceService matrixInterfaceService, Dictionary<string, string> authComponents)
+        internal InterfaceService(bool isInterfaceServiceOn, MatrixInterfaceService matrixInterfaceService,MatrixProductXService matrixProductxService, Dictionary<string, string> authComponents)
         {
             _isOn = isInterfaceServiceOn;
             _matrixInterfaceService = matrixInterfaceService;
+            _matrixProductxService = matrixProductxService;
             _authComponents = authComponents;
             Initialize();
         }
@@ -169,6 +171,8 @@ namespace DowJones.Security.Services
 
         public bool IsDowJonesTabEnabled { get; private set; }
 
+        public bool IsDJRC { get; private set; }
+
         #endregion
 
         #region Service Initialization Method
@@ -253,6 +257,9 @@ namespace DowJones.Security.Services
                 strValue = _authComponents["DJTAB"];
             }
             IsDowJonesTabEnabled = ((string.IsNullOrEmpty(strValue)) || string.Equals(strValue.Trim(), "ON", StringComparison.InvariantCultureIgnoreCase));
+
+            //Check DJRC 
+            IsDJRC = IsPermittedReaderView && (_matrixProductxService != null && _matrixProductxService.ac2 != null && _matrixProductxService.ac2.ContainsAtAnyIndex("REG=DJRC", StringComparison.InvariantCultureIgnoreCase));
         }
 
         #endregion
