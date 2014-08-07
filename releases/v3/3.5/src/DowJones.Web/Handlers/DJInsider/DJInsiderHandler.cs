@@ -1,4 +1,4 @@
-using System;
+/*using System;
 using System.Diagnostics;
 using System.Text;
 using System.Web;
@@ -705,7 +705,7 @@ namespace DowJones.Web.Handlers.DJInsider
             var request = new UpdateItemRequest();
 
             item.ItemID = itemID;
-            item.DowJonesInsiderState = djiState;
+            //item.DowJonesInsiderState = djiState;
             request.Item = item;
             ServiceResponse serviceResponse = PreferenceService.UpdateItem(ControlDataManager.Convert(_controlData),
                                                                            request);
@@ -967,4 +967,5 @@ namespace DowJones.Web.Handlers.DJInsider
         //}
     }
 
-}
+}*/
+

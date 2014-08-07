@@ -69,13 +69,15 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
         // Call the base constructor
         this._super(element, $.extend({ name: "NewsletterList" }, meta));
 
+        this._initializeNewsletter();
+
         // Initialize component if we got data from server
         if (this.data) {
             this._setData(this.data);
         }
     },
 
-    _initializeSortable: function () {
+    _initializeDataTables: function () {
         var self = this,
             newsletterTable = this.$element.find(this.selectors.newsletterTable);
         var sInfoText = self.tokens.showingText + " _START_ "
@@ -131,18 +133,21 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
         }
     },
 
-    _initializeNewsletter: function () {
+    _registerDynamicEvents: function () {
         var self = this;
-        self._initializeSortable();
-
-        self.$element.on('click', self.selectors.addBtn, function (e) {
-            $dj.publish(self.events.addClick, { nid: $(this).data('nlid') });
-            return false;
-        });
-
+        self._initializeDataTables();
         self.$element.on('click', self.selectors.addSectionBtn, function (e) {
             var nlId = $(this).closest('tr#sections').prev('tr').data('nlid');
             $dj.publish(self.events.addSectionClick, { nlid: nlId, ind: $(this).data('index'), positionIndicator: $(this).data('pi') });
+            return false;
+        });
+    },
+
+    _initializeNewsletter: function () {
+        var self = this;
+        self.$element.on('click', self.selectors.addBtn, function (e) {
+            
+            $dj.publish(self.events.addClick, { nid: $(this).data('nlid') });
             return false;
         });
 
@@ -197,7 +202,11 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
     _setSectionsData: function (newsletterId, sectionsHtml) {
         var nlRow = $('table#editionTable', this.$element).find("tr[data-nlid='" + newsletterId + "']");
         $('table#editionTable', this.$element).find('tr#sections').remove();
-        $("<tr id='sections'><td colspan='3'>" + sectionsHtml + "</td></tr>").insertAfter(nlRow);
+        $("<tr id='sections' class='hide'><td colspan='3'>" + sectionsHtml + "</td></tr>").insertAfter(nlRow);
+
+        if (this.$element.find('ul.nl-pps-sections').length > 0) {
+            this.$element.find('tr#sections').removeClass('hide');
+        }
     },
 
     bindOnSuccess: function (data, type) {
@@ -218,7 +227,7 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
                 }
             }
             // bind events and perform other wiring up
-            self._initializeNewsletter();
+            self._registerDynamicEvents();
         } catch (e) {
             $dj.error('Error in NewsletterList.bindOnSuccess:', e);
         }
@@ -239,7 +248,7 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
         $('.dataTables_wrapper', self.$element).prepend(self.templates.notification(data));
         setTimeout(function () {
             var alertBox = self.$element.find('.alert-box');
-            $(alertBox).fadeOut(500, function () { $(alertBox).remove(); });
+            $(alertBox).fadeOut(1000, function () { $(alertBox).remove(); });
         }, 3000);
     },
 

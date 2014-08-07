@@ -61,7 +61,8 @@ namespace DowJones.Web.Showcase.Controllers
 
             if (article.status != null && article.status.value != 0)
             {
-                throw new DowJonesInsiderException(article.status.value);
+                //throw new DowJonesInsiderException(article.status.value);
+                throw new Exceptions.DowJonesUtilitiesException(article.status.value);
             }
 
             _articleConversionManger.ShowCompanyEntityReference = true;

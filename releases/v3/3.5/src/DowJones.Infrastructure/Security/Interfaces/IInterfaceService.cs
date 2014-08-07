@@ -45,5 +45,6 @@ namespace DowJones.Security.Interfaces
         bool IsTestExecMarkupInArticleUser { get; }
         bool IsDowJonesTabEnabled { get; }
         bool IsMctUser { get; }
+        bool IsDJRC { get; }
     }
 }

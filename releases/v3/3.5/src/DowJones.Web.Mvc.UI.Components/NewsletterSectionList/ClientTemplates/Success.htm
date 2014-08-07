@@ -1,5 +1,6 @@
 ﻿<%
-var hasNoSection = self.count.value === 1;
+var hasArticle = self.newsletterSections[0].name.trim().length === 0;
+var hasNoSection = (self.newsletterSections.length === 1 && hasArticle);
 var tokens = this.tokens;
 %>
 <div class="clearfix nl-pps-instruction">
@@ -29,9 +30,10 @@ var tokens = this.tokens;
             </div>
         </div>
     </li>
-    <% }
-    for (var i = 1; i < self.newsletterSections.length; i++) {
-        x = self.newsletterSections[i];
+    <% } else {
+
+    for (var i = (hasArticle ? 1 : 0); i < self.newsletterSections.length; i++) {
+    x = self.newsletterSections[i];
     %>
     <li class="nl-pps-section">
         <div class="clearfix">
@@ -62,5 +64,5 @@ var tokens = this.tokens;
         </ul>
         <% } %>
     </li>
-    <% } %>
-    </ul>
+    <% } }%>
+</ul>

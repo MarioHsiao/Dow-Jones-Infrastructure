@@ -19,7 +19,7 @@
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>4.0</OldToolsVersion>
@@ -73,13 +73,13 @@
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="factiva.gateway.messages, Version=7.5.0.171, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.171\lib\factiva.gateway.messages.dll</HintPath>
+    <Reference Include="factiva.gateway.messages">
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.179\lib\factiva.gateway.messages.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="FactivaGateway, Version=1.6.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.171\lib\FactivaGateway.dll</HintPath>
+    <Reference Include="FactivaGateway">
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.179\lib\FactivaGateway.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Glimpse.Core">
       <HintPath>..\packages\Glimpse.0.86\lib\net40\Glimpse.Core.dll</HintPath>
@@ -90,10 +90,8 @@
     <Reference Include="Glimpse.Mvc3">
       <HintPath>..\packages\Glimpse.Mvc3.0.86\lib\net40\Glimpse.Mvc3.dll</HintPath>
     </Reference>
-    <Reference Include="Interop.FCMLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>..\packages\Factiva.Gateway.7.5.0.171\lib\Interop.FCMLib.dll</HintPath>
+    <Reference Include="Interop.FCMLib">
+      <HintPath>..\packages\Factiva.Gateway.7.5.0.179\lib\Interop.FCMLib.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
@@ -732,6 +730,13 @@
     <Content Include="GatewayResources\xslt\preference\AddItemsToCategoryResponse.xslt" />
     <Content Include="GatewayResources\xslt\preference\AddMapResponse.xslt" />
     <Content Include="GatewayResources\xslt\preference\AddUsersToGroupsResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\CSAddItemRequest.xslt" />
+    <Content Include="GatewayResources\xslt\preference\CSAddItemResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\CSDeleteItemRequest.xslt" />
+    <Content Include="GatewayResources\xslt\preference\CSGetItemRequest.xslt" />
+    <Content Include="GatewayResources\xslt\preference\CSGetItemResponse.xslt" />
+    <Content Include="GatewayResources\xslt\preference\CSItemRequest.xslt" />
+    <Content Include="GatewayResources\xslt\preference\CSUpdateItemRequest.xslt" />
     <Content Include="GatewayResources\xslt\preference\DeleteCategoryResponse.xslt" />
     <Content Include="GatewayResources\xslt\preference\DeleteGroupFolderAccountResponse.xslt" />
     <Content Include="GatewayResources\xslt\preference\DeleteGroupsResponse.xslt" />
@@ -882,6 +887,8 @@
     <Content Include="GatewayResources\xslt\track\GetFolderListNoBillingResponse.xslt" />
     <Content Include="GatewayResources\xslt\track\GetFolderListResponse.xslt" />
     <Content Include="GatewayResources\xslt\track\GetFolderResponse.xslt" />
+    <Content Include="GatewayResources\xslt\track\GetSelectFeedFolderListRequest.xslt" />
+    <Content Include="GatewayResources\xslt\track\GetSelectFeedFolderListResponse.xslt" />
     <Content Include="GatewayResources\xslt\track\RealTimeAlerts_GetFolderListResponse.xslt" />
     <Content Include="GatewayResources\xslt\track\RealTimeAlerts_GetFolderResponse.xslt" />
     <Content Include="GatewayResources\xslt\track\ReviseFolderResponse.xslt" />
@@ -1126,6 +1133,12 @@
     <Content Include="Content\syntaxhighlighter\sh.js" />
     <Content Include="Content\syntaxhighlighter\shCore.css" />
     <Content Include="Content\syntaxhighlighter\shThemeDefault.css" />
+    <Content Include="GatewayResources\config\SearchService.config" />
+    <Content Include="GatewayResources\config\FactivaGateway.config" />
+    <Content Include="GatewayResources\config\Asset.Workspaces.config" />
+    <Content Include="GatewayResources\config\Asset.NewsletterTemplateService.config" />
+    <Content Include="GatewayResources\config\Asset.Items.config" />
+    <Content Include="GatewayResources\config\Asset.Edition.config" />
     <Content Include="GatewayResources\config\UserEventRecorderService.config" />
     <Content Include="GatewayResources\config\Triggers.config" />
     <Content Include="GatewayResources\config\TrackService.config" />
@@ -1143,7 +1156,6 @@
     <Content Include="GatewayResources\config\SessionCacheService.config" />
     <Content Include="GatewayResources\config\SemanticService.config" />
     <Content Include="GatewayResources\config\SegmentationService.config" />
-    <Content Include="GatewayResources\config\SearchService.config" />
     <Content Include="GatewayResources\config\ScreeningService.config" />
     <Content Include="GatewayResources\config\RTQueueService.config" />
     <Content Include="GatewayResources\config\RoleBasedPlatform.TrackCodingService.config" />
@@ -1169,7 +1181,6 @@
     <Content Include="GatewayResources\config\IndexService.config" />
     <Content Include="GatewayResources\config\HeatMapService.config" />
     <Content Include="GatewayResources\config\GovernmentService.config" />
-    <Content Include="GatewayResources\config\FactivaGateway.config" />
     <Content Include="GatewayResources\config\ExternalReaderService.config" />
     <Content Include="GatewayResources\config\EventCalendarService.config" />
     <Content Include="GatewayResources\config\EmailDeliverySettingsService.config" />
@@ -1185,11 +1196,11 @@
     <Content Include="GatewayResources\config\DJComm.Author.config" />
     <Content Include="GatewayResources\config\DJComm.Activity.config" />
     <Content Include="GatewayResources\config\CVDService.config" />
+    <Content Include="GatewayResources\config\CIBSService.config" />
     <Content Include="GatewayResources\config\Brokers.Query.config" />
     <Content Include="GatewayResources\config\Brokers.Job.config" />
     <Content Include="GatewayResources\config\Brokers.CompliantWorkspace.config" />
     <Content Include="GatewayResources\config\BillingAndAuthorizationService.config" />
-    <Content Include="GatewayResources\config\Asset.Workspaces.config" />
     <Content Include="GatewayResources\config\Asset.Workflow.config" />
     <Content Include="GatewayResources\config\Asset.WebService.config" />
     <Content Include="GatewayResources\config\Asset.SourceList.config" />
@@ -1197,12 +1208,10 @@
     <Content Include="GatewayResources\config\Asset.Queries.config" />
     <Content Include="GatewayResources\config\Asset.Pages.config" />
     <Content Include="GatewayResources\config\Asset.NewsPageService.config" />
-    <Content Include="GatewayResources\config\Asset.NewsletterTemplateService.config" />
     <Content Include="GatewayResources\config\Asset.NewsletterContentService.config" />
     <Content Include="GatewayResources\config\Asset.Lists.config" />
-    <Content Include="GatewayResources\config\Asset.Items.config" />
+    <Content Include="GatewayResources\config\Asset.Items_v2.config" />
     <Content Include="GatewayResources\config\Asset.FCPService.config" />
-    <Content Include="GatewayResources\config\Asset.Edition.config" />
     <Content Include="GatewayResources\config\Asset.CompanyList.config" />
     <Content Include="GatewayResources\config\ArchiveService.config" />
     <Content Include="GatewayResources\config\Analyze.config" />
@@ -1626,7 +1635,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>23221</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/DowJones.Web.Showcase</IISUrl>
+          <IISUrl>http://localhost:23221/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

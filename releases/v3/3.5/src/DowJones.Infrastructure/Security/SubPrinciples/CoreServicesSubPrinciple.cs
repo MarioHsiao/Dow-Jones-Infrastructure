@@ -573,7 +573,7 @@ namespace DowJones.Security.SubPrinciples
             {
                 authComponents = nvp.Value.AuthComponents;
             }
-            _interfaceService = new InterfaceService(_ruleSet.IsInterfaceServiceOn, _authorizationMatrix.Interface, authComponents);
+            _interfaceService = new InterfaceService(_ruleSet.IsInterfaceServiceOn, _authorizationMatrix.Interface,_authorizationMatrix.ProductX, authComponents);
         }
 
         private void InitMarketDataService()

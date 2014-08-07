@@ -96,6 +96,11 @@
           <xsl:apply-templates select="AUTH_MATRIX/INTERFACE/*" />
         </interface>
       </xsl:if>
+      <xsl:if test="boolean(AUTH_MATRIX/PRODUCTX)">
+        <productx>
+          <xsl:apply-templates select="AUTH_MATRIX/PRODUCTX/*" />
+        </productx>
+      </xsl:if>
       <xsl:if test="boolean(AUTH_MATRIX/FSINTERFACE)">
         <fsInterface>
           <xsl:apply-templates select="AUTH_MATRIX/FSINTERFACE/*" />
