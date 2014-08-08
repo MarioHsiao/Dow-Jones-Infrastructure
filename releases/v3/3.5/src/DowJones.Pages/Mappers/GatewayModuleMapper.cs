@@ -74,7 +74,7 @@ namespace DowJones.Pages.Mappers
                 return new MetaData
                 {
                     MetaDataCode = moduleMetaData.RegionCollection[0].Text,
-                    MetaDataType = MetaDataType.Industry
+                    MetaDataType = MetaDataType.Geographic
                 };
             }
             return null;
