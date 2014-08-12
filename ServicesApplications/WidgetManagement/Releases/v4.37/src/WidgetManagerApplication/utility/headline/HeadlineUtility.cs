@@ -673,7 +673,7 @@ namespace EMG.widgets.ui.utility.headline
             }
 
             //Append the nldtl token which has the newsletter Id & NT (Newsletter Type)
-            var encryptedToken = GetEncryptedStringForNLDetails(workspaceInfo.Id, "NL");
+            var encryptedToken = GetEncryptedStringForNLDetails(workspaceInfo.Id, tokenProperties.IsMct ? "MCT" : "NL");
             ub.Append("nldtl", encryptedToken);
 
             //Append omniture tracking code
