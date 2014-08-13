@@ -1125,14 +1125,6 @@ if (!window.FactivaWidgetRenderManager) {
                     }
                 }
 
-                /*
-                sb[sb.length] =  ((!(xSfr3 && xMac)) ?
-                "<a class=\"factivaLink\" href=\"" + headline.Url +  "\" target=\"_new\" onclick=\"try{if(FactivaWidgetRenderManager && FactivaWidgetRenderManager.getInstance()) {FactivaWidgetRenderManager.getInstance().xWinOpen(this.href);return false;}}catch(e){return true;}\" style=\"font-weight:bold;color:" + fontColor + ";text-decoration:none;\" onmouseover=\"FactivaWidgetRenderManager.getInstance().setMouseOver(this);return false;\" onmouseout=\"FactivaWidgetRenderManager.getInstance().setMouseOut(this);return false;\" title=\"" :
-                "\"><a class=\"factivaLink\" href=\"" + headline.Url +  "\" target=\"_new\" style=\"font-weight:bold;color:" + fontColor + ";text-decoration:none;\" onmouseover=\"FactivaWidgetRenderManager.getInstance().setMouseOver(this);return false;\" onmouseout=\"FactivaWidgetRenderManager.getInstance().setMouseOut(this);return false;\" title=\"" ) + 
-                ((!showSnippet) ?  headline.Snippet.replace("\"","&quot;") : headline.Text.replace("\"","&quot;")) + 
-                "\">" + ((headline.TruncText != null && headline.TruncText.length > 0 ) ? headline.TruncText : headline.Text) + "</a></div>";    
-                */
-
                 sb[sb.length] = "<a class=\"factivaLink\" href=\"javascript:void(0)\" onclick=\"return false;\" style=\"font-weight:bold;color:" + fontColor + ";text-decoration:none;\" onmouseover=\"FactivaWidgetRenderManager.getInstance().setMouseOver(this);return false;\" onmouseout=\"FactivaWidgetRenderManager.getInstance().setMouseOut(this);return false;\" title=\"" +
                     ((!showSnippet) ? headline.Snippet.replace("\"", "&quot;") : headline.Text.replace("\"", "&quot;")) +
                     "\">" + ((headline.TruncText != null && headline.TruncText.length > 0) ? headline.TruncText : headline.Text) + "</a></div>";
