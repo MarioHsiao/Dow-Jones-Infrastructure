@@ -94,13 +94,13 @@ namespace DowJones.Assemblers.Workspaces
             {
                 case DowJones.Ajax.ContentCategory.Publication:
                     return ContentCategory.Publications;
+                case DowJones.Ajax.ContentCategory.External: 
                 case DowJones.Ajax.ContentCategory.Website:
                     return ContentCategory.WebSites;
                 case DowJones.Ajax.ContentCategory.Picture:
                     return ContentCategory.Pictures;
                 case DowJones.Ajax.ContentCategory.Multimedia:
                     return ContentCategory.Multimedia;
-                //TODO case DowJones.Ajax.ContentCategory.External: 
                 case DowJones.Ajax.ContentCategory.Blog:
                     return ContentCategory.Blogs;
                 case DowJones.Ajax.ContentCategory.Board:
