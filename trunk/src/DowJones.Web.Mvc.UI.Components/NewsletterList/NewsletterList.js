@@ -25,6 +25,10 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
         allowFilter: true
     },
 
+    globalVars: {
+        wsTable: null
+    },
+
     tokens: {
         nameColumnLabel: "<%=Token('name')%>",
         dateColumnLabel: "<%=Token('date')%>",
@@ -75,6 +79,14 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
         if (this.data) {
             this._setData(this.data);
         }
+
+        //Scroll To plugin (TODO: Should be moved to core js)
+        jQuery.fn.scrollTo = function (elem, speed) {
+            $(this).animate({
+                scrollTop: $(this).scrollTop() - $(this).offset().top + $(elem).offset().top
+            }, speed == undefined ? 1000 : speed);
+            return this;
+        };
     },
 
     _initializeDataTables: function () {
@@ -104,23 +116,33 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
                 'aTargets': [-1] /* 1st one, start by the right */
             }]
         });
+        self.globalVars.wsTable = table;
         $('div.dataTables_filter input', this.$element).attr('placeholder', self.tokens.filterText + '...');
 
         //Row Highlighting
         $('tbody', newsletterTable)
         .on('mouseover', 'td', function () {
-                if ($(this).parent().attr('id') != "sections") {
-                    $('tbody td', table).removeClass('highlight');
-                    $(this).addClass('highlight');
-                    $(this).siblings().addClass('highlight');
-                }
-            })
+            if ($(this).parent().attr('id') != "sections") {
+                $('tbody td', table).removeClass('highlight');
+                $(this).addClass('highlight');
+                $(this).siblings().addClass('highlight');
+            }
+        })
         .on('mouseleave', function () {
             $('tbody td', table).removeClass('highlight');
         });
 
         //Add processing template
         self.$element.find("#editionTable_wrapper").prepend(self.templates.processing());
+    },
+
+    _scrollToRow: function (el) {
+        var self = this;
+        if (self.globalVars.wsTable) {
+            var scroller = self.globalVars.wsTable.fnSettings().nTable.parentNode;
+            var tr = $(el).closest('tr');
+            $(scroller).scrollTo(tr, 1000);
+        }
     },
 
     _showLoading: function (show, message) {
@@ -146,8 +168,7 @@ DJ.UI.NewsletterList = DJ.UI.Component.extend({
     _initializeNewsletter: function () {
         var self = this;
         self.$element.on('click', self.selectors.addBtn, function (e) {
-            
-            $dj.publish(self.events.addClick, { nid: $(this).data('nlid') });
+            $dj.publish(self.events.addClick, { nid: $(this).data('nlid'), row: this });
             return false;
         });
 
