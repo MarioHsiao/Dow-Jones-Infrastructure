@@ -7,6 +7,12 @@ namespace DowJones.Formatters.Globalization.Cultures
         private const string REGION_CODE = "FR";
         private const string TWO_LETTER_ISO_LANGUAGE_NAME = "fr";
 
+        public override string FullDatePattern
+        {
+            get { return "d MMMM yyyy"; }
+        }
+
+
         /// <summary>
         /// Gets the region code.
         /// </summary>
