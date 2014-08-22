@@ -21,6 +21,8 @@ namespace DowJones.Infrastructure.Alert
         public string TimeZoneOffset { get; set; }
         public List<DeliveryContentType> DeliveryContentType { get; set; }
         public bool AllowMMContent { get; set; }
+        public ResultsDisplayFormat ResultDisplayFormat { get; set; }
+        public bool EnabledEmailHighlight { get; set; }
     }
 
     public class Source : SourceList

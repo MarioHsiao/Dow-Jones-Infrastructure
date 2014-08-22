@@ -23,7 +23,9 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
         selectedOption: 'option:selected',
         includeSM: 'input.includeSM',
         filterCloseEx: 'span.fi-two.fi_remove.fi_d-gear',
-        resDspFmtInfIcon: 'span.resDspFmtInfIcon'
+        resDspFmtInfIcon: 'span.resDspFmtInfIcon',
+        enableHightLightSearch: 'input:radio',
+        clickedHighLightYes: 'input:radio[name=grp1]'
     },
 
     defaults: {
@@ -57,7 +59,8 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
             OnSaveClick: $dj.delegate(this, this._onSaveClick),
             OnCancelClick: $dj.delegate(this, this._onCancelClick),
             OnRDFInfoIconClick: $dj.delegate(this, this._onRDFInfoIconClick),
-            OnDeliveryTimeChange: $dj.delegate(this, this._onDeliveryTimeChange)
+            OnDeliveryTimeChange: $dj.delegate(this, this._onDeliveryTimeChange),
+            OnResultDisplayChange: $dj.delegate(this, this._onResultDisplayChange)
         });
     },
 
@@ -71,7 +74,9 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
             deliveryTime: $(this.selectors.deliveryTime, this.$element),
             removeDuplicate: $(this.selectors.removeDuplicate, this.$element),
             includeSM: $(this.selectors.includeSM, this.$element),
-            resDispFormat: $(this.selectors.resDispFormat, this.$element)
+            resDispFormat: $(this.selectors.resDispFormat, this.$element),
+            enableHightLightSearch: $(this.selectors.enableHightLightSearch, this.$element),
+            clickedHighLightYes: $(this.selectors.clickedHighLightYes, this.$element)
         }
         this.$title = $(this.selectors.title, this.$element);
         this.$newsFilter = $(this.selectors.newsFilter, this.$element);
@@ -96,6 +101,7 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
         this.$input.sourceList.html('');
         this.$newsFilterContainer.html('');
         this.$newsFilter.hide();
+        //this.$input.enableHightLightSearch.attr("disabled", true);
     },
 
     _bindNewsFilter: function () {
@@ -151,7 +157,8 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
             this.$input.emailAddress.val(d.emailAddress || '');
 
             //EmailFormat
-            this.$input.emailFormat.append(this.templates.options({ items: d.emailFormats })).val(d.selectedEmailFormat);
+            this.$input.emailFormat.append(this.templates.options({ items: d.emailFormats }))
+                .change(this._delegates.OnResultDisplayChange).val(d.selectedEmailFormat); 
 
             //DeliveryTimes
             this.$input.deliveryTime.append(this.templates.options({ items: d.deliveryTimes }))
@@ -161,7 +168,8 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
             this.$input.removeDuplicate.append(this.templates.options({ items: d.duplicates }));
 
             //Results Display Format
-            this.$input.resDispFormat.append(this.templates.options({ items: d.resultsDisplayFormats }));
+            this.$input.resDispFormat.append(this.templates.options({ items: d.resultsDisplayFormats }))
+                .change(this._delegates.OnResultDisplayChange).val(d.selectedDisplayFormat);
 
             //Include Social Media
             if (d.includeSocialMedia) {
@@ -179,6 +187,19 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
             if (d.selectedDeliveryTime != this.$input.deliveryTime[0].options[0].value) {
                 this.$input.emailAddress.attr("disabled", false);
                 this.$input.emailFormat.attr("disabled", false);
+            }
+
+
+            if ($('#grpyes').length > 0) {
+                $('#grpyes').attr("checked", "checked");
+            }
+
+            if (this.$input.resDispFormat.length) {
+                if ((d.selectedDisplayFormat != this.$input.resDispFormat[0].options[1].value) && (d.selectedEmailFormat != this.$input.emailFormat[0].options[0].value)) {
+                    this.$input.enableHightLightSearch.attr("disabled", false);
+                } else {
+                    this.$input.enableHightLightSearch.attr("disabled", true);
+                }
             }
 
             this._initializeEventHandlers();
@@ -257,6 +278,14 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
     _onSaveClick: function () {
         if (this.validateInput()) {
             //Create the data to be passed to the save event handler
+            var higlightTextOptionChecked = false;
+           
+            if (this.$input.clickedHighLightYes.is(':enabled')) {
+                    if ($('input:radio[name=grp1]:checked').val() != "" && $('input:radio[name=grp1]:checked').val() == "Yes") {
+                        higlightTextOptionChecked = true;
+                    }
+                }
+            
             var obj = {
                 alertName: this.$input.folderName.val(),
                 searchText: this.$input.searchText.val(),
@@ -267,8 +296,10 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
                 selectedDuplicate: this.$input.removeDuplicate.val(),
                 selectedSource: this.$input.sourceList.val(),
                 selectedSourceDesc: this.$input.sourceList.find(this.selectors.selectedOption).text(),
-                includeSocialMedia: this.$input.includeSM.is(':checked')
-            };
+                includeSocialMedia: this.$input.includeSM.is(':checked'),
+                selectedDisplayFormat: this.$input.resDispFormat.val(),
+                enabledEmailHighLight: higlightTextOptionChecked
+        };
 
             //Trigger the save event and pass the data
             this.$element.triggerHandler(this.events.onSaveClick, { alertObj: obj });
@@ -462,6 +493,15 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
         else {
             this.$input.emailAddress.attr("disabled", false);
             this.$input.emailFormat.attr("disabled", false);
+        }
+    },
+    _onResultDisplayChange: function () {
+        if (this.$input.resDispFormat.length) {
+            if (this.$input.resDispFormat[0].selectedIndex == 1 || this.$input.emailFormat[0].selectedIndex == 0) {
+                this.$input.enableHightLightSearch.attr("disabled", true);
+            } else {
+                this.$input.enableHightLightSearch.attr("disabled", false);
+            }
         }
     }
 });

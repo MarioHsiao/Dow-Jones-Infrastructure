@@ -19,6 +19,7 @@ namespace DowJones.Web.Mvc.UI.Components.SimpleAlert
         private List<Option> _emailFormats;
         private List<Option> _duplicates;
         private List<Option> _resultsDisplayFormats;
+        private ResultsDisplayFormat _resultDiplayFormat = ResultsDisplayFormat.HeadlinesTraditional;
 
         /// <summary>
         /// Gets or sets the flag determining whether the alert 
@@ -95,6 +96,17 @@ namespace DowJones.Web.Mvc.UI.Components.SimpleAlert
                 return _resultsDisplayFormats;
             }
             set { _resultsDisplayFormats = value; }
+        }
+
+
+        /// <summary>
+        /// Gets or Sets the selected Display Format
+        /// </summary>
+        [JsonProperty("selectedDisplayFormat")]
+        public ResultsDisplayFormat SelectedDisplayFormat
+        {
+            get { return _resultDiplayFormat; }
+            set { _resultDiplayFormat = value; }
         }
 
         /// <summary>
@@ -187,6 +199,12 @@ namespace DowJones.Web.Mvc.UI.Components.SimpleAlert
         /// </summary>
         [JsonProperty("includeSocialMedia")]
         public bool IncludeSocialMedia { get; set; }
+
+        /// <summary>
+        /// Get or Sets the Highlighting selected or Unselected
+        /// </summary>
+        [JsonProperty("enabledEmailHighLight")]
+        public bool EnabledEmailHighlight { get; set; }
 
         public SimpleAlertData(IResourceTextManager resources = null)
         {
