@@ -10,6 +10,7 @@ using DowJones.Managers.Search.CodedNewsQueries;
 using DowJones.Preferences;
 using DowJones.Search.Core;
 using DowJones.Session;
+using Factiva.Gateway.Messages.MarketData.V1_0;
 using Factiva.Gateway.Messages.Preferences.V1_0;
 using Factiva.Gateway.Messages.Search.V2_0;
 using Factiva.Gateway.Messages.Track.V1_0;
@@ -51,11 +52,13 @@ namespace DowJones.Managers.Alert
                                       email = request.EmailAddress,
                                       documentFormat = request.EmailFormat,
                                       documentFormatSpecified = true,
-                                      documentType = DocumentType.FULL,
+                                      documentType = Map(request.ResultDisplayFormat),
                                       documentTypeSpecified = true,
                                       deduplicationLevel = MapDedupLevel(request.RemoveDuplicate),
                                       trackUserData = new TrackUserData(),
-                                      deliveryContentType = GetDeliveryContentType(request.DeliveryContentType)
+                                      deliveryContentType = GetDeliveryContentType(request.DeliveryContentType),
+                                      highlightQuery = request.EnabledEmailHighlight
+                                      
                                   };
             #endregion
 
@@ -169,6 +172,23 @@ namespace DowJones.Managers.Alert
             }
 
             throw new DowJonesUtilitiesException(serviceResponse.rc);
+        }
+
+        private DocumentType Map(ResultsDisplayFormat resultDisplayFormat)
+        {
+            switch (resultDisplayFormat)
+            {
+                case ResultsDisplayFormat.FullText:
+                    return DocumentType.FULL;
+                case ResultsDisplayFormat.FullTextIndexing:
+                    return DocumentType.FULR;
+                case ResultsDisplayFormat.HeadlinesContextual:
+                    return DocumentType.CTXT;
+                case ResultsDisplayFormat.HeadlinesTraditional:
+                    return DocumentType.HDLN;
+                default:
+                    return DocumentType.FULL;
+            }
         }
 
         private static DeduplicationLevel MapDedupLevel(RemoveDuplicate removeDuplicate)
