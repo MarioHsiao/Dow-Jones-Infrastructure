@@ -88,8 +88,8 @@ namespace DowJones.Web.Mvc.UI.Components.SimpleAlert
                 if (_resultsDisplayFormats == null)
                 {
                     _resultsDisplayFormats = new List<Option>();
-                    _resultsDisplayFormats.Add(new Option { Id = ((int)ResultsDisplayFormat.HeadlinesContextual).ToString(), Name = _resources.GetString("headlinesContextual") });
                     _resultsDisplayFormats.Add(new Option { Id = ((int)ResultsDisplayFormat.HeadlinesTraditional).ToString(), Name = _resources.GetString("headlinesTraditional") });
+                    _resultsDisplayFormats.Add(new Option { Id = ((int)ResultsDisplayFormat.HeadlinesContextual).ToString(), Name = _resources.GetString("headlinesContextual") });
                     _resultsDisplayFormats.Add(new Option { Id = ((int)ResultsDisplayFormat.FullText).ToString(), Name = _resources.GetString("fulltextDocs") });
                     _resultsDisplayFormats.Add(new Option { Id = ((int)ResultsDisplayFormat.FullTextIndexing).ToString(), Name = _resources.GetString("fulltextDocsIdx") });
                 }
