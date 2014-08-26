@@ -195,7 +195,7 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
             }
 
             if (this.$input.resDispFormat.length) {
-                if ((d.selectedDisplayFormat != this.$input.resDispFormat[0].options[1].value) && (d.selectedEmailFormat != this.$input.emailFormat[0].options[0].value)) {
+                if ((d.selectedDisplayFormat != this.$input.resDispFormat[0].options[0].value) && (d.selectedEmailFormat != this.$input.emailFormat[0].options[0].value)) {
                     this.$input.enableHightLightSearch.attr("disabled", false);
                 } else {
                     this.$input.enableHightLightSearch.attr("disabled", true);
@@ -497,7 +497,7 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
     },
     _onResultDisplayChange: function () {
         if (this.$input.resDispFormat.length) {
-            if (this.$input.resDispFormat[0].selectedIndex == 1 || this.$input.emailFormat[0].selectedIndex == 0) {
+            if (this.$input.resDispFormat[0].selectedIndex == 0 || this.$input.emailFormat[0].selectedIndex == 0) {
                 this.$input.enableHightLightSearch.attr("disabled", true);
             } else {
                 this.$input.enableHightLightSearch.attr("disabled", false);
