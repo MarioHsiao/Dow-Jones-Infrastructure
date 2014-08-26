@@ -199,6 +199,8 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
                     this.$input.enableHightLightSearch.attr("disabled", false);
                 } else {
                     this.$input.enableHightLightSearch.attr("disabled", true);
+                    $('#grpyes').removeAttr("checked", "checked");
+                    $('#grpno').attr("checked", "checked");
                 }
             }
 
@@ -498,9 +500,13 @@ DJ.UI.SimpleAlert = DJ.UI.Component.extend({
     _onResultDisplayChange: function () {
         if (this.$input.resDispFormat.length) {
             if (this.$input.resDispFormat[0].selectedIndex == 0 || this.$input.emailFormat[0].selectedIndex == 0) {
+                $('#grpyes').removeAttr("checked", "checked");
+                $('#grpno').attr("checked", "checked");
                 this.$input.enableHightLightSearch.attr("disabled", true);
             } else {
                 this.$input.enableHightLightSearch.attr("disabled", false);
+                $('#grpno').removeAttr("checked", "checked");
+                $('#grpyes').attr("checked", "checked");
             }
         }
     }
