@@ -205,7 +205,7 @@ namespace DowJones.Assemblers.Headlines
                     switch (node.NodeType)
                     {
                         case XmlNodeType.Element:
-                            switch (node.Name)
+                            switch (node.Name.ToLowerInvariant())
                             {
                                 case "hlt":
                                     item.type = EntityType.Highlight.ToString();
@@ -216,7 +216,7 @@ namespace DowJones.Assemblers.Headlines
                                     if (node.Attributes != null)
                                     {
                                         item.type = MapCatToEntityType(node.Attributes.GetNamedItem("cat").Value).ToString();
-                                        item.guid = node.Attributes.GetNamedItem("ref").Value;
+                                        item.guid =  node.Attributes.GetNamedItem("ref") != null ? node.Attributes.GetNamedItem("ref").Value : null;
                                         item.value = ReplaceSpecialChars(node.InnerText);
                                         items.Add(item);
                                     }
