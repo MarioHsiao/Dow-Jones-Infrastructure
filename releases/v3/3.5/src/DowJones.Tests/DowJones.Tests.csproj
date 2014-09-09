@@ -147,6 +147,7 @@
     </Compile>
     <Compile Include="Infrastructure\MapperTests.cs" />
     <Compile Include="Infrastructure\Preferences\CachedPreferenceServiceTests.cs" />
+    <Compile Include="Infrastructure\Preferences\PreferenceServiceTest.cs" />
     <Compile Include="Infrastructure\Search\SearchManagerTests.cs" />
     <Compile Include="Infrastructure\Security\CIBSServiceTests.cs" />
     <Compile Include="Infrastructure\Security\EntitlementsTests.cs" />

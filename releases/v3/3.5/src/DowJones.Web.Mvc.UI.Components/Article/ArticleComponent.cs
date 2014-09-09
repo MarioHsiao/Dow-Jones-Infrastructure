@@ -30,7 +30,7 @@ namespace DowJones.Web.Mvc.UI.Components.Article
     using PostProcessingOptions = PostProcessing.PostProcessingOptions;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 08/26/2014 08:10 PM
+    // Last Generated Timestamp: 09/08/2014 04:57 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.Article.Article.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.Article.ArticleComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.23935")]
     public class ArticleComponent : DowJones.Web.Mvc.UI.ViewComponentBase<ArticleModel>
@@ -612,12 +612,10 @@ WriteLiteral("                        </div>\r\n");
 
                     }
 
-WriteLiteral(@"                </div>
-                <div class=""mobile meta info"" style=""display: none;"">
-                    <a class=""show-details""><i class=""fa fa-info""></i><i class=""fa fa-caret-down""></i></a>
-                </div>
-                <div class=""meta"">
-");
+WriteLiteral("                </div>\r\n                <div class=\"mobile meta info\" style=\"disp" +
+"lay: none;\">\r\n                    <a class=\"show-details\"><span class=\"icon-fact" +
+"iva-infooutline\"></span></a>\r\n                </div>\r\n                <div class" +
+"=\"meta\">\r\n");
 
 
                      if (showIndexing)
