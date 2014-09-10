@@ -139,6 +139,7 @@
     <Compile Include="Infrastructure\Converters\EntitiesConverterTests.cs" />
     <Compile Include="Infrastructure\EnumHelperTests.cs" />
     <Compile Include="Infrastructure\Extensions\DateTimeExtensionsTests.cs" />
+    <Compile Include="Infrastructure\Formatters\Globalization\DateTime\DateTimeFormatterTest.cs" />
     <Compile Include="Infrastructure\Managers\PAL\PALServiceTest.cs" />
     <Compile Include="Infrastructure\Managers\PAL\StubPALPreferenceProvider.cs" />
     <Compile Include="Infrastructure\Managers\SocialMedia\SocialMediaIndustryTest.cs" />
