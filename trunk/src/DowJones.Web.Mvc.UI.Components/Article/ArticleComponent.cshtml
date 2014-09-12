@@ -179,6 +179,7 @@
                     @if (!string.IsNullOrEmpty(Model.ArticleDataSet.PublicationDate))
                     {
                         @(string.Format("{0}", Model.ArticleDataSet.PublicationDate))
+                        <br />
                         if (!string.IsNullOrEmpty(Model.ArticleDataSet.PublicationTime))
                         {
                             @(string.Format(" {0}", Model.ArticleDataSet.PublicationTime))

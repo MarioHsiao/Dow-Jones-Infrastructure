@@ -30,7 +30,7 @@ namespace DowJones.Web.Mvc.UI.Components.Article
     using PostProcessingOptions = PostProcessing.PostProcessingOptions;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 09/08/2014 04:57 PM
+    // Last Generated Timestamp: 09/12/2014 02:18 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.Article.Article.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.Article.ArticleComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.23935")]
     public class ArticleComponent : DowJones.Web.Mvc.UI.ViewComponentBase<ArticleModel>
@@ -434,6 +434,10 @@ WriteLiteral("\r\n                <div class=\"date-stamp dj_article_pd dj_artic
                     Write(string.Format("{0}", Model.ArticleDataSet.PublicationDate));
 
                                                                                      
+
+WriteLiteral("                        <br />\r\n");
+
+
                         if (!string.IsNullOrEmpty(Model.ArticleDataSet.PublicationTime))
                         {
                             
