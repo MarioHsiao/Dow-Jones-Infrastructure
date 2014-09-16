@@ -30,7 +30,7 @@ namespace DowJones.Web.Mvc.UI.Components.Article
     using PostProcessingOptions = PostProcessing.PostProcessingOptions;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 09/08/2014 04:57 PM
+    // Last Generated Timestamp: 09/15/2014 02:21 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.Article.Article.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.Article.ArticleComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.23935")]
     public class ArticleComponent : DowJones.Web.Mvc.UI.ViewComponentBase<ArticleModel>
@@ -67,6 +67,7 @@ namespace DowJones.Web.Mvc.UI.Components.Article
  if (Model.ArticleDataSet != null)
 {
     var showIndexing = Model.ArticleDisplayOptions == DisplayOptions.Indexing || Model.ArticleDisplayOptions == DisplayOptions.Headline;
+    var shortPubDate = (!string.IsNullOrEmpty(Model.ArticleDataSet.PublicationDate)) ? Convert.ToDateTime(Model.ArticleDataSet.PublicationDate).ToString("dd MMM yyyy") : "";
     if (Model.ArticleDataSet.Status == 0)
     {
 
@@ -431,9 +432,12 @@ WriteLiteral("\r\n                <div class=\"date-stamp dj_article_pd dj_artic
                      if (!string.IsNullOrEmpty(Model.ArticleDataSet.PublicationDate))
                     {
                         
-                    Write(string.Format("{0}", Model.ArticleDataSet.PublicationDate));
+                    Write(string.Format("{0}", shortPubDate));
 
-                                                                                     
+
+WriteLiteral("<br />\r\n");
+
+
                         if (!string.IsNullOrEmpty(Model.ArticleDataSet.PublicationTime))
                         {
                             
