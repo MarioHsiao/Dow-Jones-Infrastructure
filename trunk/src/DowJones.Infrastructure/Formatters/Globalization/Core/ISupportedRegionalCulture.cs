@@ -23,6 +23,12 @@ namespace DowJones.Formatters.Globalization.Core
         string ShortDatePattern { get; }
 
         /// <summary>
+        /// Gets the short date space pattern.
+        /// </summary>
+        /// <value>The short date pattern.</value>
+        string ShortDateSpacePattern { get; }
+
+        /// <summary>
         /// Gets the long date pattern.
         /// </summary>
         /// <value>The long date pattern.</value>
