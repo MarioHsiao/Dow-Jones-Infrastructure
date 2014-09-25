@@ -1320,7 +1320,18 @@ namespace DowJones.Formatters.Globalization.DateTime
 
         #endregion
 
-        //
+        public string FormatShortDate(System.DateTime dt, bool usePreference)
+        {
+            var temp = ConvertToUtc(dt);
+            if (TimeZoneBuilder.ConvertToLocalTime && usePreference)
+            {
+                temp = TimeZoneBuilder.UITimeZone.ToLocalTime(temp, TimeZoneBuilder.AdjustToDaylightSavingsTime);
+                return temp.ToString(_regionalCulture.ShortDateSpacePattern, _cultureInfo);
+            }
+
+            return temp.ToString(_regionalCulture.ShortDateSpacePattern, _cultureInfo);
+        }
+
         public string FormatFullDate(System.DateTime dt, bool usePreference)
         {
             var temp = ConvertToUtc(dt);

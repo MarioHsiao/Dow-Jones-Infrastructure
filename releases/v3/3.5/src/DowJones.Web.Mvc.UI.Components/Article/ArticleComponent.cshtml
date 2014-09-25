@@ -13,12 +13,11 @@
 @if (Model.ArticleDataSet != null)
 {
     var showIndexing = Model.ArticleDisplayOptions == DisplayOptions.Indexing || Model.ArticleDisplayOptions == DisplayOptions.Headline;
-    var shortPubDate = (!string.IsNullOrEmpty(Model.ArticleDataSet.PublicationDate)) ? Convert.ToDateTime(Model.ArticleDataSet.PublicationDate).ToString("dd MMM yyyy") : "";
     if (Model.ArticleDataSet.Status == 0)
     {
     <div class="dj_article-container dj_article_display_@(Model.ArticleDisplayOptions.ToString()) dj_article_lang_@(Model.ArticleDataSet.LanguageCode.ToLower())" data-ref="@Model.ArticleRef.ToJson().EscapeForHtml()">
         
-        @if (Model != null && Model.VideoPlayer != null) 
+        @if (Model != null && Model.VideoPlayer != null)
         {
              <div class="multimediaPlayer">
                 <div class="player">
@@ -58,13 +57,13 @@
                         case MarkUpType.HeadLogo:
                             <img onerror="this.style.visibility='hidden'; this.style.display='none'; this.style.height=0;"
                                  onabort="this.style.visibility='hidden'; this.style.display='none'; this.style.height=0;" 
-                                 src="@renderItem.ItemValue" alt="@renderItem.ItemText"/>
+                                     src="@renderItem.ItemValue" alt="@renderItem.ItemText" />
                                                              break;
                         case MarkUpType.HeadImageLarge:
                                                              if (Model.ArticleDataSet.PictureSize == PictureSize.Large)
                                                              {
                                 <p class="dj_article_paragraph">
-                                    <img class="largeImage" src="@renderItem.ItemValue" alt=""/>
+                                        <img class="largeImage" src="@renderItem.ItemValue" alt="" />
                                 </p>
                                                              }
                                                              break;
@@ -72,7 +71,7 @@
                                                              if (renderItem.ItemMarkUp == MarkUpType.HeadImageSmall && Model.ArticleDataSet.PictureSize == PictureSize.Small)
                                                              {
                                 <p class="dj_article_paragraph">
-                                    <img class="smallImage" src="@renderItem.ItemValue" data-ref="@largeImgUrl" alt=""/>
+                                        <img class="smallImage" src="@renderItem.ItemValue" data-ref="@largeImgUrl" alt="" />
                                 </p>
                                                              }
                                                              else
@@ -80,7 +79,7 @@
                                                                  if (renderItem.ItemMarkUp == MarkUpType.HeadImageXSmall && Model.ArticleDataSet.PictureSize == PictureSize.XSmall)
                                                                  {
                                 <p class="dj_article_paragraph">
-                                    <img class="xsmallImage" src="@renderItem.ItemValue" data-ref="@largeImgUrl" alt=""/>
+                                            <img class="xsmallImage" src="@renderItem.ItemValue" data-ref="@largeImgUrl" alt="" />
                                 </p>
                                                                  }
                                                              }
@@ -134,9 +133,7 @@
                         }
                     </div>
                 }
-                @*Mobile meta for source name & pub date *@
-                @*Source Name*@
-            <div class="mobile meta" style="display:none;">
+                    <div class="mobile meta source" style="display:none;">
                 @if (showIndexing)
                 {
                     <div class="dj_article_index">SN</div>
@@ -179,7 +176,7 @@
                 <div class="date-stamp dj_article_pd dj_article_section">
                     @if (!string.IsNullOrEmpty(Model.ArticleDataSet.PublicationDate))
                     {
-                        @(string.Format("{0}", shortPubDate))<br />
+                                @(string.Format("{0}", Model.ArticleDataSet.PublicationFormattedDate))<br />
                         if (!string.IsNullOrEmpty(Model.ArticleDataSet.PublicationTime))
                         {
                             @(string.Format(" {0}", Model.ArticleDataSet.PublicationTime))
@@ -187,7 +184,41 @@
                     }<span class="dj_article_comma">, </span>
                 </div>
             </div>
+                    @*Mobile meta for source name & pub date *@
+                    @*Source Name*@
+                    <div class="mobile meta" style="display:none;">
+                        @if (showIndexing)
+                        {
+                            <div class="dj_article_index">SN</div>
+                        }
                 
+                        @if (!Model.ArticleDataSet.SectionName.IsNullOrEmpty())
+                        {
+                            if (showIndexing)
+                            {
+                                <div class="dj_article_index">SE</div>
+                            }
+                            <div class="dj_article_se dj_article_section">
+                                @foreach (var renderItem in Model.ArticleDataSet.SectionName)
+                                {
+                                    switch (renderItem.ItemMarkUp)
+                                    {
+                                        case MarkUpType.Plain:
+                                            {
+                                                @renderItem.ItemText
+                                            }
+                                            break;
+                                        case MarkUpType.ArticleHighlight:
+                                            {
+                                                <span class="highlight">@renderItem.ItemText</span>
+                                            }
+                                            break;
+                                    }
+                                }
+                            </div>
+                        }
+                    </div>
+
                 @if (!Model.ArticleDataSet.Headline.IsNullOrEmpty())
                 {
                     if (showIndexing)
@@ -292,7 +323,8 @@
                             if (!Model.ArticleDataSet.SourceName.IsNullOrEmpty())
                             {
                                 <span class="value source drop-down-button" data-dd-type="source">
-                                    @Model.ArticleDataSet.SourceName </span><span class="dj_article_comma">,</span>                        
+                                        @Model.ArticleDataSet.SourceName
+                                    </span><span class="dj_article_comma">,</span>
                             }
                         }
                     </div>
@@ -310,13 +342,13 @@
                                  !Model.ArticleDataSet.Authors.IsNullOrEmpty() &&
                                  Model.PostProcessing == DowJones.Infrastructure.PostProcessing.UnSpecified)
                             {
-                                for (int idx=0; idx < Model.ArticleDataSet.Authors.Count; idx++)
+                                    for (int idx = 0; idx < Model.ArticleDataSet.Authors.Count; idx++)
                                 {
                                     DowJones.Ajax.Article.RenderItem renderItem = Model.ArticleDataSet.Authors[idx];
                                     <span class="value author drop-down-button" data-dd-type="author">
                                         <span class="dj_article_author" data-entity="@renderItem.ItemEntityData.ToJson().EscapeForHtml()">@renderItem.ItemEntityData.Name</span>
                                     </span>
-                                    if (renderItem.ItemEntityData.Name!=null && renderItem.ItemEntityData.Name.Trim() != string.Empty && idx != Model.ArticleDataSet.Authors.Count-1)
+                                        if (renderItem.ItemEntityData.Name != null && renderItem.ItemEntityData.Name.Trim() != string.Empty && idx != Model.ArticleDataSet.Authors.Count - 1)
                                     {
                                         <span>, </span>
                                     }
@@ -452,6 +484,27 @@
                     }
                 </div>
                 <div class="mobile meta details hide" style="display:none;">
+                        @if (!Model.ArticleDataSet.ColumnName.IsNullOrEmpty())
+                        {
+                            if (showIndexing)
+                            {
+                                <div class="dj_article_index">CLM</div>
+                            }
+                            <div class="dj_article_clm dj_article_section">
+                                @foreach (var renderItem in Model.ArticleDataSet.ColumnName)
+                                {
+                                    switch (renderItem.ItemMarkUp)
+                                    {
+                                        case MarkUpType.Plain:
+                                            {@renderItem.ItemText}
+                                            break;
+                                        case MarkUpType.ArticleHighlight:
+                                            {<span class="highlight">@renderItem.ItemText</span>}
+                                            break;
+                                    }
+                                }
+                            </div>
+                        }
                     @*Begin logo section*@
                     <div class="dj_article_image article-logo">
                         @{
@@ -762,7 +815,14 @@
                         <p class="dj_article_paragraph">
                             @Html.DJ().Token("document")&nbsp;@Model.ArticleDataSet.AccessionNo
                         </p>
+                        </div>
+                        <div class="mobile meta" style="display:none;">
+                            <div class="dj_article_an dj_article_section">
+                                <p class="dj_article_paragraph">
+                                    @Html.DJ().Token("document")<br />@Model.ArticleDataSet.AccessionNo
+                                </p>
                     </div>
+                        </div>
                 }
                 @if (Model.ArticleDataSet.ContentCategory == Ajax.ContentCategory.Picture)
                 {
@@ -776,8 +836,10 @@
     else
     {
     <div class="dj_article_body">
-        <div class="dj_article_articleError error">@(DJ.Token("error"))
-            <span class="errorNum">@Model.ArticleDataSet.Status</span>: <span class="errorMessage">@Html.DJ().TokenForErrorNumber(Model.ArticleDataSet.Status)</span></div>
+            <div class="dj_article_articleError error">
+                @(DJ.Token("error"))
+                <span class="errorNum">@Model.ArticleDataSet.Status</span>: <span class="errorMessage">@Html.DJ().TokenForErrorNumber(Model.ArticleDataSet.Status)</span>
+            </div>
 
         @if (Model.ArticleDataSet.AccessionNo != null)
         {
@@ -788,6 +850,11 @@
             <div class="dj_article_an dj_article_section">
                 @Html.DJ().Token("document")&nbsp;@Model.ArticleDataSet.AccessionNo
             </div>
+                <div class="mobile meta" style="display:none;">
+                    <div class="dj_article_an dj_article_section">
+                        @Html.DJ().Token("document")<br />@Model.ArticleDataSet.AccessionNo
+                    </div>
+                </div>
         }
     </div>
     }
