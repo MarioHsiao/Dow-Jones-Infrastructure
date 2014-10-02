@@ -30,7 +30,7 @@ namespace DowJones.Web.Mvc.UI.Components.Article
     using PostProcessingOptions = PostProcessing.PostProcessingOptions;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 09/25/2014 05:09 PM
+    // Last Generated Timestamp: 10/01/2014 04:40 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.Article.Article.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.Article.ArticleComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.23935")]
     public class ArticleComponent : DowJones.Web.Mvc.UI.ViewComponentBase<ArticleModel>
@@ -73,327 +73,327 @@ namespace DowJones.Web.Mvc.UI.Components.Article
 WriteLiteral("        <div class=\"dj_article-container dj_article_display_");
 
 
-                                                    Write(Model.ArticleDisplayOptions.ToString());
+                                                        Write(Model.ArticleDisplayOptions.ToString());
 
 WriteLiteral(" dj_article_lang_");
 
 
-                                                                                                              Write(Model.ArticleDataSet.LanguageCode.ToLower());
+                                                                                                                  Write(Model.ArticleDataSet.LanguageCode.ToLower());
 
 WriteLiteral("\" data-ref=\"");
 
 
-                                                                                                                                                                       Write(Model.ArticleRef.ToJson().EscapeForHtml());
+                                                                                                                                                                           Write(Model.ArticleRef.ToJson().EscapeForHtml());
 
 WriteLiteral("\">\r\n\r\n");
 
 
-         if (Model != null && Model.VideoPlayer != null)
-        {
+             if (Model != null && Model.VideoPlayer != null)
+            {
 
 WriteLiteral("                <div class=\"multimediaPlayer\">\r\n                    <div class=\"p" +
 "layer\">\r\n                        ");
 
 
-                Write(CreateChildControl<VideoPlayerComponent>(Model.VideoPlayer));
+                    Write(CreateChildControl<VideoPlayerComponent>(Model.VideoPlayer));
 
 WriteLiteral("\r\n                    </div>\r\n                </div>\r\n");
 
 
-            if (Model.ArticleDataSet != null)
-            {
+                if (Model.ArticleDataSet != null)
+                {
 
 WriteLiteral(@"                    <ul class=""article-list"">
-                    <li class=""dj_entry"">
-                        <div class=""article-wrap"">
-                            <h4 class=""article-headline"">
-                                <span class=""article-view-trigger"">");
+                        <li class=""dj_entry"">
+                            <div class=""article-wrap"">
+                                <h4 class=""article-headline"">
+                                    <span class=""article-view-trigger"">");
 
 
-                                                               Write(Model.ArticleDataSet.MediaTitle);
+                                                                   Write(Model.ArticleDataSet.MediaTitle);
 
 WriteLiteral("</span>\r\n                                </h4>\r\n                                <" +
 "div class=\"article-meta\">\r\n                                    <span class=\"medi" +
 "a-icon ");
 
 
-                                                    Write(Model.ArticleDataSet.ContentSubCategoryDescriptor.ToLower());
+                                                        Write(Model.ArticleDataSet.ContentSubCategoryDescriptor.ToLower());
 
 WriteLiteral("-player\"></span>\r\n                                    <span class=\"media-length\">" +
 "[");
 
 
-                                                        Write(Model.ArticleDataSet.MediaLength);
+                                                            Write(Model.ArticleDataSet.MediaLength);
 
 WriteLiteral("]</span>\r\n                                </div>\r\n                            </d" +
 "iv>\r\n                        </li>\r\n                    </ul>\r\n");
 
 
+                }
             }
-        }
-        else if (Model != null && Model.ArticleDataSet != null)
-        {
-            
+            else if (Model != null && Model.ArticleDataSet != null)
+            {
 
+                
 
-                      
+                                      
 
 WriteLiteral("                <div class=\"dj_article_image article-logo\">\r\n");
 
 
-                  
-            var largeImgUrl = (Model.ArticleDataSet.Head.FirstOrDefault(h => h.ItemMarkUp == MarkUpType.HeadImageLarge) ?? new RenderItem()).ItemText;
-                
+                      
+                var largeImgUrl = (Model.ArticleDataSet.Head.FirstOrDefault(h => h.ItemMarkUp == MarkUpType.HeadImageLarge) ?? new RenderItem()).ItemText;
+                    
 
 WriteLiteral("\r\n");
 
 
-                 foreach (var renderItem in Model.ArticleDataSet.Head)
-                {
-                    switch (renderItem.ItemMarkUp)
+                     foreach (var renderItem in Model.ArticleDataSet.Head)
                     {
-                        case MarkUpType.HeadLogo:
+                        switch (renderItem.ItemMarkUp)
+                        {
+                            case MarkUpType.HeadLogo:
 
 WriteLiteral(@"                                <img onerror=""this.style.visibility='hidden'; this.style.display='none'; this.style.height=0;""
-                                 onabort=""this.style.visibility='hidden'; this.style.display='none'; this.style.height=0;"" 
-                                 src=""");
+                                     onabort=""this.style.visibility='hidden'; this.style.display='none'; this.style.height=0;""
+                                     src=""");
 
 
-                                 Write(renderItem.ItemValue);
+                                     Write(renderItem.ItemValue);
 
 WriteLiteral("\" alt=\"");
 
 
-                                                             Write(renderItem.ItemText);
+                                                                 Write(renderItem.ItemText);
 
 WriteLiteral("\" />\r\n");
 
 
-                                                             break;
-                        case MarkUpType.HeadImageLarge:
-                                                             if (Model.ArticleDataSet.PictureSize == PictureSize.Large)
-                                                             {
+                                break;
+                            case MarkUpType.HeadImageLarge:
+                                if (Model.ArticleDataSet.PictureSize == PictureSize.Large)
+                                {
 
 WriteLiteral("                                    <p class=\"dj_article_paragraph\">\r\n           " +
 "                             <img class=\"largeImage\" src=\"");
 
 
-                                                            Write(renderItem.ItemValue);
+                                                                Write(renderItem.ItemValue);
 
 WriteLiteral("\" alt=\"\" />\r\n                                    </p>\r\n");
 
 
-                                                             }
-                                                             break;
-                        default:
-                                                             if (renderItem.ItemMarkUp == MarkUpType.HeadImageSmall && Model.ArticleDataSet.PictureSize == PictureSize.Small)
-                                                             {
+                                }
+                                break;
+                            default:
+                                if (renderItem.ItemMarkUp == MarkUpType.HeadImageSmall && Model.ArticleDataSet.PictureSize == PictureSize.Small)
+                                {
 
 WriteLiteral("                                    <p class=\"dj_article_paragraph\">\r\n           " +
 "                             <img class=\"smallImage\" src=\"");
 
 
-                                                            Write(renderItem.ItemValue);
+                                                                Write(renderItem.ItemValue);
 
 WriteLiteral("\" data-ref=\"");
 
 
-                                                                                             Write(largeImgUrl);
+                                                                                                 Write(largeImgUrl);
 
 WriteLiteral("\" alt=\"\" />\r\n                                    </p>\r\n");
 
 
-                                                             }
-                                                             else
-                                                             {
-                                                                 if (renderItem.ItemMarkUp == MarkUpType.HeadImageXSmall && Model.ArticleDataSet.PictureSize == PictureSize.XSmall)
-                                                                 {
+                                }
+                                else
+                                {
+                                    if (renderItem.ItemMarkUp == MarkUpType.HeadImageXSmall && Model.ArticleDataSet.PictureSize == PictureSize.XSmall)
+                                    {
 
 WriteLiteral("                                        <p class=\"dj_article_paragraph\">\r\n       " +
 "                                     <img class=\"xsmallImage\" src=\"");
 
 
-                                                             Write(renderItem.ItemValue);
+                                                                     Write(renderItem.ItemValue);
 
 WriteLiteral("\" data-ref=\"");
 
 
-                                                                                              Write(largeImgUrl);
+                                                                                                      Write(largeImgUrl);
 
 WriteLiteral("\" alt=\"\" />\r\n                                        </p>\r\n");
 
 
-                                                                 }
-                                                             }
-                                                             break;
+                                    }
+                                }
+                                break;
+                        }
                     }
-                }
 
 WriteLiteral("                </div>\r\n");
 
 
+                
 
+                                    
 
-                    
-    
 
 WriteLiteral("                <div class=\"dj_article_meta\">\r\n");
 
 
-                 if (!Model.ArticleDataSet.ColumnName.IsNullOrEmpty())
-                {
-                    if (showIndexing)
+                     if (!Model.ArticleDataSet.ColumnName.IsNullOrEmpty())
                     {
+                        if (showIndexing)
+                        {
 
 WriteLiteral("                            <div class=\"dj_article_index\">CLM</div>\r\n");
 
 
-                    }
+                        }
 
 WriteLiteral("                        <div class=\"dj_article_clm dj_article_section\">\r\n");
 
 
-                         foreach (var renderItem in Model.ArticleDataSet.ColumnName)
-                        {
-                            switch (renderItem.ItemMarkUp)
+                             foreach (var renderItem in Model.ArticleDataSet.ColumnName)
                             {
-                                case MarkUpType.Plain:
-                                    {
-                                Write(renderItem.ItemText);
+                                switch (renderItem.ItemMarkUp)
+                                {
+                                    case MarkUpType.Plain:
+                                        {
+                                    Write(renderItem.ItemText);
 
-                                                         }
-                                    break;
-                                case MarkUpType.ArticleHighlight:
-                                    {
+                                                             }
+                                        break;
+                                    case MarkUpType.ArticleHighlight:
+                                        {
 WriteLiteral("<span class=\"highlight\">");
 
 
-                                                        Write(renderItem.ItemText);
+                                                            Write(renderItem.ItemText);
 
 WriteLiteral("</span>");
 
 
-                                                                                        }
-                                    break;
+                                                                                            }
+                                        break;
+                                }
                             }
-                        }
 
 WriteLiteral("                        </div>\r\n");
-
-
-                }
-
-WriteLiteral("\r\n");
-
-
-                 if (!Model.ArticleDataSet.SectionName.IsNullOrEmpty())
-                {
-                    if (showIndexing)
-                    {
-
-WriteLiteral("                            <div class=\"dj_article_index\">SE</div>\r\n");
 
 
                     }
 
+WriteLiteral("\r\n");
+
+
+                     if (!Model.ArticleDataSet.SectionName.IsNullOrEmpty())
+                    {
+                        if (showIndexing)
+                        {
+
+WriteLiteral("                            <div class=\"dj_article_index\">SE</div>\r\n");
+
+
+                        }
+
 WriteLiteral("                        <div class=\"dj_article_se dj_article_section\">\r\n");
 
 
-                         foreach (var renderItem in Model.ArticleDataSet.SectionName)
-                        {
-                            switch (renderItem.ItemMarkUp)
+                             foreach (var renderItem in Model.ArticleDataSet.SectionName)
                             {
-                                case MarkUpType.Plain:
-                                    {
-                                Write(renderItem.ItemText);
+                                switch (renderItem.ItemMarkUp)
+                                {
+                                    case MarkUpType.Plain:
+                                        {
+                                    Write(renderItem.ItemText);
 
-                                                         }
-                                    break;
-                                case MarkUpType.ArticleHighlight:
-                                    {
+                                                             }
+                                        break;
+                                    case MarkUpType.ArticleHighlight:
+                                        {
 WriteLiteral("<span class=\"highlight\">");
 
 
-                                                        Write(renderItem.ItemText);
+                                                            Write(renderItem.ItemText);
 
 WriteLiteral("</span>");
 
 
-                                                                                        }
-                                    break;
+                                                                                            }
+                                        break;
+                                }
                             }
-                        }
 
 WriteLiteral("                        </div>\r\n");
 
 
-                }
-                
+                    }
+
 WriteLiteral("                    <div class=\"mobile meta source\" style=\"display:none;\">\r\n");
 
-                                                           
-                 if (showIndexing)
-                {
+
+                         if (showIndexing)
+                        {
 
 WriteLiteral("                            <div class=\"dj_article_index\">SN</div>\r\n");
 
 
-                }
+                        }
 
 WriteLiteral("\r\n                        <div class=\"dj_article_sn dj_article_section\">\r\n");
 
 
-                     if (Model.ShowSourceLinks && Model.PostProcessing == DowJones.Infrastructure.PostProcessing.UnSpecified)
-                    {
-                        foreach (var renderItem in Model.ArticleDataSet.Source)
-                        {
+                             if (Model.ShowSourceLinks && Model.PostProcessing == DowJones.Infrastructure.PostProcessing.UnSpecified)
+                            {
+                                foreach (var renderItem in Model.ArticleDataSet.Source)
+                                {
 
 WriteLiteral("                                    <span class=\"value source drop-down-button\" d" +
 "ata-dd-type=\"source\">\r\n");
 
 
-                                 switch (renderItem.ItemMarkUp)
-                                {
-                                    case MarkUpType.EntityLink:
+                                         switch (renderItem.ItemMarkUp)
+                                        {
+                                            case MarkUpType.EntityLink:
 
 WriteLiteral("                                                <span class=\"dj_article_source\" d" +
 "ata-entity=\"");
 
 
-                                                                                Write(renderItem.ItemEntityData.ToJson().EscapeForHtml());
+                                                                                        Write(renderItem.ItemEntityData.ToJson().EscapeForHtml());
 
 WriteLiteral("\">");
 
 
-                                                                                                                                     Write(renderItem.ItemEntityData.Name);
+                                                                                                                                             Write(renderItem.ItemEntityData.Name);
 
 WriteLiteral("</span>\r\n");
 
 
-                                        break;
-                                    case MarkUpType.Span:
-                                        
-                                   Write(renderItem.ItemText);
+                                                break;
+                                            case MarkUpType.Span:
+                                                
+                                           Write(renderItem.ItemText);
 
-                                                            
-                                        break;
-                                }
+                                                                    
+                                                break;
+                                        }
 
 WriteLiteral("                                    </span>\r\n");
 
 
-                        }
-                    }
-                    else
-                    {
-                        if (!Model.ArticleDataSet.SourceName.IsNullOrEmpty())
-                        {
+                                }
+                            }
+                            else
+                            {
+                                if (!Model.ArticleDataSet.SourceName.IsNullOrEmpty())
+                                {
 
 WriteLiteral("                                    <span class=\"value source drop-down-button\" d" +
 "ata-dd-type=\"source\">\r\n                                        ");
 
 
-                           Write(Model.ArticleDataSet.SourceName);
+                                   Write(Model.ArticleDataSet.SourceName);
 
 WriteLiteral("\r\n                                    </span>");
 
@@ -402,8 +402,8 @@ WriteLiteral("\r\n                                    </span>");
 WriteLiteral("<span class=\"dj_article_comma\">,</span>\r\n");
 
 
-                        }
-                    }
+                                }
+                            }
 
 WriteLiteral("                        </div>\r\n                        ");
 
@@ -412,35 +412,35 @@ WriteLiteral("                        </div>\r\n                        ");
 WriteLiteral("\r\n");
 
 
-                 if (showIndexing)
-                {
+                         if (showIndexing)
+                        {
 
 WriteLiteral("                            <div class=\"dj_article_index\">PD</div>\r\n");
 
 
-                }
+                        }
 
 WriteLiteral("\r\n                        <div class=\"date-stamp dj_article_pd dj_article_section" +
 "\">\r\n");
 
 
-                     if (!string.IsNullOrEmpty(Model.ArticleDataSet.PublicationDate))
-                    {
-                        
+                             if (!string.IsNullOrEmpty(Model.ArticleDataSet.PublicationDate))
+                            {
+                                
                             Write(string.Format("{0}", Model.ArticleDataSet.PublicationFormattedDate));
 
 
 WriteLiteral("<br />\r\n");
 
 
-                        if (!string.IsNullOrEmpty(Model.ArticleDataSet.PublicationTime))
-                        {
-                            
-                        Write(string.Format(" {0}", Model.ArticleDataSet.PublicationTime));
+                                if (!string.IsNullOrEmpty(Model.ArticleDataSet.PublicationTime))
+                                {
+                                    
+                                Write(string.Format(" {0}", Model.ArticleDataSet.PublicationTime));
 
-                                                                                          
-                        }
-                    }
+                                                                                                  
+                                }
+                            }
 WriteLiteral("<span class=\"dj_article_comma\">, </span>\r\n                        </div>\r\n       " +
 "             </div>\r\n                    ");
 
@@ -513,37 +513,37 @@ WriteLiteral("                            </div>\r\n");
 WriteLiteral("                    </div>\r\n\r\n");
 
 
-                 if (!Model.ArticleDataSet.Headline.IsNullOrEmpty())
-                {
-                    if (showIndexing)
+                     if (!Model.ArticleDataSet.Headline.IsNullOrEmpty())
                     {
+                        if (showIndexing)
+                        {
 
 WriteLiteral("                            <div class=\"dj_article_index\">HD</div>\r\n");
 
 
-                    }
-            
+                        }
+
 
 WriteLiteral("                        <h4 class=\"dj_article_hd dj_article_section headline\" dat" +
 "a-meta=\"");
 
 
-                                                                                Write(Model.ArticleDataSet.AccessionNo);
+                                                                                    Write(Model.ArticleDataSet.AccessionNo);
 
 WriteLiteral("\">\r\n");
 
 
-                         foreach (var renderItem in Model.ArticleDataSet.Headline)
-                        {
-                            switch (renderItem.ItemMarkUp)
+                             foreach (var renderItem in Model.ArticleDataSet.Headline)
                             {
-                                case MarkUpType.Plain:
-                                    
-                               Write(renderItem.ItemText);
+                                switch (renderItem.ItemMarkUp)
+                                {
+                                    case MarkUpType.Plain:
+                                        
+                                   Write(renderItem.ItemText);
 
-                                                        
-                               break;
-                                case MarkUpType.Anchor:
+                                                            
+                                        break;
+                                    case MarkUpType.Anchor:
 
 WriteLiteral("                                    <a class=\"dj_article_headline_link\" href=\"jav" +
 "ascript:void(0)\">");
@@ -554,14 +554,61 @@ WriteLiteral("                                    <a class=\"dj_article_headline
 WriteLiteral("</a>\r\n");
 
 
-                                                                                             break;
+                                        break;
+                                    case MarkUpType.EntityLink:
+                                        if (renderItem.Highlight)
+                                        {
+
+WriteLiteral("                                            <a class=\"dj_article_entity dj_articl" +
+"e_highlight ");
+
+
+                                                                                        Write(renderItem.ItemEntityData.Category);
+
+WriteLiteral("\" href=\"javascript:void(0);\" data-entity=\"");
+
+
+                                                                                                                                                                     Write(renderItem.ItemEntityData.ToJson().EscapeForHtml());
+
+WriteLiteral("\">");
+
+
+                                                                                                                                                                                                                           Write(renderItem.ItemText);
+
+WriteLiteral("</a>\r\n");
+
+
+                                        }
+                                        else
+                                        {
+
+WriteLiteral("                                            <a class=\"dj_article_entity ");
+
+
+                                                                   Write(renderItem.ItemEntityData.Category);
+
+WriteLiteral("\" href=\"javascript:void(0);\" data-entity=\"");
+
+
+                                                                                                                                                Write(renderItem.ItemEntityData.ToJson().EscapeForHtml());
+
+WriteLiteral("\">");
+
+
+                                                                                                                                                                                                      Write(renderItem.ItemText);
+
+WriteLiteral("</a>\r\n");
+
+
+                                        } 
+                                        break;
+                                }
                             }
-                        }
 
 WriteLiteral("                        </h4>\r\n");
 
 
-                }
+                    }
 
 WriteLiteral("\r\n                    <div class=\"mobile meta author\" style=\"display:none;\">\r\n   " +
 "                     ");
@@ -571,150 +618,31 @@ WriteLiteral("\r\n                    <div class=\"mobile meta author\" style=\"
 WriteLiteral("\r\n");
 
 
-                     if (!Model.ArticleDataSet.ByLine.IsNullOrEmpty())
-                    {
-                        if (showIndexing)
+                         if (!Model.ArticleDataSet.ByLine.IsNullOrEmpty())
                         {
+                            if (showIndexing)
+                            {
 
 WriteLiteral("                                <div class=\"dj_article_index\">BY</div>\r\n");
 
 
-                        }
+                            }
 
 
 WriteLiteral("                            <div class=\"dj_article_by dj_article_section\">\r\n");
 
 
-                             if (Model.ShowAuthorLinks &&
-                                 !Model.ArticleDataSet.Authors.IsNullOrEmpty() &&
-                                 Model.PostProcessing == DowJones.Infrastructure.PostProcessing.UnSpecified)
-                            {
-                                for (int idx = 0; idx < Model.ArticleDataSet.Authors.Count; idx++)
+                                 if (Model.ShowAuthorLinks &&
+                                     !Model.ArticleDataSet.Authors.IsNullOrEmpty() &&
+                                     Model.PostProcessing == DowJones.Infrastructure.PostProcessing.UnSpecified)
                                 {
-                                    DowJones.Ajax.Article.RenderItem renderItem = Model.ArticleDataSet.Authors[idx];
+                                    for (int idx = 0; idx < Model.ArticleDataSet.Authors.Count; idx++)
+                                    {
+                                        DowJones.Ajax.Article.RenderItem renderItem = Model.ArticleDataSet.Authors[idx];
 
 WriteLiteral("                                        <span class=\"value author drop-down-butto" +
 "n\" data-dd-type=\"author\">\r\n                                            <span cla" +
 "ss=\"dj_article_author\" data-entity=\"");
-
-
-                                                                                Write(renderItem.ItemEntityData.ToJson().EscapeForHtml());
-
-WriteLiteral("\">");
-
-
-                                                                                                                                     Write(renderItem.ItemEntityData.Name);
-
-WriteLiteral("</span>\r\n                                        </span>\r\n");
-
-
-                                    if (renderItem.ItemEntityData.Name != null && renderItem.ItemEntityData.Name.Trim() != string.Empty && idx != Model.ArticleDataSet.Authors.Count - 1)
-                                    {
-
-WriteLiteral("                                            <span>, </span>\r\n");
-
-
-                                    }
-                                }
-
-                                if (Model.ArticleDataSet.ByLine.Count > 0)
-                                {
-
-WriteLiteral("                                        <br />\r\n");
-
-
-
-WriteLiteral("                                        <span class=\"dj_article_index\">By</span>\r" +
-"\n");
-
-
-                                    foreach (var renderItem in Model.ArticleDataSet.ByLine)
-                                    {
-                                        var highlight = renderItem.ItemMarkUp == MarkUpType.ArticleHighlight ? " highlight" : "";
-
-WriteLiteral("                                            <span class=\"value dj_article_index\" " +
-"data-dd-type=\"author\">");
-
-
-                                                                                              Write(renderItem.ItemText.Trim());
-
-WriteLiteral("</span>");
-
-
-
-WriteLiteral("<span class=\"dj_article_comma\">, </span>\r\n");
-
-
-                                    }
-                                }
-
-                            }
-                            else
-                            {
-                                foreach (var renderItem in Model.ArticleDataSet.ByLine)
-                                {
-                                    var highlight = renderItem.ItemMarkUp == MarkUpType.ArticleHighlight ? " highlight" : "";
-
-WriteLiteral("                                        <span class=\"value author drop-down-butto" +
-"n");
-
-
-                                                                          Write(highlight);
-
-WriteLiteral("\" data-dd-type=\"author\">");
-
-
-                                                                                                             Write(renderItem.ItemText.Trim());
-
-WriteLiteral("</span>");
-
-
-
-WriteLiteral("<span class=\"dj_article_comma\">, </span>\r\n");
-
-
-                                }
-                            }
-
-WriteLiteral("                            </div>\r\n");
-
-
-                    }
-
-WriteLiteral(@"                    </div>
-                    <div class=""mobile meta info"" style=""display: none;"">
-                        <a class=""show-details""><span class=""icon-factiva-infooutline""></span></a>
-                    </div>
-                    <div class=""meta"">
-");
-
-
-                     if (showIndexing)
-                    {
-
-WriteLiteral("                            <div class=\"dj_article_index\">SN</div>\r\n");
-
-
-                    }
-
-WriteLiteral("\r\n                        <div class=\"dj_article_sn dj_article_section\">\r\n");
-
-
-                         if (Model.ShowSourceLinks && Model.PostProcessing == DowJones.Infrastructure.PostProcessing.UnSpecified)
-                        {
-                            foreach (var renderItem in Model.ArticleDataSet.Source)
-                            {
-
-WriteLiteral("                                    <span class=\"value source drop-down-button\" d" +
-"ata-dd-type=\"source\">\r\n");
-
-
-                                     switch (renderItem.ItemMarkUp)
-                                    {
-                                        case MarkUpType.EntityLink:
-
-WriteLiteral("                                                <span class=\"dj_article_source\" d" +
-"ata-entity=\"");
 
 
                                                                                     Write(renderItem.ItemEntityData.ToJson().EscapeForHtml());
@@ -724,95 +652,20 @@ WriteLiteral("\">");
 
                                                                                                                                          Write(renderItem.ItemEntityData.Name);
 
-WriteLiteral("</span>\r\n");
-
-
-                                                                                                                                         break;
-                                        case MarkUpType.Span:
-                                            
-                                       Write(renderItem.ItemText);
-
-                                                                
-                                       break;
-                                    }
-
-WriteLiteral("                                    </span>\r\n");
-
-
-                            }
-                        }
-                        else
-                        {
-                            if (!Model.ArticleDataSet.SourceName.IsNullOrEmpty())
-                            {
-
-WriteLiteral("                                    <span class=\"value source drop-down-button\" d" +
-"ata-dd-type=\"source\">\r\n                                        ");
-
-
-                               Write(Model.ArticleDataSet.SourceName);
-
-WriteLiteral("\r\n                                    </span>");
-
-
-
-WriteLiteral("<span class=\"dj_article_comma\">,</span>\r\n");
-
-
-                            }
-                        }
-
-WriteLiteral("                        </div>\r\n\r\n\r\n");
-
-
-                     if (!Model.ArticleDataSet.ByLine.IsNullOrEmpty())
-                    {
-                        if (showIndexing)
-                        {
-
-WriteLiteral("                                <div class=\"dj_article_index\">BY</div>\r\n");
-
-
-                        }
-                        
-
-WriteLiteral("                            <div class=\"dj_article_by dj_article_section\">\r\n");
-
-
-                             if (Model.ShowAuthorLinks &&
-                                 !Model.ArticleDataSet.Authors.IsNullOrEmpty() &&
-                                 Model.PostProcessing == DowJones.Infrastructure.PostProcessing.UnSpecified)
-                            {
-                                    for (int idx = 0; idx < Model.ArticleDataSet.Authors.Count; idx++)
-                                {
-                                    DowJones.Ajax.Article.RenderItem renderItem = Model.ArticleDataSet.Authors[idx];
-
-WriteLiteral("                                        <span class=\"value author drop-down-butto" +
-"n\" data-dd-type=\"author\">\r\n                                            <span cla" +
-"ss=\"dj_article_author\" data-entity=\"");
-
-
-                                                                                Write(renderItem.ItemEntityData.ToJson().EscapeForHtml());
-
-WriteLiteral("\">");
-
-
-                                                                                                                                     Write(renderItem.ItemEntityData.Name);
-
 WriteLiteral("</span>\r\n                                        </span>\r\n");
 
 
                                         if (renderItem.ItemEntityData.Name != null && renderItem.ItemEntityData.Name.Trim() != string.Empty && idx != Model.ArticleDataSet.Authors.Count - 1)
-                                    {
+                                        {
 
 WriteLiteral("                                            <span>, </span>\r\n");
 
 
+                                        }
                                     }
-                                }
-                                
-                                if (Model.ArticleDataSet.ByLine.Count > 0)
-                                { 
+
+                                    if (Model.ArticleDataSet.ByLine.Count > 0)
+                                    {
 
 WriteLiteral("                                        <br />\r\n");
 
@@ -822,15 +675,43 @@ WriteLiteral("                                        <span class=\"dj_article_i
 "\n");
 
 
-                                    foreach (var renderItem in Model.ArticleDataSet.ByLine)
-                                    {
-                                        var highlight = renderItem.ItemMarkUp == MarkUpType.ArticleHighlight ? " highlight" : "";
+                                        foreach (var renderItem in Model.ArticleDataSet.ByLine)
+                                        {
+                                            var highlight = renderItem.ItemMarkUp == MarkUpType.ArticleHighlight ? " highlight" : "";
 
 WriteLiteral("                                            <span class=\"value dj_article_index\" " +
 "data-dd-type=\"author\">");
 
 
-                                                                                              Write(renderItem.ItemText.Trim());
+                                                                                                  Write(renderItem.ItemText.Trim());
+
+WriteLiteral("</span>");
+
+
+
+WriteLiteral("<span class=\"dj_article_comma\">, </span>\r\n");
+
+
+                                        }
+                                    }
+
+                                }
+                                else
+                                {
+                                    foreach (var renderItem in Model.ArticleDataSet.ByLine)
+                                    {
+                                        var highlight = renderItem.ItemMarkUp == MarkUpType.ArticleHighlight ? " highlight" : "";
+
+WriteLiteral("                                        <span class=\"value author drop-down-butto" +
+"n");
+
+
+                                                                              Write(highlight);
+
+WriteLiteral("\" data-dd-type=\"author\">");
+
+
+                                                                                                                 Write(renderItem.ItemText.Trim());
 
 WriteLiteral("</span>");
 
@@ -842,229 +723,395 @@ WriteLiteral("<span class=\"dj_article_comma\">, </span>\r\n");
                                     }
                                 }
 
-                            }
-                            else
-                            {
-                                foreach (var renderItem in Model.ArticleDataSet.ByLine)
-                                {
-                                    var highlight = renderItem.ItemMarkUp == MarkUpType.ArticleHighlight ? " highlight" : "";
-
-WriteLiteral("                                        <span class=\"value author drop-down-butto" +
-"n");
-
-
-                                                                          Write(highlight);
-
-WriteLiteral("\" data-dd-type=\"author\">");
-
-
-                                                                                                             Write(renderItem.ItemText.Trim());
-
-WriteLiteral("</span>");
-
-
-
-WriteLiteral("<span class=\"dj_article_comma\">, </span>\r\n");
-
-
-                                }
-                            }
-
 WriteLiteral("                            </div>\r\n");
-
-
-                    }
-
-WriteLiteral("\r\n");
-
-
-                     if (!Model.ArticleDataSet.Credit.IsNullOrEmpty())
-                    {
-                        if (showIndexing)
-                        {
-
-WriteLiteral("                                <div class=\"dj_article_index\">CR</div>\r\n");
 
 
                         }
-                        
 
-WriteLiteral("                            <div class=\"dj_article_cr dj_article_section\">\r\n");
-
-
-                             foreach (var renderItem in Model.ArticleDataSet.Credit)
-                            {
-
-WriteLiteral("                                    <span class=\"credit\">");
-
-
-                                                Write(renderItem.ItemText);
-
-WriteLiteral("</span>");
-
-
-
-WriteLiteral("<span class=\"dj_article_comma\">, </span>\r\n");
-
-
-                            }
-
-WriteLiteral("                            </div>\r\n");
-
-
-                    }
-
-WriteLiteral("\r\n                        <div class=\"dj_meta_group\">\r\n");
+WriteLiteral(@"                    </div>
+                    <div class=""mobile meta info"" style=""display: none;"">
+                        <a class=""show-details""><span class=""icon-factiva-infooutline""></span></a>
+                    </div>
+                    <div class=""meta"">
+");
 
 
                          if (showIndexing)
                         {
 
-WriteLiteral("                                <div class=\"dj_article_index\">PD</div>\r\n");
+WriteLiteral("                            <div class=\"dj_article_index\">SN</div>\r\n");
 
 
                         }
+
+WriteLiteral("\r\n                        <div class=\"dj_article_sn dj_article_section\">\r\n");
+
+
+                             if (Model.ShowSourceLinks && Model.PostProcessing == DowJones.Infrastructure.PostProcessing.UnSpecified)
+                            {
+                                foreach (var renderItem in Model.ArticleDataSet.Source)
+                                {
+
+WriteLiteral("                                    <span class=\"value source drop-down-button\" d" +
+"ata-dd-type=\"source\">\r\n");
+
+
+                                         switch (renderItem.ItemMarkUp)
+                                        {
+                                            case MarkUpType.EntityLink:
+
+WriteLiteral("                                                <span class=\"dj_article_source\" d" +
+"ata-entity=\"");
+
+
+                                                                                        Write(renderItem.ItemEntityData.ToJson().EscapeForHtml());
+
+WriteLiteral("\">");
+
+
+                                                                                                                                             Write(renderItem.ItemEntityData.Name);
+
+WriteLiteral("</span>\r\n");
+
+
+                                                break;
+                                            case MarkUpType.Span:
+                                            
+                                       Write(renderItem.ItemText);
+
+                                                                
+                                                break;
+                                        }
+
+WriteLiteral("                                    </span>\r\n");
+
+
+                                }
+                            }
+                            else
+                            {
+                                if (!Model.ArticleDataSet.SourceName.IsNullOrEmpty())
+                                {
+
+WriteLiteral("                                    <span class=\"value source drop-down-button\" d" +
+"ata-dd-type=\"source\">\r\n                                        ");
+
+
+                                   Write(Model.ArticleDataSet.SourceName);
+
+WriteLiteral("\r\n                                    </span>");
+
+
+
+WriteLiteral("<span class=\"dj_article_comma\">,</span>\r\n");
+
+
+                                }
+                            }
+
+WriteLiteral("                        </div>\r\n\r\n\r\n");
+
+
+                         if (!Model.ArticleDataSet.ByLine.IsNullOrEmpty())
+                        {
+                            if (showIndexing)
+                            {
+
+WriteLiteral("                                <div class=\"dj_article_index\">BY</div>\r\n");
+
+
+                            }
+
+
+WriteLiteral("                            <div class=\"dj_article_by dj_article_section\">\r\n");
+
+
+                                 if (Model.ShowAuthorLinks &&
+                                     !Model.ArticleDataSet.Authors.IsNullOrEmpty() &&
+                                     Model.PostProcessing == DowJones.Infrastructure.PostProcessing.UnSpecified)
+                                {
+                                    for (int idx = 0; idx < Model.ArticleDataSet.Authors.Count; idx++)
+                                    {
+                                        DowJones.Ajax.Article.RenderItem renderItem = Model.ArticleDataSet.Authors[idx];
+
+WriteLiteral("                                        <span class=\"value author drop-down-butto" +
+"n\" data-dd-type=\"author\">\r\n                                            <span cla" +
+"ss=\"dj_article_author\" data-entity=\"");
+
+
+                                                                                    Write(renderItem.ItemEntityData.ToJson().EscapeForHtml());
+
+WriteLiteral("\">");
+
+
+                                                                                                                                         Write(renderItem.ItemEntityData.Name);
+
+WriteLiteral("</span>\r\n                                        </span>\r\n");
+
+
+                                        if (renderItem.ItemEntityData.Name != null && renderItem.ItemEntityData.Name.Trim() != string.Empty && idx != Model.ArticleDataSet.Authors.Count - 1)
+                                        {
+
+WriteLiteral("                                            <span>, </span>\r\n");
+
+
+                                        }
+                                    }
+
+                                    if (Model.ArticleDataSet.ByLine.Count > 0)
+                                    {
+
+WriteLiteral("                                        <br />\r\n");
+
+
+
+WriteLiteral("                                        <span class=\"dj_article_index\">By</span>\r" +
+"\n");
+
+
+                                        foreach (var renderItem in Model.ArticleDataSet.ByLine)
+                                        {
+                                            var highlight = renderItem.ItemMarkUp == MarkUpType.ArticleHighlight ? " highlight" : "";
+
+WriteLiteral("                                            <span class=\"value dj_article_index\" " +
+"data-dd-type=\"author\">");
+
+
+                                                                                                  Write(renderItem.ItemText.Trim());
+
+WriteLiteral("</span>");
+
+
+
+WriteLiteral("<span class=\"dj_article_comma\">, </span>\r\n");
+
+
+                                        }
+                                    }
+
+                                }
+                                else
+                                {
+                                    foreach (var renderItem in Model.ArticleDataSet.ByLine)
+                                    {
+                                        var highlight = renderItem.ItemMarkUp == MarkUpType.ArticleHighlight ? " highlight" : "";
+
+WriteLiteral("                                        <span class=\"value author drop-down-butto" +
+"n");
+
+
+                                                                              Write(highlight);
+
+WriteLiteral("\" data-dd-type=\"author\">");
+
+
+                                                                                                                 Write(renderItem.ItemText.Trim());
+
+WriteLiteral("</span>");
+
+
+
+WriteLiteral("<span class=\"dj_article_comma\">, </span>\r\n");
+
+
+                                    }
+                                }
+
+WriteLiteral("                            </div>\r\n");
+
+
+                        }
+
+WriteLiteral("\r\n");
+
+
+                         if (!Model.ArticleDataSet.Credit.IsNullOrEmpty())
+                        {
+                            if (showIndexing)
+                            {
+
+WriteLiteral("                                <div class=\"dj_article_index\">CR</div>\r\n");
+
+
+                            }
+
+
+WriteLiteral("                            <div class=\"dj_article_cr dj_article_section\">\r\n");
+
+
+                                 foreach (var renderItem in Model.ArticleDataSet.Credit)
+                                {
+
+WriteLiteral("                                    <span class=\"credit\">");
+
+
+                                                    Write(renderItem.ItemText);
+
+WriteLiteral("</span>");
+
+
+
+WriteLiteral("<span class=\"dj_article_comma\">, </span>\r\n");
+
+
+                                }
+
+WriteLiteral("                            </div>\r\n");
+
+
+                        }
+
+WriteLiteral("\r\n                        <div class=\"dj_meta_group\">\r\n");
+
+
+                             if (showIndexing)
+                            {
+
+WriteLiteral("                                <div class=\"dj_article_index\">PD</div>\r\n");
+
+
+                            }
 
 WriteLiteral("\r\n                            <div class=\"date-stamp dj_article_pd dj_article_sec" +
 "tion\">\r\n");
 
 
-                             if (!string.IsNullOrEmpty(Model.ArticleDataSet.PublicationDate))
-                            {
-                                
-                            Write(string.Format("{0}", Model.ArticleDataSet.PublicationDate));
-
-                                                                                             
-                                if (!string.IsNullOrEmpty(Model.ArticleDataSet.PublicationTime))
+                                 if (!string.IsNullOrEmpty(Model.ArticleDataSet.PublicationDate))
                                 {
                                     
-                                Write(string.Format(" {0}", Model.ArticleDataSet.PublicationTime));
+                                Write(string.Format("{0}", Model.ArticleDataSet.PublicationDate));
 
-                                                                                                  
+                                                                                                 
+                                    if (!string.IsNullOrEmpty(Model.ArticleDataSet.PublicationTime))
+                                    {
+                                        
+                                    Write(string.Format(" {0}", Model.ArticleDataSet.PublicationTime));
+
+                                                                                                      
+                                    }
                                 }
-                            }
 WriteLiteral("<span class=\"dj_article_comma\">, </span>\r\n                            </div>\r\n\r\n");
 
 
-                         if (Model.ArticleDataSet.WordCount > 0 && Model.ArticleDataSet.Html.IsNullOrEmpty())
-                        {
-                            if (showIndexing)
+                             if (Model.ArticleDataSet.WordCount > 0 && Model.ArticleDataSet.Html.IsNullOrEmpty())
                             {
+                                if (showIndexing)
+                                {
 
 WriteLiteral("                                    <div class=\"dj_article_index\">WC</div>\r\n");
 
 
-                            }
+                                }
 
 WriteLiteral("                                <div class=\"dj_article_wc dj_article_section\">\r\n " +
 "                                   ");
 
 
-                            Write(string.Format("{0} {1}", Model.ArticleDataSet.WordCount, DJ.Token("words")));
+                                Write(string.Format("{0} {1}", Model.ArticleDataSet.WordCount, DJ.Token("words")));
 
 WriteLiteral("<span class=\"dj_article_comma\">, </span>\r\n                                </div>\r" +
 "\n");
 
 
-                        }
+                            }
 
 
-                         if (!string.IsNullOrEmpty(Model.ArticleDataSet.Language))
-                        {
-                            if (showIndexing)
+                             if (!string.IsNullOrEmpty(Model.ArticleDataSet.Language))
                             {
+                                if (showIndexing)
+                                {
 
 WriteLiteral("                                    <div class=\"dj_article_index\">LA</div>\r\n");
 
 
-                            }
+                                }
 
 WriteLiteral("                                <div class=\"dj_article_la dj_article_section\">\r\n " +
 "                                   ");
 
 
-                           Write(Model.ArticleDataSet.Language);
+                               Write(Model.ArticleDataSet.Language);
 
 WriteLiteral("<span class=\"dj_article_comma\">, </span>\r\n                                </div>\r" +
 "\n");
 
 
-                        }
+                            }
 
 
-                         if (!Model.ArticleDataSet.Source.IsNullOrEmpty() &&
-                             Model.ArticleDataSet.Source.Any(s => s.ItemEntityData != null))
-                        {
-                            if (showIndexing)
+                             if (!Model.ArticleDataSet.Source.IsNullOrEmpty() &&
+                                 Model.ArticleDataSet.Source.Any(s => s.ItemEntityData != null))
                             {
+                                if (showIndexing)
+                                {
 
 WriteLiteral("                                    <div class=\"dj_article_index\">SC</div>\r\n");
 
 
-                            }
+                                }
 
 WriteLiteral("                                <div class=\"dj_article_sc dj_article_section\">\r\n");
 
 
-                                 foreach (var renderItem in Model.ArticleDataSet.Source.Where(s => s.ItemEntityData != null))
-                                {
-                                    
-                               Write(renderItem.ItemEntityData.Code);
+                                     foreach (var renderItem in Model.ArticleDataSet.Source.Where(s => s.ItemEntityData != null))
+                                    {
+                                        
+                                   Write(renderItem.ItemEntityData.Code);
 
-                                                                   
-                                }
+                                                                       
+                                    }
 WriteLiteral("<span class=\"dj_article_comma\">, </span>\r\n                                </div>\r" +
 "\n");
 
 
-                        }
+                            }
 
 
-                         if (!Model.ArticleDataSet.Pages.IsNullOrEmpty())
-                        {
-                            if (showIndexing)
+                             if (!Model.ArticleDataSet.Pages.IsNullOrEmpty())
                             {
+                                if (showIndexing)
+                                {
 
 WriteLiteral("                                    <div class=\"dj_article_index\">PG</div>\r\n");
 
 
-                            }
+                                }
 
 WriteLiteral("                                <div class=\"dj_article_pg dj_article_section\">\r\n");
 
 
-                                 foreach (var page in Model.ArticleDataSet.Pages)
-                                {
-                                    
-                               Write(page);
+                                     foreach (var page in Model.ArticleDataSet.Pages)
+                                    {
+                                        
+                                   Write(page);
 
-                                         
-                                }
+                                             
+                                    }
 WriteLiteral("<span class=\"dj_article_comma\">,</span>\r\n                                </div>\r\n" +
 "");
 
 
-                        }
+                            }
 
 WriteLiteral("                        </div>\r\n\r\n");
 
 
-                     if (!Model.ArticleDataSet.Copyright.IsNullOrEmpty())
-                    {
-                        if (showIndexing)
+                         if (!Model.ArticleDataSet.Copyright.IsNullOrEmpty())
                         {
+                            if (showIndexing)
+                            {
 
 WriteLiteral("                                <div class=\"dj_article_index\">CY</div>\r\n");
 
 
-                        }
+                            }
 
 WriteLiteral("                            <div class=\"copyright dj_article_cy dj_article_sectio" +
 "n\">\r\n");
 
 
-                             foreach (var renderItem in Model.ArticleDataSet.Copyright.Where(renderItem => renderItem.ItemMarkUp == MarkUpType.Plain))
-                            {
+                                 foreach (var renderItem in Model.ArticleDataSet.Copyright.Where(renderItem => renderItem.ItemMarkUp == MarkUpType.Plain))
+                                {
                                     
                                Write(renderItem.ItemText);
 
@@ -1107,13 +1154,13 @@ WriteLiteral("                            <div class=\"dj_article_clm dj_article
                                             {
 WriteLiteral("<span class=\"highlight\">");
 
-                                
-                           Write(renderItem.ItemText);
+
+                                                                Write(renderItem.ItemText);
 
 WriteLiteral("</span>");
 
-                                                    
-                            }
+
+                                                                                                }
                                             break;
                                     }
                                 }
@@ -1121,102 +1168,102 @@ WriteLiteral("</span>");
 WriteLiteral("                            </div>\r\n");
 
 
-                    }
+                        }
+                        
 
-
-
+                                              
 
 WriteLiteral("                        <div class=\"dj_article_image article-logo\">\r\n");
 
 
-                          
-                        var largeMobileImgUrl = (Model.ArticleDataSet.Head.FirstOrDefault(h => h.ItemMarkUp == MarkUpType.HeadImageLarge) ?? new RenderItem()).ItemText;
-                        
+                              
+                var largeMobileImgUrl = (Model.ArticleDataSet.Head.FirstOrDefault(h => h.ItemMarkUp == MarkUpType.HeadImageLarge) ?? new RenderItem()).ItemText;
+                            
 
 WriteLiteral("\r\n");
 
 
-                         foreach (var renderItem in Model.ArticleDataSet.Head)
-                        {
-                            switch (renderItem.ItemMarkUp)
+                             foreach (var renderItem in Model.ArticleDataSet.Head)
                             {
-                                case MarkUpType.HeadLogo:
+                                switch (renderItem.ItemMarkUp)
+                                {
+                                    case MarkUpType.HeadLogo:
 
 WriteLiteral(@"                                        <img onerror=""this.style.visibility='hidden'; this.style.display='none'; this.style.height=0;""
-                                         onabort=""this.style.visibility='hidden'; this.style.display='none'; this.style.height=0;""
-                                         src=""");
+                                             onabort=""this.style.visibility='hidden'; this.style.display='none'; this.style.height=0;""
+                                             src=""");
 
 
-                                         Write(renderItem.ItemValue);
+                                             Write(renderItem.ItemValue);
 
 WriteLiteral("\" alt=\"");
 
 
-                                                                     Write(renderItem.ItemText);
+                                                                         Write(renderItem.ItemText);
 
 WriteLiteral("\" />\r\n");
 
 
-                                    break;
-                                case MarkUpType.HeadImageLarge:
-                                    if (Model.ArticleDataSet.PictureSize == PictureSize.Large)
-                                    {
+                                        break;
+                                    case MarkUpType.HeadImageLarge:
+                                        if (Model.ArticleDataSet.PictureSize == PictureSize.Large)
+                                        {
 
 WriteLiteral("                                            <p class=\"dj_article_paragraph\">\r\n   " +
 "                                             <img class=\"largeImage\" src=\"");
 
 
-                                                                    Write(renderItem.ItemValue);
+                                                                        Write(renderItem.ItemValue);
 
 WriteLiteral("\" alt=\"\" />\r\n                                            </p>\r\n");
 
 
-                                    }
-                                    break;
-                                default:
-                                    if (renderItem.ItemMarkUp == MarkUpType.HeadImageSmall && Model.ArticleDataSet.PictureSize == PictureSize.Small)
-                                    {
+                                        }
+                                        break;
+                                    default:
+                                        if (renderItem.ItemMarkUp == MarkUpType.HeadImageSmall && Model.ArticleDataSet.PictureSize == PictureSize.Small)
+                                        {
 
 WriteLiteral("                                            <p class=\"dj_article_paragraph\">\r\n   " +
 "                                             <img class=\"smallImage\" src=\"");
 
 
-                                                                    Write(renderItem.ItemValue);
+                                                                        Write(renderItem.ItemValue);
 
 WriteLiteral("\" data-ref=\"");
 
 
-                                                                                                     Write(largeMobileImgUrl);
+                                                                                                         Write(largeMobileImgUrl);
 
 WriteLiteral("\" alt=\"\" />\r\n                                            </p>\r\n");
 
 
-                                    }
-                                    else
-                                    {
-                                        if (renderItem.ItemMarkUp == MarkUpType.HeadImageXSmall && Model.ArticleDataSet.PictureSize == PictureSize.XSmall)
+                                        }
+                                        else
                                         {
+                                            if (renderItem.ItemMarkUp == MarkUpType.HeadImageXSmall && Model.ArticleDataSet.PictureSize == PictureSize.XSmall)
+                                            {
 
 WriteLiteral("                                                <p class=\"dj_article_paragraph\">\r" +
 "\n                                                    <img class=\"xsmallImage\" sr" +
 "c=\"");
 
 
-                                                                         Write(renderItem.ItemValue);
+                                                                             Write(renderItem.ItemValue);
 
 WriteLiteral("\" data-ref=\"");
 
 
-                                                                                                          Write(largeMobileImgUrl);
+                                                                                                              Write(largeMobileImgUrl);
 
 WriteLiteral("\" alt=\"\" />\r\n                                                </p>\r\n");
 
 
+                                            }
                                         }
-                                    }
-                                    break;
+                                        break;
+                                }
                             }
-                        }
 
 WriteLiteral("                        </div>\r\n                        ");
 
@@ -1225,358 +1272,358 @@ WriteLiteral("                        </div>\r\n                        ");
 WriteLiteral("<div class=\"dj_meta_group\">\r\n");
 
 
-                         if (Model.ArticleDataSet.WordCount > 0 && Model.ArticleDataSet.Html.IsNullOrEmpty())
-                        {
-                            if (showIndexing)
+                             if (Model.ArticleDataSet.WordCount > 0 && Model.ArticleDataSet.Html.IsNullOrEmpty())
                             {
+                                if (showIndexing)
+                                {
 
 WriteLiteral("                                    <div class=\"dj_article_index\">WC</div>\r\n");
 
 
-                            }
+                                }
 
 WriteLiteral("                                <div class=\"dj_article_wc dj_article_section\">\r\n " +
 "                                   ");
 
 
-                            Write(string.Format("{0} {1}", Model.ArticleDataSet.WordCount, DJ.Token("words")));
+                                Write(string.Format("{0} {1}", Model.ArticleDataSet.WordCount, DJ.Token("words")));
 
 WriteLiteral("<span class=\"dj_article_comma\">, </span>\r\n                                </div>\r" +
 "\n");
 
 
-                        }
+                            }
 
 
-                         if (!string.IsNullOrEmpty(Model.ArticleDataSet.Language))
-                        {
-                            if (showIndexing)
+                             if (!string.IsNullOrEmpty(Model.ArticleDataSet.Language))
                             {
+                                if (showIndexing)
+                                {
 
 WriteLiteral("                                    <div class=\"dj_article_index\">LA</div>\r\n");
 
 
-                            }
+                                }
 
 WriteLiteral("                                <div class=\"dj_article_la dj_article_section\">\r\n " +
 "                                   ");
 
 
-                           Write(Model.ArticleDataSet.Language);
+                               Write(Model.ArticleDataSet.Language);
 
 WriteLiteral("<span class=\"dj_article_comma\">, </span>\r\n                                </div>\r" +
 "\n");
 
 
-                        }
+                            }
 
 
-                         if (!Model.ArticleDataSet.Source.IsNullOrEmpty() &&
-                             Model.ArticleDataSet.Source.Any(s => s.ItemEntityData != null))
-                        {
-                            if (showIndexing)
+                             if (!Model.ArticleDataSet.Source.IsNullOrEmpty() &&
+                                                     Model.ArticleDataSet.Source.Any(s => s.ItemEntityData != null))
                             {
+                                if (showIndexing)
+                                {
 
 WriteLiteral("                                    <div class=\"dj_article_index\">SC</div>\r\n");
 
 
-                            }
+                                }
 
 WriteLiteral("                                <div class=\"dj_article_sc dj_article_section\">\r\n");
 
 
-                                 foreach (var renderItem in Model.ArticleDataSet.Source.Where(s => s.ItemEntityData != null))
-                                {
-                                    
-                               Write(renderItem.ItemEntityData.Code);
+                                     foreach (var renderItem in Model.ArticleDataSet.Source.Where(s => s.ItemEntityData != null))
+                                    {
+                                        
+                                   Write(renderItem.ItemEntityData.Code);
 
-                                                                   
-                                }
+                                                                       
+                                    }
 WriteLiteral("<span class=\"dj_article_comma\">, </span>\r\n                                </div>\r" +
 "\n");
 
 
-                        }
+                            }
 
 
-                         if (!Model.ArticleDataSet.Pages.IsNullOrEmpty())
-                        {
-                            if (showIndexing)
+                             if (!Model.ArticleDataSet.Pages.IsNullOrEmpty())
                             {
+                                if (showIndexing)
+                                {
 
 WriteLiteral("                                    <div class=\"dj_article_index\">PG</div>\r\n");
 
 
-                            }
+                                }
 
 WriteLiteral("                                <div class=\"dj_article_pg dj_article_section\">\r\n");
 
 
-                                 foreach (var page in Model.ArticleDataSet.Pages)
-                                {
-                                    
-                               Write(page);
+                                     foreach (var page in Model.ArticleDataSet.Pages)
+                                    {
+                                        
+                                   Write(page);
 
-                                         
-                                }
+                                             
+                                    }
 WriteLiteral("<span class=\"dj_article_comma\">,</span>\r\n                                </div>\r\n" +
 "");
 
 
-                        }
+                            }
 
 WriteLiteral("                        </div>\r\n\r\n");
 
 
-                     if (!Model.ArticleDataSet.Copyright.IsNullOrEmpty())
-                    {
-                        if (showIndexing)
+                         if (!Model.ArticleDataSet.Copyright.IsNullOrEmpty())
                         {
+                            if (showIndexing)
+                            {
 
 WriteLiteral("                                <div class=\"dj_article_index\">CY</div>\r\n");
 
 
-                        }
+                            }
 
 WriteLiteral("                            <div class=\"copyright dj_article_cy dj_article_sectio" +
 "n\">\r\n");
 
 
-                             foreach (var renderItem in Model.ArticleDataSet.Copyright.Where(renderItem => renderItem.ItemMarkUp == MarkUpType.Plain))
-                            {
-                                
-                           Write(renderItem.ItemText);
+                                 foreach (var renderItem in Model.ArticleDataSet.Copyright.Where(renderItem => renderItem.ItemMarkUp == MarkUpType.Plain))
+                                {
+                                    
+                               Write(renderItem.ItemText);
 
-                                                    
-                            }
+                                                        
+                                }
 
 WriteLiteral("                            </div>\r\n");
 
 
-                    }
+                        }
 
 WriteLiteral("                    </div>\r\n\r\n");
 
 
-                 if (Model.ShowPostProcessing)
-                {
-                    if (!Model.PostProcessingOptions.IsNullOrEmpty())
+                     if (Model.ShowPostProcessing)
                     {
-                        var tList = Model.PostProcessingOptions.ToList();
-                        if (Model.ArticleDataSet.SubType.IsNullOrEmpty() ||
-                            Model.ArticleDataSet.SubType.ToLower() != "nlapressclip")
+                        if (!Model.PostProcessingOptions.IsNullOrEmpty())
                         {
-                            tList.RemoveAll(x => x == PostProcessingOptions.PressClips);
-                        }
-                            
+                            var tList = Model.PostProcessingOptions.ToList();
+                            if (Model.ArticleDataSet.SubType.IsNullOrEmpty() ||
+                                Model.ArticleDataSet.SubType.ToLower() != "nlapressclip")
+                            {
+                                tList.RemoveAll(x => x == PostProcessingOptions.PressClips);
+                            }
+
 
 WriteLiteral("                            <ul class=\"dj_PostProcessing actions clearfix\">\r\n");
 
 
-                             if (Model.ShowHoverTextOnPostProcessingIcons)
-                            {
-                                foreach (var item in tList)
+                                 if (Model.ShowHoverTextOnPostProcessingIcons)
                                 {
-                                    var text = DJ.Token(DJ.GetAssignedAttribute<PostProcessingOptions>(item.ToString()));
+                                    foreach (var item in tList)
+                                    {
+                                        var text = DJ.Token(DJ.GetAssignedAttribute<PostProcessingOptions>(item.ToString()));
 
 WriteLiteral("                                        <li class=\"");
 
 
-                                           Write(item.ToString().ToLower());
+                                               Write(item.ToString().ToLower());
 
 WriteLiteral(" action\" data-ref=\"");
 
 
-                                                                                          Write(item.ToString().ToLower());
+                                                                                              Write(item.ToString().ToLower());
 
 WriteLiteral("\"><i class=\"dj_icon dj_icon-");
 
 
-                                                                                                                                                  Write(item.ToString().ToLower());
+                                                                                                                                                      Write(item.ToString().ToLower());
 
 WriteLiteral("\" title=\"");
 
 
-                                                                                                                                                                                       Write(text);
+                                                                                                                                                                                           Write(text);
 
 WriteLiteral("\"></i><span data-workflow=\"");
 
 
-                                                                                                                                                                                                                         Write(item.ToString().ToLower());
+                                                                                                                                                                                                                             Write(item.ToString().ToLower());
 
 WriteLiteral("\">");
 
 
-                                                                                                                                                                                                                                                       Write(text);
+                                                                                                                                                                                                                                                           Write(text);
 
 WriteLiteral("</span></li>\r\n");
 
 
+                                    }
                                 }
-                            }
-                            else
-                            {
-                                foreach (var item in tList)
+                                else
                                 {
+                                    foreach (var item in tList)
+                                    {
 
 WriteLiteral("                                        <li class=\"");
 
 
-                                           Write(item.ToString().ToLower());
+                                               Write(item.ToString().ToLower());
 
 WriteLiteral(" action\" data-ref=\"");
 
 
-                                                                                          Write(item.ToString().ToLower());
+                                                                                              Write(item.ToString().ToLower());
 
 WriteLiteral("\"><i class=\"dj_icon dj_icon-");
 
 
-                                                                                                                                                  Write(item.ToString().ToLower());
+                                                                                                                                                      Write(item.ToString().ToLower());
 
 WriteLiteral("\"></i><span data-workflow=\"");
 
 
-                                                                                                                                                                                                         Write(item.ToString().ToLower());
+                                                                                                                                                                                                             Write(item.ToString().ToLower());
 
 WriteLiteral("\">");
 
 
-                                                                                                                                                                                                                                       Write(DJ.Token(DJ.GetAssignedAttribute<PostProcessingOptions>(item.ToString())));
+                                                                                                                                                                                                                                           Write(DJ.Token(DJ.GetAssignedAttribute<PostProcessingOptions>(item.ToString())));
 
 WriteLiteral("</span></li>\r\n");
 
 
+                                    }
                                 }
-                            }
 
 WriteLiteral("                            </ul>\r\n");
 
 
-                    }
+                        }
+
                         
 
+                                                                       
+                        if (Model.HasSocialNetworks)
+                        {
+                            
+                        Write(CreateChildControl<SocialButtons.SocialButtonsComponent>(Model.SocialButtons));
 
-                                               
-                    if (Model.HasSocialNetworks)
-                    {
-                        
-                    Write(CreateChildControl<SocialButtons.SocialButtonsComponent>(Model.SocialButtons));
+                                                                                                            
+                        }
 
-                                                                                                        
-                    }
-
-                    if (Model.HasTranslator)
-                    {
+                        if (Model.HasTranslator)
+                        {
 
 WriteLiteral("                            <div id=\"articleTranslateControlsContainer\">\r\n       " +
 "                         ");
 
 
-                        Write(CreateChildControl<ArticleTranslator.ArticleTranslatorComponent>(Model.Translator));
+                            Write(CreateChildControl<ArticleTranslator.ArticleTranslatorComponent>(Model.Translator));
 
 WriteLiteral("\r\n                            </div>\r\n");
 
 
-                    }    
+                        }
+                        
 
-
-                                                       
-                }
+                                                                               
+                    }
 
 WriteLiteral("                </div>\r\n");
 
 
-            
 
+                
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+                                                 
                 if (!Model.ArticleDataSet.Html.IsNullOrEmpty())
                 {
 
 WriteLiteral("                    <div class=\"dj_rawContent\">\r\n");
 
 
-                 foreach (var renderItem in Model.ArticleDataSet.Html.Where(renderItem => renderItem.ItemMarkUp == MarkUpType.Html))
-                {
-                    
-               Write(Html.Raw(renderItem.ItemText));
+                         foreach (var renderItem in Model.ArticleDataSet.Html.Where(renderItem => renderItem.ItemMarkUp == MarkUpType.Html))
+                        {
+                            
+                       Write(Html.Raw(renderItem.ItemText));
 
-                                                  
-                }
+                                                          
+                        }
 
 WriteLiteral("                    </div>\r\n");
 
 
-                }  
+                }
+                
+
+                                               
 
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+                
 
-                       
-
-
-                       
+                                      
 
 WriteLiteral("                <div class=\"dj_article_article_body\">\r\n");
 
 
- if (!Model.ArticleDataSet.Correction.IsNullOrEmpty())
-{
-    foreach (KeyValuePair<string, List<RenderItem>> kvc in Model.ArticleDataSet.Correction.SelectMany(dci => dci))
-    {
- Write(kvc.Key.Equals("pre") ? CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(kvc.Value, "pre", "dj_article_paragraph"))
+                     if (!Model.ArticleDataSet.Correction.IsNullOrEmpty())
+                    {
+                        foreach (KeyValuePair<string, List<RenderItem>> kvc in Model.ArticleDataSet.Correction.SelectMany(dci => dci))
+                        {
+                     Write(kvc.Key.Equals("pre") ? CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(kvc.Value, "pre", "dj_article_paragraph"))
                                 : CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(kvc.Value, "p", "dj_article_paragraph")));
 
                                                                                                                                           }
-}
+                    }
 
 
- if (!Model.ArticleDataSet.LeadParagraph.IsNullOrEmpty())
-{
-    if (showIndexing)
-    {
+                     if (!Model.ArticleDataSet.LeadParagraph.IsNullOrEmpty())
+                    {
+                        if (showIndexing)
+                        {
 
 WriteLiteral("                            <div class=\"dj_article_index\">LP</div>\r\n");
 
 
-    }                    
+                        }
 
 WriteLiteral("                        <div class=\"dj_article_lp dj_article_section\">\r\n");
 
 
-     if (!Model.ArticleDataSet.LeadParagraph.IsNullOrEmpty())
-    {
-        foreach (var kvc in Model.ArticleDataSet.LeadParagraph.SelectMany(dci => dci))
-        {
-     Write(kvc.Key.Equals("pre") ? CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(kvc.Value, "pre", "dj_article_paragraph"))
+                             if (!Model.ArticleDataSet.LeadParagraph.IsNullOrEmpty())
+                            {
+                                foreach (var kvc in Model.ArticleDataSet.LeadParagraph.SelectMany(dci => dci))
+                                {
+                             Write(kvc.Key.Equals("pre") ? CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(kvc.Value, "pre", "dj_article_paragraph"))
                             : CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(kvc.Value, "p", "dj_article_paragraph")));
 
                                                                                                                                       }
-    }
+                            }
 
 WriteLiteral("                        </div>\r\n");
 
 
-}
+                    }
 
 
- if (!Model.ArticleDataSet.TailParagraphs.IsNullOrEmpty() && Model.ArticleDisplayOptions != DisplayOptions.Headline)
-{
-    if (showIndexing)
-    {
+                     if (!Model.ArticleDataSet.TailParagraphs.IsNullOrEmpty() && Model.ArticleDisplayOptions != DisplayOptions.Headline)
+                    {
+                        if (showIndexing)
+                        {
 
 WriteLiteral("                            <div class=\"dj_article_index\">TD</div>\r\n");
 
 
-    }
+                        }
 
 WriteLiteral("                        <div class=\"dj_article_td dj_article_section\">\r\n");
 
 
-     foreach (var kvc in Model.ArticleDataSet.TailParagraphs.SelectMany(dci => dci))
-    {
- Write(kvc.Key.Equals("pre") ? CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(kvc.Value, "pre", "dj_article_paragraph"))
+                             foreach (var kvc in Model.ArticleDataSet.TailParagraphs.SelectMany(dci => dci))
+                            {
+                         Write(kvc.Key.Equals("pre") ? CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(kvc.Value, "pre", "dj_article_paragraph"))
                         : CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(kvc.Value, "p", "dj_article_paragraph")));
 
                                                                                                                                   }
@@ -1584,220 +1631,220 @@ WriteLiteral("                        <div class=\"dj_article_td dj_article_sect
 WriteLiteral("                        </div>\r\n");
 
 
-}
-           
+                    }
+
+                    
+
+                                     
 
 
-                 
-
-
-                 if (Model.ArticleDisplayOptions != DisplayOptions.Headline)
-                {
-                    if (!Model.ArticleDataSet.Contact.IsNullOrEmpty())
+                     if (Model.ArticleDisplayOptions != DisplayOptions.Headline)
                     {
-                        if (showIndexing)
+                        if (!Model.ArticleDataSet.Contact.IsNullOrEmpty())
                         {
+                            if (showIndexing)
+                            {
 
 WriteLiteral("                                <div class=\"dj_article_index\">CT</div>\r\n");
 
 
-                        }
-                
+                            }
+
 
 WriteLiteral("                            <div class=\"dj_article_ct dj_article_section\">\r\n     " +
 "                           ");
 
 
-                    Write(CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(Model.ArticleDataSet.Contact, "p", "dj_article_paragraph")));
+                            Write(CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(Model.ArticleDataSet.Contact, "p", "dj_article_paragraph")));
 
 WriteLiteral("\r\n                            </div>\r\n");
 
 
-                    }
+                        }
 
-                    if (!Model.ArticleDataSet.Notes.IsNullOrEmpty() && Model.ArticleDisplayOptions != DisplayOptions.Headline)
-                    {
-                        if (showIndexing)
+                        if (!Model.ArticleDataSet.Notes.IsNullOrEmpty() && Model.ArticleDisplayOptions != DisplayOptions.Headline)
                         {
+                            if (showIndexing)
+                            {
 
 WriteLiteral("                                <div class=\"dj_article_index\">RF</div>\r\n");
 
 
-                        }
-                
+                            }
+
 
 WriteLiteral("                            <div class=\"dj_article_rf dj_article_section\">\r\n");
 
 
-                         foreach (var kvc in Model.ArticleDataSet.Notes.SelectMany(dci => dci))
-                        {
-                            
-                        Write(kvc.Key.Equals("pre") ? CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(kvc.Value, "pre", "dj_article_paragraph"))
+                                 foreach (var kvc in Model.ArticleDataSet.Notes.SelectMany(dci => dci))
+                                {
+                                    
+                                Write(kvc.Key.Equals("pre") ? CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(kvc.Value, "pre", "dj_article_paragraph"))
                                                         : CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(kvc.Value, "p", "dj_article_paragraph")));
 
                                                                                                                                                                   
-                        }
+                                }
 
 WriteLiteral("                            </div>\r\n");
 
 
-                    }
+                        }
 
-                    if (!Model.ArticleDataSet.ArtWorks.IsNullOrEmpty())
-                    {
-                        if (showIndexing)
+                        if (!Model.ArticleDataSet.ArtWorks.IsNullOrEmpty())
                         {
+                            if (showIndexing)
+                            {
 
 WriteLiteral("                                <div class=\"dj_article_index\">ART</div>\r\n");
 
 
-                        }
+                            }
 
 WriteLiteral("                            <div class=\"dj_article_art dj_article_section\">\r\n    " +
 "                            ");
 
 
-                    Write(CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(Model.ArticleDataSet.ArtWorks, "p", "dj_article_paragraph")));
+                            Write(CreateChildControl<ParagraphComponent>(Model.GetParagraphModel(Model.ArticleDataSet.ArtWorks, "p", "dj_article_paragraph")));
 
 WriteLiteral("\r\n                            </div>\r\n");
 
 
+                        }
                     }
-                }
 
 
-                 if (!Model.ArticleDataSet.IndexingCodeSets.IsNullOrEmpty() && showIndexing)
-                {
-                    foreach (var set in Model.ArticleDataSet.IndexingCodeSets)
+                     if (!Model.ArticleDataSet.IndexingCodeSets.IsNullOrEmpty() && showIndexing)
                     {
-                        if (showIndexing)
+                        foreach (var set in Model.ArticleDataSet.IndexingCodeSets)
                         {
+                            if (showIndexing)
+                            {
 
 WriteLiteral("                                <div class=\"dj_article_index\">");
 
 
-                                             Write(set.Key.ToUpper());
+                                                         Write(set.Key.ToUpper());
 
 WriteLiteral("</div>\r\n");
 
 
-                        }
-                    
+                            }
+
 
 WriteLiteral("                            <div class=\"dj_article_");
 
 
-                                       Write(set.Key.ToLower());
+                                               Write(set.Key.ToLower());
 
 WriteLiteral(" dj_article_section\">\r\n                                <p class=\"dj_article_parag" +
 "raph\">\r\n");
 
 
-                             foreach (var code in set.Value)
-                            {
-                                
-                            Write(string.Format("{0} : {1} {2} ", code.Key, code.Value, code.Equals(set.Value.Last()) ? string.Empty : "|"));
+                                     foreach (var code in set.Value)
+                                    {
+                                        
+                                    Write(string.Format("{0} : {1} {2} ", code.Key, code.Value, code.Equals(set.Value.Last()) ? string.Empty : "|"));
 
-                                                                                                                                            
-                            }
+                                                                                                                                                    
+                                    }
 
 WriteLiteral("                                </p>\r\n                            </div>\r\n");
 
 
+                        }
                     }
-                }
 
 
-                 if (!Model.ArticleDataSet.Ipcs.IsNullOrEmpty() && showIndexing)
-                {
-                    if (showIndexing)
+                     if (!Model.ArticleDataSet.Ipcs.IsNullOrEmpty() && showIndexing)
                     {
+                        if (showIndexing)
+                        {
 
 WriteLiteral("                            <div class=\"dj_article_index\">IPC</div>\r\n");
 
 
-                    }
+                        }
 
 WriteLiteral("                        <div class=\"dj_article_ipc dj_article_section\">\r\n        " +
 "                    <p class=\"dj_article_paragraph\">\r\n                          " +
 "      ");
 
 
-                       Write(Model.ArticleDataSet.Ipcs.ToArray().Join(" | "));
+                           Write(Model.ArticleDataSet.Ipcs.ToArray().Join(" | "));
 
 WriteLiteral("\r\n                            </p>\r\n                        </div>\r\n");
 
 
-                }
+                    }
 
 
-                 if (!Model.ArticleDataSet.Ipds.IsNullOrEmpty() && showIndexing)
-                {
-                    if (showIndexing)
+                     if (!Model.ArticleDataSet.Ipds.IsNullOrEmpty() && showIndexing)
                     {
+                        if (showIndexing)
+                        {
 
 WriteLiteral("                            <div class=\"dj_article_index\">IPD</div>\r\n");
 
 
-                    }
+                        }
 
 WriteLiteral("                        <div class=\"dj_article_ipd dj_article_section\">\r\n        " +
 "                    <p class=\"dj_article_paragraph\">\r\n                          " +
 "      ");
 
 
-                       Write(Model.ArticleDataSet.Ipds.ToArray().Join(" | "));
+                           Write(Model.ArticleDataSet.Ipds.ToArray().Join(" | "));
 
 WriteLiteral("\r\n                            </p>\r\n                        </div>\r\n");
 
 
-                }
+                    }
 
 
-                 if (!string.IsNullOrEmpty(Model.ArticleDataSet.PublisherName))
-                {
-                    if (showIndexing)
+                     if (!string.IsNullOrEmpty(Model.ArticleDataSet.PublisherName))
                     {
+                        if (showIndexing)
+                        {
 
 WriteLiteral("                            <div class=\"dj_article_index\">PUB</div>\r\n");
 
 
-                    }                    
+                        }
 
 WriteLiteral("                        <div class=\"dj_article_pub dj_article_section\">\r\n        " +
 "                    <p class=\"dj_article_paragraph\">\r\n                          " +
 "      ");
 
 
-                       Write(string.Format("{0} ", Model.ArticleDataSet.PublisherName));
+                           Write(string.Format("{0} ", Model.ArticleDataSet.PublisherName));
 
 WriteLiteral("\r\n                            </p>\r\n                        </div>\r\n");
 
 
-                }
+                    }
 
 
-                 if (Model.ArticleDataSet.AccessionNo != null)
-                {
-                    if (showIndexing)
+                     if (Model.ArticleDataSet.AccessionNo != null)
                     {
+                        if (showIndexing)
+                        {
 
 WriteLiteral("                            <div class=\"dj_article_index\">AN</div>\r\n");
 
 
-                    }
+                        }
 
 WriteLiteral("                        <div class=\"dj_article_an dj_article_section\">\r\n         " +
 "                   <p class=\"dj_article_paragraph\">\r\n                           " +
 "     ");
 
 
-                       Write(Html.DJ().Token("document"));
+                           Write(Html.DJ().Token("document"));
 
 WriteLiteral("&nbsp;");
 
 
-                                                         Write(Model.ArticleDataSet.AccessionNo);
+                                                             Write(Model.ArticleDataSet.AccessionNo);
 
 WriteLiteral("\r\n                            </p>\r\n                        </div>\r\n");
 
@@ -1820,24 +1867,24 @@ WriteLiteral("\r\n                                </p>\r\n                      
 "                   </div>\r\n");
 
 
-                }
+                    }
 
 
-                 if (Model.ArticleDataSet.ContentCategory == Ajax.ContentCategory.Picture)
-                {
+                     if (Model.ArticleDataSet.ContentCategory == Ajax.ContentCategory.Picture)
+                    {
 
 WriteLiteral("                        <div class=\"dj_article_clear\"></div>\r\n");
 
 
-                }
+                    }
 
 WriteLiteral("                </div>\r\n");
 
 
+                
 
-
-                    
-        }
+                                    
+            }
 
 WriteLiteral("        </div>\r\n");
 
@@ -1850,41 +1897,41 @@ WriteLiteral("        <div class=\"dj_article_body\">\r\n            <div class=
 "Error error\">\r\n                ");
 
 
-                                               Write(DJ.Token("error"));
+            Write(DJ.Token("error"));
 
 WriteLiteral("\r\n                <span class=\"errorNum\">");
 
 
-                              Write(Model.ArticleDataSet.Status);
+                                  Write(Model.ArticleDataSet.Status);
 
 WriteLiteral("</span>: <span class=\"errorMessage\">");
 
 
-                                                                                              Write(Html.DJ().TokenForErrorNumber(Model.ArticleDataSet.Status));
+                                                                                                  Write(Html.DJ().TokenForErrorNumber(Model.ArticleDataSet.Status));
 
 WriteLiteral("</span>\r\n            </div>\r\n\r\n");
 
 
-         if (Model.ArticleDataSet.AccessionNo != null)
-        {
-            if (showIndexing)
+             if (Model.ArticleDataSet.AccessionNo != null)
             {
+                if (showIndexing)
+                {
 
 WriteLiteral("                    <div class=\"dj_article_index\">AN</div>\r\n");
 
 
-            }
+                }
 
 WriteLiteral("                <div class=\"dj_article_an dj_article_section\">\r\n                 " +
 "   ");
 
 
-           Write(Html.DJ().Token("document"));
+               Write(Html.DJ().Token("document"));
 
 WriteLiteral("&nbsp;");
 
 
-                                             Write(Model.ArticleDataSet.AccessionNo);
+                                                 Write(Model.ArticleDataSet.AccessionNo);
 
 WriteLiteral("\r\n                </div>\r\n");
 
@@ -1904,7 +1951,7 @@ WriteLiteral("<br />");
 WriteLiteral("\r\n                    </div>\r\n                </div>\r\n");
 
 
-        }
+            }
 
 WriteLiteral("        </div>\r\n");
 
