@@ -157,8 +157,8 @@ namespace DowJones.Assemblers.Articles
             // Map a couple of descriptors
             articleResult.ContentCategoryDescriptor = articleResult.ContentCategory.ToString();
             articleResult.ContentSubCategoryDescriptor = articleResult.ContentSubCategory.ToString();
-            articleResult.Headline = ProcessHeadline(article, articleResult.OriginalContentCategory, articleResult.ExternalUri);
-            
+            //articleResult.Headline = ProcessHeadline(article, articleResult.OriginalContentCategory, articleResult.ExternalUri);
+            articleResult.Headline = GetRenderItems(article.headline[0].Items, article.accessionNo);
             //To set the MimeType and Ref
             MapExtraReferenceInformation(articleResult, article);
 

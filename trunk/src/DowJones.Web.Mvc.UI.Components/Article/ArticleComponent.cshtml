@@ -151,7 +151,7 @@
                                                 <span class="dj_article_source" data-entity="@renderItem.ItemEntityData.ToJson().EscapeForHtml()">@renderItem.ItemEntityData.Name</span>
                                                 break;
                                             case MarkUpType.Span:
-                                                @renderItem.ItemText
+                                            @renderItem.ItemText
                                                 break;
                                         }
                                     </span>
@@ -236,6 +236,16 @@
                                         break;
                                     case MarkUpType.Anchor:
                                     <a class="dj_article_headline_link" href="javascript:void(0)">@renderItem.ItemText</a>
+                                        break;
+                                    case MarkUpType.EntityLink:
+                                        if (renderItem.Highlight)
+                                        {
+                                            <a class="dj_article_entity dj_article_highlight @renderItem.ItemEntityData.Category" href="javascript:void(0);" data-entity="@renderItem.ItemEntityData.ToJson().EscapeForHtml()">@(renderItem.ItemText)</a>
+                                        }
+                                        else
+                                        {
+                                            <a class="dj_article_entity @renderItem.ItemEntityData.Category" href="javascript:void(0);" data-entity="@renderItem.ItemEntityData.ToJson().EscapeForHtml()">@(renderItem.ItemText)</a>
+                                        } 
                                         break;
                                 }
                             }

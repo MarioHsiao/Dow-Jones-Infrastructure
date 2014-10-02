@@ -30,7 +30,7 @@ namespace DowJones.Web.Mvc.UI.Components.Article
     using PostProcessingOptions = PostProcessing.PostProcessingOptions;
     using DowJones.Web.Mvc.Extensions;
     
-    // Last Generated Timestamp: 09/25/2014 05:09 PM
+    // Last Generated Timestamp: 10/01/2014 04:40 PM
     [DowJones.Web.ScriptResourceAttribute(null, ResourceName="DowJones.Web.Mvc.UI.Components.Article.Article.js", ResourceKind=DowJones.Web.ClientResourceKind.Script, DeclaringType=typeof(DowJones.Web.Mvc.UI.Components.Article.ArticleComponent))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorViewComponentClassGenerator", "1.0.0.23935")]
     public class ArticleComponent : DowJones.Web.Mvc.UI.ViewComponentBase<ArticleModel>
@@ -372,10 +372,10 @@ WriteLiteral("</span>\r\n");
 
                                                 break;
                                             case MarkUpType.Span:
-                                                
-                                           Write(renderItem.ItemText);
+                                            
+                                       Write(renderItem.ItemText);
 
-                                                                    
+                                                                
                                                 break;
                                         }
 
@@ -554,6 +554,53 @@ WriteLiteral("                                    <a class=\"dj_article_headline
 WriteLiteral("</a>\r\n");
 
 
+                                        break;
+                                    case MarkUpType.EntityLink:
+                                        if (renderItem.Highlight)
+                                        {
+
+WriteLiteral("                                            <a class=\"dj_article_entity dj_articl" +
+"e_highlight ");
+
+
+                                                                                        Write(renderItem.ItemEntityData.Category);
+
+WriteLiteral("\" href=\"javascript:void(0);\" data-entity=\"");
+
+
+                                                                                                                                                                     Write(renderItem.ItemEntityData.ToJson().EscapeForHtml());
+
+WriteLiteral("\">");
+
+
+                                                                                                                                                                                                                           Write(renderItem.ItemText);
+
+WriteLiteral("</a>\r\n");
+
+
+                                        }
+                                        else
+                                        {
+
+WriteLiteral("                                            <a class=\"dj_article_entity ");
+
+
+                                                                   Write(renderItem.ItemEntityData.Category);
+
+WriteLiteral("\" href=\"javascript:void(0);\" data-entity=\"");
+
+
+                                                                                                                                                Write(renderItem.ItemEntityData.ToJson().EscapeForHtml());
+
+WriteLiteral("\">");
+
+
+                                                                                                                                                                                                      Write(renderItem.ItemText);
+
+WriteLiteral("</a>\r\n");
+
+
+                                        } 
                                         break;
                                 }
                             }
