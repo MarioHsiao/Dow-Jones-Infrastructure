@@ -168,7 +168,7 @@ namespace DowJones.Assemblers.Articles
             if (!CheckCodeSn(Codes.PD.ToString()))
             {
                 articleResult.PublicationDate = GetDate(article.publicationDate, article.publicationTime, article.publicationTimeSpecified);
-                articleResult.PublicationFormattedDate = _dateTimeFormatter.FormatShortDate(article.publicationDate, true);
+                articleResult.PublicationFormattedDate = _dateTimeFormatter.FormatShortDate(article.publicationDate, article.publicationTimeSpecified); 
             }
 
             if (!CheckCodeSn(Codes.ET.ToString()) && article.publicationTime > DateTime.MinValue) 
