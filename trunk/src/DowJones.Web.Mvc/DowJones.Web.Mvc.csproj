@@ -495,9 +495,11 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\js\jquery.mobile-1.4.4.js" />
-    <EmbeddedResource Include="Resources\js\jquery.mobile-1.4.4.min.js">
-      <DependentUpon>jquery.mobile-1.4.4.js</DependentUpon>
+    <EmbeddedResource Include="Resources\js\jquery.mobile.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\jquery.mobile.min.js">
+      <DependentUpon>jquery.mobile.js</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
