@@ -240,11 +240,21 @@
                                     case MarkUpType.EntityLink:
                                         if (renderItem.Highlight)
                                         {
-                                            <a class="dj_article_entity dj_article_highlight @renderItem.ItemEntityData.Category" href="javascript:void(0);" data-entity="@renderItem.ItemEntityData.ToJson().EscapeForHtml()">@(renderItem.ItemText)</a>
+                                            <span class="dj_article_highlight @renderItem.ItemEntityData.Category" >@(renderItem.ItemText)</span>
                                         }
                                         else
                                         {
-                                            <a class="dj_article_entity @renderItem.ItemEntityData.Category" href="javascript:void(0);" data-entity="@renderItem.ItemEntityData.ToJson().EscapeForHtml()">@(renderItem.ItemText)</a>
+                                             @renderItem.ItemText
+                                        } 
+                                        break;
+                                    case MarkUpType.ArticleHighlight:
+                                        if (renderItem.Highlight)
+                                        {
+                                            <span class="dj_article_highlight" >@(renderItem.ItemText)</span>
+                                        }
+                                        else
+                                        {
+                                             @renderItem.ItemText
                                         } 
                                         break;
                                 }

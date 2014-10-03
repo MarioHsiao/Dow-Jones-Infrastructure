@@ -643,7 +643,7 @@ namespace DowJones.Assemblers.Articles
                 {
                     if (highlightedText.text != null && highlightedText.text.Value != null)
                     {
-                        renderItems.Add(new RenderItem { ItemMarkUp = MarkUpType.ArticleHighlight, ItemText = highlightedText.text.Value });
+                        renderItems.Add(new RenderItem { ItemMarkUp = MarkUpType.ArticleHighlight, ItemText = highlightedText.text.Value, Highlight = true });
                     }
                 }
                 else
@@ -1772,7 +1772,8 @@ namespace DowJones.Assemblers.Articles
                     var highlight = (HighlightedText) item;
                     if (highlight.text != null && highlight.text.Value != null)
                     {
-                        sb.Append(highlight.text.Value);
+                        //sb.Append(highlight.text.Value);
+                        sb.Append(GetHighlightedText(highlight, true));
                     }
                 }
                 else if (item is ELink)
@@ -1787,7 +1788,7 @@ namespace DowJones.Assemblers.Articles
                                 var highlight = (HighlightedText) elinkItem;
                                 if (highlight.text != null && highlight.text.Value != null)
                                 {
-                                    sb.Append(highlight.text.Value);
+                                    sb.Append(GetHighlightedText(highlight, true));
                                 }
                             }
                             else
@@ -1871,6 +1872,23 @@ namespace DowJones.Assemblers.Articles
                 case ImageType.Thumbnail:
                     return "tnail";
             }
+        }
+
+        private static string GetHighlightedText(HighlightedText highlight, bool escape)
+        {
+            if (highlight != null && highlight.text != null && highlight.text.Value != null)
+            {
+                var text = escape
+                               ? Escape(highlight.text.Value)
+                               : highlight.text.Value;
+                return String.Format("<b>{0}</b>", text);
+            }
+            return String.Empty;
+        }
+
+        public static string Escape(string str)
+        {
+            return str == null ? null : str.Replace("<", "&lt;").Replace(">", "&gt;");
         }
 
       
