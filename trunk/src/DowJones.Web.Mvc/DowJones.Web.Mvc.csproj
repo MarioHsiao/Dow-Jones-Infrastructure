@@ -494,6 +494,12 @@
       <DependentUpon>jquery.dataTables.js</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\jquery.mobile-1.4.4.js" />
+    <EmbeddedResource Include="Resources\js\jquery.mobile-1.4.4.min.js">
+      <DependentUpon>jquery.mobile-1.4.4.js</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>
