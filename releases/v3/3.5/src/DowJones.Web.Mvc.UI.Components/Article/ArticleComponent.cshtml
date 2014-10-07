@@ -174,7 +174,7 @@
                         }
 
                         <div class="date-stamp dj_article_pd dj_article_section">
-                            @if (!string.IsNullOrEmpty(Model.ArticleDataSet.PublicationDate))
+                            @if (!string.IsNullOrEmpty(Model.ArticleDataSet.PublicationFormattedDate))
                             {
                                 @(string.Format("{0}", Model.ArticleDataSet.PublicationFormattedDate))<br />
                                 if (!string.IsNullOrEmpty(Model.ArticleDataSet.PublicationTime))
@@ -240,22 +240,22 @@
                                     case MarkUpType.EntityLink:
                                         if (renderItem.Highlight)
                                         {
-                                            <span class="dj_article_highlight @renderItem.ItemEntityData.Category" >@(renderItem.ItemText)</span>
+                                            <span class="dj_article_highlight @renderItem.ItemEntityData.Category">@(renderItem.ItemText)</span>
                                         }
                                         else
                                         {
-                                             @renderItem.ItemText
-                                        } 
+                                            @renderItem.ItemText
+                                        }
                                         break;
                                     case MarkUpType.ArticleHighlight:
                                         if (renderItem.Highlight)
                                         {
-                                            <span class="dj_article_highlight" >@(renderItem.ItemText)</span>
+                                            <span class="dj_article_highlight">@(renderItem.ItemText)</span>
                                         }
                                         else
                                         {
-                                             @renderItem.ItemText
-                                        } 
+                                            @renderItem.ItemText
+                                        }
                                         break;
                                 }
                             }
