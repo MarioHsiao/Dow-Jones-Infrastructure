@@ -168,7 +168,7 @@ namespace DowJones.Assemblers.Articles
             if (!CheckCodeSn(Codes.PD.ToString()))
             {
                 articleResult.PublicationDate = GetDate(article.publicationDate, article.publicationTime, article.publicationTimeSpecified);
-                articleResult.PublicationFormattedDate = _dateTimeFormatter.FormatShortDate(article.publicationDate, article.publicationTimeSpecified); 
+                articleResult.PublicationFormattedDate = GetFormattedDate(article.publicationDate, article.publicationTime, article.publicationTimeSpecified);
             }
 
             if (!CheckCodeSn(Codes.ET.ToString()) && article.publicationTime > DateTime.MinValue) 
@@ -920,6 +920,17 @@ namespace DowJones.Assemblers.Articles
                 return _dateTimeFormatter.FormatStandardDate(tempararyPublicationDate, true);
             }
             return _dateTimeFormatter.FormatStandardDate(tempararyPublicationDate, false);
+        }
+
+        private string GetFormattedDate(DateTime publicationDate, DateTime publicationTime, bool publicationTimeSpecified)
+        {
+            var tempararyPublicationDate = publicationDate;
+            if (publicationTimeSpecified)
+            {
+                tempararyPublicationDate = DateTimeFormatter.Merge(publicationDate, publicationTime);
+                return _dateTimeFormatter.FormatShortDate(tempararyPublicationDate, true);
+            }
+            return _dateTimeFormatter.FormatShortDate(tempararyPublicationDate, false);
         }
 
         private string GetTime(DateTime publicationDate, DateTime publicationTime)
