@@ -56,6 +56,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Eds\Api_1_0\Ode\Transactions\GenerateOdeResponse.cs" />
+    <Compile Include="Eds\Api_1_0\Ode\Messages.cs" />
+    <Compile Include="Eds\Api_1_0\Ode\Transactions\GenerateOdeRequest.cs" />
     <Compile Include="Pam\Api_1_0\Assets\List\AccessControlScope.cs" />
     <Compile Include="Pam\Api_1_0\Assets\List\AccessQualifier.cs" />
     <Compile Include="Pam\Api_1_0\Assets\List\AssignListsToGroupStatus.cs" />
