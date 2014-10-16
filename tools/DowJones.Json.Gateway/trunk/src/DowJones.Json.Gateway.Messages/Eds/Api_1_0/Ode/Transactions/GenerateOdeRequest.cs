@@ -16,8 +16,17 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode.Transactions
     [XmlRoot(ElementName = "GenerateODE", Namespace = Declarations.SchemaVersion, IsNullable = false), Serializable]
     public class GenerateOdeRequest : IPostJsonRestRequest
     {
-        [JsonProperty(PropertyName = "Ticket")] [XmlElement(Type = typeof (Ticket), ElementName = "Ticket", IsNullable = false, Form = XmlSchemaForm.Qualified)] [EditorBrowsable(EditorBrowsableState.Advanced)] public TicketCollection __TicketCollection;
-        [JsonProperty(PropertyName = "RequestMode")] [XmlAttribute(AttributeName = "RequestMode", Form = XmlSchemaForm.Unqualified)] [EditorBrowsable(EditorBrowsableState.Advanced)] public RequestMode __requestMode;
+        [JsonProperty(PropertyName = "Ticket")] 
+        [XmlElement(Type = typeof (Ticket), ElementName = "Ticket", IsNullable = false, Form = XmlSchemaForm.Qualified)] 
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        [DataMember(Name = "Ticket", IsRequired = true)]
+        public TicketCollection __TicketCollection;
+        
+        [JsonProperty(PropertyName = "RequestMode")] 
+        [XmlAttribute(AttributeName = "RequestMode", Form = XmlSchemaForm.Unqualified)] 
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        [DataMember(Name = "RequestMode", IsRequired = true)]
+        public RequestMode __requestMode;
 
         [JsonIgnore]
         [XmlIgnore]

@@ -38,12 +38,12 @@ namespace DowJones.Json.Gateway.Tests.Core
                                                      }, 
                                   UserCredentialData = new UserCredentialData
                                                        {
-                                                           SessionId = "27137ZzZKJHEQOKCAAAGUAIAAAAAAAEMAAAAAABSGAYTIMBUGAYTCNBTGE2DGMZU",
+                                                           SessionId = "27137ZzZKJAUQYKTAAAGUAIAAAAABRN5AAAAAABSGAYTIMJQGE3DAOBSG42DSMZQ",
                                                            IpAddress = "127.0.0.1",
                                                            //UserGuidId = "3bb6cd20-968c-4def-805d-283710580dba",
                                                            //EncryptedUserId = "E6OO2HVCQHVPEXDO5LSIIKF7AY",
-                                                           AccountId = "9PRO001000",
-                                                           UserId = "listuser1",
+                                                           AccountId = "9PRO000200",
+                                                           UserId = "lisaint",
                                                            Namespace = "16"
                                                        }, 
                                   TransactionCacheData = new TransactionCacheData(),

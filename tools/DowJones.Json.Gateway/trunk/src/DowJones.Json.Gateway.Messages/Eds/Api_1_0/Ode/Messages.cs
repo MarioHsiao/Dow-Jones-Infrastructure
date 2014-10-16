@@ -101,10 +101,15 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
     }
 
     [JsonConverter(typeof (StringEnumConverter))]
+    [DataContract(Name = "RequestMode", Namespace = "")]
     public enum RequestMode
     {
-        [XmlEnum(Name = "ASync")] ASync,
-        [XmlEnum(Name = "Sync")] Sync
+        [EnumMember(Value = "Async")]
+        [XmlEnum(Name = "ASync")] 
+        ASync,
+        [EnumMember(Value = "Sync")]
+        [XmlEnum(Name = "Sync")] 
+        Sync
     }
 
     [JsonArray]
