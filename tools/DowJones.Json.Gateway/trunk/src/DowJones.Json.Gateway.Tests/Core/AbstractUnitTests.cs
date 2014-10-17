@@ -38,7 +38,7 @@ namespace DowJones.Json.Gateway.Tests.Core
                                                      }, 
                                   UserCredentialData = new UserCredentialData
                                                        {
-                                                           SessionId = "27137ZzZKJAUQYKTAAAGUAIAAAAABRN5AAAAAABSGAYTIMJQGE3DAOBSG42DSMZQ",
+                                                           SessionId = "27139ZzZKJAUQYKTAAAGUAYAAAAAB2L7AAAAAABSGAYTIMJQGE3TANZRHAZDIOJQ",
                                                            IpAddress = "127.0.0.1",
                                                            //UserGuidId = "3bb6cd20-968c-4def-805d-283710580dba",
                                                            //EncryptedUserId = "E6OO2HVCQHVPEXDO5LSIIKF7AY",

@@ -130,7 +130,8 @@ namespace DowJones.Json.Gateway.Tests.Eds
             {
                 Request = new GenerateOdeRequest()
                 {
-                  TicketCollection  = ticketCol
+                  TicketCollection  = ticketCol,
+                  requestMode = RequestMode.Sync
                 },
                 ControlData = GetControlData()
             };
@@ -181,7 +182,7 @@ namespace DowJones.Json.Gateway.Tests.Eds
             // ReSharper restore StringLiteralTypo
 
             // ReSharper disable StringLiteralTypo
-            routingData.ServerUri = "http://fdevweb3.win.dowjones.net/restserviceproxy";
+            routingData.ServerUri = "http://edsapi.int.dowjones.net/";
             //routingData.ServiceUrl = "http://pamapi.int.dowjones.net/";
             // ReSharper restore StringLiteralTypo
 

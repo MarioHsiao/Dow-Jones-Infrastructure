@@ -23,92 +23,142 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
 
     }
 
-    [JsonConverter(typeof (StringEnumConverter))]
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum ProductType
     {
-        [XmlEnum("GLOBAL")] Global,
-        [XmlEnum("DJX")] DJX,
-        [XmlEnum("DOWJONES")] DowJones,
-        [XmlEnum("FS-ALERT-IB")] FSALERTIB,
-        [XmlEnum("MADE-NEWS")] MADENEWS,
-        [XmlEnum("DJR")] DJR,
-        [XmlEnum("DJRC")] DJRC,
-        [XmlEnum("OR")] OR,
-        [XmlEnum("DJXADMIN")] DJXADMIN,
-        [XmlEnum("FACTIVA")] FACTIVA,
-        [XmlEnum("RNC")] RNC
+        [XmlEnum("GLOBAL")]
+        Global,
+        [XmlEnum("DJX")]
+        DJX,
+        [XmlEnum("DOWJONES")]
+        DowJones,
+        [XmlEnum("FS-ALERT-IB")]
+        FSALERTIB,
+        [XmlEnum("MADE-NEWS")]
+        MADENEWS,
+        [XmlEnum("DJR")]
+        DJR,
+        [XmlEnum("DJRC")]
+        DJRC,
+        [XmlEnum("OR")]
+        OR,
+        [XmlEnum("DJXADMIN")]
+        DJXADMIN,
+        [XmlEnum("FACTIVA")]
+        FACTIVA,
+        [XmlEnum("RNC")]
+        RNC
     }
 
-    [JsonConverter(typeof (StringEnumConverter))]
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum ContentTypeForContentByData
     {
-        [XmlEnum(Name = "HTML")] HTML,
-        [XmlEnum(Name = "XML")] XML,
-        [XmlEnum(Name = "FolderInvite")] FolderInvite,
-        [XmlEnum(Name = "UserWelcome")] UserWelcome,
-        [XmlEnum(Name = "EmailValidate")] EmailValidate,
-        [XmlEnum(Name = "EmailLoginEnabled")] EmailLoginEnabled,
-        [XmlEnum(Name = "UserWelcomeConfirmation")] UserWelcomeConfirmation,
-        [XmlEnum(Name = "PasswordReset")] PasswordReset,
-        [XmlEnum(Name = "AlertConfirmation")] AlertConfirmation,
-        [XmlEnum(Name = "AlertUnsubscribe")] AlertUnsubscribe
+        [XmlEnum(Name = "HTML")]
+        HTML,
+        [XmlEnum(Name = "XML")]
+        XML,
+        [XmlEnum(Name = "FolderInvite")]
+        FolderInvite,
+        [XmlEnum(Name = "UserWelcome")]
+        UserWelcome,
+        [XmlEnum(Name = "EmailValidate")]
+        EmailValidate,
+        [XmlEnum(Name = "EmailLoginEnabled")]
+        EmailLoginEnabled,
+        [XmlEnum(Name = "UserWelcomeConfirmation")]
+        UserWelcomeConfirmation,
+        [XmlEnum(Name = "PasswordReset")]
+        PasswordReset,
+        [XmlEnum(Name = "AlertConfirmation")]
+        AlertConfirmation,
+        [XmlEnum(Name = "AlertUnsubscribe")]
+        AlertUnsubscribe
     }
 
-    [JsonConverter(typeof (StringEnumConverter))]
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum ContentTypeForContentByID
     {
-        [XmlEnum(Name = "AN")] AN,
-        [XmlEnum(Name = "URL")] URL
+        [XmlEnum(Name = "AN")]
+        AN,
+        [XmlEnum(Name = "URL")]
+        URL
     }
 
-    [JsonConverter(typeof (StringEnumConverter))]
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum ImageType
     {
-        [XmlEnum("1")] Thumbnail,
-        [XmlEnum("2")] ThumbnailAndIndexing,
-        [XmlEnum("3")] ScreenResolution,
-        [XmlEnum("4")] ScreenResolutionAndIndexing
+        [XmlEnum("1")]
+        Thumbnail,
+        [XmlEnum("2")]
+        ThumbnailAndIndexing,
+        [XmlEnum("3")]
+        ScreenResolution,
+        [XmlEnum("4")]
+        ScreenResolutionAndIndexing
     }
 
-    [JsonConverter(typeof (StringEnumConverter))]
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum EmailDisplayFormat
     {
-        [XmlEnum(Name = "HTML")] HTML,
-        [XmlEnum(Name = "TEXT")] TEXT,
-        [XmlEnum(Name = "MobileHTML")] MobileHTML,
-        [XmlEnum(Name = "MobileTEXT")] MobileTEXT
+        [XmlEnum(Name = "HTML")]
+        HTML,
+        [XmlEnum(Name = "TEXT")]
+        TEXT,
+        [XmlEnum(Name = "MobileHTML")]
+        MobileHTML,
+        [XmlEnum(Name = "MobileTEXT")]
+        MobileTEXT
     }
 
-    [JsonConverter(typeof (StringEnumConverter))]
+    [JsonConverter(typeof(StringEnumConverter))]
+    [DataContract(Name = "EmailContentType", Namespace = "")]
+
     public enum EmailContentType
     {
-        [XmlEnum(Name = "Headlines")] Headlines,
-        [XmlEnum(Name = "FullText")] FullText,
-        [XmlEnum(Name = "HeadlineIndexing")] HeadlineIndexing,
-        [XmlEnum(Name = "FullTextIndexing")] FullTextIndexing,
-        [XmlEnum(Name = "KeywordsInContext")] KWIC,
-        [XmlEnum(Name = "Custom")] Custom
+        [XmlEnum(Name = "Headlines")]
+        [EnumMember(Value = "Headlines")]
+        Headlines,
+        [XmlEnum(Name = "FullText")]
+        [EnumMember(Value = "FullText")]
+        FullText,
+        [XmlEnum(Name = "HeadlineIndexing")]
+        [EnumMember(Value = "HeadlineIndexing")]
+        HeadlineIndexing,
+        [XmlEnum(Name = "FullTextIndexing")]
+        [EnumMember(Value = "FullTextIndexing")]
+        FullTextIndexing,
+        [XmlEnum(Name = "KeywordsInContext")]
+        [EnumMember(Value = "KeywordsInContext")]
+        KWIC,
+        [XmlEnum(Name = "Custom")]
+        [EnumMember(Value = "Custom")]
+        Custom
     }
 
-    [JsonConverter(typeof (StringEnumConverter))]
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum Source
     {
-        [XmlEnum(Name = "P")] P,
-        [XmlEnum(Name = "I")] I,
-        [XmlEnum(Name = "W")] W,
-        [XmlEnum(Name = "H")] H,
-        [XmlEnum(Name = "M")] M
+        [XmlEnum(Name = "P")]
+        P,
+        [XmlEnum(Name = "I")]
+        I,
+        [XmlEnum(Name = "W")]
+        W,
+        [XmlEnum(Name = "H")]
+        H,
+        [XmlEnum(Name = "M")]
+        M
     }
 
-    [JsonConverter(typeof (StringEnumConverter))]
+    [JsonConverter(typeof(StringEnumConverter))]
     [DataContract(Name = "RequestMode", Namespace = "")]
     public enum RequestMode
     {
         [EnumMember(Value = "Async")]
-        [XmlEnum(Name = "ASync")] 
+        [XmlEnum(Name = "ASync")]
         ASync,
         [EnumMember(Value = "Sync")]
-        [XmlEnum(Name = "Sync")] 
+        [XmlEnum(Name = "Sync")]
         Sync
     }
 
@@ -159,9 +209,15 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
     public class ContentByData : Content
     {
 
-        [JsonProperty(PropertyName = "ContentType")] [XmlAttribute(AttributeName = "ContentType", Form = XmlSchemaForm.Unqualified)] [EditorBrowsable(EditorBrowsableState.Advanced)] public ContentTypeForContentByData __ContentType;
+        [JsonProperty(PropertyName = "ContentType")]
+        [XmlAttribute(AttributeName = "ContentType", Form = XmlSchemaForm.Unqualified)]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        public ContentTypeForContentByData __ContentType;
 
-        [JsonIgnore] [XmlIgnore] [EditorBrowsable(EditorBrowsableState.Advanced)] private bool __ContentTypeSpecified;
+        [JsonIgnore]
+        [XmlIgnore]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        private bool __ContentTypeSpecified;
 
         [JsonIgnore]
         [XmlIgnore]
@@ -175,8 +231,11 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
             }
         }
 
-        [JsonProperty(PropertyName = "EmailCommand")] [XmlElement(ElementName = "EmailCommand", IsNullable = false, Form = XmlSchemaForm.Qualified,
-            Type = typeof (EmailCommand))] [EditorBrowsable(EditorBrowsableState.Advanced)] public EmailCommand
+        [JsonProperty(PropertyName = "EmailCommand")]
+        [XmlElement(ElementName = "EmailCommand", IsNullable = false, Form = XmlSchemaForm.Qualified,
+Type = typeof(EmailCommand))]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        public EmailCommand
             __EmailCommand;
 
         [JsonIgnore]
@@ -199,9 +258,15 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
     public class ContentByID : Content
     {
 
-        [JsonProperty(PropertyName = "Source")] [XmlAttribute(AttributeName = "Source", Form = XmlSchemaForm.Unqualified)] [EditorBrowsable(EditorBrowsableState.Advanced)] public Source __Source;
+        [JsonProperty(PropertyName = "Source")]
+        [XmlAttribute(AttributeName = "Source", Form = XmlSchemaForm.Unqualified)]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        public Source __Source;
 
-        [JsonIgnore] [XmlIgnore] [EditorBrowsable(EditorBrowsableState.Advanced)] public bool __SourceSpecified;
+        [JsonIgnore]
+        [XmlIgnore]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        public bool __SourceSpecified;
 
 
         [JsonIgnore]
@@ -216,7 +281,10 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
             }
         }
 
-        [JsonProperty(PropertyName = "EmailDisplayLanguage")] [XmlElement(ElementName = "EmailDisplayLanguage", Form = XmlSchemaForm.Unqualified, DataType = "string")] [EditorBrowsable(EditorBrowsableState.Advanced)] public string __EmailDisplayLanguage;
+        [JsonProperty(PropertyName = "EmailDisplayLanguage")]
+        [XmlElement(ElementName = "EmailDisplayLanguage", Form = XmlSchemaForm.Unqualified, DataType = "string")]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        public string __EmailDisplayLanguage;
 
 
         [JsonIgnore]
@@ -227,10 +295,15 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
             set { __EmailDisplayLanguage = value; }
         }
 
-        [JsonProperty(PropertyName = "ImageType")] [XmlAttribute(AttributeName = "ImageType", Form = XmlSchemaForm.Unqualified)] [EditorBrowsable(EditorBrowsableState.Advanced)] public ImageType __ImageType;
+        [JsonProperty(PropertyName = "ImageType")]
+        [XmlAttribute(AttributeName = "ImageType", Form = XmlSchemaForm.Unqualified)]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        public ImageType __ImageType;
 
 
-        [JsonIgnore] [XmlIgnore] public bool __ImageTypeSpecified;
+        [JsonIgnore]
+        [XmlIgnore]
+        public bool __ImageTypeSpecified;
 
 
         [JsonIgnore]
@@ -245,15 +318,25 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
             }
         }
 
-        [JsonProperty(PropertyName = "ContentType")] [XmlAttribute(AttributeName = "ContentType", Form = XmlSchemaForm.Unqualified)] [EditorBrowsable(EditorBrowsableState.Advanced)] public ContentTypeForContentByID __ContentType;
+        [JsonProperty(PropertyName = "ContentType")]
+        [XmlAttribute(AttributeName = "ContentType", Form = XmlSchemaForm.Unqualified)]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        public ContentTypeForContentByID __ContentType;
 
 
-        [JsonIgnore] [XmlIgnore] public bool __ContentTypeSpecified;
+        [JsonIgnore]
+        [XmlIgnore]
+        public bool __ContentTypeSpecified;
 
-        [JsonProperty(PropertyName = "AsAttachment")] [XmlAttribute(AttributeName = "AsAttachment", Form = XmlSchemaForm.Qualified, DataType = "boolean")] [EditorBrowsable(EditorBrowsableState.Advanced)] public bool __AsAttachment;
+        [JsonProperty(PropertyName = "AsAttachment")]
+        [XmlAttribute(AttributeName = "AsAttachment", Form = XmlSchemaForm.Qualified, DataType = "boolean")]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        public bool __AsAttachment;
 
 
-        [JsonIgnore] [XmlIgnore] public bool __AsAttachmentSpecified;
+        [JsonIgnore]
+        [XmlIgnore]
+        public bool __AsAttachmentSpecified;
 
         [JsonIgnore]
         [XmlIgnore]
@@ -291,7 +374,10 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
     public class EmailAddress
     {
 
-        [JsonProperty(PropertyName = "Name")] [XmlAttribute(AttributeName = "Name", Form = XmlSchemaForm.Unqualified, DataType = "string")] [EditorBrowsable(EditorBrowsableState.Advanced)] public string __Name = "";
+        [JsonProperty(PropertyName = "Name")]
+        [XmlAttribute(AttributeName = "Name", Form = XmlSchemaForm.Unqualified, DataType = "string")]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        public string __Name = "";
 
         [JsonIgnore]
         [XmlIgnore]
@@ -301,7 +387,10 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
             set { __Name = value; }
         }
 
-        [JsonProperty(PropertyName = "Address")] [XmlAttribute(AttributeName = "Address", Form = XmlSchemaForm.Unqualified, DataType = "string")] [EditorBrowsable(EditorBrowsableState.Advanced)] public string __Address;
+        [JsonProperty(PropertyName = "Address")]
+        [XmlAttribute(AttributeName = "Address", Form = XmlSchemaForm.Unqualified, DataType = "string")]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        public string __Address;
 
         [JsonIgnore]
         [XmlIgnore]
@@ -349,14 +438,18 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
     }
 
     [JsonObject(Title = "Ticket")]
+    [DataContract(Name = "Ticket")]
     public class Ticket
     {
-        [JsonProperty(PropertyName = "Recepient")] [XmlElement(Type = typeof (Recepient), ElementName = "Recepient", IsNullable = false,
-            Form = XmlSchemaForm.Qualified)] [EditorBrowsable(EditorBrowsableState.Advanced)] public Recepient
-            __Recepient;
+        [JsonProperty(PropertyName = "Recepient")]
+        [XmlElement(Type = typeof(Recepient), ElementName = "Recepient", IsNullable = false, Form = XmlSchemaForm.Qualified)]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        [DataMember(Name = "Recipient", IsRequired = true)]
+        public Recepient __Recepient;
 
         [JsonIgnore]
         [XmlIgnore]
+        [IgnoreDataMember]
         public Recepient Recepient
         {
             get
@@ -367,35 +460,52 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
             set { __Recepient = value; }
         }
 
-        [JsonProperty(PropertyName = "FreeText")] [XmlElement(ElementName = "FreeText", IsNullable = false, Form = XmlSchemaForm.Qualified, DataType = "string")] [EditorBrowsable(EditorBrowsableState.Advanced)] public string __FreeText;
+        [JsonProperty(PropertyName = "FreeText")]
+        [XmlElement(ElementName = "FreeText", IsNullable = false, Form = XmlSchemaForm.Qualified, DataType = "string")]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        [DataMember(Name = "FreeText", IsRequired = true)]
+        public string __FreeText;
 
         [JsonIgnore]
         [XmlIgnore]
+        [IgnoreDataMember]
         public string FreeText
         {
             get { return __FreeText; }
             set { __FreeText = value; }
         }
 
-        [JsonProperty(PropertyName = "ProductType")] [XmlElement(ElementName = "ProductType", IsNullable = false, Form = XmlSchemaForm.Qualified, DataType = "string"
-            )] [EditorBrowsable(EditorBrowsableState.Advanced)] public string __ProductType;
+        [JsonProperty(PropertyName = "ProductType")]
+        [XmlElement(ElementName = "ProductType", IsNullable = false, Form = XmlSchemaForm.Qualified, DataType = "string")]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        [DataMember(Name = "ProductType", IsRequired = true)]
+        public string __ProductType;
 
         [JsonIgnore]
         [XmlIgnore]
+        [IgnoreDataMember]
         public string ProductType
         {
             get { return __ProductType; }
             set { __ProductType = value; }
         }
 
-        [JsonProperty(PropertyName = "EmailContentType")] [XmlElement(ElementName = "EmailContentType", IsNullable = false, Form = XmlSchemaForm.Qualified)] [EditorBrowsable(EditorBrowsableState.Advanced)] public EmailContentType __EmailContentType;
+        [JsonProperty(PropertyName = "EmailContentType")]
+        [XmlElement(ElementName = "EmailContentType", IsNullable = false, Form = XmlSchemaForm.Qualified)]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        [DataMember(Name = "EmailContentType", IsRequired = true)]
+        public EmailContentType __EmailContentType;
 
-
-        [JsonIgnore] [XmlIgnore] [EditorBrowsable(EditorBrowsableState.Advanced)] public bool
-            __EmailContentTypeSpecified;
 
         [JsonIgnore]
         [XmlIgnore]
+        [IgnoreDataMember]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        public bool __EmailContentTypeSpecified;
+
+        [JsonIgnore]
+        [XmlIgnore]
+        [IgnoreDataMember]
         public EmailContentType EmailContentType
         {
             get { return __EmailContentType; }
@@ -406,13 +516,16 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
             }
         }
 
-        [JsonProperty(PropertyName = "Fids")] [XmlElement(Type = typeof (Factiva.Gateway.Messages.Archive.V2_0.DistDocField), ElementName = "Fids",
-            IsNullable = false, Form = XmlSchemaForm.Qualified)] [EditorBrowsable(EditorBrowsableState.Advanced)] public
-            FidsCollection __FidsCollection;
+        [JsonProperty(PropertyName = "Fids")]
+        [XmlElement(Type = typeof(Factiva.Gateway.Messages.Archive.V2_0.DistDocField), ElementName = "Fids", IsNullable = false, Form = XmlSchemaForm.Qualified)]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        [DataMember(Name = "Fids")]
+        public FidsCollection __FidsCollection;
 
 
         [JsonIgnore]
         [XmlIgnore]
+        [IgnoreDataMember]
         public FidsCollection FidsCollection
         {
             get
@@ -423,26 +536,38 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
             set { __FidsCollection = value; }
         }
 
-        [JsonProperty(PropertyName = "EmailDisplayLanguage")] [XmlElement(ElementName = "EmailDisplayLanguage", Form = XmlSchemaForm.Unqualified, DataType = "string")] [EditorBrowsable(EditorBrowsableState.Advanced)] public string __EmailDisplayLanguage;
+        [JsonProperty(PropertyName = "EmailDisplayLanguage")]
+        [XmlElement(ElementName = "EmailDisplayLanguage", Form = XmlSchemaForm.Unqualified, DataType = "string")]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        [DataMember(Name = "EmailDisplayLanguage", IsRequired = true)]
+        public string __EmailDisplayLanguage;
 
 
         [JsonIgnore]
         [XmlIgnore]
+        [IgnoreDataMember]
         public string EmailDisplayLanguage
         {
             get { return __EmailDisplayLanguage; }
             set { __EmailDisplayLanguage = value; }
         }
 
-        [JsonProperty(PropertyName = "ContentAsAttachment")] [XmlElement(ElementName = "ContentAsAttachment", IsNullable = false, Form = XmlSchemaForm.Qualified,
-            DataType = "boolean")] [EditorBrowsable(EditorBrowsableState.Advanced)] public bool __ContentAsAttachment;
-
-
-        [JsonIgnore] [XmlIgnore] public bool __ContentAsAttachmentSpecified;
+        [JsonProperty(PropertyName = "ContentAsAttachment")]
+        [XmlElement(ElementName = "ContentAsAttachment", IsNullable = false, Form = XmlSchemaForm.Qualified, DataType = "boolean")]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        [DataMember(Name = "ContentAsAttachment", IsRequired = true)]
+        public bool __ContentAsAttachment;
 
 
         [JsonIgnore]
         [XmlIgnore]
+        [IgnoreDataMember]
+        public bool __ContentAsAttachmentSpecified;
+
+
+        [JsonIgnore]
+        [XmlIgnore]
+        [IgnoreDataMember]
         public bool ContentAsAttachment
         {
             get { return __ContentAsAttachment; }
@@ -453,13 +578,19 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
             }
         }
 
-        [JsonProperty(PropertyName = "AddClientCode")] [XmlElement(ElementName = "AddClientCode", IsNullable = false, Form = XmlSchemaForm.Qualified,
-            DataType = "boolean")] [EditorBrowsable(EditorBrowsableState.Advanced)] public bool __AddClientCode;
-
-        [JsonIgnore] [XmlIgnore] public bool __AddClientCodeSpecified;
+        [JsonProperty(PropertyName = "AddClientCode")]
+        [XmlElement(ElementName = "AddClientCode", IsNullable = false, Form = XmlSchemaForm.Qualified, DataType = "boolean")]
+        [DataMember(Name = "AddClientCode", EmitDefaultValue = false)]
+        public bool __AddClientCode;
 
         [JsonIgnore]
         [XmlIgnore]
+        [IgnoreDataMember]
+        public bool __AddClientCodeSpecified;
+
+        [JsonIgnore]
+        [XmlIgnore]
+        [IgnoreDataMember]
         public bool AddClientCode
         {
             get { return __AddClientCode; }
@@ -470,15 +601,21 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
             }
         }
 
-        [JsonProperty(PropertyName = "IncludeHeadlinesInCover")] [XmlElement(ElementName = "IncludeHeadlinesInCover", IsNullable = false, Form = XmlSchemaForm.Qualified,
-            DataType = "boolean")] [EditorBrowsable(EditorBrowsableState.Advanced)] public bool
-            __IncludeHeadlinesInCover;
+        [JsonProperty(PropertyName = "IncludeHeadlinesInCover")]
+        [XmlElement(ElementName = "IncludeHeadlinesInCover", IsNullable = false, Form = XmlSchemaForm.Qualified, DataType = "boolean")]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        [DataMember(Name = "IncludeHeadlinesInCover", EmitDefaultValue = false)]
+        public bool __IncludeHeadlinesInCover;
 
-
-        [JsonIgnore] [XmlIgnore] public bool __IncludeHeadlinesInCoverSpecified;
 
         [JsonIgnore]
         [XmlIgnore]
+        [IgnoreDataMember]
+        public bool __IncludeHeadlinesInCoverSpecified;
+
+        [JsonIgnore]
+        [XmlIgnore]
+        [IgnoreDataMember]
         public bool IncludeHeadlinesInCover
         {
             get { return __IncludeHeadlinesInCover; }
@@ -489,11 +626,15 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
             }
         }
 
-        [JsonProperty(PropertyName = "Content")] [XmlElement(Type = typeof (Content), ElementName = "Content", IsNullable = false, Form = XmlSchemaForm.Qualified
-            )] [EditorBrowsable(EditorBrowsableState.Advanced)] public ContentCollection __ContentCollection;
+        [JsonProperty(PropertyName = "Content")]
+        [XmlElement(Type = typeof(Content), ElementName = "Content", IsNullable = false, Form = XmlSchemaForm.Qualified)]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        [DataMember(Name = "Content", IsRequired = true)]
+        public ContentCollection __ContentCollection;
 
         [JsonIgnore]
         [XmlIgnore]
+        [IgnoreDataMember]
         public ContentCollection ContentCollection
         {
             get
@@ -510,10 +651,10 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
         }
     }
 
-    [JsonConverter(typeof (MyCustomConverter))]
+    [JsonConverter(typeof(MyCustomConverter))]
     [JsonObject(Title = "Content")]
-    [XmlInclude(typeof (ContentByID))]
-    [XmlInclude(typeof (ContentByData))]
+    [XmlInclude(typeof(ContentByID))]
+    [XmlInclude(typeof(ContentByData))]
 
     [KnownType(typeof(ContentByID))]
     [KnownType(typeof(ContentByData))]
@@ -533,8 +674,11 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
         }
 
 
-        [JsonProperty(PropertyName = "ContentData")] [XmlElement(ElementName = "ContentData", IsNullable = false, Form = XmlSchemaForm.Qualified, DataType = "string"
-            )] [EditorBrowsable(EditorBrowsableState.Advanced)] public string __ContentData;
+        [JsonProperty(PropertyName = "ContentData")]
+        [XmlElement(ElementName = "ContentData", IsNullable = false, Form = XmlSchemaForm.Qualified, DataType = "string"
+)]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        public string __ContentData;
 
 
         [JsonIgnore]
@@ -560,7 +704,7 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
     [JsonArray]
     [Serializable]
     [EditorBrowsable(EditorBrowsableState.Advanced)]
-//[KnownType(typeof(Factiva.Gateway.Messages.Archive.V2_0.DistDocField))]
+    //[KnownType(typeof(Factiva.Gateway.Messages.Archive.V2_0.DistDocField))]
     public class FidsCollection : List<Factiva.Gateway.Messages.Archive.V2_0.DistDocField>
     {
     }
@@ -579,8 +723,11 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
     public class Recepient
     {
 
-        [JsonProperty(PropertyName = "ToEmailAddress")] [XmlElement(Type = typeof (ToEmailAddress), ElementName = "ToEmailAddress", IsNullable = false,
-            Form = XmlSchemaForm.Qualified)] [EditorBrowsable(EditorBrowsableState.Advanced)] public ToEmailCollection
+        [JsonProperty(PropertyName = "ToEmailAddress")]
+        [XmlElement(Type = typeof(ToEmailAddress), ElementName = "ToEmailAddress", IsNullable = false,
+Form = XmlSchemaForm.Qualified)]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        public ToEmailCollection
             __ToEmailCollection;
 
         [JsonIgnore]
@@ -595,8 +742,11 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
             set { __ToEmailCollection = value; }
         }
 
-        [JsonProperty(PropertyName = "CCEmailAddress")] [XmlElement(Type = typeof (CCEmailAddress), ElementName = "CCEmailAddress", IsNullable = false,
-            Form = XmlSchemaForm.Qualified)] [EditorBrowsable(EditorBrowsableState.Advanced)] public CCEmailCollection
+        [JsonProperty(PropertyName = "CCEmailAddress")]
+        [XmlElement(Type = typeof(CCEmailAddress), ElementName = "CCEmailAddress", IsNullable = false,
+Form = XmlSchemaForm.Qualified)]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        public CCEmailCollection
             __CCEmailCollection;
 
         [JsonIgnore]
@@ -611,8 +761,11 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
             set { __CCEmailCollection = value; }
         }
 
-        [JsonProperty(PropertyName = "BCCEmailAddress")] [XmlElement(Type = typeof (BCCEmailAddress), ElementName = "BCCEmailAddress", IsNullable = false,
-            Form = XmlSchemaForm.Qualified)] [EditorBrowsable(EditorBrowsableState.Advanced)] public BCCEmailCollection
+        [JsonProperty(PropertyName = "BCCEmailAddress")]
+        [XmlElement(Type = typeof(BCCEmailAddress), ElementName = "BCCEmailAddress", IsNullable = false,
+Form = XmlSchemaForm.Qualified)]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        public BCCEmailCollection
             __BCCEmailCollection;
 
 
@@ -628,8 +781,11 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
             set { __BCCEmailCollection = value; }
         }
 
-        [JsonProperty(PropertyName = "FromEmailAddress")] [XmlElement(Type = typeof (FromEmailAddress), ElementName = "FromEmailAddress", IsNullable = false,
-            Form = XmlSchemaForm.Qualified)] [EditorBrowsable(EditorBrowsableState.Advanced)] public FromEmailAddress
+        [JsonProperty(PropertyName = "FromEmailAddress")]
+        [XmlElement(Type = typeof(FromEmailAddress), ElementName = "FromEmailAddress", IsNullable = false,
+Form = XmlSchemaForm.Qualified)]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        public FromEmailAddress
             __FromEmailAddress;
 
 
@@ -645,8 +801,11 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
             set { __FromEmailAddress = value; }
         }
 
-        [JsonProperty(PropertyName = "ReplyToEmailAddress")] [XmlElement(Type = typeof (ReplyToEmailAddress), ElementName = "ReplyToEmailAddress", IsNullable = false,
-            Form = XmlSchemaForm.Qualified)] [EditorBrowsable(EditorBrowsableState.Advanced)] public ReplyToEmailAddress
+        [JsonProperty(PropertyName = "ReplyToEmailAddress")]
+        [XmlElement(Type = typeof(ReplyToEmailAddress), ElementName = "ReplyToEmailAddress", IsNullable = false,
+Form = XmlSchemaForm.Qualified)]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        public ReplyToEmailAddress
             __ReplyToEmailAddress;
 
         [JsonIgnore]
@@ -661,10 +820,15 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
             set { __ReplyToEmailAddress = value; }
         }
 
-        [JsonProperty(PropertyName = "EmailDisplayFormat")] [XmlElement(ElementName = "EmailDisplayFormat", IsNullable = false, Form = XmlSchemaForm.Qualified)] [EditorBrowsable(EditorBrowsableState.Advanced)] public EmailDisplayFormat __EmailDisplayFormat;
+        [JsonProperty(PropertyName = "EmailDisplayFormat")]
+        [XmlElement(ElementName = "EmailDisplayFormat", IsNullable = false, Form = XmlSchemaForm.Qualified)]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        public EmailDisplayFormat __EmailDisplayFormat;
 
 
-        [JsonIgnore] [XmlIgnore] public bool __EmailDisplayFormatSpecified;
+        [JsonIgnore]
+        [XmlIgnore]
+        public bool __EmailDisplayFormatSpecified;
 
 
         [JsonIgnore]
@@ -679,7 +843,10 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
             }
         }
 
-        [JsonProperty(PropertyName = "Subject")] [XmlElement(ElementName = "Subject", IsNullable = false, Form = XmlSchemaForm.Qualified, DataType = "string")] [EditorBrowsable(EditorBrowsableState.Advanced)] public string __Subject;
+        [JsonProperty(PropertyName = "Subject")]
+        [XmlElement(ElementName = "Subject", IsNullable = false, Form = XmlSchemaForm.Qualified, DataType = "string")]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        public string __Subject;
 
 
         [JsonIgnore]
@@ -706,7 +873,7 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
 
         public override bool CanConvert(Type objectType)
         {
-            return typeof (T).IsAssignableFrom(objectType);
+            return typeof(T).IsAssignableFrom(objectType);
         }
 
         public override object ReadJson(JsonReader reader, Type objectType,
@@ -740,18 +907,18 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
         }
     }
 
-    [JsonConverter(typeof (MyCustomConverter))]
+    [JsonConverter(typeof(MyCustomConverter))]
     [JsonObject(Title = "EmailCommand")]
     [XmlType(TypeName = "EmailCommand"), Serializable]
     [EditorBrowsable(EditorBrowsableState.Advanced)]
-    [XmlInclude(typeof (FolderInvite))]
-    [XmlInclude(typeof (UserWelcome))]
-    [XmlInclude(typeof (UserWelcomeConfirmation))]
-    [XmlInclude(typeof (EmailValidate))]
-    [XmlInclude(typeof (EmailLoginEnabled))]
-    [XmlInclude(typeof (PasswordReset))]
-    [XmlInclude(typeof (AlertConfirmation))]
-    [XmlInclude(typeof (AlertUnsubscribe))]
+    [XmlInclude(typeof(FolderInvite))]
+    [XmlInclude(typeof(UserWelcome))]
+    [XmlInclude(typeof(UserWelcomeConfirmation))]
+    [XmlInclude(typeof(EmailValidate))]
+    [XmlInclude(typeof(EmailLoginEnabled))]
+    [XmlInclude(typeof(PasswordReset))]
+    [XmlInclude(typeof(AlertConfirmation))]
+    [XmlInclude(typeof(AlertUnsubscribe))]
     public abstract class EmailCommand
     {
 
@@ -792,8 +959,11 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
     [EditorBrowsable(EditorBrowsableState.Always)]
     public class FolderInvite : EmailCommand
     {
-        [JsonProperty(PropertyName = "FolderDisplayName")] [XmlElement(ElementName = "FolderDisplayName", IsNullable = false, Form = XmlSchemaForm.Qualified,
-            DataType = "string")] [EditorBrowsable(EditorBrowsableState.Advanced)] public string __FolderDisplayName;
+        [JsonProperty(PropertyName = "FolderDisplayName")]
+        [XmlElement(ElementName = "FolderDisplayName", IsNullable = false, Form = XmlSchemaForm.Qualified,
+DataType = "string")]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        public string __FolderDisplayName;
 
 
         [JsonIgnore]
@@ -809,11 +979,17 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
         }
 
 
-        [JsonIgnore] [XmlIgnore] [EditorBrowsable(EditorBrowsableState.Advanced)] public bool
+        [JsonIgnore]
+        [XmlIgnore]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        public bool
             __FolderDisplayNameSpecified;
 
-        [JsonProperty(PropertyName = "SubscribeURL")] [XmlElement(ElementName = "SubscribeURL", IsNullable = false, Form = XmlSchemaForm.Qualified,
-            DataType = "string")] [EditorBrowsable(EditorBrowsableState.Advanced)] public string __SubscribeURL;
+        [JsonProperty(PropertyName = "SubscribeURL")]
+        [XmlElement(ElementName = "SubscribeURL", IsNullable = false, Form = XmlSchemaForm.Qualified,
+DataType = "string")]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        public string __SubscribeURL;
 
 
         [JsonIgnore]
@@ -829,9 +1005,15 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
         }
 
 
-        [JsonIgnore] [XmlIgnore] [EditorBrowsable(EditorBrowsableState.Advanced)] private bool __SubscribeURLSpecified;
+        [JsonIgnore]
+        [XmlIgnore]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        private bool __SubscribeURLSpecified;
 
-        [JsonProperty(PropertyName = "ANs")] [XmlElement(Type = typeof (string), ElementName = "ANs", IsNullable = false, Form = XmlSchemaForm.Qualified)] [EditorBrowsable(EditorBrowsableState.Advanced)] public AnCollection __AnCollection;
+        [JsonProperty(PropertyName = "ANs")]
+        [XmlElement(Type = typeof(string), ElementName = "ANs", IsNullable = false, Form = XmlSchemaForm.Qualified)]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        public AnCollection __AnCollection;
 
 
         [JsonIgnore]
@@ -856,7 +1038,10 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
     [EditorBrowsable(EditorBrowsableState.Always)]
     public class UserWelcome : EmailCommand
     {
-        [JsonProperty(PropertyName = "UserID")] [XmlElement(ElementName = "UserID", IsNullable = false, Form = XmlSchemaForm.Qualified, DataType = "string")] [EditorBrowsable(EditorBrowsableState.Advanced)] public string __UserID;
+        [JsonProperty(PropertyName = "UserID")]
+        [XmlElement(ElementName = "UserID", IsNullable = false, Form = XmlSchemaForm.Qualified, DataType = "string")]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        public string __UserID;
 
 
         [JsonIgnore]
@@ -867,7 +1052,10 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
             set { __UserID = value; }
         }
 
-        [JsonProperty(PropertyName = "Namespace")] [XmlElement(ElementName = "Namespace", IsNullable = false, Form = XmlSchemaForm.Qualified, DataType = "string")] [EditorBrowsable(EditorBrowsableState.Advanced)] public string __Namespace;
+        [JsonProperty(PropertyName = "Namespace")]
+        [XmlElement(ElementName = "Namespace", IsNullable = false, Form = XmlSchemaForm.Qualified, DataType = "string")]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        public string __Namespace;
 
 
         [JsonIgnore]
@@ -879,7 +1067,10 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
         }
 
 
-        [JsonProperty(PropertyName = "SubmitURL")] [XmlElement(ElementName = "SubmitURL", IsNullable = false, Form = XmlSchemaForm.Qualified, DataType = "string")] [EditorBrowsable(EditorBrowsableState.Advanced)] public string __SubmitURL;
+        [JsonProperty(PropertyName = "SubmitURL")]
+        [XmlElement(ElementName = "SubmitURL", IsNullable = false, Form = XmlSchemaForm.Qualified, DataType = "string")]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        public string __SubmitURL;
 
 
         [JsonIgnore]
@@ -894,8 +1085,11 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
             }
         }
 
-        [JsonProperty(PropertyName = "ProductURL")] [XmlElement(ElementName = "ProductURL", IsNullable = false, Form = XmlSchemaForm.Qualified, DataType = "string")
-                                                    ] [EditorBrowsable(EditorBrowsableState.Advanced)] public string __ProductURL;
+        [JsonProperty(PropertyName = "ProductURL")]
+        [XmlElement(ElementName = "ProductURL", IsNullable = false, Form = XmlSchemaForm.Qualified, DataType = "string")
+        ]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        public string __ProductURL;
 
 
         [JsonIgnore]
@@ -907,7 +1101,10 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
         }
 
 
-        [JsonIgnore] [XmlIgnore] [EditorBrowsable(EditorBrowsableState.Advanced)] private bool __SubmitURLSpecified;
+        [JsonIgnore]
+        [XmlIgnore]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        private bool __SubmitURLSpecified;
 
         public UserWelcome()
         {
@@ -941,7 +1138,10 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
     [EditorBrowsable(EditorBrowsableState.Always)]
     public class PasswordReset : EmailCommand
     {
-        [JsonProperty(PropertyName = "UserID")] [XmlElement(ElementName = "UserID", IsNullable = false, Form = XmlSchemaForm.Qualified, DataType = "string")] [EditorBrowsable(EditorBrowsableState.Advanced)] public string __UserID;
+        [JsonProperty(PropertyName = "UserID")]
+        [XmlElement(ElementName = "UserID", IsNullable = false, Form = XmlSchemaForm.Qualified, DataType = "string")]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        public string __UserID;
 
         [JsonIgnore]
         [XmlIgnore]
@@ -951,7 +1151,10 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
             set { __UserID = value; }
         }
 
-        [JsonProperty(PropertyName = "Namespace")] [XmlElement(ElementName = "Namespace", IsNullable = false, Form = XmlSchemaForm.Qualified, DataType = "string")] [EditorBrowsable(EditorBrowsableState.Advanced)] public string __Namespace;
+        [JsonProperty(PropertyName = "Namespace")]
+        [XmlElement(ElementName = "Namespace", IsNullable = false, Form = XmlSchemaForm.Qualified, DataType = "string")]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        public string __Namespace;
 
 
         [JsonIgnore]
@@ -963,7 +1166,10 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
         }
 
 
-        [JsonProperty(PropertyName = "ResetURL")] [XmlElement(ElementName = "ResetURL", IsNullable = false, Form = XmlSchemaForm.Qualified, DataType = "string")] [EditorBrowsable(EditorBrowsableState.Advanced)] public string __ResetURL;
+        [JsonProperty(PropertyName = "ResetURL")]
+        [XmlElement(ElementName = "ResetURL", IsNullable = false, Form = XmlSchemaForm.Qualified, DataType = "string")]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        public string __ResetURL;
 
 
         [JsonIgnore]
@@ -978,7 +1184,10 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
             }
         }
 
-        [JsonProperty(PropertyName = "SourceIP")] [XmlElement(ElementName = "SourceIP", IsNullable = false, Form = XmlSchemaForm.Qualified, DataType = "string")] [EditorBrowsable(EditorBrowsableState.Advanced)] public string __SourceIP;
+        [JsonProperty(PropertyName = "SourceIP")]
+        [XmlElement(ElementName = "SourceIP", IsNullable = false, Form = XmlSchemaForm.Qualified, DataType = "string")]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        public string __SourceIP;
 
         [JsonIgnore]
         [XmlIgnore]
@@ -988,7 +1197,10 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
             set { __SourceIP = value; }
         }
 
-        [JsonProperty(PropertyName = "LoginURL")] [XmlElement(ElementName = "LoginURL", IsNullable = false, Form = XmlSchemaForm.Qualified, DataType = "string")] [EditorBrowsable(EditorBrowsableState.Advanced)] public string __LoginURL;
+        [JsonProperty(PropertyName = "LoginURL")]
+        [XmlElement(ElementName = "LoginURL", IsNullable = false, Form = XmlSchemaForm.Qualified, DataType = "string")]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        public string __LoginURL;
 
 
         [JsonIgnore]
@@ -1003,8 +1215,11 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
             }
         }
 
-        [JsonProperty(PropertyName = "DomainReplaceString")] [XmlElement(ElementName = "DomainReplaceString", IsNullable = false, Form = XmlSchemaForm.Qualified,
-            DataType = "string")] [EditorBrowsable(EditorBrowsableState.Advanced)] public string __DomainReplaceString;
+        [JsonProperty(PropertyName = "DomainReplaceString")]
+        [XmlElement(ElementName = "DomainReplaceString", IsNullable = false, Form = XmlSchemaForm.Qualified,
+DataType = "string")]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        public string __DomainReplaceString;
 
         [JsonIgnore]
         [XmlIgnore]
@@ -1014,8 +1229,11 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
             set { __DomainReplaceString = value; }
         }
 
-        [JsonProperty(PropertyName = "LoginStatus")] [XmlElement(ElementName = "LoginStatus", IsNullable = false, Form = XmlSchemaForm.Qualified, DataType = "string"
-            )] [EditorBrowsable(EditorBrowsableState.Advanced)] public string __LoginStatus;
+        [JsonProperty(PropertyName = "LoginStatus")]
+        [XmlElement(ElementName = "LoginStatus", IsNullable = false, Form = XmlSchemaForm.Qualified, DataType = "string"
+)]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        public string __LoginStatus;
 
         [JsonIgnore]
         [XmlIgnore]
@@ -1025,7 +1243,10 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
             set { __LoginStatus = value; }
         }
 
-        [JsonProperty(PropertyName = "Domain")] [XmlElement(ElementName = "Domain", IsNullable = false, Form = XmlSchemaForm.Qualified, DataType = "string")] [EditorBrowsable(EditorBrowsableState.Advanced)] public string __Domain;
+        [JsonProperty(PropertyName = "Domain")]
+        [XmlElement(ElementName = "Domain", IsNullable = false, Form = XmlSchemaForm.Qualified, DataType = "string")]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        public string __Domain;
 
         [JsonIgnore]
         [XmlIgnore]
@@ -1039,11 +1260,20 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
             }
         }
 
-        [JsonIgnore] [XmlIgnore] [EditorBrowsable(EditorBrowsableState.Advanced)] private bool __ResetURLSpecified;
+        [JsonIgnore]
+        [XmlIgnore]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        private bool __ResetURLSpecified;
 
-        [JsonIgnore] [XmlIgnore] [EditorBrowsable(EditorBrowsableState.Advanced)] private bool __LoginURLSpecified;
+        [JsonIgnore]
+        [XmlIgnore]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        private bool __LoginURLSpecified;
 
-        [JsonIgnore] [XmlIgnore] [EditorBrowsable(EditorBrowsableState.Advanced)] private bool __DomainSpecified;
+        [JsonIgnore]
+        [XmlIgnore]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        private bool __DomainSpecified;
 
         public PasswordReset()
         {
@@ -1055,7 +1285,10 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
     [EditorBrowsable(EditorBrowsableState.Always)]
     public class AlertConfirmation : EmailCommand
     {
-        [JsonProperty(PropertyName = "UserID")] [XmlElement(ElementName = "UserID", IsNullable = false, Form = XmlSchemaForm.Qualified, DataType = "string")] [EditorBrowsable(EditorBrowsableState.Advanced)] public string __UserID;
+        [JsonProperty(PropertyName = "UserID")]
+        [XmlElement(ElementName = "UserID", IsNullable = false, Form = XmlSchemaForm.Qualified, DataType = "string")]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        public string __UserID;
 
         [JsonIgnore]
         [XmlIgnore]
@@ -1065,7 +1298,10 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
             set { __UserID = value; }
         }
 
-        [JsonProperty(PropertyName = "Namespace")] [XmlElement(ElementName = "Namespace", IsNullable = false, Form = XmlSchemaForm.Qualified, DataType = "string")] [EditorBrowsable(EditorBrowsableState.Advanced)] public string __Namespace;
+        [JsonProperty(PropertyName = "Namespace")]
+        [XmlElement(ElementName = "Namespace", IsNullable = false, Form = XmlSchemaForm.Qualified, DataType = "string")]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        public string __Namespace;
 
         [JsonIgnore]
         [XmlIgnore]
@@ -1076,8 +1312,11 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
         }
 
 
-        [JsonProperty(PropertyName = "FolderName")] [XmlElement(ElementName = "FolderName", IsNullable = false, Form = XmlSchemaForm.Qualified, DataType = "string")
-                                                    ] [EditorBrowsable(EditorBrowsableState.Advanced)] public string __FolderName;
+        [JsonProperty(PropertyName = "FolderName")]
+        [XmlElement(ElementName = "FolderName", IsNullable = false, Form = XmlSchemaForm.Qualified, DataType = "string")
+        ]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        public string __FolderName;
 
         [JsonIgnore]
         [XmlIgnore]
@@ -1091,7 +1330,10 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
             }
         }
 
-        [JsonIgnore] [XmlIgnore] [EditorBrowsable(EditorBrowsableState.Advanced)] private bool __FolderNameSpecified;
+        [JsonIgnore]
+        [XmlIgnore]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        private bool __FolderNameSpecified;
 
         public AlertConfirmation()
         {
@@ -1106,10 +1348,10 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
     }
 
 
-// Type: Factiva.Gateway.Messages.Archive.V2_0.DistDocField
-// Assembly: factiva.gateway.messages, Version=7.5.0.81, Culture=neutral, PublicKeyToken=null
-// MVID: 913B510B-3748-47D4-ADE4-419E7D96D936
-// Assembly location: C:\TFS\Factiva Web UI\trunk\src\Dotcom\OpenUrlUtility\bin\Debug\factiva.gateway.messages.dll
+    // Type: Factiva.Gateway.Messages.Archive.V2_0.DistDocField
+    // Assembly: factiva.gateway.messages, Version=7.5.0.81, Culture=neutral, PublicKeyToken=null
+    // MVID: 913B510B-3748-47D4-ADE4-419E7D96D936
+    // Assembly location: C:\TFS\Factiva Web UI\trunk\src\Dotcom\OpenUrlUtility\bin\Debug\factiva.gateway.messages.dll
 
     namespace Factiva.Gateway.Messages.Archive.V2_0
     {
