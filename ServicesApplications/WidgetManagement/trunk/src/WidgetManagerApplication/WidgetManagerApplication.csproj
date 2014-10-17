@@ -558,7 +558,7 @@
     <Content Include="img\syndication\hl\chart\line.png" />
     <Content Include="img\syndication\hl\chart\overlay.png" />
     <Content Include="img\syndication\hl\chart\pie.png" />
-    <Content Include="img\syndication\hl\chart\stackbar.png" />
+    <Content Include="img\syndication\hl\chart\stackedbar.png" />
     <Content Include="img\syndication\hl\chart\verticalbar.png" />
     <Content Include="iworks\bvd\config.xml" />
     <Content Include="iworks\bvd\config_bc.xml" />
@@ -822,7 +822,9 @@
     <Content Include="Log4Net_production.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Log4Net.config" />
+    <Content Include="Log4Net.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Log4Net_beta.config" />
@@ -1397,7 +1399,7 @@
           <IISUrl>http://localhost/consumer.widgets</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>True</UseCustomServer>
-          <CustomServerUrl>http://skdfuiweb7.dev.us.factiva.com/widgetmanagement/default.aspx</CustomServerUrl>
+          <CustomServerUrl>http://local.dev.us.factiva.com/widgetmanagement/default.aspx</CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
