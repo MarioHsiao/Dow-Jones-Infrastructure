@@ -246,8 +246,7 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
         }
 
         [JsonProperty(PropertyName = "EmailCommand")]
-        [XmlElement(ElementName = "EmailCommand", IsNullable = false, Form = XmlSchemaForm.Qualified,
-Type = typeof(EmailCommand))]
+        [XmlElement(ElementName = "EmailCommand", IsNullable = false, Form = XmlSchemaForm.Qualified,Type = typeof(EmailCommand))]
         [EditorBrowsable(EditorBrowsableState.Advanced)]
         public EmailCommand
             __EmailCommand;
@@ -483,7 +482,7 @@ Type = typeof(EmailCommand))]
         [JsonProperty(PropertyName = "Recepient")]
         [XmlElement(Type = typeof(Recepient), ElementName = "Recepient", IsNullable = false, Form = XmlSchemaForm.Qualified)]
         [EditorBrowsable(EditorBrowsableState.Advanced)]
-        [DataMember(Name = "Recipient", IsRequired = true)]
+        [DataMember(Name = "Recepient", IsRequired = true)]
         public Recepient __Recepient;
 
         [JsonIgnore]

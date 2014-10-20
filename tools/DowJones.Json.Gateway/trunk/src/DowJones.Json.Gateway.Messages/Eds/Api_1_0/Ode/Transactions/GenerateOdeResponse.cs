@@ -14,10 +14,10 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode.Transactions
     public class GenerateOdeResponse : IJsonRestResponse
     {
 
-        [JsonIgnore]
+        [JsonProperty(PropertyName = "Status")]
         [XmlElement(ElementName = "Status", IsNullable = false, Form = XmlSchemaForm.Qualified, DataType = "int")]
         [EditorBrowsable(EditorBrowsableState.Advanced)]
-        [DataMember(Name = "Status", IsRequired = true)]
+        [DataMember(Name = "Status")]
         public int __Status;
 
         // [JsonProperty]
@@ -33,10 +33,10 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode.Transactions
             set { __Status = value; }
         }
 
-        [JsonIgnore]
+        [JsonProperty(PropertyName = "DeliveryNumber")]
         [XmlElement(ElementName = "DeliveryNumber", IsNullable = false, Form = XmlSchemaForm.Qualified, DataType = "string")]
         [EditorBrowsable(EditorBrowsableState.Advanced)]
-        [IgnoreDataMember]
+        [DataMember(Name = "DeliveryNumber")]
         public string __DeliveryNumber;
 
         [JsonProperty]
@@ -48,10 +48,10 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode.Transactions
             set { __DeliveryNumber = value; }
         }
 
-        [JsonIgnore]
+        [JsonProperty(PropertyName = "ToEmailAddress")]
         [XmlElement(Type = typeof(ToEmailAddress), ElementName = "ToEmailAddress", IsNullable = false, Form = XmlSchemaForm.Qualified)]
         [EditorBrowsable(EditorBrowsableState.Advanced)]
-        [IgnoreDataMember]
+        [DataMember(Name = "ToEmailAddress")]
         public ToEmailAddress __ToEmailAddress;
 
         [JsonIgnore]
