@@ -67,11 +67,9 @@ namespace DowJones.Json.Gateway.Tests.Eds
     ]
 }";
 
-            var request = Newtonsoft.Json.JsonConvert
-               .DeserializeObject<DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode.Transactions.GenerateOdeRequest>(rr);
+            //var request = Newtonsoft.Json.JsonConvert.DeserializeObject<DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode.Transactions.GenerateOdeRequest>(rr);
 
-            var p = Newtonsoft.Json.JsonConvert
-               .SerializeObject(request);
+            //var p = Newtonsoft.Json.JsonConvert.SerializeObject(request);
 
 
             var ticket = new Ticket()
@@ -136,10 +134,9 @@ namespace DowJones.Json.Gateway.Tests.Eds
                 ControlData = GetControlData()
             };
 
-            var p2 = Newtonsoft.Json.JsonConvert
-   .SerializeObject(r);
+            //var p2 = Newtonsoft.Json.JsonConvert.SerializeObject(r);
 
-            var p3 = r.Request.ToJson(new DataContractJsonConverter());
+            //var p3 = r.Request.ToJson(new DataContractJsonConverter());
 
             UpdateRoutingData(r.ControlData.RoutingData);
 
@@ -183,7 +180,6 @@ namespace DowJones.Json.Gateway.Tests.Eds
 
             // ReSharper disable StringLiteralTypo
             routingData.ServerUri = "http://edsapi.int.dowjones.net/";
-            //routingData.ServiceUrl = "http://pamapi.int.dowjones.net/";
             // ReSharper restore StringLiteralTypo
 
             routingData.TransportType = "HTTP";

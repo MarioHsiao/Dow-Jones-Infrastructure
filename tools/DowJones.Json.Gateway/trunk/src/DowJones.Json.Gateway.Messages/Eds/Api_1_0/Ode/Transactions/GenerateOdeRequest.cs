@@ -39,6 +39,7 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode.Transactions
 
         [JsonIgnore]
         [XmlIgnore]
+        [IgnoreDataMember]
         public TicketCollection TicketCollection
         {
             get

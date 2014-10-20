@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.Serialization;
+using System.Threading;
 using System.Xml.Serialization;
 using System.Collections;
 using System.Xml.Schema;
@@ -10,13 +11,12 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 using Newtonsoft.Json.Converters;
+using System.Linq;
 
 namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
 {
 
     #region EDS-ODE
-
-
     public struct Declarations
     {
         public const string SchemaVersion = "";
@@ -75,25 +75,33 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
         AlertUnsubscribe
     }
 
+    [DataContract(Name = "ContentType", Namespace = "")]
     [JsonConverter(typeof(StringEnumConverter))]
     public enum ContentTypeForContentByID
     {
         [XmlEnum(Name = "AN")]
+        [EnumMember(Value = "AN")]
         AN,
         [XmlEnum(Name = "URL")]
+        [EnumMember(Value = "URL")]
         URL
     }
 
     [JsonConverter(typeof(StringEnumConverter))]
+    [DataContract(Name = "ImageType", Namespace = "")]
     public enum ImageType
     {
         [XmlEnum("1")]
+        [EnumMember(Value = "1")]
         Thumbnail,
         [XmlEnum("2")]
+        [EnumMember(Value = "2")]
         ThumbnailAndIndexing,
         [XmlEnum("3")]
+        [EnumMember(Value = "3")]
         ScreenResolution,
         [XmlEnum("4")]
+        [EnumMember(Value = "4")]
         ScreenResolutionAndIndexing
     }
 
@@ -136,17 +144,23 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
     }
 
     [JsonConverter(typeof(StringEnumConverter))]
+    [DataContract(Name = "Source", Namespace = "")]
     public enum Source
     {
         [XmlEnum(Name = "P")]
+        [EnumMember(Value = "P")]
         P,
         [XmlEnum(Name = "I")]
+        [EnumMember(Value = "I")]
         I,
         [XmlEnum(Name = "W")]
+        [EnumMember(Value = "W")]
         W,
         [XmlEnum(Name = "H")]
+        [EnumMember(Value = "H")]
         H,
         [XmlEnum(Name = "M")]
+        [EnumMember(Value = "M")]
         M
     }
 
@@ -155,7 +169,7 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
     public enum RequestMode
     {
         [EnumMember(Value = "Async")]
-        [XmlEnum(Name = "ASync")]
+        [XmlEnum(Name = "Async")]
         ASync,
         [EnumMember(Value = "Sync")]
         [XmlEnum(Name = "Sync")]
@@ -240,6 +254,7 @@ Type = typeof(EmailCommand))]
 
         [JsonIgnore]
         [XmlIgnore]
+        [IgnoreDataMember]
         public EmailCommand EmailCommand
         {
             get { return __EmailCommand; }
@@ -255,22 +270,26 @@ Type = typeof(EmailCommand))]
     [JsonObject(Title = "ContentByID")]
     [XmlType(TypeName = "ContentByID"), Serializable]
     [EditorBrowsable(EditorBrowsableState.Always)]
+    [DataContract(Name = "ContentByID", Namespace = "")]
     public class ContentByID : Content
     {
 
         [JsonProperty(PropertyName = "Source")]
         [XmlAttribute(AttributeName = "Source", Form = XmlSchemaForm.Unqualified)]
         [EditorBrowsable(EditorBrowsableState.Advanced)]
+        [DataMember(Name = "Source")]
         public Source __Source;
 
         [JsonIgnore]
         [XmlIgnore]
         [EditorBrowsable(EditorBrowsableState.Advanced)]
+        [IgnoreDataMember]
         public bool __SourceSpecified;
 
 
         [JsonIgnore]
         [XmlIgnore]
+        [IgnoreDataMember]
         public Source Source
         {
             get { return __Source; }
@@ -284,11 +303,13 @@ Type = typeof(EmailCommand))]
         [JsonProperty(PropertyName = "EmailDisplayLanguage")]
         [XmlElement(ElementName = "EmailDisplayLanguage", Form = XmlSchemaForm.Unqualified, DataType = "string")]
         [EditorBrowsable(EditorBrowsableState.Advanced)]
+        [DataMember(Name = "EmailDisplayLanguage")]
         public string __EmailDisplayLanguage;
 
 
         [JsonIgnore]
         [XmlIgnore]
+        [IgnoreDataMember]
         public string EmailDisplayLanguage
         {
             get { return __EmailDisplayLanguage; }
@@ -298,16 +319,19 @@ Type = typeof(EmailCommand))]
         [JsonProperty(PropertyName = "ImageType")]
         [XmlAttribute(AttributeName = "ImageType", Form = XmlSchemaForm.Unqualified)]
         [EditorBrowsable(EditorBrowsableState.Advanced)]
+        [DataMember(Name = "ImageType", EmitDefaultValue = false)]
         public ImageType __ImageType;
 
 
         [JsonIgnore]
         [XmlIgnore]
+        [IgnoreDataMember]
         public bool __ImageTypeSpecified;
 
 
         [JsonIgnore]
         [XmlIgnore]
+        [IgnoreDataMember]
         public ImageType ImageType
         {
             get { return __ImageType; }
@@ -321,25 +345,30 @@ Type = typeof(EmailCommand))]
         [JsonProperty(PropertyName = "ContentType")]
         [XmlAttribute(AttributeName = "ContentType", Form = XmlSchemaForm.Unqualified)]
         [EditorBrowsable(EditorBrowsableState.Advanced)]
+        [DataMember(Name = "ContentType")]
         public ContentTypeForContentByID __ContentType;
 
 
         [JsonIgnore]
         [XmlIgnore]
+        [IgnoreDataMember]
         public bool __ContentTypeSpecified;
 
         [JsonProperty(PropertyName = "AsAttachment")]
         [XmlAttribute(AttributeName = "AsAttachment", Form = XmlSchemaForm.Qualified, DataType = "boolean")]
         [EditorBrowsable(EditorBrowsableState.Advanced)]
+        [DataMember(Name = "AsAttachment", EmitDefaultValue = false)]
         public bool __AsAttachment;
 
 
         [JsonIgnore]
         [XmlIgnore]
+        [IgnoreDataMember]
         public bool __AsAttachmentSpecified;
 
         [JsonIgnore]
         [XmlIgnore]
+        [IgnoreDataMember]
         public bool AsAttachment
         {
             get { return __AsAttachment; }
@@ -352,6 +381,7 @@ Type = typeof(EmailCommand))]
 
         [JsonIgnore]
         [XmlIgnore]
+        [IgnoreDataMember]
         public ContentTypeForContentByID ContentType
         {
             get { return __ContentType; }
@@ -371,16 +401,19 @@ Type = typeof(EmailCommand))]
     [JsonObject(Title = "EmailAddress")]
     [XmlType(TypeName = "EmailAddress"), Serializable]
     [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [DataContract(Name = "EmailAddress", Namespace = "")]
     public class EmailAddress
     {
 
         [JsonProperty(PropertyName = "Name")]
         [XmlAttribute(AttributeName = "Name", Form = XmlSchemaForm.Unqualified, DataType = "string")]
         [EditorBrowsable(EditorBrowsableState.Advanced)]
+        [DataMember(Name = "Name", IsRequired = true)]
         public string __Name = "";
 
         [JsonIgnore]
         [XmlIgnore]
+        [IgnoreDataMember]
         public string Name
         {
             get { return __Name; }
@@ -390,10 +423,12 @@ Type = typeof(EmailCommand))]
         [JsonProperty(PropertyName = "Address")]
         [XmlAttribute(AttributeName = "Address", Form = XmlSchemaForm.Unqualified, DataType = "string")]
         [EditorBrowsable(EditorBrowsableState.Advanced)]
+        [DataMember(Name = "Address", IsRequired = true)]
         public string __Address;
 
         [JsonIgnore]
         [XmlIgnore]
+        [IgnoreDataMember]
         public string Address
         {
             get { return __Address; }
@@ -407,6 +442,7 @@ Type = typeof(EmailCommand))]
 
     [JsonObject(Title = "ToEmailAddress")]
     [XmlRoot(ElementName = "ToEmailAddress", IsNullable = false), Serializable]
+    [DataContract(Name = "ToEmailAddress", Namespace = "")]
     public class ToEmailAddress : EmailAddress
     {
 
@@ -415,6 +451,7 @@ Type = typeof(EmailCommand))]
 
     [JsonObject(Title = "BCCEmailAddress")]
     [XmlRoot(ElementName = "BCCEmailAddress", IsNullable = false), Serializable]
+    [DataContract(Name = "BCCEmailAddress", Namespace = "")]
     public class BCCEmailAddress : EmailAddress
     {
 
@@ -423,6 +460,7 @@ Type = typeof(EmailCommand))]
 
     [JsonObject(Title = "ReplyToEmailAddress")]
     [XmlRoot(ElementName = "ReplyToEmailAddress", IsNullable = false), Serializable]
+    [DataContract(Name = "ReplyToEmailAddress", Namespace = "")]
     public class ReplyToEmailAddress : EmailAddress
     {
 
@@ -431,6 +469,7 @@ Type = typeof(EmailCommand))]
 
     [JsonObject(Title = "FromEmailAddress")]
     [XmlRoot(ElementName = "FromEmailAddress", IsNullable = false), Serializable]
+    [DataContract(Name = "FromEmailAddress", Namespace = "")]
     public class FromEmailAddress : EmailAddress
     {
 
@@ -651,6 +690,7 @@ Type = typeof(EmailCommand))]
         }
     }
 
+    [DataContract(Name = "Content", Namespace = "")]
     [JsonConverter(typeof(MyCustomConverter))]
     [JsonObject(Title = "Content")]
     [XmlInclude(typeof(ContentByID))]
@@ -675,14 +715,15 @@ Type = typeof(EmailCommand))]
 
 
         [JsonProperty(PropertyName = "ContentData")]
-        [XmlElement(ElementName = "ContentData", IsNullable = false, Form = XmlSchemaForm.Qualified, DataType = "string"
-)]
+        [XmlElement(ElementName = "ContentData", IsNullable = false, Form = XmlSchemaForm.Qualified, DataType = "string")]
         [EditorBrowsable(EditorBrowsableState.Advanced)]
+        [DataMember(Name = "ContentData", IsRequired = true)]
         public string __ContentData;
 
 
         [JsonIgnore]
         [XmlIgnore]
+        [IgnoreDataMember]
         public string ContentData
         {
             get { return __ContentData; }
@@ -712,6 +753,7 @@ Type = typeof(EmailCommand))]
 
     [JsonObject(Title = "CCEmailAddress")]
     [XmlRoot(ElementName = "CCEmailAddress", IsNullable = false), Serializable]
+    [DataContract(Name = "CCEmailAddress", Namespace = "")]
     public class CCEmailAddress : EmailAddress
     {
 
@@ -720,18 +762,19 @@ Type = typeof(EmailCommand))]
 
     [JsonObject(Title = "Recepient")]
     [XmlRoot(ElementName = "Recepient", IsNullable = false), Serializable]
+    [DataContract(Name = "Recepient", Namespace = "")]
     public class Recepient
     {
 
         [JsonProperty(PropertyName = "ToEmailAddress")]
-        [XmlElement(Type = typeof(ToEmailAddress), ElementName = "ToEmailAddress", IsNullable = false,
-Form = XmlSchemaForm.Qualified)]
+        [XmlElement(Type = typeof(ToEmailAddress), ElementName = "ToEmailAddress", IsNullable = false, Form = XmlSchemaForm.Qualified)]
         [EditorBrowsable(EditorBrowsableState.Advanced)]
-        public ToEmailCollection
-            __ToEmailCollection;
+        [DataMember(Name = "ToEmailAddress", IsRequired = true)]
+        public ToEmailCollection __ToEmailCollection;
 
         [JsonIgnore]
         [XmlIgnore]
+        [IgnoreDataMember]
         public ToEmailCollection ToEmailCollection
         {
             get
@@ -743,11 +786,10 @@ Form = XmlSchemaForm.Qualified)]
         }
 
         [JsonProperty(PropertyName = "CCEmailAddress")]
-        [XmlElement(Type = typeof(CCEmailAddress), ElementName = "CCEmailAddress", IsNullable = false,
-Form = XmlSchemaForm.Qualified)]
+        [XmlElement(Type = typeof(CCEmailAddress), ElementName = "CCEmailAddress", IsNullable = false, Form = XmlSchemaForm.Qualified)]
         [EditorBrowsable(EditorBrowsableState.Advanced)]
-        public CCEmailCollection
-            __CCEmailCollection;
+        [DataMember(Name = "CCEmailAddress")]
+        public CCEmailCollection __CCEmailCollection;
 
         [JsonIgnore]
         [XmlIgnore]
@@ -762,15 +804,15 @@ Form = XmlSchemaForm.Qualified)]
         }
 
         [JsonProperty(PropertyName = "BCCEmailAddress")]
-        [XmlElement(Type = typeof(BCCEmailAddress), ElementName = "BCCEmailAddress", IsNullable = false,
-Form = XmlSchemaForm.Qualified)]
+        [XmlElement(Type = typeof(BCCEmailAddress), ElementName = "BCCEmailAddress", IsNullable = false, Form = XmlSchemaForm.Qualified)]
         [EditorBrowsable(EditorBrowsableState.Advanced)]
-        public BCCEmailCollection
-            __BCCEmailCollection;
+        [DataMember(Name = "BCCEmailAddress")]
+        public BCCEmailCollection __BCCEmailCollection;
 
 
         [JsonIgnore]
         [XmlIgnore]
+        [IgnoreDataMember]
         public BCCEmailCollection BCCEmailCollection
         {
             get
@@ -782,15 +824,15 @@ Form = XmlSchemaForm.Qualified)]
         }
 
         [JsonProperty(PropertyName = "FromEmailAddress")]
-        [XmlElement(Type = typeof(FromEmailAddress), ElementName = "FromEmailAddress", IsNullable = false,
-Form = XmlSchemaForm.Qualified)]
+        [XmlElement(Type = typeof(FromEmailAddress), ElementName = "FromEmailAddress", IsNullable = false, Form = XmlSchemaForm.Qualified)]
         [EditorBrowsable(EditorBrowsableState.Advanced)]
-        public FromEmailAddress
-            __FromEmailAddress;
+        [DataMember(Name = "FromEmailAddress")]
+        public FromEmailAddress __FromEmailAddress;
 
 
         [JsonIgnore]
         [XmlIgnore]
+        [IgnoreDataMember]
         public FromEmailAddress FromEmailAddress
         {
             get
@@ -802,14 +844,15 @@ Form = XmlSchemaForm.Qualified)]
         }
 
         [JsonProperty(PropertyName = "ReplyToEmailAddress")]
-        [XmlElement(Type = typeof(ReplyToEmailAddress), ElementName = "ReplyToEmailAddress", IsNullable = false,
-Form = XmlSchemaForm.Qualified)]
+        [XmlElement(Type = typeof(ReplyToEmailAddress), ElementName = "ReplyToEmailAddress", IsNullable = false, Form = XmlSchemaForm.Qualified)]
+        [DataMember(Name = "ReplyToEmailAddress")]
         [EditorBrowsable(EditorBrowsableState.Advanced)]
         public ReplyToEmailAddress
             __ReplyToEmailAddress;
 
         [JsonIgnore]
         [XmlIgnore]
+        [IgnoreDataMember]
         public ReplyToEmailAddress ReplyToEmailAddress
         {
             get
@@ -823,16 +866,19 @@ Form = XmlSchemaForm.Qualified)]
         [JsonProperty(PropertyName = "EmailDisplayFormat")]
         [XmlElement(ElementName = "EmailDisplayFormat", IsNullable = false, Form = XmlSchemaForm.Qualified)]
         [EditorBrowsable(EditorBrowsableState.Advanced)]
+        [DataMember(Name = "EmailDisplayFormat")]
         public EmailDisplayFormat __EmailDisplayFormat;
 
 
         [JsonIgnore]
         [XmlIgnore]
+        [IgnoreDataMember]
         public bool __EmailDisplayFormatSpecified;
 
 
         [JsonIgnore]
         [XmlIgnore]
+        [IgnoreDataMember]
         public EmailDisplayFormat EmailDisplayFormat
         {
             get { return __EmailDisplayFormat; }
@@ -845,12 +891,14 @@ Form = XmlSchemaForm.Qualified)]
 
         [JsonProperty(PropertyName = "Subject")]
         [XmlElement(ElementName = "Subject", IsNullable = false, Form = XmlSchemaForm.Qualified, DataType = "string")]
+        [DataMember(Name = "Subject")]
         [EditorBrowsable(EditorBrowsableState.Advanced)]
         public string __Subject;
 
 
         [JsonIgnore]
         [XmlIgnore]
+        [IgnoreDataMember]
         public string Subject
         {
             get { return __Subject; }
