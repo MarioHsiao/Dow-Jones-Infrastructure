@@ -179,9 +179,9 @@ namespace DowJones.Json.Gateway.Tests.Eds
             // ReSharper restore StringLiteralTypo
 
             // ReSharper disable StringLiteralTypo
-            routingData.ServerUri = "http://edsapi.int.dowjones.net/";
+            //routingData.ServerUri = "http://utilities.int.dowjones.com/restserviceproxy";
             // ReSharper restore StringLiteralTypo
-
+            routingData.ServiceUrl = "http://edsapi.int.dowjones.net/";
             routingData.TransportType = "HTTP";
             routingData.Environment = Environment.Proxy;
             routingData.Serializer = JsonSerializer.DataContract;
