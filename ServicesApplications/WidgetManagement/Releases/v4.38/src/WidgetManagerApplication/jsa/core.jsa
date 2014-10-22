@@ -1,0 +1,11 @@
+#include "..\js\global.js";
+#include "..\xlib\x_core.js";
+#include "..\xlib\x_style.js";
+#include "..\xlib\x_dom.js";
+#include "..\xlib\x_drag.js";
+#include "..\xlib\x_win.js";
+#include "..\xlib\x_event.js";
+#include "..\xlib\x_misc.js";
+#include "..\xlib\x_cook.js";
+#include "..\xlib\x_animation.js";
+#include "..\js\flashobject.js";
