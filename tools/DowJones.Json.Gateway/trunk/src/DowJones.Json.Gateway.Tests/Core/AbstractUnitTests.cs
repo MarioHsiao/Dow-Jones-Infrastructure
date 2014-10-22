@@ -56,6 +56,7 @@ namespace DowJones.Json.Gateway.Tests.Core
                 {
                     ContentServerAddress = 0,
                     TransportType = "RTS",
+                    Serializer = JsonSerializer.JsonDotNet
                 },
                 AuthorizationData = new AuthorizationData()
                 {

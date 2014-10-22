@@ -99,7 +99,7 @@ namespace DowJones.Json.Gateway.Tests.Eds
                         Name = "Vivek K",
                         Address = "djcicd@gmail.com"
                     },
-                    EmailDisplayFormat = EmailDisplayFormat.TEXT,
+                    EmailDisplayFormat = EmailDisplayFormat.HTML,
                     Subject = "Blah blah"
                 },
                 FreeText = "This is free text 1",
@@ -129,7 +129,7 @@ namespace DowJones.Json.Gateway.Tests.Eds
                 Request = new GenerateOdeRequest()
                 {
                   TicketCollection  = ticketCol,
-                  requestMode = RequestMode.Sync
+                  requestMode = RequestMode.ASync
                 },
                 ControlData = GetControlData()
             };
@@ -138,7 +138,7 @@ namespace DowJones.Json.Gateway.Tests.Eds
 
             //var p3 = r.Request.ToJson(new DataContractJsonConverter());
 
-            UpdateRoutingData(r.ControlData.RoutingData);
+            //UpdateRoutingData(r.ControlData.RoutingData);
 
             try
             {
