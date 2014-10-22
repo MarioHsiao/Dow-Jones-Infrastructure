@@ -21,7 +21,7 @@ namespace DowJones.Json.Gateway.Converters
             Serializer = new JsonSerializer
                          {
                              NullValueHandling = NullValueHandling.Ignore,
-                             DefaultValueHandling = DefaultValueHandling.Ignore,
+                             //DefaultValueHandling = DefaultValueHandling.Ignore,
                              ContractResolver = new DefaultContractResolver(),
                              DateTimeZoneHandling = DateTimeZoneHandling.Utc,
                              TypeNameHandling = TypeNameHandling.Auto,
@@ -29,6 +29,7 @@ namespace DowJones.Json.Gateway.Converters
                              MissingMemberHandling = MissingMemberHandling.Ignore,
                              //PreserveReferencesHandling = PreserveReferencesHandling.All,
                              TypeNameAssemblyFormat = FormatterAssemblyStyle.Full,
+                             
                          };
             Serializer.Converters.Add(new StringEnumConverter {AllowIntegerValues = false});
         }

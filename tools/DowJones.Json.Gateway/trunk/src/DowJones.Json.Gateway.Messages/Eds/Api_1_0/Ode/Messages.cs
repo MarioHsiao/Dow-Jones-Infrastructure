@@ -168,8 +168,8 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode
     [DataContract(Name = "RequestMode", Namespace = "")]
     public enum RequestMode
     {
-        [EnumMember(Value = "Async")]
-        [XmlEnum(Name = "Async")]
+        [EnumMember(Value = "ASync")]
+        [XmlEnum(Name = "ASync")]
         ASync,
         [EnumMember(Value = "Sync")]
         [XmlEnum(Name = "Sync")]

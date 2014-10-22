@@ -39,7 +39,7 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode.Transactions
         [DataMember(Name = "DeliveryNumber")]
         public string __DeliveryNumber;
 
-        [JsonProperty]
+        [JsonIgnore]
         [XmlIgnore]
         [IgnoreDataMember]
         public string DeliveryNumber
