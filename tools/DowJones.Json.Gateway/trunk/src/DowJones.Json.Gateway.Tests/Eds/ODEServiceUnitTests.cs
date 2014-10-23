@@ -170,6 +170,14 @@ namespace DowJones.Json.Gateway.Tests.Eds
             Assert.Fail("unable to generate ODE");
         }
 
+        [TestMethod]
+        public void OdeResponse_ToEmailAddress()
+        {
+            var odeResponse = new GenerateOdeResponse {ToEmailAddress = null};
+            var isToEmailAddress = odeResponse.ToEmailAddress != null;
+            Assert.IsTrue(isToEmailAddress, "OdeResponse's ToEmailAddress property should return ToEmailAddress object if set to null");
+        }
+
         private static void UpdateRoutingData(IRoutingData routingData)
         {
             // ReSharper disable StringLiteralTypo
