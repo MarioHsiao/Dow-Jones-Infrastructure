@@ -34,6 +34,12 @@ namespace DowJones.Formatters.Globalization.DateTime
         TwentyFourHours, 
     }
 
+    public enum ShortDateFormatPattern
+    {
+        Space,
+        Dash,
+    }
+
     /// <summary>
     /// Class used for formatting Dates and Times
     /// Uses the Abstract Factory Pattern for resolving cultures.
@@ -407,26 +413,9 @@ namespace DowJones.Formatters.Globalization.DateTime
             return dt.ToString(_regionalCulture.LongDatePattern, _cultureInfo);
         }
 
-        /// <summary>
-        /// Formats the short date.
-        /// </summary>
-        /// <param name="dt">
-        /// The dt.
-        /// </param>
-        /// <returns>
-        /// The format short date.
-        /// </returns>
-        public string FormatShortDate(System.DateTime dt)
-        {
-            // returned it back to original logic
-            /*var temp = timeZoneBuilder.ConvertToLocalTime
-                ? timeZoneBuilder.UITimeZone.ToLocalTime(dt, timeZoneBuilder.AdjustToDaylightSavingsTime)
-                : dt;*/
+       
 
-            return dt.ToString(_regionalCulture.ShortDatePattern, _cultureInfo);
-        }
-
-        /// <summary>
+       /// <summary>
         /// Formats the short date.
         /// </summary>
         /// <param name="s">
@@ -1320,27 +1309,33 @@ namespace DowJones.Formatters.Globalization.DateTime
 
         #endregion
 
-        public string FormatShortDate(System.DateTime dt, bool usePreference)
-        {
-            var temp = ConvertToUtc(dt);
-            if (TimeZoneBuilder.ConvertToLocalTime && usePreference)
-            {
-                temp = TimeZoneBuilder.UITimeZone.ToLocalTime(temp, TimeZoneBuilder.AdjustToDaylightSavingsTime);
-                return temp.ToString(_regionalCulture.ShortDateSpacePattern, _cultureInfo);
-            }
 
-            return temp.ToString(_regionalCulture.ShortDateSpacePattern, _cultureInfo);
+        public string FormatShortDate(System.DateTime dt, bool usePreference = false, ShortDateFormatPattern pattern = ShortDateFormatPattern.Dash)
+        {
+            var p = (pattern == ShortDateFormatPattern.Space)
+                ? _regionalCulture.ShortDateSpacePattern
+                : _regionalCulture.ShortDatePattern;
+            
+            if (!TimeZoneBuilder.ConvertToLocalTime || !usePreference)
+            {
+                return dt.ToString(p, _cultureInfo);
+            }
+            
+            var temp = ConvertToUtc(dt);
+            temp = TimeZoneBuilder.UITimeZone.ToLocalTime(temp, TimeZoneBuilder.AdjustToDaylightSavingsTime);
+            return temp.ToString(p, _cultureInfo);
         }
 
         public string FormatFullDate(System.DateTime dt, bool usePreference)
         {
             var temp = ConvertToUtc(dt);
-            if (TimeZoneBuilder.ConvertToLocalTime && usePreference)
+            
+            if (!TimeZoneBuilder.ConvertToLocalTime || !usePreference)
             {
-                temp = TimeZoneBuilder.UITimeZone.ToLocalTime(temp, TimeZoneBuilder.AdjustToDaylightSavingsTime);
                 return temp.ToString(_regionalCulture.FullDatePattern, _cultureInfo);
             }
 
+            temp = TimeZoneBuilder.UITimeZone.ToLocalTime(temp, TimeZoneBuilder.AdjustToDaylightSavingsTime);
             return temp.ToString(_regionalCulture.FullDatePattern, _cultureInfo);
         }
 
