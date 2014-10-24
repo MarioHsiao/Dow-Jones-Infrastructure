@@ -35,11 +35,11 @@ namespace DowJones.Json.Gateway.Tests.Core
                 UserCommerceData = new UserCommerceData
                 {
                     ClientType = "D",
-                    AccessPointCode = "S",
+                    AccessPointCode = "S"
                 },
                 UserCredentialData = new UserCredentialData
                 {
-                    SessionId = "27139ZzZKJAUQOKTAAAGUAYAAAAAB5IGAAAAAABSGAYTIMJQGIYDEMJRG4YDKOJQ",
+                    SessionId = "27139ZzZKJAUQOKTAAAGUAYAAAAAB77BAAAAAABSGAYTIMJQGI2DCNRQGU2TQNBU",
                     IpAddress = "127.0.0.1",
                     //UserGuidId = "3bb6cd20-968c-4def-805d-283710580dba",
                     //EncryptedUserId = "E6OO2HVCQHVPEXDO5LSIIKF7AY",
@@ -55,8 +55,10 @@ namespace DowJones.Json.Gateway.Tests.Core
                 RoutingData = new RoutingData
                 {
                     ContentServerAddress = 0,
-                    TransportType = "RTS",
-                    Serializer = JsonSerializer.JsonDotNet
+                    TransportType = "HTTP",
+                    Serializer = JsonSerializer.DataContract,
+                    ServiceUrl = "http://edsapi.int.dowjones.net/",
+                    Environment = DowJones.Json.Gateway.Common.Environment.Proxy
                 },
                 AuthorizationData = new AuthorizationData()
                 {
@@ -66,12 +68,11 @@ namespace DowJones.Json.Gateway.Tests.Core
                         {
                             Name = "FTODE",
                             Service = "EMAIL",
-                            Value = "1",
+                            Value = "1"
                         }
 
                     }
-                },
-
+                }
             };
             return controlData;
         }

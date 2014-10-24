@@ -104,7 +104,7 @@ namespace DowJones.Json.Gateway.Tests.Eds
                 },
                 FreeText = "This is free text 1",
                 ProductType = "global",
-                EmailContentType = EmailContentType.FullText,
+                EmailContentType = EmailContentType.Headlines,
                 FidsCollection = null,
                 EmailDisplayLanguage = "en",
                 ContentAsAttachment = true,
