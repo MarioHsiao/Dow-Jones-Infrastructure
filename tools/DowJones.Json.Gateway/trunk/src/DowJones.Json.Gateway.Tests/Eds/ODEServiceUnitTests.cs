@@ -19,163 +19,117 @@ using System.Collections.Generic;
 namespace DowJones.Json.Gateway.Tests.Eds
 {
     [TestClass]
-    public class DirectListServiceUnitTests : AbstractUnitTests
+    public class ODEServiceUnitTests : AbstractUnitTests
     {
         [TestMethod]
-        public void GenerateODE()
+        public void GenerateOdeRequest_Passing_Valid_Request_To_Execute_Method_Should_Return_Valid_Response()
         {
-
-            string rr = @"{  ""RequestMode"": ""Sync"",
-    ""Ticket"": [
-        {
-            ""Recepient"": {
-                ""ToEmailAddress"": [
-                    {
-                        ""Name"": ""Naresh"",
-                        ""Address"": ""djcicd@gmail.com""
-                    }
-                ],
-                ""CCEmailAddress"": [
-                    {
-                        ""Name"": ""Li Sun 2"",
-                        ""Address"": ""sunliaa@Toyota.djip.com""
-                    }
-                ],
-                ""BCCEmailAddress"": null,
-                ""FromEmailAddress"": null,
-                ""ReplyToEmailAddress"": {
-                    ""Name"": ""Vivek K"",
-                    ""Address"": ""djcicd@gmail.com""
-                },
-                ""EmailDisplayFormat"": ""TEXT"",
-                ""Subject"": null
-            },
-            ""FreeText"": ""This is free text 1"",
-            ""ProductType"": ""global"",
-            ""EmailContentType"": ""FullText"",
-            ""Fids"": null,
-            ""EmailDisplayLanguage"": ""en"",
-            ""ContentAsAttachment"": true,
-""Content"": [{""$type"": ""ContentByID"", ""Source"": ""P"",
-                    ""EmailDisplayLanguage"": ""en"",
-                    ""ContentType"": ""AN"",
-                    ""ContentData"": ""LBA0000020140307ea3700pxl""
-                }
-            ]
-
-        }
-    ]
-}";
-
-            //var request = Newtonsoft.Json.JsonConvert.DeserializeObject<DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode.Transactions.GenerateOdeRequest>(rr);
-
-            //var p = Newtonsoft.Json.JsonConvert.SerializeObject(request);
-
-
-            var ticket = new Ticket()
-            {
-                Recepient = new Recepient()
-                {
-                    ToEmailCollection = new ToEmailCollection()
-                    {
-                        new ToEmailAddress()
-                        {
-                            Name = "Naresh",
-                            Address = "djcicd@gmail.com"
-                        }
-                    },
-                    CCEmailCollection = new CCEmailCollection()
-                    {
-                        new CCEmailAddress()
-                        {
-                            Name = "Li Sun 2",
-                            Address = "sunliaa@Toyota.djip.com"
-                        }
-                    },
-                    BCCEmailCollection = null,
-                    FromEmailAddress = null,
-                    ReplyToEmailAddress = new ReplyToEmailAddress()
-                    {
-                        Name = "Vivek K",
-                        Address = "djcicd@gmail.com"
-                    },
-                    EmailDisplayFormat = EmailDisplayFormat.HTML,
-                    Subject = "Blah blah"
-                },
-                FreeText = "This is free text 1",
-                ProductType = "global",
-                EmailContentType = EmailContentType.Headlines,
-                FidsCollection = null,
-                EmailDisplayLanguage = "en",
-                ContentAsAttachment = true,
-                ContentCollection = new ContentCollection()
-                {
-                    new ContentByID()
-                    {
-                        Source = Source.P,
-                        EmailDisplayLanguage = "en",
-                        ContentType = ContentTypeForContentByID.AN,
-                        ContentData = "LBA0000020140307ea3700pxl"
-
-                    }
-                }
-            };
-
-            TicketCollection ticketCol = new TicketCollection();
-            ticketCol.Add(ticket);
 
             var r = new RestRequest<GenerateOdeRequest>
             {
                 Request = new GenerateOdeRequest()
                 {
-                  TicketCollection  = ticketCol,
+                  TicketCollection  = TestStubs.GetTicketCollection(),
                   requestMode = RequestMode.ASync
                 },
                 ControlData = GetControlData()
             };
 
-            //var p2 = Newtonsoft.Json.JsonConvert.SerializeObject(r);
+            UpdateRoutingData(r.ControlData.RoutingData);
 
-            //var p3 = r.Request.ToJson(new DataContractJsonConverter());
+            var response = Execute(r);
 
-            //UpdateRoutingData(r.ControlData.RoutingData);
-
-            try
+            if (response.ReturnCode == 0)
             {
-                var rm = new RestManager();
-                var t = rm.Execute<GenerateOdeRequest, GenerateOdeResponse>(r);
-
-                Console.Write(r.Request.ToJson(new DataContractJsonConverter()));
-
-                if (t.ReturnCode == 0)
-                {
-                    Assert.IsNotNull(t);
-                }
-                else
-                {
-                    Console.WriteLine(t.Error.Message);
-                    Assert.Fail(string.Concat("failed w/rc:= ", t.ReturnCode.ToString(CultureInfo.InvariantCulture)));
-                }
-                Console.WriteLine(t.Data.ToJson(true));
-                return;
+                Assert.IsNotNull(response);
             }
-            catch (JsonGatewayException gatewayException)
+            else
             {
-                Console.Write(gatewayException.Message);
+                Console.WriteLine(response.Error.Message);
+                Assert.Fail(string.Concat("failed w/rc:= ", response.ReturnCode.ToString(CultureInfo.InvariantCulture)));
             }
-            catch (Exception ex)
-            {
-                Console.Write(ex.Message);
-            }
-            Assert.Fail("unable to generate ODE");
         }
 
         [TestMethod]
-        public void OdeResponse_ToEmailAddress()
+        public void GenerateOdeRequest_Passing_Request_With_Empty_Recipient_Property_To_Execute_Method_Should_Return_Error_Response()
         {
-            var odeResponse = new GenerateOdeResponse {ToEmailAddress = null};
-            var isToEmailAddress = odeResponse.ToEmailAddress != null;
-            Assert.IsTrue(isToEmailAddress, "OdeResponse's ToEmailAddress property should return ToEmailAddress object if set to null");
+            var ticketCol = TestStubs.GetTicketCollection();
+            ticketCol[0].Recepient = null;
+
+            var r = new RestRequest<GenerateOdeRequest>
+            {
+                Request = new GenerateOdeRequest()
+                {
+                    TicketCollection = ticketCol,
+                    requestMode = RequestMode.ASync
+                },
+                ControlData = GetControlData()
+            };
+
+            UpdateRoutingData(r.ControlData.RoutingData);
+
+            var response = Execute(r);
+
+            if (response.ReturnCode == 0)
+            {
+                Assert.Fail(string.Concat("failed valid response w/rc:= ", response.ReturnCode.ToString(CultureInfo.InvariantCulture)));
+                Assert.IsNotNull(response);
+            }
+            else
+            {
+                Console.WriteLine(response.Error.Message);
+                Assert.AreEqual(response.ReturnCode, 88103);
+            }
+        }
+
+        [TestMethod]
+        public void GenerateOdeRequest_Passing_Request_With_Empty_TicketCollection_Property_To_Execute_Method_Should_Return_Error_Response()
+        {
+            var ticketCol = TestStubs.GetTicketCollection();
+            ticketCol[0].Recepient = null;
+
+            var r = new RestRequest<GenerateOdeRequest>
+            {
+                Request = new GenerateOdeRequest()
+                {
+                    TicketCollection = null,
+                    requestMode = RequestMode.ASync
+                },
+                ControlData = GetControlData()
+            };
+
+            UpdateRoutingData(r.ControlData.RoutingData);
+
+            var response = Execute(r);
+
+            if (response.ReturnCode == 0)
+            {
+                Assert.Fail(string.Concat("failed valid response w/rc:= ", response.ReturnCode.ToString(CultureInfo.InvariantCulture)));
+                Assert.IsNotNull(response);
+            }
+            else
+            {
+                Console.WriteLine(response.Error.Message);
+                Assert.AreEqual(response.ReturnCode, 88220);
+            }
+
+        }
+
+        //[TestMethod]
+        //public void GenereateOdeRequest_Property_ToEmailAddress_Is_Never_Null()
+        //{
+        //    var odeResponse = new GenerateOdeRequest() { ToEmailAddress = null };
+        //    var toEmailAddressIsNotNull = odeResponse.ToEmailAddress != null;
+        //    Assert.IsTrue(toEmailAddressIsNotNull, "GenerateOdeResponse's ToEmailAddress property is null");
+        //}
+
+        [TestMethod]
+        public void GenereateOdeResponse_Property_ToEmailAddress_Is_Never_Null()
+        {
+            var odeResponse = new GenerateOdeResponse(){ToEmailAddress = null};
+            odeResponse.__ToEmailAddress = null;
+            var toEmailAddressIsNotNull = odeResponse.ToEmailAddress != null;
+            Assert.IsTrue(toEmailAddressIsNotNull, "GenerateOdeResponse's ToEmailAddress property is null");
         }
 
         private static void UpdateRoutingData(IRoutingData routingData)
@@ -192,7 +146,32 @@ namespace DowJones.Json.Gateway.Tests.Eds
             routingData.ServiceUrl = "http://edsapi.int.dowjones.net/";
             routingData.TransportType = "HTTP";
             routingData.Environment = Environment.Proxy;
-            routingData.Serializer = JsonSerializer.DataContract;
+            routingData.Serializer = JsonSerializer.JsonDotNet;
+        }
+
+        private RestResponse<GenerateOdeResponse> Execute(RestRequest<GenerateOdeRequest> r)
+        {
+            try
+            {
+                var rm = new RestManager();
+                var t = rm.Execute<GenerateOdeRequest, GenerateOdeResponse>(r);
+
+                Console.Write(r.Request.ToJson(new DataContractJsonConverter()));
+                Console.WriteLine(t.Data.ToJson(true));
+ 
+                return t;
+            }
+            catch (JsonGatewayException gatewayException)
+            {
+                Console.Write(gatewayException.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.Message);
+            }
+            Assert.Fail("unable to generate ODE");
+
+            return null;
         }
     }
 }
