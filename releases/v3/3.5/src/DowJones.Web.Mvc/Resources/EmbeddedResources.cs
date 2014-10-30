@@ -100,7 +100,8 @@ namespace DowJones.Web.Mvc.Resources
         [ScriptResource(ResourceName = ServiceProxy, DependencyLevel = ClientResourceDependencyLevel.Global, Name = "service-proxy", DependsOn = new[] { "error-manager" })]
         [ScriptResource(ResourceName = TmpLoad, DependencyLevel = ClientResourceDependencyLevel.Global, Name = "tmpload", DependsOn = new[] { "jquery" })]
         [ScriptResource(ResourceName = Underscore, DependencyLevel = ClientResourceDependencyLevel.Core, Name = "underscore")]
-        [ScriptResource(ResourceName = JQueryMobileMin, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "jquery-mobile", DependsOn = new[] { "jquery-ui", "jquery-ui-widgets" })]
+        [ScriptResource(ResourceName = JQueryMobileMin, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "jquery-mobile-min", DependsOn = new[] { "jquery-ui", "jquery-ui-widgets" })]
+        [ScriptResource(ResourceName = JQueryMobile, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "jquery-mobile", DependsOn = new[] { "jquery-ui", "jquery-ui-widgets" })]
       
         public static class Js
         {
