@@ -237,7 +237,7 @@ namespace DowJones.Web.Mvc.UI
         {
             RegisterFrameworkWebResource(EmbeddedResources.Js.JQueryUICore, ClientResourceDependencyLevel.Global, enabled);
             RegisterFrameworkWebResource(EmbeddedResources.Js.JQueryUIWidgets, ClientResourceDependencyLevel.MidLevel, enabled);
-            RegisterFrameworkWebResource(EmbeddedResources.Js.JQueryMobileMin, ClientResourceDependencyLevel.MidLevel, enabled);
+            RegisterFrameworkWebResource(EmbeddedResources.Js.JQueryMobile, ClientResourceDependencyLevel.MidLevel, enabled);
             return this;
         }
 
