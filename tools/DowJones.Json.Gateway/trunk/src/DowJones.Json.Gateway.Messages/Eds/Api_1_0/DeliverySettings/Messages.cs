@@ -207,296 +207,296 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.DeliverySettings
 
     #endregion
 
-    public partial class Delivery
+    public class Delivery
     {
         public Delivery()
         {
-            this.content = new List<Content>();
-            this.deliveryDayandTime = new DeliveryDayandTime();
-            this.active = true;
-            this.contentAsAttachment = false;
-            this.showDuplicates = false;
-            this.enableDaylightSaving = true;
+            this.Content = new List<Content>();
+            this.DeliveryDayandTime = new DeliveryDayandTime();
+            this.Active = true;
+            this.ContentAsAttachment = false;
+            this.ShowDuplicates = false;
+            this.EnableDaylightSaving = true;
             //this.id = "0";
         }
 
-        public string id
+        public string Id
         {
             get;
             set;
         }
 
-        public string name
+        public string Name
         {
             get;
             set;
         }
 
         [JsonProperty(PropertyName = "toEmailAddress", Required = Required.Always)]
-        public string toEmailAddress
+        public string ToEmailAddress
         {
             get;
             set;
         }
 
-        public ProductType productType
+        public ProductType ProductType
         {
             get;
             set;
         }
 
         [JsonProperty(PropertyName = "deliveryType", Required = Required.Always)]
-        public DeliveryType deliveryType
+        public DeliveryType DeliveryType
         {
             get;
             set;
         }
 
-        public bool contentAsAttachment
+        public bool ContentAsAttachment
         {
             get;
             set;
         }
 
-        public EmailDisplayFormat emailDisplayFormat
+        public EmailDisplayFormat EmailDisplayFormat
         {
             get;
             set;
         }
 
-        public Language emailDisplaylanguage
+        public Language EmailDisplaylanguage
         {
             get;
             set;
         }
 
-        public EmailContentType emailContentType
+        public EmailContentType EmailContentType
         {
             get;
             set;
         }
 
-        public bool enableDaylightSaving
+        public bool EnableDaylightSaving
         {
             get;
             set;
         }
 
         [JsonProperty(PropertyName = "deliveryDayandTime", Required = Required.Always)]
-        public DeliveryDayandTime deliveryDayandTime
+        public DeliveryDayandTime DeliveryDayandTime
         {
             get;
             set;
         }
 
         [JsonProperty(PropertyName = "timeZone", Required = Required.Always)]
-        public string timeZone
+        public string TimeZone
         {
             get;
             set;
         }
 
-        public bool showDuplicates
+        public bool ShowDuplicates
         {
             get;
             set;
         }
 
         [JsonProperty(PropertyName = "content", Required = Required.Always)]
-        public List<Content> content
+        public List<Content> Content
         {
             get;
             set;
         }
 
-        public bool active
+        public bool Active
         {
             get;
             set;
         }
 
-        public string createdBy
+        public string CreatedBy
         {
             get;
             set;
         }
 
-        public DateTime createdDate
+        public DateTime CreatedDate
         {
             get;
             set;
         }
 
-        public DateTime lastModifiedDate
+        public DateTime LastModifiedDate
         {
             get;
             set;
         }
 
-        public bool enableHighlight
+        public bool EnableHighlight
         {
             get;
             set;
         }
     }
 
-    public partial class DeliveryEx
+    public class DeliveryEx
     {
         public DeliveryEx()
         {
-            this.content = new List<Content>();
-            this.deliveryDayandTime = new DeliveryDayandTime();
-            this.active = true;
-            this.contentAsAttachment = false;
-            this.showDuplicates = false;
-            this.enableDaylightSaving = true;
+            this.Content = new List<Content>();
+            this.DeliveryDayandTime = new DeliveryDayandTime();
+            this.Active = true;
+            this.ContentAsAttachment = false;
+            this.ShowDuplicates = false;
+            this.EnableDaylightSaving = true;
         }
 
-        public string id
+        public string Id
         {
             get;
             set;
         }
 
-        public string name
+        public string Name
         {
             get;
             set;
         }
 
         [JsonProperty(PropertyName = "toEmailAddress", Required = Required.Always)]
-        public string toEmailAddress
+        public string ToEmailAddress
         {
             get;
             set;
         }
 
 
-        public ProductType productType
+        public ProductType ProductType
         {
             get;
             set;
         }
 
         [JsonProperty(PropertyName = "deliveryType", Required = Required.Always)]
-        public DeliveryType deliveryType
+        public DeliveryType DeliveryType
         {
             get;
             set;
         }
 
-        public bool contentAsAttachment
+        public bool ContentAsAttachment
         {
             get;
             set;
         }
 
-        public EmailDisplayFormat emailDisplayFormat
+        public EmailDisplayFormat EmailDisplayFormat
         {
             get;
             set;
         }
 
-        public Language emailDisplaylanguage
+        public Language EmailDisplaylanguage
         {
             get;
             set;
         }
 
-        public EmailContentType emailContentType
+        public EmailContentType EmailContentType
         {
             get;
             set;
         }
 
-        public bool enableDaylightSaving
+        public bool EnableDaylightSaving
         {
             get;
             set;
         }
 
         [JsonProperty(PropertyName = "deliveryDayandTime", Required = Required.Always)]
-        public DeliveryDayandTime deliveryDayandTime
+        public DeliveryDayandTime DeliveryDayandTime
         {
             get;
             set;
         }
 
         [JsonProperty(PropertyName = "timeZone", Required = Required.Always)]
-        public string timeZone
+        public string TimeZone
         {
             get;
             set;
         }
 
-        public bool showDuplicates
+        public bool ShowDuplicates
         {
             get;
             set;
         }
 
         [JsonProperty(PropertyName = "content", Required = Required.Always)]
-        public List<Content> content
+        public List<Content> Content
         {
             get;
             set;
         }
 
-        public bool active
+        public bool Active
         {
             get;
             set;
         }
 
-        public string createdBy
+        public string CreatedBy
         {
             get;
             set;
         }
 
-        public System.DateTime createdDate
+        public System.DateTime CreatedDate
         {
             get;
             set;
         }
 
-        public System.DateTime lastModifiedDate
+        public System.DateTime LastModifiedDate
         {
             get;
             set;
         }
 
-        public bool enableHighlight
+        public bool EnableHighlight
         {
             get;
             set;
         }
 
-        public int emailLimit
+        public int EmailLimit
         {
             get;
             set;
         }
 
-        public string clientTypeCode
+        public string ClientTypeCode
         {
             get;
             set;
         }
     }
 
-    public partial class DeliveryDayandTime
+    public class DeliveryDayandTime
     {
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         [XmlElement(ElementName = "deliveryDay", Form = XmlSchemaForm.Unqualified, Type = typeof(List<Day>))]
-        public List<Day> deliveryDay
+        public List<Day> DeliveryDay
         {
             get;
             set;
         }
 
         [XmlElement(ElementName = "repeat", Form = XmlSchemaForm.Unqualified)]
-        public Repeat repeat
+        public Repeat Repeat
         {
             get;
             set;
@@ -504,7 +504,7 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.DeliverySettings
 
         [JsonProperty(PropertyName = "deliveryTime", Required = Required.Always)]
         [XmlElement(ElementName = "deliveryTime", Form = XmlSchemaForm.Unqualified, Type = typeof(List<string>))]
-        public List<string> deliveryTime
+        public List<string> DeliveryTime
         {
             get;
             set;
@@ -512,55 +512,55 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.DeliverySettings
 
         public DeliveryDayandTime()
         {
-            this.deliveryDay = new List<Day>();
-            this.deliveryTime = new List<string>();
+            this.DeliveryDay = new List<Day>();
+            this.DeliveryTime = new List<string>();
         }
 
     }
 
-    public partial class Content
+    public class Content
     {
         public Content()
         {
-            this.headlineSort = HeadlineSort.ByDate;
+            this.HeadlineSort = HeadlineSort.ByDate;
 
         }
 
         [JsonProperty(PropertyName = "contentID", Required = Required.Always)]
-        public string contentID
+        public string ContentID
         {
             get;
             set;
         }
 
         [JsonProperty(PropertyName = "contentName", Required = Required.Always)]
-        public string contentName
+        public string ContentName
         {
             get;
             set;
         }
 
-        public int position
+        public int Position
         {
             get;
             set;
         }
 
-        public HeadlineSort headlineSort
+        public HeadlineSort HeadlineSort
         {
             get;
             set;
         }
 
         [JsonProperty(PropertyName = "maxHits", Required = Required.Always)]
-        public int maxHits
+        public int MaxHits
         {
             get;
             set;
         }
     }
 
-    public partial class UserInformation
+    public class UserInformation
     {
         public string emailAddress
         {
@@ -568,25 +568,25 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.DeliverySettings
             set;
         }
 
-        public TimeZone timeZone
+        public TimeZone TimeZone
         {
             get;
             set;
         }
 
-        public Language interfaceLanguage
+        public Language InterfaceLanguage
         {
             get;
             set;
         }
 
-        public string countryCode
+        public string CountryCode
         {
             get;
             set;
         }
 
-        public string region
+        public string Region
         {
             get;
             set;
