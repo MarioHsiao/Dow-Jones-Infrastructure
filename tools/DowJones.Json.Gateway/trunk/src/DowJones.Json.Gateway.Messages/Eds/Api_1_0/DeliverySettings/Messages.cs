@@ -595,45 +595,6 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.DeliverySettings
 
     #region Transactions
 
-    #region GetDeliverySettings Request and Response
-
-    public partial class GetDeliverySettings
-    {
-        public ReturnType ReturnType
-        {
-            get;
-            set;
-        }
-
-        public string deliveryID
-        {
-            get;
-            set;
-        }
-
-        public DeliveryType? DeliveryType
-        {
-            get;
-            set;
-        }
-    }
-
-    public partial class GetDeliverySettingsResponse
-    {
-        public GetDeliverySettingsResponse()
-        {
-            this.delivery = new List<Delivery>();
-        }
-
-        public List<Delivery> delivery
-        {
-            get;
-            set;
-        }
-    }
-    #endregion
-
-
     #region DeleteDeliverySettings Request and Response
     public partial class DeleteDeliverySettings
     {
