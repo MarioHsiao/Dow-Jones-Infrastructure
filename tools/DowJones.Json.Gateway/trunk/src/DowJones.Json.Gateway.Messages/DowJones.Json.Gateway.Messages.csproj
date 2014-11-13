@@ -57,6 +57,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Eds\Api_1_0\DeliverySettings\Messages.cs" />
+    <Compile Include="Eds\Api_1_0\DeliverySettings\Transactions\CreateDeliverySettingsRequest.cs" />
+    <Compile Include="Eds\Api_1_0\DeliverySettings\Transactions\CreateDeliverySettingsResponse.cs" />
+    <Compile Include="Eds\Api_1_0\DeliverySettings\Transactions\UpdateDeliverySettingsRequest.cs" />
+    <Compile Include="Eds\Api_1_0\DeliverySettings\Transactions\UpdateDeliverySettingsResponse.cs" />
     <Compile Include="Eds\Api_1_0\Ode\Transactions\GenerateOdeResponse.cs" />
     <Compile Include="Eds\Api_1_0\Ode\Messages.cs" />
     <Compile Include="Eds\Api_1_0\Ode\Transactions\GenerateOdeRequest.cs" />
@@ -168,7 +172,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Core\" />
-    <Folder Include="Eds\Api_1_0\DeliverySettings\Transactions\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

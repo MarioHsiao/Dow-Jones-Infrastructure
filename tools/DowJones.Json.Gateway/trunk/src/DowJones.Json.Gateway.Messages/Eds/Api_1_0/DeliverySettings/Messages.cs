@@ -633,68 +633,6 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.DeliverySettings
     }
     #endregion
 
-    #region CreateDeliverySettings Request and Response
-    public partial class CreateDeliverySettings
-    {
-        //To do - Check if this needs to be array
-        public CreateDeliverySettings()
-        {
-            this.userInformation = new UserInformation();
-            this.delivery = new List<Delivery>();
-        }
-
-        [JsonProperty(PropertyName = "delivery", Required = Required.Always)]
-        public List<Delivery> delivery
-        {
-            get;
-            set;
-        }
-
-        public UserInformation userInformation
-        {
-            get;
-            set;
-        }
-    }
-
-    public partial class CreateDeliverySettingsEx
-    {
-        //To do - Check if this needs to be array
-        public CreateDeliverySettingsEx()
-        {
-            this.userInformation = new UserInformation();
-            this.delivery = new List<DeliveryEx>();
-        }
-
-        [JsonProperty(PropertyName = "delivery", Required = Required.Always)]
-        public List<DeliveryEx> delivery
-        {
-            get;
-            set;
-        }
-
-        public UserInformation userInformation
-        {
-            get;
-            set;
-        }
-    }
-
-    public partial class CreateDeliverySettingsResponse
-    {
-        public CreateDeliverySettingsResponse()
-        {
-            this.delivery = new List<Delivery>();
-        }
-
-        public List<Delivery> delivery
-        {
-            get;
-            set;
-        }
-
-    }
-    #endregion
 
     #region DeleteDeliverySettings Request and Response
     public partial class DeleteDeliverySettings
@@ -730,38 +668,6 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.DeliverySettings
             set;
         }
     }
-    #endregion
-
-    #region UpdateDeliverySettings Request and Response
-    public partial class UpdateDeliverySettings
-    {
-        public UpdateDeliverySettings()
-        {
-            this.delivery = new List<Delivery>();
-        }
-
-        [JsonProperty(PropertyName = "delivery", Required = Required.Always)]
-        public List<Delivery> delivery
-        {
-            get;
-            set;
-        }
-    }
-
-    public partial class UpdateDeliverySettingsResponse
-    {
-        public UpdateDeliverySettingsResponse()
-        {
-            this.delivery = new List<Delivery>();
-        }
-
-        public List<Delivery> delivery
-        {
-            get;
-            set;
-        }
-    }
-
     #endregion
 
     #endregion
