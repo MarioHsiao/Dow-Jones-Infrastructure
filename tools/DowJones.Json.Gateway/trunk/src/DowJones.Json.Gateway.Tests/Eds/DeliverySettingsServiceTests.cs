@@ -101,6 +101,22 @@ namespace DowJones.Json.Gateway.Tests.Eds.DeliverySettings
 
         }
 
+        [TestMethod]
+        public void Verify_DeleteDeliverySettingsRequest_Property_Names_Are_Properly_Serialized()
+        {
+            DeleteDeliverySettingsRequest request = new DeleteDeliverySettingsRequest()
+            {
+                DeliveryId = "30029078"
+            };
+
+            string serializedObject = request.ToJson(new JsonDotNetJsonConverter());
+            if (serializedObject == null) throw new ArgumentNullException("serializedObject");
+
+            Assert.AreNotEqual(serializedObject.IndexOf("deliveryId"), -1);
+
+
+        }
+
         private static void UpdateRoutingData(IRoutingData routingData)
         {
             routingData.ServiceUrl = "http://edsapi.int.dowjones.net/";

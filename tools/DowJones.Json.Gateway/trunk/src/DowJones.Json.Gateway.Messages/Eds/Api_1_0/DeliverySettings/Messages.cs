@@ -640,15 +640,15 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.DeliverySettings
     #region Transactions
 
     #region DeleteDeliverySettings Request and Response
-    public partial class DeleteDeliverySettings
-    {
-        public string DeliveryID
-        {
-            get;
-            set;
-        }
+    //public partial class DeleteDeliverySettings
+    //{
+    //    public string DeliveryID
+    //    {
+    //        get;
+    //        set;
+    //    }
 
-    }
+    //}
 
     public partial class DeleteDeliverySettingsEx
     {
@@ -665,14 +665,14 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.DeliverySettings
         }
     }
 
-    public partial class DeleteDeliverySettingsResponse
-    {
-        public bool IsSuccess
-        {
-            get;
-            set;
-        }
-    }
+    //public partial class DeleteDeliverySettingsResponse
+    //{
+    //    public bool IsSuccess
+    //    {
+    //        get;
+    //        set;
+    //    }
+    //}
     #endregion
 
     #endregion
