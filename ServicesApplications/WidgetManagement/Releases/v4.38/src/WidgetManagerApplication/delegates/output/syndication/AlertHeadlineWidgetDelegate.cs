@@ -447,6 +447,7 @@ namespace EMG.widgets.ui.delegates.output.syndication
                                     //GenerateCordaChartUrls(false, true);
                                     FireMetricsEnvelope(GetOperationData(integrationTarget));
                                     NullOutAuthenticationCredentials();
+                                    FilterSensitiveData();
                                     ElapsedTime = logger.LogTimeSinceInvocation();
                                     return;
                                 }
@@ -471,6 +472,7 @@ namespace EMG.widgets.ui.delegates.output.syndication
 
                             FireMetricsEnvelope(GetOperationData(integrationTarget));
                             NullOutAuthenticationCredentials();
+                            FilterSensitiveData();
                             ElapsedTime = logger.LogTimeSinceInvocation();
                             return;
                         }
@@ -2040,6 +2042,17 @@ namespace EMG.widgets.ui.delegates.output.syndication
         protected override void NullOutAuthenticationCredentials()
         {
             NullOutAuthenticationCredential(Definition);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        protected void FilterSensitiveData()
+        {
+            if (Data == null)
+            {
+                return;
+            }
+            AlertHeadlineUtility.FilterSensitiveData(Data.Alerts);
         }
     }
 }

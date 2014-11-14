@@ -6,6 +6,7 @@ using EMG.widgets.ui.delegates.core.alertHeadline;
 using EMG.widgets.ui.dto;
 using EMG.widgets.ui.encryption;
 using EMG.widgets.ui.Properties;
+using EMG.widgets.ui.utility.headline;
 using Factiva.BusinessLayerLogic.DataTransferObject.WebWidgets;
 using Factiva.Gateway.Messages.Track.V1_0;
 using Encryption = FactivaEncryption.encryption;
@@ -77,6 +78,7 @@ namespace EMG.widgets.ui.utility.discovery
             ub.Append("fsr", fsr);
             ub.Append("od", GetOperationalDataMemento(definition, alertInfo, tokenProperties, integrationTarget, linkType));
             ub.Append("view", "a");
+            ub.Append(AlertHeadlineUtility.AlertMetadataQuerystringName, AlertHeadlineUtility.GetAlertMetadata(alertInfo));
 
             switch (distributionType)
             {
