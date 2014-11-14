@@ -1,13 +1,18 @@
-﻿using DowJones.Json.Gateway.Converters;
+﻿using DowJones.Json.Gateway.Attributes;
+using DowJones.Json.Gateway.Converters;
 using DowJones.Json.Gateway.Interfaces;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.DeliverySettings.Transactions
 {
+    [ServicePath("1.0/Delivery")]
+    [DataContract(Name = "CreateDeliverySettings", Namespace = "")]
+    [JsonObject(Title = "CreateDeliverySettings")]
     public class CreateDeliverySettingsRequest : IPostJsonRestRequest
     {
         //To do - Check if this needs to be array
@@ -45,7 +50,7 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.DeliverySettings.Transactio
             this.delivery = new List<DeliveryEx>();
         }
 
-        [JsonProperty(PropertyName = "delivery", Required = Required.Always)]
+        [JsonProperty(PropertyName = "deliveryEx", Required = Required.Always)]
         public List<DeliveryEx> delivery
         {
             get;

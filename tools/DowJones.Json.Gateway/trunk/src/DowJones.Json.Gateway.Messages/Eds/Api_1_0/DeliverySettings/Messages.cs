@@ -17,6 +17,7 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.DeliverySettings
     # region Enums
 
     [Serializable]
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum ReturnType
     {
         [EnumMember(Value = "Full")]
@@ -26,6 +27,7 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.DeliverySettings
     }
 
     [Serializable]
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum ProductType
     {
         [EnumMember(Value = "global")]
@@ -34,6 +36,7 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.DeliverySettings
     }
 
     [Serializable]
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum DeliveryType
     {
         [EnumMember(Value = "S")]
@@ -48,6 +51,7 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.DeliverySettings
     }
 
     [Serializable]
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum EmailDisplayFormat
     {
         [EnumMember(Value = "HTML")]
@@ -59,6 +63,7 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.DeliverySettings
     }
 
     [Serializable]
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum EmailContentType
     {
         [EnumMember(Value = "Headline")]
@@ -73,6 +78,7 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.DeliverySettings
     }
 
     [Serializable]
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum HeadlineSort
     {
         [EnumMember(Value = "ByDefault")]
@@ -87,6 +93,7 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.DeliverySettings
     }
 
     [Serializable]
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum YesNo
     {
         [EnumMember(Value = "yes")]
@@ -98,6 +105,7 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.DeliverySettings
     }
 
     [Serializable]
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum Language
     {
         [EnumMember(Value = "en")]
@@ -169,6 +177,7 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.DeliverySettings
     }
 
     [Serializable]
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum Day
     {
         [EnumMember(Value = "Sunday")]
@@ -195,6 +204,7 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.DeliverySettings
     }
 
     [Serializable]
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum Repeat
     {
         [EnumMember(Value = "Daily")]
@@ -220,119 +230,133 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.DeliverySettings
             //this.id = "0";
         }
 
+        [JsonProperty(PropertyName = "id")]
         public string Id
         {
             get;
             set;
         }
 
+        [JsonProperty(PropertyName = "name")]
         public string Name
         {
             get;
             set;
         }
 
-        [JsonProperty(PropertyName = "toEmailAddress", Required = Required.Always)]
+        [JsonProperty(PropertyName = "toEmailAddress")]
         public string ToEmailAddress
         {
             get;
             set;
         }
 
+        [JsonProperty(PropertyName = "productType")]
         public ProductType ProductType
         {
             get;
             set;
         }
 
-        [JsonProperty(PropertyName = "deliveryType", Required = Required.Always)]
+        [JsonProperty(PropertyName = "deliveryType")]
         public DeliveryType DeliveryType
         {
             get;
             set;
         }
 
+        [JsonProperty(PropertyName = "contentAsAttachment")]
         public bool ContentAsAttachment
         {
             get;
             set;
         }
 
+        [JsonProperty(PropertyName = "emailDisplayFormat")]
         public EmailDisplayFormat EmailDisplayFormat
         {
             get;
             set;
         }
 
+        [JsonProperty(PropertyName = "emailDisplaylanguage")]
         public Language EmailDisplaylanguage
         {
             get;
             set;
         }
 
+        [JsonProperty(PropertyName = "emailContentType")]
         public EmailContentType EmailContentType
         {
             get;
             set;
         }
 
+        [JsonProperty(PropertyName = "enableDaylightSaving")]
         public bool EnableDaylightSaving
         {
             get;
             set;
         }
 
-        [JsonProperty(PropertyName = "deliveryDayandTime", Required = Required.Always)]
+        [JsonProperty(PropertyName = "deliveryDayandTime")]
         public DeliveryDayandTime DeliveryDayandTime
         {
             get;
             set;
         }
 
-        [JsonProperty(PropertyName = "timeZone", Required = Required.Always)]
+        [JsonProperty(PropertyName = "timeZone")]
         public string TimeZone
         {
             get;
             set;
         }
 
+        [JsonProperty(PropertyName = "showDuplicates")]
         public bool ShowDuplicates
         {
             get;
             set;
         }
 
-        [JsonProperty(PropertyName = "content", Required = Required.Always)]
+        [JsonProperty(PropertyName = "content")]
         public List<Content> Content
         {
             get;
             set;
         }
 
+        [JsonIgnore]
         public bool Active
         {
             get;
             set;
         }
 
+        [JsonIgnore]
         public string CreatedBy
         {
             get;
             set;
         }
 
+        [JsonIgnore]
         public DateTime CreatedDate
         {
             get;
             set;
         }
 
+        [JsonIgnore]
         public DateTime LastModifiedDate
         {
             get;
             set;
         }
 
+        [JsonProperty(PropertyName = "enableHighlight")]
         public bool EnableHighlight
         {
             get;
@@ -352,132 +376,147 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.DeliverySettings
             this.EnableDaylightSaving = true;
         }
 
+        [JsonProperty(PropertyName = "id")]
         public string Id
         {
             get;
             set;
         }
 
+        [JsonProperty(PropertyName = "name")]
         public string Name
         {
             get;
             set;
         }
 
-        [JsonProperty(PropertyName = "toEmailAddress", Required = Required.Always)]
+        [JsonProperty(PropertyName = "toEmailAddress")]
         public string ToEmailAddress
         {
             get;
             set;
         }
 
-
+        [JsonProperty(PropertyName = "productType")]
         public ProductType ProductType
         {
             get;
             set;
         }
 
-        [JsonProperty(PropertyName = "deliveryType", Required = Required.Always)]
+        [JsonProperty(PropertyName = "deliveryType")]
         public DeliveryType DeliveryType
         {
             get;
             set;
         }
 
+        [JsonProperty(PropertyName = "contentAsAttachment")]
         public bool ContentAsAttachment
         {
             get;
             set;
         }
 
+        [JsonProperty(PropertyName = "emailDisplayFormat")]
         public EmailDisplayFormat EmailDisplayFormat
         {
             get;
             set;
         }
 
+        [JsonProperty(PropertyName = "emailDisplaylanguage")]
         public Language EmailDisplaylanguage
         {
             get;
             set;
         }
 
+        [JsonProperty(PropertyName = "emailContentType")]
         public EmailContentType EmailContentType
         {
             get;
             set;
         }
 
+        [JsonProperty(PropertyName = "enableDaylightSaving")]
         public bool EnableDaylightSaving
         {
             get;
             set;
         }
 
-        [JsonProperty(PropertyName = "deliveryDayandTime", Required = Required.Always)]
+        [JsonProperty(PropertyName = "deliveryDayandTime")]
         public DeliveryDayandTime DeliveryDayandTime
         {
             get;
             set;
         }
 
-        [JsonProperty(PropertyName = "timeZone", Required = Required.Always)]
+        [JsonProperty(PropertyName = "timeZone")]
         public string TimeZone
         {
             get;
             set;
         }
 
+        [JsonProperty(PropertyName = "showDuplicates")]
         public bool ShowDuplicates
         {
             get;
             set;
         }
 
-        [JsonProperty(PropertyName = "content", Required = Required.Always)]
+        [JsonProperty(PropertyName = "content")]
         public List<Content> Content
         {
             get;
             set;
         }
 
+        [JsonIgnore]
         public bool Active
         {
             get;
             set;
         }
 
+        [JsonIgnore]
         public string CreatedBy
         {
             get;
             set;
         }
 
-        public System.DateTime CreatedDate
+        [JsonIgnore]
+        public DateTime CreatedDate
         {
             get;
             set;
         }
 
+        [JsonIgnore]
         public System.DateTime LastModifiedDate
         {
             get;
             set;
         }
 
+        [JsonProperty(PropertyName = "enableHighlight")]
         public bool EnableHighlight
         {
             get;
             set;
         }
 
+        [JsonProperty(PropertyName = "emailLimit")]
         public int EmailLimit
         {
             get;
             set;
         }
 
+        [JsonProperty(PropertyName = "clientTypeCode")]
         public string ClientTypeCode
         {
             get;
@@ -485,9 +524,11 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.DeliverySettings
         }
     }
 
+    [JsonObject(Title = "deliveryDayandTime")]
+    [DataContract(Name = "deliveryDayandTime", Namespace = "")]
     public class DeliveryDayandTime
     {
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty(PropertyName = "deliveryDay")]
         [XmlElement(ElementName = "deliveryDay", Form = XmlSchemaForm.Unqualified, Type = typeof(List<Day>))]
         public List<Day> DeliveryDay
         {
@@ -495,6 +536,7 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.DeliverySettings
             set;
         }
 
+        [JsonProperty(PropertyName = "repeat")]
         [XmlElement(ElementName = "repeat", Form = XmlSchemaForm.Unqualified)]
         public Repeat Repeat
         {
@@ -502,7 +544,7 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.DeliverySettings
             set;
         }
 
-        [JsonProperty(PropertyName = "deliveryTime", Required = Required.Always)]
+        [JsonProperty(PropertyName = "deliveryTime")]
         [XmlElement(ElementName = "deliveryTime", Form = XmlSchemaForm.Unqualified, Type = typeof(List<string>))]
         public List<string> DeliveryTime
         {
@@ -526,33 +568,35 @@ namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.DeliverySettings
 
         }
 
-        [JsonProperty(PropertyName = "contentID", Required = Required.Always)]
+        [JsonProperty(PropertyName = "contentID")]
         public string ContentID
         {
             get;
             set;
         }
 
-        [JsonProperty(PropertyName = "contentName", Required = Required.Always)]
+        [JsonProperty(PropertyName = "contentName")]
         public string ContentName
         {
             get;
             set;
         }
 
+        [JsonProperty(PropertyName = "position")]
         public int Position
         {
             get;
             set;
         }
 
+        [JsonProperty(PropertyName = "headlineSort")]
         public HeadlineSort HeadlineSort
         {
             get;
             set;
         }
 
-        [JsonProperty(PropertyName = "maxHits", Required = Required.Always)]
+        [JsonProperty(PropertyName = "maxHits")]
         public int MaxHits
         {
             get;

@@ -16,7 +16,7 @@ using Environment = DowJones.Json.Gateway.Common.Environment;
 using DowJones.Json.Gateway.Messages.Eds.Api_1_0.Ode.Transactions;
 using System.Collections.Generic;
 
-namespace DowJones.Json.Gateway.Tests.Eds
+namespace DowJones.Json.Gateway.Tests.Eds.Ode
 {
     [TestClass]
     public class ODEServiceUnitTests : AbstractUnitTests
