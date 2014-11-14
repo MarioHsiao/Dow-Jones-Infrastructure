@@ -64,6 +64,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Core\AbstractUnitTests.cs" />
+    <Compile Include="Eds\DeliverySettingsServiceTests.cs" />
     <Compile Include="Eds\ODEServiceUnitTests.cs" />
     <Compile Include="Eds\TestStubs.cs" />
     <Compile Include="Pam\ListServiceUnitTests.cs" />

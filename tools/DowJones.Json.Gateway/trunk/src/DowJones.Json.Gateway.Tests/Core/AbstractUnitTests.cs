@@ -9,6 +9,9 @@ using log4net.Appender;
 using log4net.Config;
 using log4net.Layout;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using DowJones.Json.Gateway.Interfaces;
+using DowJones.Json.Gateway.Converters;
+using DowJones.Json.Gateway.Exceptions;
 
 namespace DowJones.Json.Gateway.Tests.Core
 {
@@ -76,5 +79,32 @@ namespace DowJones.Json.Gateway.Tests.Core
             };
             return controlData;
         }
+
+        protected RestResponse<TRes> Execute<TReq, TRes>(RestRequest<TReq> restRequest)
+            where TReq : IJsonRestRequest, new()
+            where TRes : IJsonRestResponse, new()
+        {
+            try
+            {
+                var rm = new RestManager();
+                var t = rm.Execute<TReq, TRes>(restRequest);
+
+                Console.Write(restRequest.Request.ToJson(new DataContractJsonConverter()));
+                //Console.WriteLine(t.Data.ToJson(true));
+ 
+                return t;
+            }
+            catch (JsonGatewayException gatewayException)
+            {
+                Console.Write(gatewayException.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.Message);
+            }
+            Assert.Fail("unable to generate ODE");
+
+            return null;
+        } 
     }
 }

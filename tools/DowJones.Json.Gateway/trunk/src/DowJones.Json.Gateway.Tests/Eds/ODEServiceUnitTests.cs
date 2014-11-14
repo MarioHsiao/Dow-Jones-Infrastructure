@@ -37,7 +37,8 @@ namespace DowJones.Json.Gateway.Tests.Eds
 
             UpdateRoutingData(r.ControlData.RoutingData);
 
-            var response = Execute(r);
+
+            var response = Execute<GenerateOdeRequest, GenerateOdeResponse>(r);
 
             if (response.ReturnCode == 0)
             {
@@ -68,7 +69,7 @@ namespace DowJones.Json.Gateway.Tests.Eds
 
             UpdateRoutingData(r.ControlData.RoutingData);
 
-            var response = Execute(r);
+            var response = Execute<GenerateOdeRequest, GenerateOdeResponse>(r);
 
             if (response.ReturnCode == 0)
             {
@@ -100,7 +101,7 @@ namespace DowJones.Json.Gateway.Tests.Eds
 
             UpdateRoutingData(r.ControlData.RoutingData);
 
-            var response = Execute(r);
+            var response = Execute<GenerateOdeRequest, GenerateOdeResponse>(r);
 
             if (response.ReturnCode == 0)
             {
@@ -147,31 +148,6 @@ namespace DowJones.Json.Gateway.Tests.Eds
             routingData.TransportType = "HTTP";
             routingData.Environment = Environment.Proxy;
             routingData.Serializer = JsonSerializer.JsonDotNet;
-        }
-
-        private RestResponse<GenerateOdeResponse> Execute(RestRequest<GenerateOdeRequest> r)
-        {
-            try
-            {
-                var rm = new RestManager();
-                var t = rm.Execute<GenerateOdeRequest, GenerateOdeResponse>(r);
-
-                Console.Write(r.Request.ToJson(new DataContractJsonConverter()));
-                Console.WriteLine(t.Data.ToJson(true));
- 
-                return t;
-            }
-            catch (JsonGatewayException gatewayException)
-            {
-                Console.Write(gatewayException.Message);
-            }
-            catch (Exception ex)
-            {
-                Console.Write(ex.Message);
-            }
-            Assert.Fail("unable to generate ODE");
-
-            return null;
         }
     }
 }
