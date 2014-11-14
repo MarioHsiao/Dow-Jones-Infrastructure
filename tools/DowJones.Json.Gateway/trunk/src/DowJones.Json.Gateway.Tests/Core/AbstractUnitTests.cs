@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DowJones.Json.Gateway.Common;
+using DowJones.Json.Gateway.Extensions;
 using DowJones.Json.Gateway.Messages.Core;
 using log4net;
 using log4net.Appender;
@@ -90,7 +91,7 @@ namespace DowJones.Json.Gateway.Tests.Core
                 var t = rm.Execute<TReq, TRes>(restRequest);
 
                 Console.Write(restRequest.Request.ToJson(new DataContractJsonConverter()));
-                //Console.WriteLine(t.Data.ToJson(true));
+                Console.WriteLine(t.Data.ToJson(true));
  
                 return t;
             }
