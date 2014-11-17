@@ -122,12 +122,35 @@ namespace DowJones.Json.Gateway.Tests.Eds
             return rr;
         }
 
-        internal static CreateDeliverySettingsRequest GetCreateDeliverySettingsRequest()
+        internal static CreateDeliverySettingsRequest GetCreateDeliverySettingsRequest(string deliveryName)
+        {
+            var deliveryList = new List<DS.Delivery>();
+
+            DS.Delivery firstDelivery = GetCommonDeliverySetting();
+            firstDelivery.Name = deliveryName + "_FirstDelivery";
+            firstDelivery.DeliveryDayandTime.DeliveryTime = new List<string> { "8" };
+            firstDelivery.Content[0].ContentID = "30029078";
+            deliveryList.Add(firstDelivery);
+
+            DS.Delivery secondDelivery = GetCommonDeliverySetting();
+            secondDelivery.Name = deliveryName + "_SecondDelivery";
+            secondDelivery.DeliveryDayandTime.DeliveryTime = new List<string> {"16"};
+            secondDelivery.Content[0].ContentID = "30029079";
+            deliveryList.Add(secondDelivery);
+
+            var req = new CreateDeliverySettingsRequest
+            {
+                delivery = deliveryList
+            };
+
+            return req;
+        }
+
+        private static DS.Delivery GetCommonDeliverySetting()
         {
             var content = new DS.Content()
             {
-                ContentID = "30029078",
-                ContentName = "test123",
+                ContentID = "0",
                 Position = 1,
                 HeadlineSort = DS.HeadlineSort.ByDate,
                 MaxHits = 10
@@ -135,13 +158,11 @@ namespace DowJones.Json.Gateway.Tests.Eds
 
             var contentList = new List<DS.Content>();
             contentList.Add(content);
-
             var delivery = new DS.Delivery()
             {
-                Name = "vivek2",
                 ToEmailAddress = "sunli@Toyota.djip.com",
                 ProductType = DS.ProductType.global,
-                DeliveryType = DS.DeliveryType.C,
+                DeliveryType = DS.DeliveryType.B,
                 ContentAsAttachment = false,
                 EmailDisplayFormat = DS.EmailDisplayFormat.TEXT,
                 EmailDisplaylanguage = DS.Language.fr,
@@ -154,20 +175,10 @@ namespace DowJones.Json.Gateway.Tests.Eds
                 {
                     DeliveryDay = new List<DS.Day>() { DS.Day.Monday, DS.Day.Tuesday },
                     Repeat = DS.Repeat.Weekly,
-                    DeliveryTime = new List<string>() { "8", "16" }
                 },
                 Content = contentList
             };
-
-            var deliveryList = new List<DS.Delivery>();
-            deliveryList.Add(delivery);
-
-            var req = new CreateDeliverySettingsRequest()
-            {
-                delivery = deliveryList
-            };
-
-            return req;
+            return delivery;
         }
     }
 }

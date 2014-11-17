@@ -43,12 +43,12 @@ namespace DowJones.Json.Gateway.Tests.Core
                 },
                 UserCredentialData = new UserCredentialData
                 {
-                    SessionId = "27139ZzZKJAUQYKTAAAGUAYAAAAAAH2RAAAAAABSGAYTIMJRGE2DAOJVGQYDEMRR",
+                    SessionId = "27137XxX_JUYTIMJWGI2DMNBYGUXVA6CTHBFTESDDNJIHUULOPFEDORCXIJTG22CPOIXVORCROVWDG6TKOYVWYVKPOAZTKK2XGBVGYYLVG5RU63DHORWGQ32ZINDVOZKUOUZUKLZPKRZUQUTBGRIFE23JIZAVOQSSOZVU2TCUK53VOR2ZHB2UOWDFG5KWCMTPJ4YVU23DPBWFSQKQMFIXS2DDLJXDITSBMFZEML3UKNQXO6CUPJIUUVKKOZ3E4L3GMVLEG5SUORKFC33CJ5ZG4MCJMM4HKZ3DNRKEYZD2JM4WGPKH",
                     IpAddress = "127.0.0.1",
                     //UserGuidId = "3bb6cd20-968c-4def-805d-283710580dba",
                     //EncryptedUserId = "E6OO2HVCQHVPEXDO5LSIIKF7AY",
-                    AccountId = "9PRO000200",
-                    UserId = "lisaint",
+                    AccountId = "9PRO001900",
+                    UserId = "nareshx",
                     Namespace = "16"
                 },
                 TransactionCacheData = new TransactionCacheData(),
@@ -60,7 +60,7 @@ namespace DowJones.Json.Gateway.Tests.Core
                 {
                     ContentServerAddress = 0,
                     TransportType = "HTTP",
-                    Serializer = JsonSerializer.DataContract,
+                    Serializer = JsonSerializer.JsonDotNet,
                     ServiceUrl = "http://edsapi.int.dowjones.net/",
                     Environment = DowJones.Json.Gateway.Common.Environment.Proxy
                 },

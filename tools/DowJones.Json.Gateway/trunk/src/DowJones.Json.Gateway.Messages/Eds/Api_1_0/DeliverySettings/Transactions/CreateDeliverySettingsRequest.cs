@@ -10,7 +10,7 @@ using System.Text;
 
 namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.DeliverySettings.Transactions
 {
-    [ServicePath("1.0/Delivery")]
+    [ServicePath("1.0/DeliverySettings")]
     [DataContract(Name = "CreateDeliverySettings", Namespace = "")]
     [JsonObject(Title = "CreateDeliverySettings")]
     public class CreateDeliverySettingsRequest : IPostJsonRestRequest

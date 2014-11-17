@@ -1,4 +1,6 @@
-﻿using DowJones.Json.Gateway.Converters;
+﻿using System.Runtime.Serialization;
+using DowJones.Json.Gateway.Attributes;
+using DowJones.Json.Gateway.Converters;
 using DowJones.Json.Gateway.Interfaces;
 using Newtonsoft.Json;
 using System;
@@ -8,6 +10,9 @@ using System.Text;
 
 namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.DeliverySettings.Transactions
 {
+    [ServicePath("1.0/DeliverySettings")]
+    [DataContract(Name = "UpdateDeliverySettings", Namespace = "")]
+    [JsonObject(Title = "UpdateDeliverySettings")]
     public class UpdateDeliverySettingsRequest : IPostJsonRestRequest
     {
         public UpdateDeliverySettingsRequest()

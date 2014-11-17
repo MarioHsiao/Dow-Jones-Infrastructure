@@ -10,9 +10,9 @@ using Newtonsoft.Json;
 
 namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.DeliverySettings.Transactions
 {
-    [ServicePath("1.0/Delivery")]
+    [ServicePath("1.0/DeliverySettings")]
     [DataContract(Name = "GetDeliverySettings", Namespace = "")]
-    [JsonObject(Title = "GetDeliverySettings")]
+    [JsonObject(Title = "UpdateSettings")]
     public class GetDeliverySettingsRequest : IPostJsonRestRequest
     {
         [JsonProperty(PropertyName = "returnType", Required = Required.Always)]

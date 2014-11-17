@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 
 namespace DowJones.Json.Gateway.Messages.Eds.Api_1_0.DeliverySettings.Transactions
 {
-    [ServicePath("1.0/Delivery")]
+    [ServicePath("1.0/DeliverySettings")]
     [DataContract(Name = "DeleteDeliverySettings", Namespace = "")]
     [JsonObject(Title = "DeleteDeliverySettings")]
     public class DeleteDeliverySettingsRequest : IPostJsonRestRequest
