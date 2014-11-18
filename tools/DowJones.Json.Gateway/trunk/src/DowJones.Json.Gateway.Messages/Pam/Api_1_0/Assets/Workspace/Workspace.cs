@@ -13,8 +13,8 @@ namespace DowJones.Json.Gateway.Messages.Pam.Api_1_0.Assets.Workspace
     [EditorBrowsable(EditorBrowsableState.Advanced)]
     [XmlInclude(typeof(AutomaticWorkspace))]
     [XmlInclude(typeof(ManualWorkspace))]
-    [KnownType("AutomaticWorkspace")]
-    [KnownType("ManualWorkspace")]
+    [KnownType(typeof(AutomaticWorkspace))]
+    [KnownType(typeof(ManualWorkspace))]
     public abstract class Workspace
     {
         [JsonProperty(PropertyName = "id")]
