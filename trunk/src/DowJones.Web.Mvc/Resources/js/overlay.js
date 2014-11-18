@@ -201,7 +201,7 @@ $.fn.overlay.show = function (selector, retainBackground) {
             if (e.keyCode === 27) {
                 //To fix FF issue which fires this event when we close the fullscreen mode
                 if (typeof $dj !== 'undefined' && $dj.videoPlayerInFullScreen) { return; }
-                if ($("#flipboardInstructionsContainer").length > 0 && $("#flipboardInstructionsContainer").is(":visible")) {
+                if (selector == "#navbar_modalNoHeaderDialog" && $("#flipboardInstructionsContainer").length > 0 && $("#flipboardInstructionsContainer").is(":visible")) {
                     if ($("#closeFlipboardSplashLink").length > 0) {
                         $("#closeFlipboardSplashLink").click();
                     }
