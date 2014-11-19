@@ -25,14 +25,14 @@ namespace DowJones.Json.Gateway.Converters
                              ContractResolver = new DefaultContractResolver(),
                              DateTimeZoneHandling = DateTimeZoneHandling.Utc,
                              TypeNameHandling = TypeNameHandling.Auto,
-                             Binder = new TypeNameSerializationBinder(),
+                             //Binder = new TypeNameSerializationBinder(), // commenting this code bcoz its restricting type info of other classes
                              MissingMemberHandling = MissingMemberHandling.Ignore,
                              //PreserveReferencesHandling = PreserveReferencesHandling.All,
                              TypeNameAssemblyFormat = FormatterAssemblyStyle.Full,
                              
                          };
-            Serializer.Converters.Add(new StringEnumConverter {AllowIntegerValues = false});
-        }
+            Serializer.Converters.Add(new StringEnumConverter { AllowIntegerValues = false });
+           }
 
         /// <summary>
         ///     Default serializer with overload for allowing custom Json.NET settings
