@@ -129,7 +129,6 @@ namespace DowJones.Json.Gateway.Tests.Eds.DeliverySettings
             Assert.AreNotEqual(serializedObject.IndexOf("\"deliveryTime\""), -1,"DeliveryTime property incorrectly serialized");
             Assert.AreNotEqual(serializedObject.IndexOf("\"content\""), -1, "Content property incorrectly serialized");
             Assert.AreNotEqual(serializedObject.IndexOf("\"contentID\""), -1,"ContentID property incorrectly serialized");
-            Assert.AreNotEqual(serializedObject.IndexOf("\"contentName\""), -1,"ContentName property incorrectly serialized");
             Assert.AreNotEqual(serializedObject.IndexOf("\"position\""), -1, "Position property incorrectly serialized");
             Assert.AreNotEqual(serializedObject.IndexOf("\"headlineSort\""), -1,"HeadlineSort property incorrectly serialized");
             Assert.AreNotEqual(serializedObject.IndexOf("\"maxHits\""), -1, "MaxHits property incorrectly serialized");
