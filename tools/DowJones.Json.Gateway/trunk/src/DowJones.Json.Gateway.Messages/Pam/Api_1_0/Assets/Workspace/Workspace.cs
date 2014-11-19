@@ -9,6 +9,7 @@ namespace DowJones.Json.Gateway.Messages.Pam.Api_1_0.Assets.Workspace
 {
     [JsonConverter(typeof(Workspace.MyCustomConverter))]
     [JsonObject(Title = "Workspace")]
+    [DataContract(Name = "Workspace", Namespace = "")]
     [XmlType(TypeName = "Workspace", Namespace = Declarations.SchemaVersion), Serializable]
     [EditorBrowsable(EditorBrowsableState.Advanced)]
     [XmlInclude(typeof(AutomaticWorkspace))]

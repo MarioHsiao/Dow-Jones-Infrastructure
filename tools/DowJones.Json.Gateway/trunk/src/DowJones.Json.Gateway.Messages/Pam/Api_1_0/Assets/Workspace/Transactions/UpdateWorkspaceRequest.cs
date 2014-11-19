@@ -94,7 +94,6 @@ namespace DowJones.Json.Gateway.Messages.Pam.Api_1_0.Assets.Workspace.Transactio
     /// 	</example>
     /// </summary>
     [ServicePath("2.0/Workspace")]
-    //[ServicePath("Workspace/")]
     [DataContract(Name = "UpdateWorkspace", Namespace = "")]
     [JsonObject(Title = "UpdateWorkspace")]
     [XmlRoot(ElementName = "UpdateWorkspace", Namespace = Declarations.SchemaVersion, IsNullable = false), Serializable]

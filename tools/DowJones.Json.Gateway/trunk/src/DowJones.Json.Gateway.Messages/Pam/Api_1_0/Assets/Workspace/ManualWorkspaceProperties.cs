@@ -8,10 +8,10 @@ namespace DowJones.Json.Gateway.Messages.Pam.Api_1_0.Assets.Workspace
     [JsonConverter(typeof(ManualWorkspaceProperties.MyCustomConverter))]
     [JsonObject(Title = "ManualWorkspaceProperties")]
     [XmlType(TypeName = "ManualWorkspaceProperties", Namespace = Declarations.SchemaVersion), Serializable]
-    [XmlInclude(typeof(NewsletterWorkspaceProperties))]
+    //[XmlInclude(typeof(NewsletterWorkspaceProperties))]
     [XmlInclude(typeof(CollectionWorkspaceProperties))]
-    [KnownType("NewsletterWorkspaceProperties")]
-    [KnownType("CollectionWorkspaceProperties")]
+    //[KnownType(typeof(NewsletterWorkspaceProperties))]
+    [KnownType(typeof(CollectionWorkspaceProperties))]
     public abstract class ManualWorkspaceProperties : WorkspaceProperties
     {
         private class MyCustomConverter : JsonCreationConverter<ManualWorkspaceProperties>

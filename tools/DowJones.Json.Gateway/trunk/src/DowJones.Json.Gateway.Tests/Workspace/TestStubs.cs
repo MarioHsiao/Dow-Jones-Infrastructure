@@ -9,6 +9,37 @@ namespace DowJones.Json.Gateway.Tests.Workspace
 {
     internal static class TestStubs
     {
+        internal static UpdateWorkspaceRequest getUpdateRequest1()
+        {
+            ManualWorkspace manualWorkspace = new ManualWorkspace();
+            manualWorkspace.Id = 11939;
+            manualWorkspace.Code = "UnitTest_NN79O";
+            Section baseSection = new Section();
+            ArticleItem item;
+          
+            List<string> accessionNumbers = GetAccessionNumbers();
+            foreach (string s in accessionNumbers)
+            {
+                item = new ArticleItem();
+                item.AccessionNumber = string.Empty;
+                item.ProviderId = s;
+                item.ProviderType = "WSJ";
+
+                baseSection.ItemCollection.Add(item);
+            }
+            manualWorkspace.SectionCollection.Add(baseSection);
+
+            CollectionWorkspaceProperties collectionWorkspaceProperties = new CollectionWorkspaceProperties();
+            collectionWorkspaceProperties.Name = "UnitTest_NN79O";
+            manualWorkspace.Properties = collectionWorkspaceProperties;
+
+            UpdateWorkspaceRequest updateWorkspaceRequest = new UpdateWorkspaceRequest();
+            updateWorkspaceRequest.Workspace = manualWorkspace;
+            updateWorkspaceRequest.Mode = UpdateWorkspaceMode.Save;
+
+            return updateWorkspaceRequest;
+        }
+
         internal static UpdateWorkspaceRequest getUpdateRequest()
         {
             long workspaceId = 11939;
@@ -161,7 +192,7 @@ namespace DowJones.Json.Gateway.Tests.Workspace
             return new List<string>(
                 new string[]
                     {
-                          "SB11956272311332514296004580260603289078376","SB11231371459403363808604580245053641632146","SB11272388368651094772704580244742579892982","SB11272388368651094772704580242671206377594","SB11231371459403363808604580244222604752724","SB12266175041254304132704580155792973370392"
+                          "SB10001424052702304256404579453731910023274","SB10001424173140724841304579278272302959250","SB10001424052702303945704579391243579396718","SB10001424052702304071004579411433293118344","SB10001424173140724074604579450853316844762","SB10001424173140724743404579374550445530602"
                     }
                 );
         }

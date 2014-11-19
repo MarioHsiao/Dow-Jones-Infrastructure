@@ -22,13 +22,14 @@ namespace DowJones.Json.Gateway.Tests.Workspace
         {
             var r = new RestRequest<UpdateWorkspaceRequest>
                 {
-                    Request = TestStubs.getUpdateRequest(),
+                    Request = TestStubs.getUpdateRequest1(),
                     ControlData = GetControlData(),
                 };
 
             UpdateControlData(r.ControlData);
 
             // Update Routing Data
+            r.ControlData.RoutingData = new RoutingData();
             UpdateRoutingData(r.ControlData.RoutingData);
 
 
@@ -65,71 +66,10 @@ namespace DowJones.Json.Gateway.Tests.Workspace
 
         private static void UpdateControlData(IControlData controlData)
         {
-            controlData.UserCommerceData =  new UserCommerceData()
-                {
-                    ClientType = "D",
-                    AccessPointCode = "RS"
-                };
             controlData.UserCredentialData = new UserCredentialData()
-                {
-                    SessionId = "27139ZzZKJAUQUSCAAAGUAYAAAAAAKWPAAAAAABSGAYTIMJRGE4DCMJTHAZDMOBW",
-                    IpAddress = "127.0.0.1",
-                    //UserGuidId = "3bb6cd20-968c-4def-805d-283710580dba",
-                    //EncryptedUserId = "E6OO2HVCQHVPEXDO5LSIIKF7AY",
-                    AccountId = "9FAC000700",
-                    //UserId = "made5200",
-                    UserId = "block0162",
-                    Namespace = "16"
-                };
-            controlData.AuthorizationData = new AuthorizationData()
-                {
-                    AuthComponents = new List<AuthComponent>()
-                        {
-                            new AuthComponent
-                                {
-                                    Name = "ac4",
-                                    Service = "membership",
-                                    Value = "W"
-                                },
-                            new AuthComponent
-                                {
-                                    Name = "ac5",
-                                    Service = "membership",
-                                    Value = "EmailValid=30;EmailEnabled=Y;SelfReg=OFF;EditEmail=N;EditAddr=N;CB=N"
-                                },
-                            new AuthComponent
-                                {
-                                    Name = "AC1",
-                                    Service = "PAM",
-                                    Value = "NewsPage:25;INL:25;AUL:10;RGL:25"
-                                },
-                            new AuthComponent
-                                {
-                                    Name = "AC3",
-                                    Service = "PAM",
-                                    Value = "TS_ASIA,TS_AUNZ,TS_COMM,TS_DJIB,TS_DJN"
-                                },
-                            new AuthComponent
-                                {
-                                    Name = "AC4",
-                                    Service = "pam",
-                                    Value = "NLE"
-                                },
-                            new AuthComponent
-                                {
-                                    Name = "ADMIN_FLAG",
-                                    Service = "PAM",
-                                    Value = "G"
-                                },
-                            new AuthComponent
-                                {
-                                    Name = "GROUP_IDS",
-                                    Service = "pam",
-                                    Value = "12016,2622,2546,1902,699,22080,3663,3662,696,"
-                                },
-
-                        }
-                };
+            {
+                SessionId = "27139ZzZKJAUQUSCAAAGUAYAAAAAALORAAAAAABSGAYTIMJRGE4TAOJTGE2DCMJR",
+            };
         }
 
         private static void UpdateRoutingData(IRoutingData routingData)
