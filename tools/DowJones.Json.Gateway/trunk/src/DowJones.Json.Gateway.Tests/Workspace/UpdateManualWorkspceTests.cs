@@ -18,14 +18,109 @@ namespace DowJones.Json.Gateway.Tests.Workspace
     public class UpdateManualWorkspceTests : AbstractUnitTests
     {
         [TestMethod]
+        public void GetWorkspaceByCodeRequest()
+        {
+            var r = new RestRequest<GetWorkspaceByCodeRequest>
+            {
+                Request = TestStubs.GetWorkspaceByCodeRequest(),
+                ControlData = GetControlData(),
+            };
+
+            r.ControlData = new ControlData();
+            UpdateControlData(r.ControlData);
+
+            // Update Routing Data
+            r.ControlData.RoutingData = new RoutingData();
+            UpdateRoutingData(r.ControlData.RoutingData);
+
+
+            try
+            {
+                var rm = new RestManager();
+                var t = rm.Execute<GetWorkspaceByCodeRequest, GetWorkspaceByCodeResponse>(r);
+
+                Console.Write(r.Request.ToJson(new JsonDotNetJsonConverter()));
+
+                if (t.ReturnCode == 0)
+                {
+                    Assert.IsNotNull(t);
+                }
+                else
+                {
+                    Console.WriteLine(t.Error.Message);
+                    Assert.Fail(string.Concat("failed w/rc:= ", t.ReturnCode.ToString(CultureInfo.InvariantCulture)));
+                }
+                Console.WriteLine(t.Data.ToJson(true));
+                return;
+            }
+            catch (JsonGatewayException gatewayException)
+            {
+                Console.Write(gatewayException.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.Message);
+            }
+            Assert.Fail("unable delete list");
+        }
+
+        [TestMethod]
+        public void GetWorkspacesDetailsListRequest()
+        {
+            var r = new RestRequest<GetWorkspacesDetailsListRequest>
+            {
+                Request = TestStubs.GetWorkspacesDetailsListRequest(),
+                ControlData = GetControlData(),
+            };
+            r.ControlData = new ControlData();
+            UpdateControlData(r.ControlData);
+
+            // Update Routing Data
+            r.ControlData.RoutingData = new RoutingData();
+            UpdateRoutingData(r.ControlData.RoutingData);
+
+
+            try
+            {
+                var rm = new RestManager();
+                var t = rm.Execute<GetWorkspacesDetailsListRequest, GetWorkspacesDetailsListResponse>(r);
+
+                Console.Write(r.Request.ToJson(new JsonDotNetJsonConverter()));
+
+                if (t.ReturnCode == 0)
+                {
+                    Assert.IsNotNull(t);
+                }
+                else
+                {
+                    Console.WriteLine(t.Error.Message);
+                    Assert.Fail(string.Concat("failed w/rc:= ", t.ReturnCode.ToString(CultureInfo.InvariantCulture)));
+                }
+                Console.WriteLine(t.Data.ToJson(true));
+                return;
+            }
+            catch (JsonGatewayException gatewayException)
+            {
+                Console.Write(gatewayException.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.Message);
+            }
+            Assert.Fail("unable delete list");
+        }
+
+
+
+        [TestMethod]
         public void UpdateManualWorkspceRequest()
         {
             var r = new RestRequest<UpdateWorkspaceRequest>
                 {
-                    Request = TestStubs.getUpdateRequest1(),
+                    Request = TestStubs.GetUpdateRequest1(),
                     ControlData = GetControlData(),
                 };
-
+            r.ControlData = new ControlData();
             UpdateControlData(r.ControlData);
 
             // Update Routing Data
@@ -39,7 +134,7 @@ namespace DowJones.Json.Gateway.Tests.Workspace
                 var rm = new RestManager();
                 var t = rm.Execute<UpdateWorkspaceRequest, UpdateWorkspaceResponse>(r);
 
-                Console.Write(r.Request.ToJson(new DataContractJsonConverter()));
+                Console.Write(r.Request.ToJson(new JsonDotNetJsonConverter()));
 
                 if (t.ReturnCode == 0)
                 {
@@ -68,7 +163,7 @@ namespace DowJones.Json.Gateway.Tests.Workspace
         {
             controlData.UserCredentialData = new UserCredentialData()
             {
-                SessionId = "27139ZzZKJAUQUSCAAAGUAYAAAAAALORAAAAAABSGAYTIMJRGE4TAOJTGE2DCMJR",
+                SessionId = "27139XxX-JUYTIMJWGQ4TQNBYGUXVGRCFIJJU63DXJBHXI2KKIMZGC4CEOJVVOULTGBUUQ4TGFM3G2MCJMJWEOTLTJRMUGYSVG53GCNDKNZKHK4TGGZUXA2KJJJSGG3CKGA3UCQRLINAU2YKZHFJW2NLDG5YVOQTXKVCUOVJRMJCHKSCKK4YEG22VNVJGMRKQIVFGQVCYOAYHM3TFLEYDAL3YJBCEW3RQGQYGOS2MI4",
             };
         }
 

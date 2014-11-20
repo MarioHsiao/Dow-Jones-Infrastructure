@@ -191,6 +191,7 @@
     <Compile Include="Pam\Api_1_0\Assets\Workspace\Filter.cs" />
     <Compile Include="Pam\Api_1_0\Assets\Workspace\FilterCollection.cs" />
     <Compile Include="Pam\Api_1_0\Assets\Workspace\FilterGroup.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\Workspace\FilterGroupCollection.cs" />
     <Compile Include="Pam\Api_1_0\Assets\Workspace\GroupIdList.cs" />
     <Compile Include="Pam\Api_1_0\Assets\Workspace\GroupIdListCollection.cs" />
     <Compile Include="Pam\Api_1_0\Assets\Workspace\GroupList.cs" />
@@ -212,6 +213,7 @@
     <Compile Include="Pam\Api_1_0\Assets\Workspace\NameSearchCollection.cs" />
     <Compile Include="Pam\Api_1_0\Assets\Workspace\NameSearchFilter.cs" />
     <Compile Include="Pam\Api_1_0\Assets\Workspace\NewsletterWorkspaceProperties.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\Workspace\Paging.cs" />
     <Compile Include="Pam\Api_1_0\Assets\Workspace\Permission.cs" />
     <Compile Include="Pam\Api_1_0\Assets\Workspace\ProductFilter.cs" />
     <Compile Include="Pam\Api_1_0\Assets\Workspace\ProxyCredentials.cs" />
@@ -227,11 +229,17 @@
     <Compile Include="Pam\Api_1_0\Assets\Workspace\ShareScopeCollection.cs" />
     <Compile Include="Pam\Api_1_0\Assets\Workspace\SubSectionCollection.cs" />
     <Compile Include="Pam\Api_1_0\Assets\Workspace\TagCollection.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\Workspace\Transactions\GetWorkspaceByCodeRequest.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\Workspace\Transactions\GetWorkspaceByCodeResponse.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\Workspace\Transactions\GetWorkspacesDetailsListRequest.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\Workspace\Transactions\GetWorkspacesDetailsListResponse.cs" />
     <Compile Include="Pam\Api_1_0\Assets\Workspace\Transactions\UpdateWorkspaceRequest.cs" />
     <Compile Include="Pam\Api_1_0\Assets\Workspace\Transactions\UpdateWorkspaceResponse.cs" />
     <Compile Include="Pam\Api_1_0\Assets\Workspace\Workspace.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\Workspace\WorkspaceCollection.cs" />
     <Compile Include="Pam\Api_1_0\Assets\Workspace\WorkspaceProperties.cs" />
     <Compile Include="Pam\Api_1_0\Assets\Workspace\WorkspacePropertiesItem.cs" />
+    <Compile Include="Pam\Api_1_0\Assets\Workspace\WorkspaceTypeCollection.cs" />
     <Compile Include="Pam\Api_1_0\Sharing\ShareProperties.cs" />
     <Compile Include="Pam\Api_1_0\Sharing\SharePropertiesResponse.cs" />
     <Compile Include="Pam\Api_1_0\Sharing\ShareRole.cs" />

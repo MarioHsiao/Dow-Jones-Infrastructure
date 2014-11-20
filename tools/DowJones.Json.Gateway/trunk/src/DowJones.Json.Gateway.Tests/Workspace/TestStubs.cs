@@ -9,7 +9,47 @@ namespace DowJones.Json.Gateway.Tests.Workspace
 {
     internal static class TestStubs
     {
-        internal static UpdateWorkspaceRequest getUpdateRequest1()
+        internal static GetWorkspacesDetailsListRequest GetWorkspacesDetailsListRequest()
+        {
+            GetWorkspacesDetailsListRequest getWorkspacesDetailsListRequest = new GetWorkspacesDetailsListRequest();
+
+            getWorkspacesDetailsListRequest.WorkspaceType = WorkspaceType.Collection;
+            /*getWorkspacesDetailsListRequest.SortBy = WorkspaceSortBy.Name;
+            getWorkspacesDetailsListRequest.SortOrder = SortOrder.Ascending;
+            getWorkspacesDetailsListRequest.MaxResultsToReturn = 100;
+            getWorkspacesDetailsListRequest.DataItemsCountController.MaxItemsToReturn = 100;
+            getWorkspacesDetailsListRequest.DataItemsCountController.MaxSectionsToReturn = 100;
+
+            //Filter Groups
+            FilterGroup filterGroup = new FilterGroup();
+            filterGroup.Operator = FilterOperator.AND;*/
+
+            FilterGroup filterGroup = new FilterGroup();
+            //Filter 1
+            NameSearchFilter nameSearchFilter = new NameSearchFilter();
+            nameSearchFilter.NameSearchCollection.Add("12114");
+            nameSearchFilter.SearchOperator = FilterSearchOperator.BeginsWith;
+
+            filterGroup.FilterCollection.Add(nameSearchFilter);
+
+            getWorkspacesDetailsListRequest.FilterGroupsCollection.Add(filterGroup);
+
+            return getWorkspacesDetailsListRequest;
+        }
+
+        internal static GetWorkspaceByCodeRequest GetWorkspaceByCodeRequest()
+        {
+            GetWorkspaceByCodeRequest getWorkspaceByCode = new GetWorkspaceByCodeRequest();
+
+            getWorkspaceByCode.Type = WorkspaceType.Collection;
+            getWorkspaceByCode.CodeCollection = new CodeCollection();
+            getWorkspaceByCode.CodeCollection.Add("12114");
+            //getWorkspaceByCode.CodeCollection.Add("TNLDBR");
+
+            return getWorkspaceByCode;
+        }
+
+        internal static UpdateWorkspaceRequest GetUpdateRequest1()
         {
             ManualWorkspace manualWorkspace = new ManualWorkspace();
             manualWorkspace.Id = 11939;
@@ -40,7 +80,7 @@ namespace DowJones.Json.Gateway.Tests.Workspace
             return updateWorkspaceRequest;
         }
 
-        internal static UpdateWorkspaceRequest getUpdateRequest()
+        internal static UpdateWorkspaceRequest GetUpdateRequest()
         {
             long workspaceId = 11939;
             ManualWorkspace manualWorkspace = new ManualWorkspace();
