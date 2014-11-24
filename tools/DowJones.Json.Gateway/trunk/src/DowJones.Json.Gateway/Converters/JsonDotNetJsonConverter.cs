@@ -21,18 +21,17 @@ namespace DowJones.Json.Gateway.Converters
             Serializer = new JsonSerializer
                          {
                              NullValueHandling = NullValueHandling.Ignore,
-                             //DefaultValueHandling = DefaultValueHandling.Ignore,
+                             DefaultValueHandling = DefaultValueHandling.Ignore,
                              ContractResolver = new DefaultContractResolver(),
                              DateTimeZoneHandling = DateTimeZoneHandling.Utc,
                              TypeNameHandling = TypeNameHandling.Auto,
-                             //Binder = new TypeNameSerializationBinder(), // commenting this code bcoz its restricting type info of other classes
+                             Binder = new TypeNameSerializationBinder(),
                              MissingMemberHandling = MissingMemberHandling.Ignore,
                              //PreserveReferencesHandling = PreserveReferencesHandling.All,
                              TypeNameAssemblyFormat = FormatterAssemblyStyle.Full,
-                             
                          };
-            Serializer.Converters.Add(new StringEnumConverter { AllowIntegerValues = false });
-           }
+            Serializer.Converters.Add(new StringEnumConverter {AllowIntegerValues = false});
+        }
 
         /// <summary>
         ///     Default serializer with overload for allowing custom Json.NET settings

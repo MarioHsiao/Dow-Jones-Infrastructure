@@ -157,8 +157,8 @@ namespace DowJones.Assemblers.Articles
             // Map a couple of descriptors
             articleResult.ContentCategoryDescriptor = articleResult.ContentCategory.ToString();
             articleResult.ContentSubCategoryDescriptor = articleResult.ContentSubCategory.ToString();
-            //articleResult.Headline = ProcessHeadline(article, articleResult.OriginalContentCategory, articleResult.ExternalUri);
-            articleResult.Headline = GetRenderItems(article.headline[0].Items, article.accessionNo);
+            articleResult.Headline = ProcessHeadline(article, articleResult.OriginalContentCategory, articleResult.ExternalUri);
+            
             //To set the MimeType and Ref
             MapExtraReferenceInformation(articleResult, article);
 
@@ -168,7 +168,6 @@ namespace DowJones.Assemblers.Articles
             if (!CheckCodeSn(Codes.PD.ToString()))
             {
                 articleResult.PublicationDate = GetDate(article.publicationDate, article.publicationTime, article.publicationTimeSpecified);
-                articleResult.PublicationFormattedDate = GetFormattedDate(article.publicationDate, article.publicationTime, article.publicationTimeSpecified);
             }
 
             if (!CheckCodeSn(Codes.ET.ToString()) && article.publicationTime > DateTime.MinValue) 
@@ -643,7 +642,7 @@ namespace DowJones.Assemblers.Articles
                 {
                     if (highlightedText.text != null && highlightedText.text.Value != null)
                     {
-                        renderItems.Add(new RenderItem { ItemMarkUp = MarkUpType.ArticleHighlight, ItemText = highlightedText.text.Value, Highlight = true });
+                        renderItems.Add(new RenderItem { ItemMarkUp = MarkUpType.ArticleHighlight, ItemText = highlightedText.text.Value });
                     }
                 }
                 else
@@ -920,17 +919,6 @@ namespace DowJones.Assemblers.Articles
                 return _dateTimeFormatter.FormatStandardDate(tempararyPublicationDate, true);
             }
             return _dateTimeFormatter.FormatStandardDate(tempararyPublicationDate, false);
-        }
-
-        private string GetFormattedDate(DateTime publicationDate, DateTime publicationTime, bool publicationTimeSpecified)
-        {
-            var tempararyPublicationDate = publicationDate;
-            if (publicationTimeSpecified)
-            {
-                tempararyPublicationDate = DateTimeFormatter.Merge(publicationDate, publicationTime);
-                return _dateTimeFormatter.FormatShortDate(tempararyPublicationDate, true);
-            }
-            return _dateTimeFormatter.FormatShortDate(tempararyPublicationDate, false);
         }
 
         private string GetTime(DateTime publicationDate, DateTime publicationTime)
@@ -1783,8 +1771,7 @@ namespace DowJones.Assemblers.Articles
                     var highlight = (HighlightedText) item;
                     if (highlight.text != null && highlight.text.Value != null)
                     {
-                        //sb.Append(highlight.text.Value);
-                        sb.Append(GetHighlightedText(highlight, true));
+                        sb.Append(highlight.text.Value);
                     }
                 }
                 else if (item is ELink)
@@ -1799,7 +1786,7 @@ namespace DowJones.Assemblers.Articles
                                 var highlight = (HighlightedText) elinkItem;
                                 if (highlight.text != null && highlight.text.Value != null)
                                 {
-                                    sb.Append(GetHighlightedText(highlight, true));
+                                    sb.Append(highlight.text.Value);
                                 }
                             }
                             else
@@ -1883,23 +1870,6 @@ namespace DowJones.Assemblers.Articles
                 case ImageType.Thumbnail:
                     return "tnail";
             }
-        }
-
-        private static string GetHighlightedText(HighlightedText highlight, bool escape)
-        {
-            if (highlight != null && highlight.text != null && highlight.text.Value != null)
-            {
-                var text = escape
-                               ? Escape(highlight.text.Value)
-                               : highlight.text.Value;
-                return String.Format("<b>{0}</b>", text);
-            }
-            return String.Empty;
-        }
-
-        public static string Escape(string str)
-        {
-            return str == null ? null : str.Replace("<", "&lt;").Replace(">", "&gt;");
         }
 
       

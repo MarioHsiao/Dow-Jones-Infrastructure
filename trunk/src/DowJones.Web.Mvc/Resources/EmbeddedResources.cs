@@ -57,8 +57,6 @@ using DowJones.Web.Mvc.Resources;
 [assembly: WebResource(EmbeddedResources.Js.Underscore, KnownMimeTypes.JavaScript)]
 [assembly: WebResource(EmbeddedResources.Js.UnderscoreMin, KnownMimeTypes.JavaScript)]
 [assembly: WebResource(EmbeddedResources.Js.WindowManager, KnownMimeTypes.JavaScript)]
-[assembly: WebResource(EmbeddedResources.Js.JQueryMobile, KnownMimeTypes.JavaScript)]
-[assembly: WebResource(EmbeddedResources.Js.JQueryMobileMin, KnownMimeTypes.JavaScript)]
 
 namespace DowJones.Web.Mvc.Resources
 {
@@ -100,9 +98,8 @@ namespace DowJones.Web.Mvc.Resources
         [ScriptResource(ResourceName = ServiceProxy, DependencyLevel = ClientResourceDependencyLevel.Global, Name = "service-proxy", DependsOn = new[] { "error-manager" })]
         [ScriptResource(ResourceName = TmpLoad, DependencyLevel = ClientResourceDependencyLevel.Global, Name = "tmpload", DependsOn = new[] { "jquery" })]
         [ScriptResource(ResourceName = Underscore, DependencyLevel = ClientResourceDependencyLevel.Core, Name = "underscore")]
-        [ScriptResource(ResourceName = JQueryMobileMin, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "jquery-mobile-min", DependsOn = new[] { "jquery-ui", "jquery-ui-widgets" })]
-        [ScriptResource(ResourceName = JQueryMobile, DependencyLevel = ClientResourceDependencyLevel.MidLevel, Name = "jquery-mobile", DependsOn = new[] { "jquery-ui", "jquery-ui-widgets" })]
-      
+        [ScriptResource(ResourceName = WindowManager, DependencyLevel = ClientResourceDependencyLevel.Global, Name = "window-manager")]
+
         public static class Js
         {
             
@@ -165,8 +162,6 @@ namespace DowJones.Web.Mvc.Resources
             public const string Underscore = JsRoot + "underscore.js";
 			public const string UnderscoreMin = JsRoot + "underscore.min.js";
             public const string WindowManager = JsRoot + "window-manager.js";
-            public const string JQueryMobile = JsRoot + "jquery.mobile.js";
-            public const string JQueryMobileMin = JsRoot + "jquery.mobile.min.js";
         }
     }
 }

@@ -19,15 +19,6 @@ namespace DowJones.Formatters.Globalization.Core
         }
 
         /// <summary>
-        /// Gets the short date pattern.
-        /// </summary>
-        /// <value>The short date pattern.</value>
-        protected virtual string shortDateSpacePattern
-        {
-            get { return "dd MMM yyyy"; }
-        }
-
-        /// <summary>
         /// Gets the long date pattern.
         /// </summary>
         /// <value>The long date pattern.</value>
@@ -113,15 +104,6 @@ namespace DowJones.Formatters.Globalization.Core
         public virtual string ShortDatePattern
         {
             get { return shortDatePattern; }
-        }
-        
-        /// <summary>
-        /// Gets the short date pattern.
-        /// </summary>
-        /// <value>The short date pattern.</value>
-        public virtual string ShortDateSpacePattern
-        {
-            get { return shortDateSpacePattern; }
         }
 
         /// <summary>

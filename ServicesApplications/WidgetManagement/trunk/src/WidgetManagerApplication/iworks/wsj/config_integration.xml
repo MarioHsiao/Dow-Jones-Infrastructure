@@ -38,13 +38,13 @@
 				<url lang="en">http://integrate.int.factiva.com/en/cfg/payg_login.asp?tpid=WSJ</url>
 			</template>
 			<template type="code_va" enabled="true">
-				<url lang="en">http://global.stg.factiva.com/en/cfg/ccode_va.asp?SA_FROM=MO&amp;CCLevel=VA</url>  
+				<url lang="en">http://global.int.factiva.com/en/cfg/ccode_va.asp?SA_FROM=MO&amp;CCLevel=VA</url>  
 			</template>
 			<template type="code_m" enabled="true">
-				<url lang="en">http://global.stg.factiva.com/en/cfg/ccode_m.asp?SA_FROM=MO&amp;CCLevel=M</url> 
+				<url lang="en">http://global.int.factiva.com/en/cfg/ccode_m.asp?SA_FROM=MO&amp;CCLevel=M</url> 
 			</template>
 			<template type="code_vo" enabled="true">
-				<url lang="en">http://global.stg.factiva.com/en/cfg/ccode_m.asp?SA_FROM=MO&amp;CCLevel=VO</url> 
+				<url lang="en">http://global.int.factiva.com/en/cfg/ccode_m.asp?SA_FROM=MO&amp;CCLevel=VO</url> 
 			</template>
 			<template type="loading" enabled="true">
 				<url lang="en">http://integrate.int.factiva.com/en/cfg/loading.asp</url>
@@ -53,61 +53,61 @@
 				<url lang="en">http://integrate.int.factiva.com/en/cfg/displayError.asp</url>
 			</template>
 			<template type="letbrowserin" enabled="true">
-				<url lang="en">http://global.stg.factiva.com/en/cfg/letBrowserIn.asp</url>
+				<url lang="en">http://global.int.factiva.com/en/cfg/letBrowserIn.asp</url>
 			</template>
 			<template type="reg" enabled="true">
-				<url lang="en">http://global.stg.factiva.com/en/cfg/reg.asp</url> 
+				<url lang="en">http://global.int.factiva.com/en/cfg/reg.asp</url> 
 			</template>
 			<!-- After successful.. registration...... -->
 			<template type="regmsg" enabled="true">
-				<url lang="en">http://global.stg.factiva.com/en/cfg/regMsg.asp</url> 
+				<url lang="en">http://global.int.factiva.com/en/cfg/regMsg.asp</url> 
 			</template>
 			<template type="regtermofuse" enabled="true">
-				<url lang="en">http://global.stg.factiva.com/en/cfg/subAgreemnt.asp</url> 
+				<url lang="en">http://global.int.factiva.com/en/cfg/subAgreemnt.asp</url> 
 			</template>
 			<template type="screentoosmall" enabled="true">
-				<url lang="en">http://global.stg.factiva.com/en/cfg/screenTooSmall.asp</url>
+				<url lang="en">http://global.int.factiva.com/en/cfg/screenTooSmall.asp</url>
 			</template>
 			<redirect type="notsupportedbrowser" enabled="true">
 				<url lang="en">http://integrate.int.factiva.com/en/cfg/notSupportedBrowser.asp</url>
 			</redirect>
 			<template type="terminatesubscription" enabled="true">
-				<url lang="en">http://global.stg.factiva.com/en/cfg/terminatesubscription.asp</url>
+				<url lang="en">http://global.int.factiva.com/en/cfg/terminatesubscription.asp</url>
 			</template>
 			<template type="renewalagreement" enabled="true">
-				<url lang="en">http://global.stg.factiva.com/en/cfg/renewalAgreement.asp</url>
+				<url lang="en">http://global.int.factiva.com/en/cfg/renewalAgreement.asp</url>
 			</template>
 			<template type="postrenewal" enabled="true">
-				<url lang="en">http://global.stg.factiva.com/en/cfg/postRenewal.asp</url>
+				<url lang="en">http://global.int.factiva.com/en/cfg/postRenewal.asp</url>
 			</template>
 			<template type="psswd_reset1" enabled="true">
-				<url lang="en">http://global.stg.factiva.com/en/cfg/pswdReset1.asp</url>
-				<url lang="fr">http://global.stg.factiva.com/fr/cfg/pswdReset1.asp</url>
-				<url lang="de">http://global.stg.factiva.com/de/cfg/pswdReset1.asp</url>
-				<url lang="es">http://global.stg.factiva.com/es/cfg/pswdReset1.asp</url>
-				<url lang="it">http://global.stg.factiva.com/it/cfg/pswdReset1.asp</url>
-				<url lang="ja">http://global.stg.factiva.com/ja/cfg/pswdReset1.asp</url>
-				<url lang="ru">http://global.stg.factiva.com/ru/cfg/pswdReset1.asp</url>
-				<url lang="zhcn">http://global.stg.factiva.com/zhcn/cfg/pswdReset1.asp</url>
-				<url lang="zhtw">http://global.stg.factiva.com/zhtw/cfg/pswdReset1.asp</url>
-				<url lang="_${_LA}">http://global.stg.factiva.com/templates/cfg/pswdReset1.asp</url>
-				<url lang="templates">http://global.stg.factiva.com/templates/cfg/pswdReset1.asp</url>
+				<url lang="en">http://global.int.factiva.com/en/cfg/pswdReset1.asp</url>
+				<url lang="fr">http://global.int.factiva.com/fr/cfg/pswdReset1.asp</url>
+				<url lang="de">http://global.int.factiva.com/de/cfg/pswdReset1.asp</url>
+				<url lang="es">http://global.int.factiva.com/es/cfg/pswdReset1.asp</url>
+				<url lang="it">http://global.int.factiva.com/it/cfg/pswdReset1.asp</url>
+				<url lang="ja">http://global.int.factiva.com/ja/cfg/pswdReset1.asp</url>
+				<url lang="ru">http://global.int.factiva.com/ru/cfg/pswdReset1.asp</url>
+				<url lang="zhcn">http://global.int.factiva.com/zhcn/cfg/pswdReset1.asp</url>
+				<url lang="zhtw">http://global.int.factiva.com/zhtw/cfg/pswdReset1.asp</url>
+				<url lang="_${_LA}">http://global.int.factiva.com/templates/cfg/pswdReset1.asp</url>
+				<url lang="templates">http://global.int.factiva.com/templates/cfg/pswdReset1.asp</url>
 			</template>
 			<template type="psswd_reset2" enabled="true">
-				<url lang="en">http://global.stg.factiva.com/en/cfg/pswdReset2.asp</url>
-				<url lang="fr">http://global.stg.factiva.com/fr/cfg/pswdReset2.asp</url>
-				<url lang="de">http://global.stg.factiva.com/de/cfg/pswdReset2.asp</url>
-				<url lang="es">http://global.stg.factiva.com/es/cfg/pswdReset2.asp</url>
-				<url lang="it">http://global.stg.factiva.com/it/cfg/pswdReset2.asp</url>
-				<url lang="ja">http://global.stg.factiva.com/ja/cfg/pswdReset2.asp</url>
-				<url lang="ru">http://global.stg.factiva.com/ru/cfg/pswdReset2.asp</url>
-				<url lang="zhcn">http://global.stg.factiva.com/zhcn/cfg/pswdReset2.asp</url>
-				<url lang="zhtw">http://global.stg.factiva.com/zhtw/cfg/pswdReset2.asp</url>
-				<url lang="_${_LA}">http://global.stg.factiva.com/templates/cfg/pswdReset2.asp</url>
-				<url lang="templates">http://global.stg.factiva.com/templates/cfg/pswdReset2.asp</url>
+				<url lang="en">http://global.int.factiva.com/en/cfg/pswdReset2.asp</url>
+				<url lang="fr">http://global.int.factiva.com/fr/cfg/pswdReset2.asp</url>
+				<url lang="de">http://global.int.factiva.com/de/cfg/pswdReset2.asp</url>
+				<url lang="es">http://global.int.factiva.com/es/cfg/pswdReset2.asp</url>
+				<url lang="it">http://global.int.factiva.com/it/cfg/pswdReset2.asp</url>
+				<url lang="ja">http://global.int.factiva.com/ja/cfg/pswdReset2.asp</url>
+				<url lang="ru">http://global.int.factiva.com/ru/cfg/pswdReset2.asp</url>
+				<url lang="zhcn">http://global.int.factiva.com/zhcn/cfg/pswdReset2.asp</url>
+				<url lang="zhtw">http://global.int.factiva.com/zhtw/cfg/pswdReset2.asp</url>
+				<url lang="_${_LA}">http://global.int.factiva.com/templates/cfg/pswdReset2.asp</url>
+				<url lang="templates">http://global.int.factiva.com/templates/cfg/pswdReset2.asp</url>
 			</template>
 			<data for="jumppage">
-				<url lang="en">http://global.stg.factiva.com/en/cfg/jumppage.asp?billpack=WSJ</url>
+				<url lang="en">http://global.int.factiva.com/en/cfg/jumppage.asp?billpack=WSJ</url>
 			</data>
 			<redirect type="logout" enabled="true"></redirect>
 			

@@ -233,23 +233,6 @@ namespace DowJones.Web.Mvc.UI
             return this;
         }
 
-        public virtual ScriptRegistryBuilder WithJQueryMobile(bool enabled = true)
-        {
-            RegisterFrameworkWebResource(EmbeddedResources.Js.JQueryUICore, ClientResourceDependencyLevel.Global, enabled);
-            RegisterFrameworkWebResource(EmbeddedResources.Js.JQueryUIWidgets, ClientResourceDependencyLevel.MidLevel, enabled);
-            RegisterFrameworkWebResource(EmbeddedResources.Js.JQueryMobile, ClientResourceDependencyLevel.MidLevel, enabled);
-            return this;
-        }
-
-        public virtual ScriptRegistryBuilder WithJQueryMobileMin(bool enabled = true)
-        {
-            RegisterFrameworkWebResource(EmbeddedResources.Js.JQueryUICore, ClientResourceDependencyLevel.Global, enabled);
-            RegisterFrameworkWebResource(EmbeddedResources.Js.JQueryUIWidgets, ClientResourceDependencyLevel.MidLevel, enabled);
-            RegisterFrameworkWebResource(EmbeddedResources.Js.JQueryMobileMin, ClientResourceDependencyLevel.MidLevel, enabled);
-            return this;
-        }
-
-
         [EditorBrowsable(EditorBrowsableState.Advanced)]
         internal ClientResource RegisterFrameworkWebResource(string resourceName, ClientResourceDependencyLevel? dependencyLevel, bool enabled)
         {

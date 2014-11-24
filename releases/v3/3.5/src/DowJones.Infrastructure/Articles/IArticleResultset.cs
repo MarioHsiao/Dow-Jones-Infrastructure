@@ -22,7 +22,6 @@ namespace DowJones.Ajax.Article
         List<RenderItem> ByLine { get; set; }
         List<RenderItem> Authors { get; set; }
         string PublicationDate { get; set; }
-        string PublicationFormattedDate { get; set; }
         string PublicationTime { get; set; }
         List<RenderItem> Headline { get; set; }
         List<RenderItem> Copyright { get; set; }

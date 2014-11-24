@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="Cyclone_Redirection_URL" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">http://global.stg.factiva.com/redir/default.aspx</Value>
+      <Value Profile="(Default)">http://global.int.factiva.com/redir/default.aspx</Value>
     </Setting>
     <Setting Name="IF_BaseUrl_AlertHeadlineWidget" Type="System.String" Scope="Application">
       <Value Profile="(Default)">http://preview.int.factiva.com/du/alerts.aspx</Value>
@@ -45,19 +45,19 @@
       <Value Profile="(Default)">http://nevada.dev.us.factiva.com/web32/workspace/default.aspx?sa_from={0}&amp;napc={1}&amp;doneURL={2}</Value>
     </Setting>
     <Setting Name="GL_BaseUrl" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">http://global.stg.factiva.com</Value>
+      <Value Profile="(Default)">http://global.int.factiva.com</Value>
     </Setting>
     <Setting Name="IF_BaseUrl" Type="System.String" Scope="Application">
       <Value Profile="(Default)">http://preview.int.factiva.com</Value>
     </Setting>
     <Setting Name="GL_BaseUrl_AlertHeadlineWidget" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">http://global.stg.factiva.com/du/folderview.aspx</Value>
+      <Value Profile="(Default)">http://global.int.factiva.com/du/folderview.aspx</Value>
     </Setting>
     <Setting Name="ChartingFlashImage_TargetVersion" Type="System.String" Scope="Application">
       <Value Profile="(Default)">9</Value>
     </Setting>
     <Setting Name="IN_BasreUrl_AlertHeadlineWidget" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">http://global.stg.factiva.com/du/folderview.aspx?sa_from={0}&amp;napc={1}</Value>
+      <Value Profile="(Default)">http://global.int.factiva.com/du/folderview.aspx?sa_from={0}&amp;napc={1}</Value>
     </Setting>
     <Setting Name="OmnitureAccount" Type="System.String" Scope="Application">
       <Value Profile="(Default)">djfactivatesting</Value>

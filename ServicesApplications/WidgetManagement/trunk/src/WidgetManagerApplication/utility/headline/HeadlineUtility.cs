@@ -554,7 +554,6 @@ namespace EMG.widgets.ui.utility.headline
                     ub.Append("p", "vf");
                     break;
             }
-            ub.Append(AlertHeadlineUtility.AlertMetadataQuerystringName, AlertHeadlineUtility.GetAlertMetadata(alertInfo));
             return ub.ToString(null);
         }
 

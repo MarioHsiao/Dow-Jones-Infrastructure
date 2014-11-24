@@ -37,26 +37,26 @@
 			</languages>
 			
 			<landingpage type="flogin" enabled="false">
-				<url lang="en">http://global.stg.factiva.com/iworks/default.aspx?napc=b&amp;fcpil=en</url>
-				<url lang="fr">http://global.stg.factiva.com/iworks/default.aspx?napc=b&amp;fcpil=fr</url>
-				<url lang="de">http://global.stg.factiva.com/iworks/default.aspx?napc=b&amp;fcpil=de</url>
-				<url lang="ja">http://global.stg.factiva.com/iworks/default.aspx?napc=b&amp;fcpil=ja</url>
-				<url lang="ru">http://global.stg.factiva.com/iworks/default.aspx?napc=b&amp;fcpil=ru</url>
-				<url lang="zhcn">http://global.stg.factiva.com/iworks/default.aspx?napc=b&amp;fcpil=zhcn</url>
-				<url lang="zhtw">http://global.stg.factiva.com/iworks/default.aspx?napc=b&amp;fcpil=zhtw</url>
-				<url lang="_${_LA}">http://global.stg.factiva.com/iworks/default.aspx?napc=b&amp;fcpil=templates</url>
-				<url lang="templates">http://global.stg.factiva.com/iworks/default.aspx?napc=b&amp;fcpil=templates</url>
+				<url lang="en">http://global.int.factiva.com/iworks/default.aspx?napc=b&amp;fcpil=en</url>
+				<url lang="fr">http://global.int.factiva.com/iworks/default.aspx?napc=b&amp;fcpil=fr</url>
+				<url lang="de">http://global.int.factiva.com/iworks/default.aspx?napc=b&amp;fcpil=de</url>
+				<url lang="ja">http://global.int.factiva.com/iworks/default.aspx?napc=b&amp;fcpil=ja</url>
+				<url lang="ru">http://global.int.factiva.com/iworks/default.aspx?napc=b&amp;fcpil=ru</url>
+				<url lang="zhcn">http://global.int.factiva.com/iworks/default.aspx?napc=b&amp;fcpil=zhcn</url>
+				<url lang="zhtw">http://global.int.factiva.com/iworks/default.aspx?napc=b&amp;fcpil=zhtw</url>
+				<url lang="_${_LA}">http://global.int.factiva.com/iworks/default.aspx?napc=b&amp;fcpil=templates</url>
+				<url lang="templates">http://global.int.factiva.com/iworks/default.aspx?napc=b&amp;fcpil=templates</url>
 			</landingpage>
 			<landingpage type="nlogin" enabled="true">
-				<url lang="en">http://global.stg.factiva.com/iworks/default.aspx?napc=b&amp;fcpil=en</url>
-				<url lang="fr">http://global.stg.factiva.com/iworks/default.aspx?napc=b&amp;fcpil=fr</url>
-				<url lang="de">http://global.stg.factiva.com/iworks/default.aspx?napc=b&amp;fcpil=de</url>
-				<url lang="ja">http://global.stg.factiva.com/iworks/default.aspx?napc=b&amp;fcpil=ja</url>
-				<url lang="ru">http://global.stg.factiva.com/iworks/default.aspx?napc=b&amp;fcpil=ru</url>
-				<url lang="zhcn">http://global.stg.factiva.com/iworks/default.aspx?napc=b&amp;fcpil=zhcn</url>
-				<url lang="zhtw">http://global.stg.factiva.com/iworks/default.aspx?napc=b&amp;fcpil=zhtw</url>
-				<url lang="_${_LA}">http://global.stg.factiva.com/iworks/default.aspx?napc=b&amp;fcpil=templates</url>
-				<url lang="templates">http://global.stg.factiva.com/iworks/default.aspx?napc=b&amp;fcpil=templates</url>
+				<url lang="en">http://global.int.factiva.com/iworks/default.aspx?napc=b&amp;fcpil=en</url>
+				<url lang="fr">http://global.int.factiva.com/iworks/default.aspx?napc=b&amp;fcpil=fr</url>
+				<url lang="de">http://global.int.factiva.com/iworks/default.aspx?napc=b&amp;fcpil=de</url>
+				<url lang="ja">http://global.int.factiva.com/iworks/default.aspx?napc=b&amp;fcpil=ja</url>
+				<url lang="ru">http://global.int.factiva.com/iworks/default.aspx?napc=b&amp;fcpil=ru</url>
+				<url lang="zhcn">http://global.int.factiva.com/iworks/default.aspx?napc=b&amp;fcpil=zhcn</url>
+				<url lang="zhtw">http://global.int.factiva.com/iworks/default.aspx?napc=b&amp;fcpil=zhtw</url>
+				<url lang="_${_LA}">http://global.int.factiva.com/iworks/default.aspx?napc=b&amp;fcpil=templates</url>
+				<url lang="templates">http://global.int.factiva.com/iworks/default.aspx?napc=b&amp;fcpil=templates</url>
 			</landingpage>
 			<template type="login" enabled="true">
 				<url lang="en">http://integrate.int.factiva.com/en/cfg/payg_login.asp?tpid=GYM</url>
@@ -70,37 +70,37 @@
 				<url lang="templates">http://integrate.int.factiva.com/_${_LA}/cfg/payg_login.asp?tpid=GYM</url>
 			</template>
 			<template type="code_va" enabled="true">
-				<url lang="en">http://global.stg.factiva.com/en/cfg/ccode_va.asp?SA_FROM=BV&amp;CCLevel=VA</url>
-				<url lang="fr">http://global.stg.factiva.com/fr/cfg/ccode_va.asp?SA_FROM=BV&amp;CCLevel=VA</url>
-				<url lang="de">http://global.stg.factiva.com/de/cfg/ccode_va.asp?SA_FROM=BV&amp;CCLevel=VA</url>
-				<url lang="ja">http://global.stg.factiva.com/ja/cfg/ccode_va.asp?SA_FROM=BV&amp;CCLevel=VA</url>
-				<url lang="ru">http://global.stg.factiva.com/ru/cfg/ccode_va.asp?SA_FROM=BV&amp;CCLevel=VA</url>
-				<url lang="zhcn">http://global.stg.factiva.com/zhcn/cfg/ccode_va.asp?SA_FROM=BV&amp;CCLevel=VA</url>
-				<url lang="zhtw">http://global.stg.factiva.com/zhtw/cfg/ccode_va.asp?SA_FROM=BV&amp;CCLevel=VA</url>
-				<url lang="_${_LA}">http://global.stg.factiva.com/templates/cfg/ccode_va.asp?SA_FROM=BV&amp;CCLevel=VA</url> 
-				<url lang="templates">http://global.stg.factiva.com/templates/cfg/ccode_va.asp?SA_FROM=BV&amp;CCLevel=VA</url> 
+				<url lang="en">http://global.int.factiva.com/en/cfg/ccode_va.asp?SA_FROM=BV&amp;CCLevel=VA</url>
+				<url lang="fr">http://global.int.factiva.com/fr/cfg/ccode_va.asp?SA_FROM=BV&amp;CCLevel=VA</url>
+				<url lang="de">http://global.int.factiva.com/de/cfg/ccode_va.asp?SA_FROM=BV&amp;CCLevel=VA</url>
+				<url lang="ja">http://global.int.factiva.com/ja/cfg/ccode_va.asp?SA_FROM=BV&amp;CCLevel=VA</url>
+				<url lang="ru">http://global.int.factiva.com/ru/cfg/ccode_va.asp?SA_FROM=BV&amp;CCLevel=VA</url>
+				<url lang="zhcn">http://global.int.factiva.com/zhcn/cfg/ccode_va.asp?SA_FROM=BV&amp;CCLevel=VA</url>
+				<url lang="zhtw">http://global.int.factiva.com/zhtw/cfg/ccode_va.asp?SA_FROM=BV&amp;CCLevel=VA</url>
+				<url lang="_${_LA}">http://global.int.factiva.com/templates/cfg/ccode_va.asp?SA_FROM=BV&amp;CCLevel=VA</url> 
+				<url lang="templates">http://global.int.factiva.com/templates/cfg/ccode_va.asp?SA_FROM=BV&amp;CCLevel=VA</url> 
 			</template>
 			<template type="code_m" enabled="true">
-				<url lang="en">http://global.stg.factiva.com/en/cfg/ccode_m.asp?SA_FROM=BV&amp;CCLevel=M</url>
-				<url lang="fr">http://global.stg.factiva.com/fr/cfg/ccode_m.asp?SA_FROM=BV&amp;CCLevel=M</url>
-				<url lang="de">http://global.stg.factiva.com/de/cfg/ccode_m.asp?SA_FROM=BV&amp;CCLevel=M</url>
-				<url lang="ja">http://global.stg.factiva.com/ja/cfg/ccode_m.asp?SA_FROM=BV&amp;CCLevel=M</url>
-				<url lang="ru">http://global.stg.factiva.com/ru/cfg/ccode_m.asp?SA_FROM=BV&amp;CCLevel=M</url>
-				<url lang="zhcn">http://global.stg.factiva.com/zhcn/cfg/ccode_m.asp?SA_FROM=BV&amp;CCLevel=M</url>
-				<url lang="zhtw">http://global.stg.factiva.com/zhtw/cfg/ccode_m.asp?SA_FROM=BV&amp;CCLevel=M</url>
-				<url lang="_${_LA}">http://global.stg.factiva.com/templates/cfg/ccode_m.asp?SA_FROM=BV&amp;CCLevel=M</url> 
-				<url lang="templates">http://global.stg.factiva.com/templates/cfg/ccode_m.asp?SA_FROM=BV&amp;CCLevel=M</url> 
+				<url lang="en">http://global.int.factiva.com/en/cfg/ccode_m.asp?SA_FROM=BV&amp;CCLevel=M</url>
+				<url lang="fr">http://global.int.factiva.com/fr/cfg/ccode_m.asp?SA_FROM=BV&amp;CCLevel=M</url>
+				<url lang="de">http://global.int.factiva.com/de/cfg/ccode_m.asp?SA_FROM=BV&amp;CCLevel=M</url>
+				<url lang="ja">http://global.int.factiva.com/ja/cfg/ccode_m.asp?SA_FROM=BV&amp;CCLevel=M</url>
+				<url lang="ru">http://global.int.factiva.com/ru/cfg/ccode_m.asp?SA_FROM=BV&amp;CCLevel=M</url>
+				<url lang="zhcn">http://global.int.factiva.com/zhcn/cfg/ccode_m.asp?SA_FROM=BV&amp;CCLevel=M</url>
+				<url lang="zhtw">http://global.int.factiva.com/zhtw/cfg/ccode_m.asp?SA_FROM=BV&amp;CCLevel=M</url>
+				<url lang="_${_LA}">http://global.int.factiva.com/templates/cfg/ccode_m.asp?SA_FROM=BV&amp;CCLevel=M</url> 
+				<url lang="templates">http://global.int.factiva.com/templates/cfg/ccode_m.asp?SA_FROM=BV&amp;CCLevel=M</url> 
 			</template>
 			<template type="code_vo" enabled="true">
-				<url lang="en">http://global.stg.factiva.com/en/cfg/ccode_m.asp?SA_FROM=BV&amp;CCLevel=VO</url>
-				<url lang="fr">http://global.stg.factiva.com/fr/cfg/ccode_m.asp?SA_FROM=BV&amp;CCLevel=VO</url>
-				<url lang="de">http://global.stg.factiva.com/de/cfg/ccode_m.asp?SA_FROM=BV&amp;CCLevel=VO</url>
-				<url lang="ja">http://global.stg.factiva.com/ja/cfg/ccode_m.asp?SA_FROM=BV&amp;CCLevel=VO</url>
-				<url lang="ru">http://global.stg.factiva.com/ru/cfg/ccode_m.asp?SA_FROM=BV&amp;CCLevel=VO</url>
-				<url lang="zhcn">http://global.stg.factiva.com/zhcn/cfg/ccode_m.asp?SA_FROM=BV&amp;CCLevel=VO</url>
-				<url lang="zhtw">http://global.stg.factiva.com/zhtw/cfg/ccode_m.asp?SA_FROM=BV&amp;CCLevel=VO</url>
-				<url lang="_${_LA}">http://global.stg.factiva.com/templates/cfg/ccode_m.asp?SA_FROM=BV&amp;CCLevel=VO</url> 
-				<url lang="templates">http://global.stg.factiva.com/templates/cfg/ccode_m.asp?SA_FROM=BV&amp;CCLevel=VO</url> 
+				<url lang="en">http://global.int.factiva.com/en/cfg/ccode_m.asp?SA_FROM=BV&amp;CCLevel=VO</url>
+				<url lang="fr">http://global.int.factiva.com/fr/cfg/ccode_m.asp?SA_FROM=BV&amp;CCLevel=VO</url>
+				<url lang="de">http://global.int.factiva.com/de/cfg/ccode_m.asp?SA_FROM=BV&amp;CCLevel=VO</url>
+				<url lang="ja">http://global.int.factiva.com/ja/cfg/ccode_m.asp?SA_FROM=BV&amp;CCLevel=VO</url>
+				<url lang="ru">http://global.int.factiva.com/ru/cfg/ccode_m.asp?SA_FROM=BV&amp;CCLevel=VO</url>
+				<url lang="zhcn">http://global.int.factiva.com/zhcn/cfg/ccode_m.asp?SA_FROM=BV&amp;CCLevel=VO</url>
+				<url lang="zhtw">http://global.int.factiva.com/zhtw/cfg/ccode_m.asp?SA_FROM=BV&amp;CCLevel=VO</url>
+				<url lang="_${_LA}">http://global.int.factiva.com/templates/cfg/ccode_m.asp?SA_FROM=BV&amp;CCLevel=VO</url> 
+				<url lang="templates">http://global.int.factiva.com/templates/cfg/ccode_m.asp?SA_FROM=BV&amp;CCLevel=VO</url> 
 			</template>
 			<template type="loading" enabled="true">
 				<url lang="en">http://integrate.int.factiva.com/en/cfg/loading.asp</url>
@@ -136,38 +136,38 @@
 				<url lang="templates">http://integrate.int.factiva.com/_${_LA}/cfg/letBrowserIn.asp</url>
 			</template>
 			<template type="reg" enabled="true">
-				<url lang="en">http://global.stg.factiva.com/en/cfg/reg.asp</url> 
-				<url lang="fr">http://global.stg.factiva.com/fr/cfg/reg.asp</url> 
-				<url lang="de">http://global.stg.factiva.com/de/cfg/reg.asp</url> 
-				<url lang="ja">http://global.stg.factiva.com/ja/cfg/reg.asp</url> 
-				<url lang="ru">http://global.stg.factiva.com/ru/cfg/reg.asp</url> 
-				<url lang="zhcn">http://global.stg.factiva.com/zhcn/cfg/reg.asp</url> 
-				<url lang="zhtw">http://global.stg.factiva.com/zhtw/cfg/reg.asp</url> 
-				<url lang="_${_LA}">http://global.stg.factiva.com/templates/cfg/reg.asp</url> 
-				<url lang="templates">http://global.stg.factiva.com/templates/cfg/reg.asp</url> 
+				<url lang="en">http://global.int.factiva.com/en/cfg/reg.asp</url> 
+				<url lang="fr">http://global.int.factiva.com/fr/cfg/reg.asp</url> 
+				<url lang="de">http://global.int.factiva.com/de/cfg/reg.asp</url> 
+				<url lang="ja">http://global.int.factiva.com/ja/cfg/reg.asp</url> 
+				<url lang="ru">http://global.int.factiva.com/ru/cfg/reg.asp</url> 
+				<url lang="zhcn">http://global.int.factiva.com/zhcn/cfg/reg.asp</url> 
+				<url lang="zhtw">http://global.int.factiva.com/zhtw/cfg/reg.asp</url> 
+				<url lang="_${_LA}">http://global.int.factiva.com/templates/cfg/reg.asp</url> 
+				<url lang="templates">http://global.int.factiva.com/templates/cfg/reg.asp</url> 
 			</template>
 			<!-- After successful.. registration...... -->
 			<template type="regmsg" enabled="true">
-				<url lang="en">http://global.stg.factiva.com/en/cfg/regMsg.asp</url> 
-				<url lang="fr">http://global.stg.factiva.com/fr/cfg/regMsg.asp</url> 
-				<url lang="de">http://global.stg.factiva.com/de/cfg/regMsg.asp</url> 
-				<url lang="ja">http://global.stg.factiva.com/ja/cfg/regMsg.asp</url> 
-				<url lang="ru">http://global.stg.factiva.com/ru/cfg/regMsg.asp</url> 
-				<url lang="zhcn">http://global.stg.factiva.com/zhcn/cfg/regMsg.asp</url> 
-				<url lang="zhtw">http://global.stg.factiva.com/zhtw/cfg/regMsg.asp</url> 
-				<url lang="_${_LA}">http://global.stg.factiva.com/templates/cfg/regMsg.asp</url> 
-				<url lang="templates">http://global.stg.factiva.com/templates/cfg/regMsg.asp</url> 
+				<url lang="en">http://global.int.factiva.com/en/cfg/regMsg.asp</url> 
+				<url lang="fr">http://global.int.factiva.com/fr/cfg/regMsg.asp</url> 
+				<url lang="de">http://global.int.factiva.com/de/cfg/regMsg.asp</url> 
+				<url lang="ja">http://global.int.factiva.com/ja/cfg/regMsg.asp</url> 
+				<url lang="ru">http://global.int.factiva.com/ru/cfg/regMsg.asp</url> 
+				<url lang="zhcn">http://global.int.factiva.com/zhcn/cfg/regMsg.asp</url> 
+				<url lang="zhtw">http://global.int.factiva.com/zhtw/cfg/regMsg.asp</url> 
+				<url lang="_${_LA}">http://global.int.factiva.com/templates/cfg/regMsg.asp</url> 
+				<url lang="templates">http://global.int.factiva.com/templates/cfg/regMsg.asp</url> 
 			</template>
 			<template type="regtermofuse" enabled="true">
-				<url lang="en">http://global.stg.factiva.com/en/cfg/subAgreemnt.asp</url> 
-				<url lang="fr">http://global.stg.factiva.com/fr/cfg/subAgreemnt.asp</url> 
-				<url lang="de">http://global.stg.factiva.com/de/cfg/subAgreemnt.asp</url> 
-				<url lang="ja">http://global.stg.factiva.com/ja/cfg/subAgreemnt.asp</url> 
-				<url lang="ru">http://global.stg.factiva.com/ru/cfg/subAgreemnt.asp</url> 
-				<url lang="zhcn">http://global.stg.factiva.com/zhcn/cfg/subAgreemnt.asp</url> 
-				<url lang="zhtw">http://global.stg.factiva.com/zhtw/cfg/subAgreemnt.asp</url> 
-				<url lang="_${_LA}">http://global.stg.factiva.com/templates/cfg/subAgreemnt.asp</url> 
-				<url lang="templates">http://global.stg.factiva.com/templates/cfg/subAgreemnt.asp</url> 
+				<url lang="en">http://global.int.factiva.com/en/cfg/subAgreemnt.asp</url> 
+				<url lang="fr">http://global.int.factiva.com/fr/cfg/subAgreemnt.asp</url> 
+				<url lang="de">http://global.int.factiva.com/de/cfg/subAgreemnt.asp</url> 
+				<url lang="ja">http://global.int.factiva.com/ja/cfg/subAgreemnt.asp</url> 
+				<url lang="ru">http://global.int.factiva.com/ru/cfg/subAgreemnt.asp</url> 
+				<url lang="zhcn">http://global.int.factiva.com/zhcn/cfg/subAgreemnt.asp</url> 
+				<url lang="zhtw">http://global.int.factiva.com/zhtw/cfg/subAgreemnt.asp</url> 
+				<url lang="_${_LA}">http://global.int.factiva.com/templates/cfg/subAgreemnt.asp</url> 
+				<url lang="templates">http://global.int.factiva.com/templates/cfg/subAgreemnt.asp</url> 
 			</template>
 			<template type="screentoosmall" enabled="true">
 				<url lang="en">http://integrate.int.factiva.com/en/cfg/screenTooSmall.asp</url>
@@ -192,70 +192,70 @@
 				<url lang="templates">http://integrate.int.factiva.com/_${_LA}/cfg/notSupportedBrowser.asp</url>
 			</redirect>
 			<template type="terminatesubscription" enabled="true">
-				<url lang="en">http://global.stg.factiva.com/en/cfg/terminatesubscription.asp</url>
-				<url lang="fr">http://global.stg.factiva.com/fr/cfg/terminatesubscription.asp</url>
-				<url lang="de">http://global.stg.factiva.com/de/cfg/terminatesubscription.asp</url>
-				<url lang="ja">http://global.stg.factiva.com/ja/cfg/terminatesubscription.asp</url>
-				<url lang="ru">http://global.stg.factiva.com/ru/cfg/terminatesubscription.asp</url>
-				<url lang="zhcn">http://global.stg.factiva.com/zhcn/cfg/terminatesubscription.asp</url>
-				<url lang="zhtw">http://global.stg.factiva.com/zhtw/cfg/terminatesubscription.asp</url>
-				<url lang="_${_LA}">http://global.stg.factiva.com/templates/cfg/terminatesubscription.asp</url>
-				<url lang="templates">http://global.stg.factiva.com/templates/cfg/terminatesubscription.asp</url>
+				<url lang="en">http://global.int.factiva.com/en/cfg/terminatesubscription.asp</url>
+				<url lang="fr">http://global.int.factiva.com/fr/cfg/terminatesubscription.asp</url>
+				<url lang="de">http://global.int.factiva.com/de/cfg/terminatesubscription.asp</url>
+				<url lang="ja">http://global.int.factiva.com/ja/cfg/terminatesubscription.asp</url>
+				<url lang="ru">http://global.int.factiva.com/ru/cfg/terminatesubscription.asp</url>
+				<url lang="zhcn">http://global.int.factiva.com/zhcn/cfg/terminatesubscription.asp</url>
+				<url lang="zhtw">http://global.int.factiva.com/zhtw/cfg/terminatesubscription.asp</url>
+				<url lang="_${_LA}">http://global.int.factiva.com/templates/cfg/terminatesubscription.asp</url>
+				<url lang="templates">http://global.int.factiva.com/templates/cfg/terminatesubscription.asp</url>
 			</template>
 			<template type="renewalagreement" enabled="true">
-				<url lang="en">http://global.stg.factiva.com/en/cfg/renewalAgreement.asp</url>
-				<url lang="fr">http://global.stg.factiva.com/fr/cfg/renewalAgreement.asp</url>
-				<url lang="de">http://global.stg.factiva.com/de/cfg/renewalAgreement.asp</url>
-				<url lang="ja">http://global.stg.factiva.com/ja/cfg/renewalAgreement.asp</url>
-				<url lang="ru">http://global.stg.factiva.com/ru/cfg/renewalAgreement.asp</url>
-				<url lang="zhcn">http://global.stg.factiva.com/zhcn/cfg/renewalAgreement.asp</url>
-				<url lang="zhtw">http://global.stg.factiva.com/zhtw/cfg/renewalAgreement.asp</url>
-				<url lang="_${_LA}">http://global.stg.factiva.com/templates/cfg/renewalAgreement.asp</url>
-				<url lang="templates">http://global.stg.factiva.com/templates/cfg/renewalAgreement.asp</url>
+				<url lang="en">http://global.int.factiva.com/en/cfg/renewalAgreement.asp</url>
+				<url lang="fr">http://global.int.factiva.com/fr/cfg/renewalAgreement.asp</url>
+				<url lang="de">http://global.int.factiva.com/de/cfg/renewalAgreement.asp</url>
+				<url lang="ja">http://global.int.factiva.com/ja/cfg/renewalAgreement.asp</url>
+				<url lang="ru">http://global.int.factiva.com/ru/cfg/renewalAgreement.asp</url>
+				<url lang="zhcn">http://global.int.factiva.com/zhcn/cfg/renewalAgreement.asp</url>
+				<url lang="zhtw">http://global.int.factiva.com/zhtw/cfg/renewalAgreement.asp</url>
+				<url lang="_${_LA}">http://global.int.factiva.com/templates/cfg/renewalAgreement.asp</url>
+				<url lang="templates">http://global.int.factiva.com/templates/cfg/renewalAgreement.asp</url>
 			</template>
 			<template type="postrenewal" enabled="true">
-				<url lang="en">http://global.stg.factiva.com/en/cfg/postRenewal.asp</url>
-				<url lang="fr">http://global.stg.factiva.com/fr/cfg/postRenewal.asp</url>
-				<url lang="de">http://global.stg.factiva.com/de/cfg/postRenewal.asp</url>
-				<url lang="ja">http://global.stg.factiva.com/ja/cfg/postRenewal.asp</url>
-				<url lang="ru">http://global.stg.factiva.com/ru/cfg/postRenewal.asp</url>
-				<url lang="zhcn">http://global.stg.factiva.com/zhcn/cfg/postRenewal.asp</url>
-				<url lang="zhtw">http://global.stg.factiva.com/zhtw/cfg/postRenewal.asp</url>
-				<url lang="_${_LA}">http://global.stg.factiva.com/templates/cfg/postRenewal.asp</url>
-				<url lang="templates">http://global.stg.factiva.com/templates/cfg/postRenewal.asp</url>
+				<url lang="en">http://global.int.factiva.com/en/cfg/postRenewal.asp</url>
+				<url lang="fr">http://global.int.factiva.com/fr/cfg/postRenewal.asp</url>
+				<url lang="de">http://global.int.factiva.com/de/cfg/postRenewal.asp</url>
+				<url lang="ja">http://global.int.factiva.com/ja/cfg/postRenewal.asp</url>
+				<url lang="ru">http://global.int.factiva.com/ru/cfg/postRenewal.asp</url>
+				<url lang="zhcn">http://global.int.factiva.com/zhcn/cfg/postRenewal.asp</url>
+				<url lang="zhtw">http://global.int.factiva.com/zhtw/cfg/postRenewal.asp</url>
+				<url lang="_${_LA}">http://global.int.factiva.com/templates/cfg/postRenewal.asp</url>
+				<url lang="templates">http://global.int.factiva.com/templates/cfg/postRenewal.asp</url>
 			</template>
 			<template type="psswd_reset1" enabled="true">
-				<url lang="en">http://global.stg.factiva.com/en/cfg/pswdReset1.asp</url>
-				<url lang="fr">http://global.stg.factiva.com/fr/cfg/pswdReset1.asp</url>
-				<url lang="de">http://global.stg.factiva.com/de/cfg/pswdReset1.asp</url>
-				<url lang="ja">http://global.stg.factiva.com/ja/cfg/pswdReset1.asp</url>
-				<url lang="ru">http://global.stg.factiva.com/ru/cfg/pswdReset1.asp</url>
-				<url lang="zhcn">http://global.stg.factiva.com/zhcn/cfg/pswdReset1.asp</url>
-				<url lang="zhtw">http://global.stg.factiva.com/zhtw/cfg/pswdReset1.asp</url>
-				<url lang="_${_LA}">http://global.stg.factiva.com/templates/cfg/pswdReset1.asp</url>
-				<url lang="templates">http://global.stg.factiva.com/templates/cfg/pswdReset1.asp</url>
+				<url lang="en">http://global.int.factiva.com/en/cfg/pswdReset1.asp</url>
+				<url lang="fr">http://global.int.factiva.com/fr/cfg/pswdReset1.asp</url>
+				<url lang="de">http://global.int.factiva.com/de/cfg/pswdReset1.asp</url>
+				<url lang="ja">http://global.int.factiva.com/ja/cfg/pswdReset1.asp</url>
+				<url lang="ru">http://global.int.factiva.com/ru/cfg/pswdReset1.asp</url>
+				<url lang="zhcn">http://global.int.factiva.com/zhcn/cfg/pswdReset1.asp</url>
+				<url lang="zhtw">http://global.int.factiva.com/zhtw/cfg/pswdReset1.asp</url>
+				<url lang="_${_LA}">http://global.int.factiva.com/templates/cfg/pswdReset1.asp</url>
+				<url lang="templates">http://global.int.factiva.com/templates/cfg/pswdReset1.asp</url>
 			</template>
 			<template type="psswd_reset2" enabled="true">
-				<url lang="en">http://global.stg.factiva.com/en/cfg/pswdReset2.asp</url>
-				<url lang="fr">http://global.stg.factiva.com/fr/cfg/pswdReset2.asp</url>
-				<url lang="de">http://global.stg.factiva.com/de/cfg/pswdReset2.asp</url>
-				<url lang="ja">http://global.stg.factiva.com/ja/cfg/pswdReset2.asp</url>
-				<url lang="ru">http://global.stg.factiva.com/ru/cfg/pswdReset2.asp</url>
-				<url lang="zhcn">http://global.stg.factiva.com/zhcn/cfg/pswdReset2.asp</url>
-				<url lang="zhtw">http://global.stg.factiva.com/zhtw/cfg/pswdReset2.asp</url>
-				<url lang="_${_LA}">http://global.stg.factiva.com/templates/cfg/pswdReset2.asp</url>
-				<url lang="templates">http://global.stg.factiva.com/templates/cfg/pswdReset2.asp</url>
+				<url lang="en">http://global.int.factiva.com/en/cfg/pswdReset2.asp</url>
+				<url lang="fr">http://global.int.factiva.com/fr/cfg/pswdReset2.asp</url>
+				<url lang="de">http://global.int.factiva.com/de/cfg/pswdReset2.asp</url>
+				<url lang="ja">http://global.int.factiva.com/ja/cfg/pswdReset2.asp</url>
+				<url lang="ru">http://global.int.factiva.com/ru/cfg/pswdReset2.asp</url>
+				<url lang="zhcn">http://global.int.factiva.com/zhcn/cfg/pswdReset2.asp</url>
+				<url lang="zhtw">http://global.int.factiva.com/zhtw/cfg/pswdReset2.asp</url>
+				<url lang="_${_LA}">http://global.int.factiva.com/templates/cfg/pswdReset2.asp</url>
+				<url lang="templates">http://global.int.factiva.com/templates/cfg/pswdReset2.asp</url>
 			</template>
 			<data for="jumppage">
-				<url lang="en">http://global.stg.factiva.com/en/cfg/jumppage.asp?billpack=GYMF</url>
-				<url lang="fr">http://global.stg.factiva.com/fr/cfg/jumppage.asp?billpack=GYMF</url>
-				<url lang="de">http://global.stg.factiva.com/de/cfg/jumppage.asp?billpack=GYMF</url>
-				<url lang="ja">http://global.stg.factiva.com/ja/cfg/jumppage.asp?billpack=GYMF</url>
-				<url lang="ru">http://global.stg.factiva.com/ru/cfg/jumppage.asp?billpack=GYMF</url>
-				<url lang="zhcn">http://global.stg.factiva.com/zhcn/cfg/jumppage.asp?billpack=GYMF</url>
-				<url lang="zhtw">http://global.stg.factiva.com/zhtw/cfg/jumppage.asp?billpack=GYMF</url>
-				<url lang="_${_LA}">http://global.stg.factiva.com/templates/cfg/jumppage.asp?billpack=GYMF</url>
-				<url lang="templates">http://global.stg.factiva.com/templates/cfg/jumppage.asp?billpack=GYMF</url>
+				<url lang="en">http://global.int.factiva.com/en/cfg/jumppage.asp?billpack=GYMF</url>
+				<url lang="fr">http://global.int.factiva.com/fr/cfg/jumppage.asp?billpack=GYMF</url>
+				<url lang="de">http://global.int.factiva.com/de/cfg/jumppage.asp?billpack=GYMF</url>
+				<url lang="ja">http://global.int.factiva.com/ja/cfg/jumppage.asp?billpack=GYMF</url>
+				<url lang="ru">http://global.int.factiva.com/ru/cfg/jumppage.asp?billpack=GYMF</url>
+				<url lang="zhcn">http://global.int.factiva.com/zhcn/cfg/jumppage.asp?billpack=GYMF</url>
+				<url lang="zhtw">http://global.int.factiva.com/zhtw/cfg/jumppage.asp?billpack=GYMF</url>
+				<url lang="_${_LA}">http://global.int.factiva.com/templates/cfg/jumppage.asp?billpack=GYMF</url>
+				<url lang="templates">http://global.int.factiva.com/templates/cfg/jumppage.asp?billpack=GYMF</url>
 			</data>
 			<redirect type="logout" enabled="true"></redirect>
 			<browsercaps>

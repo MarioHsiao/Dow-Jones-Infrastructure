@@ -45,8 +45,6 @@ namespace DowJones.Ajax.Article
 
         public string PublicationDate { get; set; }
 
-        public string PublicationFormattedDate { get; set; }
-
         public string PublicationTime { get; set; }
         
         public string ModificationDate { get; set; }
