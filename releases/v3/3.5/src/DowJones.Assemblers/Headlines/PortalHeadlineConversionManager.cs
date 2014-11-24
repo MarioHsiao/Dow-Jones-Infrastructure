@@ -15,6 +15,8 @@ using DowJones.Ajax.PortalHeadlineList;
 using DowJones.Formatters;
 using DowJones.Formatters.Globalization.DateTime;
 using DowJones.Mapping;
+using Factiva.Gateway.Messages.Archive.V2_0;
+using Text = DowJones.Formatters.Text;
 
 namespace DowJones.Assemblers.Headlines
 {
@@ -121,7 +123,17 @@ namespace DowJones.Assemblers.Headlines
 
             return HttpContext.Current.Server.HtmlEncode(sb.ToString());
         }
-        
+
+        private static string GetHighlightedText(MarkupItem highlight)
+        {
+            if (highlight.value != null)
+            {
+                var text = StripHTML(highlight.value.Trim());
+                return String.Format("<span class='dj_article_highlight'>{0}</span>",text);
+            }
+            return String.Empty;
+        }
+
         private static List<string> ProcessParas(IEnumerable<Para> paras)
         {
             var temp = new List<string>();
@@ -130,15 +142,26 @@ namespace DowJones.Assemblers.Headlines
             {
                 return temp;
             }
-            
+
             foreach (var para in paras)
             {
                 var sb = new StringBuilder();
                 foreach (var markupItem in para.items)
                 {
-                    var tempParaValue = StripHTML(markupItem.value.Trim());
-                    sb.Append(tempParaValue);
-                    sb.Append(" ");
+                    if (markupItem.type == "Highlight")
+                    {
+                        if (markupItem.value != null)
+                        {
+                            sb.Append(GetHighlightedText(markupItem));
+                            sb.Append(" ");
+                        }
+                    }
+                    else
+                    {
+                        var tempParaValue = StripHTML(markupItem.value.Trim());
+                        sb.Append(tempParaValue);
+                        sb.Append(" ");
+                    }
                 }
 
                 temp.Add(sb.ToString());

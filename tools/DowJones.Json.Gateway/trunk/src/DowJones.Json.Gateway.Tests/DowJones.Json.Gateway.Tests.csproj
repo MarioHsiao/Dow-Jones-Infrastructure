@@ -64,6 +64,9 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Core\AbstractUnitTests.cs" />
+    <Compile Include="Eds\DeliverySettingsServiceTests.cs" />
+    <Compile Include="Eds\ODEServiceUnitTests.cs" />
+    <Compile Include="Eds\TestStubs.cs" />
     <Compile Include="Pam\ListServiceUnitTests.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -75,6 +78,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ExceptionsUnitTest.cs" />
     <Compile Include="Core\PropertiesUnitTests.cs" />
+    <Compile Include="Workspace\TestStubs.cs" />
+    <Compile Include="Workspace\UpdateManualWorkspceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
@@ -96,6 +101,7 @@
       <Name>DowJones.Json.Gateway</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

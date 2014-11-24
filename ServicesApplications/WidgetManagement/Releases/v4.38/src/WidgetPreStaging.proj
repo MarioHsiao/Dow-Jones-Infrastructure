@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="MoveConfig" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\TeamBuild\Microsoft.TeamFoundation.Build.targets" />
+  <PropertyGroup>
+    <YourDestinationDirectory>$(PreStagingRootlocation)$(PreStagingWebsiteLocation)</YourDestinationDirectory>    
+    <YourSourceDirectory>$(OutDir)\WidgetManagerApplication</YourSourceDirectory>
+    <YourBackupDirectory>$(PreStagingRootlocation)$(PreStagingBackupWebsiteLocation)</YourBackupDirectory>
+    <IISServerName>$(IISServer)</IISServerName>
+    <AppPoolName>$(AppPool)</AppPoolName>
+    <VersionNumber>$(ProductVersion)</VersionNumber>
+  </PropertyGroup>
+  
+  <!-- Because TFS Build needs it -->
+  <Target Name="Clean" />
+
+  <Target Name="MoveConfig">
+    <Move SourceFiles="$(YourSourceDirectory)\lib\WidgetUiResources.dll" DestinationFiles="$(YourSourceDirectory)\bin\WidgetUiResources.dll" />
+    <Move SourceFiles="$(YourSourceDirectory)\lib\de\WidgetUiResources.resources.dll" DestinationFiles="$(YourSourceDirectory)\bin\de\WidgetUiResources.resources.dll" />
+    <Move SourceFiles="$(YourSourceDirectory)\lib\es\WidgetUiResources.resources.dll" DestinationFiles="$(YourSourceDirectory)\bin\es\WidgetUiResources.resources.dll" />
+    <Move SourceFiles="$(YourSourceDirectory)\lib\fr\WidgetUiResources.resources.dll" DestinationFiles="$(YourSourceDirectory)\bin\fr\WidgetUiResources.resources.dll" />
+    <Move SourceFiles="$(YourSourceDirectory)\lib\it\WidgetUiResources.resources.dll" DestinationFiles="$(YourSourceDirectory)\bin\it\WidgetUiResources.resources.dll" />
+    <Move SourceFiles="$(YourSourceDirectory)\lib\ja\WidgetUiResources.resources.dll" DestinationFiles="$(YourSourceDirectory)\bin\ja\WidgetUiResources.resources.dll" />
+    <Move SourceFiles="$(YourSourceDirectory)\lib\ru\WidgetUiResources.resources.dll" DestinationFiles="$(YourSourceDirectory)\bin\ru\WidgetUiResources.resources.dll" />
+    <Move SourceFiles="$(YourSourceDirectory)\lib\zh-cn\WidgetUiResources.resources.dll" DestinationFiles="$(YourSourceDirectory)\bin\zh-cn\WidgetUiResources.resources.dll" />
+    <Move SourceFiles="$(YourSourceDirectory)\lib\zh-tw\WidgetUiResources.resources.dll" DestinationFiles="$(YourSourceDirectory)\bin\zh-tw\WidgetUiResources.resources.dll" />
+  </Target>
+
+  <Target Name="CopyLocation" AfterTargets="MoveConfig">
+    <CreateItem Include="$(YourSourceDirectory)\**\*.*">
+      <Output TaskParameter="Include" ItemName="YourFilesToCopy" />
+    </CreateItem>
+    <CreateItem Include="$(YourDestinationDirectory)\**\*.*">
+      <Output TaskParameter="Include" ItemName="YourBackupFilesToCopy" />
+    </CreateItem>
+    <Message Text="Your Source Directory: $(YourSourceDirectory)" />
+    <Message Text="Your Destination Directory: $(YourDestinationDirectory)" />
+    <Message Text="Output Dir: $(OutDir)" />
+    <Message Importance="high" Text="copying" />
+
+    <Message Importance="high" Text="Removing backup directory if present...." />
+    <RemoveDir Directories="$(YourBackupDirectory)" />
+    <Message Importance="high" Text="Copying files from website location to backup location..." />
+    <Copy SourceFiles="@(YourBackupFilesToCopy)"
+                       DestinationFiles="@(YourBackupFilesToCopy->'$(YourBackupDirectory)\%(RecursiveDir)%(Filename)%(Extension)')" />
+
+    <Message Importance="high" Text="Stopping iis..." />
+    <Exec Command="&quot;c:\windows\system32\cmd.exe&quot;  /c cscript d:\BuildUtilities\StartStopAppPool.vbs $(IISServerName) $(AppPoolName) Stop">
+    </Exec>
+    <Message Importance="high" Text="Removing Website directory..." />
+    <RemoveDir Directories="$(YourDestinationDirectory)" />
+    <Message Importance="high" Text="Copying files from drop location to website location..." />
+    <Copy SourceFiles="@(YourFilesToCopy)"
+                    DestinationFiles="@(YourFilesToCopy->'$(YourDestinationDirectory)\%(RecursiveDir)%(Filename)%(Extension)')" />
+
+    <Message Importance="high" Text="Starting iis..." />
+    <Exec Command="&quot;c:\windows\system32\cmd.exe&quot;  /c cscript d:\BuildUtilities\StartStopAppPool.vbs $(IISServerName) $(AppPoolName) Start">
+    </Exec>
+    
+    <Message Importance="high" Text="All tasks completed" />
+  </Target>
+  
+</Project>

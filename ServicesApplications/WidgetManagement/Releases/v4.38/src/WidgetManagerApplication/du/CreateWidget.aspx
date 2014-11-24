@@ -1,0 +1,1 @@
+<%@ Page AspCompat="true" Language="C#" CodeBehind="CreateWidget.aspx.cs" Inherits="EMG.widgets.ui.du.CreateWidget" ValidateRequest="false" AutoEventWireup="true" EnableSessionState="false" EnableViewStateMac="false" Buffer="true" %>

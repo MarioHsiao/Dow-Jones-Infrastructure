@@ -1,0 +1,10 @@
+function callWidget_{0}() {{
+	var parentNodeId = "FACTIVA_WIDGET_MGR_panel_parent_{0}";
+    FACTIVA_WIDGET_MGR.insertWidget("{2}",parentNodeId);      
+}}
+(function() {{
+    var appVersion = "{3}";
+    var parentNodeId = "FACTIVA_WIDGET_MGR_panel_parent_{0}";
+    document.write("<div id=\"" + parentNodeId + "\">Loading...</div>");
+    FACTIVA_WIDGET_MGR.loadJSLibrary("{1}",appVersion,"FactivaWidgetRenderManager",callWidget_{0});
+}})();

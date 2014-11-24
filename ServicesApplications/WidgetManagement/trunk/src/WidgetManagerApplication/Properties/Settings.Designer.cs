@@ -25,7 +25,7 @@ namespace EMG.widgets.ui.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://global.int.factiva.com/redir/default.aspx")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://global.stg.factiva.com/redir/default.aspx")]
         public string Cyclone_Redirection_URL {
             get {
                 return ((string)(this["Cyclone_Redirection_URL"]));
@@ -152,7 +152,7 @@ namespace EMG.widgets.ui.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://global.int.factiva.com")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://global.stg.factiva.com")]
         public string GL_BaseUrl {
             get {
                 return ((string)(this["GL_BaseUrl"]));
@@ -170,7 +170,7 @@ namespace EMG.widgets.ui.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://global.int.factiva.com/du/folderview.aspx")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://global.stg.factiva.com/du/folderview.aspx")]
         public string GL_BaseUrl_AlertHeadlineWidget {
             get {
                 return ((string)(this["GL_BaseUrl_AlertHeadlineWidget"]));
@@ -188,7 +188,7 @@ namespace EMG.widgets.ui.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://global.int.factiva.com/du/folderview.aspx?sa_from={0}&napc={1}")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://global.stg.factiva.com/du/folderview.aspx?sa_from={0}&napc={1}")]
         public string IN_BasreUrl_AlertHeadlineWidget {
             get {
                 return ((string)(this["IN_BasreUrl_AlertHeadlineWidget"]));

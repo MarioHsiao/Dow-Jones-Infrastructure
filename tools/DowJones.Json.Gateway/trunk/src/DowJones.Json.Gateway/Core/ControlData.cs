@@ -27,6 +27,7 @@ namespace DowJones.Json.Gateway.Messages.Core
         [DataMember]
         public TransactionCacheData TransactionCacheData { get; set; }
 
+        [DataMember]
         public AuthorizationData AuthorizationData { get; set; }
 
         public bool IsValid()

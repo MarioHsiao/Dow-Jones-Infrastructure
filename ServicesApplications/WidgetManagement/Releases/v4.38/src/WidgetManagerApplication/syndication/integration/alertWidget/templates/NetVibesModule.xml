@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <title>{4}</title>
+  </head>
+  <body>
+    <div id="{0}_div">Loading ...</div>
+    <script type="text/javascript">
+      function load_{0}_div() {{
+        var parentNodeId = "{0}_div";
+        var d = document;
+        var widgetManagerKey = "widgetManager_{0}";
+        var renderManagerKey = "renderManager_{0}";
+        var renderKey = "render_{0}";
+        var widgetManagerScript = d.getElementById(widgetManagerKey);
+        var renderManagerScript = d.getElementById(renderManagerKey);
+        var renderScript = d.getElementById(renderKey);
+        var head = d.getElementsByTagName("head").item(0);
+
+        if (!widgetManagerScript) {{
+          var widgetManagerScriptVar = d.createElement("script");
+          widgetManagerScriptVar.setAttribute("src", "{1}");
+          widgetManagerScriptVar.setAttribute("id", widgetManagerKey);
+          widgetManagerScriptVar.type = "text/javascript";
+          head.appendChild(widgetManagerScriptVar);
+        }}
+
+        if (!renderManagerScript) {{
+          var renderManagerScriptVar = d.createElement("script");
+          renderManagerScriptVar.setAttribute("src", "{2}" + "?appver=" + new Date().getTime());
+          renderManagerScriptVar.setAttribute("id", renderManagerKey);
+          renderManagerScriptVar.type = "text/javascript";
+          head.appendChild(renderManagerScriptVar);
+        }}
+        if (!renderManagerScript) {{
+          var renderScriptVar = d.createElement("script");
+          renderScriptVar.setAttribute("src", "{3}" + parentNodeId);
+          renderScriptVar.setAttribute("id", renderKey);
+          renderScriptVar.type = "text/javascript";
+          head.appendChild(renderScriptVar);
+        }}
+      }}
+      load_{0}_div();
+    </script>
+  </body>
+</html>

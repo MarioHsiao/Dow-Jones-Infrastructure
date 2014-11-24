@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<rss version="2.0" xmlns:binding="http://www.live.com">
+	<channel>
+		<!-- Specifies the name of your Gadget -->
+		<title>{0}</title>
+		<!-- Gives a short description of your gadget -->
+		<description>Custom alert widget gadget provided by Dow Jones.</description>
+		<!-- Specifies the default locale for your gadget -->
+		<language>en-us</language>
+		<!-- Specifies the JavaScript object that defines your Gadget (this object must be defined in the jscript linked to below) -->
+		<binding:type>emgDowJones.{1}</binding:type>
+		<item>
+			<!-- Specifies the JavaScript file that contains the code for your Gadget -->
+			<link><![CDATA[{2}]]></link>
+		</item>
+		<!-- <item> -->
+			<!-- Specifies the css file that contains the styles for your Gadget -->
+			<!-- <link binding:type="css"></link> -->
+		<!-- </item> -->
+	</channel>
+</rss>

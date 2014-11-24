@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentCategories>
+	<ContentCategory catID="EC">
+		<categoryName la="en">editorsChoice</categoryName>
+		<sourceInfo>
+			<sourceCode filter="ns" urlParam="accounting">REQRAC</sourceCode>
+			<sourceName la="en">Accounting/Consulting</sourceName>
+			<description la="en">
+				<paragraph>descForEC-REQRAC</paragraph>
+			</description>
+			<industryCodes>
+				<industryCode>ACCN</industryCode>
+			</industryCodes>
+		</sourceInfo>
+		<sourceInfo>
+			<sourceCode filter="ns" urlParam="advertising">REQRAP</sourceCode>
+			<sourceName la="en">Advertising/PR</sourceName>
+			<description la="en">
+				<paragraph>descForEC-REQRAP</paragraph>
+			</description>
+			<industryCodes>
+				<industryCode>ADVT</industryCode>
+			</industryCodes>
+		</sourceInfo>
+		<sourceInfo>
+			<sourceCode filter="ns" urlParam="aerospace">REQRAD</sourceCode>
+			<sourceName la="en">Aerospace and Defense</sourceName>
+			<description la="en">
+				<paragraph>descForEC-REQRAD</paragraph>
+			</description>
+			<industryCodes>
+				<industryCode>AEDF</industryCode>
+			</industryCodes>
+		</sourceInfo>
+		<sourceInfo>
+			<sourceCode filter="ns" urlParam="agriculture">REQRAF</sourceCode>
+			<sourceName la="en">Agriculture/Forestry</sourceName>
+			<description la="en">
+				<paragraph>descForEC-REQRAF</paragraph>
+			</description>
+			<industryCodes>
+				<industryCode>AGRI</industryCode>
+			</industryCodes>
+		</sourceInfo>
+		<sourceInfo>
+      <sourceCode filter="ns" urlParam="airlines">REQRAI</sourceCode>
+			<sourceName la="en">Airlines</sourceName>
+			<description la="en">
+				<paragraph>descForEC-REQRAI</paragraph>
+			</description>
+			<industryCodes>
+				<industryCode>AIRL</industryCode>
+			</industryCodes>
+		</sourceInfo>
+		<sourceInfo>
+			<sourceCode filter="ns" urlParam="automobiles">REQRAU</sourceCode>
+			<sourceName la="en">Automobiles</sourceName>
+			<description la="en">
+				<paragraph>descForEC-REQRAU</paragraph>
+			</description>
+			<industryCodes>
+				<industryCode>AUTO</industryCode>
+			</industryCodes>
+		</sourceInfo>
+		<sourceInfo>
+			<sourceCode filter="ns" urlParam="banking">REQRBC</sourceCode>
+			<sourceName la="en">Banking/Credit</sourceName>
+			<description la="en">
+				<paragraph>descForEC-REQRBC</paragraph>
+			</description>
+			<industryCodes>
+				<industryCode>BNCR</industryCode>
+			</industryCodes>
+		</sourceInfo>
+		<sourceInfo>
+			<sourceCode filter="ns" urlParam="chemicals">REQRCH</sourceCode>
+			<sourceName la="en">Chemicals</sourceName>
+			<description la="en">
+				<paragraph>descForEC-REQRCH</paragraph>
+			</description>
+			<industryCodes>
+				<industryCode>CHEM</industryCode>
+			</industryCodes>
+		</sourceInfo>
+		<sourceInfo>
+			<sourceCode filter="ns" urlParam="clothing">REQRCT</sourceCode>
+			<sourceName la="en">Clothing/Textiles</sourceName>
+			<description la="en">
+				<paragraph>descForEC-REQRCT</paragraph>
+			</description>
+			<industryCodes>
+				<industryCode>CLTX</industryCode>
+			</industryCodes>
+		</sourceInfo>
+		<sourceInfo>
+			<sourceCode filter="ns" urlParam="computers">REQRCM</sourceCode>
+			<sourceName la="en">Computers</sourceName>
+			<description la="en">
+				<paragraph>descForEC-REQRCM</paragraph>
+			</description>
+			<industryCodes>
+				<industryCode>COMP</industryCode>
+			</industryCodes>
+		</sourceInfo>
+		<sourceInfo>
+			<sourceCode filter="ns" urlParam="consumerproducts">REQRCP</sourceCode>
+			<sourceName la="en">Consumer Products</sourceName>
+			<description la="en">
+				<paragraph>descForEC-REQRCP</paragraph>
+			</description>
+			<industryCodes>
+				<industryCode>CSPR</industryCode>
+			</industryCodes>
+		</sourceInfo>
+		<sourceInfo>
+			<sourceCode filter="ns" urlParam="construction">REQRCR</sourceCode>
+			<sourceName la="en">Construction/Real Estate</sourceName>
+			<description la="en">
+				<paragraph>descForEC-REQRCR</paragraph>
+			</description>
+			<industryCodes>
+				<industryCode>CNER</industryCode>
+			</industryCodes>
+		</sourceInfo>
+		<sourceInfo>
+			<sourceCode filter="ns" urlParam="energy">REQREN</sourceCode>
+			<sourceName la="en">Energy</sourceName>
+			<description la="en">
+				<paragraph>descForEC-REQREN</paragraph>
+			</description>
+			<industryCodes>
+				<industryCode>ENGY</industryCode>
+			</industryCodes>
+		</sourceInfo>
+		<sourceInfo>
+			<sourceCode filter="ns" urlParam="food">REQRFB</sourceCode>
+			<sourceName la="en">Food/Beverages/Tobacco</sourceName>
+			<description la="en">
+				<paragraph>descForEC-REQRFB</paragraph>
+			</description>
+			<industryCodes>
+				<industryCode>FDBT</industryCode>
+			</industryCodes>
+		</sourceInfo>
+		<sourceInfo>
+			<sourceCode filter="ns" urlParam="healthcare">REQRHC</sourceCode>
+      <sourceName la="en">Health Care</sourceName>
+      <description la="en">
+        <paragraph>descForEC-REQRHC</paragraph>
+      </description>
+      <industryCodes>
+        <industryCode>HEAL</industryCode>
+      </industryCodes>
+    </sourceInfo>
+    <sourceInfo>
+      <sourceCode filter="ns" urlParam="hotels">REQRHR</sourceCode>
+			<sourceName la="en">Hotels/Restaurants/Casinos</sourceName>
+			<description la="en">
+				<paragraph>descForEC-REQRHR</paragraph>
+			</description>
+			<industryCodes>
+				<industryCode>HTRC</industryCode>
+			</industryCodes>
+		</sourceInfo>
+		<sourceInfo>
+			<sourceCode filter="ns" urlParam="insurance">REQRIN</sourceCode>
+			<sourceName la="en">Insurance</sourceName>
+			<description la="en">
+				<paragraph>descForEC-REQRIN</paragraph>
+			</description>
+			<industryCodes>
+				<industryCode>INSU</industryCode>
+			</industryCodes>
+		</sourceInfo>
+		<sourceInfo>
+			<sourceCode filter="ns" urlParam="internet">REQRIO</sourceCode>
+			<sourceName la="en">Internet/Online Services</sourceName>
+			<description la="en">
+				<paragraph>descForEC-REQRIO</paragraph>
+			</description>
+			<industryCodes>
+				<industryCode>INOS</industryCode>
+			</industryCodes>
+		</sourceInfo>
+		<sourceInfo>
+			<sourceCode filter="ns" urlParam="investing">REQRIS</sourceCode>
+			<sourceName la="en">Investing/Securities</sourceName>
+			<description la="en">
+				<paragraph>descForEC-REQRIS</paragraph>
+			</description>
+			<industryCodes>
+				<industryCode>SCRI</industryCode>
+			</industryCodes>
+		</sourceInfo>
+		<sourceInfo>
+			<sourceCode filter="ns" urlParam="media">REQRME</sourceCode>
+      <sourceName la="en">Media</sourceName>
+      <description la="en">
+        <paragraph>descForEC-REQRME</paragraph>
+      </description>
+      <industryCodes>
+        <industryCode>MEDA</industryCode>
+      </industryCodes>
+    </sourceInfo>
+    <sourceInfo>
+      <sourceCode filter="ns" urlParam="metals">REQRMM</sourceCode>
+			<sourceName la="en">Metals/Mining</sourceName>
+			<description la="en">
+				<paragraph>descForEC-REQRMM</paragraph>
+			</description>
+			<industryCodes>
+				<industryCode>MTMN</industryCode>
+			</industryCodes>
+		</sourceInfo>
+		<sourceInfo>
+			<sourceCode filter="ns" urlParam="pharma">REQRPH</sourceCode>
+			<sourceName la="en">Pharmaceuticals</sourceName>
+			<description la="en">
+				<paragraph>descForEC-REQRPH</paragraph>
+			</description>
+			<industryCodes>
+				<industryCode>PHAR</industryCode>
+			</industryCodes>
+		</sourceInfo>
+		<sourceInfo>
+			<sourceCode filter="ns" urlParam="retail">REQRRE</sourceCode>
+			<sourceName la="en">Retail</sourceName>
+			<description la="en">
+				<paragraph>descForEC-REQRRE</paragraph>
+			</description>
+			<industryCodes>
+				<industryCode>RTAL</industryCode>
+			</industryCodes>
+		</sourceInfo>
+		<sourceInfo>
+			<sourceCode filter="ns" urlParam="telecommunications">REQRTE</sourceCode>
+      <sourceName la="en">Telecommunications</sourceName>
+      <description la="en">
+        <paragraph>descForEC-REQRTE</paragraph>
+      </description>
+      <industryCodes>
+        <industryCode>TELC</industryCode>
+      </industryCodes>
+    </sourceInfo>
+    <sourceInfo>
+      <sourceCode filter="ns" urlParam="transportation">REQRTS</sourceCode>
+			<sourceName la="en">Transportation</sourceName>
+			<description la="en">
+				<paragraph>descForEC-REQRTS</paragraph>
+			</description>
+			<industryCodes>
+				<industryCode>TRSH</industryCode>
+			</industryCodes>
+		</sourceInfo>
+		<description la="en">
+			<paragraph>descForEC</paragraph>
+		</description>
+	</ContentCategory>
+	<ContentCategory catID="NP">
+		<categoryName la="en">descForNP</categoryName>
+		<description la="en">
+			<paragraph></paragraph>
+		</description>
+	</ContentCategory>
+	
+	<ContentCategory catID="NM">
+		<categoryName la="en">descForNM</categoryName>
+		<description la="en">
+			<paragraph></paragraph>
+		</description>
+	</ContentCategory>
+	<ContentCategory catID="WS">
+		<categoryName la="en">descForWS</categoryName>
+		<description la="en">
+			<paragraph></paragraph>
+		</description>
+	</ContentCategory>
+	<ContentCategory catID="MA">
+		<categoryName la="en">descForMyAlerts</categoryName>
+		<description la="en">
+			<paragraph></paragraph>
+		</description>
+	</ContentCategory>
+	<ContentCategory catID="HP">
+		<categoryName la="en">help</categoryName>
+		<description la="en">
+			<paragraph></paragraph>
+		</description>
+	</ContentCategory>
+</ContentCategories>
